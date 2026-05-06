@@ -1,4 +1,4 @@
-![Header](https://capsule-render.vercel.app/api?type=waving&color=0:050a0f,50:0c1a2e,100:050a0f&height=180&section=header&text=SPARTAN%20GAMER%20BR&fontColor=22d3ee&fontSize=38&fontAlignY=42&fontAlign=50&desc=Lucas%20Belucci%20Bellini&descAlignY=68&descAlign=50&descColor=f97316&animation=fadeIn)
+![Header](https://capsule-render.vercel.app/api?type=waving&color=0:050a0f,50:0c1a2e,100:050a0f&height=180&section=header&text=LUCAS%20BELUCCI%20BELLINI&fontColor=22d3ee&fontSize=38&fontAlignY=42&fontAlign=50&desc=Spartan%20Gamer%20BR&descAlignY=68&descAlign=50&descColor=f97316&animation=fadeIn)
 
 ![Typing](https://readme-typing-svg.demolab.com?font=Orbitron&weight=900&size=18&duration=2800&pause=1200&color=22D3EE&center=true&vCenter=true&width=750&height=50&lines=⚔+SPARTAN+PROTOCOL+—+INICIADO;🖥+Arquiteto+de+CPUs+do+zero+%7C+8-bit+até+64-bit;🎮+HALO+·+War+Thunder+·+Doom+·+Warhammer+40k;🚗+Amante+de+Carros+%26+Tecnologia;📡+Ciência+da+Computação+%7C+UNIFIL+%7C+Londrina)
 
