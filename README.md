@@ -1,40 +1,43 @@
-![Header](https://capsule-render.vercel.app/api?type=waving&color=0:050a0f,50:0c1a2e,100:050a0f&height=120&section=header&text=&animation=fadeIn)
-![Lucas Belucci Bellini](https://readme-typing-svg.demolab.com?font=Orbitron&weight=900&size=34&duration=2800&pause=1400&color=22D3EE&center=true&vCenter=true&width=700&height=72&lines=Lucas+Belucci+Bellini)
-![Subtitle](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=400&size=16&duration=3000&pause=2000&color=F97316&center=true&vCenter=true&width=700&height=36&lines=Ciência+da+Computação+%7C+UNIFIL+✦+Londrina%2C+Brasil;Computer+Science+%7C+Building+the+future%2C+one+commit+at+a+time;>>+Iniciando+sequência+de+portfólio...+%5BOK%5D)
+![Header](https://capsule-render.vercel.app/api?type=waving&color=0:050a0f,50:0c1a2e,100:050a0f&height=180&section=header&text=SPARTAN%20GAMER%20BR&fontColor=22d3ee&fontSize=38&fontAlignY=42&fontAlign=50&desc=Lucas%20Belucci%20Bellini&descAlignY=68&descAlign=50&descColor=f97316&animation=fadeIn)
+
+![Typing](https://readme-typing-svg.demolab.com?font=Orbitron&weight=900&size=18&duration=2800&pause=1200&color=22D3EE&center=true&vCenter=true&width=750&height=50&lines=⚔+SPARTAN+PROTOCOL+—+INICIADO;🖥+Arquiteto+de+CPUs+do+zero+%7C+8-bit+até+64-bit;🎮+HALO+·+War+Thunder+·+Doom+·+Warhammer+40k;🚗+Amante+de+Carros+%26+Tecnologia;📡+Ciência+da+Computação+%7C+UNIFIL+%7C+Londrina)
+
+<div align="center">
 
 [![Status](https://img.shields.io/badge/✔️%20STATUS-ONLINE-22d3ee?style=for-the-badge&labelColor=080f17&color=22d3ee)](https://github.com/Lucas-Belucci-Bellini)
 [![University](https://img.shields.io/badge/🔓%20UNIFIL-Ciência%20da%20Computação-f97316?style=for-the-badge&labelColor=080f17&color=f97316)](https://unifil.br)
 [![Location](https://img.shields.io/badge/📍%20Londrina-Paraná%20·%20Brasil-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](#)
 
+</div>
+
 ---
 
 ![](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
 
-## `// PT-BR` — Apresentação
-
 ```
->> Iniciando carregamento do perfil...
->> Identificando módulos ativos............... [OK]
->> Montando apresentação...................... [OK]
-```
-
-Oi! Me chamo **Lucas Belucci Bellini** — estudante de **Ciência da Computação** na **UNIFIL**, em Londrina, Paraná, Brasil.
-
-Este GitHub é o meu espaço de experimentação: aqui documento projetos, estudos e os commits que marcam a minha jornada na computação. Sempre explorando novas tecnologias, resolvendo problemas e construindo coisas que me desafiam a ir além.
-
----
-
-## `// EN-US` — Introduction
-
-```
->> Loading profile module.................... [OK]
->> Parsing bio data.......................... [OK]
->> Rendering output.......................... [OK]
+╔══════════════════════════════════════════════════════════════╗
+║  ⚔  SPARTAN PROTOCOL — INICIADO                             ║
+║                                                              ║
+║  >> Agente   : Lucas Belucci Bellini                        ║
+║  >> Codinome : Spartan Gamer BR                             ║
+║  >> Base     : Londrina, Paraná, Brasil                     ║
+║  >> Missão   : Ciência da Computação / UNIFIL               ║
+║  >> Sistemas : Programação · Robótica · Eletrônica          ║
+║  >> Status   : EM CAMPO — OPERACIONAL ..................[OK] ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
-Hi! I'm **Lucas Belucci Bellini** — a **Computer Science** student at **UNIFIL University**, located in Londrina, Brazil.
+## `// PT-BR` — Quem sou eu?
 
-This GitHub is my digital lab: a place where I track projects, experiments, and the commits that define my journey in computing. Always exploring new technologies, solving real problems, and pushing myself to build things that matter.
+Oi! Sou o **Lucas Belucci Bellini**, também conhecido como **Spartan Gamer BR**. Estudante de **Ciência da Computação** na **UNIFIL**, Londrina, Brasil.
+
+Gosto de tentar coisas novas e **sempre termino o que começo**, não importa quanto tempo demore. Sou apaixonado por carros, programação, robótica, eletrônica, filmes e jogos. Aqui você encontra projetos reais, experimentos e os commits que contam minha jornada na computação.
+
+## `// EN-US` — Who am I?
+
+Hi! I'm **Lucas Belucci Bellini**, also known as **Spartan Gamer BR**. Computer Science student at **UNIFIL**, Londrina, Brazil.
+
+I love trying new things and **always finish what I start**, no matter how long it takes. Passionate about cars, programming, robotics, electronics, movies and games. Here you'll find real projects, experiments and the commits that define my journey in computing.
 
 ---
 
@@ -42,21 +45,68 @@ This GitHub is my digital lab: a place where I track projects, experiments, and 
 
 ### ⚡ Linguagens / Languages
 
-[![Python](https://img.shields.io/badge/Python-050a0f?style=for-the-badge&logo=python&logoColor=22d3ee)](https://python.org)
-[![C](https://img.shields.io/badge/C-050a0f?style=for-the-badge&logo=c&logoColor=f97316)](https://en.wikipedia.org/wiki/C_(programming_language))
-[![C++](https://img.shields.io/badge/C++-050a0f?style=for-the-badge&logo=cplusplus&logoColor=f97316)](https://isocpp.org)
-[![Java](https://img.shields.io/badge/Java-050a0f?style=for-the-badge&logo=openjdk&logoColor=22d3ee)](https://java.com)
-[![JavaScript](https://img.shields.io/badge/JavaScript-050a0f?style=for-the-badge&logo=javascript&logoColor=f97316)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
-[![HTML5](https://img.shields.io/badge/HTML5-050a0f?style=for-the-badge&logo=html5&logoColor=22d3ee)](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-050a0f?style=for-the-badge&logo=css3&logoColor=4ade80)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+<div align="center">
+
+[![Languages](https://skillicons.dev/icons?i=python,c,cpp,java,js,html,css&theme=dark)](https://skillicons.dev)
+
+</div>
 
 ### 🛠 Ferramentas / Tools
 
-[![Git](https://img.shields.io/badge/Git-050a0f?style=for-the-badge&logo=git&logoColor=f97316)](https://git-scm.com)
-[![GitHub](https://img.shields.io/badge/GitHub-050a0f?style=for-the-badge&logo=github&logoColor=22d3ee)](https://github.com/Lucas-Belucci-Bellini)
-[![VS Code](https://img.shields.io/badge/VS%20Code-050a0f?style=for-the-badge&logo=visualstudiocode&logoColor=22d3ee)](https://code.visualstudio.com)
-[![Linux](https://img.shields.io/badge/Linux-050a0f?style=for-the-badge&logo=linux&logoColor=f97316)](https://kernel.org)
-[![MySQL](https://img.shields.io/badge/MySQL-050a0f?style=for-the-badge&logo=mysql&logoColor=4ade80)](https://mysql.com)
+<div align="center">
+
+[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,mysql&theme=dark)](https://skillicons.dev)
+
+</div>
+
+---
+
+![Achievements](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+CONQUISTAS+%2F+ACHIEVEMENTS+✔)
+
+```
+╔═══════════════════════════════════════════════════════════════════╗
+║  🖥  DIGITAL LOGIC SIM — BUILD LOG                               ║
+║  Construindo computadores funcionais do zero, bit a bit          ║
+╠═══════════════════════════════════════════════════════════════════╣
+║  [████████████████████████]   8-BIT CPU ............. [CONCLUÍDO] ║
+║  [████████████████████████]  16-BIT CPU ............. [CONCLUÍDO] ║
+║  [████████████████████████]  32-BIT CPU ............. [CONCLUÍDO] ║
+║  [████████████████████████]  64-BIT CPU ............. [CONCLUÍDO] ║
+╚═══════════════════════════════════════════════════════════════════╝
+```
+
+> Construí computadores funcionais de **8 a 64 bits** no Digital Logic Sim —
+> da ULA à arquitetura completa. Do zero. Porta lógica por porta lógica.
+
+---
+
+![Interests](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=4ADE80&center=true&vCenter=true&width=500&height=30&lines=✔+INTERESSES+%2F+INTERESTS+✔)
+
+### 🎮 Gaming
+
+<div align="center">
+
+[![HALO](https://img.shields.io/badge/HALO-Spartan-15803d?style=for-the-badge&logo=xbox&logoColor=white&labelColor=080f17)](https://www.halowaypoint.com)
+[![War Thunder](https://img.shields.io/badge/War%20Thunder-Em%20Campo-b45309?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](http://warthunder.com/en/registration?r=userinvite_186972483)
+[![Doom](https://img.shields.io/badge/DOOM-RIP%20%26%20TEAR-b91c1c?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
+[![Warhammer 40k](https://img.shields.io/badge/Warhammer%2040k-For%20The%20Emperor-7c3aed?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
+[![Helldivers](https://img.shields.io/badge/Helldivers%202-Super%20Earth-ca8a04?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
+[![ARMA 3](https://img.shields.io/badge/ARMA%203-Tactical-22d3ee?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
+[![Fallout 4](https://img.shields.io/badge/Fallout%204-Vault%20Dweller-4ade80?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
+
+</div>
+
+### 🎬 Filmes / Films
+
+<div align="center">
+
+[![Transformers](https://img.shields.io/badge/Transformers-Autobots-f97316?style=for-the-badge&labelColor=080f17)](https://www.imdb.com/title/tt0418279/)
+[![Pacific Rim](https://img.shields.io/badge/Pacific%20Rim-Kaiju%20Alert-22d3ee?style=for-the-badge&labelColor=080f17)](https://www.imdb.com/title/tt1663662/)
+[![Godzilla](https://img.shields.io/badge/Godzilla-King%20of%20Monsters-4ade80?style=for-the-badge&labelColor=080f17)](https://www.imdb.com/title/tt2393449/)
+[![Iron Man](https://img.shields.io/badge/Iron%20Man-I%20Am%20Iron%20Man-f97316?style=for-the-badge&labelColor=080f17)](https://www.imdb.com/title/tt0371746/)
+[![Batman](https://img.shields.io/badge/Batman-Dark%20Knight-22d3ee?style=for-the-badge&labelColor=080f17)](https://www.imdb.com/title/tt0372784/)
+
+</div>
 
 ---
 
@@ -70,6 +120,8 @@ This GitHub is my digital lab: a place where I track projects, experiments, and 
 ![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=050a0f&border=22d3ee&stroke=22d3ee&ring=f97316&fire=f97316&currStreakNum=22d3ee&sideNums=f1f5f9&currStreakLabel=22d3ee&sideLabels=f97316&dates=94a3b8&border_radius=4)
 
 ![Trophies](https://github-profile-trophy.vercel.app/?username=Lucas-Belucci-Bellini&theme=darkhub&no-bg=true&no-frame=false&column=6&margin-w=8&margin-h=8&title_color=22d3ee)
+
+![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Lucas-Belucci-Bellini&theme=react-dark&bg_color=050a0f&color=22d3ee&line=f97316&point=4ade80&area=true&hide_border=false)
 
 </div>
 
@@ -85,12 +137,10 @@ This GitHub is my digital lab: a place where I track projects, experiments, and 
 
 <div align="center">
 
-<!-- Perfis principais / Main profiles -->
 [![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini)
 [![Portfolio](https://img.shields.io/badge/🌐%20Portfólio-Online-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://sites.google.com/view/portifolio-de-lucas-belucci/me-conhe%C3%A7a-um-pouco)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-f97316?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=080f17)](https://linkedin.com)
 
-<!-- Redes / Social -->
 [![YouTube](https://img.shields.io/badge/YouTube-Spartan%20Gamer%20BR-ff0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=080f17)](https://youtube.com/@spartan_gamer_br)
 [![Twitch](https://img.shields.io/badge/Twitch-spartan__gamer__pro-9146ff?style=for-the-badge&logo=twitch&logoColor=white&labelColor=080f17)](https://www.twitch.tv/spartan_gamer_pro)
 [![Spotify](https://img.shields.io/badge/Spotify-Spartan%20Br-1db954?style=for-the-badge&logo=spotify&logoColor=white&labelColor=080f17)](https://open.spotify.com/user/92joxenrzr5zhtx73dtjd1dmy)
@@ -99,11 +149,13 @@ This GitHub is my digital lab: a place where I track projects, experiments, and 
 </div>
 
 ```
-╔══════════════════════════════════════════════════════╗
-║   "A melhor forma de prever o futuro é construí-lo." ║
-║   "The best way to predict the future is to build it"║
-║                                           — Alan Kay ║
-╚══════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════╗
+║  "A melhor forma de prever o futuro é construí-lo."         ║
+║  "The best way to predict the future is to build it."       ║
+║                                             — Alan Kay      ║
+╠══════════════════════════════════════════════════════════════╣
+║  ⚔  Spartan never gives up. Spartan always finishes it.    ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
 [![Visitors](https://komarev.com/ghpvc/?username=Lucas-Belucci-Bellini&style=for-the-badge&color=22d3ee&labelColor=080f17&label=VISITAS+/+VISITS)](https://github.com/Lucas-Belucci-Bellini)
