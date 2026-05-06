@@ -108,10 +108,10 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Lucas-Belucci-Bellini&show_icons=true&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&include_all_commits=true&count_private=true&hide_border=false)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Lucas-Belucci-Bellini&layout=compact&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&langs_count=8)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Lucas-Belucci-Bellini&show_icons=true&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&include_all_commits=true&count_private=true&hide_border=false&cache_seconds=1800)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Lucas-Belucci-Bellini&layout=compact&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&langs_count=8&cache_seconds=1800)
 
-![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=050a0f&border=22d3ee&stroke=22d3ee&ring=f97316&fire=f97316&currStreakNum=22d3ee&sideNums=f1f5f9&currStreakLabel=22d3ee&sideLabels=f97316&dates=94a3b8&border_radius=4)
+![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=050a0f&border=22d3ee&stroke=22d3ee&ring=f97316&fire=f97316&currStreakNum=22d3ee&sideNums=f1f5f9&currStreakLabel=22d3ee&sideLabels=f97316&dates=94a3b8&border_radius=4&cache_seconds=1800)
 
 ![Trophies](https://github-profile-trophy.vercel.app/?username=Lucas-Belucci-Bellini&theme=darkhub&no-bg=true&no-frame=false&column=6&margin-w=8&margin-h=8&title_color=22d3ee)
 
