@@ -100,7 +100,9 @@ I love trying new things and **always finish what I start**, no matter how long 
 
 "Spartan never gives up. Spartan always finishes it."
 
-Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar minhas histórias e universos criados, um espaço para a imaginação e a criatividade fluírem. Em breve, mais conteúdo será adicionado!
+Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar minhas histórias e universos criados, um espaço para a imaginação e a criatividade fluírem.
+
+📖 **Comece a ler por aqui:** [Minha Fan Fiction - Início](https://docs.google.com/document/d/1FJulPVU1WA8LTLL3NO7h2CTW7pmlNWgO-C77qwtcVgU/edit?usp=drivesdk)
 
 ---
 
