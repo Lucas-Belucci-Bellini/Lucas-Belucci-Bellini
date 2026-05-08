@@ -110,10 +110,10 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Lucas-Belucci-Bellini&show_icons=true&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&include_all_commits=true&count_private=true&hide_border=false&cache_seconds=1800)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Lucas-Belucci-Bellini&layout=compact&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&langs_count=8&cache_seconds=1800)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Lucas-Belucci-Bellini&show_icons=true&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&include_all_commits=true&count_private=true&hide_border=false)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Lucas-Belucci-Bellini&layout=compact&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&langs_count=8)
 
-![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=050a0f&border=22d3ee&stroke=22d3ee&ring=f97316&fire=f97316&currStreakNum=22d3ee&sideNums=f1f5f9&currStreakLabel=22d3ee&sideLabels=f97316&dates=94a3b8&border_radius=4&cache_seconds=1800)
+![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=050a0f&border=22d3ee&stroke=22d3ee&ring=f97316&fire=f97316&currStreakNum=22d3ee&sideNums=f1f5f9&currStreakLabel=22d3ee&sideLabels=f97316&dates=94a3b8&border_radius=4)
 
 ![Trophies](https://github-profile-trophy.vercel.app/?username=Lucas-Belucci-Bellini&theme=darkhub&no-bg=true&no-frame=false&column=6&margin-w=8&margin-h=8&title_color=22d3ee)
 
@@ -125,7 +125,11 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 
 ![Contributions](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=4ADE80&center=true&vCenter=true&width=500&height=30&lines=✔+CONTRIBUTION+GRAPH+✔)
 
+<div align="center">
+
 ![Snake](https://raw.githubusercontent.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/output/github-contribution-grid-snake-dark.svg)
+
+</div>
 
 ---
 
@@ -135,7 +139,8 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 
 [![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini)
 [![Portfolio](https://img.shields.io/badge/🌐%20Portfólio-Online-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://sites.google.com/view/portifolio-de-lucas-belucci/me-conhe%C3%A7a-um-pouco?authuser=0)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-f97316?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=080f17)](https://linkedin.com)
+<!-- LinkedIn: troque o link abaixo pelo seu perfil real, ex: https://linkedin.com/in/seu-usuario -->
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-f97316?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=080f17)](https://linkedin.com/in/lucas-belucci-bellini)
 
 [![YouTube](https://img.shields.io/badge/YouTube-Spartan%20Gamer%20BR-ff0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=080f17)](https://www.youtube.com/@spartan_gamer_br)
 [![Twitch](https://img.shields.io/badge/Twitch-spartan__gamer__pro-9146ff?style=for-the-badge&logo=twitch&logoColor=white&labelColor=080f17)](https://www.twitch.tv/spartan_gamer_pro)
