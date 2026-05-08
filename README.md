@@ -141,6 +141,9 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 [![Portfolio](https://img.shields.io/badge/🌐%20Portfólio-Online-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://sites.google.com/view/portifolio-de-lucas-belucci/me-conhe%C3%A7a-um-pouco?authuser=0)
 <!-- LinkedIn: troque o link abaixo pelo seu perfil real, ex: https://linkedin.com/in/seu-usuario -->
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-f97316?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=080f17)](https://linkedin.com/in/lucas-belucci-bellini)
+[![Gmail](https://img.shields.io/badge/Gmail-lucasbb2007@gmail.com-d14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=080f17)](mailto:lucasbb2007@gmail.com)
+[![Gmail](https://img.shields.io/badge/Gmail-spartangamerbr68@gmail.com-d14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=080f17)](mailto:spartangamerbr68@gmail.com)
+[![Edu](https://img.shields.io/badge/Edu-lucas.bellini@edu.unifil.br-f97316?style=for-the-badge&logo=google-scholar&logoColor=white&labelColor=080f17)](mailto:lucas.bellini@edu.unifil.br)
 
 [![YouTube](https://img.shields.io/badge/YouTube-Spartan%20Gamer%20BR-ff0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=080f17)](https://www.youtube.com/@spartan_gamer_br)
 [![Twitch](https://img.shields.io/badge/Twitch-spartan__gamer__pro-9146ff?style=for-the-badge&logo=twitch&logoColor=white&labelColor=080f17)](https://www.twitch.tv/spartan_gamer_pro)
