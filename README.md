@@ -12,7 +12,7 @@
 
 ---
 
-![](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
+![Divider](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
@@ -87,7 +87,7 @@ I love trying new things and **always finish what I start**, no matter how long 
 <div align="center">
 
 [![HALO](https://img.shields.io/badge/HALO-Spartan-15803d?style=for-the-badge&logo=xbox&logoColor=white&labelColor=080f17)](https://www.halowaypoint.com)
-[![War Thunder](https://img.shields.io/badge/War%20Thunder-Em%20Campo-b45309?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](http://warthunder.com/en/registration?r=userinvite_186972483)
+[![War Thunder](https://img.shields.io/badge/War%20Thunder-Em%20Campo-b45309?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://warthunder.com/en/registration?r=userinvite_186972483)
 [![Doom](https://img.shields.io/badge/DOOM-RIP%20%26%20TEAR-b91c1c?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
 [![Warhammer 40k](https://img.shields.io/badge/Warhammer%2040k-For%20The%20Emperor-7c3aed?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
 [![Helldivers](https://img.shields.io/badge/Helldivers%202-Super%20Earth-ca8a04?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
@@ -115,7 +115,7 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 
 ![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=050a0f&border=22d3ee&stroke=22d3ee&ring=f97316&fire=f97316&currStreakNum=22d3ee&sideNums=f1f5f9&currStreakLabel=22d3ee&sideLabels=f97316&dates=94a3b8&border_radius=4)
 
-![Trophies](https://github-profile-trophy.vercel.app/?username=Lucas-Belucci-Bellini&theme=darkhub&no-bg=true&no-frame=false&column=6&margin-w=8&margin-h=8&title_color=22d3ee)
+![Trophies](https://github-profile-trophy.vercel.app/?username=Lucas-Belucci-Bellini&theme=darkhub&no-bg=true&column=6&margin-w=8&margin-h=8)
 
 ![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Lucas-Belucci-Bellini&theme=react-dark&bg_color=050a0f&color=22d3ee&line=f97316&point=4ade80&area=true&hide_border=false)
 
@@ -160,6 +160,10 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
+<div align="center">
+
 [![Visitors](https://komarev.com/ghpvc/?username=Lucas-Belucci-Bellini&style=for-the-badge&color=22d3ee&labelColor=080f17&label=VISITAS+/+VISITS)](https://github.com/Lucas-Belucci-Bellini)
+
+</div>
 
 ![Footer](https://capsule-render.vercel.app/api?type=waving&color=0:050a0f,50:0c1a2e,100:050a0f&height=100&section=footer&text=&animation=fadeIn)
