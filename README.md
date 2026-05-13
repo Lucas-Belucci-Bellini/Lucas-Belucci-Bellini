@@ -123,6 +123,19 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 
 ---
 
+![Commit Activity](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+COMMIT+ACTIVITY+✔)
+
+<div align="center">
+
+![Profile Details](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Lucas-Belucci-Bellini&theme=github_dark)
+
+![Most Commit Language](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Lucas-Belucci-Bellini&theme=github_dark)
+![Productive Time](https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Lucas-Belucci-Bellini&theme=github_dark&utc_offset=-3)
+
+</div>
+
+---
+
 ![Contributions](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=4ADE80&center=true&vCenter=true&width=500&height=30&lines=✔+CONTRIBUTION+GRAPH+✔)
 
 <div align="center">
