@@ -1,6 +1,6 @@
-![Header](https://capsule-render.vercel.app/api?type=waving&color=0:050a0f,50:0c1a2e,100:050a0f&height=180&section=header&text=LUCAS%20BELUCCI%20BELLINI&fontColor=22d3ee&fontSize=38&fontAlignY=42&fontAlign=50&desc=Spartan%20Gamer%20BR&descAlignY=68&descAlign=50&descColor=f97316&animation=fadeIn)
+![Header](https://capsule-render.vercel.app/api?type=waving&color=0:050a0f,50:0c1a2e,100:050a0f&height=180&section=header&text=LUCAS%20BELUCCI%20BELLINI&fontColor=22d3ee&fontSize=38&fontAlignY=42&fontAlign=50)
 
-![Typing](https://readme-typing-svg.demolab.com?font=Orbitron&weight=900&size=18&duration=2800&pause=1200&color=22D3EE&center=true&vCenter=true&width=750&height=50&lines=⚔+SPARTAN+PROTOCOL+—+INICIADO;🖥+Arquiteto+de+CPUs+do+zero+%7C+8-bit+até+64-bit;🎮+HALO+·+War+Thunder+·+Doom+·+Warhammer+40k;🚗+Amante+de+Carros+%26+Tecnologia;📡+Ciência+da+Computação+%7C+UNIFIL+%7C+Londrina)
+![Typing](https://readme-typing-svg.demolab.com?font=Orbitron&weight=900&size=18&duration=2800&pause=1200&color=22D3EE&center=true&vCenter=true&width=750&height=50&lines=⚔+SPARTAN+PROTOCOL+—+INICIADO)
 
 <div align="center">
 
@@ -31,17 +31,17 @@
 
 Oi! Sou o **Lucas Belucci Bellini**, também conhecido como **Spartan Gamer BR**. Estudante de **Ciência da Computação** na **UNIFIL**, Londrina, Brasil.
 
-Gosto de tentar coisas novas e **sempre termino o que começo**, não importa quanto tempo demore. Sou apaixonado por carros, programação, robótica, eletrônica, filmes e jogos. Aqui você encontra projetos reais, experimentos e os commits que contam minha jornada na computação.
+Gosto de tentar coisas novas e **sempre termino o que começo**, não importa quanto tempo demore. Sou apaixonado por carros, programação, robótica, eletrônica, filmes e jogos. Aqui você encontrará meus projetos e ideias.
 
 ## `// EN-US` — Who am I?
 
 Hi! I'm **Lucas Belucci Bellini**, also known as **Spartan Gamer BR**. Computer Science student at **UNIFIL**, Londrina, Brazil.
 
-I love trying new things and **always finish what I start**, no matter how long it takes. Passionate about cars, programming, robotics, electronics, movies and games. Here you'll find real projects, experiments and the commits that define my journey in computing.
+I love trying new things and **always finish what I start**, no matter how long it takes. Passionate about cars, programming, robotics, electronics, movies and games. Here you'll find my projects and ideas.
 
 ---
 
-![Tech Stack](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=22D3EE&center=true&vCenter=true&width=500&height=30&lines=✔+TECH+STACK+%26+TOOLS+✔)
+![Tech Stack](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=22D3EE&center=true&vCenter=true&width=500&height=30&lines=✔+TECH+STACK)
 
 ### ⚡ Linguagens / Languages
 
@@ -61,18 +61,18 @@ I love trying new things and **always finish what I start**, no matter how long 
 
 ---
 
-![Achievements](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+CONQUISTAS+%2F+ACHIEVEMENTS+✔)
+![Achievements](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+CONQUISTAS)
 
 ```
-╔═══════════════════════════════════════════════════════════════════╗
-║  🖥  DIGITAL LOGIC SIM — BUILD LOG                               ║
-║  Construindo computadores funcionais do zero, bit a bit          ║
-╠═══════════════════════════════════════════════════════════════════╣
+╔════════════════════════════════════════════════════════════════╗
+║  🖥  DIGITAL LOGIC SIM — BUILD LOG                             ║
+║  Construindo computadores funcionais do zero, bit a bit        ║
+╠════════════════════════════════════════════════════════════════╣
 ║  [████████████████████████]   8-BIT CPU ............. [CONCLUÍDO] ║
 ║  [████████████████████████]  16-BIT CPU ............. [CONCLUÍDO] ║
 ║  [████████████████████████]  32-BIT CPU ............. [CONCLUÍDO] ║
 ║  [████████████████████████]  64-BIT CPU ............. [CONCLUÍDO] ║
-╚═══════════════════════════════════════════════════════════════════╝
+╚════════════════════════════════════════════════════════════════╝
 ```
 
 > Construí computadores funcionais de **8 a 64 bits** no Digital Logic Sim —
@@ -80,14 +80,14 @@ I love trying new things and **always finish what I start**, no matter how long 
 
 ---
 
-![Interests](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=4ADE80&center=true&vCenter=true&width=500&height=30&lines=✔+INTERESSES+%2F+INTERESTS+✔)
+![Interests](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=4ADE80&center=true&vCenter=true&width=500&height=30&lines=✔+INTERESSES)
 
 ### 🎮 Gaming
 
 <div align="center">
 
 [![HALO](https://img.shields.io/badge/HALO-Spartan-15803d?style=for-the-badge&logo=xbox&logoColor=white&labelColor=080f17)](https://www.halowaypoint.com)
-[![War Thunder](https://img.shields.io/badge/War%20Thunder-Em%20Campo-b45309?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://warthunder.com/en/registration?r=userinvite_186972483)
+[![War Thunder](https://img.shields.io/badge/War%20Thunder-Em%20Campo-b45309?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://warthunder.com/en)
 [![Doom](https://img.shields.io/badge/DOOM-RIP%20%26%20TEAR-b91c1c?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
 [![Warhammer 40k](https://img.shields.io/badge/Warhammer%2040k-For%20The%20Emperor-7c3aed?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
 [![Helldivers](https://img.shields.io/badge/Helldivers%202-Super%20Earth-ca8a04?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
@@ -106,24 +106,38 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 
 ---
 
-![Stats](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+GITHUB+STATS+✔)
+![Planned](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=CA8A04&center=true&vCenter=true&width=500&height=30&lines=⏳+PLANEJADO)
+
+### 📌 Links em Planejamento
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Lucas-Belucci-Bellini&show_icons=true&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&include_all_commits=true&count_private=true&hide_border=false)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Lucas-Belucci-Bellini&layout=compact&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&langs_count=8)
-
-![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=050a0f&border=22d3ee&stroke=22d3ee&ring=f97316&fire=f97316&currStreakNum=22d3ee&sideNums=f1f5f9&currStreakLabel=22d3ee&sideLabels=f97316&dates=94a3b8&border_radius=4)
-
-![Trophies](https://github-profile-trophy.vercel.app/?username=Lucas-Belucci-Bellini&theme=darkhub&no-bg=true&column=6&margin-w=8&margin-h=8)
-
-![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Lucas-Belucci-Bellini&theme=react-dark&bg_color=050a0f&color=22d3ee&line=f97316&point=4ade80&area=true&hide_border=false)
+[![Manus.im](https://img.shields.io/badge/Manus.im-Convite-22d3ee?style=for-the-badge&labelColor=080f17&color=22d3ee)](https://manus.im/invitation/YR8PTZXLJDBMFVR?utm_source=invitation&utm_medium=social&utm_campaign=copy_link)
+[![Replit](https://img.shields.io/badge/Replit-Referência-f97316?style=for-the-badge&logo=replit&logoColor=white&labelColor=080f17)](https://replit.com/refer/Lucas-Bellini?ref_surface=universal-settings-modal)
+[![YouTube](https://img.shields.io/badge/YouTube-Spartan%20Gamer%20BR-ff0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=080f17)](https://youtube.com/@spartan_gamer_br?si=JgNlYj9-44psMImb)
 
 </div>
 
 ---
 
-![Commit Activity](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+COMMIT+ACTIVITY+✔)
+![Stats](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+GITHUB+STATS)
+
+<div align="center">
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Lucas-Belucci-Bellini&show_icons=true&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Lucas-Belucci-Bellini&layout=compact&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316)
+
+![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=050a0f&border=22d3ee&stroke=22d3ee&ring=f97316&fire=f97316&currStreakNum=22d3ee&sideNums=22d3ee)
+
+![Trophies](https://github-profile-trophy.vercel.app/?username=Lucas-Belucci-Bellini&theme=darkhub&no-bg=true&column=6&margin-w=8&margin-h=8)
+
+![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Lucas-Belucci-Bellini&theme=react-dark&bg_color=050a0f&color=22d3ee&line=f97316&point=4ade80&area=true&hide_border=true)
+
+</div>
+
+---
+
+![Commit Activity](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+COMMIT+ACTIVITY)
 
 <div align="center">
 
@@ -136,7 +150,7 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 
 ---
 
-![Contributions](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=4ADE80&center=true&vCenter=true&width=500&height=30&lines=✔+CONTRIBUTION+GRAPH+✔)
+![Contributions](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=4ADE80&center=true&vCenter=true&width=500&height=30&lines=✔+CONTRIBUIÇÕES)
 
 <div align="center">
 
@@ -146,13 +160,12 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 
 ---
 
-![Contact](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=22D3EE&center=true&vCenter=true&width=500&height=30&lines=✔+CONTATO+%2F+CONTACT+✔)
+![Contact](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=22D3EE&center=true&vCenter=true&width=500&height=30&lines=✔+CONTATO+%2F+CONNECT)
 
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini)
-[![Portfolio](https://img.shields.io/badge/🌐%20Portfólio-Online-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://sites.google.com/view/portifolio-de-lucas-belucci/me-conhe%C3%A7a-um-pouco?authuser=0)
-<!-- LinkedIn: troque o link abaixo pelo seu perfil real, ex: https://linkedin.com/in/seu-usuario -->
+[![Portfolio](https://img.shields.io/badge/🌐%20Portfólio-Online-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://sites.google.com/view/portifolio-de-lucas-belucci)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-f97316?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=080f17)](https://linkedin.com/in/lucas-belucci-bellini)
 [![Gmail](https://img.shields.io/badge/Gmail-lucasbb2007@gmail.com-d14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=080f17)](mailto:lucasbb2007@gmail.com)
 [![Gmail](https://img.shields.io/badge/Gmail-spartangamerbr68@gmail.com-d14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=080f17)](mailto:spartangamerbr68@gmail.com)
@@ -162,7 +175,7 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 [![Twitch](https://img.shields.io/badge/Twitch-spartan__gamer__pro-9146ff?style=for-the-badge&logo=twitch&logoColor=white&labelColor=080f17)](https://www.twitch.tv/spartan_gamer_pro)
 [![Spotify](https://img.shields.io/badge/Spotify-Spartan%20Br-1db954?style=for-the-badge&logo=spotify&logoColor=white&labelColor=080f17)](https://open.spotify.com/user/spartanbr)
 [![Steam](https://img.shields.io/badge/Steam-Spartan%20Gamer%20BR-1b2838?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://steamcommunity.com/id/spartangamerbr)
-[![Instagram](https://img.shields.io/badge/Instagram-lucasbeluccioficial-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=080f17)](https://www.instagram.com/lucasbeluccioficial/)
+[![Instagram](https://img.shields.io/badge/Instagram-lucasbeluccioficial-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=080f17)](https://www.instagram.com/lucasbeluccioficial)
 
 </div>
 
