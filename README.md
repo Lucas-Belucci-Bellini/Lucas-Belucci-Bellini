@@ -1,6 +1,6 @@
 ![Header](https://capsule-render.vercel.app/api?type=waving&color=0:050a0f,50:0c1a2e,100:050a0f&height=180&section=header&text=LUCAS%20BELUCCI%20BELLINI&fontColor=22d3ee&fontSize=38&fontAlignY=42&fontAlign=50&desc=Spartan%20Gamer%20BR&descAlignY=68&descAlign=50&descColor=f97316&animation=fadeIn)
 
-![Typing](https://readme-typing-svg.demolab.com?font=Orbitron&weight=900&size=18&duration=2800&pause=1200&color=22D3EE&center=true&vCenter=true&width=750&height=50&lines=⚔+SPARTAN+FIELD+MANUAL+—+VOLUME+I;🖥+Arquiteto+de+CPUs+do+zero+%7C+8-bit+até+64-bit;🎮+HALO+·+War+Thunder+·+Doom+·+Warhammer+40k;⚡+Arsenal%3A+Python+·+C+·+C%2B%2B+·+Java+·+JavaScript;🌐+Projeto+Baluarte+·+LLBR+Innovations+—+AO+VIVO;🛡+Status%3A+OPERACIONAL+—+MISSÃO+EM+CURSO;📡+Ciência+da+Computação+%7C+UNIFIL+%7C+Londrina)
+![Typing](https://readme-typing-svg.demolab.com?font=Orbitron&weight=900&size=18&duration=2800&pause=1200&color=22D3EE&center=true&vCenter=true&width=750&height=50&lines=⚔+SPARTAN+FIELD+MANUAL+—+VOLUME+I;🖥+Arquiteto+de+CPUs+do+zero+%7C+8-bit+até+64-bit;🎮+HALO+·+War+Thunder+·+Doom+·+Warhammer+40k;⚡+Arsenal%3A+Python+·+C+·+C%2B%2B+·+Java+·+JavaScript;🌐+Portfólio+·+Projeto+Baluarte+·+LLBR+Innovations;🛡+Status%3A+OPERACIONAL+—+MISSÃO+EM+CURSO;📡+Ciência+da+Computação+%7C+UNIFIL+%7C+Londrina)
 
 <div align="center">
 
@@ -84,6 +84,7 @@ I love trying new things and **always finish what I start**, no matter how long 
 
 <div align="center">
 
+[![Portfólio](https://img.shields.io/badge/🎓%20Portfólio-Faculdade-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://sites.google.com/view/portifolio-de-lucas-belucci/me-conhe%C3%A7a-um-pouco?authuser=0)
 [![Projeto Baluarte](https://img.shields.io/badge/🖥%20Projeto%20Baluarte-Online-22d3ee?style=for-the-badge&labelColor=080f17&color=22d3ee)](https://projeto-baluarte.vercel.app)
 [![LLBR Innovations](https://img.shields.io/badge/🏗%20LLBR%20Innovations-Online-f97316?style=for-the-badge&labelColor=080f17&color=f97316)](https://llbr-innovations-constructions.vercel.app)
 
@@ -92,6 +93,11 @@ I love trying new things and **always finish what I start**, no matter how long 
 ```
 ╔═══════════════════════════════════════════════════════════════════╗
 ║  🌐  DEPLOYMENTS — AO VIVO / ONLINE                              ║
+╠═══════════════════════════════════════════════════════════════════╣
+║  🎓  PORTFÓLIO DA FACULDADE                                      ║
+║      sites.google.com/view/portifolio-de-lucas-belucci           ║
+║      Portfólio acadêmico · UNIFIL · Ciência da Computação        ║
+║                                                    ..... [ONLINE] ║
 ╠═══════════════════════════════════════════════════════════════════╣
 ║  🖥  PROJETO BALUARTE                                            ║
 ║      projeto-baluarte.vercel.app                                 ║
@@ -191,7 +197,8 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini)
-[![Projeto Baluarte](https://img.shields.io/badge/🖥%20Projeto%20Baluarte-Online-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://projeto-baluarte.vercel.app)
+[![Portfólio](https://img.shields.io/badge/🎓%20Portfólio-Faculdade-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://sites.google.com/view/portifolio-de-lucas-belucci/me-conhe%C3%A7a-um-pouco?authuser=0)
+[![Projeto Baluarte](https://img.shields.io/badge/🖥%20Projeto%20Baluarte-Online-22d3ee?style=for-the-badge&labelColor=080f17&color=22d3ee)](https://projeto-baluarte.vercel.app)
 [![LLBR Innovations](https://img.shields.io/badge/🏗%20LLBR%20Innovations-Site-f97316?style=for-the-badge&labelColor=080f17&color=f97316)](https://llbr-innovations-constructions.vercel.app)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077b5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=080f17)](https://linkedin.com/in/lucas-belucci-bellini)
 
