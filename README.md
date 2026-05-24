@@ -200,7 +200,7 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 [![Portfólio](https://img.shields.io/badge/🎓%20Portfólio-Faculdade-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://sites.google.com/view/portifolio-de-lucas-belucci/me-conhe%C3%A7a-um-pouco?authuser=0)
 [![Projeto Baluarte](https://img.shields.io/badge/🖥%20Projeto%20Baluarte-Online-22d3ee?style=for-the-badge&labelColor=080f17&color=22d3ee)](https://projeto-baluarte.vercel.app)
 [![LLBR Innovations](https://img.shields.io/badge/🏗%20LLBR%20Innovations-Site-f97316?style=for-the-badge&labelColor=080f17&color=f97316)](https://llbr-innovations-constructions.vercel.app)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077b5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=080f17)](https://linkedin.com/in/lucas-belucci-bellini)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077b5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=080f17)](https://www.linkedin.com/in/lucas-belucci-bellini-28044b328)
 
 [![YouTube](https://img.shields.io/badge/YouTube-Spartan%20Gamer%20BR-ff0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=080f17)](https://www.youtube.com/@spartan_gamer_br)
 [![Twitch](https://img.shields.io/badge/Twitch-spartan__gamer__pro-9146ff?style=for-the-badge&logo=twitch&logoColor=white&labelColor=080f17)](https://www.twitch.tv/spartan_gamer_pro)
