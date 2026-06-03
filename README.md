@@ -113,6 +113,66 @@ I love trying new things and **always finish what I start**, no matter how long 
 
 ---
 
+![Projects](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=22D3EE&center=true&vCenter=true&width=560&height=30&lines=✔+PROJETOS+EM+DESTAQUE+%2F+FEATURED+PROJECTS+✔)
+
+> 📦 Arsenal de repositórios — clique em qualquer badge para abrir no GitHub.
+> 📦 Repository arsenal — click any badge to open it on GitHub.
+
+### ⬡ Ecossistema Baluarte
+
+<div align="center">
+
+[![Projeto Baluarte](https://img.shields.io/badge/⬡%20Projeto%20Baluarte-Plataforma%20Mark%20XIII-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)
+[![World Game](https://img.shields.io/badge/🎮%20World%20Game-Segunda%20Chance-f97316?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game)
+[![AI Contador](https://img.shields.io/badge/🧮%20AI%20Contador-Imposto%20de%20Renda-4ade80?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-AI-Contador)
+[![Obra Segura](https://img.shields.io/badge/🏗%20Obra%20Segura-Engineering%20Hub-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura)
+[![Forge Construction](https://img.shields.io/badge/⚡%20Forge-Electrical%20Builder-f97316?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/BALUARTE-FORGE-CONSTRUCTION)
+[![Portfólio Baluarte](https://img.shields.io/badge/🛡%20Portfólio%20Baluarte-Showcase-4ade80?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-)
+
+</div>
+
+### 🤖 Bots & IA
+
+<div align="center">
+
+[![Stock Analyzer](https://img.shields.io/badge/📈%20Stock%20Analyzer-AI%20Investing-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/stock-analyzer-bot)
+[![Cookie Clicker Bot](https://img.shields.io/badge/🍪%20Cookie%20Bot-Idle%20Automator-f97316?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot)
+[![AI Second Brain](https://img.shields.io/badge/🧠%20Second%20Brain-Claude%20%2B%20Obsidian-4ade80?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian)
+
+</div>
+
+### 🎮 Games & Design
+
+<div align="center">
+
+[![Recycle Game](https://img.shields.io/badge/♻%20Recycle%20Game-Educativo-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/Recycle-game)
+[![Catacombs of Paris](https://img.shields.io/badge/💀%20Catacombs%20of%20Paris-Escape%20Design-f97316?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design)
+
+</div>
+
+### 🖥 Hardware & Código
+
+<div align="center">
+
+[![CHIPS Logic Sim](https://img.shields.io/badge/🖥%20CHIPS%20Logic%20Sim-CPU%208--64%20bit-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci)
+[![Java](https://img.shields.io/badge/☕%20Java-Todos%20os%20Códigos-f97316?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java)
+
+</div>
+
+```
+╔═══════════════════════════════════════════════════════════════════╗
+║  📦  REPOSITORY MANIFEST — ARSENAL EM CAMPO                      ║
+╠═══════════════════════════════════════════════════════════════════╣
+║  ⬡  Baluarte ........ plataforma · jogos · IA · engenharia       ║
+║  🤖  Bots & IA ....... stock analyzer · automação · second brain ║
+║  🎮  Games .......... reciclagem · escape design                 ║
+║  🖥  Hardware ....... CPUs 8→64 bit · Java                        ║
+║  >> github.com/Lucas-Belucci-Bellini?tab=repositories  ...[LIVE] ║
+╚═══════════════════════════════════════════════════════════════════╝
+```
+
+---
+
 ![Personal Log](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=4ADE80&center=true&vCenter=true&width=500&height=30&lines=✔+ARQUIVO+PESSOAL+%2F+PERSONAL+LOG+✔)
 
 ### 🎮 Gaming
