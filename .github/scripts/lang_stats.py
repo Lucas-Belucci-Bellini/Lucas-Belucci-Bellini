@@ -73,7 +73,7 @@ def color_for(lang: str, idx: int) -> str:
 
 # ----------------------------------------------------------------- HTTP
 
-def api(path: str, params: dict | None = None) -> object:
+def api(path: str, params: dict | None = None, retry_denied: bool = True) -> object:
     url = API + path
     if params:
         url += "?" + "&".join(f"{k}={v}" for k, v in params.items())
@@ -91,11 +91,12 @@ def api(path: str, params: dict | None = None) -> object:
             with urllib.request.urlopen(req, timeout=45) as resp:
                 return json.load(resp)
         except urllib.error.HTTPError as exc:
-            # 403/429 costumam ser rate-limit secundário — espera e tenta de novo
-            if exc.code in (403, 429) and attempt < 3:
+            # 403/429 costumam ser rate-limit secundário — espera e tenta de novo.
+            # Com retry_denied=False o chamador quer decidir sozinho (ex.: fallback).
+            if exc.code in (403, 429) and retry_denied and attempt < 3:
                 time.sleep(2 ** (attempt + 1))
                 continue
-            if exc.code == 404:
+            if exc.code == 404 and retry_denied:
                 return None
             raise
         except (urllib.error.URLError, TimeoutError):
@@ -106,27 +107,42 @@ def api(path: str, params: dict | None = None) -> object:
     return None
 
 
-def list_repos() -> list[dict]:
-    """Todos os repos do usuário (usa /user/repos quando há token, p/ pegar privados)."""
-    repos: list[dict] = []
+def _paginate(path: str, params: dict, retry_denied: bool = True) -> list[dict]:
+    out: list[dict] = []
     page = 1
     while True:
-        if TOKEN:
-            batch = api("/user/repos", {
-                "per_page": "100", "page": str(page),
-                "affiliation": "owner", "sort": "pushed",
-            })
-        else:
-            batch = api(f"/users/{USER}/repos", {
-                "per_page": "100", "page": str(page), "type": "owner",
-            })
+        batch = api(path, {**params, "per_page": "100", "page": str(page)},
+                    retry_denied=retry_denied)
         if not batch:
             break
-        repos.extend(batch)
+        out.extend(batch)
         if len(batch) < 100:
             break
         page += 1
-    return repos
+    return out
+
+
+def list_repos() -> list[dict]:
+    """Todos os repos do dono do perfil.
+
+    Com um PAT de usuário, /user/repos traz também os privados. O GITHUB_TOKEN
+    do Actions é um token de instalação — sem contexto de usuário, ele responde
+    401/403 nesse endpoint; nesse caso caímos no endpoint público, que funciona.
+    """
+    if TOKEN:
+        try:
+            return _paginate("/user/repos",
+                             {"affiliation": "owner", "sort": "pushed"},
+                             retry_denied=False)
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (401, 403, 404):
+                raise
+            print("aviso: /user/repos indisponível para este token "
+                  f"(HTTP {exc.code}); usando o endpoint público — "
+                  "repositórios privados ficam de fora. Defina o secret "
+                  "LANG_STATS_TOKEN (PAT com escopo `repo`) para incluí-los.",
+                  file=sys.stderr)
+    return _paginate(f"/users/{USER}/repos", {"type": "owner"})
 
 
 # ----------------------------------------------------------------- coleta
