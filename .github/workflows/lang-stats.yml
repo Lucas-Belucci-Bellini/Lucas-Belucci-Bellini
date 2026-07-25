@@ -1,0 +1,60 @@
+name: Análise de Linguagens (bot)
+
+on:
+  schedule:
+    # De hora em hora (UTC). O GitHub pode atrasar agendamentos em horários de pico.
+    - cron: "0 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/lang_stats.py"
+      - ".github/workflows/lang-stats.yml"
+
+# Nunca deixa duas execuções mexerem no README ao mesmo tempo.
+concurrency:
+  group: lang-stats
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  analisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Analisar linguagens de todos os repositórios
+        env:
+          # Só o GITHUB_TOKEN padrão: a análise cobre apenas repositórios
+          # PÚBLICOS. Os privados são excluídos também no código (lang_stats.py),
+          # então nem um token mais amplo os exporia neste README público.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USER: ${{ github.repository_owner }}
+          INCLUDE_FORKS: "0"
+        run: python3 .github/scripts/lang_stats.py
+
+      - name: Commitar se houver mudança
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md assets/lang-stats.svg
+          if git diff --cached --quiet; then
+            echo "Nada mudou — sem commit."
+            exit 0
+          fi
+          git commit -m "chore(bot): atualiza análise de linguagens do perfil [skip ci]"
+          for i in 1 2 3 4; do
+            if git push; then exit 0; fi
+            echo "push falhou; refazendo em cima do remoto (tentativa $i)"
+            git pull --rebase --autostash origin main || true
+            sleep $((2 ** i))
+          done
+          echo "::error::não consegui enviar o commit após 4 tentativas"
+          exit 1

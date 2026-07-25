@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="880" height="420" font-family="'IBM Plex Mono','JetBrains Mono',monospace" role="img" aria-label="J.A.R.V.I.S. — Núcleo do Projeto Baluarte (amostra visual)">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e0c16"/>
+      <stop offset="0.5" stop-color="#141020"/>
+      <stop offset="1" stop-color="#0b0910"/>
+    </linearGradient>
+    <radialGradient id="coreGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#e8c07a" stop-opacity="0.95"/>
+      <stop offset="0.45" stop-color="#d4a24e" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#d4a24e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8c07a"/>
+      <stop offset="1" stop-color="#d4a24e"/>
+    </linearGradient>
+    <linearGradient id="scan" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d4a24e" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#e8c07a" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#d4a24e" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.4"/>
+    </filter>
+  </defs>
+
+  <!-- frame -->
+  <rect x="0" y="0" width="880" height="420" rx="16" fill="url(#bg)"/>
+  <rect x="6" y="6" width="868" height="408" rx="13" fill="none" stroke="#d4a24e" stroke-opacity="0.35" stroke-width="1.2"/>
+  <rect x="12" y="12" width="856" height="396" rx="10" fill="none" stroke="#d4a24e" stroke-opacity="0.10" stroke-width="1"/>
+
+  <!-- faint HUD grid -->
+  <g stroke="#d4a24e" stroke-opacity="0.05" stroke-width="1">
+    <line x1="0" y1="105" x2="880" y2="105"/>
+    <line x1="0" y1="175" x2="880" y2="175"/>
+    <line x1="0" y1="245" x2="880" y2="245"/>
+    <line x1="0" y1="315" x2="880" y2="315"/>
+    <line x1="450" y1="70" x2="450" y2="360"/>
+  </g>
+
+  <!-- corner brackets -->
+  <g stroke="url(#gold)" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M24 44 V24 H44"/>
+    <path d="M836 24 H856 V44"/>
+    <path d="M24 376 V396 H44"/>
+    <path d="M856 376 V396 H836"/>
+  </g>
+
+  <!-- title bar -->
+  <g font-size="15" letter-spacing="2">
+    <text x="40" y="45" fill="#e8c07a" font-weight="700">&#x2B21; BALUARTE</text>
+    <text x="176" y="45" fill="#77694f">// N&#xDA;CLEO</text>
+  </g>
+  <g font-size="12" letter-spacing="1.5" text-anchor="end">
+    <circle cx="748" cy="40" r="4" fill="#3ddc84">
+      <animate attributeName="opacity" values="1;0.35;1" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <text x="840" y="45" fill="#3ddc84">ONLINE</text>
+  </g>
+  <line x1="24" y1="60" x2="856" y2="60" stroke="#d4a24e" stroke-opacity="0.25"/>
+
+  <!-- =============== REACTOR CORE =============== -->
+  <g transform="translate(250 218)">
+    <circle cx="0" cy="0" r="96" fill="url(#coreGlow)" filter="url(#blur)">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- outer ring, rotating -->
+    <g>
+      <circle cx="0" cy="0" r="92" fill="none" stroke="#d4a24e" stroke-opacity="0.55" stroke-width="1.2" stroke-dasharray="4 10"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="24s" repeatCount="indefinite"/>
+    </g>
+    <!-- outer ring ticks -->
+    <g stroke="#e8c07a" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round">
+      <line x1="0" y1="-92" x2="0" y2="-82"/>
+      <line x1="0" y1="92" x2="0" y2="82"/>
+      <line x1="-92" y1="0" x2="-82" y2="0"/>
+      <line x1="92" y1="0" x2="82" y2="0"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="24s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- mid ring, reverse -->
+    <g>
+      <circle cx="0" cy="0" r="70" fill="none" stroke="#e8c07a" stroke-opacity="0.5" stroke-width="1" stroke-dasharray="2 8"/>
+      <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="16s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- orbiting node -->
+    <g>
+      <circle cx="0" cy="-70" r="4.5" fill="#e8c07a" filter="url(#soft)"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="9s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- inner ring -->
+    <circle cx="0" cy="0" r="48" fill="none" stroke="#d4a24e" stroke-opacity="0.8" stroke-width="1.4"/>
+    <circle cx="0" cy="0" r="48" fill="none" stroke="#e8c07a" stroke-width="2" stroke-opacity="0.9" stroke-dasharray="60 240" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="6s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- pulse ring -->
+    <circle cx="0" cy="0" r="30" fill="none" stroke="#e8c07a" stroke-width="1.5" stroke-opacity="0.8">
+      <animate attributeName="r" values="30;90;30" dur="3.2s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-opacity" values="0.8;0;0.8" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- core hexagon -->
+    <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" fill="url(#gold)" stroke="#f4ecdd" stroke-opacity="0.5" stroke-width="1">
+      <animate attributeName="opacity" values="0.85;1;0.85" dur="2.4s" repeatCount="indefinite"/>
+    </polygon>
+    <polygon points="0,-16 14,-8 14,8 0,16 -14,8 -14,-8" fill="#0e0c16" fill-opacity="0.55"/>
+    <text x="0" y="6" text-anchor="middle" font-size="17" fill="#f4ecdd" font-weight="700">&#x2B21;</text>
+  </g>
+
+  <!-- reactor caption -->
+  <g text-anchor="middle">
+    <text x="250" y="342" fill="#f4ecdd" font-size="26" font-weight="700" letter-spacing="7">J.A.R.V.I.S.</text>
+    <text x="250" y="362" fill="#a89a80" font-size="10.5" letter-spacing="2.2">JUST A RATHER VERY INTELLIGENT SYSTEM</text>
+  </g>
+
+  <!-- =============== CHAT COLUMN =============== -->
+  <!-- mode pills -->
+  <g font-size="11">
+    <g transform="translate(486 84)">
+      <rect x="0" y="0" width="86" height="26" rx="6" fill="#d4a24e" fill-opacity="0.16" stroke="#d4a24e" stroke-width="1"/>
+      <path d="M12 13 l6 -6 l6 6 l-6 6 Z" fill="#e8c07a"/>
+      <text x="30" y="17" fill="#f4ecdd">Local</text>
+    </g>
+    <g transform="translate(580 84)">
+      <rect x="0" y="0" width="110" height="26" rx="6" fill="#1d1729" stroke="#d4a24e" stroke-opacity="0.25" stroke-width="1"/>
+      <polygon points="14,7 20,10.5 20,15.5 14,19 8,15.5 8,10.5" fill="none" stroke="#d4a24e" stroke-width="1.3"/>
+      <text x="28" y="17" fill="#a89a80">Navegador</text>
+    </g>
+    <g transform="translate(698 84)">
+      <rect x="0" y="0" width="70" height="26" rx="6" fill="#1d1729" stroke="#d4a24e" stroke-opacity="0.25" stroke-width="1"/>
+      <circle cx="14" cy="13" r="6" fill="none" stroke="#e8c07a" stroke-width="1.3"/>
+      <circle cx="14" cy="13" r="2" fill="#e8c07a"/>
+      <text x="26" y="17" fill="#a89a80">Claude</text>
+    </g>
+    <g transform="translate(776 84)">
+      <rect x="0" y="0" width="66" height="26" rx="6" fill="#ffaa00" fill-opacity="0.12" stroke="#ffaa00" stroke-opacity="0.5" stroke-width="1"/>
+      <g transform="translate(14 13)" stroke="#ffaa00" stroke-width="1.2" fill="none">
+        <circle cx="0" cy="0" r="2" fill="#ffaa00"/>
+        <ellipse cx="0" cy="0" rx="7" ry="3"/>
+        <ellipse cx="0" cy="0" rx="7" ry="3" transform="rotate(60)"/>
+        <ellipse cx="0" cy="0" rx="7" ry="3" transform="rotate(120)"/>
+      </g>
+      <text x="26" y="17" fill="#ffaa00">Agente</text>
+    </g>
+  </g>
+
+  <!-- user bubble -->
+  <g transform="translate(566 128)">
+    <rect x="0" y="0" width="276" height="34" rx="9" fill="#d4a24e" fill-opacity="0.14" stroke="#d4a24e" stroke-opacity="0.4"/>
+    <text x="16" y="22" font-size="12.5" fill="#f4ecdd">Qual o status do Baluarte agora?</text>
+  </g>
+
+  <!-- jarvis bubble -->
+  <g transform="translate(486 176)">
+    <rect x="0" y="0" width="356" height="58" rx="9" fill="#1d1729" stroke="#d4a24e" stroke-opacity="0.22"/>
+    <text x="16" y="22" font-size="10.5" fill="#e8c07a" letter-spacing="1.5">&#x2B21; J.A.R.V.I.S.</text>
+    <text x="16" y="40" font-size="12" fill="#f4ecdd">N&#xFA;cleo operacional. 40+ ferramentas</text>
+    <text x="16" y="52" font-size="12" fill="#f4ecdd">online, Git Nexus sincronizado.</text>
+  </g>
+
+  <!-- tool-call chip -->
+  <g transform="translate(486 246)">
+    <rect x="0" y="0" width="230" height="26" rx="13" fill="#ffaa00" fill-opacity="0.12" stroke="#ffaa00" stroke-opacity="0.55"/>
+    <g transform="translate(16 13)" stroke="#ffaa00" stroke-width="1.1" fill="none">
+      <circle cx="0" cy="0" r="1.8" fill="#ffaa00"/>
+      <ellipse cx="0" cy="0" rx="6" ry="2.6"/>
+      <ellipse cx="0" cy="0" rx="6" ry="2.6" transform="rotate(60)"/>
+      <ellipse cx="0" cy="0" rx="6" ry="2.6" transform="rotate(120)"/>
+    </g>
+    <text x="32" y="17" font-size="11" fill="#ffaa00">navegando &#8594; /militar &#183; lendo arsenal</text>
+    <circle cx="214" cy="13" r="2.5" fill="#ffaa00">
+      <animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- console input bar (full width) -->
+  <g transform="translate(24 372)">
+    <rect x="0" y="0" width="832" height="34" rx="9" fill="#141020" stroke="#d4a24e" stroke-opacity="0.3"/>
+    <text x="16" y="22" font-size="12.5" fill="#77694f">// pergunte ao n&#xFA;cleo&#8230;</text>
+    <rect x="150" y="10" width="1.6" height="14" fill="#e8c07a">
+      <animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/>
+    </rect>
+    <!-- waveform -->
+    <g transform="translate(724 17)" fill="#e8c07a">
+      <rect x="0"  y="-4" width="3" height="8" rx="1.5"><animate attributeName="height" values="4;16;4" dur="0.9s" repeatCount="indefinite"/><animate attributeName="y" values="-2;-8;-2" dur="0.9s" repeatCount="indefinite"/></rect>
+      <rect x="7"  y="-7" width="3" height="14" rx="1.5"><animate attributeName="height" values="14;4;14" dur="0.9s" repeatCount="indefinite"/><animate attributeName="y" values="-7;-2;-7" dur="0.9s" repeatCount="indefinite"/></rect>
+      <rect x="14" y="-9" width="3" height="18" rx="1.5"><animate attributeName="height" values="18;6;18" dur="1.1s" repeatCount="indefinite"/><animate attributeName="y" values="-9;-3;-9" dur="1.1s" repeatCount="indefinite"/></rect>
+      <rect x="21" y="-6" width="3" height="12" rx="1.5"><animate attributeName="height" values="6;16;6" dur="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="-3;-8;-3" dur="0.8s" repeatCount="indefinite"/></rect>
+      <rect x="28" y="-8" width="3" height="16" rx="1.5"><animate attributeName="height" values="16;4;16" dur="1s" repeatCount="indefinite"/><animate attributeName="y" values="-8;-2;-8" dur="1s" repeatCount="indefinite"/></rect>
+      <rect x="35" y="-4" width="3" height="8"  rx="1.5"><animate attributeName="height" values="4;14;4" dur="0.95s" repeatCount="indefinite"/><animate attributeName="y" values="-2;-7;-2" dur="0.95s" repeatCount="indefinite"/></rect>
+    </g>
+    <text x="792" y="22" font-size="11" fill="#d4a24e" letter-spacing="1">SEND</text>
+  </g>
+
+  <!-- top scan line sweeping -->
+  <rect x="24" y="61" width="220" height="2" fill="url(#scan)" opacity="0.8">
+    <animate attributeName="x" values="24;612;24" dur="7s" repeatCount="indefinite"/>
+  </rect>
+</svg>

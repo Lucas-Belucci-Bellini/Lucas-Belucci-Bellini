@@ -1,47 +1,45 @@
-![Header](https://capsule-render.vercel.app/api?type=waving&color=0:050a0f,50:0c1a2e,100:050a0f&height=180&section=header&text=LUCAS%20BELUCCI%20BELLINI&fontColor=22d3ee&fontSize=38&fontAlignY=42&fontAlign=50&desc=Spartan%20Gamer%20BR&descAlignY=68&descAlign=50&descColor=f97316&animation=fadeIn)
+![Header](https://capsule-render.vercel.app/api?type=waving&color=0:0e0c16,45:1d1729,100:0e0c16&height=190&section=header&text=LUCAS%20BELUCCI%20BELLINI&fontColor=e8c07a&fontSize=38&fontAlignY=40&fontAlign=50&desc=%E2%AC%A1%20Spartan%20Gamer%20BR%20%C2%B7%20Ci%C3%AAncia%20da%20Computa%C3%A7%C3%A3o%20%C2%B7%20UNIFIL&descAlignY=64&descAlign=50&descColor=d4a24e&animation=fadeIn)
 
-![Typing](https://readme-typing-svg.demolab.com?font=Orbitron&weight=900&size=18&duration=2800&pause=1200&color=22D3EE&center=true&vCenter=true&width=750&height=50&lines=⚔+SPARTAN+FIELD+MANUAL+—+VOLUME+I;🖥+Arquiteto+de+CPUs+do+zero+%7C+8-bit+até+64-bit;🎮+HALO+·+War+Thunder+·+Doom+·+Warhammer+40k;⚡+Arsenal%3A+Python+·+C+·+C%2B%2B+·+Java+·+JavaScript;🌐+Portfólio+·+Projeto+Baluarte+·+LLBR+Innovations;🛡+Status%3A+OPERACIONAL+—+MISSÃO+EM+CURSO;📡+Ciência+da+Computação+%7C+UNIFIL+%7C+Londrina)
+![Typing](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=18&duration=2800&pause=1200&color=D4A24E&center=true&vCenter=true&width=780&height=50&lines=%E2%AC%A1+BALUARTE+%2F%2F+FIELD+MANUAL+%E2%80%94+VOLUME+I;%F0%9F%96%A5+Arquiteto+de+CPUs+do+zero+%7C+8-bit+at%C3%A9+64-bit;%F0%9F%A4%96+J.A.R.V.I.S.%2C+IA+e+ferramentas+web+de+verdade;%E2%9A%A1+Arsenal%3A+Python+%C2%B7+C+%C2%B7+C%2B%2B+%C2%B7+Java+%C2%B7+JavaScript;%F0%9F%8C%90+Ecossistema+Baluarte+%C2%B7+LLBR+Innovations;%F0%9F%9B%A1+Status%3A+OPERACIONAL+%E2%80%94+MISS%C3%83O+EM+CURSO)
 
 <div align="center">
 
-[![Status](https://img.shields.io/badge/✔️%20STATUS-ONLINE-22d3ee?style=for-the-badge&labelColor=080f17&color=22d3ee)](https://github.com/Lucas-Belucci-Bellini)
-[![University](https://img.shields.io/badge/🔓%20UNIFIL-Ciência%20da%20Computação-f97316?style=for-the-badge&labelColor=080f17&color=f97316)](https://unifil.br)
-[![Location](https://img.shields.io/badge/📍%20Londrina-Paraná%20·%20Brasil-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](#)
+[![Status](https://img.shields.io/badge/%E2%9C%94%EF%B8%8F%20STATUS-ONLINE-3ddc84?style=for-the-badge&labelColor=0e0c16&color=3ddc84)](https://github.com/Lucas-Belucci-Bellini)
+[![University](https://img.shields.io/badge/%F0%9F%94%93%20UNIFIL-Ci%C3%AAncia%20da%20Computa%C3%A7%C3%A3o-d4a24e?style=for-the-badge&labelColor=0e0c16&color=d4a24e)](https://unifil.br)
+[![Location](https://img.shields.io/badge/%F0%9F%93%8D%20Londrina-Paran%C3%A1%20%C2%B7%20Brasil-e8c07a?style=for-the-badge&labelColor=0e0c16&color=e8c07a)](#)
 
 </div>
 
 ---
 
-![Divider](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
-
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║  ⚔  SPARTAN FIELD MANUAL — VOLUME I                        ║
-║  ─────────────────────────────────────────────────────────  ║
-║  >> Agente   : Lucas Belucci Bellini                        ║
-║  >> Codinome : Spartan Gamer BR                             ║
-║  >> Base     : Londrina, Paraná, Brasil                     ║
-║  >> Missão   : Ciência da Computação / UNIFIL               ║
-║  >> Arsenal  : Programação · Robótica · Eletrônica          ║
-║  >> Status   : EM CAMPO — OPERACIONAL ..................[OK] ║
+║   BALUARTE // FIELD MANUAL — VOLUME I                        ║
+║   ──────────────────────────────────────────────────────     ║
+║   >> Agente    : Lucas Belucci Bellini                       ║
+║   >> Codinome  : Spartan Gamer BR                            ║
+║   >> Base      : Londrina, Paraná, Brasil                    ║
+║   >> Missão    : Ciência da Computação / UNIFIL              ║
+║   >> Arsenal   : Programação · Robótica · Eletrônica         ║
+║   >> Status    : EM CAMPO — OPERACIONAL .........[OK]        ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
 ## `// FICHA DE AGENTE` — PT-BR
 
-Oi! Sou o **Lucas Belucci Bellini**, também conhecido como **Spartan Gamer BR**. Estudante de **Ciência da Computação** na **UNIFIL**, Londrina, Brasil.
+Oi! Sou o **Lucas Belucci Bellini**, também conhecido como **Spartan Gamer BR** — estudante de **Ciência da Computação** na **UNIFIL**, em Londrina/PR.
 
-Gosto de tentar coisas novas e **sempre termino o que começo**, não importa quanto tempo demore. Sou apaixonado por carros, programação, robótica, eletrônica, filmes e jogos. Aqui você encontrará meus projetos e ideias.
+Construo desde **CPUs de 8 a 64 bits do zero** (porta lógica por porta lógica) até **plataformas web, agentes de IA e jogos**. Meu projeto-farol é o **⬡ Projeto Baluarte**, com o assistente **J.A.R.V.I.S.** e o motor **Git Nexus**. Gosto de tentar coisas novas e **sempre termino o que começo**, não importa quanto tempo demore. Apaixonado por carros, programação, robótica, eletrônica, filmes e jogos.
 
 ## `// AGENT FILE` — EN-US
 
-Hi! I'm **Lucas Belucci Bellini**, also known as **Spartan Gamer BR**. Computer Science student at **UNIFIL**, Londrina, Brazil.
+Hi! I'm **Lucas Belucci Bellini**, a.k.a. **Spartan Gamer BR** — a Computer Science student at **UNIFIL**, Londrina, Brazil.
 
-I love trying new things and **always finish what I start**, no matter how long it takes. Passionate about cars, programming, robotics, electronics, movies and games. Here you'll find my projects and ideas.
+I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic gate) to **web platforms, AI agents and games**. My flagship is the **⬡ Projeto Baluarte**, home of the **J.A.R.V.I.S.** assistant and the **Git Nexus** engine. I love trying new things and **always finish what I start**, no matter how long it takes.
 
 ---
 
-![Arsenal](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=22D3EE&center=true&vCenter=true&width=500&height=30&lines=✔+ARSENAL+—+TECH+STACK+%26+TOOLS+✔)
+![Arsenal](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=520&height=30&lines=%E2%97%86+ARSENAL+%E2%80%94+TECH+STACK+%26+TOOLS+%E2%97%86)
 
 ### ⚡ Linguagens / Languages
 
@@ -55,77 +53,155 @@ I love trying new things and **always finish what I start**, no matter how long 
 
 <div align="center">
 
-[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,mysql,blender,autocad,unity,unrealengine&theme=dark)](https://skillicons.dev)
+[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,vite,react,tailwind,mysql,blender&theme=dark)](https://skillicons.dev)
 
 </div>
 
 ---
 
-![Missions](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+MISSÕES+CONCLUÍDAS+%2F+COMPLETED+MISSIONS+✔)
+![Projects](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=E8C07A&center=true&vCenter=true&width=580&height=30&lines=%E2%97%86+PROJETOS+EM+DESTAQUE+%2F+FEATURED+MISSIONS+%E2%97%86)
+
+<div align="center">
+
+[![Projeto Baluarte](https://github-readme-stats.vercel.app/api/pin/?username=Lucas-Belucci-Bellini&repo=Projeto-Baluarte&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)
+[![Digital Logic Sim](https://github-readme-stats.vercel.app/api/pin/?username=Lucas-Belucci-Bellini&repo=Digital-Logic-Sim-CE&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6)](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE)
+
+[![Stock Analyzer](https://github-readme-stats.vercel.app/api/pin/?username=Lucas-Belucci-Bellini&repo=stock-analyzer-bot&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6)](https://github.com/Lucas-Belucci-Bellini/stock-analyzer-bot)
+[![Obra Segura](https://github-readme-stats.vercel.app/api/pin/?username=Lucas-Belucci-Bellini&repo=baluarte-obra-segura&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6)](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura)
+
+</div>
+
+### 🗂 Arsenal completo / Full arsenal
+
+| Projeto / Project | O que é / What it is | Stack |
+| :--- | :--- | :--- |
+| **[⬡ Projeto Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)** | Plataforma web narrativa + militar + 40 ferramentas, com **J.A.R.V.I.S.** e **Git Nexus**. *Narrative/tools web platform.* | `JS` `Vite` `Electron` |
+| **[🖥 Digital Logic Sim CE](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE)** | Onde construí CPUs funcionais de 8→64 bits do zero. *Where I built working 8→64-bit CPUs.* | `C#` `Unity` |
+| **[🧩 CHIPS Library](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci)** | Meus chips lógicos (AND/OR/NOT/NOR/XOR) e testes. *My saved logic chips.* | `JSON` |
+| **[📈 Stock Analyzer](https://github.com/Lucas-Belucci-Bellini/stock-analyzer-bot)** | Plataforma de análise de ações com IA: RSI, MACD, Bollinger, alertas. *AI investment platform.* | `TypeScript` `Drizzle` |
+| **[🦺 Baluarte Obra Segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura)** | App (web + Electron) de segurança e gestão de obras. *Construction-safety & site management app.* | `TypeScript` `Electron` |
+| **[🧠 AI Second Brain](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian)** | Setup de "segundo cérebro" Obsidian + Claude Code. *Obsidian + Claude second-brain kit.* | `Bash` |
+| **[🍪 Cookie Clicker Bot](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot)** | Automador idle completo pro console do navegador. *Full idle automation bot.* | `JavaScript` |
+| **[♻️ Jogo da Reciclagem](https://github.com/Lucas-Belucci-Bellini/Recycle-game)** | Jogo educativo de reciclagem + automação. *Educational recycling game.* | `HTML` `JS` |
+| **[🏗 LLBR Innovations](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions)** | Site institucional de construção (antes/depois, galeria). *Construction company site.* | `HTML` `CSS` |
+| **[🧾 AI Contador (IRPF)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-AI-Contador)** | Agente de IA para Imposto de Renda no Brasil. *AI accountant for Brazilian income tax.* | `Docs` `AI` |
+
+---
+
+![Lang Analysis](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=600&height=30&lines=%E2%97%86+AN%C3%81LISE+DE+LINGUAGENS+%2F+LANGUAGE+ANALYSIS+%E2%97%86)
+
+> 🤖 Seção mantida por um **bot**: uma GitHub Action varre meus repositórios **públicos**
+> de hora em hora, soma os bytes por linguagem e reescreve o que está abaixo — total de
+> linguagens, o peso de cada uma e **em quais repositórios** ela foi usada.
+> Repositórios privados ficam de fora, por design.
+>
+> *Kept by a bot: an hourly GitHub Action scans my public repos, aggregates bytes per
+> language and rewrites the block below — totals, weight and where each one was used.
+> Private repositories are excluded by design.*
+
+<!-- LANG-STATS:START -->
+
+_⏳ Aguardando a primeira execução do bot de análise… / Waiting for the first bot run…_
+
+<!-- LANG-STATS:END -->
+
+---
+
+![Nucleo](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=E8C07A&center=true&vCenter=true&width=560&height=30&lines=%E2%AC%A1+N%C3%9ACLEO+%2F%2F+J.A.R.V.I.S.+%E2%80%94+AMOSTRA+VISUAL+%E2%AC%A1)
+
+<div align="center">
+
+[![J.A.R.V.I.S. — Núcleo do Projeto Baluarte](./assets/jarvis-console.svg)](https://projeto-baluarte.vercel.app)
+
+</div>
+
+> **⬡ J.A.R.V.I.S.** é o assistente do **Projeto Baluarte** — *10 modos* (Local, WebLLM
+> no navegador, Claude, Ollama, Hermes, Servidor, Agente…), sessões em IndexedDB,
+> memória e ferramentas reais que **navegam e executam ações** no site via **Git Nexus**.
+> Acima, uma amostra do visual — o **Núcleo** na estética **"Ouro de Fábula"** do Baluarte.
+>
+> *J.A.R.V.I.S. is the Projeto Baluarte assistant — 10 modes, persistent sessions,
+> memory and real tools that browse and act on the site. Above is a taste of its UI.*
+
+**🎨 Design system — paleta "Ouro de Fábula" / Ouro de Fábula palette:**
+
+<div align="center">
+
+![bg](https://img.shields.io/badge/fundo-%230e0c16-0e0c16?style=for-the-badge&labelColor=0e0c16)
+![surface](https://img.shields.io/badge/superf%C3%ADcie-%231d1729-1d1729?style=for-the-badge&labelColor=1d1729)
+![gold](https://img.shields.io/badge/ouro-%23d4a24e-d4a24e?style=for-the-badge&labelColor=0e0c16)
+![gold-light](https://img.shields.io/badge/ouro%20claro-%23e8c07a-e8c07a?style=for-the-badge&labelColor=0e0c16)
+![parchment](https://img.shields.io/badge/pergaminho-%23f4ecdd-f4ecdd?style=for-the-badge&labelColor=0e0c16)
+
+</div>
+
+---
+
+![Missions](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=3DDC84&center=true&vCenter=true&width=560&height=30&lines=%E2%97%86+DIGITAL+LOGIC+SIM+%E2%80%94+CPU+BUILD+LOG+%E2%97%86)
 
 ```
-╔═══════════════════════════════════════════════════════════════════╗
-║  🖥  DIGITAL LOGIC SIM — BUILD LOG                               ║
-║  Construindo computadores funcionais do zero, bit a bit          ║
-╠═══════════════════════════════════════════════════════════════════╣
-║  [████████████████████████]   8-BIT CPU ............. [CONCLUÍDO] ║
-║  [████████████████████████]  16-BIT CPU ............. [CONCLUÍDO] ║
-║  [████████████████████████]  32-BIT CPU ............. [CONCLUÍDO] ║
-║  [████████████████████████]  64-BIT CPU ............. [CONCLUÍDO] ║
-╚═══════════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════╗
+║   DIGITAL LOGIC SIM — CPU BUILD LOG                          ║
+║   Computadores funcionais do zero, porta lógica por porta    ║
+╠══════════════════════════════════════════════════════════════╣
+║   [######################]   8-BIT CPU ....[CONCLUÍDO]       ║
+║   [######################]  16-BIT CPU ....[CONCLUÍDO]       ║
+║   [######################]  32-BIT CPU ....[CONCLUÍDO]       ║
+║   [######################]  64-BIT CPU ....[CONCLUÍDO]       ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
 > Construí computadores funcionais de **8 a 64 bits** no Digital Logic Sim —
 > da ULA à arquitetura completa. Do zero. Porta lógica por porta lógica.
+>
+> *Built working 8-to-64-bit computers in Digital Logic Sim — from the ALU to
+> the full architecture. From scratch, one logic gate at a time.*
 
 ---
 
-![Sites](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=22D3EE&center=true&vCenter=true&width=500&height=30&lines=✔+SITES+AO+VIVO+%2F+LIVE+SITES+✔)
+![Sites](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=520&height=30&lines=%E2%97%86+SITES+AO+VIVO+%2F+LIVE+SITES+%E2%97%86)
 
 <div align="center">
 
-[![Portfólio](https://img.shields.io/badge/🎓%20Portfólio-Faculdade-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://sites.google.com/view/portifolio-de-lucas-belucci/me-conhe%C3%A7a-um-pouco?authuser=0)
-[![Projeto Baluarte](https://img.shields.io/badge/🖥%20Projeto%20Baluarte-Online-22d3ee?style=for-the-badge&labelColor=080f17&color=22d3ee)](https://projeto-baluarte.vercel.app)
-[![LLBR Innovations](https://img.shields.io/badge/🏗%20LLBR%20Innovations-Online-f97316?style=for-the-badge&labelColor=080f17&color=f97316)](https://llbr-innovations-constructions.vercel.app)
+[![Portfólio](https://img.shields.io/badge/%F0%9F%8E%93%20Portf%C3%B3lio-Faculdade-3ddc84?style=for-the-badge&labelColor=0e0c16&color=3ddc84)](https://sites.google.com/view/portifolio-de-lucas-belucci/me-conhe%C3%A7a-um-pouco?authuser=0)
+[![Projeto Baluarte](https://img.shields.io/badge/%E2%AC%A1%20Projeto%20Baluarte-Online-d4a24e?style=for-the-badge&labelColor=0e0c16&color=d4a24e)](https://projeto-baluarte.vercel.app)
+[![LLBR Innovations](https://img.shields.io/badge/%F0%9F%8F%97%20LLBR%20Innovations-Online-e8c07a?style=for-the-badge&labelColor=0e0c16&color=e8c07a)](https://llbr-innovations-constructions.vercel.app)
 
 </div>
 
 ```
-╔═══════════════════════════════════════════════════════════════════╗
-║  🌐  DEPLOYMENTS — AO VIVO / ONLINE                              ║
-╠═══════════════════════════════════════════════════════════════════╣
-║  🎓  PORTFÓLIO DA FACULDADE                                      ║
-║      sites.google.com/view/portifolio-de-lucas-belucci           ║
-║      Portfólio acadêmico · UNIFIL · Ciência da Computação        ║
-║                                                    ..... [ONLINE] ║
-╠═══════════════════════════════════════════════════════════════════╣
-║  🖥  PROJETO BALUARTE                                            ║
-║      projeto-baluarte.vercel.app                                 ║
-║      Plataforma web · 40+ ferramentas · Arsenal · J.A.R.V.I.S.  ║
-║                                                    ..... [ONLINE] ║
-╠═══════════════════════════════════════════════════════════════════╣
-║  🏗  LLBR INNOVATIONS / CONSTRUCTIONS                            ║
-║      llbr-innovations-constructions.vercel.app                   ║
-║      Site institucional · Antes/Depois · Galeria de obras        ║
-║                                                    ..... [ONLINE] ║
-╚═══════════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════╗
+║   DEPLOYMENTS — AO VIVO / ONLINE                             ║
+╠══════════════════════════════════════════════════════════════╣
+║   PORTFOLIO DA FACULDADE ...............[ONLINE]             ║
+║   sites.google.com/view/portifolio-de-lucas-belucci          ║
+║   Portfolio academico · UNIFIL · Ciencia da Computacao       ║
+║   ──────────────────────────────────────────────────────     ║
+║   PROJETO BALUARTE .....................[ONLINE]             ║
+║   projeto-baluarte.vercel.app                                ║
+║   Plataforma web · 40+ ferramentas · JARVIS · Nexus          ║
+║   ──────────────────────────────────────────────────────     ║
+║   LLBR INNOVATIONS / CONSTRUCTIONS .....[ONLINE]             ║
+║   llbr-innovations-constructions.vercel.app                  ║
+║   Site institucional · Antes/Depois · Galeria de obras       ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
 ---
 
-![Personal Log](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=4ADE80&center=true&vCenter=true&width=500&height=30&lines=✔+ARQUIVO+PESSOAL+%2F+PERSONAL+LOG+✔)
+![Personal Log](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=E8C07A&center=true&vCenter=true&width=560&height=30&lines=%E2%97%86+ARQUIVO+PESSOAL+%2F+PERSONAL+LOG+%E2%97%86)
 
 ### 🎮 Gaming
 
 <div align="center">
 
-[![HALO](https://img.shields.io/badge/HALO-Spartan-15803d?style=for-the-badge&logo=xbox&logoColor=white&labelColor=080f17)](https://www.halowaypoint.com)
-[![War Thunder](https://img.shields.io/badge/War%20Thunder-Em%20Campo-b45309?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://warthunder.com/en/registration?r=userinvite_186972483)
-[![Doom](https://img.shields.io/badge/DOOM-RIP%20%26%20TEAR-b91c1c?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
-[![Warhammer 40k](https://img.shields.io/badge/Warhammer%2040k-For%20The%20Emperor-7c3aed?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
-[![Helldivers](https://img.shields.io/badge/Helldivers%202-Super%20Earth-ca8a04?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
-[![ARMA 3](https://img.shields.io/badge/ARMA%203-Tactical-22d3ee?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
-[![Fallout 4](https://img.shields.io/badge/Fallout%204-Vault%20Dweller-4ade80?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://store.steampowered.com)
+[![HALO](https://img.shields.io/badge/HALO-Spartan-3ddc84?style=for-the-badge&logo=xbox&logoColor=white&labelColor=0e0c16)](https://www.halowaypoint.com)
+[![War Thunder](https://img.shields.io/badge/War%20Thunder-Em%20Campo-d4a24e?style=for-the-badge&logo=steam&logoColor=white&labelColor=0e0c16)](https://warthunder.com/en/registration?r=userinvite_186972483)
+[![Doom](https://img.shields.io/badge/DOOM-RIP%20%26%20TEAR-ff3355?style=for-the-badge&logo=steam&logoColor=white&labelColor=0e0c16)](https://store.steampowered.com)
+[![Warhammer 40k](https://img.shields.io/badge/Warhammer%2040k-For%20The%20Emperor-a89a80?style=for-the-badge&logo=steam&logoColor=white&labelColor=0e0c16)](https://store.steampowered.com)
+[![Helldivers](https://img.shields.io/badge/Helldivers%202-Super%20Earth-ffaa00?style=for-the-badge&logo=steam&logoColor=white&labelColor=0e0c16)](https://store.steampowered.com)
+[![ARMA 3](https://img.shields.io/badge/ARMA%203-Tactical-d4a24e?style=for-the-badge&logo=steam&logoColor=white&labelColor=0e0c16)](https://store.steampowered.com)
+[![Fallout 4](https://img.shields.io/badge/Fallout%204-Vault%20Dweller-e8c07a?style=for-the-badge&logo=steam&logoColor=white&labelColor=0e0c16)](https://store.steampowered.com)
 
 </div>
 
@@ -133,56 +209,30 @@ I love trying new things and **always finish what I start**, no matter how long 
 
 > "Spartan never gives up. Spartan always finishes it."
 
-Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar minhas histórias e universos criados, um espaço para a imaginação e a criatividade fluírem.
+Uma seção dedicada à minha fan fiction — histórias e universos que eu crio, um espaço pra imaginação e criatividade fluírem.
 
-📖 **Comece a ler por aqui:** [Minha Fan Fiction - Início](https://docs.google.com/document/d/1FJulPVU1WA8LTLL3NO7h2CTW7pmlNWgO-C77qwtcVgU/edit?usp=drivesdk)
-
----
-
-![Planning](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=CA8A04&center=true&vCenter=true&width=500&height=30&lines=✔+LINKS+ÚTEIS+✔)
-
-### 🔗 Links Úteis
-
-<div align="center">
-
-[![Manus.im](https://img.shields.io/badge/Manus.im-Convite-22d3ee?style=for-the-badge&labelColor=080f17&color=22d3ee)](https://manus.im/invitation/YR8PTZXLJDBMFVR?utm_source=invitation&utm_medium=social&utm_campaign=copy_link)
-[![Replit](https://img.shields.io/badge/Replit-Referência-f97316?style=for-the-badge&logo=replit&logoColor=white&labelColor=080f17)](https://replit.com/refer/Lucas-Bellini?ref_surface=universal-settings-modal)
-
-</div>
+📖 **Comece a ler por aqui / Start reading here:** [Minha Fan Fiction — Início](https://docs.google.com/document/d/1FJulPVU1WA8LTLL3NO7h2CTW7pmlNWgO-C77qwtcVgU/edit?usp=drivesdk)
 
 ---
 
-![Field Report](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+RELATÓRIO+DE+CAMPO+%2F+FIELD+REPORT+✔)
+![Field Report](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=560&height=30&lines=%E2%97%86+RELAT%C3%93RIO+DE+CAMPO+%2F+FIELD+REPORT+%E2%97%86)
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Lucas-Belucci-Bellini&show_icons=true&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&include_all_commits=true&count_private=true&hide_border=false)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Lucas-Belucci-Bellini&layout=compact&theme=transparent&bg_color=050a0f&title_color=22d3ee&text_color=f1f5f9&icon_color=f97316&border_color=22d3ee&border_radius=4&langs_count=8)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Lucas-Belucci-Bellini&show_icons=true&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6&include_all_commits=true&count_private=true&hide_border=false)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Lucas-Belucci-Bellini&layout=compact&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6&langs_count=8)
 
-![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=050a0f&border=22d3ee&stroke=22d3ee&ring=f97316&fire=f97316&currStreakNum=22d3ee&sideNums=f1f5f9&currStreakLabel=22d3ee&sideLabels=f97316&dates=94a3b8&border_radius=4)
+![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=0e0c16&border=d4a24e&stroke=d4a24e&ring=e8c07a&fire=e8c07a&currStreakNum=d4a24e&sideNums=f4ecdd&currStreakLabel=d4a24e&sideLabels=e8c07a&dates=a89a80&border_radius=6)
+
+![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Lucas-Belucci-Bellini&theme=react-dark&bg_color=0e0c16&color=d4a24e&line=e8c07a&point=3ddc84&area=true&hide_border=false)
 
 ![Trophies](https://github-profile-trophy.vercel.app/?username=Lucas-Belucci-Bellini&theme=darkhub&no-bg=true&column=6&margin-w=8&margin-h=8)
 
-![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Lucas-Belucci-Bellini&theme=react-dark&bg_color=050a0f&color=22d3ee&line=f97316&point=4ade80&area=true&hide_border=false)
-
 </div>
 
 ---
 
-![Operations Log](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=F97316&center=true&vCenter=true&width=500&height=30&lines=✔+REGISTRO+DE+OPERAÇÕES+%2F+OPERATIONS+LOG+✔)
-
-<div align="center">
-
-![Profile Details](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Lucas-Belucci-Bellini&theme=github_dark)
-
-![Most Commit Language](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Lucas-Belucci-Bellini&theme=github_dark)
-![Productive Time](https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Lucas-Belucci-Bellini&theme=github_dark&utc_offset=-3)
-
-</div>
-
----
-
-![Activity Map](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=4ADE80&center=true&vCenter=true&width=500&height=30&lines=✔+MAPA+DE+ATIVIDADE+%2F+ACTIVITY+MAP+✔)
+![Activity Map](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=3DDC84&center=true&vCenter=true&width=560&height=30&lines=%E2%97%86+MAPA+DE+ATIVIDADE+%2F+ACTIVITY+MAP+%E2%97%86)
 
 <div align="center">
 
@@ -192,42 +242,36 @@ Esta é uma seção dedicada à minha fan fiction. Aqui, você pode encontrar mi
 
 ---
 
-![Comm Channel](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=14&duration=4000&pause=9999&color=22D3EE&center=true&vCenter=true&width=500&height=30&lines=✔+CANAL+DE+COMUNICAÇÃO+%2F+COMM+CHANNEL+✔)
+![Comm Channel](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=560&height=30&lines=%E2%97%86+CANAL+DE+COMUNICA%C3%87%C3%83O+%2F+COMM+CHANNEL+%E2%97%86)
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=080f17)](https://github.com/Lucas-Belucci-Bellini)
-[![Portfólio](https://img.shields.io/badge/🎓%20Portfólio-Faculdade-4ade80?style=for-the-badge&labelColor=080f17&color=4ade80)](https://sites.google.com/view/portifolio-de-lucas-belucci/me-conhe%C3%A7a-um-pouco?authuser=0)
-[![Projeto Baluarte](https://img.shields.io/badge/🖥%20Projeto%20Baluarte-Online-22d3ee?style=for-the-badge&labelColor=080f17&color=22d3ee)](https://projeto-baluarte.vercel.app)
-[![LLBR Innovations](https://img.shields.io/badge/🏗%20LLBR%20Innovations-Site-f97316?style=for-the-badge&labelColor=080f17&color=f97316)](https://llbr-innovations-constructions.vercel.app)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077b5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=080f17)](https://www.linkedin.com/in/lucas-belucci-bellini-28044b328)
+[![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-d4a24e?style=for-the-badge&logo=github&logoColor=white&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077b5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0e0c16)](https://www.linkedin.com/in/lucas-belucci-bellini-28044b328)
+[![YouTube](https://img.shields.io/badge/YouTube-Spartan%20Gamer%20BR-ff0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0e0c16)](https://www.youtube.com/@spartan_gamer_br)
+[![Twitch](https://img.shields.io/badge/Twitch-spartan__gamer__pro-9146ff?style=for-the-badge&logo=twitch&logoColor=white&labelColor=0e0c16)](https://www.twitch.tv/spartan_gamer_pro)
 
-[![YouTube](https://img.shields.io/badge/YouTube-Spartan%20Gamer%20BR-ff0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=080f17)](https://www.youtube.com/@spartan_gamer_br)
-[![Twitch](https://img.shields.io/badge/Twitch-spartan__gamer__pro-9146ff?style=for-the-badge&logo=twitch&logoColor=white&labelColor=080f17)](https://www.twitch.tv/spartan_gamer_pro)
-[![Spotify](https://img.shields.io/badge/Spotify-Spartan%20Br-1db954?style=for-the-badge&logo=spotify&logoColor=white&labelColor=080f17)](https://open.spotify.com/user/spartanbr)
-[![Steam](https://img.shields.io/badge/Steam-Spartan%20Gamer%20BR-1b2838?style=for-the-badge&logo=steam&logoColor=white&labelColor=080f17)](https://steamcommunity.com/id/spartangamerbr)
-[![Instagram](https://img.shields.io/badge/Instagram-lucasbeluccioficial-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=080f17)](https://www.instagram.com/lucasbeluccioficial)
-
-[![Email](https://img.shields.io/badge/Email-lucasbb2007%40gmail.com-22d3ee?style=for-the-badge&logo=gmail&logoColor=white&labelColor=080f17)](mailto:lucasbb2007@gmail.com)
-[![Email Spartan](https://img.shields.io/badge/Email-spartangamerbr68%40gmail.com-f97316?style=for-the-badge&logo=gmail&logoColor=white&labelColor=080f17)](mailto:spartangamerbr68@gmail.com)
-[![Email UNIFIL](https://img.shields.io/badge/Email-lucas.bellini%40edu.unifil.br-4ade80?style=for-the-badge&logo=gmail&logoColor=white&labelColor=080f17)](mailto:lucas.bellini@edu.unifil.br)
+[![Steam](https://img.shields.io/badge/Steam-Spartan%20Gamer%20BR-1b2838?style=for-the-badge&logo=steam&logoColor=white&labelColor=0e0c16)](https://steamcommunity.com/id/spartangamerbr)
+[![Spotify](https://img.shields.io/badge/Spotify-Spartan%20Br-1db954?style=for-the-badge&logo=spotify&logoColor=white&labelColor=0e0c16)](https://open.spotify.com/user/spartanbr)
+[![Instagram](https://img.shields.io/badge/Instagram-lucasbeluccioficial-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=0e0c16)](https://www.instagram.com/lucasbeluccioficial)
+[![Email](https://img.shields.io/badge/Email-lucasbb2007%40gmail.com-d4a24e?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0e0c16)](mailto:lucasbb2007@gmail.com)
 
 </div>
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║  "A melhor forma de prever o futuro é construí-lo."         ║
-║  "The best way to predict the future is to build it."       ║
-║                                             — Alan Kay      ║
+║   "A melhor forma de prever o futuro é construí-lo."         ║
+║   "The best way to predict the future is to build it."       ║
+║                                                — Alan Kay    ║
 ╠══════════════════════════════════════════════════════════════╣
-║  ⚔  Spartan never gives up. Spartan always finishes it.    ║
+║   Spartan never gives up. Spartan always finishes it.        ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
 <div align="center">
 
-[![Visitors](https://komarev.com/ghpvc/?username=Lucas-Belucci-Bellini&style=for-the-badge&color=22d3ee&labelColor=080f17&label=VISITAS+/+VISITS)](https://github.com/Lucas-Belucci-Bellini)
+[![Visitors](https://komarev.com/ghpvc/?username=Lucas-Belucci-Bellini&style=for-the-badge&color=d4a24e&labelColor=0e0c16&label=VISITAS+/+VISITS)](https://github.com/Lucas-Belucci-Bellini)
 
 </div>
 
-![Footer](https://capsule-render.vercel.app/api?type=waving&color=0:050a0f,50:0c1a2e,100:050a0f&height=100&section=footer&text=&animation=fadeIn)
+![Footer](https://capsule-render.vercel.app/api?type=waving&color=0:0e0c16,50:1d1729,100:0e0c16&height=100&section=footer&text=&animation=fadeIn)
