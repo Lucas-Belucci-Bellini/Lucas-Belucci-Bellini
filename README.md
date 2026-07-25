@@ -88,6 +88,23 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 ---
 
+![Lang Analysis](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=600&height=30&lines=%E2%97%86+AN%C3%81LISE+DE+LINGUAGENS+%2F+LANGUAGE+ANALYSIS+%E2%97%86)
+
+> 🤖 Seção mantida por um **bot**: uma GitHub Action varre **todos** os meus repositórios
+> de hora em hora, soma os bytes por linguagem e reescreve o que está abaixo — total de
+> linguagens, o peso de cada uma e **em quais repositórios** ela foi usada.
+>
+> *Kept by a bot: an hourly GitHub Action scans every repo, aggregates bytes per language
+> and rewrites the block below — totals, weight and where each language was used.*
+
+<!-- LANG-STATS:START -->
+
+_⏳ Aguardando a primeira execução do bot de análise… / Waiting for the first bot run…_
+
+<!-- LANG-STATS:END -->
+
+---
+
 ![Nucleo](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=E8C07A&center=true&vCenter=true&width=560&height=30&lines=%E2%AC%A1+N%C3%9ACLEO+%2F%2F+J.A.R.V.I.S.+%E2%80%94+AMOSTRA+VISUAL+%E2%AC%A1)
 
 <div align="center">
