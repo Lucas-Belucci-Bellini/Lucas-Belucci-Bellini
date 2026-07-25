@@ -90,12 +90,14 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 ![Lang Analysis](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=600&height=30&lines=%E2%97%86+AN%C3%81LISE+DE+LINGUAGENS+%2F+LANGUAGE+ANALYSIS+%E2%97%86)
 
-> 🤖 Seção mantida por um **bot**: uma GitHub Action varre **todos** os meus repositórios
+> 🤖 Seção mantida por um **bot**: uma GitHub Action varre meus repositórios **públicos**
 > de hora em hora, soma os bytes por linguagem e reescreve o que está abaixo — total de
 > linguagens, o peso de cada uma e **em quais repositórios** ela foi usada.
+> Repositórios privados ficam de fora, por design.
 >
-> *Kept by a bot: an hourly GitHub Action scans every repo, aggregates bytes per language
-> and rewrites the block below — totals, weight and where each language was used.*
+> *Kept by a bot: an hourly GitHub Action scans my public repos, aggregates bytes per
+> language and rewrites the block below — totals, weight and where each one was used.
+> Private repositories are excluded by design.*
 
 <!-- LANG-STATS:START -->
 

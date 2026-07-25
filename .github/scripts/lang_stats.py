@@ -9,11 +9,15 @@ Varre TODOS os repositórios do perfil, soma os bytes por linguagem
   2. bloco no README.md entre os marcadores LANG-STATS — total de linguagens,
      quanto cada uma pesa e EM QUAIS repositórios foi usada.
 
+Privacidade: repositórios **privados nunca entram** na análise — o README é
+público e a seção lista nomes de repositório. A exclusão é feita no código
+(collect()), não por falta de permissão do token.
+
 Uso:
     GITHUB_TOKEN=... python3 .github/scripts/lang_stats.py
 
 Variáveis de ambiente:
-    GITHUB_TOKEN   token de leitura (o GITHUB_TOKEN do Actions basta p/ repos públicos)
+    GITHUB_TOKEN   token de leitura (o GITHUB_TOKEN do Actions basta)
     GH_USER        login do dono (padrão: Lucas-Belucci-Bellini)
     INCLUDE_FORKS  "1" para incluir forks (padrão: 0)
 """
@@ -151,10 +155,15 @@ def collect() -> dict:
     repos = list_repos()
     per_lang: dict[str, int] = {}
     per_lang_repos: dict[str, list[tuple[str, int]]] = {}
-    repo_rows: list[dict] = []
     scanned = 0
+    skipped_private = 0
 
     for repo in repos:
+        # Repositório privado NUNCA entra: este README é público e a seção lista
+        # nomes de repositório. Vale mesmo que o token usado enxergue os privados.
+        if repo.get("private"):
+            skipped_private += 1
+            continue
         if repo.get("fork") and not INCLUDE_FORKS:
             continue
         owner = repo["owner"]["login"]
@@ -163,25 +172,19 @@ def collect() -> dict:
         if not langs:
             continue
         scanned += 1
-        total = sum(langs.values())
         for lang, size in langs.items():
             per_lang[lang] = per_lang.get(lang, 0) + size
             per_lang_repos.setdefault(lang, []).append((name, size))
-        top = max(langs.items(), key=lambda kv: kv[1])[0] if langs else "—"
-        repo_rows.append({
-            "name": name, "url": repo["html_url"], "bytes": total,
-            "top": top, "private": repo.get("private", False),
-            "langs": len(langs),
-        })
 
     for lang in per_lang_repos:
         per_lang_repos[lang].sort(key=lambda t: t[1], reverse=True)
-    repo_rows.sort(key=lambda r: r["bytes"], reverse=True)
+
+    if skipped_private:
+        print(f"{skipped_private} repositório(s) privado(s) ignorado(s) por design.")
 
     return {
         "per_lang": dict(sorted(per_lang.items(), key=lambda kv: kv[1], reverse=True)),
         "per_lang_repos": per_lang_repos,
-        "repos": repo_rows,
         "repo_count": scanned,
         "total_bytes": sum(per_lang.values()),
         "generated": datetime.now(timezone.utc),
