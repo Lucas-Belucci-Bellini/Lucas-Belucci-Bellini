@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **15 linguagens** detectadas em **22 repositórios** · **19.79 MB** de código · atualizado em `26/07/2026 12:05 UTC`
+> **16 linguagens** detectadas em **22 repositórios** · **19.89 MB** de código · atualizado em `26/07/2026 14:38 UTC`
 
 <div align="center">
 
@@ -111,12 +111,12 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Linguagem | Peso | % | Repositórios |
 | :-- | :--- | ---: | ---: | ---: |
-| 1 | **TypeScript** | `13.55 MB` | `68.48%` | 2 |
-| 2 | **JavaScript** | `4.52 MB` | `22.83%` | 14 |
-| 3 | **CSS** | `704.0 KB` | `3.47%` | 8 |
-| 4 | **HTML** | `482.2 KB` | `2.38%` | 13 |
-| 5 | **Python** | `211.9 KB` | `1.05%` | 3 |
-| 6 | **Java** | `122.6 KB` | `0.61%` | 2 |
+| 1 | **TypeScript** | `13.55 MB` | `68.15%` | 2 |
+| 2 | **JavaScript** | `4.56 MB` | `22.93%` | 14 |
+| 3 | **CSS** | `718.8 KB` | `3.53%` | 8 |
+| 4 | **HTML** | `482.2 KB` | `2.37%` | 13 |
+| 5 | **Python** | `247.0 KB` | `1.21%` | 3 |
+| 6 | **Java** | `122.6 KB` | `0.60%` | 2 |
 | 7 | **Shell** | `67.6 KB` | `0.33%` | 4 |
 | 8 | **C#** | `41.1 KB` | `0.20%` | 1 |
 | 9 | **GDScript** | `36.3 KB` | `0.18%` | 1 |
@@ -126,6 +126,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | 13 | **Portugol** | `11.1 KB` | `0.05%` | 3 |
 | 14 | **Dockerfile** | `8.2 KB` | `0.04%` | 1 |
 | 15 | **Batchfile** | `5.3 KB` | `0.03%` | 5 |
+| 16 | **SQF** | `4.5 KB` | `0.02%` | 1 |
 
 <details>
 <summary><b>🗺 Onde cada linguagem foi usada / Where each language was used</b></summary>
@@ -137,11 +138,11 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `12.85 MB` |
 | [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `725.6 KB` |
 
-#### JavaScript — `4.52 MB`
+#### JavaScript — `4.56 MB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.13 MB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.18 MB` |
 | [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |
 | [Essence-Custom-Furniture](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `177.9 KB` |
 | [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `154.8 KB` |
@@ -155,11 +156,11 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `37.1 KB` |
 | _… +2 repositórios_ | |
 
-#### CSS — `704.0 KB`
+#### CSS — `718.8 KB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `572.4 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `587.2 KB` |
 | [Projeto-Baluarte-World-Game](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `32.8 KB` |
 | [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `29.8 KB` |
 | [Portifolio-Baluarte-Lucas-Belucci-Bellini-](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `21.5 KB` |
@@ -186,11 +187,11 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `892 B` |
 | _… +1 repositórios_ | |
 
-#### Python — `211.9 KB`
+#### Python — `247.0 KB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `182.2 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `217.3 KB` |
 | [G-mod-Black-mesa](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) | `15.0 KB` |
 | [Python](https://github.com/Lucas-Belucci-Bellini/Python) | `14.7 KB` |
 
@@ -264,6 +265,12 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [Project-Baluarte-DevFlow](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) | `600 B` |
 | [G-mod-Black-mesa](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) | `443 B` |
 | [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `269 B` |
+
+#### SQF — `4.5 KB`
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `4.5 KB` |
 
 </details>
 
