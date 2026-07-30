@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** detectadas em **23 repositórios** · **20.39 MB** de código · atualizado em `30/07/2026 00:03 UTC`
+> **16 linguagens** detectadas em **23 repositórios** · **20.91 MB** de código · atualizado em `30/07/2026 04:08 UTC`
 
 <div align="center">
 
@@ -111,22 +111,22 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Linguagem | Peso | % | Repositórios |
 | :-- | :--- | ---: | ---: | ---: |
-| 1 | **TypeScript** | `13.55 MB` | `66.48%` | 2 |
-| 2 | **JavaScript** | `4.81 MB` | `23.61%` | 15 |
-| 3 | **CSS** | `740.7 KB` | `3.55%` | 9 |
-| 4 | **HTML** | `485.1 KB` | `2.32%` | 14 |
-| 5 | **Python** | `443.8 KB` | `2.13%` | 3 |
-| 6 | **Java** | `124.7 KB` | `0.60%` | 3 |
+| 1 | **TypeScript** | `13.55 MB` | `64.82%` | 2 |
+| 2 | **JavaScript** | `4.81 MB` | `23.01%` | 14 |
+| 3 | **CSS** | `738.4 KB` | `3.45%` | 9 |
+| 4 | **Java** | `654.9 KB` | `3.06%` | 3 |
+| 5 | **HTML** | `489.1 KB` | `2.28%` | 14 |
+| 6 | **Python** | `448.4 KB` | `2.09%` | 4 |
 | 7 | **Shell** | `67.6 KB` | `0.32%` | 4 |
-| 8 | **C#** | `41.1 KB` | `0.20%` | 1 |
+| 8 | **C#** | `41.1 KB` | `0.19%` | 1 |
 | 9 | **GDScript** | `36.3 KB` | `0.17%` | 1 |
-| 10 | **SQF** | `34.8 KB` | `0.17%` | 1 |
-| 11 | **PowerShell** | `33.0 KB` | `0.16%` | 2 |
-| 12 | **PLpgSQL** | `24.3 KB` | `0.12%` | 1 |
+| 10 | **SQF** | `34.8 KB` | `0.16%` | 1 |
+| 11 | **PowerShell** | `33.0 KB` | `0.15%` | 2 |
+| 12 | **PLpgSQL** | `24.3 KB` | `0.11%` | 1 |
 | 13 | **Jinja** | `14.1 KB` | `0.07%` | 1 |
 | 14 | **Portugol** | `11.1 KB` | `0.05%` | 3 |
 | 15 | **Dockerfile** | `8.2 KB` | `0.04%` | 1 |
-| 16 | **Batchfile** | `5.3 KB` | `0.03%` | 5 |
+| 16 | **Batchfile** | `5.3 KB` | `0.02%` | 5 |
 
 <details>
 <summary><b>🗺 Onde cada linguagem foi usada / Where each language was used</b></summary>
@@ -154,9 +154,9 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `78.0 KB` |
 | [Academic-Portfolio](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) | `63.0 KB` |
 | [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `37.1 KB` |
-| _… +3 repositórios_ | |
+| _… +2 repositórios_ | |
 
-#### CSS — `740.7 KB`
+#### CSS — `738.4 KB`
 
 | Repositório | Peso |
 | :--- | ---: |
@@ -167,10 +167,18 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `21.4 KB` |
 | [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `12.1 KB` |
 | [OMEGA-ALFA-DELTA](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) | `9.1 KB` |
-| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `7.6 KB` |
+| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `5.4 KB` |
 | [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `5.1 KB` |
 
-#### HTML — `485.1 KB`
+#### Java — `654.9 KB`
+
+| Repositório | Peso |
+| :--- | ---: |
+| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `532.3 KB` |
+| [JAVA-todos-os-codigos-em-java](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) | `99.6 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `23.0 KB` |
+
+#### HTML — `489.1 KB`
 
 | Repositório | Peso |
 | :--- | ---: |
@@ -183,26 +191,19 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [Essence-Custom-Furniture](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `28.5 KB` |
 | [Portifolio-Baluarte-Lucas-Belucci-Bellini-](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `25.7 KB` |
 | [Academic-Portfolio](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) | `25.3 KB` |
+| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `6.9 KB` |
 | [Customizable-birthday-invitation](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) | `6.1 KB` |
 | [Projeto-Baluarte-World-Game](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `4.3 KB` |
-| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `2.9 KB` |
 | _… +2 repositórios_ | |
 
-#### Python — `443.8 KB`
+#### Python — `448.4 KB`
 
 | Repositório | Peso |
 | :--- | ---: |
 | [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `414.1 KB` |
 | [G-mod-Black-mesa](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) | `15.0 KB` |
 | [Python](https://github.com/Lucas-Belucci-Bellini/Python) | `14.7 KB` |
-
-#### Java — `124.7 KB`
-
-| Repositório | Peso |
-| :--- | ---: |
-| [JAVA-todos-os-codigos-em-java](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) | `99.6 KB` |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `23.0 KB` |
-| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `2.0 KB` |
+| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `4.6 KB` |
 
 #### Shell — `67.6 KB`
 
