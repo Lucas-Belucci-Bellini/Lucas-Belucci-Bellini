@@ -8,7 +8,15 @@ on:
   push:
     branches: [main]
     paths:
-      - ".github/scripts/lang_stats.py"
+      - ".github/scripts/*.py"
+      - ".github/workflows/lang-stats.yml"
+  # Em PR o job roda só o TESTE e para aí (ver o `if:` do passo de análise).
+  # Sem isto, mexer no bot não produzia sinal nenhum antes do merge: o erro só
+  # apareceria na execução horária, já no `main`, publicando número errado ou
+  # deixando o README parado sem ninguém notar.
+  pull_request:
+    paths:
+      - ".github/scripts/*.py"
       - ".github/workflows/lang-stats.yml"
 
 # Nunca deixa duas execuções mexerem no README ao mesmo tempo.
@@ -38,7 +46,11 @@ jobs:
       - name: Provar o bot contra respostas de API fabricadas
         run: python3 .github/scripts/testar_lang_stats.py
 
+      # Em PR para aqui: analisar exigiria o PAT (que não vai para fork) e o
+      # passo seguinte ESCREVE no README e faz commit — coisa de `main`, não
+      # de revisão.
       - name: Analisar linguagens e arquivos de todos os repositórios
+        if: github.event_name != 'pull_request'
         env:
           # LANG_STATS_TOKEN é um PAT com escopo `repo` — é o que permite ver
           # repositório PRIVADO. Sem ele o passo continua funcionando, só que
@@ -55,6 +67,7 @@ jobs:
         run: python3 .github/scripts/lang_stats.py
 
       - name: Commitar se houver mudança
+        if: github.event_name != 'pull_request'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
