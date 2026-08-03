@@ -30,6 +30,14 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Roda ANTES da análise. Este bot escreve direto no README público do
+      # perfil, e não há como conferir o resultado antes de publicar — um erro
+      # aqui não quebra nada, só imprime um número errado com a mesma
+      # confiança de um certo. O teste alimenta o bot com respostas de API
+      # fabricadas e cobra que cada número diga o que o rótulo promete.
+      - name: Provar o bot contra respostas de API fabricadas
+        run: python3 .github/scripts/testar_lang_stats.py
+
       - name: Analisar linguagens e arquivos de todos os repositórios
         env:
           # LANG_STATS_TOKEN é um PAT com escopo `repo` — é o que permite ver
