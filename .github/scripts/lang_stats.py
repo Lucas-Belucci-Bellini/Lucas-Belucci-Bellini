@@ -135,7 +135,12 @@ def api(path: str, params: dict | None = None, retry_denied: bool = True) -> obj
             if exc.code in (403, 429) and retry_denied and attempt < 3:
                 time.sleep(2 ** (attempt + 1))
                 continue
-            if exc.code == 404 and retry_denied:
+            # 409 é o que a API responde em /git/trees de repositório VAZIO
+            # ("Git Repository is empty"). Repositório recém-criado, sem nenhum
+            # commit, é situação normal — não motivo para derrubar a varredura
+            # inteira. Vira None, igual ao 404, e o chamador conta como zero
+            # arquivo.
+            if exc.code in (404, 409) and retry_denied:
                 return None
             raise
         except (urllib.error.URLError, TimeoutError):
@@ -207,11 +212,22 @@ def arquivos_do_repo(owner: str, name: str, branch: str) -> tuple[dict, bool]:
 
     Uma chamada por repositório. `truncated` vem do próprio GitHub quando a
     árvore passa do limite: aí a contagem é PARCIAL, e isso é reportado em vez
-    de virar um número que parece completo."""
+    de virar um número que parece completo.
+
+    Nenhum repositório sozinho pode derrubar a varredura: se a leitura da árvore
+    falhar, este repositório entra com zero arquivo e o aviso vai para o log. As
+    linguagens dele já foram somadas antes, por outra chamada, então o relatório
+    continua de pé — perder a contagem de arquivos de um repositório é bem menos
+    grave do que perder o relatório inteiro."""
     if not branch:
         return {}, False
-    arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
-              {"recursive": "1"})
+    try:
+        arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
+                  {"recursive": "1"})
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+        print(f"aviso: nao consegui ler a arvore de {name} ({exc}); "
+              "contando zero arquivo para ele.", file=sys.stderr)
+        return {}, False
     if not isinstance(arv, dict):
         return {}, False
     contagem: dict[str, int] = {}

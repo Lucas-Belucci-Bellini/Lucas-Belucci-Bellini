@@ -94,15 +94,17 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 > 🤖 Seção mantida por um **bot**: uma GitHub Action varre meus repositórios de hora em
 > hora, soma os bytes por linguagem, conta os **tipos de arquivo** e reescreve o que está
 > abaixo — total de linguagens, o peso de cada uma e **em quais repositórios** ela foi usada.
-> Os **privados entram na conta** e aparecem marcados com 🔒; sem o token de acesso
-> configurado, o bot cai só nos públicos e diz quantos ficaram de fora, em vez de
-> apresentar um número incompleto como se fosse o total.
+> Os **privados também entram na conta** — marcados com 🔒 — quando o segredo
+> `LANG_STATS_TOKEN` está configurado. Sem ele, a varredura cobre só os públicos e o
+> próprio relatório diz quantos ficaram de fora, em vez de apresentar um número
+> incompleto como se fosse o total.
 >
 > *Kept by a bot: an hourly GitHub Action scans my repositories, aggregates bytes per
 > language, counts **file types** and rewrites the block below — totals, weight and where
-> each one was used. **Private repos are included** and marked with 🔒; without the access
-> token the bot falls back to public repos only and says how many were left out, rather
-> than passing an incomplete number off as the total.*
+> each one was used. **Private repos are counted too** — marked with 🔒 — when the
+> `LANG_STATS_TOKEN` secret is set. Without it the scan covers public repos only and the
+> report says how many were left out, rather than passing an incomplete number off as
+> the total.*
 
 <!-- LANG-STATS:START -->
 
