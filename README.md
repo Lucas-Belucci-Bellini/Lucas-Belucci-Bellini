@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **15 linguagens** detectadas em **24 repositórios** · **7.95 MB** de código · atualizado em `02/08/2026 22:04 UTC`
+> **15 linguagens** detectadas em **24 repositórios** · **7.98 MB** de código · atualizado em `03/08/2026 00:01 UTC`
 
 <div align="center">
 
@@ -111,16 +111,16 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Linguagem | Peso | % | Repositórios |
 | :-- | :--- | ---: | ---: | ---: |
-| 1 | **JavaScript** | `4.74 MB` | `59.67%` | 14 |
-| 2 | **CSS** | `734.2 KB` | `9.02%` | 9 |
-| 3 | **TypeScript** | `725.6 KB` | `8.91%` | 1 |
-| 4 | **Java** | `654.9 KB` | `8.04%` | 3 |
-| 5 | **HTML** | `488.5 KB` | `6.00%` | 14 |
-| 6 | **Python** | `449.0 KB` | `5.51%` | 5 |
-| 7 | **SQF** | `49.6 KB` | `0.61%` | 1 |
+| 1 | **JavaScript** | `4.74 MB` | `59.48%` | 14 |
+| 2 | **CSS** | `734.2 KB` | `8.99%` | 9 |
+| 3 | **TypeScript** | `725.6 KB` | `8.88%` | 1 |
+| 4 | **Java** | `654.9 KB` | `8.02%` | 3 |
+| 5 | **HTML** | `488.5 KB` | `5.98%` | 14 |
+| 6 | **Python** | `472.3 KB` | `5.78%` | 5 |
+| 7 | **SQF** | `52.0 KB` | `0.64%` | 1 |
 | 8 | **C#** | `41.1 KB` | `0.50%` | 1 |
 | 9 | **Shell** | `36.8 KB` | `0.45%` | 4 |
-| 10 | **GDScript** | `36.3 KB` | `0.45%` | 1 |
+| 10 | **GDScript** | `36.3 KB` | `0.44%` | 1 |
 | 11 | **PowerShell** | `26.9 KB` | `0.33%` | 2 |
 | 12 | **PLpgSQL** | `24.3 KB` | `0.30%` | 1 |
 | 13 | **Portugol** | `11.1 KB` | `0.14%` | 3 |
@@ -194,21 +194,21 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [Projeto-Baluarte-World-Game](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `4.3 KB` |
 | _… +2 repositórios_ | |
 
-#### Python — `449.0 KB`
+#### Python — `472.3 KB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `375.3 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `398.6 KB` |
 | [baluarte-docs](https://github.com/Lucas-Belucci-Bellini/baluarte-docs) | `39.5 KB` |
 | [G-mod-Black-mesa](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) | `15.0 KB` |
 | [Python](https://github.com/Lucas-Belucci-Bellini/Python) | `14.7 KB` |
 | [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `4.6 KB` |
 
-#### SQF — `49.6 KB`
+#### SQF — `52.0 KB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `49.6 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `52.0 KB` |
 
 #### C# — `41.1 KB`
 
