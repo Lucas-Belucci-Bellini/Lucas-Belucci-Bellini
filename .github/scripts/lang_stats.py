@@ -64,13 +64,22 @@ FAMILIA_EXT = {
     "estilo e marcação": {"css", "scss", "sass", "less", "html", "htm", "xml",
                           "svg", "xsl"},
     "dado": {"json", "jsonl", "csv", "tsv", "yml", "yaml", "toml", "ini", "cfg",
-             "sql", "db", "sqlite", "parquet", "rpt", "hpp_cfg"},
+             "sql", "db", "sqlite", "parquet", "rpt", "hpp_cfg",
+             # `.ajson` é canvas do Obsidian (90 arquivos, 17.8 MB medidos);
+             # `.ndjson`/`.geojson` completam a família que já estava aqui.
+             "ajson", "ndjson", "geojson", "pbo", "ebo"},
     "documento": {"md", "mdx", "txt", "rst", "pdf", "doc", "docx", "adoc"},
     "imagem": {"png", "jpg", "jpeg", "webp", "gif", "bmp", "ico", "tga", "paa",
-               "psd", "avif"},
+               "psd", "avif", "pac", "tif", "tiff"},
     "áudio e vídeo": {"mp3", "wav", "ogg", "flac", "mp4", "webm", "mov", "mkv"},
-    "modelo 3D": {"glb", "gltf", "obj", "fbx", "stl", "p3d", "blend", "dae"},
+    "modelo 3D": {"glb", "gltf", "obj", "fbx", "stl", "p3d", "blend", "dae",
+                  "rvmat"},
     "fonte": {"ttf", "otf", "woff", "woff2", "eot"},
+    # Saída de compilação versionada. Fica numa família PRÓPRIA em vez de
+    # "código": `.class` é bytecode do `.java` que já está contado ao lado, e
+    # somar os dois contaria o mesmo trabalho duas vezes. Medido: 255 `.class`.
+    "compilado": {"class", "jar", "pyc", "o", "a", "so", "dll", "exe", "wasm",
+                  "map"},
 }
 EXT_FAMILIA = {e: f for f, exts in FAMILIA_EXT.items() for e in exts}
 
@@ -203,25 +212,95 @@ def extensao(caminho: str) -> str | None:
 
 
 def arquivos_do_repo(owner: str, name: str, branch: str) -> tuple[dict, bool]:
-    """({extensão: contagem}, truncado?) lendo a árvore do branch padrão.
+    """({extensão: (contagem, bytes)}, truncado?) lendo a árvore do branch.
 
     Uma chamada por repositório. `truncated` vem do próprio GitHub quando a
     árvore passa do limite: aí a contagem é PARCIAL, e isso é reportado em vez
-    de virar um número que parece completo."""
+    de virar um número que parece completo.
+
+    ## Por que o PESO entra, e não só a contagem
+
+    Medido neste perfil: por CONTAGEM o pódio é `.webp` (80,0%) e `.p3d`
+    (10,9%); por PESO é `.p3d` (84,4%) e `.json` (6,4%). As duas leituras são
+    quase invertidas — 9.588 ícones de 1 KB extraídos do Arma 3 afogam, na
+    contagem, 3 GB de modelo 3D.
+
+    Nenhuma das duas sozinha é falsa, e nenhuma sozinha é suficiente: contar diz
+    quantos artefatos existem, pesar diz onde o volume está. Publicar só uma
+    fazia a tabela contar uma história que a outra desmentia.
+
+    O `size` já vinha na resposta da árvore e era descartado — o número novo não
+    custa nenhuma chamada a mais.
+    """
     if not branch:
         return {}, False
-    arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
-              {"recursive": "1"})
+    try:
+        arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
+                  {"recursive": "1"})
+    except urllib.error.HTTPError as exc:
+        # 409 nesta rota quer dizer REPOSITÓRIO VAZIO — não há árvore porque
+        # não há commit. Não é falha: é um repositório com zero arquivos, e
+        # vários dos `baluarte-*` estão exatamente assim, criados e ainda não
+        # preenchidos.
+        #
+        # Sem este tratamento o 409 subia até o topo e MATAVA a análise inteira
+        # no primeiro vazio que aparecesse. Foi o que aconteceu: 7 execuções
+        # seguidas abortadas, e o README do perfil parado por 15 horas sem
+        # ninguém notar — o bot falha calado porque ninguém lê log de cron.
+        if exc.code == 409:
+            return {}, False
+        raise
     if not isinstance(arv, dict):
         return {}, False
-    contagem: dict[str, int] = {}
+    contagem: dict[str, tuple[int, int]] = {}
     for no in arv.get("tree") or []:
         if no.get("type") != "blob":
             continue
         ext = extensao(no.get("path", ""))
-        if ext:
-            contagem[ext] = contagem.get(ext, 0) + 1
+        if not ext:
+            continue
+        n, b = contagem.get(ext, (0, 0))
+        # `size` pode faltar em submódulo ou link simbólico; 0 é o valor
+        # honesto ali, não um palpite.
+        contagem[ext] = (n + 1, b + int(no.get("size") or 0))
     return contagem, bool(arv.get("truncated"))
+
+
+def declara_gerado(owner: str, name: str) -> bool:
+    """O repositório marca seus arquivos GERADOS no `.gitattributes`?
+
+    É a pergunta que decide se o número de linguagens quer dizer alguma coisa.
+    O GitHub mede linguagem com o Linguist, que atribui a linguagem pela
+    EXTENSÃO: `src/data/arma3-veiculos.js` são 484 KB de tabela de dados
+    despejada do jogo, e entram como "JavaScript escrito" exatamente como um
+    módulo de 3 KB feito à mão. Medido no repositório principal deste perfil:
+    **45,7% do "JavaScript" é dado gerado.**
+
+    O Linguist tem a solução, e ela é uma declaração do dono do repositório:
+
+        src/data/arma3-*.js linguist-generated=true
+
+    Com isso o próprio GitHub para de contar aquilo como código — a barra de
+    linguagens do repositório e esta análise passam a dizer a mesma verdade,
+    porque bebem da mesma fonte.
+
+    Detectar em vez de supor: sem esta checagem o relatório teria de escolher
+    entre afirmar que o número está limpo (falso nos repos sem declaração) ou
+    avisar sempre (ruído nos que já declararam). Aqui ele diz QUAIS faltam.
+    """
+    try:
+        r = api(f"/repos/{owner}/{name}/contents/.gitattributes",
+                retry_denied=False)
+    except urllib.error.HTTPError:
+        return False
+    if not isinstance(r, dict):
+        return False
+    import base64
+    try:
+        txt = base64.b64decode(r.get("content") or "").decode("utf-8", "replace")
+    except Exception:
+        return False
+    return "linguist-generated" in txt or "linguist-vendored" in txt
 
 
 def collect() -> dict:
@@ -229,10 +308,15 @@ def collect() -> dict:
     per_lang: dict[str, int] = {}
     per_lang_repos: dict[str, list[tuple[str, int, bool]]] = {}
     per_ext: dict[str, int] = {}
+    per_ext_bytes: dict[str, int] = {}
     per_ext_repos: dict[str, set[str]] = {}
 
     vistos = privados = sem_linguagem = truncados = 0
     arquivos_total = 0
+    bytes_total = 0
+    declaram = 0
+    sem_declaracao: list[tuple[str, bool]] = []
+    ilegiveis: list[tuple[str, bool]] = []
 
     for repo in repos:
         if repo.get("fork") and not INCLUDE_FORKS:
@@ -244,7 +328,26 @@ def collect() -> dict:
         if priv:
             privados += 1
 
-        langs = api(f"/repos/{owner}/{name}/languages") or {}
+        # Um repositório problemático não pode derrubar a análise dos outros
+        # 33. O modo de falha que isto fecha não é teórico: um 409 de
+        # repositório vazio abortou 7 execuções seguidas, e o README ficou 15
+        # horas parado exibindo números velhos como se fossem de agora.
+        #
+        # Engolir o erro seria a cura pior: o relatório sairia menor e igual de
+        # confiante. Por isso quem falha é CONTADO e nomeado no README.
+        try:
+            if not SEM_ARQUIVOS and declara_gerado(owner, name):
+                declaram += 1
+            else:
+                sem_declaracao.append((name, priv))
+
+            langs = api(f"/repos/{owner}/{name}/languages") or {}
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+            print(f"aviso: {name} não pôde ser lido ({exc}) — segue fora da "
+                  f"contagem, e o relatório declara isso", file=sys.stderr)
+            ilegiveis.append((name, priv))
+            continue
+
         if langs:
             for lang, size in langs.items():
                 per_lang[lang] = per_lang.get(lang, 0) + size
@@ -255,31 +358,49 @@ def collect() -> dict:
             sem_linguagem += 1
 
         if not SEM_ARQUIVOS:
-            exts, truncado = arquivos_do_repo(
-                owner, name, repo.get("default_branch") or "")
+            try:
+                exts, truncado = arquivos_do_repo(
+                    owner, name, repo.get("default_branch") or "")
+            except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+                print(f"aviso: árvore de {name} ilegível ({exc})", file=sys.stderr)
+                exts, truncado = {}, False
+                if (name, priv) not in ilegiveis:
+                    ilegiveis.append((name, priv))
             truncados += 1 if truncado else 0
-            for ext, n in exts.items():
+            for ext, (n, b) in exts.items():
                 per_ext[ext] = per_ext.get(ext, 0) + n
+                per_ext_bytes[ext] = per_ext_bytes.get(ext, 0) + b
                 per_ext_repos.setdefault(ext, set()).add(name)
                 arquivos_total += n
+                bytes_total += b
 
     for lang in per_lang_repos:
         per_lang_repos[lang].sort(key=lambda t: t[1], reverse=True)
 
     print(f"repos={vistos} privados={privados} sem_linguagem={sem_linguagem} "
-          f"arquivos={arquivos_total} arvores_truncadas={truncados}")
+          f"arquivos={arquivos_total} bytes_arquivos={bytes_total} "
+          f"arvores_truncadas={truncados} ilegiveis={len(ilegiveis)}")
 
     return {
         "per_lang": dict(sorted(per_lang.items(), key=lambda kv: kv[1], reverse=True)),
         "per_lang_repos": per_lang_repos,
         "per_ext": dict(sorted(per_ext.items(), key=lambda kv: kv[1], reverse=True)),
+        "per_ext_bytes": per_ext_bytes,
         "per_ext_repos": per_ext_repos,
         "repo_count": vistos,
         "privados": privados,
         "sem_linguagem": sem_linguagem,
         "truncados": truncados,
         "arquivos_total": arquivos_total,
+        # DOIS totais, de propósito. `total_bytes` é o que o Linguist chama de
+        # código (e já desconta gerado/vendorizado quando o repo declara);
+        # `bytes_arquivos` é a árvore inteira, asset incluído. Chamar os dois
+        # de "total" faria o README somar maçã com laranja.
+        "bytes_arquivos": bytes_total,
         "total_bytes": sum(per_lang.values()),
+        "declaram_gerado": declaram,
+        "ilegiveis": ilegiveis,
+        "sem_declaracao": sem_declaracao,
         "generated": datetime.now(timezone.utc),
     }
 
@@ -411,7 +532,13 @@ def build_markdown(data: dict) -> str:
               f"em **{data['repo_count']} repositórios**")
     if data["privados"]:
         resumo += f" (**{data['privados']}** privados)"
+    # Os dois totais aparecem SEPARADOS e rotulados. "Código" é o que o
+    # Linguist reconhece como linguagem; "em disco" é a árvore inteira, com
+    # asset e binário. Neste acervo eles diferem por três ordens de grandeza
+    # (3 GB de modelo 3D contra alguns MB de código), e um número só no lugar
+    # dos dois seria enganoso qualquer que fosse o escolhido.
     resumo += (f" · **{human(data['total_bytes'])}** de código"
+               f" · **{human(data.get('bytes_arquivos') or 0)}** em disco"
                f" · **{data['arquivos_total']:,}** arquivos".replace(",", "."))
     resumo += f" · atualizado em `{stamp}`"
 
@@ -441,39 +568,88 @@ def build_markdown(data: dict) -> str:
         out += ["", f"> {data['sem_linguagem']} repositório(s) sem linguagem "
                     f"detectada pelo GitHub — contam no total, mas não na tabela."]
 
+    # Cobertura parcial declarada. Um relatório menor e igualmente confiante é
+    # pior que um erro: ninguém tem como saber que falta pedaço.
+    ilegiveis = data.get("ilegiveis") or []
+    if ilegiveis:
+        nomes = ", ".join(rotulo_repo(n, p) for n, p in ilegiveis[:8])
+        resto = len(ilegiveis) - 8
+        out += ["", f"> ⚠️ {len(ilegiveis)} repositório(s) não puderam ser lidos "
+                    f"nesta execução e ficam FORA de todos os números acima: "
+                    f"{nomes}" + (f" _… +{resto}_" if resto > 0 else "") + "."]
+
+    # O que o número acima quer dizer — e onde ele ainda não quer dizer nada.
+    sem_decl = data.get("sem_declaracao") or []
+    n_decl = data.get("declaram_gerado", 0)
+    if sem_decl or n_decl:
+        total_r = n_decl + len(sem_decl)
+        out += ["", f"> **Como isto é medido.** O peso vem do Linguist, que "
+                    f"atribui linguagem pela EXTENSÃO — uma tabela de dados "
+                    f"despejada em `.js` conta igual a um módulo escrito à mão. "
+                    f"Quem separa os dois é o `.gitattributes` do repositório "
+                    f"(`linguist-generated=true`), e hoje **{n_decl} de "
+                    f"{total_r}** repositórios declaram."]
+        if sem_decl:
+            nomes = ", ".join(rotulo_repo(n, p) for n, p in sem_decl[:8])
+            resto = len(sem_decl) - 8
+            out.append(f"> Sem declaração: {nomes}"
+                       + (f" _… +{resto}_" if resto > 0 else "")
+                       + " — nesses, dado gerado ainda entra como código.")
+
     # ── tipos de arquivo ──────────────────────────────────────────────────
     if per_ext:
         arq_total = data["arquivos_total"] or 1
-        # Ordena aqui também: a tabela diz "top", e depender da ordem que o
-        # chamador entregou faria um "top" errado sem nenhum sinal.
-        ordenado = sorted(per_ext.items(), key=lambda kv: (-kv[1], kv[0]))
+        per_ext_b = data.get("per_ext_bytes") or {}
+        bytes_total = data.get("bytes_arquivos") or 1
+
+        # Ordena por PESO. A contagem vai junto em cada linha, porque as duas
+        # leituras se contradizem neste perfil e esconder uma delas escolheria
+        # a história por conta própria: por contagem manda `.webp` (ícone de
+        # 1 KB extraído do jogo, aos milhares); por peso manda `.p3d`.
+        ordenado = sorted(per_ext.items(),
+                          key=lambda kv: (-per_ext_b.get(kv[0], 0), -kv[1], kv[0]))
         out += [
             "",
             "### Tipos de arquivo",
             "",
-            "| # | Tipo | Arquivos | % | Família | Repositórios |",
-            "| :-- | :--- | ---: | ---: | :--- | ---: |",
+            "> Ordenado por **peso**. A coluna _Arquivos_ conta; a coluna _Peso_ "
+            "mede — e neste acervo as duas contam histórias diferentes.",
+            "",
+            "| # | Tipo | Peso | % peso | Arquivos | % arq. | Família | Repos |",
+            "| :-- | :--- | ---: | ---: | ---: | ---: | :--- | ---: |",
         ]
         for i, (ext, n) in enumerate(ordenado[:TOP_EXT], 1):
-            pct = n / arq_total * 100
+            b = per_ext_b.get(ext, 0)
             fam = EXT_FAMILIA.get(ext, "outros")
             nrep = len(data["per_ext_repos"].get(ext, ()))
-            out.append(f"| {i} | `.{ext}` | `{n}` | `{pct:.2f}%` | {fam} | {nrep} |")
+            out.append(
+                f"| {i} | `.{ext}` | `{human(b)}` | `{b / bytes_total * 100:.2f}%` "
+                f"| `{n}` | `{n / arq_total * 100:.2f}%` | {fam} | {nrep} |")
 
         resto = ordenado[TOP_EXT:]
         if resto:
             n_resto = sum(n for _e, n in resto)
-            out.append(f"| | _… +{len(resto)} outros tipos_ | `{n_resto}` | "
-                       f"`{n_resto / arq_total * 100:.2f}%` | | |")
+            b_resto = sum(per_ext_b.get(e, 0) for e, _n in resto)
+            out.append(
+                f"| | _… +{len(resto)} outros tipos_ | `{human(b_resto)}` "
+                f"| `{b_resto / bytes_total * 100:.2f}%` | `{n_resto}` "
+                f"| `{n_resto / arq_total * 100:.2f}%` | | |")
 
-        # por família — a leitura por assunto
-        por_fam: dict[str, int] = {}
+        # A mesma divergência aparece de novo por família, e aqui ela é o
+        # retrato mais honesto do acervo: onde estão os bytes vs onde estão os
+        # artefatos.
+        fam_n: dict[str, int] = {}
+        fam_b: dict[str, int] = {}
         for ext, n in per_ext.items():
-            por_fam[EXT_FAMILIA.get(ext, "outros")] = \
-                por_fam.get(EXT_FAMILIA.get(ext, "outros"), 0) + n
-        out += ["", "| Família | Arquivos | % |", "| :--- | ---: | ---: |"]
-        for fam, n in sorted(por_fam.items(), key=lambda kv: kv[1], reverse=True):
-            out.append(f"| {fam} | `{n}` | `{n / arq_total * 100:.2f}%` |")
+            f = EXT_FAMILIA.get(ext, "outros")
+            fam_n[f] = fam_n.get(f, 0) + n
+            fam_b[f] = fam_b.get(f, 0) + per_ext_b.get(ext, 0)
+        out += ["", "| Família | Peso | % peso | Arquivos | % arq. |",
+                "| :--- | ---: | ---: | ---: | ---: |"]
+        for fam, b in sorted(fam_b.items(), key=lambda kv: kv[1], reverse=True):
+            n = fam_n[fam]
+            out.append(f"| {fam} | `{human(b)}` | `{b / bytes_total * 100:.2f}%` "
+                       f"| `{n}` | `{n / arq_total * 100:.2f}%` |")
 
         if data["truncados"]:
             out += ["", f"> ⚠️ {data['truncados']} repositório(s) têm árvore grande "
