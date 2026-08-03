@@ -30,14 +30,20 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Analisar linguagens de todos os repositórios
+      - name: Analisar linguagens e arquivos de todos os repositórios
         env:
-          # Só o GITHUB_TOKEN padrão: a análise cobre apenas repositórios
-          # PÚBLICOS. Os privados são excluídos também no código (lang_stats.py),
-          # então nem um token mais amplo os exporia neste README público.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # LANG_STATS_TOKEN é um PAT com escopo `repo` — é o que permite ver
+          # repositório PRIVADO. Sem ele o passo continua funcionando, só que
+          # cobrindo apenas os públicos, e o relatório diz isso em vez de
+          # apresentar número incompleto como se fosse total.
+          #
+          # ATENÇÃO: com o PAT presente, o nome dos repositórios privados passa
+          # a aparecer neste README, que é PÚBLICO. Para manter os números e
+          # esconder os nomes, ligue OCULTAR_NOMES_PRIVADOS abaixo.
+          GITHUB_TOKEN: ${{ secrets.LANG_STATS_TOKEN || secrets.GITHUB_TOKEN }}
           GH_USER: ${{ github.repository_owner }}
           INCLUDE_FORKS: "0"
+          OCULTAR_NOMES_PRIVADOS: "0"
         run: python3 .github/scripts/lang_stats.py
 
       - name: Commitar se houver mudança

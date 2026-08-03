@@ -1,25 +1,34 @@
 #!/usr/bin/env python3
 """
-Bot de análise de linguagens — ⬡ Projeto Baluarte / perfil.
+Bot de análise de linguagens e arquivos — ⬡ Projeto Baluarte / perfil.
 
-Varre TODOS os repositórios do perfil, soma os bytes por linguagem
-(via API /repos/{owner}/{repo}/languages) e gera:
+Varre TODOS os repositórios do perfil — **incluindo os privados** — e gera:
 
   1. assets/lang-stats.svg  — card visual no tema "Ouro de Fábula"
-  2. bloco no README.md entre os marcadores LANG-STATS — total de linguagens,
-     quanto cada uma pesa e EM QUAIS repositórios foi usada.
+  2. bloco no README.md entre os marcadores LANG-STATS: linguagens por peso,
+     tipos de arquivo por contagem, e em quais repositórios cada um aparece.
 
-Privacidade: repositórios **privados nunca entram** na análise — o README é
-público e a seção lista nomes de repositório. A exclusão é feita no código
-(collect()), não por falta de permissão do token.
+⚠️ **Privado entra, e isso tem consequência.** Este README é público. Incluir
+repositório privado nas estatísticas é decisão do dono do perfil (pedida
+explicitamente); o efeito colateral é que o NOME dele aparece na seção de
+detalhe. Quem não quiser isso liga `OCULTAR_NOMES_PRIVADOS=1`: os números
+continuam completos e o nome vira `repositório privado`.
+
+Para enxergar privado é preciso um **PAT com escopo `repo`** em
+`LANG_STATS_TOKEN`. O `GITHUB_TOKEN` do Actions é token de instalação, sem
+contexto de usuário — ele responde 401/403 em `/user/repos` e a análise cai no
+endpoint público, que só lista os abertos. Sem o PAT, nada quebra: o relatório
+diz quantos ficaram de fora, em vez de fingir que o número está completo.
 
 Uso:
     GITHUB_TOKEN=... python3 .github/scripts/lang_stats.py
 
 Variáveis de ambiente:
-    GITHUB_TOKEN   token de leitura (o GITHUB_TOKEN do Actions basta)
-    GH_USER        login do dono (padrão: Lucas-Belucci-Bellini)
-    INCLUDE_FORKS  "1" para incluir forks (padrão: 0)
+    GITHUB_TOKEN            token de leitura (PAT com `repo` para ver privados)
+    GH_USER                 login do dono (padrão: Lucas-Belucci-Bellini)
+    INCLUDE_FORKS           "1" para incluir forks (padrão: 0)
+    OCULTAR_NOMES_PRIVADOS  "1" anonimiza o nome dos privados (padrão: 0)
+    SEM_ARQUIVOS            "1" pula a varredura de tipos de arquivo (padrão: 0)
 """
 
 from __future__ import annotations
@@ -38,6 +47,32 @@ API = "https://api.github.com"
 USER = os.environ.get("GH_USER", "Lucas-Belucci-Bellini")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 INCLUDE_FORKS = os.environ.get("INCLUDE_FORKS", "0") == "1"
+OCULTAR_PRIV = os.environ.get("OCULTAR_NOMES_PRIVADOS", "0") == "1"
+SEM_ARQUIVOS = os.environ.get("SEM_ARQUIVOS", "0") == "1"
+
+# Quantos tipos de arquivo listar na tabela. O resto vira uma linha "outros" —
+# a cauda de extensões únicas é longa e não informa nada.
+TOP_EXT = 24
+
+# Extensão -> família, para a leitura ficar por assunto e não por acaso
+# alfabético. Só agrupa o que é inequívoco; o que não está aqui cai em "outros"
+# em vez de ser chutado para uma família plausível.
+FAMILIA_EXT = {
+    "código": {"js", "mjs", "cjs", "jsx", "ts", "tsx", "py", "sqf", "lua", "c",
+               "h", "cpp", "hpp", "cs", "java", "go", "rs", "rb", "php", "kt",
+               "swift", "sh", "bat", "ps1", "vue", "svelte", "dart", "ino"},
+    "estilo e marcação": {"css", "scss", "sass", "less", "html", "htm", "xml",
+                          "svg", "xsl"},
+    "dado": {"json", "jsonl", "csv", "tsv", "yml", "yaml", "toml", "ini", "cfg",
+             "sql", "db", "sqlite", "parquet", "rpt", "hpp_cfg"},
+    "documento": {"md", "mdx", "txt", "rst", "pdf", "doc", "docx", "adoc"},
+    "imagem": {"png", "jpg", "jpeg", "webp", "gif", "bmp", "ico", "tga", "paa",
+               "psd", "avif"},
+    "áudio e vídeo": {"mp3", "wav", "ogg", "flac", "mp4", "webm", "mov", "mkv"},
+    "modelo 3D": {"glb", "gltf", "obj", "fbx", "stl", "p3d", "blend", "dae"},
+    "fonte": {"ttf", "otf", "woff", "woff2", "eot"},
+}
+EXT_FAMILIA = {e: f for f, exts in FAMILIA_EXT.items() for e in exts}
 
 ROOT = Path(__file__).resolve().parents[2]
 README = ROOT / "README.md"
@@ -151,41 +186,99 @@ def list_repos() -> list[dict]:
 
 # ----------------------------------------------------------------- coleta
 
+def extensao(caminho: str) -> str | None:
+    """Extensão em minúsculas, ou None quando não há uma que sirva de tipo.
+
+    `Makefile` e `LICENSE` não têm extensão; `.gitignore` é só um ponto-nome, e
+    tratá-lo como extensão `gitignore` encheria a tabela de ruído de
+    configuração. Os dois casos viram None de propósito."""
+    nome = caminho.rsplit("/", 1)[-1]
+    if "." not in nome or nome.startswith("."):
+        return None
+    ext = nome.rsplit(".", 1)[1].lower()
+    # extensão absurda quase sempre é nome com ponto, não tipo de arquivo
+    if not ext or len(ext) > 12 or not ext.isalnum():
+        return None
+    return ext
+
+
+def arquivos_do_repo(owner: str, name: str, branch: str) -> tuple[dict, bool]:
+    """({extensão: contagem}, truncado?) lendo a árvore do branch padrão.
+
+    Uma chamada por repositório. `truncated` vem do próprio GitHub quando a
+    árvore passa do limite: aí a contagem é PARCIAL, e isso é reportado em vez
+    de virar um número que parece completo."""
+    if not branch:
+        return {}, False
+    arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
+              {"recursive": "1"})
+    if not isinstance(arv, dict):
+        return {}, False
+    contagem: dict[str, int] = {}
+    for no in arv.get("tree") or []:
+        if no.get("type") != "blob":
+            continue
+        ext = extensao(no.get("path", ""))
+        if ext:
+            contagem[ext] = contagem.get(ext, 0) + 1
+    return contagem, bool(arv.get("truncated"))
+
+
 def collect() -> dict:
     repos = list_repos()
     per_lang: dict[str, int] = {}
-    per_lang_repos: dict[str, list[tuple[str, int]]] = {}
-    scanned = 0
-    skipped_private = 0
+    per_lang_repos: dict[str, list[tuple[str, int, bool]]] = {}
+    per_ext: dict[str, int] = {}
+    per_ext_repos: dict[str, set[str]] = {}
+
+    vistos = privados = sem_linguagem = truncados = 0
+    arquivos_total = 0
 
     for repo in repos:
-        # Repositório privado NUNCA entra: este README é público e a seção lista
-        # nomes de repositório. Vale mesmo que o token usado enxergue os privados.
-        if repo.get("private"):
-            skipped_private += 1
-            continue
         if repo.get("fork") and not INCLUDE_FORKS:
             continue
         owner = repo["owner"]["login"]
         name = repo["name"]
+        priv = bool(repo.get("private"))
+        vistos += 1
+        if priv:
+            privados += 1
+
         langs = api(f"/repos/{owner}/{name}/languages") or {}
-        if not langs:
-            continue
-        scanned += 1
-        for lang, size in langs.items():
-            per_lang[lang] = per_lang.get(lang, 0) + size
-            per_lang_repos.setdefault(lang, []).append((name, size))
+        if langs:
+            for lang, size in langs.items():
+                per_lang[lang] = per_lang.get(lang, 0) + size
+                per_lang_repos.setdefault(lang, []).append((name, size, priv))
+        else:
+            # Repositório sem linguagem detectada ainda É um repositório. Antes
+            # ele sumia da contagem, e o total de repos ficava menor que o real.
+            sem_linguagem += 1
+
+        if not SEM_ARQUIVOS:
+            exts, truncado = arquivos_do_repo(
+                owner, name, repo.get("default_branch") or "")
+            truncados += 1 if truncado else 0
+            for ext, n in exts.items():
+                per_ext[ext] = per_ext.get(ext, 0) + n
+                per_ext_repos.setdefault(ext, set()).add(name)
+                arquivos_total += n
 
     for lang in per_lang_repos:
         per_lang_repos[lang].sort(key=lambda t: t[1], reverse=True)
 
-    if skipped_private:
-        print(f"{skipped_private} repositório(s) privado(s) ignorado(s) por design.")
+    print(f"repos={vistos} privados={privados} sem_linguagem={sem_linguagem} "
+          f"arquivos={arquivos_total} arvores_truncadas={truncados}")
 
     return {
         "per_lang": dict(sorted(per_lang.items(), key=lambda kv: kv[1], reverse=True)),
         "per_lang_repos": per_lang_repos,
-        "repo_count": scanned,
+        "per_ext": dict(sorted(per_ext.items(), key=lambda kv: kv[1], reverse=True)),
+        "per_ext_repos": per_ext_repos,
+        "repo_count": vistos,
+        "privados": privados,
+        "sem_linguagem": sem_linguagem,
+        "truncados": truncados,
+        "arquivos_total": arquivos_total,
         "total_bytes": sum(per_lang.values()),
         "generated": datetime.now(timezone.utc),
     }
@@ -249,19 +342,23 @@ def build_svg(data: dict) -> str:
         f'<animate attributeName="x" values="24;{width-224};24" dur="8s" repeatCount="indefinite"/></rect>',
     ]
 
-    # stats
+    # stats — quatro colunas desde que os tipos de arquivo entraram
+    repos_lbl = str(data["repo_count"])
+    if data.get("privados"):
+        repos_lbl += f" ({data['privados']} priv)"
     stats = [
         (str(n_langs), "LINGUAGENS"),
-        (str(data["repo_count"]), "REPOSITÓRIOS"),
+        (str(len(data.get("per_ext") or {})), "TIPOS DE ARQUIVO"),
+        (repos_lbl, "REPOSITÓRIOS"),
         (human(data["total_bytes"]), "CÓDIGO TOTAL"),
     ]
     sx = 38
     for val, label in stats:
         parts.append(
-            f'<text x="{sx}" y="93" fill="{GOLD}" font-size="22" font-weight="700">{esc(val)}</text>'
+            f'<text x="{sx}" y="93" fill="{GOLD}" font-size="20" font-weight="700">{esc(val)}</text>'
             f'<text x="{sx}" y="110" fill="{DIM}" font-size="10" letter-spacing="1.5">{label}</text>'
         )
-        sx += 250
+        sx += 210
 
     # barras
     y = top_y
@@ -295,22 +392,41 @@ def build_svg(data: dict) -> str:
 
 # ----------------------------------------------------------------- Markdown
 
+def rotulo_repo(name: str, priv: bool) -> str:
+    """Como o repositório aparece na tabela pública."""
+    if priv and OCULTAR_PRIV:
+        return "🔒 _repositório privado_"
+    if priv:
+        return f"🔒 {name}"
+    return f"[{name}](https://github.com/{USER}/{name})"
+
+
 def build_markdown(data: dict) -> str:
     per_lang = data["per_lang"]
+    per_ext = data["per_ext"]
     total = data["total_bytes"] or 1
     stamp = data["generated"].strftime("%d/%m/%Y %H:%M UTC")
+
+    resumo = (f"> **{len(per_lang)} linguagens** e **{len(per_ext)} tipos de arquivo** "
+              f"em **{data['repo_count']} repositórios**")
+    if data["privados"]:
+        resumo += f" (**{data['privados']}** privados)"
+    resumo += (f" · **{human(data['total_bytes'])}** de código"
+               f" · **{data['arquivos_total']:,}** arquivos".replace(",", "."))
+    resumo += f" · atualizado em `{stamp}`"
 
     out = [
         START,
         "",
-        f"> **{len(per_lang)} linguagens** detectadas em **{data['repo_count']} repositórios** ·"
-        f" **{human(data['total_bytes'])}** de código · atualizado em `{stamp}`",
+        resumo,
         "",
         '<div align="center">',
         "",
         "![Análise de linguagens](./assets/lang-stats.svg)",
         "",
         "</div>",
+        "",
+        "### Linguagens",
         "",
         "| # | Linguagem | Peso | % | Repositórios |",
         "| :-- | :--- | ---: | ---: | ---: |",
@@ -321,6 +437,51 @@ def build_markdown(data: dict) -> str:
         n_repos = len(data["per_lang_repos"].get(lang, []))
         out.append(f"| {i} | **{lang}** | `{human(size)}` | `{pct:.2f}%` | {n_repos} |")
 
+    if data["sem_linguagem"]:
+        out += ["", f"> {data['sem_linguagem']} repositório(s) sem linguagem "
+                    f"detectada pelo GitHub — contam no total, mas não na tabela."]
+
+    # ── tipos de arquivo ──────────────────────────────────────────────────
+    if per_ext:
+        arq_total = data["arquivos_total"] or 1
+        # Ordena aqui também: a tabela diz "top", e depender da ordem que o
+        # chamador entregou faria um "top" errado sem nenhum sinal.
+        ordenado = sorted(per_ext.items(), key=lambda kv: (-kv[1], kv[0]))
+        out += [
+            "",
+            "### Tipos de arquivo",
+            "",
+            "| # | Tipo | Arquivos | % | Família | Repositórios |",
+            "| :-- | :--- | ---: | ---: | :--- | ---: |",
+        ]
+        for i, (ext, n) in enumerate(ordenado[:TOP_EXT], 1):
+            pct = n / arq_total * 100
+            fam = EXT_FAMILIA.get(ext, "outros")
+            nrep = len(data["per_ext_repos"].get(ext, ()))
+            out.append(f"| {i} | `.{ext}` | `{n}` | `{pct:.2f}%` | {fam} | {nrep} |")
+
+        resto = ordenado[TOP_EXT:]
+        if resto:
+            n_resto = sum(n for _e, n in resto)
+            out.append(f"| | _… +{len(resto)} outros tipos_ | `{n_resto}` | "
+                       f"`{n_resto / arq_total * 100:.2f}%` | | |")
+
+        # por família — a leitura por assunto
+        por_fam: dict[str, int] = {}
+        for ext, n in per_ext.items():
+            por_fam[EXT_FAMILIA.get(ext, "outros")] = \
+                por_fam.get(EXT_FAMILIA.get(ext, "outros"), 0) + n
+        out += ["", "| Família | Arquivos | % |", "| :--- | ---: | ---: |"]
+        for fam, n in sorted(por_fam.items(), key=lambda kv: kv[1], reverse=True):
+            out.append(f"| {fam} | `{n}` | `{n / arq_total * 100:.2f}%` |")
+
+        if data["truncados"]:
+            out += ["", f"> ⚠️ {data['truncados']} repositório(s) têm árvore grande "
+                        f"demais para uma leitura só — a contagem de arquivos deles "
+                        f"é **parcial**. O GitHub trunca; melhor dizer do que "
+                        f"apresentar número incompleto como se fosse total."]
+
+    # ── detalhe ───────────────────────────────────────────────────────────
     out += [
         "",
         "<details>",
@@ -334,9 +495,8 @@ def build_markdown(data: dict) -> str:
         out.append("")
         out.append("| Repositório | Peso |")
         out.append("| :--- | ---: |")
-        for name, rsize in repos[:12]:
-            url = f"https://github.com/{USER}/{name}"
-            out.append(f"| [{name}]({url}) | `{human(rsize)}` |")
+        for name, rsize, priv in repos[:12]:
+            out.append(f"| {rotulo_repo(name, priv)} | `{human(rsize)}` |")
         if len(repos) > 12:
             out.append(f"| _… +{len(repos) - 12} repositórios_ | |")
         out.append("")
