@@ -234,8 +234,22 @@ def arquivos_do_repo(owner: str, name: str, branch: str) -> tuple[dict, bool]:
     """
     if not branch:
         return {}, False
-    arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
-              {"recursive": "1"})
+    try:
+        arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
+                  {"recursive": "1"})
+    except urllib.error.HTTPError as exc:
+        # 409 nesta rota quer dizer REPOSITÓRIO VAZIO — não há árvore porque
+        # não há commit. Não é falha: é um repositório com zero arquivos, e
+        # vários dos `baluarte-*` estão exatamente assim, criados e ainda não
+        # preenchidos.
+        #
+        # Sem este tratamento o 409 subia até o topo e MATAVA a análise inteira
+        # no primeiro vazio que aparecesse. Foi o que aconteceu: 7 execuções
+        # seguidas abortadas, e o README do perfil parado por 15 horas sem
+        # ninguém notar — o bot falha calado porque ninguém lê log de cron.
+        if exc.code == 409:
+            return {}, False
+        raise
     if not isinstance(arv, dict):
         return {}, False
     contagem: dict[str, tuple[int, int]] = {}
@@ -302,6 +316,7 @@ def collect() -> dict:
     bytes_total = 0
     declaram = 0
     sem_declaracao: list[tuple[str, bool]] = []
+    ilegiveis: list[tuple[str, bool]] = []
 
     for repo in repos:
         if repo.get("fork") and not INCLUDE_FORKS:
@@ -313,12 +328,26 @@ def collect() -> dict:
         if priv:
             privados += 1
 
-        if not SEM_ARQUIVOS and declara_gerado(owner, name):
-            declaram += 1
-        else:
-            sem_declaracao.append((name, priv))
+        # Um repositório problemático não pode derrubar a análise dos outros
+        # 33. O modo de falha que isto fecha não é teórico: um 409 de
+        # repositório vazio abortou 7 execuções seguidas, e o README ficou 15
+        # horas parado exibindo números velhos como se fossem de agora.
+        #
+        # Engolir o erro seria a cura pior: o relatório sairia menor e igual de
+        # confiante. Por isso quem falha é CONTADO e nomeado no README.
+        try:
+            if not SEM_ARQUIVOS and declara_gerado(owner, name):
+                declaram += 1
+            else:
+                sem_declaracao.append((name, priv))
 
-        langs = api(f"/repos/{owner}/{name}/languages") or {}
+            langs = api(f"/repos/{owner}/{name}/languages") or {}
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+            print(f"aviso: {name} não pôde ser lido ({exc}) — segue fora da "
+                  f"contagem, e o relatório declara isso", file=sys.stderr)
+            ilegiveis.append((name, priv))
+            continue
+
         if langs:
             for lang, size in langs.items():
                 per_lang[lang] = per_lang.get(lang, 0) + size
@@ -329,8 +358,14 @@ def collect() -> dict:
             sem_linguagem += 1
 
         if not SEM_ARQUIVOS:
-            exts, truncado = arquivos_do_repo(
-                owner, name, repo.get("default_branch") or "")
+            try:
+                exts, truncado = arquivos_do_repo(
+                    owner, name, repo.get("default_branch") or "")
+            except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+                print(f"aviso: árvore de {name} ilegível ({exc})", file=sys.stderr)
+                exts, truncado = {}, False
+                if (name, priv) not in ilegiveis:
+                    ilegiveis.append((name, priv))
             truncados += 1 if truncado else 0
             for ext, (n, b) in exts.items():
                 per_ext[ext] = per_ext.get(ext, 0) + n
@@ -344,7 +379,7 @@ def collect() -> dict:
 
     print(f"repos={vistos} privados={privados} sem_linguagem={sem_linguagem} "
           f"arquivos={arquivos_total} bytes_arquivos={bytes_total} "
-          f"arvores_truncadas={truncados}")
+          f"arvores_truncadas={truncados} ilegiveis={len(ilegiveis)}")
 
     return {
         "per_lang": dict(sorted(per_lang.items(), key=lambda kv: kv[1], reverse=True)),
@@ -364,6 +399,7 @@ def collect() -> dict:
         "bytes_arquivos": bytes_total,
         "total_bytes": sum(per_lang.values()),
         "declaram_gerado": declaram,
+        "ilegiveis": ilegiveis,
         "sem_declaracao": sem_declaracao,
         "generated": datetime.now(timezone.utc),
     }
@@ -531,6 +567,16 @@ def build_markdown(data: dict) -> str:
     if data["sem_linguagem"]:
         out += ["", f"> {data['sem_linguagem']} repositório(s) sem linguagem "
                     f"detectada pelo GitHub — contam no total, mas não na tabela."]
+
+    # Cobertura parcial declarada. Um relatório menor e igualmente confiante é
+    # pior que um erro: ninguém tem como saber que falta pedaço.
+    ilegiveis = data.get("ilegiveis") or []
+    if ilegiveis:
+        nomes = ", ".join(rotulo_repo(n, p) for n, p in ilegiveis[:8])
+        resto = len(ilegiveis) - 8
+        out += ["", f"> ⚠️ {len(ilegiveis)} repositório(s) não puderam ser lidos "
+                    f"nesta execução e ficam FORA de todos os números acima: "
+                    f"{nomes}" + (f" _… +{resto}_" if resto > 0 else "") + "."]
 
     # O que o número acima quer dizer — e onde ele ainda não quer dizer nada.
     sem_decl = data.get("sem_declaracao") or []

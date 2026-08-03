@@ -79,11 +79,23 @@ LINGUAGENS = {
 GITATTRIBUTES = {"com-assets": "src/data/*.js linguist-generated=true\n"}
 
 
-def instalar_falso():
-    """Troca `api` por uma que responde do dicionário acima."""
+def erro(code):
+    import urllib.error
+    return urllib.error.HTTPError("http://x", code, "erro", {}, None)
+
+
+def instalar_falso(vazio=None, quebrado=None):
+    """Troca `api` por uma que responde do dicionário acima.
+
+    `vazio` recebe 409 na árvore — é o que o GitHub devolve para repositório
+    SEM COMMIT. `quebrado` recebe 500 em tudo."""
     import base64
 
     def falso(path, params=None, retry_denied=True):
+        if quebrado and f"/repos/u/{quebrado}/" in path:
+            raise erro(500)
+        if vazio and path.startswith(f"/repos/u/{vazio}/git/trees/"):
+            raise erro(409)
         if path == "/user/repos":
             return REPOS if (params or {}).get("page", "1") == "1" else []
         if path.startswith("/users/"):
@@ -187,6 +199,52 @@ def teste_svg_nao_quebra(d):
            "sem & solto — SVG mal formado não renderiza no GitHub")
 
 
+def teste_repositorio_vazio_nao_derruba_a_analise():
+    """O defeito que deixou o README 15 horas parado.
+
+    `git/trees` responde **409 Conflict** quando o repositório não tem commit
+    nenhum — e vários dos `baluarte-*` estão assim, criados e ainda vazios. O
+    409 subia sem tratamento e MATAVA a execução inteira: 7 rodadas seguidas
+    abortadas, o README exibindo números velhos como se fossem de agora, e
+    ninguém sabendo, porque ninguém lê log de cron que roda de hora em hora.
+    """
+    instalar_falso(vazio="com-assets")
+    try:
+        d = ls.collect()
+    except Exception as err:                                   # noqa: BLE001
+        checar(False, "repositório VAZIO (409) não derruba a análise", f"{err!r}")
+        instalar_falso()
+        return
+    checar(d["repo_count"] == 2,
+           "repositório VAZIO (409) não derruba a análise — ele só não tem arquivo")
+    checar(d["per_ext"].get("js") == 1,
+           "e os OUTROS repositórios continuam contados", f"{d['per_ext']}")
+    checar(not d.get("ilegiveis"),
+           "vazio não é 'ilegível': é um repositório com zero arquivos")
+    instalar_falso()
+
+
+def teste_repositorio_quebrado_e_declarado():
+    """Falha de verdade num repo: os outros seguem, e o README DIZ que faltou.
+
+    Engolir seria a cura pior que a doença — o relatório sairia menor e igual
+    de confiante, e ninguém teria como saber que falta pedaço."""
+    instalar_falso(quebrado="so-codigo")
+    try:
+        d = ls.collect()
+    except Exception as err:                                   # noqa: BLE001
+        checar(False, "um repositório quebrado não derruba os outros", f"{err!r}")
+        instalar_falso()
+        return
+    nomes = [n for n, _p in (d.get("ilegiveis") or [])]
+    checar(nomes == ["so-codigo"], "o repositório ilegível é registrado", f"{nomes}")
+    checar(d["per_ext"].get("webp") == 1000, "e o resto do acervo sobrevive")
+    md = ls.build_markdown(d)
+    checar("não puderam ser lidos" in md,
+           "e o README DECLARA a cobertura parcial, em vez de sair menor e calado")
+    instalar_falso()
+
+
 def teste_acervo_vazio_nao_estoura():
     """Sem nenhum dado o bot tem de recusar, não publicar zeros."""
     vazio = {**ls.collect(), "per_lang": {}, "per_ext": {}, "per_ext_bytes": {},
@@ -211,7 +269,10 @@ def main():
     teste_markdown(d)
     print("\n5. o SVG")
     teste_svg_nao_quebra(d)
-    print("\n6. bordas")
+    print("\n6. um repositório problemático não derruba os outros")
+    teste_repositorio_vazio_nao_derruba_a_analise()
+    teste_repositorio_quebrado_e_declarado()
+    print("\n7. bordas")
     teste_acervo_vazio_nao_estoura()
 
     print()
