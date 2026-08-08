@@ -210,8 +210,16 @@ def arquivos_do_repo(owner: str, name: str, branch: str) -> tuple[dict, bool]:
     de virar um número que parece completo."""
     if not branch:
         return {}, False
-    arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
-              {"recursive": "1"})
+    try:
+        arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
+                  {"recursive": "1"})
+    except urllib.error.HTTPError as exc:
+        # 409 = "Git Repository is empty": repositório criado e ainda sem commit.
+        # Não é erro de coleta — é um repo sem arquivo nenhum. Deixar propagar
+        # derrubava a análise INTEIRA por causa de um único repo vazio.
+        if exc.code == 409:
+            return {}, False
+        raise
     if not isinstance(arv, dict):
         return {}, False
     contagem: dict[str, int] = {}
@@ -523,22 +531,51 @@ def patch_readme(block: str) -> bool:
     return True
 
 
+# O carimbo de hora muda a cada execução. Comparar com ele dentro faria toda
+# execução parecer "mudança" — foi o que encheu o histórico de commits iguais.
+STAMP_RE = re.compile(
+    r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} UTC"     # 08/08/2026 17:36 UTC (README)
+    r"|\d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC"    # 2026-08-08 17:36 UTC (SVG)
+)
+
+
+def same_ignoring_stamp(new: str, old: str) -> bool:
+    return STAMP_RE.sub("", new) == STAMP_RE.sub("", old)
+
+
+def current_block(readme_text: str) -> str:
+    found = re.search(re.escape(START) + r".*?" + re.escape(END), readme_text, re.S)
+    return found.group(0) if found else ""
+
+
 def main() -> int:
     data = collect()
     if not data["per_lang"]:
         print("Nenhuma linguagem coletada — abortando sem alterar arquivos.", file=sys.stderr)
         return 1
 
-    SVG_OUT.parent.mkdir(parents=True, exist_ok=True)
     svg = build_svg(data)
-    svg_changed = (not SVG_OUT.exists()) or SVG_OUT.read_text(encoding="utf-8") != svg
-    if svg_changed:
-        SVG_OUT.write_text(svg, encoding="utf-8")
+    bloco = build_markdown(data)
 
-    md_changed = patch_readme(build_markdown(data))
+    readme_text = README.read_text(encoding="utf-8")
+    if START not in readme_text or END not in readme_text:
+        print("!! marcadores LANG-STATS não encontrados no README", file=sys.stderr)
+        return 1
 
-    print(f"linguagens={len(data['per_lang'])} repos={data['repo_count']} "
-          f"bytes={data['total_bytes']} svg_changed={svg_changed} md_changed={md_changed}")
+    svg_atual = SVG_OUT.read_text(encoding="utf-8") if SVG_OUT.exists() else ""
+    if (same_ignoring_stamp(svg, svg_atual)
+            and same_ignoring_stamp(bloco, current_block(readme_text))):
+        print(f"dados inalterados (linguagens={len(data['per_lang'])} "
+              f"repos={data['repo_count']} bytes={data['total_bytes']}) — "
+              "nada reescrito, nenhum commit.")
+        return 0
+
+    SVG_OUT.parent.mkdir(parents=True, exist_ok=True)
+    SVG_OUT.write_text(svg, encoding="utf-8")
+    patch_readme(bloco)
+
+    print(f"ATUALIZADO: linguagens={len(data['per_lang'])} "
+          f"repos={data['repo_count']} bytes={data['total_bytes']}")
     return 0
 
 
