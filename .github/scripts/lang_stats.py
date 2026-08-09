@@ -135,7 +135,12 @@ def api(path: str, params: dict | None = None, retry_denied: bool = True) -> obj
             if exc.code in (403, 429) and retry_denied and attempt < 3:
                 time.sleep(2 ** (attempt + 1))
                 continue
-            if exc.code == 404 and retry_denied:
+            # 404 = não existe. 409 = existe e está VAZIO: é o que o GitHub
+            # responde em git/trees de repositório sem nenhum commit. Os dois
+            # são resposta legítima ("não há nada aqui"), não falha — antes o
+            # 409 subia como exceção e derrubava a análise inteira por causa
+            # de um único repositório vazio.
+            if exc.code in (404, 409) and retry_denied:
                 return None
             raise
         except (urllib.error.URLError, TimeoutError):
@@ -202,18 +207,29 @@ def extensao(caminho: str) -> str | None:
     return ext
 
 
-def arquivos_do_repo(owner: str, name: str, branch: str) -> tuple[dict, bool]:
-    """({extensão: contagem}, truncado?) lendo a árvore do branch padrão.
+def arquivos_do_repo(owner: str, name: str, branch: str) -> tuple[dict, bool, bool]:
+    """({extensão: contagem}, truncado?, falhou?) lendo a árvore do branch padrão.
 
     Uma chamada por repositório. `truncated` vem do próprio GitHub quando a
     árvore passa do limite: aí a contagem é PARCIAL, e isso é reportado em vez
-    de virar um número que parece completo."""
+    de virar um número que parece completo.
+
+    Repositório vazio ou sem branch padrão devolve contagem zerada e `falhou`
+    falso: zero arquivo é o número certo, não um erro. `falhou` fica reservado
+    para o que a API recusou por outro motivo — aí o número é incompleto e o
+    relatório precisa dizer isso."""
     if not branch:
-        return {}, False
-    arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
-              {"recursive": "1"})
+        return {}, False, False
+    try:
+        arv = api(f"/repos/{owner}/{name}/git/trees/{branch}",
+                  {"recursive": "1"})
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+        # Um repositório problemático não pode derrubar a análise dos outros 20.
+        print(f"aviso: não consegui ler a árvore de {name} ({exc}) — "
+              "ele conta no total, mas sem tipos de arquivo.", file=sys.stderr)
+        return {}, False, True
     if not isinstance(arv, dict):
-        return {}, False
+        return {}, False, False
     contagem: dict[str, int] = {}
     for no in arv.get("tree") or []:
         if no.get("type") != "blob":
@@ -221,7 +237,7 @@ def arquivos_do_repo(owner: str, name: str, branch: str) -> tuple[dict, bool]:
         ext = extensao(no.get("path", ""))
         if ext:
             contagem[ext] = contagem.get(ext, 0) + 1
-    return contagem, bool(arv.get("truncated"))
+    return contagem, bool(arv.get("truncated")), False
 
 
 def collect() -> dict:
@@ -231,7 +247,7 @@ def collect() -> dict:
     per_ext: dict[str, int] = {}
     per_ext_repos: dict[str, set[str]] = {}
 
-    vistos = privados = sem_linguagem = truncados = 0
+    vistos = privados = sem_linguagem = truncados = falhados = 0
     arquivos_total = 0
 
     for repo in repos:
@@ -244,30 +260,44 @@ def collect() -> dict:
         if priv:
             privados += 1
 
-        langs = api(f"/repos/{owner}/{name}/languages") or {}
+        falhou = False
+        try:
+            langs = api(f"/repos/{owner}/{name}/languages") or {}
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+            print(f"aviso: não consegui ler as linguagens de {name} ({exc}).",
+                  file=sys.stderr)
+            langs = {}
+            falhou = True
+
         if langs:
             for lang, size in langs.items():
                 per_lang[lang] = per_lang.get(lang, 0) + size
                 per_lang_repos.setdefault(lang, []).append((name, size, priv))
-        else:
+        elif not falhou:
             # Repositório sem linguagem detectada ainda É um repositório. Antes
             # ele sumia da contagem, e o total de repos ficava menor que o real.
+            # Só entra aqui quando a API respondeu de verdade: chamada que
+            # falhou não é "sem linguagem", é dado que faltou.
             sem_linguagem += 1
 
         if not SEM_ARQUIVOS:
-            exts, truncado = arquivos_do_repo(
+            exts, truncado, falhou_arv = arquivos_do_repo(
                 owner, name, repo.get("default_branch") or "")
             truncados += 1 if truncado else 0
+            falhou = falhou or falhou_arv
             for ext, n in exts.items():
                 per_ext[ext] = per_ext.get(ext, 0) + n
                 per_ext_repos.setdefault(ext, set()).add(name)
                 arquivos_total += n
 
+        falhados += 1 if falhou else 0
+
     for lang in per_lang_repos:
         per_lang_repos[lang].sort(key=lambda t: t[1], reverse=True)
 
     print(f"repos={vistos} privados={privados} sem_linguagem={sem_linguagem} "
-          f"arquivos={arquivos_total} arvores_truncadas={truncados}")
+          f"arquivos={arquivos_total} arvores_truncadas={truncados} "
+          f"repos_com_falha={falhados}")
 
     return {
         "per_lang": dict(sorted(per_lang.items(), key=lambda kv: kv[1], reverse=True)),
@@ -278,6 +308,7 @@ def collect() -> dict:
         "privados": privados,
         "sem_linguagem": sem_linguagem,
         "truncados": truncados,
+        "falhados": falhados,
         "arquivos_total": arquivos_total,
         "total_bytes": sum(per_lang.values()),
         "generated": datetime.now(timezone.utc),
@@ -441,6 +472,12 @@ def build_markdown(data: dict) -> str:
         out += ["", f"> {data['sem_linguagem']} repositório(s) sem linguagem "
                     f"detectada pelo GitHub — contam no total, mas não na tabela."]
 
+    if data.get("falhados"):
+        out += ["", f"> ⚠️ {data['falhados']} repositório(s) a API do GitHub não "
+                    f"entregou nesta rodada — os números abaixo são **parciais**. "
+                    f"A análise segue com o resto em vez de falhar inteira, e "
+                    f"a próxima rodada costuma pegar o que faltou."]
+
     # ── tipos de arquivo ──────────────────────────────────────────────────
     if per_ext:
         arq_total = data["arquivos_total"] or 1
@@ -505,21 +542,35 @@ def build_markdown(data: dict) -> str:
     return "\n".join(out)
 
 
+# Os dois formatos de carimbo de hora que o bot escreve: `03/08/2026 00:01 UTC`
+# no README e `2026-08-03 00:01 UTC` no SVG.
+CARIMBO_RE = re.compile(
+    r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} UTC|\d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC")
+
+
+def mesmo_conteudo(novo: str, antigo: str) -> bool:
+    """Igual, ignorando o carimbo de hora.
+
+    O carimbo muda a cada execução por definição. Comparando com ele dentro, o
+    bot commitava de hora em hora mesmo quando nenhum número tinha mudado —
+    ~24 commits por dia de ruído no histórico do perfil. Fora da comparação, o
+    carimbo passa a marcar a última vez que os DADOS mudaram, que é a
+    informação que ele deveria estar dando desde o começo."""
+    return CARIMBO_RE.sub("@", novo) == CARIMBO_RE.sub("@", antigo)
+
+
 def patch_readme(block: str) -> bool:
     text = README.read_text(encoding="utf-8")
-    if START in text and END in text:
-        new = re.sub(
-            re.escape(START) + r".*?" + re.escape(END),
-            lambda _m: block,
-            text,
-            flags=re.S,
-        )
-    else:
+    achado = re.search(re.escape(START) + r".*?" + re.escape(END), text, flags=re.S)
+    if not achado:
         print("!! marcadores LANG-STATS não encontrados no README", file=sys.stderr)
         return False
-    if new == text:
+    if mesmo_conteudo(block, achado.group(0)):
         return False
-    README.write_text(new, encoding="utf-8")
+    # Fatiar em vez de re.sub: o bloco tem barras invertidas e `\g` do Markdown
+    # seriam lidos como referência de grupo pelo re.
+    README.write_text(text[:achado.start()] + block + text[achado.end():],
+                      encoding="utf-8")
     return True
 
 
@@ -531,7 +582,8 @@ def main() -> int:
 
     SVG_OUT.parent.mkdir(parents=True, exist_ok=True)
     svg = build_svg(data)
-    svg_changed = (not SVG_OUT.exists()) or SVG_OUT.read_text(encoding="utf-8") != svg
+    svg_changed = (not SVG_OUT.exists()) or not mesmo_conteudo(
+        svg, SVG_OUT.read_text(encoding="utf-8"))
     if svg_changed:
         SVG_OUT.write_text(svg, encoding="utf-8")
 
