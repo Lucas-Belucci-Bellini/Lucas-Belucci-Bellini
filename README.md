@@ -77,6 +77,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | :--- | :--- | :--- |
 | **[⬡ Projeto Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)** | Plataforma web narrativa + militar + 40 ferramentas, com **J.A.R.V.I.S.** e **Git Nexus**. *Narrative/tools web platform.* | `JS` `Vite` `Electron` |
 | **[🖥 Digital Logic Sim CE](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE)** | Onde construí CPUs funcionais de 8→64 bits do zero. *Where I built working 8→64-bit CPUs.* | `C#` `Unity` |
+| **[🗓 Daily Planner](https://github.com/Lucas-Belucci-Bellini/DailyPlanner)** | Agenda de horários que recusa dois compromissos no mesmo minuto. Páginas montadas no servidor e gravação por Server Actions. *Schedule planner with conflict detection, fully server-rendered.* | `Next.js` `TypeScript` `Postgres` |
 | **[🧩 CHIPS Library](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci)** | Meus chips lógicos (AND/OR/NOT/NOR/XOR) e testes. *My saved logic chips.* | `JSON` |
 | **[📈 Stock Analyzer](https://github.com/Lucas-Belucci-Bellini/stock-analyzer-bot)** | Plataforma de análise de ações com IA: RSI, MACD, Bollinger, alertas. *AI investment platform.* | `TypeScript` `Drizzle` |
 | **[🦺 Baluarte Obra Segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura)** | App (web + Electron) de segurança e gestão de obras. *Construction-safety & site management app.* | `TypeScript` `Electron` |
@@ -90,14 +91,20 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 ![Lang Analysis](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=600&height=30&lines=%E2%97%86+AN%C3%81LISE+DE+LINGUAGENS+%2F+LANGUAGE+ANALYSIS+%E2%97%86)
 
-> 🤖 Seção mantida por um **bot**: uma GitHub Action varre meus repositórios **públicos**
-> de hora em hora, soma os bytes por linguagem e reescreve o que está abaixo — total de
-> linguagens, o peso de cada uma e **em quais repositórios** ela foi usada.
-> Repositórios privados ficam de fora, por design.
+> 🤖 Seção mantida por um **bot**: uma GitHub Action varre meus repositórios de hora em
+> hora, soma os bytes por linguagem, conta os **tipos de arquivo** e reescreve o que está
+> abaixo — total de linguagens, o peso de cada uma e **em quais repositórios** ela foi usada.
+> Os **privados também entram na conta** — marcados com 🔒 — quando o segredo
+> `LANG_STATS_TOKEN` está configurado. Sem ele, a varredura cobre só os públicos e o
+> próprio relatório diz quantos ficaram de fora, em vez de apresentar um número
+> incompleto como se fosse o total.
 >
-> *Kept by a bot: an hourly GitHub Action scans my public repos, aggregates bytes per
-> language and rewrites the block below — totals, weight and where each one was used.
-> Private repositories are excluded by design.*
+> *Kept by a bot: an hourly GitHub Action scans my repositories, aggregates bytes per
+> language, counts **file types** and rewrites the block below — totals, weight and where
+> each one was used. **Private repos are counted too** — marked with 🔒 — when the
+> `LANG_STATS_TOKEN` secret is set. Without it the scan covers public repos only and the
+> report says how many were left out, rather than passing an incomplete number off as
+> the total.*
 
 <!-- LANG-STATS:START -->
 
