@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **15 linguagens** e **49 tipos de arquivo** em **58 repositórios** · **8.30 MB** de código · **16.422** arquivos · atualizado em `09/08/2026 15:42 UTC`
+> **15 linguagens** e **49 tipos de arquivo** em **58 repositórios** · **9.11 MB** de código · **16.460** arquivos · atualizado em `10/08/2026 08:41 UTC`
 
 <div align="center">
 
@@ -113,19 +113,19 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Linguagem | Peso | % | Repositórios |
 | :-- | :--- | ---: | ---: | ---: |
-| 1 | **JavaScript** | `4.86 MB` | `58.56%` | 16 |
-| 2 | **TypeScript** | `812.4 KB` | `9.56%` | 2 |
-| 3 | **CSS** | `743.5 KB` | `8.75%` | 11 |
-| 4 | **Java** | `700.6 KB` | `8.24%` | 5 |
-| 5 | **Python** | `532.5 KB` | `6.27%` | 5 |
-| 6 | **HTML** | `498.2 KB` | `5.86%` | 16 |
-| 7 | **SQF** | `52.0 KB` | `0.61%` | 1 |
-| 8 | **C#** | `41.1 KB` | `0.48%` | 1 |
-| 9 | **Shell** | `36.8 KB` | `0.43%` | 4 |
-| 10 | **GDScript** | `36.3 KB` | `0.43%` | 1 |
-| 11 | **PowerShell** | `26.9 KB` | `0.32%` | 2 |
-| 12 | **PLpgSQL** | `24.3 KB` | `0.29%` | 1 |
-| 13 | **Portugol** | `11.1 KB` | `0.13%` | 3 |
+| 1 | **JavaScript** | `5.56 MB` | `61.05%` | 16 |
+| 2 | **TypeScript** | `922.6 KB` | `9.89%` | 2 |
+| 3 | **CSS** | `743.5 KB` | `7.97%` | 11 |
+| 4 | **Java** | `700.6 KB` | `7.51%` | 5 |
+| 5 | **Python** | `532.5 KB` | `5.71%` | 5 |
+| 6 | **HTML** | `498.2 KB` | `5.34%` | 16 |
+| 7 | **SQF** | `52.0 KB` | `0.56%` | 1 |
+| 8 | **C#** | `41.1 KB` | `0.44%` | 1 |
+| 9 | **Shell** | `36.8 KB` | `0.39%` | 4 |
+| 10 | **GDScript** | `36.3 KB` | `0.39%` | 1 |
+| 11 | **PowerShell** | `26.9 KB` | `0.29%` | 2 |
+| 12 | **PLpgSQL** | `24.3 KB` | `0.26%` | 1 |
+| 13 | **Portugol** | `11.1 KB` | `0.12%` | 3 |
 | 14 | **Batchfile** | `5.3 KB` | `0.06%` | 5 |
 | 15 | **Dockerfile** | `960 B` | `0.01%` | 2 |
 
@@ -135,24 +135,24 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Tipo | Arquivos | % | Família | Repositórios |
 | :-- | :--- | ---: | ---: | :--- | ---: |
-| 1 | `.webp` | `9588` | `58.39%` | imagem | 1 |
-| 2 | `.json` | `2508` | `15.27%` | dado | 32 |
-| 3 | `.p3d` | `1302` | `7.93%` | modelo 3D | 1 |
-| 4 | `.java` | `1051` | `6.40%` | código | 5 |
+| 1 | `.webp` | `9588` | `58.25%` | imagem | 1 |
+| 2 | `.json` | `2513` | `15.27%` | dado | 32 |
+| 3 | `.p3d` | `1302` | `7.91%` | modelo 3D | 1 |
+| 4 | `.java` | `1051` | `6.39%` | código | 5 |
 | 5 | `.js` | `442` | `2.69%` | código | 14 |
 | 6 | `.class` | `255` | `1.55%` | outros | 1 |
-| 7 | `.md` | `253` | `1.54%` | documento | 52 |
+| 7 | `.md` | `255` | `1.55%` | documento | 52 |
 | 8 | `.jpeg` | `224` | `1.36%` | imagem | 2 |
 | 9 | `.css` | `136` | `0.83%` | estilo e marcação | 11 |
-| 10 | `.ajson` | `95` | `0.58%` | outros | 1 |
-| 11 | `.tsx` | `92` | `0.56%` | código | 2 |
-| 12 | `.ts` | `83` | `0.51%` | código | 2 |
+| 10 | `.ts` | `105` | `0.64%` | código | 2 |
+| 11 | `.tsx` | `96` | `0.58%` | código | 2 |
+| 12 | `.ajson` | `95` | `0.58%` | outros | 1 |
 | 13 | `.py` | `77` | `0.47%` | código | 7 |
-| 14 | `.png` | `53` | `0.32%` | imagem | 6 |
+| 14 | `.png` | `57` | `0.35%` | imagem | 7 |
 | 15 | `.html` | `39` | `0.24%` | estilo e marcação | 16 |
 | 16 | `.por` | `25` | `0.15%` | outros | 3 |
-| 17 | `.jsx` | `22` | `0.13%` | código | 3 |
-| 18 | `.mjs` | `22` | `0.13%` | código | 4 |
+| 17 | `.mjs` | `23` | `0.14%` | código | 4 |
+| 18 | `.jsx` | `22` | `0.13%` | código | 3 |
 | 19 | `.sql` | `18` | `0.11%` | dado | 2 |
 | 20 | `.xml` | `15` | `0.09%` | estilo e marcação | 3 |
 | 21 | `.sqf` | `14` | `0.09%` | código | 1 |
@@ -163,23 +163,24 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | Família | Arquivos | % |
 | :--- | ---: | ---: |
-| imagem | `9867` | `60.08%` |
-| dado | `2542` | `15.48%` |
-| código | `1820` | `11.08%` |
-| modelo 3D | `1306` | `7.95%` |
+| imagem | `9871` | `59.97%` |
+| dado | `2547` | `15.47%` |
+| código | `1847` | `11.22%` |
+| modelo 3D | `1306` | `7.93%` |
 | outros | `414` | `2.52%` |
-| documento | `269` | `1.64%` |
-| estilo e marcação | `195` | `1.19%` |
+| documento | `271` | `1.65%` |
+| estilo e marcação | `195` | `1.18%` |
 | áudio e vídeo | `9` | `0.05%` |
 
 <details>
 <summary><b>🗺 Onde cada linguagem foi usada / Where each language was used</b></summary>
 
-#### JavaScript — `4.86 MB`
+#### JavaScript — `5.56 MB`
 
 | Repositório | Peso |
 | :--- | ---: |
 | [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.42 MB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `729.2 KB` |
 | [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |
 | [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `194.1 KB` |
 | [Essence-Custom-Furniture](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `177.9 KB` |
@@ -190,15 +191,14 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [CodeVibe-Academy](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | `89.0 KB` |
 | [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `78.0 KB` |
 | [Academic-Portfolio](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) | `63.0 KB` |
-| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `37.1 KB` |
 | _… +4 repositórios_ | |
 
-#### TypeScript — `812.4 KB`
+#### TypeScript — `922.6 KB`
 
 | Repositório | Peso |
 | :--- | ---: |
 | [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `725.6 KB` |
-| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `86.8 KB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `197.0 KB` |
 
 #### CSS — `743.5 KB`
 
