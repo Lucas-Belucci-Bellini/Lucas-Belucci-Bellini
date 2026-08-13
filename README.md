@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **15 linguagens** e **50 tipos de arquivo** em **58 repositórios** · **9.14 MB** de código · **16.491** arquivos · atualizado em `12/08/2026 23:46 UTC`
+> **15 linguagens** e **50 tipos de arquivo** em **58 repositórios** · **9.14 MB** de código · **16.497** arquivos · atualizado em `13/08/2026 16:59 UTC`
 
 <div align="center">
 
@@ -135,12 +135,12 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Tipo | Arquivos | % | Família | Repositórios |
 | :-- | :--- | ---: | ---: | :--- | ---: |
-| 1 | `.webp` | `9588` | `58.14%` | imagem | 1 |
-| 2 | `.json` | `2513` | `15.24%` | dado | 32 |
-| 3 | `.p3d` | `1302` | `7.90%` | modelo 3D | 1 |
+| 1 | `.webp` | `9588` | `58.12%` | imagem | 1 |
+| 2 | `.json` | `2513` | `15.23%` | dado | 32 |
+| 3 | `.p3d` | `1302` | `7.89%` | modelo 3D | 1 |
 | 4 | `.java` | `1061` | `6.43%` | código | 5 |
-| 5 | `.js` | `456` | `2.77%` | código | 14 |
-| 6 | `.md` | `259` | `1.57%` | documento | 52 |
+| 5 | `.js` | `456` | `2.76%` | código | 14 |
+| 6 | `.md` | `264` | `1.60%` | documento | 52 |
 | 7 | `.class` | `255` | `1.55%` | outros | 1 |
 | 8 | `.jpeg` | `224` | `1.36%` | imagem | 2 |
 | 9 | `.css` | `136` | `0.82%` | estilo e marcação | 11 |
@@ -155,20 +155,20 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | 18 | `.jsx` | `22` | `0.13%` | código | 3 |
 | 19 | `.sql` | `18` | `0.11%` | dado | 2 |
 | 20 | `.xml` | `15` | `0.09%` | estilo e marcação | 3 |
-| 21 | `.sqf` | `14` | `0.08%` | código | 1 |
-| 22 | `.yml` | `14` | `0.08%` | dado | 5 |
+| 21 | `.yml` | `15` | `0.09%` | dado | 5 |
+| 22 | `.sqf` | `14` | `0.08%` | código | 1 |
 | 23 | `.mp3` | `9` | `0.05%` | áudio e vídeo | 1 |
 | 24 | `.bat` | `7` | `0.04%` | código | 5 |
 | | _… +26 outros tipos_ | `79` | `0.48%` | | |
 
 | Família | Arquivos | % |
 | :--- | ---: | ---: |
-| imagem | `9871` | `59.86%` |
-| dado | `2548` | `15.45%` |
-| código | `1873` | `11.36%` |
+| imagem | `9871` | `59.84%` |
+| dado | `2549` | `15.45%` |
+| código | `1873` | `11.35%` |
 | modelo 3D | `1306` | `7.92%` |
 | outros | `414` | `2.51%` |
-| documento | `275` | `1.67%` |
+| documento | `280` | `1.70%` |
 | estilo e marcação | `195` | `1.18%` |
 | áudio e vídeo | `9` | `0.05%` |
 
