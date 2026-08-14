@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** e **50 tipos de arquivo** em **58 repositórios** · **9.87 MB** de código · **16.605** arquivos · atualizado em `13/08/2026 23:50 UTC`
+> **16 linguagens** e **50 tipos de arquivo** em **58 repositórios** · **9.87 MB** de código · **16.612** arquivos · atualizado em `14/08/2026 02:11 UTC`
 
 <div align="center">
 
@@ -136,15 +136,15 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Tipo | Arquivos | % | Família | Repositórios |
 | :-- | :--- | ---: | ---: | :--- | ---: |
-| 1 | `.webp` | `9588` | `57.74%` | imagem | 1 |
+| 1 | `.webp` | `9588` | `57.72%` | imagem | 1 |
 | 2 | `.json` | `2513` | `15.13%` | dado | 32 |
 | 3 | `.p3d` | `1302` | `7.84%` | modelo 3D | 1 |
 | 4 | `.java` | `1061` | `6.39%` | código | 5 |
 | 5 | `.js` | `576` | `3.47%` | código | 14 |
-| 6 | `.md` | `307` | `1.85%` | documento | 52 |
+| 6 | `.md` | `313` | `1.88%` | documento | 52 |
 | 7 | `.class` | `255` | `1.54%` | outros | 1 |
 | 8 | `.jpeg` | `224` | `1.35%` | imagem | 2 |
-| 9 | `.css` | `137` | `0.83%` | estilo e marcação | 11 |
+| 9 | `.css` | `137` | `0.82%` | estilo e marcação | 11 |
 | 10 | `.ts` | `106` | `0.64%` | código | 2 |
 | 11 | `.tsx` | `97` | `0.58%` | código | 2 |
 | 12 | `.py` | `79` | `0.48%` | código | 7 |
@@ -159,16 +159,16 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | 21 | `.sqf` | `14` | `0.08%` | código | 1 |
 | 22 | `.rs` | `11` | `0.07%` | código | 1 |
 | 23 | `.mp3` | `9` | `0.05%` | áudio e vídeo | 1 |
-| 24 | `.txt` | `8` | `0.05%` | documento | 2 |
+| 24 | `.txt` | `9` | `0.05%` | documento | 2 |
 | | _… +26 outros tipos_ | `83` | `0.50%` | | |
 
 | Família | Arquivos | % |
 | :--- | ---: | ---: |
-| imagem | `9871` | `59.45%` |
+| imagem | `9871` | `59.42%` |
 | dado | `2561` | `15.42%` |
 | código | `2018` | `12.15%` |
-| modelo 3D | `1306` | `7.87%` |
-| documento | `324` | `1.95%` |
+| modelo 3D | `1306` | `7.86%` |
+| documento | `331` | `1.99%` |
 | outros | `319` | `1.92%` |
 | estilo e marcação | `197` | `1.19%` |
 | áudio e vídeo | `9` | `0.05%` |
