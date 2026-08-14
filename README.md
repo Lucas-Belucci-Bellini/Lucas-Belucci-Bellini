@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** e **50 tipos de arquivo** em **58 repositórios** · **9.86 MB** de código · **16.649** arquivos · atualizado em `14/08/2026 13:13 UTC`
+> **16 linguagens** e **50 tipos de arquivo** em **58 repositórios** · **9.86 MB** de código · **16.668** arquivos · atualizado em `14/08/2026 14:55 UTC`
 
 <div align="center">
 
@@ -113,11 +113,11 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Linguagem | Peso | % | Repositórios |
 | :-- | :--- | ---: | ---: | ---: |
-| 1 | **JavaScript** | `6.12 MB` | `62.11%` | 16 |
-| 2 | **TypeScript** | `1021.8 KB` | `10.12%` | 3 |
+| 1 | **JavaScript** | `6.06 MB` | `61.41%` | 16 |
+| 2 | **TypeScript** | `1.07 MB` | `10.83%` | 3 |
 | 3 | **CSS** | `751.5 KB` | `7.44%` | 11 |
 | 4 | **Java** | `707.7 KB` | `7.01%` | 5 |
-| 5 | **Python** | `554.8 KB` | `5.50%` | 5 |
+| 5 | **Python** | `554.8 KB` | `5.49%` | 5 |
 | 6 | **HTML** | `499.9 KB` | `4.95%` | 16 |
 | 7 | **SQF** | `52.0 KB` | `0.51%` | 1 |
 | 8 | **C#** | `41.1 KB` | `0.41%` | 1 |
@@ -136,15 +136,15 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Tipo | Arquivos | % | Família | Repositórios |
 | :-- | :--- | ---: | ---: | :--- | ---: |
-| 1 | `.webp` | `9588` | `57.59%` | imagem | 1 |
-| 2 | `.json` | `2514` | `15.10%` | dado | 32 |
-| 3 | `.p3d` | `1302` | `7.82%` | modelo 3D | 1 |
+| 1 | `.webp` | `9588` | `57.52%` | imagem | 1 |
+| 2 | `.json` | `2514` | `15.08%` | dado | 32 |
+| 3 | `.p3d` | `1302` | `7.81%` | modelo 3D | 1 |
 | 4 | `.java` | `1061` | `6.37%` | código | 5 |
 | 5 | `.js` | `576` | `3.46%` | código | 14 |
-| 6 | `.md` | `314` | `1.89%` | documento | 52 |
+| 6 | `.md` | `315` | `1.89%` | documento | 52 |
 | 7 | `.class` | `255` | `1.53%` | outros | 1 |
-| 8 | `.jpeg` | `224` | `1.35%` | imagem | 2 |
-| 9 | `.ts` | `140` | `0.84%` | código | 3 |
+| 8 | `.jpeg` | `224` | `1.34%` | imagem | 2 |
+| 9 | `.ts` | `158` | `0.95%` | código | 3 |
 | 10 | `.css` | `137` | `0.82%` | estilo e marcação | 11 |
 | 11 | `.tsx` | `97` | `0.58%` | código | 2 |
 | 12 | `.py` | `79` | `0.47%` | código | 7 |
@@ -164,23 +164,23 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | Família | Arquivos | % |
 | :--- | ---: | ---: |
-| imagem | `9871` | `59.29%` |
-| dado | `2563` | `15.39%` |
-| código | `2052` | `12.33%` |
+| imagem | `9871` | `59.22%` |
+| dado | `2563` | `15.38%` |
+| código | `2070` | `12.42%` |
 | modelo 3D | `1306` | `7.84%` |
-| documento | `332` | `1.99%` |
-| outros | `319` | `1.92%` |
+| documento | `333` | `2.00%` |
+| outros | `319` | `1.91%` |
 | estilo e marcação | `197` | `1.18%` |
 | áudio e vídeo | `9` | `0.05%` |
 
 <details>
 <summary><b>🗺 Onde cada linguagem foi usada / Where each language was used</b></summary>
 
-#### JavaScript — `6.12 MB`
+#### JavaScript — `6.06 MB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.99 MB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.92 MB` |
 | [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `729.2 KB` |
 | [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |
 | [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `194.1 KB` |
@@ -194,13 +194,13 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [Academic-Portfolio](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) | `63.0 KB` |
 | _… +4 repositórios_ | |
 
-#### TypeScript — `1021.8 KB`
+#### TypeScript — `1.07 MB`
 
 | Repositório | Peso |
 | :--- | ---: |
 | [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `725.6 KB` |
 | [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `203.0 KB` |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `93.2 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `165.6 KB` |
 
 #### CSS — `751.5 KB`
 
