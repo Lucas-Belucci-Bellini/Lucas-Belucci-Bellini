@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **10.84 MB** de código · **17.127** arquivos · atualizado em `15/08/2026 02:55 UTC`
+> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **10.86 MB** de código · **17.142** arquivos · atualizado em `15/08/2026 03:42 UTC`
 
 <div align="center">
 
@@ -113,11 +113,11 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Linguagem | Peso | % | Repositórios |
 | :-- | :--- | ---: | ---: | ---: |
-| 1 | **JavaScript** | `5.66 MB` | `52.16%` | 16 |
-| 2 | **TypeScript** | `2.41 MB` | `22.19%` | 5 |
-| 3 | **CSS** | `761.9 KB` | `6.86%` | 12 |
-| 4 | **Java** | `666.3 KB` | `6.00%` | 4 |
-| 5 | **Python** | `556.2 KB` | `5.01%` | 5 |
+| 1 | **JavaScript** | `5.55 MB` | `51.08%` | 16 |
+| 2 | **TypeScript** | `2.53 MB` | `23.30%` | 5 |
+| 3 | **CSS** | `761.9 KB` | `6.85%` | 12 |
+| 4 | **Java** | `666.3 KB` | `5.99%` | 4 |
+| 5 | **Python** | `556.2 KB` | `5.00%` | 5 |
 | 6 | **HTML** | `552.1 KB` | `4.97%` | 17 |
 | 7 | **PLpgSQL** | `56.3 KB` | `0.51%` | 2 |
 | 8 | **SQF** | `52.0 KB` | `0.47%` | 1 |
@@ -136,12 +136,12 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Tipo | Arquivos | % | Família | Repositórios |
 | :-- | :--- | ---: | ---: | :--- | ---: |
-| 1 | `.webp` | `9588` | `55.98%` | imagem | 1 |
-| 2 | `.json` | `2532` | `14.78%` | dado | 33 |
+| 1 | `.webp` | `9588` | `55.93%` | imagem | 1 |
+| 2 | `.json` | `2532` | `14.77%` | dado | 33 |
 | 3 | `.p3d` | `1302` | `7.60%` | modelo 3D | 1 |
-| 4 | `.java` | `1043` | `6.09%` | código | 4 |
+| 4 | `.java` | `1043` | `6.08%` | código | 4 |
 | 5 | `.js` | `584` | `3.41%` | código | 14 |
-| 6 | `.ts` | `410` | `2.39%` | código | 5 |
+| 6 | `.ts` | `425` | `2.48%` | código | 5 |
 | 7 | `.md` | `358` | `2.09%` | documento | 53 |
 | 8 | `.class` | `255` | `1.49%` | outros | 1 |
 | 9 | `.jpeg` | `224` | `1.31%` | imagem | 2 |
@@ -164,11 +164,11 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | Família | Arquivos | % |
 | :--- | ---: | ---: |
-| imagem | `9888` | `57.73%` |
-| dado | `2601` | `15.19%` |
-| código | `2404` | `14.04%` |
-| modelo 3D | `1306` | `7.63%` |
-| documento | `376` | `2.20%` |
+| imagem | `9888` | `57.68%` |
+| dado | `2601` | `15.17%` |
+| código | `2419` | `14.11%` |
+| modelo 3D | `1306` | `7.62%` |
+| documento | `376` | `2.19%` |
 | outros | `320` | `1.87%` |
 | estilo e marcação | `223` | `1.30%` |
 | áudio e vídeo | `9` | `0.05%` |
@@ -176,11 +176,11 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 <details>
 <summary><b>🗺 Onde cada linguagem foi usada / Where each language was used</b></summary>
 
-#### JavaScript — `5.66 MB`
+#### JavaScript — `5.55 MB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.48 MB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.37 MB` |
 | [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `739.0 KB` |
 | [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |
 | [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `194.1 KB` |
@@ -194,12 +194,12 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | [Academic-Portfolio](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) | `63.0 KB` |
 | _… +4 repositórios_ | |
 
-#### TypeScript — `2.41 MB`
+#### TypeScript — `2.53 MB`
 
 | Repositório | Peso |
 | :--- | ---: |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `838.9 KB` |
 | [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `725.6 KB` |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `711.5 KB` |
 | [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `503.7 KB` |
 | [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `496.9 KB` |
 | [DailyPlanner](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) | `25.5 KB` |
