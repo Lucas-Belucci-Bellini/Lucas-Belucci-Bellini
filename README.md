@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **10.87 MB** de código · **17.226** arquivos · atualizado em `15/08/2026 11:23 UTC`
+> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **10.88 MB** de código · **17.242** arquivos · atualizado em `16/08/2026 16:29 UTC`
 
 <div align="center">
 
@@ -113,13 +113,13 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Linguagem | Peso | % | Repositórios |
 | :-- | :--- | ---: | ---: | ---: |
-| 1 | **JavaScript** | `5.12 MB` | `47.10%` | 16 |
-| 2 | **TypeScript** | `2.97 MB` | `27.32%` | 5 |
+| 1 | **JavaScript** | `5.13 MB` | `47.14%` | 16 |
+| 2 | **TypeScript** | `2.97 MB` | `27.30%` | 5 |
 | 3 | **CSS** | `761.9 KB` | `6.84%` | 12 |
 | 4 | **Java** | `666.3 KB` | `5.98%` | 4 |
-| 5 | **Python** | `556.2 KB` | `5.00%` | 5 |
+| 5 | **Python** | `556.2 KB` | `4.99%` | 5 |
 | 6 | **HTML** | `552.1 KB` | `4.96%` | 17 |
-| 7 | **PLpgSQL** | `56.3 KB` | `0.51%` | 2 |
+| 7 | **PLpgSQL** | `56.3 KB` | `0.50%` | 2 |
 | 8 | **SQF** | `52.0 KB` | `0.47%` | 1 |
 | 9 | **Rust** | `41.3 KB` | `0.37%` | 2 |
 | 10 | **C#** | `41.1 KB` | `0.37%` | 1 |
@@ -136,23 +136,23 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Tipo | Arquivos | % | Família | Repositórios |
 | :-- | :--- | ---: | ---: | :--- | ---: |
-| 1 | `.webp` | `9588` | `55.66%` | imagem | 1 |
-| 2 | `.json` | `2533` | `14.70%` | dado | 33 |
-| 3 | `.p3d` | `1302` | `7.56%` | modelo 3D | 1 |
+| 1 | `.webp` | `9588` | `55.61%` | imagem | 1 |
+| 2 | `.json` | `2535` | `14.70%` | dado | 33 |
+| 3 | `.p3d` | `1302` | `7.55%` | modelo 3D | 1 |
 | 4 | `.java` | `1043` | `6.05%` | código | 4 |
-| 5 | `.js` | `584` | `3.39%` | código | 14 |
+| 5 | `.js` | `585` | `3.39%` | código | 14 |
 | 6 | `.ts` | `501` | `2.91%` | código | 5 |
-| 7 | `.md` | `363` | `2.11%` | documento | 53 |
+| 7 | `.md` | `371` | `2.15%` | documento | 53 |
 | 8 | `.class` | `255` | `1.48%` | outros | 1 |
 | 9 | `.jpeg` | `224` | `1.30%` | imagem | 2 |
 | 10 | `.tsx` | `180` | `1.04%` | código | 3 |
-| 11 | `.css` | `143` | `0.83%` | estilo e marcação | 12 |
+| 11 | `.css` | `144` | `0.84%` | estilo e marcação | 12 |
 | 12 | `.py` | `79` | `0.46%` | código | 6 |
-| 13 | `.png` | `72` | `0.42%` | imagem | 8 |
+| 13 | `.png` | `74` | `0.43%` | imagem | 8 |
 | 14 | `.html` | `61` | `0.35%` | estilo e marcação | 17 |
-| 15 | `.mjs` | `40` | `0.23%` | código | 4 |
+| 15 | `.mjs` | `42` | `0.24%` | código | 4 |
 | 16 | `.sql` | `37` | `0.21%` | dado | 4 |
-| 17 | `.por` | `25` | `0.15%` | outros | 3 |
+| 17 | `.por` | `25` | `0.14%` | outros | 3 |
 | 18 | `.yml` | `23` | `0.13%` | dado | 6 |
 | 19 | `.jsx` | `22` | `0.13%` | código | 3 |
 | 20 | `.rs` | `15` | `0.09%` | código | 2 |
@@ -164,23 +164,23 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | Família | Arquivos | % |
 | :--- | ---: | ---: |
-| imagem | `9888` | `57.40%` |
-| dado | `2602` | `15.11%` |
-| código | `2497` | `14.50%` |
-| modelo 3D | `1306` | `7.58%` |
-| documento | `381` | `2.21%` |
+| imagem | `9890` | `57.36%` |
+| dado | `2604` | `15.10%` |
+| código | `2500` | `14.50%` |
+| modelo 3D | `1306` | `7.57%` |
+| documento | `389` | `2.26%` |
 | outros | `320` | `1.86%` |
-| estilo e marcação | `223` | `1.29%` |
+| estilo e marcação | `224` | `1.30%` |
 | áudio e vídeo | `9` | `0.05%` |
 
 <details>
 <summary><b>🗺 Onde cada linguagem foi usada / Where each language was used</b></summary>
 
-#### JavaScript — `5.12 MB`
+#### JavaScript — `5.13 MB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `2.95 MB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `2.96 MB` |
 | [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `739.0 KB` |
 | [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |
 | [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `194.1 KB` |
