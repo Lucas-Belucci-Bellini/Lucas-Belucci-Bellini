@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **10.89 MB** de código · **17.242** arquivos · atualizado em `16/08/2026 22:24 UTC`
+> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **10.89 MB** de código · **17.243** arquivos · atualizado em `16/08/2026 23:23 UTC`
 
 <div align="center">
 
@@ -142,7 +142,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | 4 | `.java` | `1043` | `6.05%` | código | 4 |
 | 5 | `.js` | `585` | `3.39%` | código | 14 |
 | 6 | `.ts` | `501` | `2.91%` | código | 5 |
-| 7 | `.md` | `371` | `2.15%` | documento | 53 |
+| 7 | `.md` | `372` | `2.16%` | documento | 53 |
 | 8 | `.class` | `255` | `1.48%` | outros | 1 |
 | 9 | `.jpeg` | `224` | `1.30%` | imagem | 2 |
 | 10 | `.tsx` | `180` | `1.04%` | código | 3 |
@@ -168,7 +168,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 | dado | `2604` | `15.10%` |
 | código | `2500` | `14.50%` |
 | modelo 3D | `1306` | `7.57%` |
-| documento | `389` | `2.26%` |
+| documento | `390` | `2.26%` |
 | outros | `320` | `1.86%` |
 | estilo e marcação | `224` | `1.30%` |
 | áudio e vídeo | `9` | `0.05%` |
