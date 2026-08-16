@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **10.89 MB** de código · **17.242** arquivos · atualizado em `16/08/2026 18:33 UTC`
+> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **10.89 MB** de código · **17.242** arquivos · atualizado em `16/08/2026 22:24 UTC`
 
 <div align="center">
 
@@ -113,8 +113,8 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Linguagem | Peso | % | Repositórios |
 | :-- | :--- | ---: | ---: | ---: |
-| 1 | **JavaScript** | `5.13 MB` | `47.17%` | 16 |
-| 2 | **TypeScript** | `2.97 MB` | `27.29%` | 5 |
+| 1 | **JavaScript** | `5.14 MB` | `47.17%` | 16 |
+| 2 | **TypeScript** | `2.97 MB` | `27.28%` | 5 |
 | 3 | **CSS** | `761.9 KB` | `6.83%` | 12 |
 | 4 | **Java** | `666.3 KB` | `5.98%` | 4 |
 | 5 | **Python** | `556.2 KB` | `4.99%` | 5 |
@@ -176,11 +176,11 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 <details>
 <summary><b>🗺 Onde cada linguagem foi usada / Where each language was used</b></summary>
 
-#### JavaScript — `5.13 MB`
+#### JavaScript — `5.14 MB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `2.96 MB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `2.97 MB` |
 | [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `739.0 KB` |
 | [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |
 | [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `194.1 KB` |
