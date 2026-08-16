@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **10.88 MB** de código · **17.242** arquivos · atualizado em `16/08/2026 16:29 UTC`
+> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **10.89 MB** de código · **17.242** arquivos · atualizado em `16/08/2026 18:33 UTC`
 
 <div align="center">
 
@@ -113,12 +113,12 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Linguagem | Peso | % | Repositórios |
 | :-- | :--- | ---: | ---: | ---: |
-| 1 | **JavaScript** | `5.13 MB` | `47.14%` | 16 |
-| 2 | **TypeScript** | `2.97 MB` | `27.30%` | 5 |
-| 3 | **CSS** | `761.9 KB` | `6.84%` | 12 |
+| 1 | **JavaScript** | `5.13 MB` | `47.17%` | 16 |
+| 2 | **TypeScript** | `2.97 MB` | `27.29%` | 5 |
+| 3 | **CSS** | `761.9 KB` | `6.83%` | 12 |
 | 4 | **Java** | `666.3 KB` | `5.98%` | 4 |
 | 5 | **Python** | `556.2 KB` | `4.99%` | 5 |
-| 6 | **HTML** | `552.1 KB` | `4.96%` | 17 |
+| 6 | **HTML** | `552.1 KB` | `4.95%` | 17 |
 | 7 | **PLpgSQL** | `56.3 KB` | `0.50%` | 2 |
 | 8 | **SQF** | `52.0 KB` | `0.47%` | 1 |
 | 9 | **Rust** | `41.3 KB` | `0.37%` | 2 |
