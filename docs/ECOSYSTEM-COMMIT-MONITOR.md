@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-17T20:43:30Z`  
+**Última varredura:** `2026-08-17T21:40:15Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1580`
-- **Commits dos projetos:** `1573`
-- **Commits do próprio monitor:** `7`
-- **Commits de projetos detectados nesta hora:** `11`
+- **Commits rastreados pelo ecossistema:** `1582`
+- **Commits dos projetos:** `1574`
+- **Commits do próprio monitor:** `8`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. Cada execução horária bem-sucedida acrescenta 1 ao contador de commits do próprio monitor, porque a execução gera o commit que publica este snapshot.
 
 ## Mudanças detectadas
 
-- **Lucas-Belucci-Bellini** — 1 commit(s) — [80a81bd523aa](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/80a81bd523aa81f6af1502b74f65d122b015ddf9) — chore(bot): snapshot horário do ecossistema [skip ci]
-- **Projeto-Baluarte** — 10 commit(s) — [eac5bc705a03](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/eac5bc705a036bad7da4f88f5491212b9bba06cf) — Merge pull request #455 from Lucas-Belucci-Bellini/feat/ts-visao
+- **Lucas-Belucci-Bellini** — 1 commit(s) — [e55f826de76c](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/e55f826de76c30d82b809a5bd72efc63abe1959a) — chore(bot): snapshot horário do ecossistema [skip ci]
 
 ## Erros de consulta
 
