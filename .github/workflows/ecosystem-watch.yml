@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - ".github/scripts/ecosystem_watch.py"
+      - ".github/scripts/test_ecosystem_state.py"
       - ".github/workflows/ecosystem-watch.yml"
 
 concurrency:
@@ -30,6 +31,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Testar invariantes do State Engine V2
+        run: python3 .github/scripts/test_ecosystem_state.py
+
       - name: Verificar commits dos repositórios públicos
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -38,12 +42,16 @@ jobs:
 
       - name: Commitar o snapshot horário
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/ECOSYSTEM-COMMIT-STATE.json docs/ECOSYSTEM-COMMIT-MONITOR.md
           if git diff --cached --quiet; then
             echo "Nenhuma alteração de arquivos monitorados."
-            exit 0
+            exit 1
           fi
           git commit -m "chore(bot): snapshot horário do ecossistema [skip ci]"
           git push
+          echo "Publicado em HEAD: $(git rev-parse HEAD)"
+          echo "Remote HEAD: $(git ls-remote origin HEAD | awk '{print $1}')"
+          test "$(git rev-parse HEAD)" = "$(git ls-remote origin HEAD | awk '{print $1}')"
