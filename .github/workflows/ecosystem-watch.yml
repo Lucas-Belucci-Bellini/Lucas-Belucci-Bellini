@@ -1,10 +1,10 @@
 name: Monitor do Ecossistema
 
 on:
-  # Uma varredura diária agrega as mudanças. Não criamos um commit para cada
-  # commit dos projetos monitorados.
+  # Uma varredura por hora mantém o índice vivo sem transformar cada commit
+  # dos projetos em um commit separado no perfil.
   schedule:
-    - cron: "43 3 * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -36,14 +36,14 @@ jobs:
           GH_USER: ${{ github.repository_owner }}
         run: python3 .github/scripts/ecosystem_watch.py
 
-      - name: Commitar somente se o estado mudou
+      - name: Commitar o snapshot horário
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/ECOSYSTEM-COMMIT-STATE.json docs/ECOSYSTEM-COMMIT-MONITOR.md
           if git diff --cached --quiet; then
-            echo "Nenhuma alteração no estado — sem commit."
+            echo "Nenhuma alteração de arquivos monitorados."
             exit 0
           fi
-          git commit -m "chore(bot): atualiza monitor do ecossistema [skip ci]"
+          git commit -m "chore(bot): snapshot horário do ecossistema [skip ci]"
           git push
