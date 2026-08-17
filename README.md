@@ -101,7 +101,7 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **11.12 MB** de código · **17.268** arquivos · atualizado em `17/08/2026 03:03 UTC`
+> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **11.12 MB** de código · **17.286** arquivos · atualizado em `17/08/2026 04:46 UTC`
 
 <div align="center">
 
@@ -136,13 +136,13 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | # | Tipo | Arquivos | % | Família | Repositórios |
 | :-- | :--- | ---: | ---: | :--- | ---: |
-| 1 | `.webp` | `9588` | `55.52%` | imagem | 1 |
-| 2 | `.json` | `2535` | `14.68%` | dado | 33 |
-| 3 | `.p3d` | `1302` | `7.54%` | modelo 3D | 1 |
-| 4 | `.java` | `1043` | `6.04%` | código | 4 |
+| 1 | `.webp` | `9588` | `55.47%` | imagem | 1 |
+| 2 | `.json` | `2535` | `14.67%` | dado | 33 |
+| 3 | `.p3d` | `1302` | `7.53%` | modelo 3D | 1 |
+| 4 | `.java` | `1043` | `6.03%` | código | 4 |
 | 5 | `.js` | `587` | `3.40%` | código | 14 |
 | 6 | `.ts` | `501` | `2.90%` | código | 5 |
-| 7 | `.md` | `389` | `2.25%` | documento | 53 |
+| 7 | `.md` | `407` | `2.35%` | documento | 53 |
 | 8 | `.class` | `255` | `1.48%` | outros | 1 |
 | 9 | `.jpeg` | `224` | `1.30%` | imagem | 2 |
 | 10 | `.tsx` | `180` | `1.04%` | código | 3 |
@@ -164,13 +164,13 @@ I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic g
 
 | Família | Arquivos | % |
 | :--- | ---: | ---: |
-| imagem | `9890` | `57.27%` |
-| dado | `2604` | `15.08%` |
-| código | `2503` | `14.50%` |
+| imagem | `9890` | `57.21%` |
+| dado | `2604` | `15.06%` |
+| código | `2503` | `14.48%` |
 | modelo 3D | `1306` | `7.56%` |
-| documento | `407` | `2.36%` |
+| documento | `425` | `2.46%` |
 | outros | `320` | `1.85%` |
-| estilo e marcação | `229` | `1.33%` |
+| estilo e marcação | `229` | `1.32%` |
 | áudio e vídeo | `9` | `0.05%` |
 
 <details>
