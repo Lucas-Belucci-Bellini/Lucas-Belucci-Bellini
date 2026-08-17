@@ -4,12 +4,14 @@
 The profile repository is an index, not a mirror. This script records the latest
 commit SHA of each public repository and counts commits added since the previous
 scan. Each hourly scan updates the snapshot timestamp, allowing Actions to keep
-the profile's activity feed alive while still aggregating project changes.
+an hourly activity record while aggregating project changes.
 """
 from __future__ import annotations
 
 import json
 import os
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
@@ -21,6 +23,7 @@ REPORT = ROOT / "docs" / "ECOSYSTEM-COMMIT-MONITOR.md"
 API = "https://api.github.com"
 USER = os.environ.get("GH_USER", "Lucas-Belucci-Bellini")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
+MAX_RETRIES = 4
 
 
 def api(path: str):
@@ -31,9 +34,32 @@ def api(path: str):
     }
     if TOKEN:
         headers["Authorization"] = f"Bearer {TOKEN}"
-    req = urllib.request.Request(API + path, headers=headers)
-    with urllib.request.urlopen(req, timeout=30) as response:
-        return json.load(response)
+
+    last_error = None
+    for attempt in range(MAX_RETRIES):
+        req = urllib.request.Request(API + path, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=30) as response:
+                return json.load(response)
+        except urllib.error.HTTPError as exc:
+            last_error = exc
+            retryable = exc.code == 429 or exc.code >= 500
+            if exc.code == 403:
+                # GitHub may return 403 when the API rate limit is exhausted.
+                remaining = exc.headers.get("X-RateLimit-Remaining")
+                retryable = remaining == "0"
+            if not retryable or attempt == MAX_RETRIES - 1:
+                raise
+            retry_after = exc.headers.get("Retry-After")
+            delay = int(retry_after) if retry_after and retry_after.isdigit() else 2 ** attempt
+            time.sleep(min(delay, 30))
+        except (urllib.error.URLError, TimeoutError) as exc:
+            last_error = exc
+            if attempt == MAX_RETRIES - 1:
+                raise
+            time.sleep(min(2 ** attempt, 30))
+
+    raise RuntimeError(f"GitHub API failed after retries: {last_error}")
 
 
 def repos():
@@ -83,6 +109,7 @@ def main():
 
     current = {}
     changes = []
+    errors = []
     for repo in repos():
         if repo.get("private"):
             continue
@@ -92,6 +119,7 @@ def main():
             latest = latest_commit(USER, name, branch)
         except Exception as exc:
             current[name] = {"branch": branch, "error": str(exc)[:180]}
+            errors.append({"name": name, "stage": "latest_commit", "error": str(exc)[:180]})
             continue
         if not latest:
             current[name] = {"branch": branch, "empty": True}
@@ -107,10 +135,16 @@ def main():
     STATE.write_text(
         json.dumps(
             {
-                "schema": 2,
+                "schema": 3,
                 "scanned_at": now,
                 "scan_interval": "hourly",
                 "repositories": current,
+                "summary": {
+                    "repositories_scanned": len(current),
+                    "repositories_changed": len(changes),
+                    "errors": len(errors),
+                },
+                "errors": errors,
             },
             indent=2,
             ensure_ascii=False,
@@ -127,7 +161,8 @@ def main():
         f"**Última varredura:** `{now}`  ",
         "**Intervalo configurado:** `1 hora`  ",
         f"**Repositórios acompanhados:** `{len(current)}`  ",
-        f"**Repositórios com mudanças desde a última varredura:** `{len(changes)}`",
+        f"**Repositórios com mudanças desde a última varredura:** `{len(changes)}`  ",
+        f"**Falhas de consulta:** `{len(errors)}`",
         "",
         "## Mudanças detectadas",
         "",
@@ -138,6 +173,11 @@ def main():
             lines.append(f"- **{item['name']}** — {count} — [{item['sha'][:12]}]({item['url']}) — {item['message']}")
     else:
         lines.append("- Nenhuma mudança desde a última varredura.")
+
+    if errors:
+        lines += ["", "## Erros de consulta", ""]
+        for item in errors:
+            lines.append(f"- **{item['name']}** — `{item['stage']}` — {item['error']}")
 
     lines += [
         "",
@@ -157,13 +197,15 @@ def main():
         "snapshot agregado a cada hora",
         "```",
         "",
-        "### Regra de estabilidade",
+        "### Regras de estabilidade",
         "",
-        "O perfil faz **um snapshot por hora**, independentemente de haver mudanças nos projetos. Isso mantém uma cadência previsível de atividade no próprio perfil.",
+        "1. O perfil faz uma varredura programada por hora.",
+        "2. Cada execução atualiza o timestamp do snapshot; portanto o heartbeat horário não depende de haver commits nos projetos.",
+        "3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.",
+        "4. Erros transitórios da API são repetidos com backoff; falhas persistentes são registradas sem derrubar toda a varredura.",
+        "5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.",
         "",
-        "As mudanças dos projetos continuam agregadas: um único snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.",
-        "",
-        "Em um ano comum, uma execução horária representa no máximo 8.760 snapshots programados; atrasos do scheduler do GitHub podem fazer o horário real variar.",
+        "Em um ano comum, uma execução horária representa no máximo 8.760 snapshots programados; o scheduler do GitHub pode atrasar a execução real.",
         "",
     ]
     REPORT.write_text("\n".join(lines), encoding="utf-8")
