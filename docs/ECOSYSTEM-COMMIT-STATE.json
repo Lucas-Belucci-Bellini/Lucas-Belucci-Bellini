@@ -1,0 +1,410 @@
+{
+  "schema": 1,
+  "scanned_at": "2026-08-17T14:18:22Z",
+  "repositories": {
+    "Academic-Portfolio": {
+      "branch": "main",
+      "sha": "55a6456be899ae35104cc65999d6e181ed56fe06",
+      "date": "2026-07-11T19:26:02Z",
+      "message": "Merge pull request #3 from Lucas-Belucci-Bellini/claude/projeto-baluarte-issues-txo9fl",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio/commit/55a6456be899ae35104cc65999d6e181ed56fe06"
+    },
+    "AI-second-brain-with-Claude-and-Obsidian": {
+      "branch": "claude/setup-segundo-cerebro-script-vJsWg",
+      "sha": "57fc3fb931e2a66956ed00e4ae6c77a1f8102ad2",
+      "date": "2026-05-08T18:02:54Z",
+      "message": "Add setup-segundo-cerebro.sh and README",
+      "url": "https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian/commit/57fc3fb931e2a66956ed00e4ae6c77a1f8102ad2"
+    },
+    "Ark-Initiative": {
+      "branch": "main",
+      "sha": "138072d6900cd85f7774309b7ac47a0acf74d068",
+      "date": "2026-08-15T01:38:43Z",
+      "message": "feat: prepare ARCA 0.2.0 desktop release",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Ark-Initiative/commit/138072d6900cd85f7774309b7ac47a0acf74d068"
+    },
+    "Atividade-6": {
+      "branch": "main",
+      "sha": "09b02a2eff1d0b3e1f3a4aae43054339fdb18f5a",
+      "date": "2026-07-01T15:10:59Z",
+      "message": "commit terminal 1",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Atividade-6/commit/09b02a2eff1d0b3e1f3a4aae43054339fdb18f5a"
+    },
+    "baluarte-academia": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "622bd0c712401234c8a308433c0aec22f5504e37",
+      "date": "2026-08-01T17:20:52Z",
+      "message": "docs(baluarte-academia): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-academia/commit/622bd0c712401234c8a308433c0aec22f5504e37"
+    },
+    "baluarte-arsenal": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "221531289f6bf05883d15fa52c31b53b62324c52",
+      "date": "2026-08-01T17:20:51Z",
+      "message": "docs(baluarte-arsenal): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-arsenal/commit/221531289f6bf05883d15fa52c31b53b62324c52"
+    },
+    "baluarte-audio": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "121eb0d0513c38f9fe8b0f98f606eba6cb57c6bf",
+      "date": "2026-08-01T17:20:52Z",
+      "message": "docs(baluarte-audio): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-audio/commit/121eb0d0513c38f9fe8b0f98f606eba6cb57c6bf"
+    },
+    "baluarte-cibersec": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "fbc7a953fd7db0f176295306d02e53d3e54ed56d",
+      "date": "2026-08-01T17:20:52Z",
+      "message": "docs(baluarte-cibersec): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-cibersec/commit/fbc7a953fd7db0f176295306d02e53d3e54ed56d"
+    },
+    "baluarte-content": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "2a435fa24ccedf3c5bddeb27be675d3827936de1",
+      "date": "2026-08-01T17:20:51Z",
+      "message": "docs(baluarte-content): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-content/commit/2a435fa24ccedf3c5bddeb27be675d3827936de1"
+    },
+    "baluarte-core": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "cd7c4ffd9e2df9d6ccb5768c9cde1682e31c3e02",
+      "date": "2026-08-01T17:20:50Z",
+      "message": "docs(baluarte-core): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-core/commit/cd7c4ffd9e2df9d6ccb5768c9cde1682e31c3e02"
+    },
+    "baluarte-data": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "c180795ed834c5d05857b3f7388905dc973f21b0",
+      "date": "2026-08-01T17:20:51Z",
+      "message": "docs(baluarte-data): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-data/commit/c180795ed834c5d05857b3f7388905dc973f21b0"
+    },
+    "baluarte-desktop": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "b0231fe2d3ef684f4eba9ca62f3840bf8c34be52",
+      "date": "2026-08-01T17:20:53Z",
+      "message": "docs(baluarte-desktop): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-desktop/commit/b0231fe2d3ef684f4eba9ca62f3840bf8c34be52"
+    },
+    "baluarte-docs": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "c3ea339f60221f26faa7a67b8c85e01892cf5bc0",
+      "date": "2026-08-01T17:21:09Z",
+      "message": "docs(baluarte-docs): régua da migração — schema, gerador, validador e índice",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-docs/commit/c3ea339f60221f26faa7a67b8c85e01892cf5bc0"
+    },
+    "baluarte-economia": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "59a13bda666a994151dfd244ef756afdc4b66284",
+      "date": "2026-08-01T17:20:53Z",
+      "message": "docs(baluarte-economia): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-economia/commit/59a13bda666a994151dfd244ef756afdc4b66284"
+    },
+    "baluarte-elites": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "0a670fd235b92a354ae6e569836011c96ffa906e",
+      "date": "2026-08-01T17:20:52Z",
+      "message": "docs(baluarte-elites): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-elites/commit/0a670fd235b92a354ae6e569836011c96ffa906e"
+    },
+    "baluarte-geo": {
+      "branch": "main",
+      "sha": "923c2ee38fcd4a60eec36e88b3cba1f61cfc510f",
+      "date": "2026-08-01T18:23:33Z",
+      "message": "chore: commit inicial (base vazia)",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-geo/commit/923c2ee38fcd4a60eec36e88b3cba1f61cfc510f"
+    },
+    "baluarte-infra": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "ea15027e511b949ee26c6a14a36222e426a1d983",
+      "date": "2026-08-01T17:20:53Z",
+      "message": "docs(baluarte-infra): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-infra/commit/ea15027e511b949ee26c6a14a36222e426a1d983"
+    },
+    "baluarte-jarvis-core": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "8b7e82428d6d0a5f54666d0b3eeefc47d3239086",
+      "date": "2026-08-01T17:20:53Z",
+      "message": "docs(baluarte-jarvis-core): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-core/commit/8b7e82428d6d0a5f54666d0b3eeefc47d3239086"
+    },
+    "baluarte-jarvis-memory": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "0878c75b355997c79dc0d3af6500a6fa0b8b6b30",
+      "date": "2026-08-01T17:20:53Z",
+      "message": "docs(baluarte-jarvis-memory): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-memory/commit/0878c75b355997c79dc0d3af6500a6fa0b8b6b30"
+    },
+    "baluarte-jarvis-tools": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "a703595ed189c0bbce08e2d828585ccea6213cda",
+      "date": "2026-08-01T17:20:53Z",
+      "message": "docs(baluarte-jarvis-tools): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-tools/commit/a703595ed189c0bbce08e2d828585ccea6213cda"
+    },
+    "baluarte-midia": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "1d95e679d51bb7ed5686b2c7b9e74ae5cb4ff933",
+      "date": "2026-08-01T17:20:52Z",
+      "message": "docs(baluarte-midia): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-midia/commit/1d95e679d51bb7ed5686b2c7b9e74ae5cb4ff933"
+    },
+    "baluarte-obra-segura": {
+      "branch": "main",
+      "sha": "b415d17d31e4f6ba891b399138961e4a9a8c4376",
+      "date": "2026-05-08T17:51:25Z",
+      "message": "Merge pull request #2 from Lucas-Belucci-Bellini/claude/wikibuild-v2-rebuild-xEYkq",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura/commit/b415d17d31e4f6ba891b399138961e4a9a8c4376"
+    },
+    "baluarte-profile": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "d750504de546a5e79af5c8e3efd2bae65b478f66",
+      "date": "2026-08-01T17:20:51Z",
+      "message": "docs(baluarte-profile): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-profile/commit/d750504de546a5e79af5c8e3efd2bae65b478f66"
+    },
+    "baluarte-robotica": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "1cb07e4a10f04ff2bf8026a55e4dc2139f187d15",
+      "date": "2026-08-01T17:20:52Z",
+      "message": "docs(baluarte-robotica): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-robotica/commit/1cb07e4a10f04ff2bf8026a55e4dc2139f187d15"
+    },
+    "baluarte-shell": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "f7c65d4e9a27d0b329304a083f77808363b8633d",
+      "date": "2026-08-01T17:20:50Z",
+      "message": "docs(baluarte-shell): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-shell/commit/f7c65d4e9a27d0b329304a083f77808363b8633d"
+    },
+    "baluarte-tools": {
+      "branch": "claude/projeto-baluarte-issues-y7jv88",
+      "sha": "3cad733c299d63f3dac9fad638c5ded94d1f54da",
+      "date": "2026-08-01T17:20:51Z",
+      "message": "docs(baluarte-tools): contrato de domínio e inventário de migração do Nexus",
+      "url": "https://github.com/Lucas-Belucci-Bellini/baluarte-tools/commit/3cad733c299d63f3dac9fad638c5ded94d1f54da"
+    },
+    "Catacombs-of-Paris-Ossuary-Escape-game-design": {
+      "branch": "main",
+      "sha": "abe60219fff72cd650cc27f4571e5faac61e7b4d",
+      "date": "2026-05-04T22:31:26Z",
+      "message": "Add files via upload",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design/commit/abe60219fff72cd650cc27f4571e5faac61e7b4d"
+    },
+    "CHIPS-Digital-Logic-Sim-Lucas-Belucci": {
+      "branch": "main",
+      "sha": "8d7bcdf9dc6e10f3930fdb0f7108789addb6d307",
+      "date": "2026-03-31T22:20:15Z",
+      "message": "Update README.md",
+      "url": "https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci/commit/8d7bcdf9dc6e10f3930fdb0f7108789addb6d307"
+    },
+    "CodeVibe-Academy": {
+      "branch": "main",
+      "sha": "e66c01eadfe3a80376870d843aff54fb9c15a5a7",
+      "date": "2026-07-11T19:25:41Z",
+      "message": "Merge pull request #3 from Lucas-Belucci-Bellini/claude/projeto-baluarte-issues-txo9fl",
+      "url": "https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy/commit/e66c01eadfe3a80376870d843aff54fb9c15a5a7"
+    },
+    "Cookie-Clicker-Bot": {
+      "branch": "main",
+      "sha": "e888bc72ddb3379cfbf55759bd7605eec2f7320c",
+      "date": "2026-06-26T19:11:12Z",
+      "message": "feat: update v3 and add v4 with 5-minute post-ascension timer",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot/commit/e888bc72ddb3379cfbf55759bd7605eec2f7320c"
+    },
+    "Customizable-birthday-invitation": {
+      "branch": "main",
+      "sha": "8d98742bf864293e5628b8a0276f41f39c4fdaf9",
+      "date": "2026-04-10T19:37:33Z",
+      "message": "Create README.md",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation/commit/8d98742bf864293e5628b8a0276f41f39c4fdaf9"
+    },
+    "DailyPlanner": {
+      "branch": "main",
+      "sha": "c40c91828f3d1c0ebaedc7b2b60d01437c00d713",
+      "date": "2026-08-14T18:20:15Z",
+      "message": "fix: configurar deploy Vite na Vercel",
+      "url": "https://github.com/Lucas-Belucci-Bellini/DailyPlanner/commit/c40c91828f3d1c0ebaedc7b2b60d01437c00d713"
+    },
+    "Decision-Structures": {
+      "branch": "main",
+      "sha": "5c41947f6d754d77ee0aa006d04314b1c4ed2e05",
+      "date": "2026-04-10T19:39:20Z",
+      "message": "Update README.md",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Decision-Structures/commit/5c41947f6d754d77ee0aa006d04314b1c4ed2e05"
+    },
+    "DriveTax-Motors": {
+      "branch": "main",
+      "sha": "64627c5bff93916775ccec4b27b576346d692da7",
+      "date": "2026-07-30T01:01:32Z",
+      "message": "DriveTax Motors",
+      "url": "https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors/commit/64627c5bff93916775ccec4b27b576346d692da7"
+    },
+    "Essence-Custom-Furniture": {
+      "branch": "main",
+      "sha": "541ca95b80126fe21848e4fefeddc63481f8e929",
+      "date": "2026-07-11T19:26:00Z",
+      "message": "Merge pull request #3 from Lucas-Belucci-Bellini/claude/projeto-baluarte-issues-txo9fl",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture/commit/541ca95b80126fe21848e4fefeddc63481f8e929"
+    },
+    "Flowgorithm-": {
+      "branch": "main",
+      "sha": "e4739775f92811a7e781aaa6a9167aec33deec11",
+      "date": "2026-04-03T00:09:02Z",
+      "message": "Add files via upload",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Flowgorithm-/commit/e4739775f92811a7e781aaa6a9167aec33deec11"
+    },
+    "G-mod-Black-mesa": {
+      "branch": "main",
+      "sha": "23be603a582d88f570f14e496b7917e11840e78a",
+      "date": "2026-06-13T09:55:02Z",
+      "message": "feat: add stabilization utility to toggle conflicting Black Mesa particles and scripts folders to prevent crashes",
+      "url": "https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa/commit/23be603a582d88f570f14e496b7917e11840e78a"
+    },
+    "Grupo-Atividade-4": {
+      "branch": "main",
+      "sha": "601f7fcd8ee284e9756b1fa788fc6323b8772453",
+      "date": "2026-06-03T22:32:05Z",
+      "message": "Initial commit",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Grupo-Atividade-4/commit/601f7fcd8ee284e9756b1fa788fc6323b8772453"
+    },
+    "Java-activities": {
+      "branch": "main",
+      "sha": "b0f40fc8d9dc0ce56a66e89dc435a697c1497c06",
+      "date": "2026-08-12T01:01:00Z",
+      "message": "ATV 4",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/b0f40fc8d9dc0ce56a66e89dc435a697c1497c06"
+    },
+    "JAVA-todos-os-codigos-em-java": {
+      "branch": "main",
+      "sha": "c721e800beb27a4913887bccf97478a6f795fe69",
+      "date": "2026-06-26T00:16:33Z",
+      "message": "3r02",
+      "url": "https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java/commit/c721e800beb27a4913887bccf97478a6f795fe69"
+    },
+    "LLBR-Innovations-": {
+      "branch": "main",
+      "error": "HTTP Error 409: Conflict"
+    },
+    "LLBR-Innovations-Constructions": {
+      "branch": "main",
+      "sha": "8a1de2730323bca64ba9ccce8440645917760817",
+      "date": "2026-06-19T15:19:29Z",
+      "message": "Ajustes de revisão: legendas da galeria, álbum da Cafeteria e remoção do formulário (#22)",
+      "url": "https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions/commit/8a1de2730323bca64ba9ccce8440645917760817"
+    },
+    "Lucas-Belucci-Bellini": {
+      "branch": "main",
+      "sha": "1fc494777ad790c3b3a4e8649b23751c34b2f955",
+      "date": "2026-08-17T14:17:03Z",
+      "message": "feat: adicionar workflow diário de monitoramento do ecossistema",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/1fc494777ad790c3b3a4e8649b23751c34b2f955"
+    },
+    "MOD-PACK-MINE-BACKUP": {
+      "branch": "main",
+      "error": "HTTP Error 409: Conflict"
+    },
+    "Multi-functional-site-Baluarte": {
+      "branch": "main",
+      "sha": "5fe796e57dc5e2a3c892cfc2fe96c85f141b41f3",
+      "date": "2026-04-02T17:50:43Z",
+      "message": "Initial commit",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Multi-functional-site-Baluarte/commit/5fe796e57dc5e2a3c892cfc2fe96c85f141b41f3"
+    },
+    "OMEGA-ALFA-DELTA": {
+      "branch": "main",
+      "sha": "7fb0f816440c644fc2b7e398a199833bdb7964e0",
+      "date": "2026-07-01T20:20:18Z",
+      "message": "Redesign Baluarte 3D",
+      "url": "https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA/commit/7fb0f816440c644fc2b7e398a199833bdb7964e0"
+    },
+    "Portifolio-Baluarte-Lucas-Belucci-Bellini-": {
+      "branch": "main",
+      "sha": "9d44c74c9af4311cfdcf31c01eb6c807fda76279",
+      "date": "2026-06-03T16:53:19Z",
+      "message": "Adiciona Universo Baluarte, Formação/Acadêmico e atualiza Hobbies (#5)",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-/commit/9d44c74c9af4311cfdcf31c01eb6c807fda76279"
+    },
+    "Project-Baluarte-DevFlow": {
+      "branch": "main",
+      "sha": "687ea95717e5d80fcc622cd00a9ae071582d0c76",
+      "date": "2026-06-04T18:58:36Z",
+      "message": "Merge PR #1: Project Baluarte · DevFlow (v1.0.0)",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow/commit/687ea95717e5d80fcc622cd00a9ae071582d0c76"
+    },
+    "Project-Vanguard": {
+      "branch": "claude/vanguard-gps-app-site-iepcru",
+      "sha": "6c8984ada324346e87bd1c81d3d08f204ebae4a3",
+      "date": "2026-07-28T00:54:21Z",
+      "message": "Terrenos do Arma 3 no computador de tiro + catálogo de camadas compartilhado (#1)",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/6c8984ada324346e87bd1c81d3d08f204ebae4a3"
+    },
+    "Projeto-Baluarte": {
+      "branch": "main",
+      "sha": "91b01188726310f94e51503f1f2afb44246cf43f",
+      "date": "2026-08-17T13:21:41Z",
+      "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/91b01188726310f94e51503f1f2afb44246cf43f"
+    },
+    "Projeto-Baluarte-Social-Media": {
+      "branch": "main",
+      "error": "HTTP Error 409: Conflict"
+    },
+    "Projeto-Baluarte-World-Game": {
+      "branch": "main",
+      "sha": "e876aa3afd944d8174e8ef2ef37035951db0aa9a",
+      "date": "2026-06-03T16:55:18Z",
+      "message": "Era 2 progressão (v0.14.0): salvar/carregar, velocidade/pausa e máquinas Mk2",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game/commit/e876aa3afd944d8174e8ef2ef37035951db0aa9a"
+    },
+    "Python": {
+      "branch": "main",
+      "sha": "daacf698c9cb09586b63aef70ec0246b0e5c4245",
+      "date": "2026-06-28T23:02:55Z",
+      "message": "46644888847898989897897898978978978978978978897897897897986654654564685768989986654644465456465847687876646546545646546546",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Python/commit/daacf698c9cb09586b63aef70ec0246b0e5c4245"
+    },
+    "Recycle-game": {
+      "branch": "main",
+      "sha": "3cc95030ddf953d7387f41fe9631e69fedf05fa4",
+      "date": "2026-05-29T18:31:33Z",
+      "message": "Add files via upload",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Recycle-game/commit/3cc95030ddf953d7387f41fe9631e69fedf05fa4"
+    },
+    "Some-Pseudocode-and-exercise-codes": {
+      "branch": "main",
+      "sha": "615bfbde6109a512928bcfb2e0fbf0b3b4ddbce5",
+      "date": "2026-04-10T19:39:57Z",
+      "message": "Update README.md",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes/commit/615bfbde6109a512928bcfb2e0fbf0b3b4ddbce5"
+    },
+    "Teste-": {
+      "branch": "main",
+      "sha": "e20a9f231f055bf299d507fa5ad21cde5a45fa2f",
+      "date": "2026-06-10T23:46:32Z",
+      "message": "Add files via upload",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Teste-/commit/e20a9f231f055bf299d507fa5ad21cde5a45fa2f"
+    },
+    "Teste-aula-git": {
+      "branch": "main",
+      "sha": "925ddb050d964f410886ef83074aad06c429ff92",
+      "date": "2026-05-22T01:53:07Z",
+      "message": "Adiciona arquivo de teste",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Teste-aula-git/commit/925ddb050d964f410886ef83074aad06c429ff92"
+    },
+    "UMBRA-LIMA-ALFA": {
+      "branch": "main",
+      "sha": "d1f55203d9c11b687e8acb068d450fe01d0786e9",
+      "date": "2026-05-18T23:20:29Z",
+      "message": "https://projeto-baluarte.vercel.app/#/home",
+      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/d1f55203d9c11b687e8acb068d450fe01d0786e9"
+    },
+    "Veritas": {
+      "branch": "main",
+      "sha": "8f33e56a12fabe2acc4910cb5831ae9345358494",
+      "date": "2026-08-15T01:47:53Z",
+      "message": "feat: add beta preflight and rls acceptance runbook",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/8f33e56a12fabe2acc4910cb5831ae9345358494"
+    }
+  }
+}
