@@ -1,15 +1,5 @@
 #!/usr/bin/env python3
-"""Hourly health/index pass over the public project ecosystem.
-
-The profile repository is an index, not a mirror. This script records the latest
-commit SHA of each public repository, counts commits added since the previous
-scan, and maintains a cumulative ecosystem counter. The counter is intentionally
-separate from GitHub's official Contributions metric.
-
-Important: the counter includes the commit produced by this hourly monitor run.
-That run's state is written before the workflow commits it, so the published
-snapshot represents the commit that is being created by the monitor itself.
-"""
+"""Hourly health/index pass over the public project ecosystem."""
 from __future__ import annotations
 
 import json
@@ -99,6 +89,44 @@ def compare_count(owner: str, name: str, base: str, head: str):
         return None
 
 
+def migrate_metrics(state: dict) -> tuple[dict, dict]:
+    """Return V2 metrics and explicit legacy baseline without double counting."""
+    baseline = state.get("baseline") or {}
+    legacy = int(baseline.get("legacy_tracked_commits", LEGACY_BASELINE))
+    metrics = state.get("metrics") or {}
+
+    if state.get("schema", 0) >= 6:
+        return {
+            "project_commits_total": int(metrics.get("project_commits_total", 0)),
+            "monitor_commits_total": int(metrics.get("monitor_commits_total", 0)),
+        }, {"legacy_tracked_commits": legacy, "source": baseline.get("source", "legacy monitor state")}
+
+    # Schema 5 stored the old baseline in project_commits and monitor commits
+    # separately. Convert it without counting the 1538 baseline twice.
+    old_project = int(metrics.get("project_commits", legacy))
+    old_monitor = int(metrics.get("monitor_commits", 0))
+    project_delta = max(0, old_project - legacy)
+    return {
+        "project_commits_total": project_delta,
+        "monitor_commits_total": old_monitor,
+    }, {"legacy_tracked_commits": legacy, "source": "legacy monitor state"}
+
+
+def calculate_metrics(state: dict, detected_project_commits: int) -> dict:
+    current, baseline = migrate_metrics(state)
+    project_total = current["project_commits_total"] + detected_project_commits
+    monitor_total = current["monitor_commits_total"] + 1
+    tracked_total = baseline["legacy_tracked_commits"] + project_total + monitor_total
+    return {
+        "project_commits_total": project_total,
+        "monitor_commits_total": monitor_total,
+        "tracked_commits_total": tracked_total,
+        "project_commits_this_run": detected_project_commits,
+        "monitor_commit_this_run": 1,
+        "legacy_baseline": baseline["legacy_tracked_commits"],
+    }
+
+
 def main():
     previous_state = {}
     if STATE.exists():
@@ -108,11 +136,10 @@ def main():
             previous_state = {}
 
     previous = previous_state.get("repositories", {})
-    previous_metrics = previous_state.get("metrics", {})
     previous_health = previous_state.get("health", {})
+    started_at = datetime.now(timezone.utc)
+    run_id = started_at.strftime("RUN-%Y%m%d-%H%M%S")
 
-    project_commits = int(previous_metrics.get("project_commits", LEGACY_BASELINE))
-    monitor_commits = int(previous_metrics.get("monitor_commits", 0))
     current = {}
     changes = []
     errors = []
@@ -140,12 +167,8 @@ def main():
             if new_count is not None:
                 detected_project_commits += new_count
 
-    # A successful scan represents the monitor commit that will publish this snapshot.
-    monitor_commits += 1
-    project_commits += detected_project_commits
-    tracked_commits = project_commits + monitor_commits
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
+    metrics = calculate_metrics(previous_state, detected_project_commits)
     health = {
         "status": "healthy" if not errors else "degraded",
         "last_successful_scan": now,
@@ -162,17 +185,20 @@ def main():
     STATE.write_text(
         json.dumps(
             {
-                "schema": 5,
-                "scanned_at": now,
-                "scan_interval": "hourly",
-                "repositories": current,
-                "metrics": {
-                    "tracked_commits": tracked_commits,
-                    "project_commits": project_commits,
-                    "monitor_commits": monitor_commits,
-                    "detected_project_commits_this_scan": detected_project_commits,
-                    "monitor_commit_this_scan": 1,
+                "schema": 6,
+                "run": {
+                    "run_id": run_id,
+                    "started_at": started_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "completed_at": now,
+                    "status": "candidate",
+                    "publication_rule": "This snapshot is the payload of the monitor commit; if git commit/push fails, this candidate is not published and the next run starts from the last published state.",
                 },
+                "baseline": {
+                    "legacy_tracked_commits": metrics["legacy_baseline"],
+                    "source": "legacy monitor state",
+                },
+                "repositories": current,
+                "metrics": metrics,
                 "health": health,
                 "summary": {
                     "repositories_scanned": len(current),
@@ -192,6 +218,7 @@ def main():
         "",
         "> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.",
         "",
+        f"**Run:** `{run_id}`  ",
         f"**Última varredura:** `{now}`  ",
         "**Intervalo configurado:** `1 hora`  ",
         f"**Repositórios acompanhados:** `{len(current)}`  ",
@@ -201,19 +228,20 @@ def main():
         "## Saúde do monitor",
         "",
         f"- **Status:** `{'🟢 HEALTHY' if not errors else '🟡 DEGRADED'}`",
-        f"- **Último scan bem-sucedido:** `{now}`",
+        f"- **Último scan:** `{now}`",
         "- **Agendamento:** `a cada hora, no minuto 17 UTC`",
-        f"- **Snapshot esperado nesta execução:** `{'SIM' if True else 'NÃO'}`",
+        "- **Snapshot:** `candidate — publicado somente se o commit/push terminar com sucesso`",
         "- **GitHub Contributions:** métrica oficial do GitHub, não calculada por este monitor.",
         "",
         "## Contadores",
         "",
-        f"- **Commits rastreados pelo ecossistema:** `{tracked_commits}`",
-        f"- **Commits dos projetos:** `{project_commits}`",
-        f"- **Commits do próprio monitor:** `{monitor_commits}`",
+        f"- **Baseline legado:** `{metrics['legacy_baseline']}`",
+        f"- **Commits de projetos desde o baseline:** `{metrics['project_commits_total']}`",
+        f"- **Snapshots publicados pelo monitor desde o baseline:** `{metrics['monitor_commits_total']}`",
+        f"- **Commits rastreados pelo ecossistema:** `{metrics['tracked_commits_total']}`",
         f"- **Commits de projetos detectados nesta hora:** `{detected_project_commits}`",
         "",
-        "> O contador acima é uma métrica própria do monitor. Cada execução horária bem-sucedida acrescenta 1 ao contador de commits do próprio monitor, porque a execução gera o commit que publica este snapshot.",
+        "> O contador do monitor só avança em uma execução que prepara um snapshot para publicação. Se o `git commit`/`push` falhar, esse estado não chega à branch e o próximo ciclo parte do último snapshot publicado.",
         "",
         "## Mudanças detectadas",
         "",
@@ -242,24 +270,28 @@ def main():
         "ecosystem_watch.py",
         "       │",
         "       ├── estado dos projetos",
-        "       ├── commits dos projetos",
-        "       ├── + 1 commit do monitor",
+        "       ├── delta de commits dos projetos",
+        "       ├── + 1 snapshot candidato",
         "       ├── health check",
         "       └── contador acumulado",
         "       │",
         "       ▼",
-        "snapshot agregado a cada hora",
+        "git commit + push",
+        "       │",
+        "       ▼",
+        "snapshot publicado",
         "```",
         "",
         "### Regras de estabilidade",
         "",
         "1. O perfil faz uma varredura programada por hora.",
-        "2. Cada execução bem-sucedida acrescenta exatamente 1 ao contador de commits do monitor, correspondente ao commit que publica o snapshot.",
-        "3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.",
-        "4. Retries e backoff protegem contra falhas transitórias da API.",
-        "5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.",
-        "6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.",
-        "7. O health check registra explicitamente o último scan, erros e o snapshot esperado.",
+        "2. `project_commits_total` contém somente deltas de commits detectados nos projetos desde o baseline legado.",
+        "3. `monitor_commits_total` contém somente snapshots que chegaram a ser publicados pelo monitor.",
+        "4. `tracked_commits_total = legacy_baseline + project_commits_total + monitor_commits_total`.",
+        "5. O snapshot não tenta registrar seu próprio SHA: um commit não pode conhecer o SHA que ainda está sendo criado. A publicação é considerada bem-sucedida pelo workflow após `git commit` e `git push`.",
+        "6. Retries e backoff protegem contra falhas transitórias da API.",
+        "7. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.",
+        "8. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.",
         "",
         "Em um ano comum, uma execução horária representa no máximo 8.760 snapshots programados; o scheduler do GitHub pode atrasar a execução real.",
         "",
