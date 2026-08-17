@@ -1,14 +1,15 @@
 # Ecosystem Commit Monitor
 
-> Monitoramento de baixo ruído do ecossistema público. Este arquivo registra o último commit conhecido de cada repositório; ele não espelha os repositórios nem cria um commit por mudança individual.
+> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-17T14:18:22Z`  
+**Última varredura:** `2026-08-17T14:21:10Z`  
+**Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `0`
+**Repositórios com mudanças desde a última varredura:** `1`
 
 ## Mudanças detectadas
 
-- Nenhuma mudança desde a última varredura.
+- **Lucas-Belucci-Bellini** — quantidade não determinada — [798ae3a567c3](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/798ae3a567c35ccb2ed314e4a945bdc1a50564e1) — docs(bot): define hourly ecosystem snapshots
 
 ## Arquitetura
 
@@ -23,11 +24,13 @@ ecosystem_watch.py
        └── ECOSYSTEM-COMMIT-MONITOR.md
        │
        ▼
-um commit agregado no perfil quando houver mudança
+snapshot agregado a cada hora
 ```
 
 ### Regra de estabilidade
 
-O perfil **não deve** tentar transformar cada commit dos projetos em um commit próprio. Ele acompanha os commits, agrega as mudanças e mantém apenas o estado necessário para continuar a observação.
+O perfil faz **um snapshot por hora**, independentemente de haver mudanças nos projetos. Isso mantém uma cadência previsível de atividade no próprio perfil.
 
-Isso permite crescer de poucos projetos para dezenas ou centenas sem transformar o repositório de perfil em um espelho gigantesco.
+As mudanças dos projetos continuam agregadas: um único snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.
+
+Em um ano comum, uma execução horária representa no máximo 8.760 snapshots programados; atrasos do scheduler do GitHub podem fazer o horário real variar.

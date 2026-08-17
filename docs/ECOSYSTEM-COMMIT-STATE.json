@@ -1,6 +1,7 @@
 {
-  "schema": 1,
-  "scanned_at": "2026-08-17T14:18:22Z",
+  "schema": 2,
+  "scanned_at": "2026-08-17T14:21:10Z",
+  "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
       "branch": "main",
@@ -295,10 +296,10 @@
     },
     "Lucas-Belucci-Bellini": {
       "branch": "main",
-      "sha": "1fc494777ad790c3b3a4e8649b23751c34b2f955",
-      "date": "2026-08-17T14:17:03Z",
-      "message": "feat: adicionar workflow diário de monitoramento do ecossistema",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/1fc494777ad790c3b3a4e8649b23751c34b2f955"
+      "sha": "798ae3a567c35ccb2ed314e4a945bdc1a50564e1",
+      "date": "2026-08-17T14:19:34Z",
+      "message": "docs(bot): define hourly ecosystem snapshots",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/798ae3a567c35ccb2ed314e4a945bdc1a50564e1"
     },
     "MOD-PACK-MINE-BACKUP": {
       "branch": "main",
