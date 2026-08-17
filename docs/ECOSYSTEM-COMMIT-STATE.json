@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-17T15:40:02Z",
+  "scanned_at": "2026-08-17T16:45:29Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -296,10 +296,10 @@
     },
     "Lucas-Belucci-Bellini": {
       "branch": "main",
-      "sha": "50e7f28fbef1c4697e82be66b2bdb02218bb19ba",
-      "date": "2026-08-17T14:38:44Z",
+      "sha": "62c0469a50011a77a718c38312a6b0ab5d639b1a",
+      "date": "2026-08-17T15:40:02Z",
       "message": "chore(bot): snapshot horário do ecossistema [skip ci]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/50e7f28fbef1c4697e82be66b2bdb02218bb19ba"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/62c0469a50011a77a718c38312a6b0ab5d639b1a"
     },
     "MOD-PACK-MINE-BACKUP": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "91b01188726310f94e51503f1f2afb44246cf43f",
-      "date": "2026-08-17T13:21:41Z",
-      "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/91b01188726310f94e51503f1f2afb44246cf43f"
+      "sha": "3998e8ff8d1dd2335cb841d35006d4c8b31456c9",
+      "date": "2026-08-17T15:50:33Z",
+      "message": "Merge branch 'feat/v2-engine-3d' into merge/v2-2026-08-17",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3998e8ff8d1dd2335cb841d35006d4c8b31456c9"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,15 +409,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1540,
-    "project_commits": 1538,
-    "monitor_commits": 2,
-    "detected_project_commits_this_scan": 0,
+    "tracked_commits": 1562,
+    "project_commits": 1559,
+    "monitor_commits": 3,
+    "detected_project_commits_this_scan": 21,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
