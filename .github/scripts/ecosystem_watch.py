@@ -28,10 +28,6 @@ API = "https://api.github.com"
 USER = os.environ.get("GH_USER", "Lucas-Belucci-Bellini")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 MAX_RETRIES = 4
-
-# Migration baseline supplied from the previous monitor. This is NOT claimed to
-# be the official GitHub Contributions count; it preserves the old monitor's
-# displayed tracked-commit number while we introduce the new cumulative model.
 LEGACY_BASELINE = 1538
 
 
@@ -43,7 +39,6 @@ def api(path: str):
     }
     if TOKEN:
         headers["Authorization"] = f"Bearer {TOKEN}"
-
     last_error = None
     for attempt in range(MAX_RETRIES):
         req = urllib.request.Request(API + path, headers=headers)
@@ -54,8 +49,7 @@ def api(path: str):
             last_error = exc
             retryable = exc.code == 429 or exc.code >= 500
             if exc.code == 403:
-                remaining = exc.headers.get("X-RateLimit-Remaining")
-                retryable = remaining == "0"
+                retryable = exc.headers.get("X-RateLimit-Remaining") == "0"
             if not retryable or attempt == MAX_RETRIES - 1:
                 raise
             retry_after = exc.headers.get("Retry-After")
@@ -66,7 +60,6 @@ def api(path: str):
             if attempt == MAX_RETRIES - 1:
                 raise
             time.sleep(min(2 ** attempt, 30))
-
     raise RuntimeError(f"GitHub API failed after retries: {last_error}")
 
 
@@ -116,12 +109,10 @@ def main():
 
     previous = previous_state.get("repositories", {})
     previous_metrics = previous_state.get("metrics", {})
+    previous_health = previous_state.get("health", {})
 
-    # Preserve the old monitor number as the migration baseline. On subsequent
-    # runs all arithmetic comes from persisted state and is therefore stable.
     project_commits = int(previous_metrics.get("project_commits", LEGACY_BASELINE))
     monitor_commits = int(previous_metrics.get("monitor_commits", 0))
-
     current = {}
     changes = []
     errors = []
@@ -141,7 +132,6 @@ def main():
         if not latest:
             current[name] = {"branch": branch, "empty": True}
             continue
-
         old = previous.get(name, {}).get("sha")
         new_count = compare_count(USER, name, old, latest["sha"]) if old else None
         current[name] = {"branch": branch, **latest}
@@ -150,18 +140,29 @@ def main():
             if new_count is not None:
                 detected_project_commits += new_count
 
-    # Every successful hourly run is itself one monitor commit. The workflow
-    # commits the files immediately after this script finishes.
+    # A successful scan represents the monitor commit that will publish this snapshot.
     monitor_commits += 1
     project_commits += detected_project_commits
     tracked_commits = project_commits + monitor_commits
-
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    health = {
+        "status": "healthy" if not errors else "degraded",
+        "last_successful_scan": now,
+        "last_scan_had_errors": bool(errors),
+        "repositories_scanned": len(current),
+        "repositories_changed": len(changes),
+        "query_errors": len(errors),
+        "previous_status": previous_health.get("status", "unknown"),
+        "scheduler": "hourly (cron minute 17)",
+        "snapshot_commit_expected": True,
+    }
+
     STATE.parent.mkdir(parents=True, exist_ok=True)
     STATE.write_text(
         json.dumps(
             {
-                "schema": 4,
+                "schema": 5,
                 "scanned_at": now,
                 "scan_interval": "hourly",
                 "repositories": current,
@@ -172,6 +173,7 @@ def main():
                     "detected_project_commits_this_scan": detected_project_commits,
                     "monitor_commit_this_scan": 1,
                 },
+                "health": health,
                 "summary": {
                     "repositories_scanned": len(current),
                     "repositories_changed": len(changes),
@@ -181,8 +183,7 @@ def main():
             },
             indent=2,
             ensure_ascii=False,
-        )
-        + "\n",
+        ) + "\n",
         encoding="utf-8",
     )
 
@@ -197,6 +198,14 @@ def main():
         f"**Repositórios com mudanças desde a última varredura:** `{len(changes)}`  ",
         f"**Falhas de consulta:** `{len(errors)}`",
         "",
+        "## Saúde do monitor",
+        "",
+        f"- **Status:** `{'🟢 HEALTHY' if not errors else '🟡 DEGRADED'}`",
+        f"- **Último scan bem-sucedido:** `{now}`",
+        "- **Agendamento:** `a cada hora, no minuto 17 UTC`",
+        f"- **Snapshot esperado nesta execução:** `{'SIM' if True else 'NÃO'}`",
+        "- **GitHub Contributions:** métrica oficial do GitHub, não calculada por este monitor.",
+        "",
         "## Contadores",
         "",
         f"- **Commits rastreados pelo ecossistema:** `{tracked_commits}`",
@@ -204,7 +213,7 @@ def main():
         f"- **Commits do próprio monitor:** `{monitor_commits}`",
         f"- **Commits de projetos detectados nesta hora:** `{detected_project_commits}`",
         "",
-        "> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. Cada execução horária bem-sucedida acrescenta 1 ao contador de commits do próprio monitor, porque a execução gera o commit que publica este snapshot.",
+        "> O contador acima é uma métrica própria do monitor. Cada execução horária bem-sucedida acrescenta 1 ao contador de commits do próprio monitor, porque a execução gera o commit que publica este snapshot.",
         "",
         "## Mudanças detectadas",
         "",
@@ -235,6 +244,7 @@ def main():
         "       ├── estado dos projetos",
         "       ├── commits dos projetos",
         "       ├── + 1 commit do monitor",
+        "       ├── health check",
         "       └── contador acumulado",
         "       │",
         "       ▼",
@@ -249,6 +259,7 @@ def main():
         "4. Retries e backoff protegem contra falhas transitórias da API.",
         "5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.",
         "6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.",
+        "7. O health check registra explicitamente o último scan, erros e o snapshot esperado.",
         "",
         "Em um ano comum, uma execução horária representa no máximo 8.760 snapshots programados; o scheduler do GitHub pode atrasar a execução real.",
         "",
