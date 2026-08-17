@@ -1,9 +1,11 @@
 name: Análise de Linguagens (bot)
 
 on:
+  # Estatística de perfil não precisa rodar de hora em hora. Uma rodada semanal
+  # reduz ruído no histórico e deixa a máquina de acompanhamento de commits
+  # cuidar do monitoramento diário do ecossistema.
   schedule:
-    # De hora em hora (UTC). O GitHub pode atrasar agendamentos em horários de pico.
-    - cron: "0 * * * *"
+    - cron: "17 3 * * 0"
   workflow_dispatch:
   push:
     branches: [main]
@@ -11,10 +13,9 @@ on:
       - ".github/scripts/lang_stats.py"
       - ".github/workflows/lang-stats.yml"
 
-# Nunca deixa duas execuções mexerem no README ao mesmo tempo.
 concurrency:
   group: lang-stats
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -22,7 +23,7 @@ permissions:
 jobs:
   analisar:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -30,25 +31,17 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Analisar linguagens e arquivos de todos os repositórios
+      - name: Analisar linguagens e arquivos de todos os repositórios públicos
         env:
-          # LANG_STATS_TOKEN é um PAT com escopo `repo` — é o que permite ver
-          # repositório PRIVADO. Sem ele o passo continua funcionando, só que
-          # cobrindo apenas os públicos, e o relatório diz isso em vez de
-          # apresentar número incompleto como se fosse total.
-          #
-          # ATENÇÃO: com o PAT presente, o nome dos repositórios privados passa
-          # a aparecer neste README, que é PÚBLICO. Para manter os números e
-          # esconder os nomes, ligue OCULTAR_NOMES_PRIVADOS abaixo.
-          GITHUB_TOKEN: ${{ secrets.LANG_STATS_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_USER: ${{ github.repository_owner }}
           INCLUDE_FORKS: "0"
-          OCULTAR_NOMES_PRIVADOS: "0"
+          OCULTAR_NOMES_PRIVADOS: "1"
         run: python3 .github/scripts/lang_stats.py
 
-      - name: Commitar se houver mudança
+      - name: Commitar se houver mudança real
         run: |
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md assets/lang-stats.svg
           if git diff --cached --quiet; then
@@ -56,11 +49,4 @@ jobs:
             exit 0
           fi
           git commit -m "chore(bot): atualiza análise de linguagens do perfil [skip ci]"
-          for i in 1 2 3 4; do
-            if git push; then exit 0; fi
-            echo "push falhou; refazendo em cima do remoto (tentativa $i)"
-            git pull --rebase --autostash origin main || true
-            sleep $((2 ** i))
-          done
-          echo "::error::não consegui enviar o commit após 4 tentativas"
-          exit 1
+          git push
