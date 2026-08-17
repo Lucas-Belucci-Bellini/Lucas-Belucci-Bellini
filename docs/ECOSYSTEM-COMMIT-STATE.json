@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-17T19:41:41Z",
+  "scanned_at": "2026-08-17T20:43:30Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -296,10 +296,10 @@
     },
     "Lucas-Belucci-Bellini": {
       "branch": "main",
-      "sha": "cc3dfafe19ffec044fd368555577b4b80abbd43e",
-      "date": "2026-08-17T18:57:27Z",
+      "sha": "80a81bd523aa81f6af1502b74f65d122b015ddf9",
+      "date": "2026-08-17T19:41:41Z",
       "message": "chore(bot): snapshot horário do ecossistema [skip ci]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/cc3dfafe19ffec044fd368555577b4b80abbd43e"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/80a81bd523aa81f6af1502b74f65d122b015ddf9"
     },
     "MOD-PACK-MINE-BACKUP": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "3998e8ff8d1dd2335cb841d35006d4c8b31456c9",
-      "date": "2026-08-17T15:50:33Z",
-      "message": "Merge branch 'feat/v2-engine-3d' into merge/v2-2026-08-17",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3998e8ff8d1dd2335cb841d35006d4c8b31456c9"
+      "sha": "eac5bc705a036bad7da4f88f5491212b9bba06cf",
+      "date": "2026-08-17T20:24:09Z",
+      "message": "Merge pull request #455 from Lucas-Belucci-Bellini/feat/ts-visao",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/eac5bc705a036bad7da4f88f5491212b9bba06cf"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,15 +409,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1568,
-    "project_commits": 1562,
-    "monitor_commits": 6,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 1580,
+    "project_commits": 1573,
+    "monitor_commits": 7,
+    "detected_project_commits_this_scan": 11,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
