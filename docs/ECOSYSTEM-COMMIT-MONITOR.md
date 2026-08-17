@@ -2,14 +2,21 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-17T14:21:10Z`  
+**Última varredura:** `2026-08-17T14:30:55Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `1`
+**Repositórios com mudanças desde a última varredura:** `1`  
+**Falhas de consulta:** `3`
 
 ## Mudanças detectadas
 
-- **Lucas-Belucci-Bellini** — quantidade não determinada — [798ae3a567c3](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/798ae3a567c35ccb2ed314e4a945bdc1a50564e1) — docs(bot): define hourly ecosystem snapshots
+- **Lucas-Belucci-Bellini** — quantidade não determinada — [fd5bf4655326](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/fd5bf46553262d35904a98e1860d7af96da442e5) — fix(bot): harden ecosystem watcher for scale
+
+## Erros de consulta
+
+- **LLBR-Innovations-** — `latest_commit` — HTTP Error 409: Conflict
+- **MOD-PACK-MINE-BACKUP** — `latest_commit` — HTTP Error 409: Conflict
+- **Projeto-Baluarte-Social-Media** — `latest_commit` — HTTP Error 409: Conflict
 
 ## Arquitetura
 
@@ -27,10 +34,12 @@ ecosystem_watch.py
 snapshot agregado a cada hora
 ```
 
-### Regra de estabilidade
+### Regras de estabilidade
 
-O perfil faz **um snapshot por hora**, independentemente de haver mudanças nos projetos. Isso mantém uma cadência previsível de atividade no próprio perfil.
+1. O perfil faz uma varredura programada por hora.
+2. Cada execução atualiza o timestamp do snapshot; portanto o heartbeat horário não depende de haver commits nos projetos.
+3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.
+4. Erros transitórios da API são repetidos com backoff; falhas persistentes são registradas sem derrubar toda a varredura.
+5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.
 
-As mudanças dos projetos continuam agregadas: um único snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.
-
-Em um ano comum, uma execução horária representa no máximo 8.760 snapshots programados; atrasos do scheduler do GitHub podem fazer o horário real variar.
+Em um ano comum, uma execução horária representa no máximo 8.760 snapshots programados; o scheduler do GitHub pode atrasar a execução real.

@@ -1,6 +1,6 @@
 {
-  "schema": 2,
-  "scanned_at": "2026-08-17T14:21:10Z",
+  "schema": 3,
+  "scanned_at": "2026-08-17T14:30:55Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -296,10 +296,10 @@
     },
     "Lucas-Belucci-Bellini": {
       "branch": "main",
-      "sha": "798ae3a567c35ccb2ed314e4a945bdc1a50564e1",
-      "date": "2026-08-17T14:19:34Z",
-      "message": "docs(bot): define hourly ecosystem snapshots",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/798ae3a567c35ccb2ed314e4a945bdc1a50564e1"
+      "sha": "fd5bf46553262d35904a98e1860d7af96da442e5",
+      "date": "2026-08-17T14:29:14Z",
+      "message": "fix(bot): harden ecosystem watcher for scale",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/fd5bf46553262d35904a98e1860d7af96da442e5"
     },
     "MOD-PACK-MINE-BACKUP": {
       "branch": "main",
@@ -407,5 +407,27 @@
       "message": "feat: add beta preflight and rls acceptance runbook",
       "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/8f33e56a12fabe2acc4910cb5831ae9345358494"
     }
-  }
+  },
+  "summary": {
+    "repositories_scanned": 59,
+    "repositories_changed": 1,
+    "errors": 3
+  },
+  "errors": [
+    {
+      "name": "LLBR-Innovations-",
+      "stage": "latest_commit",
+      "error": "HTTP Error 409: Conflict"
+    },
+    {
+      "name": "MOD-PACK-MINE-BACKUP",
+      "stage": "latest_commit",
+      "error": "HTTP Error 409: Conflict"
+    },
+    {
+      "name": "Projeto-Baluarte-Social-Media",
+      "stage": "latest_commit",
+      "error": "HTTP Error 409: Conflict"
+    }
+  ]
 }
