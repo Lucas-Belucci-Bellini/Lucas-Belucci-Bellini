@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Daily, low-noise health/index pass over the public project ecosystem.
+"""Hourly health/index pass over the public project ecosystem.
 
 The profile repository is an index, not a mirror. This script records the latest
 commit SHA of each public repository and counts commits added since the previous
-scan. It writes one state snapshot and one human-readable report per scan, but
-only the files that actually changed are committed by Actions.
+scan. Each hourly scan updates the snapshot timestamp, allowing Actions to keep
+the profile's activity feed alive while still aggregating project changes.
 """
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ TOKEN = os.environ.get("GITHUB_TOKEN", "")
 def api(path: str):
     headers = {
         "Accept": "application/vnd.github+json",
-        "User-Agent": "baluarte-ecosystem-watch",
+        "User-Agent": "profile-ecosystem-watch",
         "X-GitHub-Api-Version": "2022-11-28",
     }
     if TOKEN:
@@ -69,7 +69,7 @@ def compare_count(owner: str, name: str, base: str, head: str):
         data = api(f"/repos/{owner}/{urllib.parse.quote(name)}/compare/{base}...{head}")
         return int(data.get("ahead_by", 0))
     except Exception:
-        # History may have been rewritten or the comparison may have expired.
+        # History may have been rewritten or the comparison may be unavailable.
         return None
 
 
@@ -104,14 +104,28 @@ def main():
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     STATE.parent.mkdir(parents=True, exist_ok=True)
-    STATE.write_text(json.dumps({"schema": 1, "scanned_at": now, "repositories": current}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    STATE.write_text(
+        json.dumps(
+            {
+                "schema": 2,
+                "scanned_at": now,
+                "scan_interval": "hourly",
+                "repositories": current,
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
 
     lines = [
         "# Ecosystem Commit Monitor",
         "",
-        "> Monitoramento de baixo ruído do ecossistema público. Este arquivo registra o último commit conhecido de cada repositório; ele não espelha os repositórios nem cria um commit por mudança individual.",
+        "> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.",
         "",
         f"**Última varredura:** `{now}`  ",
+        "**Intervalo configurado:** `1 hora`  ",
         f"**Repositórios acompanhados:** `{len(current)}`  ",
         f"**Repositórios com mudanças desde a última varredura:** `{len(changes)}`",
         "",
@@ -140,14 +154,16 @@ def main():
         "       └── ECOSYSTEM-COMMIT-MONITOR.md",
         "       │",
         "       ▼",
-        "um commit agregado no perfil quando houver mudança",
+        "snapshot agregado a cada hora",
         "```",
         "",
         "### Regra de estabilidade",
         "",
-        "O perfil **não deve** tentar transformar cada commit dos projetos em um commit próprio. Ele acompanha os commits, agrega as mudanças e mantém apenas o estado necessário para continuar a observação.",
+        "O perfil faz **um snapshot por hora**, independentemente de haver mudanças nos projetos. Isso mantém uma cadência previsível de atividade no próprio perfil.",
         "",
-        "Isso permite crescer de poucos projetos para dezenas ou centenas sem transformar o repositório de perfil em um espelho gigantesco.",
+        "As mudanças dos projetos continuam agregadas: um único snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.",
+        "",
+        "Em um ano comum, uma execução horária representa no máximo 8.760 snapshots programados; atrasos do scheduler do GitHub podem fazer o horário real variar.",
         "",
     ]
     REPORT.write_text("\n".join(lines), encoding="utf-8")
