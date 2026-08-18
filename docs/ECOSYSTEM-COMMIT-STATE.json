@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-18T01:50:35Z",
+  "scanned_at": "2026-08-18T03:08:27Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -296,10 +296,10 @@
     },
     "Lucas-Belucci-Bellini": {
       "branch": "main",
-      "sha": "67f2fd0894bdc677a231ea5275394bbc6b607603",
-      "date": "2026-08-17T23:35:30Z",
+      "sha": "6c5a4e16fff9074761b5e8e8e315bc85ed93c4e0",
+      "date": "2026-08-18T01:50:35Z",
       "message": "chore(bot): snapshot horário do ecossistema [skip ci]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/67f2fd0894bdc677a231ea5275394bbc6b607603"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/6c5a4e16fff9074761b5e8e8e315bc85ed93c4e0"
     },
     "MOD-PACK-MINE-BACKUP": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "eac5bc705a036bad7da4f88f5491212b9bba06cf",
-      "date": "2026-08-17T20:24:09Z",
-      "message": "Merge pull request #455 from Lucas-Belucci-Bellini/feat/ts-visao",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/eac5bc705a036bad7da4f88f5491212b9bba06cf"
+      "sha": "07e35d0f24bb28bc07b8fe28e3809c220d1152d8",
+      "date": "2026-08-18T01:58:11Z",
+      "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/07e35d0f24bb28bc07b8fe28e3809c220d1152d8"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,15 +409,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1588,
-    "project_commits": 1577,
-    "monitor_commits": 11,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 1591,
+    "project_commits": 1579,
+    "monitor_commits": 12,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
