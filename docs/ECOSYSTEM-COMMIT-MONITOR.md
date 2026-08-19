@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-19T08:54:26Z`  
+**Última varredura:** `2026-08-19T09:48:56Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1692`
-- **Commits dos projetos:** `1651`
-- **Commits do próprio monitor:** `41`
-- **Commits de projetos detectados nesta hora:** `5`
+- **Commits rastreados pelo ecossistema:** `1695`
+- **Commits dos projetos:** `1653`
+- **Commits do próprio monitor:** `42`
+- **Commits de projetos detectados nesta hora:** `2`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. Cada execução horária bem-sucedida acrescenta 1 ao contador de commits do próprio monitor, porque a execução gera o commit que publica este snapshot.
 
 ## Mudanças detectadas
 
-- **Lucas-Belucci-Bellini** — 1 commit(s) — [25ee88fa202d](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/25ee88fa202ddee2e5fb2f247e81879cebd3111c) — chore(bot): snapshot horário do ecossistema [skip ci]
-- **Projeto-Baluarte** — 4 commit(s) — [8a717effde83](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8a717effde836f4400e8625e40f90df4f304bc51) — feat(v2): add billing http write driver
+- **Lucas-Belucci-Bellini** — 1 commit(s) — [92551e57936f](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/92551e57936f3b004769324523aff247066f369b) — chore(bot): snapshot horário do ecossistema [skip ci]
+- **Projeto-Baluarte** — 1 commit(s) — [6a082d4fd490](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/6a082d4fd490cf804fe891ad8335487e903273e3) — feat(v2): add atomic billing assignment usage transaction
 
 ## Erros de consulta
 
