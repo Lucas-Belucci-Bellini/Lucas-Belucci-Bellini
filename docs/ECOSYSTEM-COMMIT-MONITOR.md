@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-19T14:53:10Z`  
+**Última varredura:** `2026-08-19T15:24:50Z`  
 **Intervalo configurado:** `1 hora`  
-**Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios acompanhados:** `58`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1712`
-- **Commits dos projetos:** `1664`
-- **Commits do próprio monitor:** `48`
+- **Commits rastreados pelo ecossistema:** `1715`
+- **Commits dos projetos:** `1666`
+- **Commits do próprio monitor:** `49`
 - **Commits de projetos detectados nesta hora:** `2`
 
-> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. Cada execução horária bem-sucedida acrescenta 1 ao contador de commits do próprio monitor, porque a execução gera o commit que publica este snapshot.
+> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Lucas-Belucci-Bellini** — 1 commit(s) — [bc7975910770](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/bc797591077006ca98e002a767486d52efc08846) — chore(bot): snapshot horário do ecossistema [skip ci]
-- **Projeto-Baluarte** — 1 commit(s) — [2f660dc6fe0b](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/2f660dc6fe0b9676cab2b0fa4dfe8bf5400b181f) — fix(jarvis): harden spotify redirect uri
+- **Projeto-Baluarte** — 2 commit(s) — [482f476a5b66](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/482f476a5b66e7efd190314f00496b5417c7754e) — test(monitor): adicionar carga de 5000 commits
 
 ## Erros de consulta
 
@@ -49,10 +48,10 @@ snapshot agregado a cada hora
 ### Regras de estabilidade
 
 1. O perfil faz uma varredura programada por hora.
-2. Cada execução bem-sucedida acrescenta exatamente 1 ao contador de commits do monitor, correspondente ao commit que publica o snapshot.
+2. Cada snapshot publicado acrescenta exatamente 1 ao contador de commits do monitor; varreduras sem mudança semântica não geram commit.
 3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.
 4. Retries e backoff protegem contra falhas transitórias da API.
 5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.
 6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.
 
-Em um ano comum, uma execução horária representa no máximo 8.760 snapshots programados; o scheduler do GitHub pode atrasar a execução real.
+A varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.
