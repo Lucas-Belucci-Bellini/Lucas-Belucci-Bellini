@@ -37,6 +37,18 @@ Hi! I'm **Lucas Belucci Bellini**, a.k.a. **Spartan Gamer BR** — a Computer Sc
 
 I build everything from **8-to-64-bit CPUs from scratch** (logic gate by logic gate) to **web platforms, AI agents and games**. My flagship is the **⬡ Projeto Baluarte**, home of the **J.A.R.V.I.S.** assistant and the **Git Nexus** engine. I love trying new things and **always finish what I start**, no matter how long it takes.
 
+## `// J.A.R.V.I.S. — NÚCLEO V7`
+
+O núcleo visual do J.A.R.V.I.S. está disponível no Projeto-Baluarte:
+
+- [`Abrir o JARVIS NÚCLEO V7 — modelagem 3D funcional`](https://projeto-baluarte.vercel.app/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
+- [`Ver o código-fonte de jarvis-nucleo-v7.html`](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/blob/main/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
+
+The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
+
+- [`Open JARVIS NÚCLEO V7 — working 3D model`](https://projeto-baluarte.vercel.app/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
+- [`View the jarvis-nucleo-v7.html source`](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/blob/main/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
+
 ---
 
 ![Arsenal](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=520&height=30&lines=%E2%97%86+ARSENAL+%E2%80%94+TECH+STACK+%26+TOOLS+%E2%97%86)
