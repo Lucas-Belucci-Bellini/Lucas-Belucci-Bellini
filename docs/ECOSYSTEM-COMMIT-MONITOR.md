@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-19T15:24:50Z`  
+**Última varredura:** `2026-08-19T15:45:44Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `58`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1715`
-- **Commits dos projetos:** `1666`
-- **Commits do próprio monitor:** `49`
-- **Commits de projetos detectados nesta hora:** `2`
+- **Commits rastreados pelo ecossistema:** `1720`
+- **Commits dos projetos:** `1670`
+- **Commits do próprio monitor:** `50`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 2 commit(s) — [482f476a5b66](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/482f476a5b66e7efd190314f00496b5417c7754e) — test(monitor): adicionar carga de 5000 commits
+- **Projeto-Baluarte** — 4 commit(s) — [27fbf4bf6f91](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/27fbf4bf6f913a133262d2acb5e3779e088c9b87) — test(e2e): aguardar editor lazy no caminho critico
 
 ## Erros de consulta
 
