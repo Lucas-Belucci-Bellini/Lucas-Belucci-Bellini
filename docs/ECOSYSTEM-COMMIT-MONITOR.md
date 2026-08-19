@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-19T13:57:14Z`  
+**Última varredura:** `2026-08-19T14:53:10Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1709`
-- **Commits dos projetos:** `1662`
-- **Commits do próprio monitor:** `47`
-- **Commits de projetos detectados nesta hora:** `4`
+- **Commits rastreados pelo ecossistema:** `1712`
+- **Commits dos projetos:** `1664`
+- **Commits do próprio monitor:** `48`
+- **Commits de projetos detectados nesta hora:** `2`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. Cada execução horária bem-sucedida acrescenta 1 ao contador de commits do próprio monitor, porque a execução gera o commit que publica este snapshot.
 
 ## Mudanças detectadas
 
-- **Lucas-Belucci-Bellini** — 1 commit(s) — [2564b382f26d](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/2564b382f26dee942c0770c2eefdfe70bcd067e1) — chore(bot): snapshot horário do ecossistema [skip ci]
-- **Projeto-Baluarte** — 3 commit(s) — [7730c30eaba6](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/7730c30eaba6b4944978652ac938459e9ab052c2) — fix(jarvis): refresh spotify session in memory
+- **Lucas-Belucci-Bellini** — 1 commit(s) — [bc7975910770](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/bc797591077006ca98e002a767486d52efc08846) — chore(bot): snapshot horário do ecossistema [skip ci]
+- **Projeto-Baluarte** — 1 commit(s) — [2f660dc6fe0b](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/2f660dc6fe0b9676cab2b0fa4dfe8bf5400b181f) — fix(jarvis): harden spotify redirect uri
 
 ## Erros de consulta
 

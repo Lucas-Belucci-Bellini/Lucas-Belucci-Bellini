@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-19T13:57:14Z",
+  "scanned_at": "2026-08-19T14:53:10Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -296,10 +296,10 @@
     },
     "Lucas-Belucci-Bellini": {
       "branch": "main",
-      "sha": "2564b382f26dee942c0770c2eefdfe70bcd067e1",
-      "date": "2026-08-19T13:15:28Z",
+      "sha": "bc797591077006ca98e002a767486d52efc08846",
+      "date": "2026-08-19T13:57:14Z",
       "message": "chore(bot): snapshot horário do ecossistema [skip ci]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/2564b382f26dee942c0770c2eefdfe70bcd067e1"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/bc797591077006ca98e002a767486d52efc08846"
     },
     "MOD-PACK-MINE-BACKUP": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "7730c30eaba6b4944978652ac938459e9ab052c2",
-      "date": "2026-08-19T13:53:15Z",
-      "message": "fix(jarvis): refresh spotify session in memory",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/7730c30eaba6b4944978652ac938459e9ab052c2"
+      "sha": "2f660dc6fe0b9676cab2b0fa4dfe8bf5400b181f",
+      "date": "2026-08-19T14:23:45Z",
+      "message": "fix(jarvis): harden spotify redirect uri",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/2f660dc6fe0b9676cab2b0fa4dfe8bf5400b181f"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1709,
-    "project_commits": 1662,
-    "monitor_commits": 47,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 1712,
+    "project_commits": 1664,
+    "monitor_commits": 48,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {
