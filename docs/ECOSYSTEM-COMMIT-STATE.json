@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-19T15:45:44Z",
+  "scanned_at": "2026-08-19T16:46:12Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,10 +335,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "27fbf4bf6f913a133262d2acb5e3779e088c9b87",
-      "date": "2026-08-19T15:40:43Z",
-      "message": "test(e2e): aguardar editor lazy no caminho critico",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/27fbf4bf6f913a133262d2acb5e3779e088c9b87"
+      "sha": "3d66ea85527b81760f8915238643a5fe8a432173",
+      "date": "2026-08-19T16:45:09Z",
+      "message": "ci: estabilizar instalação do chromium nos gates",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3d66ea85527b81760f8915238643a5fe8a432173"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,10 +402,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1720,
-    "project_commits": 1670,
-    "monitor_commits": 50,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 1728,
+    "project_commits": 1677,
+    "monitor_commits": 51,
+    "detected_project_commits_this_scan": 7,
     "monitor_commit_this_scan": 1
   },
   "summary": {
