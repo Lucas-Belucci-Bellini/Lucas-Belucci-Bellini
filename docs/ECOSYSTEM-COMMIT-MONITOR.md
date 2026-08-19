@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-19T16:46:12Z`  
+**Última varredura:** `2026-08-19T17:39:48Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `58`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1728`
-- **Commits dos projetos:** `1677`
-- **Commits do próprio monitor:** `51`
+- **Commits rastreados pelo ecossistema:** `1736`
+- **Commits dos projetos:** `1684`
+- **Commits do próprio monitor:** `52`
 - **Commits de projetos detectados nesta hora:** `7`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 7 commit(s) — [3d66ea85527b](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3d66ea85527b81760f8915238643a5fe8a432173) — ci: estabilizar instalação do chromium nos gates
+- **Projeto-Baluarte** — 7 commit(s) — [c147715f95d1](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/c147715f95d1b7bade34b07986fa477a7fc5edb5) — feat(registry): add health fallback pilot
 
 ## Erros de consulta
 
