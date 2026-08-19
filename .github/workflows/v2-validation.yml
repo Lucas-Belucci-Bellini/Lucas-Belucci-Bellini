@@ -1,0 +1,42 @@
+name: V2 Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/**"
+      - ".github/workflows/**"
+      - "tests/**"
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/scripts/**"
+      - ".github/workflows/**"
+      - "tests/**"
+  workflow_dispatch:
+
+concurrency:
+  group: profile-v2-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile Python sources
+        run: python -m py_compile .github/scripts/*.py tests/*.py
+
+      - name: Run V2 unit tests
+        run: python -m unittest discover -s tests -v

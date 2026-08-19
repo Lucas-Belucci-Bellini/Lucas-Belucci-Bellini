@@ -6,9 +6,10 @@ commit SHA of each public repository, counts commits added since the previous
 scan, and maintains a cumulative ecosystem counter. The counter is intentionally
 separate from GitHub's official Contributions metric.
 
-Important: the counter includes the commit produced by this hourly monitor run.
-That run's state is written before the workflow commits it, so the published
-snapshot represents the commit that is being created by the monitor itself.
+The V2 monitor is semantically idempotent: a scan may run every hour, but files
+are rewritten only when repository state or error state actually changes. The
+profile repository itself is excluded so the monitor never rediscovers its own
+snapshot commit as project activity.
 """
 from __future__ import annotations
 
@@ -26,6 +27,7 @@ STATE = ROOT / "docs" / "ECOSYSTEM-COMMIT-STATE.json"
 REPORT = ROOT / "docs" / "ECOSYSTEM-COMMIT-MONITOR.md"
 API = "https://api.github.com"
 USER = os.environ.get("GH_USER", "Lucas-Belucci-Bellini")
+PROFILE_REPOSITORY_NAME = os.environ.get("PROFILE_REPOSITORY_NAME", "Lucas-Belucci-Bellini")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 MAX_RETRIES = 4
 
@@ -83,6 +85,16 @@ def repos():
         page += 1
 
 
+def is_profile_repository(name: str) -> bool:
+    """Evita que o snapshot do perfil seja contado como projeto monitorado."""
+    return name.casefold() == PROFILE_REPOSITORY_NAME.casefold()
+
+
+def semantic_state_changed(previous_state: dict, current_repositories: dict) -> bool:
+    """Compara apenas o estado persistente, ignorando o horário da varredura."""
+    return previous_state.get("repositories", {}) != current_repositories
+
+
 def latest_commit(owner: str, name: str, branch: str):
     commits = api(f"/repos/{owner}/{urllib.parse.quote(name)}/commits?sha={urllib.parse.quote(branch)}&per_page=1")
     if not commits:
@@ -131,6 +143,8 @@ def main():
         if repo.get("private"):
             continue
         name = repo["name"]
+        if is_profile_repository(name):
+            continue
         branch = repo.get("default_branch") or "main"
         try:
             latest = latest_commit(USER, name, branch)
@@ -150,8 +164,14 @@ def main():
             if new_count is not None:
                 detected_project_commits += new_count
 
-    # Every successful hourly run is itself one monitor commit. The workflow
-    # commits the files immediately after this script finishes.
+    # A scan without semantic changes must be a no-op. This is the key V2
+    # guard against one bot commit per hour with no new ecosystem information.
+    if not semantic_state_changed(previous_state, current):
+        print("Nenhuma mudança semântica; snapshot não será reescrito.")
+        return
+
+    # Only a snapshot that will actually be published receives one monitor
+    # commit in its cumulative counter.
     monitor_commits += 1
     project_commits += detected_project_commits
     tracked_commits = project_commits + monitor_commits
@@ -204,7 +224,7 @@ def main():
         f"- **Commits do próprio monitor:** `{monitor_commits}`",
         f"- **Commits de projetos detectados nesta hora:** `{detected_project_commits}`",
         "",
-        "> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. Cada execução horária bem-sucedida acrescenta 1 ao contador de commits do próprio monitor, porque a execução gera o commit que publica este snapshot.",
+        "> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.",
         "",
         "## Mudanças detectadas",
         "",
@@ -244,13 +264,13 @@ def main():
         "### Regras de estabilidade",
         "",
         "1. O perfil faz uma varredura programada por hora.",
-        "2. Cada execução bem-sucedida acrescenta exatamente 1 ao contador de commits do monitor, correspondente ao commit que publica o snapshot.",
+        "2. Cada snapshot publicado acrescenta exatamente 1 ao contador de commits do monitor; varreduras sem mudança semântica não geram commit.",
         "3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.",
         "4. Retries e backoff protegem contra falhas transitórias da API.",
         "5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.",
         "6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.",
         "",
-        "Em um ano comum, uma execução horária representa no máximo 8.760 snapshots programados; o scheduler do GitHub pode atrasar a execução real.",
+        "A varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.",
         "",
     ]
     REPORT.write_text("\n".join(lines), encoding="utf-8")

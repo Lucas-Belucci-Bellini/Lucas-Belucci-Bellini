@@ -34,6 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_USER: ${{ github.repository_owner }}
+          PROFILE_REPOSITORY_NAME: ${{ github.event.repository.name }}
         run: python3 .github/scripts/ecosystem_watch.py
 
       - name: Commitar o snapshot horário
