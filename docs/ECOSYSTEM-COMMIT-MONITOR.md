@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-19T01:53:13Z`  
+**Última varredura:** `2026-08-19T03:10:41Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1648`
-- **Commits dos projetos:** `1614`
-- **Commits do próprio monitor:** `34`
-- **Commits de projetos detectados nesta hora:** `2`
+- **Commits rastreados pelo ecossistema:** `1665`
+- **Commits dos projetos:** `1630`
+- **Commits do próprio monitor:** `35`
+- **Commits de projetos detectados nesta hora:** `16`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. Cada execução horária bem-sucedida acrescenta 1 ao contador de commits do próprio monitor, porque a execução gera o commit que publica este snapshot.
 
 ## Mudanças detectadas
 
-- **Lucas-Belucci-Bellini** — 1 commit(s) — [d2b81e68d5b5](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/d2b81e68d5b570cce137057bf996a080a27b7ade) — chore(bot): snapshot horário do ecossistema [skip ci]
-- **Projeto-Baluarte** — 1 commit(s) — [819c34c50f66](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/819c34c50f663694da929cd9a51ef51c1a6ecfe3) — atulização
+- **Lucas-Belucci-Bellini** — 1 commit(s) — [b7907eeea6d9](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/b7907eeea6d99ba364b793e79759c39943ee80e8) — chore(bot): snapshot horário do ecossistema [skip ci]
+- **Projeto-Baluarte** — 15 commit(s) — [df2be23758ce](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/df2be23758ce1ff1f91a03233120fee199c1130d) — feat(v2): connect catalog facts to evidence layer
 
 ## Erros de consulta
 
