@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-19T05:45:58Z`  
+**Última varredura:** `2026-08-19T07:05:26Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1674`
-- **Commits dos projetos:** `1636`
-- **Commits do próprio monitor:** `38`
-- **Commits de projetos detectados nesta hora:** `3`
+- **Commits rastreados pelo ecossistema:** `1681`
+- **Commits dos projetos:** `1642`
+- **Commits do próprio monitor:** `39`
+- **Commits de projetos detectados nesta hora:** `6`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. Cada execução horária bem-sucedida acrescenta 1 ao contador de commits do próprio monitor, porque a execução gera o commit que publica este snapshot.
 
 ## Mudanças detectadas
 
-- **Lucas-Belucci-Bellini** — 1 commit(s) — [ea378a926adc](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/ea378a926adc6c005ab5f1a83b07cd6153364bad) — chore(bot): snapshot horário do ecossistema [skip ci]
-- **Projeto-Baluarte** — 2 commit(s) — [3290393e28dc](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3290393e28dc58c96e8119d42d3379a322922876) — feat(v2): add billing persistence contract
+- **Lucas-Belucci-Bellini** — 1 commit(s) — [19587799585d](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/19587799585db06342a294abfb8d664f93607b14) — chore(bot): snapshot horário do ecossistema [skip ci]
+- **Projeto-Baluarte** — 5 commit(s) — [5a3dce663884](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/5a3dce66388468b3a560576edfd05355ca01c4d3) — fix(monitor): suportar 5000 commits semanais
 
 ## Erros de consulta
 
