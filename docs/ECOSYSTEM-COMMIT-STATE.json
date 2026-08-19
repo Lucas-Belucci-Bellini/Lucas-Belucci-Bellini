@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-19T03:10:41Z",
+  "scanned_at": "2026-08-19T03:58:07Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -296,10 +296,10 @@
     },
     "Lucas-Belucci-Bellini": {
       "branch": "main",
-      "sha": "b7907eeea6d99ba364b793e79759c39943ee80e8",
-      "date": "2026-08-19T01:53:13Z",
+      "sha": "ce8e32e3425ac27d126fc65958792235fe0dbec7",
+      "date": "2026-08-19T03:10:41Z",
       "message": "chore(bot): snapshot horário do ecossistema [skip ci]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/b7907eeea6d99ba364b793e79759c39943ee80e8"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/ce8e32e3425ac27d126fc65958792235fe0dbec7"
     },
     "MOD-PACK-MINE-BACKUP": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "df2be23758ce1ff1f91a03233120fee199c1130d",
-      "date": "2026-08-19T02:53:05Z",
-      "message": "feat(v2): connect catalog facts to evidence layer",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/df2be23758ce1ff1f91a03233120fee199c1130d"
+      "sha": "43aa46baa28c329f85ac0f4903003af35a7da7ea",
+      "date": "2026-08-19T03:24:18Z",
+      "message": "feat(v2): prepare 1.1.0 billing and update contracts",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/43aa46baa28c329f85ac0f4903003af35a7da7ea"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1665,
-    "project_commits": 1630,
-    "monitor_commits": 35,
-    "detected_project_commits_this_scan": 16,
+    "tracked_commits": 1668,
+    "project_commits": 1632,
+    "monitor_commits": 36,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {
