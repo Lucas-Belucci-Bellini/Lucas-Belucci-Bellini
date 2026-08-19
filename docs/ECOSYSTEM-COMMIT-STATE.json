@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-19T18:52:51Z",
+  "scanned_at": "2026-08-19T19:38:34Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,10 +335,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "3526082364e5d2fe59c397f72b5fec18d9a32968",
-      "date": "2026-08-19T18:40:18Z",
-      "message": "feat(runtime): connect registry health to harness boot",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3526082364e5d2fe59c397f72b5fec18d9a32968"
+      "sha": "5856689abfb6434b27cf044c32d79ab3374acbc9",
+      "date": "2026-08-19T19:28:58Z",
+      "message": "feat(lifecycle): feed runtime health from module cycle",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/5856689abfb6434b27cf044c32d79ab3374acbc9"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,10 +402,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1742,
-    "project_commits": 1689,
-    "monitor_commits": 53,
-    "detected_project_commits_this_scan": 5,
+    "tracked_commits": 1744,
+    "project_commits": 1690,
+    "monitor_commits": 54,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {

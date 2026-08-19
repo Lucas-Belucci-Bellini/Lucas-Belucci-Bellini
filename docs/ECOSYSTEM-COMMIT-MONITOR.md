@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-19T18:52:51Z`  
+**Última varredura:** `2026-08-19T19:38:34Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `58`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1742`
-- **Commits dos projetos:** `1689`
-- **Commits do próprio monitor:** `53`
-- **Commits de projetos detectados nesta hora:** `5`
+- **Commits rastreados pelo ecossistema:** `1744`
+- **Commits dos projetos:** `1690`
+- **Commits do próprio monitor:** `54`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 5 commit(s) — [3526082364e5](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3526082364e5d2fe59c397f72b5fec18d9a32968) — feat(runtime): connect registry health to harness boot
+- **Projeto-Baluarte** — 1 commit(s) — [5856689abfb6](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/5856689abfb6434b27cf044c32d79ab3374acbc9) — feat(lifecycle): feed runtime health from module cycle
 
 ## Erros de consulta
 
