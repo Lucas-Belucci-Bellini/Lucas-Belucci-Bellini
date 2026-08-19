@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-19T20:45:22Z`  
+**Última varredura:** `2026-08-19T21:40:09Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `58`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1750`
-- **Commits dos projetos:** `1695`
-- **Commits do próprio monitor:** `55`
-- **Commits de projetos detectados nesta hora:** `5`
+- **Commits rastreados pelo ecossistema:** `1755`
+- **Commits dos projetos:** `1699`
+- **Commits do próprio monitor:** `56`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 5 commit(s) — [d0ecd6d85a55](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/d0ecd6d85a55205ffade67bbeb0d4f45c2a19b0c) — fix(security): resolve RLS matrix import in CI
+- **Projeto-Baluarte** — 4 commit(s) — [953c96cec69a](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/953c96cec69a00e9dd99e55136d9f6e78de7a127) — docs(ts): mark tools wave as published
 
 ## Erros de consulta
 
