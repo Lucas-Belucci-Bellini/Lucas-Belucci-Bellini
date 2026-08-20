@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-20T15:48:59Z",
+  "scanned_at": "2026-08-20T16:50:29Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,10 +335,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "7da3ca5fee747dec88d5dc5cdf4bec35d4634c0c",
-      "date": "2026-08-20T15:36:27Z",
-      "message": "feat(ui): add projected navigation contract",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/7da3ca5fee747dec88d5dc5cdf4bec35d4634c0c"
+      "sha": "5e9dfddf85a926acf28e403b5782dbce8cc61295",
+      "date": "2026-08-20T16:14:46Z",
+      "message": "feat(ui): reconcile registry and legacy navigation catalogs",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/5e9dfddf85a926acf28e403b5782dbce8cc61295"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,9 +402,9 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1891,
-    "project_commits": 1819,
-    "monitor_commits": 72,
+    "tracked_commits": 1895,
+    "project_commits": 1822,
+    "monitor_commits": 73,
     "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
