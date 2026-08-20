@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-20T01:51:17Z`  
+**Última varredura:** `2026-08-20T03:10:20Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `58`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1798`
-- **Commits dos projetos:** `1739`
-- **Commits do próprio monitor:** `59`
-- **Commits de projetos detectados nesta hora:** `15`
+- **Commits rastreados pelo ecossistema:** `1812`
+- **Commits dos projetos:** `1752`
+- **Commits do próprio monitor:** `60`
+- **Commits de projetos detectados nesta hora:** `13`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 15 commit(s) — [12886090eacc](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/12886090eacc967f035185eeaf67bf3a58e8f0b6) — refactor(military): route technology and conflicts to TypeScript
+- **Projeto-Baluarte** — 13 commit(s) — [16fc595ff6f5](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/16fc595ff6f5cd2b0943bb7f4a272f4b7f886af6) — feat(ts): promote code comms and database
 
 ## Erros de consulta
 
