@@ -116,7 +116,7 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** e **52 tipos de arquivo** em **59 repositórios** · **14.57 MB** de código · **17.564** arquivos · atualizado em `20/08/2026 03:43 UTC`
+> **16 linguagens** e **53 tipos de arquivo** em **59 repositórios** · **14.58 MB** de código · **17.592** arquivos · atualizado em `20/08/2026 12:47 UTC`
 
 <div align="center">
 
@@ -128,13 +128,13 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 | # | Linguagem | Peso | % | Repositórios |
 | :-- | :--- | ---: | ---: | ---: |
-| 1 | **JavaScript** | `5.44 MB` | `37.34%` | 16 |
-| 2 | **HTML** | `3.43 MB` | `23.52%` | 17 |
-| 3 | **TypeScript** | `3.42 MB` | `23.49%` | 5 |
+| 1 | **JavaScript** | `5.45 MB` | `37.35%` | 16 |
+| 2 | **HTML** | `3.43 MB` | `23.51%` | 17 |
+| 3 | **TypeScript** | `3.42 MB` | `23.47%` | 5 |
 | 4 | **CSS** | `766.9 KB` | `5.14%` | 12 |
 | 5 | **Java** | `676.4 KB` | `4.53%` | 4 |
 | 6 | **Python** | `573.7 KB` | `3.84%` | 6 |
-| 7 | **PLpgSQL** | `62.9 KB` | `0.42%` | 2 |
+| 7 | **PLpgSQL** | `68.3 KB` | `0.46%` | 2 |
 | 8 | **SQF** | `52.0 KB` | `0.35%` | 1 |
 | 9 | **Rust** | `41.3 KB` | `0.28%` | 2 |
 | 10 | **C#** | `41.1 KB` | `0.28%` | 1 |
@@ -151,22 +151,22 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 | # | Tipo | Arquivos | % | Família | Repositórios |
 | :-- | :--- | ---: | ---: | :--- | ---: |
-| 1 | `.webp` | `9588` | `54.59%` | imagem | 1 |
-| 2 | `.json` | `2537` | `14.44%` | dado | 34 |
-| 3 | `.p3d` | `1302` | `7.41%` | modelo 3D | 1 |
-| 4 | `.java` | `1052` | `5.99%` | código | 4 |
-| 5 | `.js` | `639` | `3.64%` | código | 14 |
-| 6 | `.ts` | `565` | `3.22%` | código | 5 |
-| 7 | `.md` | `483` | `2.75%` | documento | 53 |
+| 1 | `.webp` | `9588` | `54.50%` | imagem | 1 |
+| 2 | `.json` | `2537` | `14.42%` | dado | 34 |
+| 3 | `.p3d` | `1302` | `7.40%` | modelo 3D | 1 |
+| 4 | `.java` | `1052` | `5.98%` | código | 4 |
+| 5 | `.js` | `641` | `3.64%` | código | 14 |
+| 6 | `.ts` | `565` | `3.21%` | código | 5 |
+| 7 | `.md` | `507` | `2.88%` | documento | 53 |
 | 8 | `.class` | `255` | `1.45%` | outros | 1 |
-| 9 | `.jpeg` | `224` | `1.28%` | imagem | 2 |
+| 9 | `.jpeg` | `224` | `1.27%` | imagem | 2 |
 | 10 | `.tsx` | `180` | `1.02%` | código | 3 |
-| 11 | `.css` | `145` | `0.83%` | estilo e marcação | 12 |
+| 11 | `.css` | `145` | `0.82%` | estilo e marcação | 12 |
 | 12 | `.png` | `110` | `0.63%` | imagem | 8 |
 | 13 | `.html` | `89` | `0.51%` | estilo e marcação | 17 |
 | 14 | `.py` | `84` | `0.48%` | código | 6 |
 | 15 | `.mjs` | `44` | `0.25%` | código | 4 |
-| 16 | `.sql` | `38` | `0.22%` | dado | 4 |
+| 16 | `.sql` | `39` | `0.22%` | dado | 4 |
 | 17 | `.por` | `25` | `0.14%` | outros | 3 |
 | 18 | `.yml` | `25` | `0.14%` | dado | 6 |
 | 19 | `.jsx` | `22` | `0.13%` | código | 3 |
@@ -175,15 +175,15 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 | 22 | `.xml` | `14` | `0.08%` | estilo e marcação | 2 |
 | 23 | `.svg` | `11` | `0.06%` | estilo e marcação | 3 |
 | 24 | `.mp3` | `9` | `0.05%` | áudio e vídeo | 1 |
-| | _… +28 outros tipos_ | `94` | `0.54%` | | |
+| | _… +29 outros tipos_ | `95` | `0.54%` | | |
 
 | Família | Arquivos | % |
 | :--- | ---: | ---: |
-| imagem | `9926` | `56.51%` |
-| código | `2634` | `15.00%` |
-| dado | `2609` | `14.85%` |
-| modelo 3D | `1306` | `7.44%` |
-| documento | `501` | `2.85%` |
+| imagem | `9926` | `56.42%` |
+| código | `2636` | `14.98%` |
+| dado | `2611` | `14.84%` |
+| modelo 3D | `1306` | `7.42%` |
+| documento | `525` | `2.98%` |
 | outros | `320` | `1.82%` |
 | estilo e marcação | `259` | `1.47%` |
 | áudio e vídeo | `9` | `0.05%` |
@@ -191,11 +191,11 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 <details>
 <summary><b>🗺 Onde cada linguagem foi usada / Where each language was used</b></summary>
 
-#### JavaScript — `5.44 MB`
+#### JavaScript — `5.45 MB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.27 MB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.28 MB` |
 | [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `739.0 KB` |
 | [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |
 | [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `194.1 KB` |
@@ -274,11 +274,11 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 | [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `4.6 KB` |
 | [Lucas-Belucci-Bellini](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini) | `1.6 KB` |
 
-#### PLpgSQL — `62.9 KB`
+#### PLpgSQL — `68.3 KB`
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `42.7 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `48.1 KB` |
 | [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `20.2 KB` |
 
 #### SQF — `52.0 KB`
