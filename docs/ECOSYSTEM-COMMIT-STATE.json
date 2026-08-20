@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-20T20:46:25Z",
+  "scanned_at": "2026-08-20T21:43:14Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,10 +335,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "0ea2e1fef9fba716152f096eb7cc96c235eb4b52",
-      "date": "2026-08-20T20:35:29Z",
-      "message": "docs(v2): record integrated Jarvis publication",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0ea2e1fef9fba716152f096eb7cc96c235eb4b52"
+      "sha": "6b6ff5d43b0249bffaf6beec9edd33f672ace3c9",
+      "date": "2026-08-20T21:30:43Z",
+      "message": "docs(v2): finalize Jarvis observation publication",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/6b6ff5d43b0249bffaf6beec9edd33f672ace3c9"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,10 +402,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1919,
-    "project_commits": 1842,
-    "monitor_commits": 77,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 1925,
+    "project_commits": 1847,
+    "monitor_commits": 78,
+    "detected_project_commits_this_scan": 5,
     "monitor_commit_this_scan": 1
   },
   "summary": {
