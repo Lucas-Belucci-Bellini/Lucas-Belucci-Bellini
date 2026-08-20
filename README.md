@@ -114,7 +114,314 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 > language and rewrites the block below — totals, weight and where each one was used.
 > Private repositories are excluded by design.*
 
-<!-- LANG-STATS:START -->\n\n> **16 linguagens** · **53 tipos de arquivo** · **59 repositórios** · **14.63 MB** de código · **17.620** arquivos · atualizado em `20/08/2026 18:58 UTC`\n\n<div align="center">\n\n![Análise visual do ecossistema](./assets/lang-stats.svg)\n\n</div>\n\n> **Leitura rápida:** o painel acima prioriza o que importa — volume, linguagens dominantes, formatos de arquivo e famílias do portfólio. A auditoria completa fica recolhida para manter o README elegante e rápido de ler.\n\n> 30 repositório(s) sem linguagem detectada pelo GitHub — contam no total, mas não na tabela detalhada.\n\n<details>\n<summary><b>⌁ Auditoria de linguagens e repositórios</b></summary>\n\n### Linguagens por peso\n\n| # | Linguagem | Peso | Participação | Repositórios |\n| :--: | :--- | ---: | ---: | ---: |\n| 1 | **JavaScript** | `5.47 MB` | `37.38%` | 16 |\n| 2 | **TypeScript** | `3.45 MB` | `23.57%` | 5 |\n| 3 | **HTML** | `3.43 MB` | `23.43%` | 17 |\n| 4 | **CSS** | `766.9 KB` | `5.12%` | 12 |\n| 5 | **Java** | `676.4 KB` | `4.52%` | 4 |\n| 6 | **Python** | `573.7 KB` | `3.83%` | 6 |\n| 7 | **PLpgSQL** | `68.3 KB` | `0.46%` | 2 |\n| 8 | **SQF** | `52.0 KB` | `0.35%` | 1 |\n| 9 | **Rust** | `41.3 KB` | `0.28%` | 2 |\n| 10 | **C#** | `41.1 KB` | `0.27%` | 1 |\n| 11 | **Shell** | `40.8 KB` | `0.27%` | 5 |\n| 12 | **GDScript** | `36.3 KB` | `0.24%` | 1 |\n| 13 | **PowerShell** | `26.9 KB` | `0.18%` | 2 |\n| 14 | **Portugol** | `11.1 KB` | `0.07%` | 3 |\n| 15 | **Batchfile** | `5.3 KB` | `0.04%` | 5 |\n| 16 | **Dockerfile** | `460 B` | `0.00%` | 1 |\n\n#### Onde cada linguagem foi usada\n\n<details><summary><b>JavaScript</b> · `5.47 MB` · 16 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.30 MB` |\n| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `739.0 KB` |\n| [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |\n| [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `194.1 KB` |\n| [Essence-Custom-Furniture](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `177.9 KB` |\n| [Projeto-Baluarte-World-Game](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `144.7 KB` |\n| [Cookie-Clicker-Bot](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) | `125.1 KB` |\n| [UMBRA-LIMA-ALFA](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) | `121.1 KB` |\n| [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `97.5 KB` |\n| [CodeVibe-Academy](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | `89.0 KB` |\n| [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `78.0 KB` |\n| [Academic-Portfolio](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) | `63.0 KB` |\n| _… +4 repositórios_ | |\n\n</details>\n\n<details><summary><b>TypeScript</b> · `3.45 MB` · 5 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `1.74 MB` |\n| [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `725.6 KB` |\n| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `503.7 KB` |\n| [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `496.9 KB` |\n| [DailyPlanner](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) | `25.5 KB` |\n\n</details>\n\n<details><summary><b>HTML</b> · `3.43 MB` · 17 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.04 MB` |\n| [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `67.4 KB` |\n| [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `60.8 KB` |\n| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `48.8 KB` |\n| [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `43.6 KB` |\n| [CodeVibe-Academy](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | `42.6 KB` |\n| [OMEGA-ALFA-DELTA](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) | `30.1 KB` |\n| [Essence-Custom-Furniture](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `28.5 KB` |\n| [Portifolio-Baluarte-Lucas-Belucci-Bellini-](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `25.7 KB` |\n| [Academic-Portfolio](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) | `25.3 KB` |\n| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `6.9 KB` |\n| [Customizable-birthday-invitation](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) | `6.1 KB` |\n| _… +5 repositórios_ | |\n\n</details>\n\n<details><summary><b>CSS</b> · `766.9 KB` · 12 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `609.9 KB` |\n| [Projeto-Baluarte-World-Game](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `32.8 KB` |\n| [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `29.8 KB` |\n| [Portifolio-Baluarte-Lucas-Belucci-Bellini-](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `21.5 KB` |\n| [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `21.4 KB` |\n| [DailyPlanner](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) | `17.6 KB` |\n| [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `12.1 KB` |\n| [OMEGA-ALFA-DELTA](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) | `9.1 KB` |\n| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `5.4 KB` |\n| [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `5.1 KB` |\n| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `1.9 KB` |\n| [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `315 B` |\n\n</details>\n\n<details><summary><b>Java</b> · `676.4 KB` · 4 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `532.3 KB` |\n| [JAVA-todos-os-codigos-em-java](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) | `99.6 KB` |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `23.0 KB` |\n| [Java-activities](https://github.com/Lucas-Belucci-Bellini/Java-activities) | `21.5 KB` |\n\n</details>\n\n<details><summary><b>Python</b> · `573.7 KB` · 6 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `498.4 KB` |\n| [baluarte-docs](https://github.com/Lucas-Belucci-Bellini/baluarte-docs) | `39.5 KB` |\n| [G-mod-Black-mesa](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) | `15.0 KB` |\n| [Python](https://github.com/Lucas-Belucci-Bellini/Python) | `14.7 KB` |\n| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `4.6 KB` |\n| [Lucas-Belucci-Bellini](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini) | `1.6 KB` |\n\n</details>\n\n<details><summary><b>PLpgSQL</b> · `68.3 KB` · 2 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `48.1 KB` |\n| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `20.2 KB` |\n\n</details>\n\n<details><summary><b>SQF</b> · `52.0 KB` · 1 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `52.0 KB` |\n\n</details>\n\n<details><summary><b>Rust</b> · `41.3 KB` · 2 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `39.4 KB` |\n| [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `1.9 KB` |\n\n</details>\n\n<details><summary><b>C#</b> · `41.1 KB` · 1 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `41.1 KB` |\n\n</details>\n\n<details><summary><b>Shell</b> · `40.8 KB` · 5 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Project-Baluarte-DevFlow](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) | `17.8 KB` |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `12.0 KB` |\n| [AI-second-brain-with-Claude-and-Obsidian](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian) | `9.4 KB` |\n| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `1.4 KB` |\n| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `153 B` |\n\n</details>\n\n<details><summary><b>GDScript</b> · `36.3 KB` · 1 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `36.3 KB` |\n\n</details>\n\n<details><summary><b>PowerShell</b> · `26.9 KB` · 2 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Project-Baluarte-DevFlow](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) | `18.9 KB` |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `8.0 KB` |\n\n</details>\n\n<details><summary><b>Portugol</b> · `11.1 KB` · 3 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Decision-Structures](https://github.com/Lucas-Belucci-Bellini/Decision-Structures) | `3.8 KB` |\n| [Some-Pseudocode-and-exercise-codes](https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes) | `3.8 KB` |\n| [JAVA-todos-os-codigos-em-java](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) | `3.4 KB` |\n\n</details>\n\n<details><summary><b>Batchfile</b> · `5.3 KB` · 5 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `3.1 KB` |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `980 B` |\n| [Project-Baluarte-DevFlow](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) | `600 B` |\n| [G-mod-Black-mesa](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) | `443 B` |\n| [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `269 B` |\n\n</details>\n\n<details><summary><b>Dockerfile</b> · `460 B` · 1 repositórios</summary>\n\n| Repositório | Peso |\n| :--- | ---: |\n| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `460 B` |\n\n</details>\n\n</details>\n\n<details>\n<summary><b>⌘ Auditoria de tipos de arquivo e famílias</b></summary>\n\n### Formatos mais frequentes\n\n| # | Tipo | Arquivos | Participação | Família | Repositórios |\n| :--: | :--- | ---: | ---: | :--- | ---: |\n| 1 | `.webp` | `9588` | `54.42%` | imagem | 1 |\n| 2 | `.json` | `2537` | `14.40%` | dado | 34 |\n| 3 | `.p3d` | `1302` | `7.39%` | modelo 3D | 1 |\n| 4 | `.java` | `1052` | `5.97%` | código | 4 |\n| 5 | `.js` | `643` | `3.65%` | código | 14 |\n| 6 | `.ts` | `571` | `3.24%` | código | 5 |\n| 7 | `.md` | `527` | `2.99%` | documento | 53 |\n| 8 | `.class` | `255` | `1.45%` | outros | 1 |\n| 9 | `.jpeg` | `224` | `1.27%` | imagem | 2 |\n| 10 | `.tsx` | `180` | `1.02%` | código | 3 |\n| 11 | `.css` | `145` | `0.82%` | estilo e marcação | 12 |\n| 12 | `.png` | `110` | `0.62%` | imagem | 8 |\n| 13 | `.html` | `89` | `0.51%` | estilo e marcação | 17 |\n| 14 | `.py` | `84` | `0.48%` | código | 6 |\n| 15 | `.mjs` | `44` | `0.25%` | código | 4 |\n| 16 | `.sql` | `39` | `0.22%` | dado | 4 |\n| 17 | `.por` | `25` | `0.14%` | outros | 3 |\n| 18 | `.yml` | `25` | `0.14%` | dado | 6 |\n| 19 | `.jsx` | `22` | `0.12%` | código | 3 |\n| 20 | `.rs` | `15` | `0.09%` | código | 2 |\n| 21 | `.sqf` | `14` | `0.08%` | código | 1 |\n| 22 | `.xml` | `14` | `0.08%` | estilo e marcação | 2 |\n| 23 | `.svg` | `11` | `0.06%` | estilo e marcação | 3 |\n| 24 | `.mp3` | `9` | `0.05%` | áudio e vídeo | 1 |\n|  | _… +29 outros tipos_ | `95` | `0.54%` |  |  |\n\n### Famílias de arquivo\n\n| Família | Arquivos | Participação |\n| :--- | ---: | ---: |\n| imagem | `9926` | `56.33%` |\n| código | `2644` | `15.01%` |\n| dado | `2611` | `14.82%` |\n| modelo 3D | `1306` | `7.41%` |\n| documento | `545` | `3.09%` |\n| outros | `320` | `1.82%` |\n| estilo e marcação | `259` | `1.47%` |\n| áudio e vídeo | `9` | `0.05%` |\n\n</details>\n\n<!-- LANG-STATS:END -->
+<!-- LANG-STATS:START -->
+
+> **18 linguagens** · **76 tipos de arquivo** · **79 repositórios** · **49.35 MB** de código · **18.575** arquivos · **20** privados · atualizado em `20/08/2026 19:42 UTC`
+
+<div align="center">
+
+![Análise visual do ecossistema](./assets/lang-stats.svg)
+
+</div>
+
+> **Leitura rápida:** o painel acima prioriza o que importa — volume, linguagens dominantes, formatos de arquivo e famílias do portfólio. A auditoria completa fica recolhida para manter o README elegante e rápido de ler.
+
+> 41 repositório(s) sem linguagem detectada pelo GitHub — contam no total, mas não na tabela detalhada.
+
+<details>
+<summary><b>⌁ Auditoria de linguagens e repositórios</b></summary>
+
+### Linguagens por peso
+
+| # | Linguagem | Peso | Participação | Repositórios |
+| :--: | :--- | ---: | ---: | ---: |
+| 1 | **HTML** | `36.39 MB` | `73.75%` | 23 |
+| 2 | **JavaScript** | `5.76 MB` | `11.67%` | 21 |
+| 3 | **TypeScript** | `4.56 MB` | `9.24%` | 8 |
+| 4 | **CSS** | `931.1 KB` | `1.84%` | 18 |
+| 5 | **Python** | `763.5 KB` | `1.51%` | 9 |
+| 6 | **Java** | `676.4 KB` | `1.34%` | 4 |
+| 7 | **PLpgSQL** | `68.3 KB` | `0.14%` | 2 |
+| 8 | **SQF** | `52.0 KB` | `0.10%` | 1 |
+| 9 | **Shell** | `41.6 KB` | `0.08%` | 6 |
+| 10 | **Rust** | `41.3 KB` | `0.08%` | 2 |
+| 11 | **C#** | `41.1 KB` | `0.08%` | 1 |
+| 12 | **GDScript** | `36.3 KB` | `0.07%` | 1 |
+| 13 | **PowerShell** | `28.3 KB` | `0.06%` | 3 |
+| 14 | **Portugol** | `11.1 KB` | `0.02%` | 3 |
+| 15 | **Batchfile** | `5.7 KB` | `0.01%` | 6 |
+| 16 | **Dockerfile** | `1.4 KB` | `0.00%` | 2 |
+| 17 | **Inno Setup** | `1.2 KB` | `0.00%` | 1 |
+| 18 | **Mako** | `579 B` | `0.00%` | 1 |
+
+#### Onde cada linguagem foi usada
+
+<details><summary><b>HTML</b> · `36.39 MB` · 23 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| 🔒 _repositório privado_ | `32.83 MB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.05 MB` |
+| 🔒 _repositório privado_ | `99.9 KB` |
+| [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `67.4 KB` |
+| [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `60.8 KB` |
+| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `48.8 KB` |
+| [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `43.6 KB` |
+| [CodeVibe-Academy](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | `42.6 KB` |
+| [OMEGA-ALFA-DELTA](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) | `30.1 KB` |
+| [Essence-Custom-Furniture](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `28.5 KB` |
+| [Portifolio-Baluarte-Lucas-Belucci-Bellini-](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `25.7 KB` |
+| [Academic-Portfolio](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) | `25.3 KB` |
+| _… +11 repositórios_ | |
+
+</details>
+
+<details><summary><b>JavaScript</b> · `5.76 MB` · 21 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.30 MB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `739.0 KB` |
+| [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |
+| [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `194.1 KB` |
+| 🔒 _repositório privado_ | `189.2 KB` |
+| [Essence-Custom-Furniture](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `177.9 KB` |
+| [Projeto-Baluarte-World-Game](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `144.7 KB` |
+| [Cookie-Clicker-Bot](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) | `125.1 KB` |
+| [UMBRA-LIMA-ALFA](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) | `121.1 KB` |
+| [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `97.5 KB` |
+| [CodeVibe-Academy](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | `89.0 KB` |
+| [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `78.0 KB` |
+| _… +9 repositórios_ | |
+
+</details>
+
+<details><summary><b>TypeScript</b> · `4.56 MB` · 8 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `1.74 MB` |
+| [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `725.6 KB` |
+| 🔒 _repositório privado_ | `716.7 KB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `503.7 KB` |
+| [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `496.9 KB` |
+| 🔒 _repositório privado_ | `345.9 KB` |
+| 🔒 _repositório privado_ | `76.5 KB` |
+| [DailyPlanner](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) | `25.5 KB` |
+
+</details>
+
+<details><summary><b>CSS</b> · `931.1 KB` · 18 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `609.9 KB` |
+| 🔒 _repositório privado_ | `121.6 KB` |
+| [Projeto-Baluarte-World-Game](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `32.8 KB` |
+| [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `29.8 KB` |
+| [Portifolio-Baluarte-Lucas-Belucci-Bellini-](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `21.5 KB` |
+| [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `21.4 KB` |
+| [DailyPlanner](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) | `17.6 KB` |
+| 🔒 _repositório privado_ | `17.1 KB` |
+| [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `12.1 KB` |
+| 🔒 _repositório privado_ | `9.9 KB` |
+| [OMEGA-ALFA-DELTA](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) | `9.1 KB` |
+| 🔒 _repositório privado_ | `6.8 KB` |
+| _… +6 repositórios_ | |
+
+</details>
+
+<details><summary><b>Python</b> · `763.5 KB` · 9 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `498.4 KB` |
+| 🔒 _repositório privado_ | `132.9 KB` |
+| 🔒 _repositório privado_ | `40.4 KB` |
+| [baluarte-docs](https://github.com/Lucas-Belucci-Bellini/baluarte-docs) | `39.5 KB` |
+| 🔒 _repositório privado_ | `16.5 KB` |
+| [G-mod-Black-mesa](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) | `15.0 KB` |
+| [Python](https://github.com/Lucas-Belucci-Bellini/Python) | `14.7 KB` |
+| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `4.6 KB` |
+| [Lucas-Belucci-Bellini](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini) | `1.6 KB` |
+
+</details>
+
+<details><summary><b>Java</b> · `676.4 KB` · 4 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `532.3 KB` |
+| [JAVA-todos-os-codigos-em-java](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) | `99.6 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `23.0 KB` |
+| [Java-activities](https://github.com/Lucas-Belucci-Bellini/Java-activities) | `21.5 KB` |
+
+</details>
+
+<details><summary><b>PLpgSQL</b> · `68.3 KB` · 2 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `48.1 KB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `20.2 KB` |
+
+</details>
+
+<details><summary><b>SQF</b> · `52.0 KB` · 1 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `52.0 KB` |
+
+</details>
+
+<details><summary><b>Shell</b> · `41.6 KB` · 6 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Project-Baluarte-DevFlow](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) | `17.8 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `12.0 KB` |
+| [AI-second-brain-with-Claude-and-Obsidian](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian) | `9.4 KB` |
+| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `1.4 KB` |
+| 🔒 _repositório privado_ | `900 B` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `153 B` |
+
+</details>
+
+<details><summary><b>Rust</b> · `41.3 KB` · 2 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `39.4 KB` |
+| [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `1.9 KB` |
+
+</details>
+
+<details><summary><b>C#</b> · `41.1 KB` · 1 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `41.1 KB` |
+
+</details>
+
+<details><summary><b>GDScript</b> · `36.3 KB` · 1 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `36.3 KB` |
+
+</details>
+
+<details><summary><b>PowerShell</b> · `28.3 KB` · 3 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Project-Baluarte-DevFlow](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) | `18.9 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `8.0 KB` |
+| 🔒 _repositório privado_ | `1.4 KB` |
+
+</details>
+
+<details><summary><b>Portugol</b> · `11.1 KB` · 3 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Decision-Structures](https://github.com/Lucas-Belucci-Bellini/Decision-Structures) | `3.8 KB` |
+| [Some-Pseudocode-and-exercise-codes](https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes) | `3.8 KB` |
+| [JAVA-todos-os-codigos-em-java](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) | `3.4 KB` |
+
+</details>
+
+<details><summary><b>Batchfile</b> · `5.7 KB` · 6 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Catacombs-of-Paris-Ossuary-Escape-game-design](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | `3.1 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `980 B` |
+| [Project-Baluarte-DevFlow](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) | `600 B` |
+| [G-mod-Black-mesa](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) | `443 B` |
+| 🔒 _repositório privado_ | `410 B` |
+| [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `269 B` |
+
+</details>
+
+<details><summary><b>Dockerfile</b> · `1.4 KB` · 2 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| 🔒 _repositório privado_ | `993 B` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `460 B` |
+
+</details>
+
+<details><summary><b>Inno Setup</b> · `1.2 KB` · 1 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| 🔒 _repositório privado_ | `1.2 KB` |
+
+</details>
+
+<details><summary><b>Mako</b> · `579 B` · 1 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| 🔒 _repositório privado_ | `579 B` |
+
+</details>
+
+</details>
+
+<details>
+<summary><b>⌘ Auditoria de tipos de arquivo e famílias</b></summary>
+
+### Formatos mais frequentes
+
+| # | Tipo | Arquivos | Participação | Família | Repositórios |
+| :--: | :--- | ---: | ---: | :--- | ---: |
+| 1 | `.webp` | `9588` | `51.62%` | imagem | 1 |
+| 2 | `.json` | `2574` | `13.86%` | dado | 39 |
+| 3 | `.p3d` | `1302` | `7.01%` | modelo 3D | 1 |
+| 4 | `.java` | `1052` | `5.66%` | código | 4 |
+| 5 | `.ts` | `691` | `3.72%` | código | 8 |
+| 6 | `.js` | `671` | `3.61%` | código | 19 |
+| 7 | `.md` | `647` | `3.48%` | documento | 65 |
+| 8 | `.html` | `416` | `2.24%` | estilo e marcação | 23 |
+| 9 | `.tsx` | `347` | `1.87%` | código | 6 |
+| 10 | `.class` | `255` | `1.37%` | outros | 1 |
+| 11 | `.jpeg` | `224` | `1.21%` | imagem | 2 |
+| 12 | `.css` | `164` | `0.88%` | estilo e marcação | 18 |
+| 13 | `.py` | `120` | `0.65%` | código | 9 |
+| 14 | `.png` | `110` | `0.59%` | imagem | 8 |
+| 15 | `.mjs` | `48` | `0.26%` | código | 5 |
+| 16 | `.sql` | `44` | `0.24%` | dado | 5 |
+| 17 | `.yml` | `28` | `0.15%` | dado | 8 |
+| 18 | `.por` | `25` | `0.13%` | outros | 3 |
+| 19 | `.jsx` | `22` | `0.12%` | código | 3 |
+| 20 | `.save` | `21` | `0.11%` | outros | 1 |
+| 21 | `.rs` | `15` | `0.08%` | código | 2 |
+| 22 | `.txt` | `15` | `0.08%` | documento | 6 |
+| 23 | `.sqf` | `14` | `0.08%` | código | 1 |
+| 24 | `.xml` | `14` | `0.08%` | estilo e marcação | 2 |
+|  | _… +52 outros tipos_ | `168` | `0.90%` |  |  |
+
+### Famílias de arquivo
+
+| Família | Arquivos | Participação |
+| :--- | ---: | ---: |
+| imagem | `9926` | `53.44%` |
+| código | `3002` | `16.16%` |
+| dado | `2661` | `14.33%` |
+| modelo 3D | `1306` | `7.03%` |
+| documento | `676` | `3.64%` |
+| estilo e marcação | `607` | `3.27%` |
+| outros | `388` | `2.09%` |
+| áudio e vídeo | `9` | `0.05%` |
+
+</details>
+
+<!-- LANG-STATS:END -->
 
 ---
 

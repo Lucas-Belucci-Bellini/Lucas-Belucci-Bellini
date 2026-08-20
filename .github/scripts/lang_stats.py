@@ -455,7 +455,7 @@ def build_svg(data: dict) -> str:
         f'<text x="836" y="634" fill="{GREEN}" font-size="9">LIVE</text>'
         '</svg>'
     )
-    return "\\n".join(parts) + "\\n"
+    return "\n".join(parts) + "\n"
 
 
 def build_profile_top_langs_svg(data: dict) -> str:
@@ -603,7 +603,7 @@ def build_markdown(data: dict) -> str:
         out += ["", "</details>"]
 
     out += ["", END]
-    return "\\n".join(out)
+    return "\n".join(out)
 
 
 # Os dois formatos de carimbo de hora que o bot escreve: `03/08/2026 00:01 UTC`
