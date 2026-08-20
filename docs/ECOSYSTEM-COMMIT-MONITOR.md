@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-20T21:43:14Z`  
+**Última varredura:** `2026-08-20T22:44:50Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `58`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1925`
-- **Commits dos projetos:** `1847`
-- **Commits do próprio monitor:** `78`
-- **Commits de projetos detectados nesta hora:** `5`
+- **Commits rastreados pelo ecossistema:** `1933`
+- **Commits dos projetos:** `1854`
+- **Commits do próprio monitor:** `79`
+- **Commits de projetos detectados nesta hora:** `7`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 5 commit(s) — [6b6ff5d43b02](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/6b6ff5d43b0249bffaf6beec9edd33f672ace3c9) — docs(v2): finalize Jarvis observation publication
+- **Projeto-Baluarte** — 7 commit(s) — [d45c5a15ac64](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/d45c5a15ac6436e3aabbb4bbd840b2d62e31c75b) — feat(jarvis): consume server health observations
 
 ## Erros de consulta
 
