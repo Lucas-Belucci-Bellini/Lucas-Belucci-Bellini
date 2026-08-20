@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-20T09:50:03Z",
+  "scanned_at": "2026-08-20T10:46:50Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,10 +335,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "c5f8ee4c3d1272e4e52d5f523e34195efdd1990c",
-      "date": "2026-08-20T09:37:51Z",
-      "message": "refactor(arma3): promote typed extraction panel consumer",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/c5f8ee4c3d1272e4e52d5f523e34195efdd1990c"
+      "sha": "93cc78c42d2cc03a02f92d36f134ada6fad6f666",
+      "date": "2026-08-20T09:52:29Z",
+      "message": "refactor(geo): promote typed tracker consumer",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/93cc78c42d2cc03a02f92d36f134ada6fad6f666"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,10 +402,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1867,
-    "project_commits": 1800,
-    "monitor_commits": 67,
-    "detected_project_commits_this_scan": 5,
+    "tracked_commits": 1869,
+    "project_commits": 1801,
+    "monitor_commits": 68,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
