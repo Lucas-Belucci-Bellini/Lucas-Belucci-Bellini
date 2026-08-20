@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-20T07:06:04Z",
+  "scanned_at": "2026-08-20T07:56:41Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,10 +335,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "b41d20a0802b6701d8933f08dd3a60e8e1879729",
-      "date": "2026-08-20T07:03:10Z",
-      "message": "refactor(geo): promote typed maplibre webgl loaders",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b41d20a0802b6701d8933f08dd3a60e8e1879729"
+      "sha": "b865fcc6d4621e0437fca8f484dfbdbf974bfd66",
+      "date": "2026-08-20T07:37:53Z",
+      "message": "chore(release): bump version to 1.2.0",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b865fcc6d4621e0437fca8f484dfbdbf974bfd66"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,10 +402,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1849,
-    "project_commits": 1785,
-    "monitor_commits": 64,
-    "detected_project_commits_this_scan": 13,
+    "tracked_commits": 1855,
+    "project_commits": 1790,
+    "monitor_commits": 65,
+    "detected_project_commits_this_scan": 5,
     "monitor_commit_this_scan": 1
   },
   "summary": {
