@@ -90,6 +90,9 @@ GOLD_LIGHT = "#e8c07a"
 PARCHMENT = "#f4ecdd"
 MUTED = "#a89a80"
 DIM = "#77694f"
+GREEN = "#3ddc84"
+RED = "#e07a5f"
+PURPLE = "#a68dad"
 
 # Cores por linguagem (tons que convivem com o dourado)
 LANG_COLORS = {
@@ -105,6 +108,17 @@ LANG_COLORS = {
     "SCSS": "#c48fb0", "Assembly": "#a89a80", "Arduino": "#7fbfae",
 }
 FALLBACK_CYCLE = [GOLD, GOLD_LIGHT, "#b9a77f", "#c9a227", "#a89a80", "#8fa6c4"]
+FAMILY_COLORS = {
+    "código": "#e8c07a",
+    "dado": "#a68dad",
+    "imagem": "#3ddc84",
+    "modelo 3D": "#e07a5f",
+    "documento": "#8fa6c4",
+    "estilo e marcação": "#d4a24e",
+    "áudio e vídeo": "#c4926b",
+    "fonte": "#9b8fc4",
+    "outros": "#77694f",
+}
 
 
 def color_for(lang: str, idx: int) -> str:
@@ -336,90 +350,112 @@ def esc(s: str) -> str:
 # ----------------------------------------------------------------- SVG
 
 def build_svg(data: dict) -> str:
-    langs = list(data["per_lang"].items())[:10]
+    """Gera um dashboard compacto com KPIs, rankings e famílias."""
+    width, height = 880, 660
     total = data["total_bytes"] or 1
-    n_langs = len(data["per_lang"])
-
-    row_h = 26
-    top_y = 132
-    height = top_y + row_h * len(langs) + 34
-    width = 880
-    bar_x, bar_w = 250, 500
+    arq_total = data["arquivos_total"] or 1
+    per_ext = data.get("per_ext") or {}
+    langs = list(data["per_lang"].items())[:8]
+    ext_order = sorted(per_ext.items(), key=lambda kv: (-kv[1], kv[0]))
 
     parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" '
-        f'width="{width}" height="{height}" font-family="\'DejaVu Sans Mono\',monospace" '
-        f'role="img" aria-label="Análise de linguagens do perfil">',
-        '<defs>'
-        f'<linearGradient id="bgg" x1="0" y1="0" x2="1" y2="1">'
-        f'<stop offset="0" stop-color="{BG}"/><stop offset="1" stop-color="#0b0910"/></linearGradient>'
-        f'<linearGradient id="scanl" x1="0" y1="0" x2="1" y2="0">'
-        f'<stop offset="0" stop-color="{GOLD}" stop-opacity="0"/>'
-        f'<stop offset="0.5" stop-color="{GOLD_LIGHT}" stop-opacity="0.9"/>'
-        f'<stop offset="1" stop-color="{GOLD}" stop-opacity="0"/></linearGradient>'
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}" font-family="DejaVu Sans Mono,monospace" role="img" aria-label="Painel visual de linguagens, arquivos e famílias do perfil">',
+        '<defs>',
+        f'<linearGradient id="ecosystem-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{BG}"/><stop offset="1" stop-color="#0b0910"/></linearGradient>',
+        f'<linearGradient id="ecosystem-scan" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{GOLD}" stop-opacity="0"/><stop offset="0.5" stop-color="{GOLD_LIGHT}" stop-opacity="0.9"/><stop offset="1" stop-color="{GOLD}" stop-opacity="0"/></linearGradient>',
         '</defs>',
-        f'<rect width="{width}" height="{height}" rx="14" fill="url(#bgg)"/>',
-        f'<rect x="5" y="5" width="{width-10}" height="{height-10}" rx="11" fill="none" '
-        f'stroke="{GOLD}" stroke-opacity="0.35"/>',
-        # cantos HUD
-        f'<g stroke="{GOLD_LIGHT}" stroke-width="2" fill="none" stroke-linecap="round">'
-        f'<path d="M22 40 V22 H40"/><path d="M{width-40} 22 H{width-22} V40"/>'
-        f'<path d="M22 {height-40} V{height-22} H40"/>'
-        f'<path d="M{width-22} {height-40} V{height-22} H{width-40}"/></g>',
-        # título
-        f'<text x="38" y="44" fill="{GOLD_LIGHT}" font-size="15" font-weight="700" '
-        f'letter-spacing="2">&#x2B21; ARSENAL // AN&#xC1;LISE DE LINGUAGENS</text>',
-        f'<line x1="24" y1="58" x2="{width-24}" y2="58" stroke="{GOLD}" stroke-opacity="0.25"/>',
-        f'<rect x="24" y="59" width="200" height="2" fill="url(#scanl)" opacity="0.85">'
-        f'<animate attributeName="x" values="24;{width-224};24" dur="8s" repeatCount="indefinite"/></rect>',
+        f'<rect width="{width}" height="{height}" rx="14" fill="url(#ecosystem-bg)"/>',
+        f'<rect x="5" y="5" width="{width-10}" height="{height-10}" rx="11" fill="none" stroke="{GOLD}" stroke-opacity="0.35"/>',
+        f'<g stroke="{GOLD_LIGHT}" stroke-width="2" fill="none" stroke-linecap="round"><path d="M22 40 V22 H40"/><path d="M{width-40} 22 H{width-22} V40"/><path d="M22 {height-40} V{height-22} H40"/><path d="M{width-22} {height-40} V{height-22} H{width-40}"/></g>',
+        f'<text x="38" y="42" fill="{GOLD_LIGHT}" font-size="15" font-weight="700" letter-spacing="2">&#x2B21; ARSENAL // AN&#xC1;LISE DO ECOSSISTEMA</text>',
+        f'<text x="38" y="59" fill="{DIM}" font-size="10" letter-spacing="1.2">linguagens · arquivos · famílias · leitura rápida do portfólio</text>',
+        f'<line x1="24" y1="71" x2="{width-24}" y2="71" stroke="{GOLD}" stroke-opacity="0.25"/>',
+        f'<rect x="24" y="72" width="200" height="2" fill="url(#ecosystem-scan)" opacity="0.85"><animate attributeName="x" values="24;{width-224};24" dur="8s" repeatCount="indefinite"/></rect>',
     ]
 
-    # stats — quatro colunas desde que os tipos de arquivo entraram
-    repos_lbl = str(data["repo_count"])
-    if data.get("privados"):
-        repos_lbl += f" ({data['privados']} priv)"
     stats = [
-        (str(n_langs), "LINGUAGENS"),
-        (str(len(data.get("per_ext") or {})), "TIPOS DE ARQUIVO"),
-        (repos_lbl, "REPOSITÓRIOS"),
-        (human(data["total_bytes"]), "CÓDIGO TOTAL"),
+        (str(len(data["per_lang"])), "LINGUAGENS", GOLD_LIGHT),
+        (str(len(per_ext)), "TIPOS", GOLD),
+        (str(data["repo_count"]), "REPOSITÓRIOS", GREEN),
+        (human(data["total_bytes"]), "CÓDIGO", PURPLE),
+        (f'{data["arquivos_total"]:,}'.replace(',', '.'), "ARQUIVOS", RED),
     ]
-    sx = 38
-    for val, label in stats:
+    card_x = [24, 194, 364, 534, 704]
+    card_w = [160, 160, 160, 160, 152]
+    for x, w, (value, label, color) in zip(card_x, card_w, stats):
         parts.append(
-            f'<text x="{sx}" y="93" fill="{GOLD}" font-size="20" font-weight="700">{esc(val)}</text>'
-            f'<text x="{sx}" y="110" fill="{DIM}" font-size="10" letter-spacing="1.5">{label}</text>'
+            f'<rect x="{x}" y="86" width="{w}" height="58" rx="8" fill="{SURFACE}" stroke="{GOLD}" stroke-opacity="0.22"/>'
+            f'<text x="{x+14}" y="114" fill="{color}" font-size="20" font-weight="700">{esc(value)}</text>'
+            f'<text x="{x+14}" y="132" fill="{MUTED}" font-size="9" letter-spacing="1">{label}</text>'
         )
-        sx += 210
 
-    # barras
-    y = top_y
+    panel_y, panel_h = 164, 330
+    for x, title, subtitle in [(24, "LINGUAGENS DOMINANTES", "peso no código · top 8"), (452, "TIPOS DE ARQUIVO", "contagem · top 10")]:
+        parts.append(
+            f'<rect x="{x}" y="{panel_y}" width="404" height="{panel_h}" rx="10" fill="{SURFACE}" stroke="{GOLD}" stroke-opacity="0.22"/>'
+            f'<text x="{x+18}" y="{panel_y+28}" fill="{GOLD_LIGHT}" font-size="12" font-weight="700" letter-spacing="1.4">{title}</text>'
+            f'<text x="{x+18}" y="{panel_y+45}" fill="{DIM}" font-size="9" letter-spacing="1">{subtitle}</text>'
+            f'<line x1="{x+16}" y1="{panel_y+56}" x2="{x+388}" y2="{panel_y+56}" stroke="{GOLD}" stroke-opacity="0.18"/>'
+        )
+
     for i, (lang, size) in enumerate(langs):
+        y = panel_y + 80 + i * 29
         pct = size / total * 100
-        w = max(3, int(bar_w * size / total))
+        bar_w = max(3, int(176 * size / total))
         col = color_for(lang, i)
         parts.append(
-            f'<text x="38" y="{y+13}" fill="{PARCHMENT}" font-size="12">{esc(lang)}</text>'
-            f'<rect x="{bar_x}" y="{y+3}" width="{bar_w}" height="12" rx="6" fill="{SURFACE}"/>'
-            f'<rect x="{bar_x}" y="{y+3}" width="{w}" height="12" rx="6" fill="{col}">'
-            f'<animate attributeName="width" from="0" to="{w}" dur="1.1s" fill="freeze"/></rect>'
-            f'<text x="{bar_x+bar_w+14}" y="{y+13}" fill="{MUTED}" font-size="11">'
-            f'{pct:.1f}% &#183; {human(size)}</text>'
+            f'<text x="42" y="{y}" fill="{DIM}" font-size="9">{i+1:02d}</text>'
+            f'<text x="64" y="{y}" fill="{PARCHMENT}" font-size="10">{esc(lang)}</text>'
+            f'<rect x="178" y="{y-10}" width="176" height="10" rx="5" fill="#0e0c16"/>'
+            f'<rect x="178" y="{y-10}" width="{bar_w}" height="10" rx="5" fill="{col}"/>'
+            f'<text x="370" y="{y}" fill="{MUTED}" font-size="9" text-anchor="end">{pct:.1f}%</text>'
+            f'<text x="410" y="{y}" fill="{DIM}" font-size="9" text-anchor="end">{human(size)}</text>'
         )
-        y += row_h
+
+    top_ext_max = ext_order[0][1] if ext_order else 1
+    for i, (ext, count) in enumerate(ext_order[:10]):
+        y = panel_y + 80 + i * 24
+        pct = count / arq_total * 100
+        family = EXT_FAMILIA.get(ext, "outros")
+        col = FAMILY_COLORS.get(family, DIM)
+        bar_w = max(3, int(176 * count / top_ext_max))
+        parts.append(
+            f'<circle cx="466" cy="{y-4}" r="4" fill="{col}"/>'
+            f'<text x="480" y="{y}" fill="{PARCHMENT}" font-size="10">.{esc(ext)}</text>'
+            f'<rect x="548" y="{y-10}" width="176" height="10" rx="5" fill="#0e0c16"/>'
+            f'<rect x="548" y="{y-10}" width="{bar_w}" height="10" rx="5" fill="{col}"/>'
+            f'<text x="740" y="{y}" fill="{MUTED}" font-size="9" text-anchor="end">{pct:.1f}%</text>'
+            f'<text x="840" y="{y}" fill="{DIM}" font-size="9" text-anchor="end">{count:,}'.replace(',', '.') + '</text>'
+        )
+
+    por_fam: dict[str, int] = {}
+    for ext, count in per_ext.items():
+        family = EXT_FAMILIA.get(ext, "outros")
+        por_fam[family] = por_fam.get(family, 0) + count
+    families = sorted(por_fam.items(), key=lambda kv: kv[1], reverse=True)[:4]
+    family_y = 518
+    for i, (family, count) in enumerate(families):
+        x = 24 + i * 214
+        pct = count / arq_total * 100
+        col = FAMILY_COLORS.get(family, DIM)
+        parts.append(
+            f'<rect x="{x}" y="{family_y}" width="198" height="70" rx="8" fill="{SURFACE}" stroke="{GOLD}" stroke-opacity="0.22"/>'
+            f'<circle cx="{x+18}" cy="{family_y+23}" r="5" fill="{col}"/>'
+            f'<text x="{x+31}" y="{family_y+26}" fill="{PARCHMENT}" font-size="10" font-weight="700">{esc(family.upper())}</text>'
+            f'<text x="{x+18}" y="{family_y+48}" fill="{GOLD_LIGHT}" font-size="15" font-weight="700">{count:,}'.replace(',', '.') + '</text>'
+            f'<text x="{x+72}" y="{family_y+48}" fill="{MUTED}" font-size="9">arquivos · {pct:.1f}%</text>'
+            f'<rect x="{x+18}" y="{family_y+57}" width="162" height="4" rx="2" fill="#0e0c16"/>'
+            f'<rect x="{x+18}" y="{family_y+57}" width="{max(3, int(162 * pct / 100))}" height="4" rx="2" fill="{col}"/>'
+        )
 
     stamp = data["generated"].strftime("%Y-%m-%d %H:%M UTC")
     parts.append(
-        f'<text x="38" y="{height-14}" fill="{DIM}" font-size="10" letter-spacing="1">'
-        f'atualizado automaticamente &#183; {stamp}</text>'
+        f'<text x="38" y="634" fill="{DIM}" font-size="9" letter-spacing="1">atualizado automaticamente · {stamp} · detalhes abaixo para auditoria completa</text>'
+        f'<circle cx="824" cy="630" r="4" fill="{GREEN}"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle>'
+        f'<text x="836" y="634" fill="{GREEN}" font-size="9">LIVE</text>'
+        '</svg>'
     )
-    parts.append(
-        f'<circle cx="{width-52}" cy="{height-18}" r="4" fill="#3ddc84">'
-        f'<animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle>'
-        f'<text x="{width-40}" y="{height-14}" fill="#3ddc84" font-size="10">LIVE</text>'
-    )
-    parts.append("</svg>")
-    return "\n".join(parts) + "\n"
+    return "\\n".join(parts) + "\\n"
 
 
 def build_profile_top_langs_svg(data: dict) -> str:
@@ -475,17 +511,17 @@ def rotulo_repo(name: str, priv: bool) -> str:
 
 
 def build_markdown(data: dict) -> str:
+    """Mantém o README limpo: resumo visual aberto, auditoria em detalhes."""
     per_lang = data["per_lang"]
     per_ext = data["per_ext"]
     total = data["total_bytes"] or 1
     stamp = data["generated"].strftime("%d/%m/%Y %H:%M UTC")
 
-    resumo = (f"> **{len(per_lang)} linguagens** e **{len(per_ext)} tipos de arquivo** "
-              f"em **{data['repo_count']} repositórios**")
+    resumo = (f"> **{len(per_lang)} linguagens** · **{len(per_ext)} tipos de arquivo** · "
+              f"**{data['repo_count']} repositórios** · **{human(data['total_bytes'])}** de código · "
+              f"**{data['arquivos_total']:,}** arquivos".replace(',', '.'))
     if data["privados"]:
-        resumo += f" (**{data['privados']}** privados)"
-    resumo += (f" · **{human(data['total_bytes'])}** de código"
-               f" · **{data['arquivos_total']:,}** arquivos".replace(",", "."))
+        resumo += f" · **{data['privados']}** privados"
     resumo += f" · atualizado em `{stamp}`"
 
     out = [
@@ -495,93 +531,79 @@ def build_markdown(data: dict) -> str:
         "",
         '<div align="center">',
         "",
-        "![Análise de linguagens](./assets/lang-stats.svg)",
+        "![Análise visual do ecossistema](./assets/lang-stats.svg)",
         "",
         "</div>",
         "",
-        "### Linguagens",
+        "> **Leitura rápida:** o painel acima prioriza o que importa — volume, linguagens dominantes, formatos de arquivo e famílias do portfólio. A auditoria completa fica recolhida para manter o README elegante e rápido de ler.",
         "",
-        "| # | Linguagem | Peso | % | Repositórios |",
-        "| :-- | :--- | ---: | ---: | ---: |",
     ]
 
+    if data["sem_linguagem"]:
+        out += [f"> {data['sem_linguagem']} repositório(s) sem linguagem detectada pelo GitHub — contam no total, mas não na tabela detalhada.", ""]
+    if data.get("falhados"):
+        out += [f"> ⚠️ {data['falhados']} repositório(s) não responderam nesta rodada; os números são parciais e serão reavaliados na próxima execução.", ""]
+
+    out += [
+        "<details>",
+        "<summary><b>⌁ Auditoria de linguagens e repositórios</b></summary>",
+        "",
+        "### Linguagens por peso",
+        "",
+        "| # | Linguagem | Peso | Participação | Repositórios |",
+        "| :--: | :--- | ---: | ---: | ---: |",
+    ]
     for i, (lang, size) in enumerate(per_lang.items(), 1):
         pct = size / total * 100
         n_repos = len(data["per_lang_repos"].get(lang, []))
         out.append(f"| {i} | **{lang}** | `{human(size)}` | `{pct:.2f}%` | {n_repos} |")
+    out += ["", "#### Onde cada linguagem foi usada", ""]
+    for lang, size in per_lang.items():
+        repos = data["per_lang_repos"].get(lang, [])
+        out.append(f"<details><summary><b>{lang}</b> · `{human(size)}` · {len(repos)} repositórios</summary>")
+        out += ["", "| Repositório | Peso |", "| :--- | ---: |"]
+        for name, rsize, priv in repos[:12]:
+            out.append(f"| {rotulo_repo(name, priv)} | `{human(rsize)}` |")
+        if len(repos) > 12:
+            out.append(f"| _… +{len(repos) - 12} repositórios_ | |")
+        out += ["", "</details>", ""]
+    out += ["</details>", ""]
 
-    if data["sem_linguagem"]:
-        out += ["", f"> {data['sem_linguagem']} repositório(s) sem linguagem "
-                    f"detectada pelo GitHub — contam no total, mas não na tabela."]
-
-    if data.get("falhados"):
-        out += ["", f"> ⚠️ {data['falhados']} repositório(s) a API do GitHub não "
-                    f"entregou nesta rodada — os números abaixo são **parciais**. "
-                    f"A análise segue com o resto em vez de falhar inteira, e "
-                    f"a próxima rodada costuma pegar o que faltou."]
-
-    # ── tipos de arquivo ──────────────────────────────────────────────────
     if per_ext:
         arq_total = data["arquivos_total"] or 1
-        # Ordena aqui também: a tabela diz "top", e depender da ordem que o
-        # chamador entregou faria um "top" errado sem nenhum sinal.
         ordenado = sorted(per_ext.items(), key=lambda kv: (-kv[1], kv[0]))
         out += [
+            "<details>",
+            "<summary><b>⌘ Auditoria de tipos de arquivo e famílias</b></summary>",
             "",
-            "### Tipos de arquivo",
+            "### Formatos mais frequentes",
             "",
-            "| # | Tipo | Arquivos | % | Família | Repositórios |",
-            "| :-- | :--- | ---: | ---: | :--- | ---: |",
+            "| # | Tipo | Arquivos | Participação | Família | Repositórios |",
+            "| :--: | :--- | ---: | ---: | :--- | ---: |",
         ]
         for i, (ext, n) in enumerate(ordenado[:TOP_EXT], 1):
             pct = n / arq_total * 100
             fam = EXT_FAMILIA.get(ext, "outros")
             nrep = len(data["per_ext_repos"].get(ext, ()))
             out.append(f"| {i} | `.{ext}` | `{n}` | `{pct:.2f}%` | {fam} | {nrep} |")
-
         resto = ordenado[TOP_EXT:]
         if resto:
             n_resto = sum(n for _e, n in resto)
-            out.append(f"| | _… +{len(resto)} outros tipos_ | `{n_resto}` | "
-                       f"`{n_resto / arq_total * 100:.2f}%` | | |")
+            out.append(f"|  | _… +{len(resto)} outros tipos_ | `{n_resto}` | `{n_resto / arq_total * 100:.2f}%` |  |  |")
 
-        # por família — a leitura por assunto
         por_fam: dict[str, int] = {}
         for ext, n in per_ext.items():
-            por_fam[EXT_FAMILIA.get(ext, "outros")] = \
-                por_fam.get(EXT_FAMILIA.get(ext, "outros"), 0) + n
-        out += ["", "| Família | Arquivos | % |", "| :--- | ---: | ---: |"]
+            fam = EXT_FAMILIA.get(ext, "outros")
+            por_fam[fam] = por_fam.get(fam, 0) + n
+        out += ["", "### Famílias de arquivo", "", "| Família | Arquivos | Participação |", "| :--- | ---: | ---: |"]
         for fam, n in sorted(por_fam.items(), key=lambda kv: kv[1], reverse=True):
             out.append(f"| {fam} | `{n}` | `{n / arq_total * 100:.2f}%` |")
-
         if data["truncados"]:
-            out += ["", f"> ⚠️ {data['truncados']} repositório(s) têm árvore grande "
-                        f"demais para uma leitura só — a contagem de arquivos deles "
-                        f"é **parcial**. O GitHub trunca; melhor dizer do que "
-                        f"apresentar número incompleto como se fosse total."]
+            out += ["", f"> ⚠️ {data['truncados']} repositório(s) têm árvore grande demais para uma leitura só; a contagem de arquivos deles é parcial."]
+        out += ["", "</details>"]
 
-    # ── detalhe ───────────────────────────────────────────────────────────
-    out += [
-        "",
-        "<details>",
-        "<summary><b>🗺 Onde cada linguagem foi usada / Where each language was used</b></summary>",
-        "",
-    ]
-
-    for lang, size in per_lang.items():
-        repos = data["per_lang_repos"].get(lang, [])
-        out.append(f"#### {lang} — `{human(size)}`")
-        out.append("")
-        out.append("| Repositório | Peso |")
-        out.append("| :--- | ---: |")
-        for name, rsize, priv in repos[:12]:
-            out.append(f"| {rotulo_repo(name, priv)} | `{human(rsize)}` |")
-        if len(repos) > 12:
-            out.append(f"| _… +{len(repos) - 12} repositórios_ | |")
-        out.append("")
-
-    out += ["</details>", "", END]
-    return "\n".join(out)
+    out += ["", END]
+    return "\\n".join(out)
 
 
 # Os dois formatos de carimbo de hora que o bot escreve: `03/08/2026 00:01 UTC`
