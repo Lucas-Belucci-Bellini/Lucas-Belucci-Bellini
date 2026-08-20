@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-20T19:03:42Z`  
+**Última varredura:** `2026-08-20T19:45:32Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `58`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1909`
-- **Commits dos projetos:** `1834`
-- **Commits do próprio monitor:** `75`
-- **Commits de projetos detectados nesta hora:** `7`
+- **Commits rastreados pelo ecossistema:** `1914`
+- **Commits dos projetos:** `1838`
+- **Commits do próprio monitor:** `76`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 7 commit(s) — [c5b25e0e6b48](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/c5b25e0e6b48a1b1b9def7dd80a14db282c1cba7) — docs(release): finalize 1.2.6 jarvis v7 evidence
+- **Projeto-Baluarte** — 4 commit(s) — [1154d60d0dbc](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1154d60d0dbc4ed2a5c65e7fda393a71fcf74c2d) — docs(v2): record command center accessibility sha
 
 ## Erros de consulta
 
