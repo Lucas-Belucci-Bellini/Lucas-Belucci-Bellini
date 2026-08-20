@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-20T14:54:44Z`  
+**Última varredura:** `2026-08-20T15:48:59Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `58`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1887`
-- **Commits dos projetos:** `1816`
-- **Commits do próprio monitor:** `71`
-- **Commits de projetos detectados nesta hora:** `4`
+- **Commits rastreados pelo ecossistema:** `1891`
+- **Commits dos projetos:** `1819`
+- **Commits do próprio monitor:** `72`
+- **Commits de projetos detectados nesta hora:** `3`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 4 commit(s) — [56d026c4b51c](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/56d026c4b51c4339ce8723c29059ad5822c54e00) — release: prepare Baluarte 1.2.5 downloadable launcher
+- **Projeto-Baluarte** — 3 commit(s) — [7da3ca5fee74](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/7da3ca5fee747dec88d5dc5cdf4bec35d4634c0c) — feat(ui): add projected navigation contract
 
 ## Erros de consulta
 
