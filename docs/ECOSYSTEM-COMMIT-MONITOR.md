@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-19T23:35:32Z`  
+**Última varredura:** `2026-08-20T01:51:17Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `58`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1782`
-- **Commits dos projetos:** `1724`
-- **Commits do próprio monitor:** `58`
-- **Commits de projetos detectados nesta hora:** `9`
+- **Commits rastreados pelo ecossistema:** `1798`
+- **Commits dos projetos:** `1739`
+- **Commits do próprio monitor:** `59`
+- **Commits de projetos detectados nesta hora:** `15`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 9 commit(s) — [6576f4f1c8d5](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/6576f4f1c8d567cabb393f653aac7a768f68abf4) — Merge remote-tracking branch 'origin/main'
+- **Projeto-Baluarte** — 15 commit(s) — [12886090eacc](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/12886090eacc967f035185eeaf67bf3a58e8f0b6) — refactor(military): route technology and conflicts to TypeScript
 
 ## Erros de consulta
 
