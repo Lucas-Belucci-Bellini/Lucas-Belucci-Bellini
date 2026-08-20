@@ -77,6 +77,7 @@ EXT_FAMILIA = {e: f for f, exts in FAMILIA_EXT.items() for e in exts}
 ROOT = Path(__file__).resolve().parents[2]
 README = ROOT / "README.md"
 SVG_OUT = ROOT / "assets" / "lang-stats.svg"
+PROFILE_TOP_LANGS_OUT = ROOT / "assets" / "profile-top-langs.svg"
 
 START = "<!-- LANG-STATS:START -->"
 END = "<!-- LANG-STATS:END -->"
@@ -347,7 +348,7 @@ def build_svg(data: dict) -> str:
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" '
-        f'width="{width}" height="{height}" font-family="\'IBM Plex Mono\',monospace" '
+        f'width="{width}" height="{height}" font-family="\'DejaVu Sans Mono\',monospace" '
         f'role="img" aria-label="Análise de linguagens do perfil">',
         '<defs>'
         f'<linearGradient id="bgg" x1="0" y1="0" x2="1" y2="1">'
@@ -418,6 +419,47 @@ def build_svg(data: dict) -> str:
         f'<text x="{width-40}" y="{height-14}" fill="#3ddc84" font-size="10">LIVE</text>'
     )
     parts.append("</svg>")
+    return "\n".join(parts) + "\n"
+
+
+def build_profile_top_langs_svg(data: dict) -> str:
+    """Gera o card compacto local que substitui o serviço Top Languages."""
+    langs = list(data["per_lang"].items())[:8]
+    total = data["total_bytes"] or 1
+    width, height = 880, 360
+    bar_x, bar_w = 250, 500
+    row_h, top_y = 27, 116
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}" font-family="\'DejaVu Sans Mono\',monospace" role="img" aria-label="Top Languages do perfil">',
+        '<defs>',
+        f'<linearGradient id="topbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{BG}"/><stop offset="1" stop-color="#0b0910"/></linearGradient>',
+        f'<linearGradient id="topscan" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{GOLD}" stop-opacity="0"/><stop offset="0.5" stop-color="{GOLD_LIGHT}" stop-opacity="0.9"/><stop offset="1" stop-color="{GOLD}" stop-opacity="0"/></linearGradient>',
+        '</defs>',
+        f'<rect width="{width}" height="{height}" rx="14" fill="url(#topbg)"/>',
+        f'<rect x="5" y="5" width="{width-10}" height="{height-10}" rx="11" fill="none" stroke="{GOLD}" stroke-opacity="0.35"/>',
+        f'<text x="38" y="44" fill="{GOLD_LIGHT}" font-size="15" font-weight="700" letter-spacing="2">⬡ LANGUAGE MATRIX // TOP LANGUAGES</text>',
+        f'<text x="38" y="61" fill="{DIM}" font-size="10" letter-spacing="1.2">fonte local · análise automática dos repositórios públicos</text>',
+        f'<line x1="24" y1="74" x2="{width-24}" y2="74" stroke="{GOLD}" stroke-opacity="0.25"/>',
+        f'<rect x="24" y="75" width="200" height="2" fill="url(#topscan)" opacity="0.85"><animate attributeName="x" values="24;{width-224};24" dur="8s" repeatCount="indefinite"/></rect>',
+        f'<text x="38" y="101" fill="{GOLD}" font-size="13" font-weight="700">{len(data["per_lang"])} linguagens</text>',
+        f'<text x="215" y="101" fill="{MUTED}" font-size="11">· {human(data["total_bytes"])} de código · {data["repo_count"]} repositórios</text>',
+    ]
+    y = top_y
+    for i, (lang, size) in enumerate(langs):
+        pct = size / total * 100
+        w = max(3, int(bar_w * size / total))
+        col = color_for(lang, i)
+        parts.append(
+            f'<text x="38" y="{y+13}" fill="{PARCHMENT}" font-size="12">{esc(lang)}</text>'
+            f'<rect x="{bar_x}" y="{y+3}" width="{bar_w}" height="12" rx="6" fill="{SURFACE}"/>'
+            f'<rect x="{bar_x}" y="{y+3}" width="{w}" height="12" rx="6" fill="{col}"><animate attributeName="width" from="0" to="{w}" dur="1.1s" fill="freeze"/></rect>'
+            f'<text x="{bar_x+bar_w+14}" y="{y+13}" fill="{MUTED}" font-size="11">{pct:.1f}% &#183; {human(size)}</text>'
+        )
+        y += row_h
+    stamp = data["generated"].strftime("%Y-%m-%d %H:%M UTC")
+    parts.append(f'<text x="38" y="{height-14}" fill="{DIM}" font-size="10" letter-spacing="1">atualizado automaticamente &#183; {stamp}</text>')
+    parts.append(f'<circle cx="{width-52}" cy="{height-18}" r="4" fill="#3ddc84"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle><text x="{width-40}" y="{height-14}" fill="#3ddc84" font-size="10">LIVE</text>')
+    parts.append('</svg>')
     return "\n".join(parts) + "\n"
 
 
@@ -587,10 +629,17 @@ def main() -> int:
     if svg_changed:
         SVG_OUT.write_text(svg, encoding="utf-8")
 
+    top_langs_svg = build_profile_top_langs_svg(data)
+    top_langs_changed = (not PROFILE_TOP_LANGS_OUT.exists()) or not mesmo_conteudo(
+        top_langs_svg, PROFILE_TOP_LANGS_OUT.read_text(encoding="utf-8"))
+    if top_langs_changed:
+        PROFILE_TOP_LANGS_OUT.write_text(top_langs_svg, encoding="utf-8")
+
     md_changed = patch_readme(build_markdown(data))
 
     print(f"linguagens={len(data['per_lang'])} repos={data['repo_count']} "
-          f"bytes={data['total_bytes']} svg_changed={svg_changed} md_changed={md_changed}")
+          f"bytes={data['total_bytes']} svg_changed={svg_changed} "
+          f"top_langs_changed={top_langs_changed} md_changed={md_changed}")
     return 0
 
 

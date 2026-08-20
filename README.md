@@ -75,11 +75,14 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 <div align="center">
 
-[![Projeto Baluarte](https://github-readme-stats.vercel.app/api/pin/?username=Lucas-Belucci-Bellini&repo=Projeto-Baluarte&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)
-[![Digital Logic Sim](https://github-readme-stats.vercel.app/api/pin/?username=Lucas-Belucci-Bellini&repo=Digital-Logic-Sim-CE&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6)](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE)
+![Projetos em destaque](./assets/profile-projects.svg)
 
-[![Stock Analyzer](https://github-readme-stats.vercel.app/api/pin/?username=Lucas-Belucci-Bellini&repo=stock-analyzer-bot&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6)](https://github.com/Lucas-Belucci-Bellini/stock-analyzer-bot)
-[![Obra Segura](https://github-readme-stats.vercel.app/api/pin/?username=Lucas-Belucci-Bellini&repo=baluarte-obra-segura&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6)](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura)
+| Projeto | Acesso direto |
+| :--- | :--- |
+| **Projeto Baluarte** | [Abrir repositório](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
+| **Digital Logic Sim CE** | [Abrir repositório](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
+| **Stock Analyzer** | [Abrir repositório](https://github.com/Lucas-Belucci-Bellini/stock-analyzer-bot) |
+| **Baluarte Obra Segura** | [Abrir repositório](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) |
 
 </div>
 
@@ -461,14 +464,14 @@ Uma seção dedicada à minha fan fiction — histórias e universos que eu crio
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Lucas-Belucci-Bellini&show_icons=true&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6&include_all_commits=true&count_private=true&hide_border=false)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Lucas-Belucci-Bellini&layout=compact&theme=transparent&bg_color=0e0c16&title_color=d4a24e&text_color=f4ecdd&icon_color=e8c07a&border_color=d4a24e&border_radius=6&langs_count=8)
+![GitHub Stats](./assets/profile-stats.svg)
+![Top Languages](./assets/profile-top-langs.svg)
 
-![GitHub Streak](https://streak-stats.demolab.com?user=Lucas-Belucci-Bellini&theme=transparent&background=0e0c16&border=d4a24e&stroke=d4a24e&ring=e8c07a&fire=e8c07a&currStreakNum=d4a24e&sideNums=f4ecdd&currStreakLabel=d4a24e&sideLabels=e8c07a&dates=a89a80&border_radius=6)
+![GitHub Streak](./assets/profile-streak.svg)
 
 ![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Lucas-Belucci-Bellini&theme=react-dark&bg_color=0e0c16&color=d4a24e&line=e8c07a&point=3ddc84&area=true&hide_border=false)
 
-![Trophies](https://github-profile-trophy.vercel.app/?username=Lucas-Belucci-Bellini&theme=darkhub&no-bg=true&column=6&margin-w=8&margin-h=8)
+![Trophies](./assets/profile-trophies.svg)
 
 </div>
 

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 334" width="880" height="334" font-family="'DejaVu Sans Mono',monospace" role="img" aria-label="Top Languages do perfil">
+<defs>
+<linearGradient id="topbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0e0c16"/><stop offset="1" stop-color="#0b0910"/></linearGradient>
+<linearGradient id="topscan" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d4a24e" stop-opacity="0"/><stop offset="0.5" stop-color="#e8c07a" stop-opacity="0.9"/><stop offset="1" stop-color="#d4a24e" stop-opacity="0"/></linearGradient>
+</defs>
+<rect width="880" height="334" rx="14" fill="url(#topbg)"/>
+<rect x="5" y="5" width="870" height="324" rx="11" fill="none" stroke="#d4a24e" stroke-opacity="0.35"/>
+<text x="38" y="44" fill="#e8c07a" font-size="15" font-weight="700" letter-spacing="2">⬡ LANGUAGE MATRIX // TOP LANGUAGES</text>
+<text x="38" y="61" fill="#77694f" font-size="10" letter-spacing="1.2">fonte local · análise automática dos repositórios públicos</text>
+<line x1="24" y1="74" x2="856" y2="74" stroke="#d4a24e" stroke-opacity="0.25"/>
+<rect x="24" y="75" width="200" height="2" fill="url(#topscan)" opacity="0.85"><animate attributeName="x" values="24;656;24" dur="8s" repeatCount="indefinite"/></rect>
+<text x="38" y="101" fill="#d4a24e" font-size="13" font-weight="700">18 linguagens</text>
+<text x="215" y="101" fill="#a89a80" font-size="11">· 49.28 MB de código · 79 repositórios</text>
+<text x="38" y="129" fill="#f4ecdd" font-size="12">HTML</text><rect x="250" y="119" width="500" height="12" rx="6" fill="#1d1729"/><rect x="250" y="119" width="369" height="12" rx="6" fill="#e07a5f"><animate attributeName="width" from="0" to="369" dur="1.1s" fill="freeze"/></rect><text x="764" y="129" fill="#a89a80" font-size="11">73.8% &#183; 36.39 MB</text>
+<text x="38" y="156" fill="#f4ecdd" font-size="12">JavaScript</text><rect x="250" y="146" width="500" height="12" rx="6" fill="#1d1729"/><rect x="250" y="146" width="58" height="12" rx="6" fill="#e8c07a"><animate attributeName="width" from="0" to="58" dur="1.1s" fill="freeze"/></rect><text x="764" y="156" fill="#a89a80" font-size="11">11.6% &#183; 5.73 MB</text>
+<text x="38" y="183" fill="#f4ecdd" font-size="12">TypeScript</text><rect x="250" y="173" width="500" height="12" rx="6" fill="#1d1729"/><rect x="250" y="173" width="46" height="12" rx="6" fill="#d4a24e"><animate attributeName="width" from="0" to="46" dur="1.1s" fill="freeze"/></rect><text x="764" y="183" fill="#a89a80" font-size="11">9.2% &#183; 4.53 MB</text>
+<text x="38" y="210" fill="#f4ecdd" font-size="12">CSS</text><rect x="250" y="200" width="500" height="12" rx="6" fill="#1d1729"/><rect x="250" y="200" width="9" height="12" rx="6" fill="#a68dad"><animate attributeName="width" from="0" to="9" dur="1.1s" fill="freeze"/></rect><text x="764" y="210" fill="#a89a80" font-size="11">1.8% &#183; 931.1 KB</text>
+<text x="38" y="237" fill="#f4ecdd" font-size="12">Python</text><rect x="250" y="227" width="500" height="12" rx="6" fill="#1d1729"/><rect x="250" y="227" width="7" height="12" rx="6" fill="#c9a227"><animate attributeName="width" from="0" to="7" dur="1.1s" fill="freeze"/></rect><text x="764" y="237" fill="#a89a80" font-size="11">1.5% &#183; 763.5 KB</text>
+<text x="38" y="264" fill="#f4ecdd" font-size="12">Java</text><rect x="250" y="254" width="500" height="12" rx="6" fill="#1d1729"/><rect x="250" y="254" width="6" height="12" rx="6" fill="#c48f6b"><animate attributeName="width" from="0" to="6" dur="1.1s" fill="freeze"/></rect><text x="764" y="264" fill="#a89a80" font-size="11">1.3% &#183; 676.4 KB</text>
+<text x="38" y="291" fill="#f4ecdd" font-size="12">PLpgSQL</text><rect x="250" y="281" width="500" height="12" rx="6" fill="#1d1729"/><rect x="250" y="281" width="3" height="12" rx="6" fill="#d4a24e"><animate attributeName="width" from="0" to="3" dur="1.1s" fill="freeze"/></rect><text x="764" y="291" fill="#a89a80" font-size="11">0.1% &#183; 62.9 KB</text>
+<text x="38" y="318" fill="#f4ecdd" font-size="12">SQF</text><rect x="250" y="308" width="500" height="12" rx="6" fill="#1d1729"/><rect x="250" y="308" width="3" height="12" rx="6" fill="#e8c07a"><animate attributeName="width" from="0" to="3" dur="1.1s" fill="freeze"/></rect><text x="764" y="318" fill="#a89a80" font-size="11">0.1% &#183; 52.0 KB</text>
+<text x="38" y="320" fill="#77694f" font-size="10" letter-spacing="1">atualizado automaticamente &#183; 2026-08-20 03:40 UTC</text>
+<circle cx="828" cy="316" r="4" fill="#3ddc84"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle><text x="840" y="320" fill="#3ddc84" font-size="10">LIVE</text>
+</svg>
