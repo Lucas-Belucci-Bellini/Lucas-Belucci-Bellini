@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-20T07:56:41Z",
+  "scanned_at": "2026-08-20T08:56:25Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,10 +335,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "b865fcc6d4621e0437fca8f484dfbdbf974bfd66",
-      "date": "2026-08-20T07:37:53Z",
-      "message": "chore(release): bump version to 1.2.0",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b865fcc6d4621e0437fca8f484dfbdbf974bfd66"
+      "sha": "b4530bdc624ca0df2b202e63eddf956466bbfeab",
+      "date": "2026-08-20T08:47:13Z",
+      "message": "docs(security): close Supabase advisor audit",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b4530bdc624ca0df2b202e63eddf956466bbfeab"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,9 +402,9 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1855,
-    "project_commits": 1790,
-    "monitor_commits": 65,
+    "tracked_commits": 1861,
+    "project_commits": 1795,
+    "monitor_commits": 66,
     "detected_project_commits_this_scan": 5,
     "monitor_commit_this_scan": 1
   },
