@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-20T08:56:25Z`  
+**Última varredura:** `2026-08-20T09:50:03Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `58`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1861`
-- **Commits dos projetos:** `1795`
-- **Commits do próprio monitor:** `66`
+- **Commits rastreados pelo ecossistema:** `1867`
+- **Commits dos projetos:** `1800`
+- **Commits do próprio monitor:** `67`
 - **Commits de projetos detectados nesta hora:** `5`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 5 commit(s) — [b4530bdc624c](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b4530bdc624ca0df2b202e63eddf956466bbfeab) — docs(security): close Supabase advisor audit
+- **Projeto-Baluarte** — 5 commit(s) — [c5f8ee4c3d12](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/c5f8ee4c3d1272e4e52d5f523e34195efdd1990c) — refactor(arma3): promote typed extraction panel consumer
 
 ## Erros de consulta
 
