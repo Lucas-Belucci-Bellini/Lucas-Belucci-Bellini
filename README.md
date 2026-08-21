@@ -116,7 +116,7 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** · **53 tipos de arquivo** · **59 repositórios** · **14.64 MB** de código · **17.622** arquivos · atualizado em `20/08/2026 19:44 UTC`
+> **16 linguagens** · **56 tipos de arquivo** · **60 repositórios** · **15.20 MB** de código · **17.831** arquivos · atualizado em `21/08/2026 13:47 UTC`
 
 <div align="center">
 
@@ -126,7 +126,7 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 > **Leitura rápida:** o painel acima prioriza o que importa — volume, linguagens dominantes, formatos de arquivo e famílias do portfólio. A auditoria completa fica recolhida para manter o README elegante e rápido de ler.
 
-> 30 repositório(s) sem linguagem detectada pelo GitHub — contam no total, mas não na tabela detalhada.
+> 31 repositório(s) sem linguagem detectada pelo GitHub — contam no total, mas não na tabela detalhada.
 
 <details>
 <summary><b>⌁ Auditoria de linguagens e repositórios</b></summary>
@@ -135,31 +135,31 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 | # | Linguagem | Peso | Participação | Repositórios |
 | :--: | :--- | ---: | ---: | ---: |
-| 1 | **JavaScript** | `5.47 MB` | `37.39%` | 16 |
-| 2 | **TypeScript** | `3.45 MB` | `23.55%` | 5 |
-| 3 | **HTML** | `3.43 MB` | `23.45%` | 17 |
-| 4 | **CSS** | `766.9 KB` | `5.12%` | 12 |
-| 5 | **Java** | `676.4 KB` | `4.51%` | 4 |
-| 6 | **Python** | `573.7 KB` | `3.83%` | 6 |
-| 7 | **PLpgSQL** | `68.3 KB` | `0.46%` | 2 |
-| 8 | **SQF** | `52.0 KB` | `0.35%` | 1 |
-| 9 | **Rust** | `41.3 KB` | `0.28%` | 2 |
-| 10 | **C#** | `41.1 KB` | `0.27%` | 1 |
-| 11 | **Shell** | `40.8 KB` | `0.27%` | 5 |
-| 12 | **GDScript** | `36.3 KB` | `0.24%` | 1 |
-| 13 | **PowerShell** | `26.9 KB` | `0.18%` | 2 |
+| 1 | **JavaScript** | `5.69 MB` | `37.42%` | 16 |
+| 2 | **TypeScript** | `3.69 MB` | `24.29%` | 5 |
+| 3 | **HTML** | `3.43 MB` | `22.60%` | 17 |
+| 4 | **CSS** | `775.4 KB` | `4.98%` | 12 |
+| 5 | **Java** | `682.3 KB` | `4.38%` | 4 |
+| 6 | **Python** | `625.0 KB` | `4.02%` | 6 |
+| 7 | **PLpgSQL** | `104.6 KB` | `0.67%` | 2 |
+| 8 | **SQF** | `52.0 KB` | `0.33%` | 1 |
+| 9 | **Rust** | `41.3 KB` | `0.27%` | 2 |
+| 10 | **C#** | `41.1 KB` | `0.26%` | 1 |
+| 11 | **Shell** | `40.8 KB` | `0.26%` | 5 |
+| 12 | **GDScript** | `36.3 KB` | `0.23%` | 1 |
+| 13 | **PowerShell** | `26.9 KB` | `0.17%` | 2 |
 | 14 | **Portugol** | `11.1 KB` | `0.07%` | 3 |
-| 15 | **Batchfile** | `5.3 KB` | `0.04%` | 5 |
+| 15 | **Batchfile** | `5.3 KB` | `0.03%` | 5 |
 | 16 | **Dockerfile** | `460 B` | `0.00%` | 1 |
 
 #### Onde cada linguagem foi usada
 
-<details><summary><b>JavaScript</b> · `5.47 MB` · 16 repositórios</summary>
+<details><summary><b>JavaScript</b> · `5.69 MB` · 16 repositórios</summary>
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.30 MB` |
-| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `739.0 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.42 MB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `833.7 KB` |
 | [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |
 | [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `194.1 KB` |
 | [Essence-Custom-Furniture](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `177.9 KB` |
@@ -174,13 +174,13 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 </details>
 
-<details><summary><b>TypeScript</b> · `3.45 MB` · 5 repositórios</summary>
+<details><summary><b>TypeScript</b> · `3.69 MB` · 5 repositórios</summary>
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `1.74 MB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `1.82 MB` |
 | [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `725.6 KB` |
-| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `503.7 KB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `667.0 KB` |
 | [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `496.9 KB` |
 | [DailyPlanner](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) | `25.5 KB` |
 
@@ -206,11 +206,11 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 </details>
 
-<details><summary><b>CSS</b> · `766.9 KB` · 12 repositórios</summary>
+<details><summary><b>CSS</b> · `775.4 KB` · 12 repositórios</summary>
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `609.9 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `618.1 KB` |
 | [Projeto-Baluarte-World-Game](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `32.8 KB` |
 | [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `29.8 KB` |
 | [Portifolio-Baluarte-Lucas-Belucci-Bellini-](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `21.5 KB` |
@@ -220,27 +220,27 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 | [OMEGA-ALFA-DELTA](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) | `9.1 KB` |
 | [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `5.4 KB` |
 | [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `5.1 KB` |
-| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `1.9 KB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `2.3 KB` |
 | [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `315 B` |
 
 </details>
 
-<details><summary><b>Java</b> · `676.4 KB` · 4 repositórios</summary>
+<details><summary><b>Java</b> · `682.3 KB` · 4 repositórios</summary>
 
 | Repositório | Peso |
 | :--- | ---: |
 | [DriveTax-Motors](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | `532.3 KB` |
 | [JAVA-todos-os-codigos-em-java](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) | `99.6 KB` |
+| [Java-activities](https://github.com/Lucas-Belucci-Bellini/Java-activities) | `27.4 KB` |
 | [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `23.0 KB` |
-| [Java-activities](https://github.com/Lucas-Belucci-Bellini/Java-activities) | `21.5 KB` |
 
 </details>
 
-<details><summary><b>Python</b> · `573.7 KB` · 6 repositórios</summary>
+<details><summary><b>Python</b> · `625.0 KB` · 6 repositórios</summary>
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `498.4 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `549.6 KB` |
 | [baluarte-docs](https://github.com/Lucas-Belucci-Bellini/baluarte-docs) | `39.5 KB` |
 | [G-mod-Black-mesa](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) | `15.0 KB` |
 | [Python](https://github.com/Lucas-Belucci-Bellini/Python) | `14.7 KB` |
@@ -249,12 +249,12 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 </details>
 
-<details><summary><b>PLpgSQL</b> · `68.3 KB` · 2 repositórios</summary>
+<details><summary><b>PLpgSQL</b> · `104.6 KB` · 2 repositórios</summary>
 
 | Repositório | Peso |
 | :--- | ---: |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `56.5 KB` |
 | [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `48.1 KB` |
-| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `20.2 KB` |
 
 </details>
 
@@ -351,43 +351,43 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 | # | Tipo | Arquivos | Participação | Família | Repositórios |
 | :--: | :--- | ---: | ---: | :--- | ---: |
-| 1 | `.webp` | `9588` | `54.41%` | imagem | 1 |
-| 2 | `.json` | `2537` | `14.40%` | dado | 34 |
-| 3 | `.p3d` | `1302` | `7.39%` | modelo 3D | 1 |
-| 4 | `.java` | `1052` | `5.97%` | código | 4 |
-| 5 | `.js` | `643` | `3.65%` | código | 14 |
-| 6 | `.ts` | `571` | `3.24%` | código | 5 |
-| 7 | `.md` | `529` | `3.00%` | documento | 53 |
-| 8 | `.class` | `255` | `1.45%` | outros | 1 |
-| 9 | `.jpeg` | `224` | `1.27%` | imagem | 2 |
-| 10 | `.tsx` | `180` | `1.02%` | código | 3 |
-| 11 | `.css` | `145` | `0.82%` | estilo e marcação | 12 |
+| 1 | `.webp` | `9588` | `53.77%` | imagem | 1 |
+| 2 | `.json` | `2537` | `14.23%` | dado | 34 |
+| 3 | `.p3d` | `1302` | `7.30%` | modelo 3D | 1 |
+| 4 | `.java` | `1058` | `5.93%` | código | 4 |
+| 5 | `.js` | `662` | `3.71%` | código | 14 |
+| 6 | `.ts` | `627` | `3.52%` | código | 5 |
+| 7 | `.md` | `584` | `3.28%` | documento | 54 |
+| 8 | `.class` | `255` | `1.43%` | outros | 1 |
+| 9 | `.jpeg` | `224` | `1.26%` | imagem | 2 |
+| 10 | `.tsx` | `183` | `1.03%` | código | 3 |
+| 11 | `.css` | `145` | `0.81%` | estilo e marcação | 12 |
 | 12 | `.png` | `110` | `0.62%` | imagem | 8 |
-| 13 | `.html` | `89` | `0.51%` | estilo e marcação | 17 |
-| 14 | `.py` | `84` | `0.48%` | código | 6 |
-| 15 | `.mjs` | `44` | `0.25%` | código | 4 |
-| 16 | `.sql` | `39` | `0.22%` | dado | 4 |
+| 13 | `.py` | `96` | `0.54%` | código | 6 |
+| 14 | `.html` | `89` | `0.50%` | estilo e marcação | 17 |
+| 15 | `.mjs` | `78` | `0.44%` | código | 4 |
+| 16 | `.sql` | `44` | `0.25%` | dado | 4 |
 | 17 | `.por` | `25` | `0.14%` | outros | 3 |
 | 18 | `.yml` | `25` | `0.14%` | dado | 6 |
 | 19 | `.jsx` | `22` | `0.12%` | código | 3 |
-| 20 | `.rs` | `15` | `0.09%` | código | 2 |
-| 21 | `.sqf` | `14` | `0.08%` | código | 1 |
-| 22 | `.xml` | `14` | `0.08%` | estilo e marcação | 2 |
-| 23 | `.svg` | `11` | `0.06%` | estilo e marcação | 3 |
-| 24 | `.mp3` | `9` | `0.05%` | áudio e vídeo | 1 |
-|  | _… +29 outros tipos_ | `95` | `0.54%` |  |  |
+| 20 | `.mts` | `17` | `0.10%` | outros | 1 |
+| 21 | `.rs` | `15` | `0.08%` | código | 2 |
+| 22 | `.sqf` | `14` | `0.08%` | código | 1 |
+| 23 | `.xml` | `14` | `0.08%` | estilo e marcação | 2 |
+| 24 | `.svg` | `11` | `0.06%` | estilo e marcação | 3 |
+|  | _… +32 outros tipos_ | `106` | `0.59%` |  |  |
 
 ### Famílias de arquivo
 
 | Família | Arquivos | Participação |
 | :--- | ---: | ---: |
-| imagem | `9926` | `56.33%` |
-| código | `2644` | `15.00%` |
-| dado | `2611` | `14.82%` |
-| modelo 3D | `1306` | `7.41%` |
-| documento | `547` | `3.10%` |
-| outros | `320` | `1.82%` |
-| estilo e marcação | `259` | `1.47%` |
+| imagem | `9926` | `55.67%` |
+| código | `2774` | `15.56%` |
+| dado | `2616` | `14.67%` |
+| modelo 3D | `1306` | `7.32%` |
+| documento | `602` | `3.38%` |
+| outros | `339` | `1.90%` |
+| estilo e marcação | `259` | `1.45%` |
 | áudio e vídeo | `9` | `0.05%` |
 
 </details>
