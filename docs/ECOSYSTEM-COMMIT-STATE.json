@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-21T03:16:08Z",
+  "scanned_at": "2026-08-21T04:03:45Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "b60ce5205628d6ee5595e175596c32c1a7dcd402",
-      "date": "2026-08-21T03:13:56Z",
-      "message": "docs(v2): record local rls staging contract",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b60ce5205628d6ee5595e175596c32c1a7dcd402"
+      "sha": "0f9922bfab5d09c0c49ec1e9f105947dd8ceabf2",
+      "date": "2026-08-21T04:02:31Z",
+      "message": "feat(v2): expand doctor to full gate catalog",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0f9922bfab5d09c0c49ec1e9f105947dd8ceabf2"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "a6ae66d7118af4366d771ce847c94f3475eef246",
-      "date": "2026-08-21T03:14:24Z",
-      "message": "feat: add HDL acceptance gate and fixtures",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/a6ae66d7118af4366d771ce847c94f3475eef246"
+      "sha": "e03c299b52fb6bee04be7a4845c773f0a6c3729c",
+      "date": "2026-08-21T04:03:11Z",
+      "message": "feat: improve circuit editor feedback",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e03c299b52fb6bee04be7a4845c773f0a6c3729c"
     }
   },
   "metrics": {
-    "tracked_commits": 1983,
-    "project_commits": 1901,
-    "monitor_commits": 82,
-    "detected_project_commits_this_scan": 18,
+    "tracked_commits": 1997,
+    "project_commits": 1914,
+    "monitor_commits": 83,
+    "detected_project_commits_this_scan": 13,
     "monitor_commit_this_scan": 1
   },
   "summary": {
