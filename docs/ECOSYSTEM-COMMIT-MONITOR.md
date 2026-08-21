@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-21T04:53:46Z`  
+**Última varredura:** `2026-08-21T05:48:06Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2002`
-- **Commits dos projetos:** `1918`
-- **Commits do próprio monitor:** `84`
-- **Commits de projetos detectados nesta hora:** `4`
+- **Commits rastreados pelo ecossistema:** `2010`
+- **Commits dos projetos:** `1925`
+- **Commits do próprio monitor:** `85`
+- **Commits de projetos detectados nesta hora:** `7`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 4 commit(s) — [e8da0473f34e](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/e8da0473f34e7039326e0f1e86a3fd6bf55ff5c0) — feat(v2): add module registry operational policy pilot
+- **Projeto-Baluarte** — 4 commit(s) — [0ae0076dd3ad](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0ae0076dd3add3d322b6d5dc45df606bf71e12c8) — docs(v2): reconcile jarvis optimization evidence
+- **Veritas** — 3 commit(s) — [ff0fd31a2aab](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ff0fd31a2aabb80384bd0f07eee27be5c31d6f22) — chore: retain sanitized gate reports
 
 ## Erros de consulta
 

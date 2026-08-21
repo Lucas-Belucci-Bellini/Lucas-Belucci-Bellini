@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-21T04:53:46Z",
+  "scanned_at": "2026-08-21T05:48:06Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "e8da0473f34e7039326e0f1e86a3fd6bf55ff5c0",
-      "date": "2026-08-21T04:50:13Z",
-      "message": "feat(v2): add module registry operational policy pilot",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/e8da0473f34e7039326e0f1e86a3fd6bf55ff5c0"
+      "sha": "0ae0076dd3add3d322b6d5dc45df606bf71e12c8",
+      "date": "2026-08-21T05:33:24Z",
+      "message": "docs(v2): reconcile jarvis optimization evidence",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0ae0076dd3add3d322b6d5dc45df606bf71e12c8"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,22 +402,22 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "e03c299b52fb6bee04be7a4845c773f0a6c3729c",
-      "date": "2026-08-21T04:03:11Z",
-      "message": "feat: improve circuit editor feedback",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e03c299b52fb6bee04be7a4845c773f0a6c3729c"
+      "sha": "ff0fd31a2aabb80384bd0f07eee27be5c31d6f22",
+      "date": "2026-08-21T05:44:04Z",
+      "message": "chore: retain sanitized gate reports",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ff0fd31a2aabb80384bd0f07eee27be5c31d6f22"
     }
   },
   "metrics": {
-    "tracked_commits": 2002,
-    "project_commits": 1918,
-    "monitor_commits": 84,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 2010,
+    "project_commits": 1925,
+    "monitor_commits": 85,
+    "detected_project_commits_this_scan": 7,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
