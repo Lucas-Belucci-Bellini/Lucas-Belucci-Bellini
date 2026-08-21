@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-21T01:57:40Z",
+  "scanned_at": "2026-08-21T03:16:08Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "38ae7efc1de24f0361bfab70d7f9ec0e56b83c55",
-      "date": "2026-08-21T01:51:24Z",
-      "message": "docs(v2): record server observation publication",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/38ae7efc1de24f0361bfab70d7f9ec0e56b83c55"
+      "sha": "b60ce5205628d6ee5595e175596c32c1a7dcd402",
+      "date": "2026-08-21T03:13:56Z",
+      "message": "docs(v2): record local rls staging contract",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b60ce5205628d6ee5595e175596c32c1a7dcd402"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,22 +402,22 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "6b705510f790c8da79b8b8788504b5c129dbb9a4",
-      "date": "2026-08-21T01:52:36Z",
-      "message": "feat: guard stale runtime offers and confirm apply",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/6b705510f790c8da79b8b8788504b5c129dbb9a4"
+      "sha": "a6ae66d7118af4366d771ce847c94f3475eef246",
+      "date": "2026-08-21T03:14:24Z",
+      "message": "feat: add HDL acceptance gate and fixtures",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/a6ae66d7118af4366d771ce847c94f3475eef246"
     }
   },
   "metrics": {
-    "tracked_commits": 1964,
-    "project_commits": 1883,
-    "monitor_commits": 81,
-    "detected_project_commits_this_scan": 24,
+    "tracked_commits": 1983,
+    "project_commits": 1901,
+    "monitor_commits": 82,
+    "detected_project_commits_this_scan": 18,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 3,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [

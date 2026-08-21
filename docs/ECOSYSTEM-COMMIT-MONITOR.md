@@ -2,26 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-21T01:57:40Z`  
+**Última varredura:** `2026-08-21T03:16:08Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `3`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1964`
-- **Commits dos projetos:** `1883`
-- **Commits do próprio monitor:** `81`
-- **Commits de projetos detectados nesta hora:** `24`
+- **Commits rastreados pelo ecossistema:** `1983`
+- **Commits dos projetos:** `1901`
+- **Commits do próprio monitor:** `82`
+- **Commits de projetos detectados nesta hora:** `18`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Java-activities** — 3 commit(s) — [df0537c41177](https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/df0537c41177ee6fd3976ef589091e9a0d413f98) — atualização
-- **Projeto-Baluarte** — 10 commit(s) — [38ae7efc1de2](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/38ae7efc1de24f0361bfab70d7f9ec0e56b83c55) — docs(v2): record server observation publication
-- **Veritas** — 11 commit(s) — [6b705510f790](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/6b705510f790c8da79b8b8788504b5c129dbb9a4) — feat: guard stale runtime offers and confirm apply
+- **Projeto-Baluarte** — 8 commit(s) — [b60ce5205628](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b60ce5205628d6ee5595e175596c32c1a7dcd402) — docs(v2): record local rls staging contract
+- **Veritas** — 10 commit(s) — [a6ae66d7118a](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/a6ae66d7118af4366d771ce847c94f3475eef246) — feat: add HDL acceptance gate and fixtures
 
 ## Erros de consulta
 
