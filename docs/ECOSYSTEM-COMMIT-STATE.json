@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-21T05:48:06Z",
+  "scanned_at": "2026-08-21T07:07:28Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "0ae0076dd3add3d322b6d5dc45df606bf71e12c8",
-      "date": "2026-08-21T05:33:24Z",
-      "message": "docs(v2): reconcile jarvis optimization evidence",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0ae0076dd3add3d322b6d5dc45df606bf71e12c8"
+      "sha": "7c2ff15123c4a63b7c5a582069b6abd03b925ffa",
+      "date": "2026-08-21T06:56:25Z",
+      "message": "feat(auth): add identity release preflight",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/7c2ff15123c4a63b7c5a582069b6abd03b925ffa"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "ff0fd31a2aabb80384bd0f07eee27be5c31d6f22",
-      "date": "2026-08-21T05:44:04Z",
-      "message": "chore: retain sanitized gate reports",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ff0fd31a2aabb80384bd0f07eee27be5c31d6f22"
+      "sha": "eab7b65d5f7761c8f376aad609d853e36c63120f",
+      "date": "2026-08-21T06:22:42Z",
+      "message": "feat: add wireless channel contract",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/eab7b65d5f7761c8f376aad609d853e36c63120f"
     }
   },
   "metrics": {
-    "tracked_commits": 2010,
-    "project_commits": 1925,
-    "monitor_commits": 85,
-    "detected_project_commits_this_scan": 7,
+    "tracked_commits": 2025,
+    "project_commits": 1939,
+    "monitor_commits": 86,
+    "detected_project_commits_this_scan": 14,
     "monitor_commit_this_scan": 1
   },
   "summary": {
