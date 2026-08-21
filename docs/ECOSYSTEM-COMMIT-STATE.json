@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-20T23:39:49Z",
+  "scanned_at": "2026-08-21T01:57:40Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -271,10 +271,10 @@
     },
     "Java-activities": {
       "branch": "main",
-      "sha": "d771b88199b5f233a3f77fe747af138d1b028f56",
-      "date": "2026-08-18T15:15:43Z",
+      "sha": "df0537c41177ee6fd3976ef589091e9a0d413f98",
+      "date": "2026-08-21T00:53:44Z",
       "message": "atualização",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/d771b88199b5f233a3f77fe747af138d1b028f56"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/df0537c41177ee6fd3976ef589091e9a0d413f98"
     },
     "JAVA-todos-os-codigos-em-java": {
       "branch": "main",
@@ -282,6 +282,13 @@
       "date": "2026-06-26T00:16:33Z",
       "message": "3r02",
       "url": "https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java/commit/c721e800beb27a4913887bccf97478a6f795fe69"
+    },
+    "Kizeo-Forms": {
+      "branch": "main",
+      "sha": "6cac446abbffc674012909163a185edc16f09e3d",
+      "date": "2026-08-21T00:20:38Z",
+      "message": "docs: add phase 2 experience and reporting prompt",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Kizeo-Forms/commit/6cac446abbffc674012909163a185edc16f09e3d"
     },
     "LLBR-Innovations-": {
       "branch": "main",
@@ -335,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "17aa3f7ee2ebf6c560f52fd66e49a20efe871ad7",
-      "date": "2026-08-20T23:38:09Z",
-      "message": "docs(v2): record observation integrity sha",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/17aa3f7ee2ebf6c560f52fd66e49a20efe871ad7"
+      "sha": "38ae7efc1de24f0361bfab70d7f9ec0e56b83c55",
+      "date": "2026-08-21T01:51:24Z",
+      "message": "docs(v2): record server observation publication",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/38ae7efc1de24f0361bfab70d7f9ec0e56b83c55"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -395,22 +402,22 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "8f33e56a12fabe2acc4910cb5831ae9345358494",
-      "date": "2026-08-15T01:47:53Z",
-      "message": "feat: add beta preflight and rls acceptance runbook",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/8f33e56a12fabe2acc4910cb5831ae9345358494"
+      "sha": "6b705510f790c8da79b8b8788504b5c129dbb9a4",
+      "date": "2026-08-21T01:52:36Z",
+      "message": "feat: guard stale runtime offers and confirm apply",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/6b705510f790c8da79b8b8788504b5c129dbb9a4"
     }
   },
   "metrics": {
-    "tracked_commits": 1939,
-    "project_commits": 1859,
-    "monitor_commits": 80,
-    "detected_project_commits_this_scan": 5,
+    "tracked_commits": 1964,
+    "project_commits": 1883,
+    "monitor_commits": 81,
+    "detected_project_commits_this_scan": 24,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 58,
-    "repositories_changed": 1,
+    "repositories_scanned": 59,
+    "repositories_changed": 3,
     "errors": 3
   },
   "errors": [
