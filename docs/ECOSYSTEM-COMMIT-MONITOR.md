@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-21T07:07:28Z`  
+**Última varredura:** `2026-08-21T07:56:32Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2025`
-- **Commits dos projetos:** `1939`
-- **Commits do próprio monitor:** `86`
-- **Commits de projetos detectados nesta hora:** `14`
+- **Commits rastreados pelo ecossistema:** `2030`
+- **Commits dos projetos:** `1943`
+- **Commits do próprio monitor:** `87`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 6 commit(s) — [7c2ff15123c4](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/7c2ff15123c4a63b7c5a582069b6abd03b925ffa) — feat(auth): add identity release preflight
-- **Veritas** — 8 commit(s) — [eab7b65d5f77](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/eab7b65d5f7761c8f376aad609d853e36c63120f) — feat: add wireless channel contract
+- **Projeto-Baluarte** — 4 commit(s) — [c8bbbbf72778](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/c8bbbbf72778cfcaad50e436983a186fd81582b0) — docs(v2): reconcile auth adapter milestone
 
 ## Erros de consulta
 

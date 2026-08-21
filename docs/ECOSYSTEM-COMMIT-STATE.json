@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-21T07:07:28Z",
+  "scanned_at": "2026-08-21T07:56:32Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "7c2ff15123c4a63b7c5a582069b6abd03b925ffa",
-      "date": "2026-08-21T06:56:25Z",
-      "message": "feat(auth): add identity release preflight",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/7c2ff15123c4a63b7c5a582069b6abd03b925ffa"
+      "sha": "c8bbbbf72778cfcaad50e436983a186fd81582b0",
+      "date": "2026-08-21T07:53:12Z",
+      "message": "docs(v2): reconcile auth adapter milestone",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/c8bbbbf72778cfcaad50e436983a186fd81582b0"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,15 +409,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2025,
-    "project_commits": 1939,
-    "monitor_commits": 86,
-    "detected_project_commits_this_scan": 14,
+    "tracked_commits": 2030,
+    "project_commits": 1943,
+    "monitor_commits": 87,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 2,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
