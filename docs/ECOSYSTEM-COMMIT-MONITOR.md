@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-21T04:03:45Z`  
+**Última varredura:** `2026-08-21T04:53:46Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `1997`
-- **Commits dos projetos:** `1914`
-- **Commits do próprio monitor:** `83`
-- **Commits de projetos detectados nesta hora:** `13`
+- **Commits rastreados pelo ecossistema:** `2002`
+- **Commits dos projetos:** `1918`
+- **Commits do próprio monitor:** `84`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 3 commit(s) — [0f9922bfab5d](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0f9922bfab5d09c0c49ec1e9f105947dd8ceabf2) — feat(v2): expand doctor to full gate catalog
-- **Veritas** — 10 commit(s) — [e03c299b52fb](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e03c299b52fb6bee04be7a4845c773f0a6c3729c) — feat: improve circuit editor feedback
+- **Projeto-Baluarte** — 4 commit(s) — [e8da0473f34e](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/e8da0473f34e7039326e0f1e86a3fd6bf55ff5c0) — feat(v2): add module registry operational policy pilot
 
 ## Erros de consulta
 

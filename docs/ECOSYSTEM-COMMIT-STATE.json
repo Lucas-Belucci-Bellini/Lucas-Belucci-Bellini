@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-21T04:03:45Z",
+  "scanned_at": "2026-08-21T04:53:46Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "0f9922bfab5d09c0c49ec1e9f105947dd8ceabf2",
-      "date": "2026-08-21T04:02:31Z",
-      "message": "feat(v2): expand doctor to full gate catalog",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0f9922bfab5d09c0c49ec1e9f105947dd8ceabf2"
+      "sha": "e8da0473f34e7039326e0f1e86a3fd6bf55ff5c0",
+      "date": "2026-08-21T04:50:13Z",
+      "message": "feat(v2): add module registry operational policy pilot",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/e8da0473f34e7039326e0f1e86a3fd6bf55ff5c0"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,15 +409,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 1997,
-    "project_commits": 1914,
-    "monitor_commits": 83,
-    "detected_project_commits_this_scan": 13,
+    "tracked_commits": 2002,
+    "project_commits": 1918,
+    "monitor_commits": 84,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 2,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
