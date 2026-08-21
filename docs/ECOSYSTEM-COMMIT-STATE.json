@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-21T07:56:32Z",
+  "scanned_at": "2026-08-21T13:47:04Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "c8bbbbf72778cfcaad50e436983a186fd81582b0",
-      "date": "2026-08-21T07:53:12Z",
-      "message": "docs(v2): reconcile auth adapter milestone",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/c8bbbbf72778cfcaad50e436983a186fd81582b0"
+      "sha": "4929dfccc214e1bc25c31af2a8489a134f163e5a",
+      "date": "2026-08-21T13:26:11Z",
+      "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/4929dfccc214e1bc25c31af2a8489a134f163e5a"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2030,
-    "project_commits": 1943,
-    "monitor_commits": 87,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 2032,
+    "project_commits": 1944,
+    "monitor_commits": 88,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {

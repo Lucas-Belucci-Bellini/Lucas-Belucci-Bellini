@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-21T07:56:32Z`  
+**Última varredura:** `2026-08-21T13:47:04Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2030`
-- **Commits dos projetos:** `1943`
-- **Commits do próprio monitor:** `87`
-- **Commits de projetos detectados nesta hora:** `4`
+- **Commits rastreados pelo ecossistema:** `2032`
+- **Commits dos projetos:** `1944`
+- **Commits do próprio monitor:** `88`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 4 commit(s) — [c8bbbbf72778](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/c8bbbbf72778cfcaad50e436983a186fd81582b0) — docs(v2): reconcile auth adapter milestone
+- **Projeto-Baluarte** — 1 commit(s) — [4929dfccc214](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/4929dfccc214e1bc25c31af2a8489a134f163e5a) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
