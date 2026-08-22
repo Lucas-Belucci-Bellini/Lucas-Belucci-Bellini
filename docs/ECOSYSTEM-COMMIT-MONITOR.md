@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-22T16:40:34Z`  
+**Última varredura:** `2026-08-22T17:35:21Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2078`
-- **Commits dos projetos:** `1980`
-- **Commits do próprio monitor:** `98`
-- **Commits de projetos detectados nesta hora:** `4`
+- **Commits rastreados pelo ecossistema:** `2084`
+- **Commits dos projetos:** `1985`
+- **Commits do próprio monitor:** `99`
+- **Commits de projetos detectados nesta hora:** `5`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 4 commit(s) — [1f8a8f88ad99](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1f8a8f88ad9920dfc63eec714a9752d9e5cfd444) — docs(v2): reconcile wiki zomboid release
+- **Projeto-Baluarte** — 5 commit(s) — [0ab6f428eb39](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0ab6f428eb39bdbc7feb7cfce1001b4ed2fde9b1) — test(v2): harden evidence review queue contract
 
 ## Erros de consulta
 

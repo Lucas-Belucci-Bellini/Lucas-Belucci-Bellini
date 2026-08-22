@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T16:40:34Z",
+  "scanned_at": "2026-08-22T17:35:21Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "1f8a8f88ad9920dfc63eec714a9752d9e5cfd444",
-      "date": "2026-08-22T16:31:03Z",
-      "message": "docs(v2): reconcile wiki zomboid release",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1f8a8f88ad9920dfc63eec714a9752d9e5cfd444"
+      "sha": "0ab6f428eb39bdbc7feb7cfce1001b4ed2fde9b1",
+      "date": "2026-08-22T17:33:47Z",
+      "message": "test(v2): harden evidence review queue contract",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0ab6f428eb39bdbc7feb7cfce1001b4ed2fde9b1"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2078,
-    "project_commits": 1980,
-    "monitor_commits": 98,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 2084,
+    "project_commits": 1985,
+    "monitor_commits": 99,
+    "detected_project_commits_this_scan": 5,
     "monitor_commit_this_scan": 1
   },
   "summary": {
