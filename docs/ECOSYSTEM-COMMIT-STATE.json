@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T20:38:50Z",
+  "scanned_at": "2026-08-22T21:35:02Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "6d62a0ce812625680d973d961e181e32a4eb8c07",
-      "date": "2026-08-22T20:34:09Z",
-      "message": "feat(jarvis): integrate visual nucleus v7",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/6d62a0ce812625680d973d961e181e32a4eb8c07"
+      "sha": "ee3da64a76bf493bc3e73398c521a128b39aff2a",
+      "date": "2026-08-22T21:33:43Z",
+      "message": "fix(jarvis): use browser nucleus image",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ee3da64a76bf493bc3e73398c521a128b39aff2a"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "e8a050edcd12090233acc108f564b69f476c8f4c",
-      "date": "2026-08-22T19:59:18Z",
-      "message": "chore: advance rollback baseline to rc.8",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e8a050edcd12090233acc108f564b69f476c8f4c"
+      "sha": "ad4d7e54ef8ce1b625105faab843e002575d891d",
+      "date": "2026-08-22T21:09:51Z",
+      "message": "chore: advance rollback baseline to rc.9",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ad4d7e54ef8ce1b625105faab843e002575d891d"
     }
   },
   "metrics": {
-    "tracked_commits": 2114,
-    "project_commits": 2012,
-    "monitor_commits": 102,
-    "detected_project_commits_this_scan": 10,
+    "tracked_commits": 2124,
+    "project_commits": 2021,
+    "monitor_commits": 103,
+    "detected_project_commits_this_scan": 9,
     "monitor_commit_this_scan": 1
   },
   "summary": {
