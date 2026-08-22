@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T15:34:56Z",
+  "scanned_at": "2026-08-22T16:40:34Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "0e200328612c64299f550363fe3440712e491806",
-      "date": "2026-08-22T15:21:41Z",
-      "message": "release: prepare version 1.2.7",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0e200328612c64299f550363fe3440712e491806"
+      "sha": "1f8a8f88ad9920dfc63eec714a9752d9e5cfd444",
+      "date": "2026-08-22T16:31:03Z",
+      "message": "docs(v2): reconcile wiki zomboid release",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1f8a8f88ad9920dfc63eec714a9752d9e5cfd444"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2073,
-    "project_commits": 1976,
-    "monitor_commits": 97,
-    "detected_project_commits_this_scan": 3,
+    "tracked_commits": 2078,
+    "project_commits": 1980,
+    "monitor_commits": 98,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
