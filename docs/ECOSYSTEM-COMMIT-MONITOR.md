@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-22T13:00:30Z`  
+**Última varredura:** `2026-08-22T13:44:15Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2061`
-- **Commits dos projetos:** `1967`
-- **Commits do próprio monitor:** `94`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `2065`
+- **Commits dos projetos:** `1970`
+- **Commits do próprio monitor:** `95`
+- **Commits de projetos detectados nesta hora:** `3`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [6833d4625c57](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/6833d4625c574cf8cc01dbab79718c5b21ed2c68) — feat(jarvis): add spotify soloist read-only bridge
+- **Projeto-Baluarte** — 3 commit(s) — [8ad3fdf220d1](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8ad3fdf220d101384ac41d561951979fe2fa6d46) — feat(jarvis): guide spotify setup for users
 
 ## Erros de consulta
 

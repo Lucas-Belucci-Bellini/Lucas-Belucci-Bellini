@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T13:00:30Z",
+  "scanned_at": "2026-08-22T13:44:15Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "6833d4625c574cf8cc01dbab79718c5b21ed2c68",
-      "date": "2026-08-22T12:55:30Z",
-      "message": "feat(jarvis): add spotify soloist read-only bridge",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/6833d4625c574cf8cc01dbab79718c5b21ed2c68"
+      "sha": "8ad3fdf220d101384ac41d561951979fe2fa6d46",
+      "date": "2026-08-22T13:31:57Z",
+      "message": "feat(jarvis): guide spotify setup for users",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8ad3fdf220d101384ac41d561951979fe2fa6d46"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2061,
-    "project_commits": 1967,
-    "monitor_commits": 94,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 2065,
+    "project_commits": 1970,
+    "monitor_commits": 95,
+    "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
   "summary": {
