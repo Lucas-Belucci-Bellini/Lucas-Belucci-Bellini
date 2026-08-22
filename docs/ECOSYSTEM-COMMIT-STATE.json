@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T13:44:15Z",
+  "scanned_at": "2026-08-22T14:37:39Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "8ad3fdf220d101384ac41d561951979fe2fa6d46",
-      "date": "2026-08-22T13:31:57Z",
-      "message": "feat(jarvis): guide spotify setup for users",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8ad3fdf220d101384ac41d561951979fe2fa6d46"
+      "sha": "cb3bceb6ad4569820d875ba9e7030ecb29b51fd6",
+      "date": "2026-08-22T14:28:46Z",
+      "message": "docs(v2): reconcile briefing evidence milestone",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/cb3bceb6ad4569820d875ba9e7030ecb29b51fd6"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,9 +409,9 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2065,
-    "project_commits": 1970,
-    "monitor_commits": 95,
+    "tracked_commits": 2069,
+    "project_commits": 1973,
+    "monitor_commits": 96,
     "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
