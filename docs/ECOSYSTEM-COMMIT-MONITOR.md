@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-22T17:35:21Z`  
+**Última varredura:** `2026-08-22T18:48:55Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2084`
-- **Commits dos projetos:** `1985`
-- **Commits do próprio monitor:** `99`
-- **Commits de projetos detectados nesta hora:** `5`
+- **Commits rastreados pelo ecossistema:** `2094`
+- **Commits dos projetos:** `1994`
+- **Commits do próprio monitor:** `100`
+- **Commits de projetos detectados nesta hora:** `9`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 5 commit(s) — [0ab6f428eb39](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0ab6f428eb39bdbc7feb7cfce1001b4ed2fde9b1) — test(v2): harden evidence review queue contract
+- **Projeto-Baluarte** — 4 commit(s) — [752206fbfd46](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/752206fbfd4641223ee741d2e5a03099c5716338) — feat(v2): add bounded evidence retention preview
+- **Veritas** — 5 commit(s) — [ced0d8ffddd2](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ced0d8ffddd29447bf270b8c47ce7bd5b5d5a4c7) — chore: advance rollback baseline and mcp roadmap
 
 ## Erros de consulta
 

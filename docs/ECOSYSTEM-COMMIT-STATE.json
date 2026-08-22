@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T17:35:21Z",
+  "scanned_at": "2026-08-22T18:48:55Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "0ab6f428eb39bdbc7feb7cfce1001b4ed2fde9b1",
-      "date": "2026-08-22T17:33:47Z",
-      "message": "test(v2): harden evidence review queue contract",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0ab6f428eb39bdbc7feb7cfce1001b4ed2fde9b1"
+      "sha": "752206fbfd4641223ee741d2e5a03099c5716338",
+      "date": "2026-08-22T18:41:47Z",
+      "message": "feat(v2): add bounded evidence retention preview",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/752206fbfd4641223ee741d2e5a03099c5716338"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,22 +402,22 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "bbf892eab923cd8d0e47f25ac3343b0a32a9ca67",
-      "date": "2026-08-22T06:04:57Z",
-      "message": "feat: export hdl through mcp",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/bbf892eab923cd8d0e47f25ac3343b0a32a9ca67"
+      "sha": "ced0d8ffddd29447bf270b8c47ce7bd5b5d5a4c7",
+      "date": "2026-08-22T18:40:45Z",
+      "message": "chore: advance rollback baseline and mcp roadmap",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ced0d8ffddd29447bf270b8c47ce7bd5b5d5a4c7"
     }
   },
   "metrics": {
-    "tracked_commits": 2084,
-    "project_commits": 1985,
-    "monitor_commits": 99,
-    "detected_project_commits_this_scan": 5,
+    "tracked_commits": 2094,
+    "project_commits": 1994,
+    "monitor_commits": 100,
+    "detected_project_commits_this_scan": 9,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
