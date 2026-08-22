@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-22T21:35:02Z`  
+**Última varredura:** `2026-08-22T22:37:39Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2124`
-- **Commits dos projetos:** `2021`
-- **Commits do próprio monitor:** `103`
-- **Commits de projetos detectados nesta hora:** `9`
+- **Commits rastreados pelo ecossistema:** `2132`
+- **Commits dos projetos:** `2028`
+- **Commits do próprio monitor:** `104`
+- **Commits de projetos detectados nesta hora:** `7`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 4 commit(s) — [ee3da64a76bf](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ee3da64a76bf493bc3e73398c521a128b39aff2a) — fix(jarvis): use browser nucleus image
-- **Veritas** — 5 commit(s) — [ad4d7e54ef8c](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ad4d7e54ef8ce1b625105faab843e002575d891d) — chore: advance rollback baseline to rc.9
+- **Projeto-Baluarte** — 4 commit(s) — [f9656c509bec](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/f9656c509bec1a80e0e5e052a22562c8c4630f93) — docs(release): record 1.3.4 publication
+- **Veritas** — 3 commit(s) — [f7bdbb142b61](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/f7bdbb142b6197343b5bddab14277f3a137605e1) — chore: prepare v0.9.0-rc.10 release
 
 ## Erros de consulta
 

@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T21:35:02Z",
+  "scanned_at": "2026-08-22T22:37:39Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "ee3da64a76bf493bc3e73398c521a128b39aff2a",
-      "date": "2026-08-22T21:33:43Z",
-      "message": "fix(jarvis): use browser nucleus image",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ee3da64a76bf493bc3e73398c521a128b39aff2a"
+      "sha": "f9656c509bec1a80e0e5e052a22562c8c4630f93",
+      "date": "2026-08-22T22:09:50Z",
+      "message": "docs(release): record 1.3.4 publication",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/f9656c509bec1a80e0e5e052a22562c8c4630f93"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "ad4d7e54ef8ce1b625105faab843e002575d891d",
-      "date": "2026-08-22T21:09:51Z",
-      "message": "chore: advance rollback baseline to rc.9",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ad4d7e54ef8ce1b625105faab843e002575d891d"
+      "sha": "f7bdbb142b6197343b5bddab14277f3a137605e1",
+      "date": "2026-08-22T22:36:29Z",
+      "message": "chore: prepare v0.9.0-rc.10 release",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/f7bdbb142b6197343b5bddab14277f3a137605e1"
     }
   },
   "metrics": {
-    "tracked_commits": 2124,
-    "project_commits": 2021,
-    "monitor_commits": 103,
-    "detected_project_commits_this_scan": 9,
+    "tracked_commits": 2132,
+    "project_commits": 2028,
+    "monitor_commits": 104,
+    "detected_project_commits_this_scan": 7,
     "monitor_commit_this_scan": 1
   },
   "summary": {
