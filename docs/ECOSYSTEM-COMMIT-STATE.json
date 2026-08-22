@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T04:48:36Z",
+  "scanned_at": "2026-08-22T05:42:08Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "1b69864c29f788bd2194f8d902247dc04da2505c",
-      "date": "2026-08-22T01:57:49Z",
-      "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1b69864c29f788bd2194f8d902247dc04da2505c"
+      "sha": "9e2caca33fb53be87f26a6db1c87f38954c11229",
+      "date": "2026-08-22T05:36:00Z",
+      "message": "feat(auth): add read-only observation http client",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/9e2caca33fb53be87f26a6db1c87f38954c11229"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,22 +402,22 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "e36c86f1d9065d04a30a1916d553dbe6b1392503",
-      "date": "2026-08-22T04:35:34Z",
-      "message": "feat: add canonical circuit foundation",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e36c86f1d9065d04a30a1916d553dbe6b1392503"
+      "sha": "751815fb01c2fd68fe1e129484338476925d048c",
+      "date": "2026-08-22T05:35:14Z",
+      "message": "feat: export custom chips to hdl",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/751815fb01c2fd68fe1e129484338476925d048c"
     }
   },
   "metrics": {
-    "tracked_commits": 2037,
-    "project_commits": 1947,
-    "monitor_commits": 90,
-    "detected_project_commits_this_scan": 2,
+    "tracked_commits": 2048,
+    "project_commits": 1957,
+    "monitor_commits": 91,
+    "detected_project_commits_this_scan": 10,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [

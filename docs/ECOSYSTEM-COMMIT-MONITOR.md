@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-22T04:48:36Z`  
+**Última varredura:** `2026-08-22T05:42:08Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2037`
-- **Commits dos projetos:** `1947`
-- **Commits do próprio monitor:** `90`
-- **Commits de projetos detectados nesta hora:** `2`
+- **Commits rastreados pelo ecossistema:** `2048`
+- **Commits dos projetos:** `1957`
+- **Commits do próprio monitor:** `91`
+- **Commits de projetos detectados nesta hora:** `10`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Veritas** — 2 commit(s) — [e36c86f1d906](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e36c86f1d9065d04a30a1916d553dbe6b1392503) — feat: add canonical circuit foundation
+- **Projeto-Baluarte** — 5 commit(s) — [9e2caca33fb5](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/9e2caca33fb53be87f26a6db1c87f38954c11229) — feat(auth): add read-only observation http client
+- **Veritas** — 5 commit(s) — [751815fb01c2](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/751815fb01c2fd68fe1e129484338476925d048c) — feat: export custom chips to hdl
 
 ## Erros de consulta
 
