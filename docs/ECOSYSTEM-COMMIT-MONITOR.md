@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-22T06:59:24Z`  
+**Última varredura:** `2026-08-22T07:45:47Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2057`
-- **Commits dos projetos:** `1965`
-- **Commits do próprio monitor:** `92`
-- **Commits de projetos detectados nesta hora:** `8`
+- **Commits rastreados pelo ecossistema:** `2059`
+- **Commits dos projetos:** `1966`
+- **Commits do próprio monitor:** `93`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 3 commit(s) — [a3a88c047277](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a3a88c047277214894a94ade64a7da582c27574c) — docs(v2): reconcile spotify milestone matrices
-- **Veritas** — 5 commit(s) — [bbf892eab923](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/bbf892eab923cd8d0e47f25ac3343b0a32a9ca67) — feat: export hdl through mcp
+- **Projeto-Baluarte** — 1 commit(s) — [436bc8d2594d](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/436bc8d2594dc5efb2a2f5ba480574a84c9e5bbc) — docs(v2): clarify spotify audit shas
 
 ## Erros de consulta
 

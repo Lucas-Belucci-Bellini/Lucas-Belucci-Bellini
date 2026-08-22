@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T06:59:24Z",
+  "scanned_at": "2026-08-22T07:45:47Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "a3a88c047277214894a94ade64a7da582c27574c",
-      "date": "2026-08-22T06:50:16Z",
-      "message": "docs(v2): reconcile spotify milestone matrices",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a3a88c047277214894a94ade64a7da582c27574c"
+      "sha": "436bc8d2594dc5efb2a2f5ba480574a84c9e5bbc",
+      "date": "2026-08-22T07:00:42Z",
+      "message": "docs(v2): clarify spotify audit shas",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/436bc8d2594dc5efb2a2f5ba480574a84c9e5bbc"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,15 +409,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2057,
-    "project_commits": 1965,
-    "monitor_commits": 92,
-    "detected_project_commits_this_scan": 8,
+    "tracked_commits": 2059,
+    "project_commits": 1966,
+    "monitor_commits": 93,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 2,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
