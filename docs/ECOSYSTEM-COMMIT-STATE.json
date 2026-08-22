@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T03:07:14Z",
+  "scanned_at": "2026-08-22T04:48:36Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "eab7b65d5f7761c8f376aad609d853e36c63120f",
-      "date": "2026-08-21T06:22:42Z",
-      "message": "feat: add wireless channel contract",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/eab7b65d5f7761c8f376aad609d853e36c63120f"
+      "sha": "e36c86f1d9065d04a30a1916d553dbe6b1392503",
+      "date": "2026-08-22T04:35:34Z",
+      "message": "feat: add canonical circuit foundation",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e36c86f1d9065d04a30a1916d553dbe6b1392503"
     }
   },
   "metrics": {
-    "tracked_commits": 2034,
-    "project_commits": 1945,
-    "monitor_commits": 89,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 2037,
+    "project_commits": 1947,
+    "monitor_commits": 90,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {

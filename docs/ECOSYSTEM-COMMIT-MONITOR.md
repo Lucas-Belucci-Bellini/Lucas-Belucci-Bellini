@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-22T03:07:14Z`  
+**Última varredura:** `2026-08-22T04:48:36Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2034`
-- **Commits dos projetos:** `1945`
-- **Commits do próprio monitor:** `89`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `2037`
+- **Commits dos projetos:** `1947`
+- **Commits do próprio monitor:** `90`
+- **Commits de projetos detectados nesta hora:** `2`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [1b69864c29f7](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1b69864c29f788bd2194f8d902247dc04da2505c) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Veritas** — 2 commit(s) — [e36c86f1d906](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e36c86f1d9065d04a30a1916d553dbe6b1392503) — feat: add canonical circuit foundation
 
 ## Erros de consulta
 
