@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-22T14:37:39Z`  
+**Última varredura:** `2026-08-22T15:34:56Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2069`
-- **Commits dos projetos:** `1973`
-- **Commits do próprio monitor:** `96`
+- **Commits rastreados pelo ecossistema:** `2073`
+- **Commits dos projetos:** `1976`
+- **Commits do próprio monitor:** `97`
 - **Commits de projetos detectados nesta hora:** `3`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 3 commit(s) — [cb3bceb6ad45](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/cb3bceb6ad4569820d875ba9e7030ecb29b51fd6) — docs(v2): reconcile briefing evidence milestone
+- **Projeto-Baluarte** — 3 commit(s) — [0e200328612c](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0e200328612c64299f550363fe3440712e491806) — release: prepare version 1.2.7
 
 ## Erros de consulta
 

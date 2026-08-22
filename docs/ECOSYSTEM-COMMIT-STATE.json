@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T14:37:39Z",
+  "scanned_at": "2026-08-22T15:34:56Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "cb3bceb6ad4569820d875ba9e7030ecb29b51fd6",
-      "date": "2026-08-22T14:28:46Z",
-      "message": "docs(v2): reconcile briefing evidence milestone",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/cb3bceb6ad4569820d875ba9e7030ecb29b51fd6"
+      "sha": "0e200328612c64299f550363fe3440712e491806",
+      "date": "2026-08-22T15:21:41Z",
+      "message": "release: prepare version 1.2.7",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0e200328612c64299f550363fe3440712e491806"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,9 +409,9 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2069,
-    "project_commits": 1973,
-    "monitor_commits": 96,
+    "tracked_commits": 2073,
+    "project_commits": 1976,
+    "monitor_commits": 97,
     "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
