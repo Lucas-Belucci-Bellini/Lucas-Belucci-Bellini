@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T18:48:55Z",
+  "scanned_at": "2026-08-22T19:34:39Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "752206fbfd4641223ee741d2e5a03099c5716338",
-      "date": "2026-08-22T18:41:47Z",
-      "message": "feat(v2): add bounded evidence retention preview",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/752206fbfd4641223ee741d2e5a03099c5716338"
+      "sha": "3d5bc1d2a6d8615f66448bba55a2af9ad2575f54",
+      "date": "2026-08-22T19:22:09Z",
+      "message": "docs(v2): add release 1.3.1 completion report",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3d5bc1d2a6d8615f66448bba55a2af9ad2575f54"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "ced0d8ffddd29447bf270b8c47ce7bd5b5d5a4c7",
-      "date": "2026-08-22T18:40:45Z",
-      "message": "chore: advance rollback baseline and mcp roadmap",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ced0d8ffddd29447bf270b8c47ce7bd5b5d5a4c7"
+      "sha": "e1b06f554aca09afcf88736f26c19fd74ccc6036",
+      "date": "2026-08-22T19:32:41Z",
+      "message": "chore: advance rollback baseline to rc.6",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e1b06f554aca09afcf88736f26c19fd74ccc6036"
     }
   },
   "metrics": {
-    "tracked_commits": 2094,
-    "project_commits": 1994,
-    "monitor_commits": 100,
-    "detected_project_commits_this_scan": 9,
+    "tracked_commits": 2103,
+    "project_commits": 2002,
+    "monitor_commits": 101,
+    "detected_project_commits_this_scan": 8,
     "monitor_commit_this_scan": 1
   },
   "summary": {
