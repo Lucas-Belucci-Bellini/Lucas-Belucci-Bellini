@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T05:42:08Z",
+  "scanned_at": "2026-08-22T06:59:24Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "9e2caca33fb53be87f26a6db1c87f38954c11229",
-      "date": "2026-08-22T05:36:00Z",
-      "message": "feat(auth): add read-only observation http client",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/9e2caca33fb53be87f26a6db1c87f38954c11229"
+      "sha": "a3a88c047277214894a94ade64a7da582c27574c",
+      "date": "2026-08-22T06:50:16Z",
+      "message": "docs(v2): reconcile spotify milestone matrices",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a3a88c047277214894a94ade64a7da582c27574c"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "751815fb01c2fd68fe1e129484338476925d048c",
-      "date": "2026-08-22T05:35:14Z",
-      "message": "feat: export custom chips to hdl",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/751815fb01c2fd68fe1e129484338476925d048c"
+      "sha": "bbf892eab923cd8d0e47f25ac3343b0a32a9ca67",
+      "date": "2026-08-22T06:04:57Z",
+      "message": "feat: export hdl through mcp",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/bbf892eab923cd8d0e47f25ac3343b0a32a9ca67"
     }
   },
   "metrics": {
-    "tracked_commits": 2048,
-    "project_commits": 1957,
-    "monitor_commits": 91,
-    "detected_project_commits_this_scan": 10,
+    "tracked_commits": 2057,
+    "project_commits": 1965,
+    "monitor_commits": 92,
+    "detected_project_commits_this_scan": 8,
     "monitor_commit_this_scan": 1
   },
   "summary": {
