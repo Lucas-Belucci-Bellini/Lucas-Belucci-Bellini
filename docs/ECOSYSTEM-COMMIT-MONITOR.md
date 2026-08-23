@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-23T13:45:24Z`  
+**Última varredura:** `2026-08-23T22:37:19Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2153`
-- **Commits dos projetos:** `2045`
-- **Commits do próprio monitor:** `108`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `2159`
+- **Commits dos projetos:** `2050`
+- **Commits do próprio monitor:** `109`
+- **Commits de projetos detectados nesta hora:** `5`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [4b20a637ac2d](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/4b20a637ac2daf2b27634f5500b5d0331ec80242) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Projeto-Baluarte** — 5 commit(s) — [4a049ce708f1](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/4a049ce708f13c4e5e054ef57a9c12ec4a8e104a) — docs(release): a 1.3.5 sai com as duas ondas, e a nota passa a dizer isso
 
 ## Erros de consulta
 
