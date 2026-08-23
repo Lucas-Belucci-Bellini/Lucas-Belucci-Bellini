@@ -116,7 +116,7 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 <!-- LANG-STATS:START -->
 
-> **16 linguagens** · **56 tipos de arquivo** · **60 repositórios** · **15.20 MB** de código · **17.831** arquivos · atualizado em `21/08/2026 13:47 UTC`
+> **16 linguagens** · **56 tipos de arquivo** · **60 repositórios** · **15.66 MB** de código · **17.938** arquivos · atualizado em `23/08/2026 04:01 UTC`
 
 <div align="center">
 
@@ -135,17 +135,17 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 | # | Linguagem | Peso | Participação | Repositórios |
 | :--: | :--- | ---: | ---: | ---: |
-| 1 | **JavaScript** | `5.69 MB` | `37.42%` | 16 |
-| 2 | **TypeScript** | `3.69 MB` | `24.29%` | 5 |
-| 3 | **HTML** | `3.43 MB` | `22.60%` | 17 |
-| 4 | **CSS** | `775.4 KB` | `4.98%` | 12 |
-| 5 | **Java** | `682.3 KB` | `4.38%` | 4 |
-| 6 | **Python** | `625.0 KB` | `4.02%` | 6 |
-| 7 | **PLpgSQL** | `104.6 KB` | `0.67%` | 2 |
-| 8 | **SQF** | `52.0 KB` | `0.33%` | 1 |
-| 9 | **Rust** | `41.3 KB` | `0.27%` | 2 |
+| 1 | **JavaScript** | `5.90 MB` | `37.67%` | 16 |
+| 2 | **TypeScript** | `3.91 MB` | `24.95%` | 5 |
+| 3 | **HTML** | `3.43 MB` | `21.92%` | 17 |
+| 4 | **CSS** | `778.0 KB` | `4.85%` | 12 |
+| 5 | **Java** | `682.3 KB` | `4.25%` | 4 |
+| 6 | **Python** | `625.0 KB` | `3.90%` | 6 |
+| 7 | **PLpgSQL** | `104.6 KB` | `0.65%` | 2 |
+| 8 | **Rust** | `75.1 KB` | `0.47%` | 3 |
+| 9 | **SQF** | `52.0 KB` | `0.32%` | 1 |
 | 10 | **C#** | `41.1 KB` | `0.26%` | 1 |
-| 11 | **Shell** | `40.8 KB` | `0.26%` | 5 |
+| 11 | **Shell** | `40.8 KB` | `0.25%` | 5 |
 | 12 | **GDScript** | `36.3 KB` | `0.23%` | 1 |
 | 13 | **PowerShell** | `26.9 KB` | `0.17%` | 2 |
 | 14 | **Portugol** | `11.1 KB` | `0.07%` | 3 |
@@ -154,12 +154,12 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 #### Onde cada linguagem foi usada
 
-<details><summary><b>JavaScript</b> · `5.69 MB` · 16 repositórios</summary>
+<details><summary><b>JavaScript</b> · `5.90 MB` · 16 repositórios</summary>
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.42 MB` |
-| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `833.7 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `3.49 MB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `982.6 KB` |
 | [Recycle-game](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | `317.2 KB` |
 | [Project-Vanguard](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `194.1 KB` |
 | [Essence-Custom-Furniture](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `177.9 KB` |
@@ -174,13 +174,13 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 </details>
 
-<details><summary><b>TypeScript</b> · `3.69 MB` · 5 repositórios</summary>
+<details><summary><b>TypeScript</b> · `3.91 MB` · 5 repositórios</summary>
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `1.82 MB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `1.88 MB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `827.9 KB` |
 | [baluarte-obra-segura](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `725.6 KB` |
-| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `667.0 KB` |
 | [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `496.9 KB` |
 | [DailyPlanner](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) | `25.5 KB` |
 
@@ -206,11 +206,11 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 </details>
 
-<details><summary><b>CSS</b> · `775.4 KB` · 12 repositórios</summary>
+<details><summary><b>CSS</b> · `778.0 KB` · 12 repositórios</summary>
 
 | Repositório | Peso |
 | :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `618.1 KB` |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `620.7 KB` |
 | [Projeto-Baluarte-World-Game](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `32.8 KB` |
 | [LLBR-Innovations-Constructions](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `29.8 KB` |
 | [Portifolio-Baluarte-Lucas-Belucci-Bellini-](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `21.5 KB` |
@@ -258,20 +258,21 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 </details>
 
+<details><summary><b>Rust</b> · `75.1 KB` · 3 repositórios</summary>
+
+| Repositório | Peso |
+| :--- | ---: |
+| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `39.4 KB` |
+| [Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas) | `33.8 KB` |
+| [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `1.9 KB` |
+
+</details>
+
 <details><summary><b>SQF</b> · `52.0 KB` · 1 repositórios</summary>
 
 | Repositório | Peso |
 | :--- | ---: |
 | [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `52.0 KB` |
-
-</details>
-
-<details><summary><b>Rust</b> · `41.3 KB` · 2 repositórios</summary>
-
-| Repositório | Peso |
-| :--- | ---: |
-| [Projeto-Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | `39.4 KB` |
-| [Ark-Initiative](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | `1.9 KB` |
 
 </details>
 
@@ -351,43 +352,43 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 | # | Tipo | Arquivos | Participação | Família | Repositórios |
 | :--: | :--- | ---: | ---: | :--- | ---: |
-| 1 | `.webp` | `9588` | `53.77%` | imagem | 1 |
-| 2 | `.json` | `2537` | `14.23%` | dado | 34 |
-| 3 | `.p3d` | `1302` | `7.30%` | modelo 3D | 1 |
-| 4 | `.java` | `1058` | `5.93%` | código | 4 |
-| 5 | `.js` | `662` | `3.71%` | código | 14 |
-| 6 | `.ts` | `627` | `3.52%` | código | 5 |
-| 7 | `.md` | `584` | `3.28%` | documento | 54 |
-| 8 | `.class` | `255` | `1.43%` | outros | 1 |
-| 9 | `.jpeg` | `224` | `1.26%` | imagem | 2 |
-| 10 | `.tsx` | `183` | `1.03%` | código | 3 |
+| 1 | `.webp` | `9589` | `53.46%` | imagem | 1 |
+| 2 | `.json` | `2538` | `14.15%` | dado | 34 |
+| 3 | `.p3d` | `1302` | `7.26%` | modelo 3D | 1 |
+| 4 | `.java` | `1058` | `5.90%` | código | 4 |
+| 5 | `.js` | `676` | `3.77%` | código | 14 |
+| 6 | `.ts` | `661` | `3.68%` | código | 5 |
+| 7 | `.md` | `622` | `3.47%` | documento | 54 |
+| 8 | `.class` | `255` | `1.42%` | outros | 1 |
+| 9 | `.jpeg` | `224` | `1.25%` | imagem | 2 |
+| 10 | `.tsx` | `183` | `1.02%` | código | 3 |
 | 11 | `.css` | `145` | `0.81%` | estilo e marcação | 12 |
-| 12 | `.png` | `110` | `0.62%` | imagem | 8 |
+| 12 | `.png` | `110` | `0.61%` | imagem | 8 |
 | 13 | `.py` | `96` | `0.54%` | código | 6 |
 | 14 | `.html` | `89` | `0.50%` | estilo e marcação | 17 |
-| 15 | `.mjs` | `78` | `0.44%` | código | 4 |
+| 15 | `.mjs` | `86` | `0.48%` | código | 4 |
 | 16 | `.sql` | `44` | `0.25%` | dado | 4 |
 | 17 | `.por` | `25` | `0.14%` | outros | 3 |
 | 18 | `.yml` | `25` | `0.14%` | dado | 6 |
 | 19 | `.jsx` | `22` | `0.12%` | código | 3 |
-| 20 | `.mts` | `17` | `0.10%` | outros | 1 |
-| 21 | `.rs` | `15` | `0.08%` | código | 2 |
+| 20 | `.rs` | `20` | `0.11%` | código | 3 |
+| 21 | `.mts` | `19` | `0.11%` | outros | 1 |
 | 22 | `.sqf` | `14` | `0.08%` | código | 1 |
 | 23 | `.xml` | `14` | `0.08%` | estilo e marcação | 2 |
 | 24 | `.svg` | `11` | `0.06%` | estilo e marcação | 3 |
-|  | _… +32 outros tipos_ | `106` | `0.59%` |  |  |
+|  | _… +32 outros tipos_ | `110` | `0.61%` |  |  |
 
 ### Famílias de arquivo
 
 | Família | Arquivos | Participação |
 | :--- | ---: | ---: |
-| imagem | `9926` | `55.67%` |
-| código | `2774` | `15.56%` |
-| dado | `2616` | `14.67%` |
-| modelo 3D | `1306` | `7.32%` |
-| documento | `602` | `3.38%` |
-| outros | `339` | `1.90%` |
-| estilo e marcação | `259` | `1.45%` |
+| imagem | `9927` | `55.34%` |
+| código | `2835` | `15.80%` |
+| dado | `2620` | `14.61%` |
+| modelo 3D | `1306` | `7.28%` |
+| documento | `640` | `3.57%` |
+| outros | `342` | `1.91%` |
+| estilo e marcação | `259` | `1.44%` |
 | áudio e vídeo | `9` | `0.05%` |
 
 </details>
