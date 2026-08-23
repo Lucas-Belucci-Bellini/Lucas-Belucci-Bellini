@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-23T01:59:37Z`  
+**Última varredura:** `2026-08-23T03:14:59Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2149`
-- **Commits dos projetos:** `2043`
-- **Commits do próprio monitor:** `106`
-- **Commits de projetos detectados nesta hora:** `6`
+- **Commits rastreados pelo ecossistema:** `2151`
+- **Commits dos projetos:** `2044`
+- **Commits do próprio monitor:** `107`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 2 commit(s) — [c2415f3eec1e](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/c2415f3eec1ef64f5b6e8fdfe0753c22dbf91c71) — chore(release): prepare 1.3.5
-- **Veritas** — 4 commit(s) — [81ad13a27dde](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/81ad13a27ddee56189f542f85c36b3f4c6ff1689) — feat: add wasm production isolation guard
+- **Projeto-Baluarte** — 1 commit(s) — [a81a85b592f1](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a81a85b592f18fa548b14f532161bb8957085de6) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
