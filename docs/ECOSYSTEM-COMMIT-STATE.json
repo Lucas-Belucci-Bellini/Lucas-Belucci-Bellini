@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-22T23:34:38Z",
+  "scanned_at": "2026-08-23T01:59:37Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "0c419379323e4708b5bbe530a1ee9f9622477000",
-      "date": "2026-08-22T23:25:41Z",
-      "message": "refactor(v2): type task manager contract",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0c419379323e4708b5bbe530a1ee9f9622477000"
+      "sha": "c2415f3eec1ef64f5b6e8fdfe0753c22dbf91c71",
+      "date": "2026-08-22T23:54:12Z",
+      "message": "chore(release): prepare 1.3.5",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/c2415f3eec1ef64f5b6e8fdfe0753c22dbf91c71"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "189bc5846f5c991392842a85543781118e38da88",
-      "date": "2026-08-22T23:32:46Z",
-      "message": "chore: advance rollback baseline to rc.12",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/189bc5846f5c991392842a85543781118e38da88"
+      "sha": "81ad13a27ddee56189f542f85c36b3f4c6ff1689",
+      "date": "2026-08-22T23:57:33Z",
+      "message": "feat: add wasm production isolation guard",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/81ad13a27ddee56189f542f85c36b3f4c6ff1689"
     }
   },
   "metrics": {
-    "tracked_commits": 2142,
-    "project_commits": 2037,
-    "monitor_commits": 105,
-    "detected_project_commits_this_scan": 9,
+    "tracked_commits": 2149,
+    "project_commits": 2043,
+    "monitor_commits": 106,
+    "detected_project_commits_this_scan": 6,
     "monitor_commit_this_scan": 1
   },
   "summary": {
