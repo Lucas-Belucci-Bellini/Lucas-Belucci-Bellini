@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-24T05:00:49Z",
+  "scanned_at": "2026-08-24T14:02:06Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "da85a395b3da01ae73c8fe223050f0c911915c6f",
-      "date": "2026-08-24T04:43:18Z",
-      "message": "Merge pull request #462 — o Núcleo sabe o que toca sem passar pelo Spotify",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/da85a395b3da01ae73c8fe223050f0c911915c6f"
+      "sha": "49a6a095152ad80cbc94ec7d8136ed6f7efc5089",
+      "date": "2026-08-24T13:30:35Z",
+      "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/49a6a095152ad80cbc94ec7d8136ed6f7efc5089"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2174,
-    "project_commits": 2061,
-    "monitor_commits": 113,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 2176,
+    "project_commits": 2062,
+    "monitor_commits": 114,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
