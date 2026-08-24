@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-24T16:55:08Z",
+  "scanned_at": "2026-08-24T18:58:40Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "84940c59edade27378eea9838e386b49365ac36c",
-      "date": "2026-08-24T16:53:12Z",
-      "message": "Merge pull request #467 from Lucas-Belucci-Bellini/revert-466-feature/login-cadastro-v2",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/84940c59edade27378eea9838e386b49365ac36c"
+      "sha": "a3d486be45c6bc8850bb788baaf999a543044e7d",
+      "date": "2026-08-24T18:09:06Z",
+      "message": "Merge pull request #464 — V2 Fase 03: o Event Bus ganha a cadeia de um evento",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a3d486be45c6bc8850bb788baaf999a543044e7d"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2192,
-    "project_commits": 2075,
-    "monitor_commits": 117,
-    "detected_project_commits_this_scan": 7,
+    "tracked_commits": 2201,
+    "project_commits": 2083,
+    "monitor_commits": 118,
+    "detected_project_commits_this_scan": 8,
     "monitor_commit_this_scan": 1
   },
   "summary": {
