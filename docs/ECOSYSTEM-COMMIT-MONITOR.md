@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-24T14:59:44Z`  
+**Última varredura:** `2026-08-24T15:55:25Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2181`
-- **Commits dos projetos:** `2066`
-- **Commits do próprio monitor:** `115`
-- **Commits de projetos detectados nesta hora:** `4`
+- **Commits rastreados pelo ecossistema:** `2184`
+- **Commits dos projetos:** `2068`
+- **Commits do próprio monitor:** `116`
+- **Commits de projetos detectados nesta hora:** `2`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 4 commit(s) — [6df5a2f75fc4](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/6df5a2f75fc47ea6c728e753ae0b5fb3b71deb7f) — Merge pull request #463 from Lucas-Belucci-Bellini/feature/login-cadastro-v2
+- **Projeto-Baluarte** — 2 commit(s) — [0558ce8eb8a0](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0558ce8eb8a001756887793191789f0e134d04c6) — Merge pull request #465 from Lucas-Belucci-Bellini/revert-463-feature/login-cadastro-v2
 
 ## Erros de consulta
 
