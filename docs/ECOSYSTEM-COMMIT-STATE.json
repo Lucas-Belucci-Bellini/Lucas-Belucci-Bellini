@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-24T15:55:25Z",
+  "scanned_at": "2026-08-24T16:55:08Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "0558ce8eb8a001756887793191789f0e134d04c6",
-      "date": "2026-08-24T15:48:08Z",
-      "message": "Merge pull request #465 from Lucas-Belucci-Bellini/revert-463-feature/login-cadastro-v2",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0558ce8eb8a001756887793191789f0e134d04c6"
+      "sha": "84940c59edade27378eea9838e386b49365ac36c",
+      "date": "2026-08-24T16:53:12Z",
+      "message": "Merge pull request #467 from Lucas-Belucci-Bellini/revert-466-feature/login-cadastro-v2",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/84940c59edade27378eea9838e386b49365ac36c"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2184,
-    "project_commits": 2068,
-    "monitor_commits": 116,
-    "detected_project_commits_this_scan": 2,
+    "tracked_commits": 2192,
+    "project_commits": 2075,
+    "monitor_commits": 117,
+    "detected_project_commits_this_scan": 7,
     "monitor_commit_this_scan": 1
   },
   "summary": {
