@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-23T23:35:06Z`  
+**Última varredura:** `2026-08-24T01:57:25Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2162`
-- **Commits dos projetos:** `2052`
-- **Commits do próprio monitor:** `110`
-- **Commits de projetos detectados nesta hora:** `2`
+- **Commits rastreados pelo ecossistema:** `2167`
+- **Commits dos projetos:** `2056`
+- **Commits do próprio monitor:** `111`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 2 commit(s) — [22d12d138100](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/22d12d1381000bd2a4867d4df90740ccdc322117) — Merge pull request #459 — o Núcleo sabe o que toca no Spotify, e capta o som real do PC (1.3.6)
+- **Projeto-Baluarte** — 4 commit(s) — [b90b3c082ee4](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b90b3c082ee411bf36bca8d5a3a201437ae5cfee) — Merge pull request #461 — chore(release): prepare 1.3.7
 
 ## Erros de consulta
 

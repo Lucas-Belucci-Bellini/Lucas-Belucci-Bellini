@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-23T23:35:06Z",
+  "scanned_at": "2026-08-24T01:57:25Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "22d12d1381000bd2a4867d4df90740ccdc322117",
-      "date": "2026-08-23T23:04:54Z",
-      "message": "Merge pull request #459 — o Núcleo sabe o que toca no Spotify, e capta o som real do PC (1.3.6)",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/22d12d1381000bd2a4867d4df90740ccdc322117"
+      "sha": "b90b3c082ee411bf36bca8d5a3a201437ae5cfee",
+      "date": "2026-08-24T01:12:52Z",
+      "message": "Merge pull request #461 — chore(release): prepare 1.3.7",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b90b3c082ee411bf36bca8d5a3a201437ae5cfee"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2162,
-    "project_commits": 2052,
-    "monitor_commits": 110,
-    "detected_project_commits_this_scan": 2,
+    "tracked_commits": 2167,
+    "project_commits": 2056,
+    "monitor_commits": 111,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
