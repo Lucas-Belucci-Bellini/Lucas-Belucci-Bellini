@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-24T20:47:56Z",
+  "scanned_at": "2026-08-24T21:43:30Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "7e3e4e514bd1fd5d28413319a950256fb9fde0a8",
-      "date": "2026-08-24T20:28:17Z",
-      "message": "Merge pull request #469 — a 1.3.8 saiu, e o registo passa a dizer o que foi conferido",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/7e3e4e514bd1fd5d28413319a950256fb9fde0a8"
+      "sha": "e301a5887642a380b10d7e6451df27ecdb9a9e3d",
+      "date": "2026-08-24T20:58:39Z",
+      "message": "Merge pull request #470 — V2 Fase 03: o bus contava sucesso e perdia fracasso",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/e301a5887642a380b10d7e6451df27ecdb9a9e3d"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2206,
-    "project_commits": 2087,
-    "monitor_commits": 119,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 2209,
+    "project_commits": 2089,
+    "monitor_commits": 120,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {
