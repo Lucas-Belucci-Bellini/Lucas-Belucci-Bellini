@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-24T14:02:06Z",
+  "scanned_at": "2026-08-24T14:59:44Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "49a6a095152ad80cbc94ec7d8136ed6f7efc5089",
-      "date": "2026-08-24T13:30:35Z",
-      "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/49a6a095152ad80cbc94ec7d8136ed6f7efc5089"
+      "sha": "6df5a2f75fc47ea6c728e753ae0b5fb3b71deb7f",
+      "date": "2026-08-24T14:43:20Z",
+      "message": "Merge pull request #463 from Lucas-Belucci-Bellini/feature/login-cadastro-v2",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/6df5a2f75fc47ea6c728e753ae0b5fb3b71deb7f"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2176,
-    "project_commits": 2062,
-    "monitor_commits": 114,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 2181,
+    "project_commits": 2066,
+    "monitor_commits": 115,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
