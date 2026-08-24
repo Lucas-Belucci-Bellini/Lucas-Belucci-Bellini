@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-24T18:58:40Z`  
+**Última varredura:** `2026-08-24T20:47:56Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2201`
-- **Commits dos projetos:** `2083`
-- **Commits do próprio monitor:** `118`
-- **Commits de projetos detectados nesta hora:** `8`
+- **Commits rastreados pelo ecossistema:** `2206`
+- **Commits dos projetos:** `2087`
+- **Commits do próprio monitor:** `119`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 8 commit(s) — [a3d486be45c6](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a3d486be45c6bc8850bb788baaf999a543044e7d) — Merge pull request #464 — V2 Fase 03: o Event Bus ganha a cadeia de um evento
+- **Projeto-Baluarte** — 4 commit(s) — [7e3e4e514bd1](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/7e3e4e514bd1fd5d28413319a950256fb9fde0a8) — Merge pull request #469 — a 1.3.8 saiu, e o registo passa a dizer o que foi conferido
 
 ## Erros de consulta
 
