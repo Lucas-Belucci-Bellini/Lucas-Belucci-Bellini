@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-24T03:15:59Z`  
+**Última varredura:** `2026-08-24T05:00:49Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2169`
-- **Commits dos projetos:** `2057`
-- **Commits do próprio monitor:** `112`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `2174`
+- **Commits dos projetos:** `2061`
+- **Commits do próprio monitor:** `113`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [bde839beadcd](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/bde839beadcd2f747d599a22f003451391fb9e67) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Projeto-Baluarte** — 4 commit(s) — [da85a395b3da](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/da85a395b3da01ae73c8fe223050f0c911915c6f) — Merge pull request #462 — o Núcleo sabe o que toca sem passar pelo Spotify
 
 ## Erros de consulta
 
