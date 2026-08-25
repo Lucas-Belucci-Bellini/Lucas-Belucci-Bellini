@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-25T19:45:16Z",
+  "scanned_at": "2026-08-25T20:45:29Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -271,10 +271,10 @@
     },
     "Java-activities": {
       "branch": "main",
-      "sha": "df0537c41177ee6fd3976ef589091e9a0d413f98",
-      "date": "2026-08-21T00:53:44Z",
+      "sha": "36fe9df730b49f83418f7f37918946a286852bdd",
+      "date": "2026-08-25T19:52:21Z",
       "message": "atualização",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/df0537c41177ee6fd3976ef589091e9a0d413f98"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/36fe9df730b49f83418f7f37918946a286852bdd"
     },
     "JAVA-todos-os-codigos-em-java": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "8c5e7b76189e7dbfa0793363febd5f7bceea8592",
-      "date": "2026-08-25T13:28:30Z",
-      "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8c5e7b76189e7dbfa0793363febd5f7bceea8592"
+      "sha": "ae516f19f059cbbcbe69ca135e51f426184d5a30",
+      "date": "2026-08-25T20:26:12Z",
+      "message": "docs(v2): publica notas da v2.0.0-alpha.1",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ae516f19f059cbbcbe69ca135e51f426184d5a30"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,15 +409,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2225,
-    "project_commits": 2100,
-    "monitor_commits": 125,
+    "tracked_commits": 2229,
+    "project_commits": 2103,
+    "monitor_commits": 126,
     "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
