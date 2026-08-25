@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-25T20:45:29Z",
+  "scanned_at": "2026-08-25T21:43:38Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "ae516f19f059cbbcbe69ca135e51f426184d5a30",
-      "date": "2026-08-25T20:26:12Z",
-      "message": "docs(v2): publica notas da v2.0.0-alpha.1",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ae516f19f059cbbcbe69ca135e51f426184d5a30"
+      "sha": "8a373a9622297500f199e17730c093134c1b9962",
+      "date": "2026-08-25T21:42:45Z",
+      "message": "docs(v2): publica notas da v2.0.0-alpha.3",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8a373a9622297500f199e17730c093134c1b9962"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "e9510724bc8ea9308273dafc55c588a2d4722c35",
-      "date": "2026-08-25T19:19:07Z",
-      "message": "Merge pull request #8 — v0.9.0-rc.15 testbench declarativo",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e9510724bc8ea9308273dafc55c588a2d4722c35"
+      "sha": "43e28787310a4f44fb86e27f0d735fb7c866fb85",
+      "date": "2026-08-25T21:36:04Z",
+      "message": "Merge pull request #9 — v0.9.0-rc.16 hierarquia de chips",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/43e28787310a4f44fb86e27f0d735fb7c866fb85"
     }
   },
   "metrics": {
-    "tracked_commits": 2229,
-    "project_commits": 2103,
-    "monitor_commits": 126,
-    "detected_project_commits_this_scan": 3,
+    "tracked_commits": 2237,
+    "project_commits": 2110,
+    "monitor_commits": 127,
+    "detected_project_commits_this_scan": 7,
     "monitor_commit_this_scan": 1
   },
   "summary": {
