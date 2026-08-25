@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-25T22:44:44Z",
+  "scanned_at": "2026-08-25T23:37:04Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "99262766ce0a7e1d4baba8106faacdf308f92992",
-      "date": "2026-08-25T22:40:42Z",
-      "message": "docs(v2): prepara notas da v2.0.0-alpha.5",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/99262766ce0a7e1d4baba8106faacdf308f92992"
+      "sha": "ec127fc030486bc418b7e99e6ef7bb1352841a6c",
+      "date": "2026-08-25T23:35:20Z",
+      "message": "docs(v2): prepara notas da v2.0.0-alpha.7",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ec127fc030486bc418b7e99e6ef7bb1352841a6c"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,15 +409,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2249,
-    "project_commits": 2121,
-    "monitor_commits": 128,
-    "detected_project_commits_this_scan": 11,
+    "tracked_commits": 2254,
+    "project_commits": 2125,
+    "monitor_commits": 129,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 2,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
