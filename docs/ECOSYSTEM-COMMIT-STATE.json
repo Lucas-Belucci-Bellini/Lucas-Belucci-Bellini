@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-25T14:03:42Z",
+  "scanned_at": "2026-08-25T16:54:53Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "81ad13a27ddee56189f542f85c36b3f4c6ff1689",
-      "date": "2026-08-22T23:57:33Z",
-      "message": "feat: add wasm production isolation guard",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/81ad13a27ddee56189f542f85c36b3f4c6ff1689"
+      "sha": "400f015460de65302c95f65050dfe7d96a700c50",
+      "date": "2026-08-25T16:51:33Z",
+      "message": "Merge pull request #6 — v0.9.0-rc.14 verificação comportamental",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/400f015460de65302c95f65050dfe7d96a700c50"
     }
   },
   "metrics": {
-    "tracked_commits": 2213,
-    "project_commits": 2091,
-    "monitor_commits": 122,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 2218,
+    "project_commits": 2095,
+    "monitor_commits": 123,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {

@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-25T14:03:42Z`  
+**Última varredura:** `2026-08-25T16:54:53Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2213`
-- **Commits dos projetos:** `2091`
-- **Commits do próprio monitor:** `122`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `2218`
+- **Commits dos projetos:** `2095`
+- **Commits do próprio monitor:** `123`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [8c5e7b76189e](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8c5e7b76189e7dbfa0793363febd5f7bceea8592) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Veritas** — 4 commit(s) — [400f015460de](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/400f015460de65302c95f65050dfe7d96a700c50) — Merge pull request #6 — v0.9.0-rc.14 verificação comportamental
 
 ## Erros de consulta
 
