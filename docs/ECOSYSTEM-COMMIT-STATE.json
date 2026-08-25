@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-25T21:43:38Z",
+  "scanned_at": "2026-08-25T22:44:44Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "8a373a9622297500f199e17730c093134c1b9962",
-      "date": "2026-08-25T21:42:45Z",
-      "message": "docs(v2): publica notas da v2.0.0-alpha.3",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8a373a9622297500f199e17730c093134c1b9962"
+      "sha": "99262766ce0a7e1d4baba8106faacdf308f92992",
+      "date": "2026-08-25T22:40:42Z",
+      "message": "docs(v2): prepara notas da v2.0.0-alpha.5",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/99262766ce0a7e1d4baba8106faacdf308f92992"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "43e28787310a4f44fb86e27f0d735fb7c866fb85",
-      "date": "2026-08-25T21:36:04Z",
-      "message": "Merge pull request #9 — v0.9.0-rc.16 hierarquia de chips",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/43e28787310a4f44fb86e27f0d735fb7c866fb85"
+      "sha": "ad09284c6ee144b399766e2432b87f0001ac4f64",
+      "date": "2026-08-25T22:21:32Z",
+      "message": "Merge pull request #11 — v0.9.0-rc.18 chips do DLS com estrutura",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ad09284c6ee144b399766e2432b87f0001ac4f64"
     }
   },
   "metrics": {
-    "tracked_commits": 2237,
-    "project_commits": 2110,
-    "monitor_commits": 127,
-    "detected_project_commits_this_scan": 7,
+    "tracked_commits": 2249,
+    "project_commits": 2121,
+    "monitor_commits": 128,
+    "detected_project_commits_this_scan": 11,
     "monitor_commit_this_scan": 1
   },
   "summary": {

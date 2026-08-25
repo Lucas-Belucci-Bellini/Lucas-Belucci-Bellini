@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-25T21:43:38Z`  
+**Última varredura:** `2026-08-25T22:44:44Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2237`
-- **Commits dos projetos:** `2110`
-- **Commits do próprio monitor:** `127`
-- **Commits de projetos detectados nesta hora:** `7`
+- **Commits rastreados pelo ecossistema:** `2249`
+- **Commits dos projetos:** `2121`
+- **Commits do próprio monitor:** `128`
+- **Commits de projetos detectados nesta hora:** `11`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 4 commit(s) — [8a373a962229](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8a373a9622297500f199e17730c093134c1b9962) — docs(v2): publica notas da v2.0.0-alpha.3
-- **Veritas** — 3 commit(s) — [43e28787310a](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/43e28787310a4f44fb86e27f0d735fb7c866fb85) — Merge pull request #9 — v0.9.0-rc.16 hierarquia de chips
+- **Projeto-Baluarte** — 5 commit(s) — [99262766ce0a](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/99262766ce0a7e1d4baba8106faacdf308f92992) — docs(v2): prepara notas da v2.0.0-alpha.5
+- **Veritas** — 6 commit(s) — [ad09284c6ee1](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ad09284c6ee144b399766e2432b87f0001ac4f64) — Merge pull request #11 — v0.9.0-rc.18 chips do DLS com estrutura
 
 ## Erros de consulta
 
