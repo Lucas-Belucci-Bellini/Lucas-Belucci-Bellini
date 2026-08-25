@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-25T17:45:26Z`  
+**Última varredura:** `2026-08-25T19:45:16Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2221`
-- **Commits dos projetos:** `2097`
-- **Commits do próprio monitor:** `124`
-- **Commits de projetos detectados nesta hora:** `2`
+- **Commits rastreados pelo ecossistema:** `2225`
+- **Commits dos projetos:** `2100`
+- **Commits do próprio monitor:** `125`
+- **Commits de projetos detectados nesta hora:** `3`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Veritas** — 2 commit(s) — [28e863e5ce5c](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/28e863e5ce5c51ca0847aef4c3ecda67d84ed9fd) — Merge pull request #7 — baseline de rollback em rc.14
+- **Veritas** — 3 commit(s) — [e9510724bc8e](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e9510724bc8ea9308273dafc55c588a2d4722c35) — Merge pull request #8 — v0.9.0-rc.15 testbench declarativo
 
 ## Erros de consulta
 

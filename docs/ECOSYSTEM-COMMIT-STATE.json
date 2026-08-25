@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-25T17:45:26Z",
+  "scanned_at": "2026-08-25T19:45:16Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "28e863e5ce5c51ca0847aef4c3ecda67d84ed9fd",
-      "date": "2026-08-25T16:56:36Z",
-      "message": "Merge pull request #7 — baseline de rollback em rc.14",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/28e863e5ce5c51ca0847aef4c3ecda67d84ed9fd"
+      "sha": "e9510724bc8ea9308273dafc55c588a2d4722c35",
+      "date": "2026-08-25T19:19:07Z",
+      "message": "Merge pull request #8 — v0.9.0-rc.15 testbench declarativo",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/e9510724bc8ea9308273dafc55c588a2d4722c35"
     }
   },
   "metrics": {
-    "tracked_commits": 2221,
-    "project_commits": 2097,
-    "monitor_commits": 124,
-    "detected_project_commits_this_scan": 2,
+    "tracked_commits": 2225,
+    "project_commits": 2100,
+    "monitor_commits": 125,
+    "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
   "summary": {
