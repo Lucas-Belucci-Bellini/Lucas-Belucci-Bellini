@@ -145,3 +145,20 @@ Você pode adaptar cores, textos, categorias e componentes. Preserve os crédito
 - [Skill Icons](https://github.com/tandpfun/skill-icons)
 - [Shields.io](https://shields.io/)
 - [Komarev GitHub Profile Views Counter](https://github.com/antonkomarev/github-profile-views-counter)
+
+## 12. Mantenha o template atualizado
+
+Trate o template como um produto pequeno, não como uma lista infinita de logos. Faça uma revisão mensal ou a cada mudança relevante de stack. Primeiro atualize o manifesto de configuração; depois confira a documentação oficial da tecnologia, o identificador aceito pelo Skill Icons e a evidência em um projeto público.
+
+| Etapa | Pergunta de controle |
+|:---|:---|
+| Descoberta | A tecnologia aparece em um projeto real ou foi apenas testada uma vez? |
+| Evidência | Existe README, manifest, configuração, release ou demo público que sustente a inclusão? |
+| Categoria | Ela pertence a linguagem, framework/web, infraestrutura/DevOps, IA/conhecimento ou hardware/simulação? |
+| Badge | O ícone, label e URL carregam sem escapes visíveis ou endpoint depreciado? |
+| Impacto | A nova linha melhora a leitura ou apenas aumenta ruído visual? |
+| Regressão | Os testes, links e marcadores dinâmicos continuam passando? |
+
+Adicione uma tecnologia somente depois de responder essas perguntas. Para frameworks com versões frequentes, prefira o nome do framework sem fixar uma versão no badge; registre a versão no README do projeto ou em um changelog. Remova tecnologias abandonadas, duplicadas ou sem evidência. Quando uma ferramenta muda de nome, mantenha uma nota de migração no changelog em vez de exibir dois badges equivalentes.
+
+No processo de contribuição, abra uma branch para cada atualização, revise o diff renderizado, rode o validador de badges e peça revisão antes do merge. Se o template mudar a semântica das métricas ou dos marcadores, atualize também `profile-config.example.json`, `section-snippets.md` e este tutorial. Assim, quem copiar o kit recebe sempre a mesma regra em todos os pontos de entrada.
