@@ -4,12 +4,20 @@ on:
   push:
     branches: [main]
     paths:
+      - "README.md"
+      - "scripts/**"
+      - "docs/**"
+      - "assets/**"
       - ".github/scripts/**"
       - ".github/workflows/**"
       - "tests/**"
   pull_request:
     branches: [main]
     paths:
+      - "README.md"
+      - "scripts/**"
+      - "docs/**"
+      - "assets/**"
       - ".github/scripts/**"
       - ".github/workflows/**"
       - "tests/**"
