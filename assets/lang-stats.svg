@@ -5,14 +5,14 @@
 <text x="48" y="144" fill="#f4ecdd" font-family="monospace" font-size="16"> 1 JavaScript</text>
 <rect x="270" y="129" width="680" height="20" rx="10" fill="#1d1729"/>
 <rect x="270" y="129" width="680" height="20" rx="10" fill="#3ddc84"/>
-<text x="966" y="144" fill="#f4ecdd" font-family="monospace" font-size="14">36.3%</text>
+<text x="966" y="144" fill="#f4ecdd" font-family="monospace" font-size="14">36.4%</text>
 <text x="48" y="180" fill="#f4ecdd" font-family="monospace" font-size="16"> 2 TypeScript</text>
 <rect x="270" y="165" width="680" height="20" rx="10" fill="#1d1729"/>
 <rect x="270" y="165" width="468" height="20" rx="10" fill="#d4a24e"/>
-<text x="966" y="180" fill="#f4ecdd" font-family="monospace" font-size="14">25.0%</text>
+<text x="966" y="180" fill="#f4ecdd" font-family="monospace" font-size="14">25.1%</text>
 <text x="48" y="216" fill="#f4ecdd" font-family="monospace" font-size="16"> 3 HTML</text>
 <rect x="270" y="201" width="680" height="20" rx="10" fill="#1d1729"/>
-<rect x="270" y="201" width="387" height="20" rx="10" fill="#d4a24e"/>
+<rect x="270" y="201" width="388" height="20" rx="10" fill="#d4a24e"/>
 <text x="966" y="216" fill="#f4ecdd" font-family="monospace" font-size="14">20.7%</text>
 <text x="48" y="252" fill="#f4ecdd" font-family="monospace" font-size="16"> 4 CSS</text>
 <rect x="270" y="237" width="680" height="20" rx="10" fill="#1d1729"/>
@@ -24,8 +24,8 @@
 <text x="966" y="288" fill="#f4ecdd" font-family="monospace" font-size="14">4.1%</text>
 <text x="48" y="324" fill="#f4ecdd" font-family="monospace" font-size="16"> 6 Python</text>
 <rect x="270" y="309" width="680" height="20" rx="10" fill="#1d1729"/>
-<rect x="270" y="309" width="71" height="20" rx="10" fill="#d4a24e"/>
-<text x="966" y="324" fill="#f4ecdd" font-family="monospace" font-size="14">3.8%</text>
+<rect x="270" y="309" width="68" height="20" rx="10" fill="#d4a24e"/>
+<text x="966" y="324" fill="#f4ecdd" font-family="monospace" font-size="14">3.7%</text>
 <text x="48" y="360" fill="#f4ecdd" font-family="monospace" font-size="16"> 7 C#</text>
 <rect x="270" y="345" width="680" height="20" rx="10" fill="#1d1729"/>
 <rect x="270" y="345" width="57" height="20" rx="10" fill="#d4a24e"/>
