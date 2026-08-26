@@ -1,20 +1,24 @@
 # README Style Kit — tutorial de uso
 
-Este kit reproduz a identidade visual do README restaurado: **banner escuro**, acentos em **ouro**, títulos com efeito de digitação, badges compactos, blocos de missão, tabelas técnicas e footer com acabamento editorial. Ele foi separado em templates genéricos para que outra pessoa possa copiar a estrutura sem carregar nome, links, projetos ou informações privadas do perfil original.
+Este kit é um ponto de partida reutilizável para criar um README de perfil com estética **Baluarte / Spartan / Field Manual**: banners escuros, ouro como acento, status em verde, títulos de terminal, badges compactos, missões e footer editorial. O kit é público e foi separado do perfil original para não carregar nomes, projetos, links ou informações privadas.
+
+> **Kit público:** [Lucas-Belucci-Bellini/Lucas-Belucci-Bellini — branch `template/readme-style-kit`](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/tree/template/readme-style-kit). Neste repositório você encontra os templates, os snippets e este tutorial explicando como tudo funciona.
 
 ## 1. Escolha o ponto de partida
 
-Para um README completo, copie [`templates/README.template.md`](templates/README.template.md). Para uma versão curta, copie [`templates/README.minimal.template.md`](templates/README.minimal.template.md). O arquivo [`templates/profile-config.example.json`](templates/profile-config.example.json) funciona como um mapa de preenchimento: ele organiza identidade, linguagens, ferramentas e projetos antes de você editar o Markdown.
+Use o template completo quando quiser um perfil com narrativa, Arsenal categorizado, missões, catálogo recolhido e contato. Use o template mínimo quando quiser uma página rápida com banner, stack, dois projetos e links principais.
 
-| Arquivo | Uso recomendado |
+| Arquivo | Quando usar |
 |:---|:---|
-| `templates/README.template.md` | Perfil completo com identidade, build log, Arsenal, missões, mapa e contato. |
-| `templates/README.minimal.template.md` | Perfil enxuto, com banner, stack, dois projetos e contato. |
-| `templates/profile-config.example.json` | Checklist estruturado dos campos que precisam ser personalizados. |
+| [`templates/README.template.md`](templates/README.template.md) | Perfil completo com identidade, build log, cinco categorias de Arsenal, missões e observabilidade opcional. |
+| [`templates/README.minimal.template.md`](templates/README.minimal.template.md) | Perfil curto, com foco em leitura rápida e poucos projetos. |
+| [`templates/profile-config.example.json`](templates/profile-config.example.json) | Ficha de preparação com identidade, categorias, projetos e fontes das métricas. |
+| [`templates/section-snippets.md`](templates/section-snippets.md) | Trechos independentes para copiar apenas uma seção. |
+| [`templates/workflows/profile-traffic.example.yml`](templates/workflows/profile-traffic.example.yml) | Exemplo opcional de Action para consultar views e clones de repositórios. |
 
-## 2. Copie o template para seu repositório de perfil
+## 2. Copie o template para o repositório de perfil
 
-O GitHub usa o README do repositório que tem exatamente o mesmo nome do seu usuário. Faça um fork deste repositório ou abra a branch do kit e copie o template escolhido para o repositório de perfil:
+O README de perfil é publicado pelo repositório que tem exatamente o mesmo nome do usuário. Você pode copiar o arquivo pela interface do GitHub ou usar Git:
 
 ```bash
 git clone https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini.git
@@ -23,74 +27,121 @@ git switch template/readme-style-kit
 cp templates/README.template.md /caminho/do/seu-repositorio-de-perfil/README.md
 ```
 
-Se preferir não usar Git, abra o template no GitHub, selecione o conteúdo, crie ou edite o `README.md` do seu repositório de perfil e cole o modelo.
+Depois, faça a personalização em uma branch própria. Não edite diretamente `main` até revisar o diff e executar o checklist deste tutorial.
 
-## 3. Substitua todos os placeholders
+## 3. Preencha a ficha antes do Markdown
 
-Procure por `[SEU NOME]`, `[SEU_USUARIO]`, `[SUA_CIDADE]`, `[SUA_ESPECIALIDADE]`, `[REPO]`, `[SEU_SITE]` e `[SEU_PERFIL]`. Troque também as descrições genéricas dos projetos por texto confirmado nos respectivos READMEs. Não copie links de exemplo para produção.
+Comece por [`profile-config.example.json`](templates/profile-config.example.json). Ele funciona como uma ficha editorial: identidade, linguagens, categorias de ferramentas, missões, fontes e métricas opcionais.
 
-A tabela abaixo indica o que revisar antes do primeiro commit:
+Substitua todos os placeholders como `[SEU NOME]`, `[SEU_USUARIO]`, `[SUA_CIDADE]`, `[SUA_ESPECIALIDADE]`, `[REPO]`, `[SEU_SITE]` e `[SEU_PERFIL]`. Troque também descrições genéricas por fatos confirmados nos READMEs públicos dos projetos.
 
-| Área | O que personalizar | Regra de qualidade |
-|:---|:---|:---|
-| Identidade | Nome, frase, especialidades e localização | Use uma descrição curta e verdadeira. |
-| Linguagens | Ícones e lista de linguagens | Mostre apenas linguagens usadas em projetos reais. |
-| Ferramentas | Git, editores, runtimes, frameworks e serviços | Remova tudo que não fizer parte do seu fluxo. |
-| Missões | Nome, foco, status e links | Cada descrição deve apontar para um projeto verificável. |
-| Contato | GitHub, LinkedIn, site e canais | Teste todos os links antes de publicar. |
+| Campo | Regra de qualidade |
+|:---|:---|
+| Identidade | Use uma frase curta, verdadeira e compreensível fora do seu contexto. |
+| Linguagens | Liste apenas linguagens detectadas em repositórios reais ou que você decidiu declarar manualmente. |
+| Ferramentas | Separe linguagens, frameworks, infraestrutura, IA/conhecimento e hardware/simulação. |
+| Missões | Escolha projetos públicos com README, demo ou evidência verificável. |
+| Sites | Teste a URL e indique o status observado; não chame uma URL instável de “online”. |
+| Contadores | Informe a fonte, a janela temporal e se a métrica é oficial ou externa. |
 
-## 4. Personalize a paleta sem perder a identidade
+## 4. Organize o Arsenal em cinco camadas
 
-A paleta-base usa `#0e0c16` para o fundo, `#2b1d3b` para o violeta profundo, `#d4a24e` para o ouro principal, `#e8c07a` para o ouro claro, `#3ddc84` para estados ativos e `#f4ecdd` para texto claro. Os serviços `capsule-render`, `readme-typing-svg`, `skillicons.dev` e `shields.io` recebem essas cores por URL.
+A organização recomendada é:
 
-Para alterar a identidade, substitua os códigos de cor nos links de imagem. Preserve contraste suficiente e evite usar muitas cores em uma mesma seção. A estética funciona melhor quando **o ouro marca títulos**, **o verde indica estado ativo** e **o violeta sustenta a estrutura**.
+1. **Linguagens:** a camada pode ser calculada por linguagens detectadas nos repositórios públicos.
+2. **Frameworks & Web:** bibliotecas, frameworks e ferramentas de interface.
+3. **Infraestrutura & DevOps:** Git, CI, sistemas, runtimes, containers e serviços de dados.
+4. **IA & Conhecimento:** APIs de agentes, MCP, ferramentas de conhecimento e automação assistida.
+5. **Hardware & Simulação:** eletrônica, jogos, motores, CAD, simuladores e fundamentos digitais.
 
-## 5. Configure os ícones de linguagens e ferramentas
+A separação é editorial e não deve inventar experiência. Quando uma ferramenta não estiver evidenciada, remova o ícone ou explique a fonte manualmente.
 
-Os ícones do [Skill Icons](https://skillicons.dev/) usam a forma `?i=python,js,ts,html,css`. O nome do ícone precisa ser compatível com o serviço. Para linguagens sem ícone disponível, mantenha a linguagem na tabela Markdown e não invente um ícone.
+## 5. Use badges sem quebrar caracteres
+
+No texto alternativo, escreva o nome legível: `C#`, `PL/pgSQL`, `C++` e assim por diante. Na URL, o Shields.io pode precisar de escape, como `%23` para `#` e `%2F` para `/`. O escape pertence à URL, não ao label exibido.
 
 ```markdown
-[![Languages](https://skillicons.dev/icons?i=python,js,ts,html,css,rust,go&theme=dark)](https://skillicons.dev)
-
-[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,vite,react,docker&theme=dark)](https://skillicons.dev)
+[![C#](https://img.shields.io/badge/C%23-uso%20público-239120?style=flat-square&labelColor=0e0c16)](https://github.com/SEU_USUARIO?tab=repositories&language=C%23)
+[![PL/pgSQL](https://img.shields.io/badge/PL%2FpgSQL-uso%20público-336791?style=flat-square&labelColor=0e0c16)](https://github.com/SEU_USUARIO?tab=repositories&language=PLpgSQL)
 ```
 
-O template completo aceita também uma seção textual de evidência. Use-a para explicar a relação entre uma ferramenta e seus projetos, especialmente quando um ícone não comunica contexto suficiente.
+Mantenha os badges em linhas curtas. Em telas estreitas, quatro a seis badges por linha normalmente são mais legíveis do que uma única fileira extensa.
 
-## 6. Evite expor informações privadas
+## 6. Métricas avançadas que podem entrar no README
 
-Não publique tokens, chaves de API, arquivos `.env`, caminhos locais, conteúdo de repositórios privados ou links que revelem dados internos. Se você criar uma automação para atualizar métricas, prefira métricas públicas e mantenha qualquer token em **Secrets** do GitHub Actions; jamais escreva o valor do token no README, no log ou no código versionado.
+Use somente as métricas que ajudam a contar a história do portfólio:
 
-Para um perfil manual, a atualização pode ser feita sem workflow. Para um perfil automatizado, crie primeiro uma cópia de segurança, valide o diff e permita que o job altere somente blocos marcados com `START/END`.
+| Métrica | Fonte | Limite/observação |
+|:---|:---|:---|
+| Commits semanais | REST `stats/commit_activity` | Último ano; útil para tendência. |
+| Adições e deleções | REST `stats/code_frequency` | Pode retornar 422 em repositórios com 10.000 commits ou mais. |
+| Participação autor/equipe | REST `stats/participation` | Últimas 52 semanas; separa proprietário e total. |
+| Horário de atividade | REST `stats/punch_card` | Mostra dia/hora dos commits, sem inferir produtividade. |
+| Última atividade | GraphQL `lastContributionDate` | Métrica de saúde; requer o cabeçalho beta correspondente. |
+| Commits na branch padrão | GraphQL `commitCount` | Contagem monotonicamente crescente; também está em beta pública. |
+| Stars, forks e issues abertas | REST/GraphQL de repositório | Mostrar por projeto destacado, não como “qualidade” automática. |
+| Releases e última publicação | REST/GraphQL de releases | Útil para demonstrar cadência de entrega. |
+| Views, visitantes e clones | REST de tráfego do repositório | Exige acesso de escrita e cobre somente os últimos 14 dias. |
 
-## 7. Checklist antes de publicar
+Inclua uma nota com data de coleta, janela e fonte. Não misture um contador oficial do GitHub com um contador de terceiros sem rotular a diferença.
+
+## 7. Adicione visitantes com transparência
+
+O GitHub não documenta um contador oficial e estável de visitas ao perfil pessoal equivalente ao tráfego de um repositório. Para um indicador visual simples, você pode usar um contador externo:
+
+```markdown
+[![External profile view counter](https://komarev.com/ghpvc/?username=SEU_USUARIO&style=for-the-badge&color=d4a24e&labelColor=0e0c16&label=EXTERNAL+PROFILE+VIEWS)](https://github.com/SEU_USUARIO)
+```
+
+O badge registra carregamentos do próprio contador e deve ser descrito como **indicador externo**, não como analytics oficial do perfil. Para métricas oficiais, um workflow com token armazenado em `Secrets` pode consultar `traffic/views` e `traffic/clones` de repositórios em que você tem acesso de escrita, mas esses dados duram apenas 14 dias. Não publique o token nem os dados de repositórios privados.
+
+## 8. Automatize somente o que tem fonte e contrato
+
+Para um README dinâmico, marque blocos com `START/END` e faça o workflow alterar somente esses trechos. Mantenha manifests editoriais fora do README e execute validações em cada pull request:
+
+```yaml
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "scripts/**"
+      - ".github/workflows/**"
+```
+
+O workflow deve compilar scripts, validar placeholders, conferir exclusões, testar links críticos e verificar que o diff fora dos blocos dinâmicos está vazio. Tokens entram apenas em **Settings → Secrets and variables → Actions**. Para um exemplo pronto de tráfego oficial de repositórios, veja [`templates/workflows/profile-traffic.example.yml`](templates/workflows/profile-traffic.example.yml); revise a lista de repositórios e os marcadores antes de habilitá-lo.
+
+## 9. Checklist de qualidade antes de publicar
 
 ```bash
-# Verificar placeholders ainda existentes
+# Placeholders restantes
 grep -RInE '\[SEU_|\[SUA_|\[REPO\]|\[COLCHETES\]' README.md
 
-# Verificar links e espaços acidentais
+# Espaços e alterações suspeitas
 git diff --check
+git diff -- README.md
 
-# Confirmar que nenhum segredo foi incluído
-grep -nE 'sk-|ghp_|BEGIN .* PRIVATE KEY|postgresql://|mysql://' README.md || true
+# Padrões que nunca devem aparecer no commit
+grep -nE 'sk-|ghp_|github_pat_|BEGIN .* PRIVATE KEY|postgresql://|mysql://' README.md || true
 ```
 
-Depois, abra o README renderizado no GitHub e confirme se os banners, títulos animados, ícones e badges carregam corretamente. Se uma imagem externa falhar, mantenha um fallback textual próximo dela.
+Abra a prévia renderizada no GitHub e confirme que banners, títulos, ícones, tabelas e badges carregam. Se um serviço externo falhar, mantenha um fallback textual próximo da imagem e não trate o recurso como obrigatório.
 
-## 8. Licença e adaptação
+## 10. Proteja a branch principal
 
-Você pode adaptar o template para seu próprio perfil. Preserve os créditos do kit se fizer uma cópia direta e remova qualquer conteúdo que não represente seu trabalho. O estilo é um ponto de partida, não uma obrigação: a prioridade é que a apresentação visual seja legível, verificável e coerente com seus projetos.
+Depois de confirmar o nome do check no GitHub Actions, abra **Settings → Branches → Add branch protection rule**, use o padrão `main`, marque **Require status checks to pass before merging**, selecione o check do workflow e salve. Ative também **Require a pull request before merging** se quiser impedir pushes diretos.
 
+## 11. Como adaptar e creditar
+
+Você pode adaptar cores, textos, categorias e componentes. Preserve os créditos quando fizer uma cópia direta e remova tudo que não representa seu trabalho. O kit é um ponto de partida visual; a prioridade é manter **legibilidade, evidência, privacidade e manutenção simples**.
 
 ## Referências
 
-[1] [Capsule Render — gerador de headers e footers para README](https://github.com/kyeongrok-lee/capsule-render)
-
-[2] [readme-typing-svg — títulos animados para README](https://github.com/DenverCoder1/readme-typing-svg)
-
-[3] [Skill Icons — ícones de linguagens e ferramentas](https://github.com/tandpfun/skill-icons)
-
-[4] [Shields.io — badges de status e métricas](https://shields.io/)
-
-[5] [GitHub Actions — automação de workflows](https://docs.github.com/en/actions)
+- [GitHub Actions](https://docs.github.com/en/actions)
+- [GitHub REST API — repository statistics](https://docs.github.com/en/rest/metrics/statistics)
+- [GitHub REST API — repository traffic](https://docs.github.com/en/rest/metrics/traffic)
+- [GitHub GraphQL API](https://docs.github.com/graphql)
+- [Capsule Render](https://github.com/kyeongrok-lee/capsule-render)
+- [readme-typing-svg](https://github.com/DenverCoder1/readme-typing-svg)
+- [Skill Icons](https://github.com/tandpfun/skill-icons)
+- [Shields.io](https://shields.io/)
+- [Komarev GitHub Profile Views Counter](https://github.com/antonkomarev/github-profile-views-counter)

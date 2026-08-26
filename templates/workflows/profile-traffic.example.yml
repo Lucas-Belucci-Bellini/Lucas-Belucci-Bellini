@@ -1,0 +1,63 @@
+name: Update repository traffic summary
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  traffic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout profile repository
+        uses: actions/checkout@v4
+
+      - name: Update official repository traffic block
+        uses: actions/github-script@v7
+        env:
+          PROFILE_REPOS: "SEU_USUARIO/SEU_REPO,SEU_USUARIO/OUTRO_REPO"
+        with:
+          github-token: ${{ secrets.PROFILE_README_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const repos = process.env.PROFILE_REPOS.split(',').map(value => value.trim()).filter(Boolean);
+            const rows = [];
+            for (const fullName of repos) {
+              const [owner, repo] = fullName.split('/');
+              if (!owner || !repo || owner === 'SEU_USUARIO') continue;
+              const [views, clones] = await Promise.all([
+                github.rest.repos.getViews({ owner, repo, per: 'day' }),
+                github.rest.repos.getClones({ owner, repo, per: 'day' })
+              ]);
+              rows.push(`| ${fullName} | ${views.data.count} | ${views.data.uniques} | ${clones.data.count} | ${clones.data.uniques} |`);
+            }
+            const body = [
+              '<!-- REPOSITORY-TRAFFIC:START -->',
+              '> Tráfego oficial dos repositórios selecionados · janela de 14 dias · atualização diária.',
+              '',
+              '| Repositório | Views | Visitantes | Clones | Clones únicos |',
+              '|:---|---:|---:|---:|---:|',
+              ...rows,
+              '',
+              '> Esta tabela mede tráfego dos repositórios, não visitas ao perfil pessoal. Nenhum repositório privado deve ser incluído nesta lista.',
+              '<!-- REPOSITORY-TRAFFIC:END -->'
+            ].join('\n');
+            const path = 'README.md';
+            const readme = fs.readFileSync(path, 'utf8');
+            const start = '<!-- REPOSITORY-TRAFFIC:START -->';
+            const end = '<!-- REPOSITORY-TRAFFIC:END -->';
+            const startAt = readme.indexOf(start);
+            const endAt = readme.indexOf(end);
+            if (startAt < 0 || endAt < startAt) core.setFailed('Marcadores REPOSITORY-TRAFFIC ausentes ou inválidos');
+            else fs.writeFileSync(path, readme.slice(0, startAt) + body + readme.slice(endAt + end.length));
+
+      - name: Commit traffic summary when changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --cached --quiet || git commit -m "chore(profile): update repository traffic summary"
+          git push

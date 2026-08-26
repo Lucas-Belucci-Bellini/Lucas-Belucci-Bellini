@@ -8,22 +8,57 @@
     "linkedin_slug": "seu-perfil",
     "website": "seu-site.com"
   },
-  "languages": ["python", "javascript", "typescript", "html", "css", "java", "cpp", "c", "rust", "go"],
-  "tools": ["git", "github", "vscode", "linux", "nodejs", "vite", "react", "tailwind", "docker", "mysql", "postgres", "supabase"],
+  "arsenal": {
+    "languages": ["python", "javascript", "typescript", "html", "css", "java", "rust", "go"],
+    "frameworks_web": ["vite", "react", "tailwind", "electron"],
+    "infrastructure_devops": ["git", "github", "vscode", "linux", "nodejs", "docker", "postgres", "supabase"],
+    "ai_knowledge": ["python", "fastapi", "obsidian"],
+    "hardware_simulation": ["arduino", "raspberrypi", "unity", "blender"]
+  },
   "featured_projects": [
     {
       "name": "Projeto principal",
       "repository": "seu-usuario/repositorio",
       "focus": "Descrição curta baseada na documentação pública.",
       "status": "Active",
-      "site": "https://seu-site.com"
+      "site": "https://seu-site.com",
+      "evidence": "README público, demo ou release"
     },
     {
       "name": "Projeto experimental",
       "repository": "seu-usuario/outro-repositorio",
       "focus": "Problema, tecnologia ou hipótese explorada.",
       "status": "Experimental",
-      "site": ""
+      "site": "",
+      "evidence": "README público ou documentação"
     }
-  ]
+  ],
+  "observability": {
+    "enabled": false,
+    "window": "365d",
+    "official_metrics": [
+      "contributions",
+      "commits",
+      "pull_requests",
+      "issues",
+      "reviews",
+      "repository_contributions"
+    ],
+    "repository_traffic": {
+      "enabled": false,
+      "window": "14d",
+      "metrics": ["views", "clones", "popular_paths", "popular_referrers"]
+    },
+    "external_profile_views": {
+      "enabled": true,
+      "provider": "komarev",
+      "label": "EXTERNAL PROFILE VIEWS",
+      "disclaimer": "Contador externo de carregamentos do badge; não é analytics oficial do perfil."
+    }
+  },
+  "governance": {
+    "dynamic_markers": ["START", "END"],
+    "required_check": "V2 Validation / validate",
+    "private_data_policy": "Nunca publicar tokens, secrets, .env, conteúdo privado ou caminhos internos."
+  }
 }

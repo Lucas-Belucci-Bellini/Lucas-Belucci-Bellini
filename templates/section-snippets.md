@@ -1,4 +1,12 @@
-# Snippets visuais
+# Section snippets — Field Manual
+
+Trechos independentes para copiar para o seu README. Antes de publicar, substitua os placeholders e confirme as fontes.
+
+## Link para o kit público e tutorial
+
+```markdown
+> **Kit público:** este perfil usa o [README Style Kit](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/tree/template/readme-style-kit). Consulte o [tutorial](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/blob/template/readme-style-kit/STYLE_TUTORIAL.md) para entender a estrutura.
+```
 
 ## Banner de abertura
 
@@ -16,24 +24,49 @@
 ![Section title](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=580&height=30&lines=%E2%97%86+SE%C3%87%C3%83O+%2F%2F+SECTION+%E2%97%86)
 ```
 
-## Linguagens e ferramentas
+## Arsenal em cinco categorias
 
 ```markdown
-### ⚡ Linguagens / Languages
+### Linguagens
+[![Languages](https://skillicons.dev/icons?i=python,js,ts,html,css&theme=dark)](https://skillicons.dev)
 
-<div align="center">
+### Frameworks & Web
+`[Framework]` · `[Biblioteca]` · `[Ferramenta web]`
 
-[![Languages](https://skillicons.dev/icons?i=python,js,ts,html,css,java,cpp,rust,go&theme=dark)](https://skillicons.dev)
+### Infraestrutura & DevOps
+`[Git]` · `[Runtime]` · `[Container]` · `[Serviço]`
 
-</div>
+### IA & Conhecimento
+`[Modelo/API]` · `[Integração de agentes]` · `[Ferramenta de conhecimento]`
 
-### 🛠 Ferramentas / Tools
+### Hardware & Simulação
+`[Plataforma]` · `[Motor]` · `[Simulador]`
+```
 
-<div align="center">
+## Badge com caracteres especiais
 
-[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,vite,react,tailwind,docker&theme=dark)](https://skillicons.dev)
+```markdown
+[![C#](https://img.shields.io/badge/C%23-uso%20público-239120?style=flat-square&labelColor=0e0c16)](https://github.com/SEU_USUARIO?tab=repositories&language=C%23)
+[![PL/pgSQL](https://img.shields.io/badge/PL%2FpgSQL-uso%20público-336791?style=flat-square&labelColor=0e0c16)](https://github.com/SEU_USUARIO?tab=repositories&language=PLpgSQL)
+```
 
-</div>
+## Métricas com fonte
+
+```markdown
+| MÉTRICA | VALOR | FONTE / JANELA |
+|:---|---:|:---|
+| Contribuições totais | `[VALOR]` | GitHub GraphQL · últimos 365 dias |
+| Commits diretos | `[VALOR]` | GitHub GraphQL · últimos 365 dias |
+| Stars / Forks | `[VALOR]` | API dos repositórios · data da coleta |
+| Último release | `[DATA]` | API de releases |
+```
+
+## Contador externo de visualizações
+
+```markdown
+[![External profile view counter](https://komarev.com/ghpvc/?username=SEU_USUARIO&style=for-the-badge&color=d4a24e&labelColor=0e0c16&label=EXTERNAL+PROFILE+VIEWS)](https://github.com/SEU_USUARIO)
+
+> Este é um indicador externo de carregamentos do badge; não é analytics oficial de visitas ao perfil.
 ```
 
 ## Tabela de missões

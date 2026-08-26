@@ -1,7 +1,7 @@
 <!--
-  README STYLE KIT — template visual
-  Substitua todos os valores entre [COLCHETES].
-  Este arquivo é um ponto de partida; remova o que não combinar com seu perfil.
+README STYLE KIT — template completo
+Substitua todos os valores entre [COLCHETES]. Remova seções que não representarem seu trabalho.
+Kit público e tutorial: https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/tree/template/readme-style-kit
 -->
 
 <div align="center">
@@ -10,17 +10,19 @@
 
 ![Typing](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=15&duration=3200&pause=1100&color=D4A24E&center=true&vCenter=true&width=700&height=40&lines=SYSTEM+ONLINE+%2F%2F+BUILDING+IN+PUBLIC;[SUA+ESPECIALIDADE];[SUA+FRASE+DE+IDENTIDADE])
 
-[![Status](https://img.shields.io/badge/STATUS-ONLINE-3ddc84?style=for-the-badge)](https://github.com/[SEU_USUARIO])
-[![Location](https://img.shields.io/badge/BASE-[SUA_CIDADE]-d4a24e?style=for-the-badge)](https://github.com/[SEU_USUARIO])
-[![Profile views](https://komarev.com/ghpvc/?username=[SEU_USUARIO]&color=d4a24e&style=for-the-badge&label=PROFILE+VIEWS)](https://github.com/[SEU_USUARIO])
+[![Status](https://img.shields.io/badge/STATUS-ONLINE-3ddc84?style=for-the-badge&labelColor=0e0c16)](https://github.com/[SEU_USUARIO])
+[![Base](https://img.shields.io/badge/BASE-[SUA_CIDADE]-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://github.com/[SEU_USUARIO])
+[![External profile view counter](https://komarev.com/ghpvc/?username=[SEU_USUARIO]&color=d4a24e&style=for-the-badge&labelColor=0e0c16&label=EXTERNAL+PROFILE+VIEWS)](https://github.com/[SEU_USUARIO])
 
 </div>
+
+> **Kit público:** este README foi criado a partir do [README Style Kit](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/tree/template/readme-style-kit). Consulte o [tutorial](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/blob/template/readme-style-kit/STYLE_TUTORIAL.md) antes de publicar.
 
 ---
 
 ## `// IDENTIDADE` · IDENTITY
 
-> **[SEU NOME]** é [uma descrição curta, objetiva e verificável do seu trabalho]. Este perfil reúne [seus produtos, experimentos, estudos ou projetos] em uma interface com estética de manual técnico.
+> **[SEU NOME]** é [uma descrição curta, objetiva e verificável do seu trabalho]. Este perfil reúne [produtos, experimentos, estudos ou projetos] em uma interface com estética de manual técnico.
 
 <div align="center">
 
@@ -36,39 +38,88 @@
 
 ---
 
-![Arsenal](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=520&height=30&lines=%E2%97%86+ARSENAL+%E2%80%94+TECH+STACK+%26+TOOLS+%E2%97%86)
+## `// ARSENAL` · TECH STACK & TOOLS
+
+Use cinco categorias para tornar a leitura honesta e rápida. Mostre somente tecnologias usadas ou sustentadas por evidência.
 
 ### ⚡ Linguagens / Languages
 
 <div align="center">
 
-[![Languages](https://skillicons.dev/icons?i=python,js,ts,html,css,java,cpp,c,rust,go&theme=dark)](https://skillicons.dev)
+[![Languages](https://skillicons.dev/icons?i=python,js,ts,html,css,java,rust,go&theme=dark)](https://skillicons.dev)
 
 </div>
 
-> **Dica:** mantenha aqui somente linguagens que aparecem de fato nos seus projetos. Para uma lista mais precisa, agregue os dados públicos da aba de linguagens do GitHub.
+`[Linguagem 1]` · `[Linguagem 2]` · `[Linguagem 3]` · `[Linguagem 4]`
 
-### 🛠 Ferramentas / Tools
+### 🧩 Frameworks & Web
 
 <div align="center">
 
-[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,vite,react,tailwind,docker,mysql,postgres,supabase&theme=dark)](https://skillicons.dev)
+[![Frameworks](https://skillicons.dev/icons?i=vite,react,tailwind,electron,angular,nextjs&theme=dark)](https://skillicons.dev)
 
 </div>
+
+`[Framework]` · `[Biblioteca]` · `[Ferramenta web]`
+
+### 🛡 Infraestrutura & DevOps
+
+<div align="center">
+
+[![Infrastructure](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,docker,postgres,supabase&theme=dark)](https://skillicons.dev)
+
+</div>
+
+`[Sistema]` · `[Runtime]` · `[Container]` · `[Serviço]`
+
+### 🤖 IA & Conhecimento
+
+<div align="center">
+
+[![AI](https://skillicons.dev/icons?i=python,fastapi,obsidian&theme=dark)](https://skillicons.dev)
+
+</div>
+
+`[Modelo ou API]` · `[Integração de agentes]` · `[Ferramenta de conhecimento]`
+
+### ⚙ Hardware & Simulação
+
+<div align="center">
+
+[![Hardware](https://skillicons.dev/icons?i=arduino,raspberrypi,unity,blender&theme=dark)](https://skillicons.dev)
+
+</div>
+
+`[Plataforma]` · `[Motor]` · `[Simulador]`
+
+> **Regra:** se uma tecnologia não tiver ícone no Skill Icons, mantenha-a em texto. O serviço de ícones não é fonte de verdade.
 
 ---
 
-![Projects](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=E8C07A&center=true&vCenter=true&width=580&height=30&lines=%E2%97%86+PROJETOS+EM+DESTAQUE+%2F+FEATURED+MISSIONS+%E2%97%86)
-
-<div align="center">
+## `// MISSÕES EM DESTAQUE` · FEATURED MISSIONS
 
 | MISSÃO | O QUE ESTÁ SENDO CONSTRUÍDO | ESTADO | ACESSO |
 |:---|:---|:---:|:---:|
-| **[Projeto principal]** | [Descrição curta baseada no README do projeto.] | 🟢 Active | [GitHub](https://github.com/[SEU_USUARIO]/[REPO]) |
-| **[Projeto secundário]** | [Problema resolvido, tecnologia ou objetivo.] | 🟡 In Development | [GitHub](https://github.com/[SEU_USUARIO]/[REPO]) · [Site](https://[SEU_SITE]) |
+| **[Projeto principal]** | [Descrição baseada no README público.] | 🟢 Active | [GitHub](https://github.com/[SEU_USUARIO]/[REPO]) |
+| **[Projeto secundário]** | [Problema, tecnologia ou objetivo.] | 🟡 In Development | [GitHub](https://github.com/[SEU_USUARIO]/[REPO]) · [Site](https://[SEU_SITE]) |
 | **[Projeto experimental]** | [Escopo do experimento.] | 🔵 Experimental | [GitHub](https://github.com/[SEU_USUARIO]/[REPO]) |
 
-</div>
+---
+
+## `// MÉTRICAS` · OBSERVABILITY (OPTIONAL)
+
+Use este bloco apenas quando a fonte e a janela forem conhecidas. Não misture números oficiais do GitHub com contadores externos sem rotular a diferença.
+
+| MÉTRICA | VALOR | FONTE / JANELA |
+|:---|---:|:---|
+| Contribuições totais | `[VALOR]` | GitHub GraphQL · últimos 365 dias |
+| Commits diretos | `[VALOR]` | GitHub GraphQL · últimos 365 dias |
+| PRs / Issues / Reviews | `[VALOR]` | GitHub GraphQL · últimos 365 dias |
+| Stars / Forks | `[VALOR]` | API do repositório · data de coleta |
+| Último release | `[DATA]` | API de releases |
+| Visualizações de repositórios | `[VALOR]` | REST Traffic · últimos 14 dias |
+
+> O GitHub documenta tráfego para cada repositório com acesso de escrita. O badge `External profile view counter` acima é um contador de terceiros e não representa uma API oficial de visitas ao perfil pessoal.
 
 ---
 
@@ -97,7 +148,7 @@
 
 </div>
 
-> **Regra visual:** use poucos acentos, títulos consistentes e descrições baseadas em evidência. A estética funciona melhor quando a narrativa é clara e os links realmente levam a projetos acessíveis.
+> **Nota de manutenção:** marque blocos dinâmicos com `START/END`, guarde tokens em Secrets do GitHub Actions e exija o check de validação antes do merge.
 
 <div align="center">
 
