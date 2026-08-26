@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-26T03:17:47Z`  
+**Última varredura:** `2026-08-26T14:06:45Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2275`
-- **Commits dos projetos:** `2144`
-- **Commits do próprio monitor:** `131`
-- **Commits de projetos detectados nesta hora:** `6`
+- **Commits rastreados pelo ecossistema:** `2381`
+- **Commits dos projetos:** `2249`
+- **Commits do próprio monitor:** `132`
+- **Commits de projetos detectados nesta hora:** `105`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 6 commit(s) — [504a3205155a](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/504a3205155a6bf66a4fe7e5c451f6a53490fa55) — docs(v2): notas da v2.0.0-alpha.14 (#500)
+- **Projeto-Baluarte** — 2 commit(s) — [82d2c05cdd9f](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/82d2c05cdd9fc3b7a68170b808795f2a218d3af1) — feat(v2): add local project registry contract
+- **Veritas** — 103 commit(s) — [2559ed8abc67](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/2559ed8abc67625052a1dbb148de2fa64c29a3f7) — docs: extend roadmap through v5.0.0
 
 ## Erros de consulta
 

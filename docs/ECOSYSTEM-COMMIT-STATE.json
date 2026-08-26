@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-26T03:17:47Z",
+  "scanned_at": "2026-08-26T14:06:45Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "504a3205155a6bf66a4fe7e5c451f6a53490fa55",
-      "date": "2026-08-26T03:04:49Z",
-      "message": "docs(v2): notas da v2.0.0-alpha.14 (#500)",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/504a3205155a6bf66a4fe7e5c451f6a53490fa55"
+      "sha": "82d2c05cdd9fc3b7a68170b808795f2a218d3af1",
+      "date": "2026-08-26T13:56:47Z",
+      "message": "feat(v2): add local project registry contract",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/82d2c05cdd9fc3b7a68170b808795f2a218d3af1"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,22 +402,22 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "ad09284c6ee144b399766e2432b87f0001ac4f64",
-      "date": "2026-08-25T22:21:32Z",
-      "message": "Merge pull request #11 — v0.9.0-rc.18 chips do DLS com estrutura",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/ad09284c6ee144b399766e2432b87f0001ac4f64"
+      "sha": "2559ed8abc67625052a1dbb148de2fa64c29a3f7",
+      "date": "2026-08-26T13:36:12Z",
+      "message": "docs: extend roadmap through v5.0.0",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/2559ed8abc67625052a1dbb148de2fa64c29a3f7"
     }
   },
   "metrics": {
-    "tracked_commits": 2275,
-    "project_commits": 2144,
-    "monitor_commits": 131,
-    "detected_project_commits_this_scan": 6,
+    "tracked_commits": 2381,
+    "project_commits": 2249,
+    "monitor_commits": 132,
+    "detected_project_commits_this_scan": 105,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
