@@ -45,3 +45,12 @@ O README recebeu uma nova camada visual inspirada no formato de relatório de ca
 A seção visual de linguagens passou a apresentar o conjunto completo das 17 linguagens públicas auditadas, com badges de contagem e fallback textual para linguagens menos comuns. Ferramentas e plataformas foram reorganizadas no Arsenal, incluindo Git, GitHub, VS Code, Linux, Node.js, Vite, React, Tailwind CSS, MySQL, PostgreSQL, Blender, Electron, Docker, Supabase, Unity, Arduino, Obsidian, Vercel e Claude.
 
 O painel `assets/profile-snapshot.svg` é gerado pelo mesmo script do catálogo e entra no commit automático junto com `README.md` e `assets/lang-stats.svg`. Nenhuma métrica privada ou repositório editorialmente excluído participa da publicação.
+
+
+## 2026-08-26 — README V2 clean field report
+
+A segunda versão reorganizou o README em uma sequência mais curta e orientada à leitura: snapshot, ficha de agente, missão principal, Arsenal, missões em destaque, mapa recolhido, matriz de linguagens, deployments, núcleo J.A.R.V.I.S., atividade, troféus e contato. Os assets visuais originais continuam presentes, agora distribuídos em blocos com hierarquia mais clara.
+
+Os destaques passaram a aceitar somente repositórios públicos, enquanto o catálogo privado permanece separado e limitado ao recorte editorial permitido. As três exclusões permanentes continuam sendo aplicadas antes das métricas, catálogos, sites, destaques e assets gerados.
+
+Os badges das 17 linguagens usam parâmetros codificados de `label` e `message`; a matriz gráfica mantém barras proporcionais e a tabela completa continua disponível como evidência textual. O gerador permanece idempotente e o workflow continua limitado aos blocos dinâmicos e assets autorizados.
