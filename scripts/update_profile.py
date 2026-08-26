@@ -422,20 +422,55 @@ def render_arsenal_stack(rows: list[dict[str, Any]], manifest: dict[str, Any]) -
     ]
     for row in rows:
         lines.append(f"| **{row['display']}** | {row['repositories']} | `{row['share']:.2f}%` |")
+
+    category_order = [
+        ("Frameworks & Web", "🧩"),
+        ("Infraestrutura & DevOps", "🛡"),
+        ("IA & Conhecimento", "🤖"),
+        ("Hardware & Simulação", "⚙"),
+    ]
+    tools = manifest.get("tools", [])
+    by_category: dict[str, list[dict[str, Any]]] = {}
+    for tool in tools:
+        category = str(tool.get("category", "Outras ferramentas"))
+        by_category.setdefault(category, []).append(tool)
+
+    for category, icon in category_order:
+        category_tools = by_category.get(category, [])
+        if not category_tools:
+            continue
+        lines.extend([
+            "",
+            f"### {icon} {category}",
+            "",
+            "| Ferramenta | Papel | Evidência pública |",
+            "|:---|:---|:---|",
+        ])
+        for tool in category_tools:
+            name = str(tool.get("name", "")).replace("|", "\\|")
+            family = str(tool.get("family", "")).replace("|", "\\|")
+            evidence = str(tool.get("evidence", "")).replace("|", "\\|")
+            lines.append(f"| **{name}** | {family} | {evidence} |")
+
+    remaining_categories = [category for category in by_category if category not in {item[0] for item in category_order}]
+    for category in sorted(remaining_categories):
+        lines.extend([
+            "",
+            f"### 🧰 {category}",
+            "",
+            "| Ferramenta | Papel | Evidência pública |",
+            "|:---|:---|:---|",
+        ])
+        for tool in by_category[category]:
+            name = str(tool.get("name", "")).replace("|", "\\|")
+            family = str(tool.get("family", "")).replace("|", "\\|")
+            evidence = str(tool.get("evidence", "")).replace("|", "\\|")
+            lines.append(f"| **{name}** | {family} | {evidence} |")
+
     lines.extend([
         "",
-        "### Ferramentas, plataformas e ambientes",
-        "",
-        "| Ferramenta | Papel | Evidência pública |",
-        "|:---|:---|:---|",
+        "> A separação é editorial: linguagens vêm dos mapas públicos do GitHub; ferramentas e categorias vêm de READMEs, manifests, configurações e evidências visuais públicas. Nenhum bloco publica conteúdo privado.",
     ])
-    for tool in manifest.get("tools", []):
-        name = str(tool.get("name", "")).replace("|", "\\|")
-        family = str(tool.get("family", "")).replace("|", "\\|")
-        evidence = str(tool.get("evidence", "")).replace("|", "\\|")
-        lines.append(f"| **{name}** | {family} | {evidence} |")
-    lines.append("")
-    lines.append("> A lista de ferramentas é editorial e baseada em READMEs, manifests, configurações e seções visuais preservadas; ela não substitui o mapa automático de linguagens.")
     return "\n".join(lines)
 
 

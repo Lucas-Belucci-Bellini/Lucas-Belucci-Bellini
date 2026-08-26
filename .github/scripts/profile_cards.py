@@ -31,6 +31,7 @@ query($login:String!, $from:DateTime!, $to:DateTime!) {
       totalIssueContributions
       totalPullRequestContributions
       totalPullRequestReviewContributions
+      totalRepositoryContributions
       restrictedContributionsCount
       contributionCalendar { totalContributions }
     }
@@ -96,6 +97,7 @@ def request_data() -> dict:
         "issues": collection["totalIssueContributions"],
         "pull_requests": collection["totalPullRequestContributions"],
         "reviews": collection["totalPullRequestReviewContributions"],
+        "repository_contributions": collection["totalRepositoryContributions"],
         "restricted": collection["restrictedContributionsCount"],
         "repositories": user["repositories"]["totalCount"],
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
@@ -108,7 +110,7 @@ def frame(width: int, height: int, title: str, subtitle: str = "") -> list[str]:
         '<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0e0c16"/><stop offset="1" stop-color="#0b0910"/></linearGradient><linearGradient id="scan" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d4a24e" stop-opacity="0"/><stop offset="0.5" stop-color="#e8c07a" stop-opacity="0.9"/><stop offset="1" stop-color="#d4a24e" stop-opacity="0"/></linearGradient></defs>',
         '<rect width="100%" height="100%" rx="14" fill="url(#bg)"/>',
         f'<rect x="5" y="5" width="{width-10}" height="{height-10}" rx="11" fill="none" stroke="{GOLD}" stroke-opacity="0.35"/>',
-        f'<text x="28" y="35" fill="{GOLD_LIGHT}" font-family="DejaVu Sans Mono,monospace" font-size="14" font-weight="700" letter-spacing="2">⬡ {esc(title)}</text>',
+        f'<text x="28" y="35" fill="{GOLD_LIGHT}" font-family="DejaVu Sans Mono,monospace" font-size="14" font-weight="700" letter-spacing="2">&gt;&gt; {esc(title)}</text>',
         f'<text x="28" y="54" fill="{DIM}" font-family="DejaVu Sans Mono,monospace" font-size="10" letter-spacing="1.2">{esc(subtitle)}</text>',
         f'<line x1="24" y1="66" x2="{width-24}" y2="66" stroke="{GOLD}" stroke-opacity="0.25"/>',
         f'<rect x="24" y="67" width="180" height="2" fill="url(#scan)" opacity="0.85"/>',
@@ -124,26 +126,27 @@ def metric(x: int, y: int, w: int, label: str, value: object, color: str = GOLD_
 
 
 def stats_svg(data: dict) -> str:
-    lines = frame(880, 260, "RELATÓRIO DE CAMPO // GITHUB SNAPSHOT", "métrica oficial via GitHub GraphQL · janela móvel de 365 dias")
-    lines.append(metric(24, 86, 198, "CONTRIBUIÇÕES", data["contributions"], GOLD_LIGHT))
-    lines.append(metric(238, 86, 198, "COMMITS", data["commits"], GOLD))
+    subtitle = "GraphQL | rolling 365 days | total = commits + PRs + issues + reviews + repos"
+    lines = frame(880, 260, "FIELD REPORT // GITHUB SNAPSHOT", subtitle)
+    lines.append(metric(24, 86, 198, "TOTAL CONTRIBUTIONS", data["contributions"], GOLD_LIGHT))
+    lines.append(metric(238, 86, 198, "DIRECT COMMITS", data["commits"], GOLD))
     lines.append(metric(452, 86, 198, "PULL REQUESTS", data["pull_requests"], GREEN))
     lines.append(metric(666, 86, 190, "ISSUES", data["issues"], PURPLE))
     lines.append(metric(24, 174, 198, "REVIEWS", data["reviews"], GOLD_LIGHT))
-    lines.append(metric(238, 174, 198, "REPOSITÓRIOS PÚBLICOS", data["repositories"], GOLD))
-    lines.append(metric(452, 174, 198, "RESTRITOS", data["restricted"], MUTED))
+    lines.append(metric(238, 174, 198, "REPOS CREATED", data["repository_contributions"], GOLD))
+    lines.append(metric(452, 174, 198, "RESTRICTED", data["restricted"], MUTED))
     lines.append(metric(666, 174, 190, "STATUS", "ONLINE", GREEN))
-    lines.append(f'<text x="24" y="246" fill="{DIM}" font-family="DejaVu Sans Mono,monospace" font-size="9">atualizado automaticamente · {esc(data["generated"])}</text>')
+    lines.append(f'<text x="24" y="246" fill="{DIM}" font-family="DejaVu Sans Mono,monospace" font-size="9">updated automatically | {esc(data["generated"])}</text>')
     lines.append('</svg>')
     return "\n".join(lines) + "\n"
 
 
 def streak_svg(data: dict) -> str:
-    lines = frame(495, 195, "CONTINUIDADE // FIELD STREAK", "contagem oficial de contribuições · últimos 365 dias")
+    lines = frame(495, 195, "CONTINUITY // FIELD STREAK", "total contributions vs. direct commits | rolling 365 days")
     lines.append(metric(24, 84, 142, "TOTAL", data["contributions"], GOLD_LIGHT))
-    lines.append(metric(176, 84, 142, "COMMITS", data["commits"], GOLD))
+    lines.append(metric(176, 84, 142, "DIRECT COMMITS", data["commits"], GOLD))
     lines.append(metric(328, 84, 143, "PRs", data["pull_requests"], GREEN))
-    lines.append(f'<text x="24" y="180" fill="{DIM}" font-family="DejaVu Sans Mono,monospace" font-size="9">fonte: GitHub GraphQL · {esc(data["generated"])}</text>')
+    lines.append(f'<text x="24" y="180" fill="{DIM}" font-family="DejaVu Sans Mono,monospace" font-size="9">source: GitHub GraphQL | {esc(data["generated"])}</text>')
     lines.append('</svg>')
     return "\n".join(lines) + "\n"
 

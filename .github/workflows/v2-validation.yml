@@ -44,7 +44,10 @@ jobs:
           python-version: "3.12"
 
       - name: Compile Python sources
-        run: python -m py_compile .github/scripts/*.py tests/*.py
+        run: python -m py_compile .github/scripts/*.py scripts/*.py tests/*.py
 
       - name: Run V2 unit tests
         run: python -m unittest discover -s tests -v
+
+      - name: Validate generated language badges and Arsenal categories
+        run: python scripts/validate_language_badges.py

@@ -69,6 +69,12 @@ A seção `CURATED-FEATURED` é controlada pelo manifesto [`README_FEATURED.json
 
 O bloco `ARSENAL-STACK` combina duas fontes. As linguagens, pesos e contagens vêm dos mapas públicos de linguagens do GitHub; as ferramentas, plataformas e ambientes vêm do manifesto [`README_STACK.json`](README_STACK.json), que registra a evidência pública usada para cada item. A atualização não publica arquivos privados.
 
+As ferramentas são agrupadas em quatro categorias de leitura rápida: **Frameworks & Web**, **Infraestrutura & DevOps**, **IA & Conhecimento** e **Hardware & Simulação**. A categoria de linguagens permanece separada porque é a única calculada diretamente por bytes e contagem de repositórios. Uma ferramenta só entra no Arsenal quando existe evidência pública documentada no manifesto.
+
+## Contribuições e commits
+
+Os cards de atividade usam a janela móvel de 365 dias da API GraphQL do GitHub. `Contribuições totais` é o total do calendário e pode combinar commits, pull requests, issues, reviews e contribuições de repositório; `Commits diretos` é somente `totalCommitContributions`. Portanto, os dois números não precisam ser iguais. O monitor de ecossistema possui ainda uma métrica própria de commits rastreados, que não deve ser comparada diretamente ao calendário de contribuições.
+
 ## Como verificar que o workflow só muda seções dinâmicas
 
 A rotina cria `/tmp/README.before.md` antes do refresh e executa [`scripts/validate_dynamic_sections.py`](../scripts/validate_dynamic_sections.py) depois dele. O validador substitui temporariamente o conteúdo entre os marcadores `START/END` dos blocos gerados e compara o restante do README antes e depois. Se qualquer banner, badge, bloco ASCII, texto editorial, link visual ou outra parte estática mudar, o job falha antes do commit.
@@ -82,6 +88,8 @@ python3 scripts/validate_dynamic_sections.py --before /tmp/README.before.md --af
 ```
 
 O resultado esperado é `dynamic-only README validation: pass`. No GitHub, a confirmação adicional é verificar o log do job `Validate generated Markdown and configuration`, o resumo do commit e o diff do workflow. Um refresh sem mudanças reais deve terminar sem novo commit, porque a etapa final usa `git diff --quiet -- README.md assets/lang-stats.svg`.
+
+O workflow [`v2-validation.yml`](../.github/workflows/v2-validation.yml) também executa [`scripts/validate_language_badges.py`](../scripts/validate_language_badges.py) em cada pull request e em pushes na `main`. Esse check confirma que os 17 labels são únicos e legíveis, que `C#` e `PL/pgSQL` não aparecem percent-encoded como texto, que cada URL usa o endpoint estático do Shields.io, que as quatro categorias estão presentes, que a matriz tem a mesma quantidade de linguagens e que todos os badges respondem com HTTP 2xx/3xx.
 
 
 ## Exclusões editoriais permanentes

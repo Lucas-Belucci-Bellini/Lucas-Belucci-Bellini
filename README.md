@@ -89,9 +89,21 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 
 <div align="center">
 
-[![Core Languages](https://skillicons.dev/icons?i=python,c,cpp,cs,java,js,ts,html,css,rust&theme=dark)](https://skillicons.dev)
+**LINGUAGENS**<br>
+[![Languages](https://skillicons.dev/icons?i=python,c,cpp,cs,java,js,ts,html,css,rust,bash,powershell,gdscript&theme=dark)](https://skillicons.dev)
 
-[![Extended Languages](https://skillicons.dev/icons?i=bash,powershell,gdscript,docker,arduino&theme=dark)](https://skillicons.dev)
+**FRAMEWORKS & WEB**<br>
+[![Frameworks](https://skillicons.dev/icons?i=vite,react,tailwind,electron&theme=dark)](https://skillicons.dev)
+
+**INFRAESTRUTURA & DEVOPS**<br>
+[![Infrastructure](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,mysql,postgres,docker,vercel&theme=dark)](https://skillicons.dev)
+
+**IA & CONHECIMENTO**<br>
+[![AI and Knowledge](https://skillicons.dev/icons?i=obsidian,claude&theme=dark)](https://skillicons.dev)<br>
+[![MCP](https://img.shields.io/badge/MCP-integrações%20de%20agentes-a68dad?style=flat-square&labelColor=0e0c16)](https://modelcontextprotocol.io/)
+
+**HARDWARE & SIMULAÇÃO**<br>
+[![Hardware and Simulation](https://skillicons.dev/icons?i=arduino,unity,blender&theme=dark)](https://skillicons.dev)
 
 </div>
 
@@ -112,14 +124,6 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 <br>
 [![Batch](https://img.shields.io/badge/Batch-5%20repos-5C2D91?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Batchfile) [![ShaderLab](https://img.shields.io/badge/ShaderLab-1%20repos-A48EFA?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=ShaderLab) [![Dockerfile](https://img.shields.io/badge/Dockerfile-1%20repos-2496ED?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Dockerfile)
 <!-- LANGUAGE-BADGES:END -->
-
-### 🛠 Ferramentas / Tools
-
-<div align="center">
-
-[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,vite,react,tailwind,mysql,postgres,blender,electron,docker,supabase,unity,arduino,obsidian,vercel,claude&theme=dark)](https://skillicons.dev)
-
-</div>
 
 <!-- ARSENAL-STACK:START -->
 > **17 linguagens detectadas** no inventário público. O peso e a quantidade de repositórios são calculados automaticamente pelo GitHub.
@@ -144,7 +148,17 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 | **ShaderLab** | 1 | `0.01%` |
 | **Dockerfile** | 1 | `0.00%` |
 
-### Ferramentas, plataformas e ambientes
+### 🧩 Frameworks & Web
+
+| Ferramenta | Papel | Evidência pública |
+|:---|:---|:---|
+| **Vite** | build e dev server | Projeto-Baluarte, Veritas, DailyPlanner e projetos web documentados |
+| **React** | interface web | projetos públicos e dependências documentadas |
+| **Tailwind CSS** | estilo web | stack visual preservada e projetos web documentados |
+| **Electron** | desktop | Projeto-Baluarte e baluarte-obra-segura |
+| **MapLibre GL** | mapas web | Project-Vanguard |
+
+### 🛡 Infraestrutura & DevOps
 
 | Ferramenta | Papel | Evidência pública |
 |:---|:---|:---|
@@ -153,20 +167,25 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 | **VS Code** | editor | stack visual preservada e documentação de desenvolvimento |
 | **Linux** | ambiente | stack visual preservada e scripts Shell/PowerShell |
 | **Node.js** | runtime web | projetos públicos JavaScript/TypeScript e manifests Node |
-| **Vite** | build e dev server | Projeto-Baluarte, Veritas, DailyPlanner e projetos web documentados |
-| **React** | interface web | projetos públicos e dependências documentadas |
-| **Tailwind CSS** | estilo web | stack visual preservada e projetos web documentados |
-| **Electron** | desktop | Projeto-Baluarte e baluarte-obra-segura |
 | **Docker** | infraestrutura | Dockerfile detectado no inventário público |
 | **Supabase** | backend e dados | Veritas |
+
+### 🤖 IA & Conhecimento
+
+| Ferramenta | Papel | Evidência pública |
+|:---|:---|:---|
 | **MCP** | integrações de agentes | Veritas e documentação pública relacionada |
+| **Obsidian + Claude** | conhecimento e IA | AI-second-brain-with-Claude-and-Obsidian |
+
+### ⚙ Hardware & Simulação
+
+| Ferramenta | Papel | Evidência pública |
+|:---|:---|:---|
 | **Unity** | simulação e jogos | Digital Logic Sim CE |
 | **Arduino** | eletrônica | arsenal visual original e linha de robótica/eletrônica |
-| **Obsidian + Claude** | conhecimento e IA | AI-second-brain-with-Claude-and-Obsidian |
-| **MapLibre GL** | mapas web | Project-Vanguard |
-| **Flowgorithm + Portugol** | fundamentos | repositórios acadêmicos públicos |
+| **Flowgorithm + Portugol** | fundamentos e simulação | repositórios acadêmicos públicos |
 
-> A lista de ferramentas é editorial e baseada em READMEs, manifests, configurações e seções visuais preservadas; ela não substitui o mapa automático de linguagens.
+> A separação é editorial: linguagens vêm dos mapas públicos do GitHub; ferramentas e categorias vêm de READMEs, manifests, configurações e evidências visuais públicas. Nenhum bloco publica conteúdo privado.
 <!-- ARSENAL-STACK:END -->
 
 > **Leitura do Arsenal:** os ícones aceleram o reconhecimento visual; os blocos gerados abaixo registram a evidência pública e a participação relativa das linguagens.
@@ -491,6 +510,8 @@ Construí computadores funcionais de **8 a 64 bits** no Digital Logic Sim — da
 ![GitHub Streak](./assets/profile-streak.svg)
 
 </div>
+
+> **Como ler os contadores:** `CONTRIBUIÇÕES TOTAIS` é o total oficial do GitHub na janela móvel de 365 dias e combina commits, pull requests, issues, reviews e contribuições de repositório. `COMMITS DIRETOS` conta somente commits atribuídos ao perfil. Por isso, é esperado que contribuições totais sejam maiores que commits.
 
 ## `// ATIVIDADE` · ACTIVITY GRAPH
 

@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495" height="195" role="img" aria-label="CONTINUIDADE // FIELD STREAK">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495" height="195" role="img" aria-label="CONTINUITY // FIELD STREAK">
 <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0e0c16"/><stop offset="1" stop-color="#0b0910"/></linearGradient><linearGradient id="scan" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d4a24e" stop-opacity="0"/><stop offset="0.5" stop-color="#e8c07a" stop-opacity="0.9"/><stop offset="1" stop-color="#d4a24e" stop-opacity="0"/></linearGradient></defs>
 <rect width="100%" height="100%" rx="14" fill="url(#bg)"/>
 <rect x="5" y="5" width="485" height="185" rx="11" fill="none" stroke="#d4a24e" stroke-opacity="0.35"/>
-<text x="28" y="35" fill="#e8c07a" font-family="DejaVu Sans Mono,monospace" font-size="14" font-weight="700" letter-spacing="2">⬡ CONTINUIDADE // FIELD STREAK</text>
-<text x="28" y="54" fill="#77694f" font-family="DejaVu Sans Mono,monospace" font-size="10" letter-spacing="1.2">contagem oficial de contribuições · últimos 365 dias</text>
+<text x="28" y="35" fill="#e8c07a" font-family="DejaVu Sans Mono,monospace" font-size="14" font-weight="700" letter-spacing="2">&gt;&gt; CONTINUITY // FIELD STREAK</text>
+<text x="28" y="54" fill="#77694f" font-family="DejaVu Sans Mono,monospace" font-size="10" letter-spacing="1.2">total contributions vs. direct commits | rolling 365 days</text>
 <line x1="24" y1="66" x2="471" y2="66" stroke="#d4a24e" stroke-opacity="0.25"/>
 <rect x="24" y="67" width="180" height="2" fill="url(#scan)" opacity="0.85"/>
-<rect x="24" y="84" width="142" height="76" rx="8" fill="#1d1729" stroke="#d4a24e" stroke-opacity="0.22"/><text x="40" y="115" fill="#e8c07a" font-family="DejaVu Sans Mono,monospace" font-size="25" font-weight="700">1693</text><text x="40" y="139" fill="#a89a80" font-family="DejaVu Sans Mono,monospace" font-size="10" letter-spacing="1">TOTAL</text>
-<rect x="176" y="84" width="142" height="76" rx="8" fill="#1d1729" stroke="#d4a24e" stroke-opacity="0.22"/><text x="192" y="115" fill="#d4a24e" font-family="DejaVu Sans Mono,monospace" font-size="25" font-weight="700">1056</text><text x="192" y="139" fill="#a89a80" font-family="DejaVu Sans Mono,monospace" font-size="10" letter-spacing="1">COMMITS</text>
-<rect x="328" y="84" width="143" height="76" rx="8" fill="#1d1729" stroke="#d4a24e" stroke-opacity="0.22"/><text x="344" y="115" fill="#3ddc84" font-family="DejaVu Sans Mono,monospace" font-size="25" font-weight="700">479</text><text x="344" y="139" fill="#a89a80" font-family="DejaVu Sans Mono,monospace" font-size="10" letter-spacing="1">PRs</text>
-<text x="24" y="180" fill="#77694f" font-family="DejaVu Sans Mono,monospace" font-size="9">fonte: GitHub GraphQL · 2026-08-23 04:01 UTC</text>
+<rect x="24" y="84" width="142" height="76" rx="8" fill="#1d1729" stroke="#d4a24e" stroke-opacity="0.22"/><text x="40" y="115" fill="#e8c07a" font-family="DejaVu Sans Mono,monospace" font-size="25" font-weight="700">1808</text><text x="40" y="139" fill="#a89a80" font-family="DejaVu Sans Mono,monospace" font-size="10" letter-spacing="1">TOTAL</text>
+<rect x="176" y="84" width="142" height="76" rx="8" fill="#1d1729" stroke="#d4a24e" stroke-opacity="0.22"/><text x="192" y="115" fill="#d4a24e" font-family="DejaVu Sans Mono,monospace" font-size="25" font-weight="700">1115</text><text x="192" y="139" fill="#a89a80" font-family="DejaVu Sans Mono,monospace" font-size="10" letter-spacing="1">DIRECT COMMITS</text>
+<rect x="328" y="84" width="143" height="76" rx="8" fill="#1d1729" stroke="#d4a24e" stroke-opacity="0.22"/><text x="344" y="115" fill="#3ddc84" font-family="DejaVu Sans Mono,monospace" font-size="25" font-weight="700">535</text><text x="344" y="139" fill="#a89a80" font-family="DejaVu Sans Mono,monospace" font-size="10" letter-spacing="1">PRs</text>
+<text x="24" y="180" fill="#77694f" font-family="DejaVu Sans Mono,monospace" font-size="9">source: GitHub GraphQL | 2026-08-26 13:36 UTC</text>
 </svg>

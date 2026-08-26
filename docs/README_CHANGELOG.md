@@ -54,3 +54,14 @@ A segunda versão reorganizou o README em uma sequência mais curta e orientada 
 Os destaques passaram a aceitar somente repositórios públicos, enquanto o catálogo privado permanece separado e limitado ao recorte editorial permitido. As três exclusões permanentes continuam sendo aplicadas antes das métricas, catálogos, sites, destaques e assets gerados.
 
 Os badges das 17 linguagens usam parâmetros codificados de `label` e `message`; a matriz gráfica mantém barras proporcionais e a tabela completa continua disponível como evidência textual. O gerador permanece idempotente e o workflow continua limitado aos blocos dinâmicos e assets autorizados.
+
+
+## 2026-08-26 — Arsenal categorizado e métricas reconciliadas
+
+O Arsenal passou a separar visualmente **Linguagens**, **Frameworks & Web**, **Infraestrutura & DevOps**, **IA & Conhecimento** e **Hardware & Simulação**. As 17 linguagens continuam sendo derivadas dos mapas públicos do GitHub, enquanto as ferramentas permanecem documentadas no manifesto `README_STACK.json` com função e evidência pública.
+
+O workflow `v2-validation.yml` passou a executar `scripts/validate_language_badges.py` em pull requests e pushes na `main`. O validador confere labels únicos e legíveis, endpoint estático do Shields.io, coerência entre badges e matriz, presença das categorias e disponibilidade HTTP dos badges, com concorrência e retry curto.
+
+Os cards de atividade agora distinguem `CONTRIBUIÇÕES TOTAIS`, `COMMITS DIRETOS` e `REPOS CRIADOS`. Na janela de 365 dias analisada, 1.807 contribuições são explicadas por 1.114 commits, 535 pull requests, 94 issues, 3 reviews e 61 contribuições de repositório. A diferença é semântica e esperada, não uma inconsistência do contador.
+
+O relatório detalhado da alteração está em `docs/README_BADGES_METRICS_REPORT.md`.
