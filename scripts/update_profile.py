@@ -437,11 +437,12 @@ def load_site_overrides() -> dict[str, str]:
 
 
 def build_data(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[str, dict[str, int]]]:
-    # PROFILE_GITHUB_TOKEN is optional and may be a least-privilege PAT that can see
-    # private repositories. GITHUB_TOKEN is used for public API calls and does not expand
-    # the inventory by itself.
+    # PROFILE_GITHUB_TOKEN is optional for read-only/public previews, but write mode
+    # must not replace a private-aware README with a public-only inventory.
     inventory_token = args.github_token or os.environ.get("PROFILE_GITHUB_TOKEN")
     api_token = inventory_token or os.environ.get("GITHUB_TOKEN")
+    if args.write and not args.input_repos and not inventory_token:
+        raise ValueError("refusing write mode without PROFILE_GITHUB_TOKEN; this could erase private-project entries")
     if args.input_repos:
         repos = load_local_repositories(Path(args.input_repos))
         languages = load_local_languages(Path(args.languages_dir), repos) if args.languages_dir else {str(r["full_name"]): {} for r in repos}
@@ -485,7 +486,15 @@ def main() -> int:
                 verified_sites[full_name] = {"url": effective or homepage, "status": f"HTTP {status}"}
 
     rows = language_rows(repos, languages, public_only=True)
-    generated_at = now.strftime("%Y-%m-%d %H:%M UTC")
+    # Use a source-derived timestamp so unchanged inventories do not create timestamp-only commits.
+    source_times = []
+    for repo in repos:
+        value = repo.get("pushed_at") or repo.get("updated_at")
+        try:
+            source_times.append(datetime.fromisoformat(str(value).replace("Z", "+00:00")))
+        except (TypeError, ValueError):
+            continue
+    generated_at = max(source_times, default=now).strftime("%Y-%m-%d %H:%M UTC")
     text = README.read_text(encoding="utf-8")
     text = replace_block(text, "PROFILE-DASHBOARD", render_dashboard(repos, rows, verified_sites, now))
     text = replace_block(text, "FEATURED-PROJECTS", render_featured_projects(repos, verified_sites, now))

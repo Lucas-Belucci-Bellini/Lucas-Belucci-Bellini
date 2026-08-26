@@ -31,12 +31,17 @@ jobs:
           python-version: "3.11"
 
       - name: Refresh README and generated assets
+        if: ${{ secrets.PROFILE_README_TOKEN != '' }}
         env:
-          # Optional. Configure a least-privilege PAT as PROFILE_README_TOKEN to include
+          # Configure a least-privilege PAT as PROFILE_README_TOKEN to include
           # private-repository counts without reading or publishing private file contents.
           PROFILE_GITHUB_TOKEN: ${{ secrets.PROFILE_README_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 scripts/update_profile.py --write
+
+      - name: Skip refresh when private-aware inventory is unavailable
+        if: ${{ secrets.PROFILE_README_TOKEN == '' }}
+        run: echo "PROFILE_README_TOKEN is not configured; preserving the private-aware catalog."
 
       - name: Validate generated Markdown and configuration
         run: |

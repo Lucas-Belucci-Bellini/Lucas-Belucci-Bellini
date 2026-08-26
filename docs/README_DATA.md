@@ -24,9 +24,11 @@ O status é uma heurística editorial transparente: privado tem prioridade; repo
 
 ## Workflow
 
-O workflow [`.github/workflows/update-profile.yml`](../.github/workflows/update-profile.yml) roda diariamente e também pode ser acionado manualmente. Ele configura Python, consulta o GitHub, executa o gerador, valida o Markdown e cria commit somente quando `README.md` ou os assets gerados realmente mudam.
+O workflow [`.github/workflows/update-profile.yml`](../.github/workflows/update-profile.yml) roda diariamente e também pode ser acionado manualmente. Ele configura Python, consulta o GitHub, executa o gerador quando o secret `PROFILE_README_TOKEN` está configurado, valida o Markdown e cria commit somente quando `README.md` ou os assets gerados realmente mudam.
 
-O workflow não roda a cada minuto ou hora. A frequência diária reduz ruído e mantém a atualização adequada para um catálogo de perfil. O job usa `PROFILE_README_TOKEN` quando configurado; esse secret deve possuir apenas as permissões mínimas necessárias. O token é usado para métricas agregadas e nunca para publicar conteúdo de arquivos privados.
+O workflow não roda a cada minuto ou hora. A frequência diária reduz ruído e mantém a atualização adequada para um catálogo de perfil. Sem `PROFILE_README_TOKEN`, o job preserva o README atual e não executa uma atualização pública que poderia apagar a seção de projetos privados. O token deve possuir apenas as permissões mínimas necessárias. Quando usado, ele serve para métricas agregadas e nunca para publicar conteúdo de arquivos privados.
+
+O timestamp da tabela de linguagens é derivado da data mais recente de `pushed_at`/`updated_at` do inventário, e não do relógio da execução. Assim, uma execução idêntica não cria uma mudança artificial só porque o workflow rodou em outro dia.
 
 ## Atualização manual
 
@@ -39,11 +41,13 @@ python3 scripts/update_profile.py \
   --write
 ```
 
-Para uma execução direta contra a API do GitHub, forneça `PROFILE_GITHUB_TOKEN` ou `GITHUB_TOKEN` no ambiente e execute:
+Para uma execução direta contra a API do GitHub, forneça `PROFILE_GITHUB_TOKEN` com acesso de leitura aos repositórios que deseja agregar e execute:
 
 ```bash
-python3 scripts/update_profile.py --write
+PROFILE_GITHUB_TOKEN=... python3 scripts/update_profile.py --write
 ```
+
+O gerador recusa o modo `--write` sem um inventário privado-aware, justamente para evitar substituir o catálogo completo por uma visão pública parcial. Para uma prévia pública sem escrita, execute `python3 scripts/update_profile.py` sem `--write`.
 
 Depois, revise `README.md`, `assets/lang-stats.svg`, os links públicos e a política de privacidade antes de abrir um pull request.
 
