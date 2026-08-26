@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-25T23:37:04Z",
+  "scanned_at": "2026-08-26T01:58:24Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -271,10 +271,10 @@
     },
     "Java-activities": {
       "branch": "main",
-      "sha": "36fe9df730b49f83418f7f37918946a286852bdd",
-      "date": "2026-08-25T19:52:21Z",
-      "message": "atualização",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/36fe9df730b49f83418f7f37918946a286852bdd"
+      "sha": "af4edb6532cced91927b4e040199d16cbcd22b04",
+      "date": "2026-08-26T00:56:11Z",
+      "message": "atualizei",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/af4edb6532cced91927b4e040199d16cbcd22b04"
     },
     "JAVA-todos-os-codigos-em-java": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "ec127fc030486bc418b7e99e6ef7bb1352841a6c",
-      "date": "2026-08-25T23:35:20Z",
-      "message": "docs(v2): prepara notas da v2.0.0-alpha.7",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ec127fc030486bc418b7e99e6ef7bb1352841a6c"
+      "sha": "090298f7a096c76dfdbb27bee7ef57f25d7324d3",
+      "date": "2026-08-26T01:26:28Z",
+      "message": "docs(v2): notas da v2.0.0-alpha.11 (#494)",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/090298f7a096c76dfdbb27bee7ef57f25d7324d3"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,15 +409,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2254,
-    "project_commits": 2125,
-    "monitor_commits": 129,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 2268,
+    "project_commits": 2138,
+    "monitor_commits": 130,
+    "detected_project_commits_this_scan": 13,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [

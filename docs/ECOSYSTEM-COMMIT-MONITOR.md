@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-25T23:37:04Z`  
+**Última varredura:** `2026-08-26T01:58:24Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2254`
-- **Commits dos projetos:** `2125`
-- **Commits do próprio monitor:** `129`
-- **Commits de projetos detectados nesta hora:** `4`
+- **Commits rastreados pelo ecossistema:** `2268`
+- **Commits dos projetos:** `2138`
+- **Commits do próprio monitor:** `130`
+- **Commits de projetos detectados nesta hora:** `13`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 4 commit(s) — [ec127fc03048](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ec127fc030486bc418b7e99e6ef7bb1352841a6c) — docs(v2): prepara notas da v2.0.0-alpha.7
+- **Java-activities** — 5 commit(s) — [af4edb6532cc](https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/af4edb6532cced91927b4e040199d16cbcd22b04) — atualizei
+- **Projeto-Baluarte** — 8 commit(s) — [090298f7a096](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/090298f7a096c76dfdbb27bee7ef57f25d7324d3) — docs(v2): notas da v2.0.0-alpha.11 (#494)
 
 ## Erros de consulta
 
