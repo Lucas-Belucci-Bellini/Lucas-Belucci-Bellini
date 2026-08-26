@@ -18,7 +18,7 @@ def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
 
-    for marker in ["PROFILE-DASHBOARD", "FEATURED-PROJECTS", "LIVE-PROJECTS", "PROJECT-MAP", "PUBLIC-PROJECTS", "PRIVATE-PROJECTS", "LANGUAGE-STATS"]:
+    for marker in ["PROFILE-DASHBOARD", "FEATURED-PROJECTS", "CURATED-FEATURED", "ARSENAL-STACK", "LIVE-PROJECTS", "PROJECT-MAP", "PUBLIC-PROJECTS", "PRIVATE-PROJECTS", "LANGUAGE-STATS"]:
         start = f"<!-- {marker}:START -->"
         end = f"<!-- {marker}:END -->"
         if text.count(start) != 1 or text.count(end) != 1 or text.index(start) > text.index(end):
@@ -34,12 +34,13 @@ def main() -> int:
         if not (ROOT / image[2:]).exists():
             errors.append(f"missing local image: {image}")
 
-    try:
-        sites = json.loads((ROOT / "docs" / "README_SITES.json").read_text(encoding="utf-8"))
-        if not isinstance(sites, dict):
-            errors.append("README_SITES.json is not an object")
-    except Exception as exc:
-        errors.append(f"README_SITES.json error: {exc}")
+    for manifest_name in ["README_SITES.json", "README_FEATURED.json", "README_STACK.json", "README_EXCLUDED.json"]:
+        try:
+            manifest = json.loads((ROOT / "docs" / manifest_name).read_text(encoding="utf-8"))
+            if not isinstance(manifest, dict):
+                errors.append(f"{manifest_name} is not an object")
+        except Exception as exc:
+            errors.append(f"{manifest_name} error: {exc}")
 
     try:
         import yaml  # type: ignore
@@ -50,18 +51,26 @@ def main() -> int:
         errors.append(f"workflow YAML error: {exc}")
 
     workflow = (ROOT / ".github" / "workflows" / "update-profile.yml").read_text(encoding="utf-8")
-    for required in ["workflow_dispatch:", "schedule:", "permissions:", "contents: write", "scripts/update_profile.py", "git diff --quiet"]:
+    for required in ["workflow_dispatch:", "schedule:", "permissions:", "contents: write", "scripts/update_profile.py", "scripts/validate_dynamic_sections.py", "scripts/validate_exclusions.py", "git diff --quiet"]:
         if required not in workflow:
             errors.append(f"workflow missing required construct: {required}")
 
     repos_path = Path("/home/ubuntu/profile_readme_audit/repos.json")
     repos = []
     private_repo_urls: set[str] = set()
+    excluded_names: set[str] = set()
+    try:
+        excluded_data = json.loads((ROOT / "docs" / "README_EXCLUDED.json").read_text(encoding="utf-8"))
+        excluded_names = {str(name) for name in excluded_data.get("repositories", [])}
+    except Exception:
+        errors.append("README_EXCLUDED.json could not be loaded")
     if repos_path.exists():
         repos = json.loads(repos_path.read_text(encoding="utf-8"))
         missing_repo_links = [
             repo["full_name"] for repo in repos
-            if f"https://github.com/{repo['full_name']}" not in text
+            if repo.get("name") not in excluded_names
+            and repo.get("full_name") not in excluded_names
+            and f"https://github.com/{repo['full_name']}" not in text
         ]
         if missing_repo_links:
             errors.append("missing GitHub links: " + ", ".join(missing_repo_links))
@@ -70,6 +79,10 @@ def main() -> int:
             for repo in repos
             if repo.get("private")
         }
+
+    for excluded_name in excluded_names:
+        if excluded_name in text:
+            errors.append(f"excluded repository appears in README: {excluded_name}")
 
     # This is a policy check: the public README may mention privacy terms, but must not
     # publish internal secret names, token values, or private file paths.

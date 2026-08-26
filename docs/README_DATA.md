@@ -61,3 +61,31 @@ As seções geradas são delimitadas por marcadores `START`/`END`. Não edite o 
 A versão atual do README preserva a estética original do perfil: banner `capsule-render`, faixas animadas `readme-typing-svg`, badges de status/universidade/localização, bloco ASCII `BALUARTE // FIELD MANUAL`, ícones `skillicons`, gráficos e assets de estatísticas, console visual do J.A.R.V.I.S., build log de CPU, mapa de atividade, canais de contato, contador de visitas e footer. Os blocos auditáveis são inseridos entre marcadores dedicados para que a automação atualize os dados sem remover esses elementos editoriais e visuais.
 
 A rotina de refresh deve ser executada sobre esse template preservado. O script [`scripts/restore_original_style.py`](../scripts/restore_original_style.py) documenta a migração pontual a partir da branch de backup; a atualização diária usa apenas [`scripts/update_profile.py`](../scripts/update_profile.py) e não substitui o template inteiro.
+
+
+## Seção personalizada e Arsenal expandido
+
+A seção `CURATED-FEATURED` é controlada pelo manifesto [`README_FEATURED.json`](README_FEATURED.json). Ela aceita apenas projetos encontrados no inventário autenticado e ignora automaticamente entradas privadas ou inexistentes. O texto editorial, a ordem e o foco podem ser ajustados nesse manifesto sem alterar o template visual restaurado.
+
+O bloco `ARSENAL-STACK` combina duas fontes. As linguagens, pesos e contagens vêm dos mapas públicos de linguagens do GitHub; as ferramentas, plataformas e ambientes vêm do manifesto [`README_STACK.json`](README_STACK.json), que registra a evidência pública usada para cada item. A atualização não publica arquivos privados.
+
+## Como verificar que o workflow só muda seções dinâmicas
+
+A rotina cria `/tmp/README.before.md` antes do refresh e executa [`scripts/validate_dynamic_sections.py`](../scripts/validate_dynamic_sections.py) depois dele. O validador substitui temporariamente o conteúdo entre os marcadores `START/END` dos blocos gerados e compara o restante do README antes e depois. Se qualquer banner, badge, bloco ASCII, texto editorial, link visual ou outra parte estática mudar, o job falha antes do commit.
+
+Para uma verificação manual local, gere uma cópia do README antes da execução, rode o gerador com os mesmos dados e compare os arquivos pelo script:
+
+```bash
+cp README.md /tmp/README.before.md
+python3 scripts/update_profile.py --input-repos /caminho/repos.json --languages-dir /caminho/languages --write
+python3 scripts/validate_dynamic_sections.py --before /tmp/README.before.md --after README.md
+```
+
+O resultado esperado é `dynamic-only README validation: pass`. No GitHub, a confirmação adicional é verificar o log do job `Validate generated Markdown and configuration`, o resumo do commit e o diff do workflow. Um refresh sem mudanças reais deve terminar sem novo commit, porque a etapa final usa `git diff --quiet -- README.md assets/lang-stats.svg`.
+
+
+## Exclusões editoriais permanentes
+
+Os repositórios listados em [`README_EXCLUDED.json`](README_EXCLUDED.json) são removidos antes de qualquer cálculo ou renderização. Isso significa que não aparecem no mapa, no catálogo público ou privado, nos destaques, nos sites, nas linguagens agregadas, no dashboard ou em links gerados. A decisão atual exclui três projetos privados por solicitação do proprietário do perfil.
+
+O teste [`scripts/validate_exclusions.py`](../scripts/validate_exclusions.py) falha se qualquer nome excluído aparecer no README. O inventário autenticado continua podendo conter esses projetos para fins de controle interno, mas o README e suas métricas trabalham com o inventário filtrado.

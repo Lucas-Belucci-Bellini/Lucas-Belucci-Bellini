@@ -32,7 +32,7 @@
 
 | PROJECTS | LANGUAGES | ACTIVE PROJECTS | PUBLIC PROJECTS | PRIVATE PROJECTS | DEPLOYED PROJECTS | ACADEMIC PROJECTS |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **82** | **17** | **13** | **62** | **20** | **9** | **10** |
+| **79** | **17** | **13** | **62** | **17** | **9** | **10** |
 
 </div>
 
@@ -80,9 +80,57 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 <div align="center">
 
-[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,vite,react,tailwind,mysql,blender&theme=dark)](https://skillicons.dev)
+[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,vite,react,tailwind,mysql,blender,electron,docker,supabase,unity,arduino,obsidian&theme=dark)](https://skillicons.dev)
 
 </div>
+
+<!-- ARSENAL-STACK:START -->
+> **17 linguagens detectadas** no inventário público. O peso e a quantidade de repositórios são calculados automaticamente pelo GitHub.
+
+| Linguagem | Repositórios | Participação |
+|:---|---:|---:|
+| **JavaScript** | 17 | `36.36%` |
+| **TypeScript** | 5 | `25.07%` |
+| **HTML** | 18 | `20.75%` |
+| **CSS** | 13 | `4.92%` |
+| **Java** | 4 | `4.07%` |
+| **Python** | 6 | `3.68%` |
+| **C#** | 2 | `3.07%` |
+| **PL/pgSQL** | 2 | `0.62%` |
+| **Rust** | 3 | `0.44%` |
+| **SQF** | 1 | `0.31%` |
+| **Shell** | 5 | `0.24%` |
+| **GDScript** | 1 | `0.21%` |
+| **PowerShell** | 2 | `0.16%` |
+| **Portugol** | 4 | `0.07%` |
+| **Batch** | 5 | `0.03%` |
+| **ShaderLab** | 1 | `0.01%` |
+| **Dockerfile** | 1 | `0.00%` |
+
+### Ferramentas, plataformas e ambientes
+
+| Ferramenta | Papel | Evidência pública |
+|:---|:---|:---|
+| **Git** | versionamento | repositórios públicos e atividades de Git/GitHub |
+| **GitHub** | colaboração e CI | repositório de perfil, Actions e inventário auditado |
+| **VS Code** | editor | stack visual preservada e documentação de desenvolvimento |
+| **Linux** | ambiente | stack visual preservada e scripts Shell/PowerShell |
+| **Node.js** | runtime web | projetos públicos JavaScript/TypeScript e manifests Node |
+| **Vite** | build e dev server | Projeto-Baluarte, Veritas, DailyPlanner e projetos web documentados |
+| **React** | interface web | projetos públicos e dependências documentadas |
+| **Tailwind CSS** | estilo web | stack visual preservada e projetos web documentados |
+| **Electron** | desktop | Projeto-Baluarte e baluarte-obra-segura |
+| **Docker** | infraestrutura | Dockerfile detectado no inventário público |
+| **Supabase** | backend e dados | Veritas |
+| **MCP** | integrações de agentes | Veritas e documentação pública relacionada |
+| **Unity** | simulação e jogos | Digital Logic Sim CE |
+| **Arduino** | eletrônica | arsenal visual original e linha de robótica/eletrônica |
+| **Obsidian + Claude** | conhecimento e IA | AI-second-brain-with-Claude-and-Obsidian |
+| **MapLibre GL** | mapas web | Project-Vanguard |
+| **Flowgorithm + Portugol** | fundamentos | repositórios acadêmicos públicos |
+
+> A lista de ferramentas é editorial e baseada em READMEs, manifests, configurações e seções visuais preservadas; ela não substitui o mapa automático de linguagens.
+<!-- ARSENAL-STACK:END -->
 
 ---
 
@@ -106,6 +154,26 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 | **DailyPlanner** | Agenda diária em TypeScript/Vite para cadastrar, editar, concluir, excluir, buscar e filtrar atividades no navegador. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
 | **Projeto-Baluarte-World-Game** | Conceito e protótipo de jogo de sobrevivência, construção e consequência situado no universo Baluarte. | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) · [Site](https://projeto-baluarte-world-game.vercel.app) |
 <!-- FEATURED-PROJECTS:END -->
+
+</div>
+
+![Curated Missions](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=3DDC84&center=true&vCenter=true&width=620&height=30&lines=%E2%97%86+MISS%C3%95ES+ESCOLHIDAS+%2F+CURATED+MISSIONS+%E2%97%86)
+
+<div align="center">
+
+<!-- CURATED-FEATURED:START -->
+> Uma seleção editorial das frentes que melhor representam a construção do ecossistema: produto, lógica digital, engenharia, IA, web e jogos.
+
+| # | Missão | Foco confirmado | Status | Acesso |
+|:--:|:---|:---|:---|:---|
+| 1 | **FLAGSHIP / ECOSSISTEMA** · Projeto-Baluarte | Plataforma narrativa e técnica com J.A.R.V.I.S., Git Nexus e módulos web; o site público está em reconstrução da V2. | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) · [Site](https://projeto-baluarte.vercel.app) |
+| 2 | **DIGITAL LOGIC / LOCAL-FIRST** · Veritas | Calculadora de tabelas verdade e projetista de circuitos com editor visual, simulação e integrações documentadas. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Veritas) · [Site](https://veritas-opal-seven.vercel.app) |
+| 3 | **ENGINEERING / FIELD TOOL** · baluarte-obra-segura | Hub de engenharia para obras com editor de painéis, calculadoras, simuladores e base WikiBuild. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) · [Site](https://baluarte-obra-segura.vercel.app) |
+| 4 | **TACTICAL WEB / MAPS** · Project-Vanguard | GPS topográfico tático e computador de tiro construído com stack web e visualização geográfica. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) · [Site](https://project-vanguard-cyan.vercel.app) |
+| 5 | **CPU BUILD / SIMULATION** · Digital-Logic-Sim-CE | Simulação de lógica digital que documenta a linha de construção de computadores e chips funcionais. | 🔵 Experimental | [GitHub](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
+| 6 | **WEB APP / PRODUCTIVITY** · DailyPlanner | Agenda web em TypeScript para organizar, buscar, filtrar e concluir atividades no navegador. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
+| 7 | **GAME / WORLD-BUILDING** · Projeto-Baluarte-World-Game | Protótipo de sobrevivência, construção e consequência situado no universo Baluarte. | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) · [Site](https://projeto-baluarte-world-game.vercel.app) |
+<!-- CURATED-FEATURED:END -->
 
 </div>
 
@@ -151,7 +219,6 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 | **baluarte-shell** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-shell) | — |
 | **baluarte-tools** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-tools) | — |
 | **Baluarte_MarkIX_Node** | Ecossistema Baluarte | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Baluarte_MarkIX_Node) | — |
-| **casa-de-apoio-mmg** | Web | `HTML` `JavaScript` `CSS` | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/casa-de-apoio-mmg) | — |
 | **Catacombs-of-Paris-Ossuary-Escape-game-design** | Games | `HTML` `C#` `JavaScript` `GDScript` `Batch` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | — |
 | **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Digital Logic / Hardware | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) | — |
 | **CodeVibe-Academy** | Web | `JavaScript` `HTML` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | [Site / Demo](https://code-vibe-academy.vercel.app) |
@@ -191,8 +258,6 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 | **Python** | Academia | `Python` | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Python) | — |
 | **Recycle-game** | Games | `JavaScript` `HTML` `CSS` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | — |
 | **Some-Pseudocode-and-exercise-codes** | Academia | `Portugol` | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes) | — |
-| **sujok-brasil-backend** | Infraestrutura / Backend / Dados | `Python` `Dockerfile` `Mako` | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/sujok-brasil-backend) | — |
-| **sujok-brasil-frontend** | Infraestrutura / Backend / Dados | `TypeScript` `CSS` `HTML` | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/sujok-brasil-frontend) | — |
 | **taxforge** | Web | `TypeScript` `HTML` `JavaScript` `Python` `CSS` | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/taxforge) | — |
 | **Teste-** | Software & Ferramentas | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Teste-) | — |
 | **Teste-aula-git** | Software & Ferramentas | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Teste-aula-git) | — |
@@ -292,7 +357,6 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 | **BALUARTE-FORGE-CONSTRUCTION** | Ecossistema Baluarte | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/BALUARTE-FORGE-CONSTRUCTION) |
 | **Baluarte-Portfolio** | Ecossistema Baluarte | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Baluarte-Portfolio) |
 | **Baluarte_MarkIX_Node** | Ecossistema Baluarte | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Baluarte_MarkIX_Node) |
-| **casa-de-apoio-mmg** | Web | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/casa-de-apoio-mmg) |
 | **DelaOmegaAlfa** | Software & Ferramentas | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/DelaOmegaAlfa) |
 | **fanfic-circulo-de-fogo** | Software & Ferramentas | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/fanfic-circulo-de-fogo) |
 | **file-D-teste-1-site_nova_era-index.htmlfile-D-teste-1-site_nova_era-index.html** | Web | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/file-D-teste-1-site_nova_era-index.htmlfile-D-teste-1-site_nova_era-index.html) |
@@ -301,8 +365,6 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 | **LOCAL-DE-TRABALHO** | Web | dados para trabalho e criação de sites | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/LOCAL-DE-TRABALHO) |
 | **Projeto-Baluarte-AI-Contador** | Ecossistema Baluarte | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-AI-Contador) |
 | **Projeto-Baluarte-New-game** | Ecossistema Baluarte | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-New-game) |
-| **sujok-brasil-backend** | Infraestrutura / Backend / Dados | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/sujok-brasil-backend) |
-| **sujok-brasil-frontend** | Infraestrutura / Backend / Dados | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/sujok-brasil-frontend) |
 | **taxforge** | Web | Um analisador de bolsa de valores com dashboard interativo, indicadores técnicos e bot de recomendação de compra/venda. · Built with Manus | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/taxforge) |
 | **Zoas-** | Software & Ferramentas | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Zoas-) |
 
