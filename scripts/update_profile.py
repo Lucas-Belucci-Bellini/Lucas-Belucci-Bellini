@@ -36,6 +36,28 @@ LANGUAGE_DISPLAY = {
     "PLpgSQL": "PL/pgSQL",
 }
 
+LANGUAGE_COLORS = {
+    "JavaScript": "F7DF1E",
+    "TypeScript": "3178C6",
+    "HTML": "E34F26",
+    "CSS": "1572B6",
+    "Java": "ED8B00",
+    "Python": "3776AB",
+    "CSharp": "239120",
+    "C#": "239120",
+    "PLpgSQL": "336791",
+    "PL/pgSQL": "336791",
+    "Rust": "DEA584",
+    "Shell": "4EAA25",
+    "GDScript": "478CBF",
+    "PowerShell": "5391FE",
+    "Portugol": "6A5ACD",
+    "Batchfile": "5C2D91",
+    "Batch": "5C2D91",
+    "ShaderLab": "A48EFA",
+    "Dockerfile": "2496ED",
+}
+
 FEATURED_PRIORITY = {
     "Projeto-Baluarte": 120,
     "Veritas": 115,
@@ -303,21 +325,44 @@ def render_dashboard(repos: list[dict[str, Any]], languages: list[dict[str, Any]
 def render_language_badges(rows: list[dict[str, Any]]) -> str:
     shields = []
     for row in rows:
+        # Keep the accessible Markdown label human-readable; encode only the URL parts.
         language = str(row["display"])
         badge_label = quote(language, safe="")
         badge_message = quote(f"{row['repositories']} repos", safe="")
-        color = "3178C6" if language == "TypeScript" else "F2C94C" if language == "JavaScript" else "555555"
-        shields.append(
-            f"[![{badge_label}](https://img.shields.io/badge?label={badge_label}&message={badge_message}&color={color}&style=flat-square)](https://github.com/{OWNER}?tab=repositories&q=&language={quote(language, safe='')})"
+        color = LANGUAGE_COLORS.get(str(row["language"]), LANGUAGE_COLORS.get(language, "6E6E6E"))
+        badge_url = (
+            f"https://img.shields.io/badge/{badge_label}-{badge_message}-{color}"
+            "?style=flat-square&labelColor=0e0c16"
         )
-    return "\n".join([
-        "> **17 linguagens em uso** · badges gerados a partir dos repositórios públicos auditados.",
-        "> A lista abaixo mostra a amplitude do portfólio; a tabela de análise informa peso em bytes e participação relativa.",
+        search_language = quote(str(row["language"]), safe="")
+        shields.append(
+            f"[![{language}]({badge_url})]"
+            f"(https://github.com/{OWNER}?tab=repositories&q=&language={search_language})"
+        )
+
+    split_at = (len(shields) + 1) // 2
+
+    def badge_lines(items: list[str], per_line: int = 5) -> list[str]:
+        return [" ".join(items[index:index + per_line]) for index in range(0, len(items), per_line)]
+
+    lines = [
+        f"> **{len(rows)} linguagens públicas detectadas** · badges gerados a partir dos repositórios auditados.",
+        "> Os nomes permanecem legíveis mesmo quando a URL precisa escapar caracteres como `#` e `/`; a matriz abaixo informa peso em bytes e participação relativa.",
         "",
-        " ".join(shields[:9]),
-        "",
-        " ".join(shields[9:]),
-    ])
+    ]
+    if shields:
+        lines.extend(["**PRINCIPAIS POR VOLUME**", ""])
+        for index, line in enumerate(badge_lines(shields[:split_at])):
+            if index:
+                lines.append("<br>")
+            lines.append(line)
+    if shields[split_at:]:
+        lines.extend(["", "", "**EXTENSÕES DO PORTFÓLIO**", ""])
+        for index, line in enumerate(badge_lines(shields[split_at:])):
+            if index:
+                lines.append("<br>")
+            lines.append(line)
+    return "\n".join(lines)
 
 
 def render_language_stats(repos: list[dict[str, Any]], rows: list[dict[str, Any]], generated_at: str) -> str:
