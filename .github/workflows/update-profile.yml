@@ -1,0 +1,64 @@
+name: Refresh profile README
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/update_profile.py"
+      - "docs/README_SITES.json"
+      - ".github/workflows/update-profile.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    name: Audit repositories and refresh generated profile sections
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out profile repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Refresh README and generated assets
+        env:
+          # Optional. Configure a least-privilege PAT as PROFILE_README_TOKEN to include
+          # private-repository counts without reading or publishing private file contents.
+          PROFILE_GITHUB_TOKEN: ${{ secrets.PROFILE_README_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/update_profile.py --write
+
+      - name: Validate generated Markdown and configuration
+        run: |
+          python3 -m py_compile scripts/update_profile.py
+          python3 -m json.tool docs/README_SITES.json >/dev/null
+          test -s README.md
+          test -s assets/lang-stats.svg
+          grep -q '<!-- PROFILE-DASHBOARD:START -->' README.md
+          grep -q '<!-- PROFILE-DASHBOARD:END -->' README.md
+          grep -q '<!-- PROJECT-MAP:START -->' README.md
+          grep -q '<!-- PROJECT-MAP:END -->' README.md
+          grep -q '<!-- LANGUAGE-STATS:START -->' README.md
+          grep -q '<!-- LANGUAGE-STATS:END -->' README.md
+
+      - name: Commit only real changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- README.md assets/lang-stats.svg; then
+            echo "No generated changes detected."
+            exit 0
+          fi
+          git add README.md assets/lang-stats.svg
+          git commit -m "chore(profile): refresh repository catalog"
+          git push
