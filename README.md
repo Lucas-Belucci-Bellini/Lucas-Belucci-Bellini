@@ -100,7 +100,7 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 
 **IA & CONHECIMENTO**<br>
 [![AI and Knowledge](https://skillicons.dev/icons?i=obsidian,claude&theme=dark)](https://skillicons.dev)<br>
-[![MCP](https://img.shields.io/badge/MCP-integrações%20de%20agentes-a68dad?style=flat-square&labelColor=0e0c16)](https://modelcontextprotocol.io/)
+[![MCP](https://img.shields.io/badge/MCP-integra%C3%A7%C3%B5es%20de%20agentes-a68dad?style=flat-square&labelColor=0e0c16)](https://modelcontextprotocol.io/)
 
 **HARDWARE & SIMULAÇÃO**<br>
 [![Hardware and Simulation](https://skillicons.dev/icons?i=arduino,unity,blender&theme=dark)](https://skillicons.dev)
@@ -517,7 +517,7 @@ Construí computadores funcionais de **8 a 64 bits** no Digital Logic Sim — da
 
 <div align="center">
 
-![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Lucas-Belucci-Bellini&theme=react-dark&bg_color=0e0c16&color=d4a24e&line=e8c07a&point=3ddc84&area=true&hide_border=false)
+[![Contribution timeline](https://img.shields.io/badge/INTERACTIVE-TIMELINE%20OF%20CONTRIBUTIONS-3ddc84?style=for-the-badge&labelColor=0e0c16)](./docs/assets/contributions-timeline.html)
 
 ![Contribution Snake](https://raw.githubusercontent.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/output/github-contribution-grid-snake-dark.svg)
 
@@ -555,6 +555,18 @@ Uma seção dedicada às histórias e aos universos que crio — um espaço para
 
 📖 [Minha Fan Fiction — início](https://docs.google.com/document/d/1FJulPVU1WA8LTLL3NO7h2CTW7pmlNWgO-C77qwtcVgU/edit?usp=drivesdk)
 
+## `// KIT PÚBLICO` · STYLE KIT & TUTORIAL
+
+> Este GitHub disponibiliza um **template público reutilizável** para quem quiser copiar ou adaptar esta identidade visual Baluarte / Spartan / Field Manual. A branch separada contém o template completo, a versão mínima, snippets, configuração de exemplo e tutoriais explicando como a estrutura funciona.
+
+<div align="center">
+
+[![Template público](https://img.shields.io/badge/TEMPLATE%20P%C3%9ABLICO-COPY%20THE%20STYLE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/tree/template/readme-style-kit)
+[![Tutorial](https://img.shields.io/badge/TUTORIAL-COMO%20FUNCIONA-3ddc84?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/blob/template/readme-style-kit/STYLE_TUTORIAL.md)
+[![Snippets](https://img.shields.io/badge/SNIPPETS-REUTILIZ%C3%81VEIS-a68dad?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/tree/template/readme-style-kit/templates)
+
+</div>
+
 ## `// CANAL DE COMUNICAÇÃO` · CONTACT
 
 <div align="center">
@@ -586,8 +598,10 @@ Uma seção dedicada às histórias e aos universos que crio — um espaço para
 
 <div align="center">
 
-[![Visitors](https://komarev.com/ghpvc/?username=Lucas-Belucci-Bellini&style=for-the-badge&color=d4a24e&labelColor=0e0c16&label=VISITAS+/+VISITS)](https://github.com/Lucas-Belucci-Bellini)
+[![External profile view counter](https://komarev.com/ghpvc/?username=Lucas-Belucci-Bellini&style=for-the-badge&color=d4a24e&labelColor=0e0c16&label=EXTERNAL+PROFILE+VIEWS)](https://github.com/Lucas-Belucci-Bellini)
 
 </div>
+
+> **Nota sobre visualizações:** o contador acima é um indicador externo de carregamentos do badge; ele não é uma métrica oficial de visitas ao perfil do GitHub. Para tráfego oficial, o GitHub disponibiliza dados de visualizações, visitantes, clones e referências por repositório na área **Insights → Traffic**. Veja também o [relatório de métricas](./docs/README_BADGES_METRICS_REPORT.md), o [guia de métricas avançadas](./docs/README_ADVANCED_METRICS.md) e o [kit público de estilo com tutorial](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/tree/template/readme-style-kit).
 
 ![Footer](https://capsule-render.vercel.app/api?type=waving&color=0:0e0c16,50:1d1729,100:0e0c16&height=100&section=footer&text=&animation=fadeIn)
