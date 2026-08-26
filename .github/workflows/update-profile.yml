@@ -62,6 +62,8 @@ jobs:
           grep -q '<!-- CURATED-FEATURED:END -->' README.md
           grep -q '<!-- ARSENAL-STACK:START -->' README.md
           grep -q '<!-- ARSENAL-STACK:END -->' README.md
+          grep -q '<!-- LANGUAGE-BADGES:START -->' README.md
+          grep -q '<!-- LANGUAGE-BADGES:END -->' README.md
           grep -q '<!-- PROJECT-MAP:START -->' README.md
           grep -q '<!-- PROJECT-MAP:END -->' README.md
           grep -q '<!-- LANGUAGE-STATS:START -->' README.md

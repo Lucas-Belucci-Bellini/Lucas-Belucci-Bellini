@@ -18,7 +18,7 @@ def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
 
-    for marker in ["PROFILE-DASHBOARD", "FEATURED-PROJECTS", "CURATED-FEATURED", "ARSENAL-STACK", "LIVE-PROJECTS", "PROJECT-MAP", "PUBLIC-PROJECTS", "PRIVATE-PROJECTS", "LANGUAGE-STATS"]:
+    for marker in ["PROFILE-DASHBOARD", "FEATURED-PROJECTS", "CURATED-FEATURED", "ARSENAL-STACK", "LANGUAGE-BADGES", "LIVE-PROJECTS", "PROJECT-MAP", "PUBLIC-PROJECTS", "PRIVATE-PROJECTS", "LANGUAGE-STATS"]:
         start = f"<!-- {marker}:START -->"
         end = f"<!-- {marker}:END -->"
         if text.count(start) != 1 or text.count(end) != 1 or text.index(start) > text.index(end):

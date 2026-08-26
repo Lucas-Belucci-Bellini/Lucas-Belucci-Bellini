@@ -291,6 +291,26 @@ def render_dashboard(repos: list[dict[str, Any]], languages: list[dict[str, Any]
     ])
 
 
+def render_language_badges(rows: list[dict[str, Any]]) -> str:
+    shields = []
+    for row in rows:
+        language = str(row["display"])
+        badge_language = quote(language.replace("/", "-"), safe="")
+        badge_label = quote(language, safe="")
+        color = "3178C6" if language == "TypeScript" else "F2C94C" if language == "JavaScript" else "555555"
+        shields.append(
+            f"[![{badge_label}](https://img.shields.io/badge/{badge_language}-{row['repositories']}_repos-{color}?style=flat-square&logo={badge_language.lower()}&logoColor=white)](https://github.com/{OWNER}?tab=repositories&q=&language={quote(language, safe='')})"
+        )
+    return "\n".join([
+        "> **17 linguagens em uso** · badges gerados a partir dos repositórios públicos auditados.",
+        "> A lista abaixo mostra a amplitude do portfólio; a tabela de análise informa peso em bytes e participação relativa.",
+        "",
+        " ".join(shields[:9]),
+        "",
+        " ".join(shields[9:]),
+    ])
+
+
 def render_language_stats(repos: list[dict[str, Any]], rows: list[dict[str, Any]], generated_at: str) -> str:
     total = sum(row["bytes"] for row in rows)
     lines = [
@@ -586,6 +606,7 @@ def main() -> int:
     text = replace_block(text, "FEATURED-PROJECTS", render_featured_projects(repos, verified_sites, now))
     text = replace_block(text, "CURATED-FEATURED", render_curated_featured(repos, verified_sites, featured_manifest, now))
     text = replace_block(text, "ARSENAL-STACK", render_arsenal_stack(rows, stack_manifest))
+    text = replace_block(text, "LANGUAGE-BADGES", render_language_badges(rows))
     text = replace_block(text, "LANGUAGE-STATS", render_language_stats(repos, rows, generated_at))
     text = replace_block(text, "PUBLIC-PROJECTS", render_public_projects(repos, now))
     text = replace_block(text, "PRIVATE-PROJECTS", render_private_projects(repos, now))
