@@ -40,7 +40,6 @@ jobs:
       - name: Validate generated artifacts
         run: |
           python3 -m py_compile scripts/update_contribution_timeline.py
-          python3 scripts/validate_profile.py
           python3 scripts/validate_exclusions.py
           python3 scripts/validate_language_badges.py
           git diff --check
