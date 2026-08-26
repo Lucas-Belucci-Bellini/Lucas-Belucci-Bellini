@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-26T14:06:45Z",
+  "scanned_at": "2026-08-26T15:52:41Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "82d2c05cdd9fc3b7a68170b808795f2a218d3af1",
-      "date": "2026-08-26T13:56:47Z",
-      "message": "feat(v2): add local project registry contract",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/82d2c05cdd9fc3b7a68170b808795f2a218d3af1"
+      "sha": "5820b6aa61c9b32607ca6a19580dc1f315021a51",
+      "date": "2026-08-26T15:10:59Z",
+      "message": "feat(v2): add local module mode authority fixture",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/5820b6aa61c9b32607ca6a19580dc1f315021a51"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,17 +402,17 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "2559ed8abc67625052a1dbb148de2fa64c29a3f7",
-      "date": "2026-08-26T13:36:12Z",
-      "message": "docs: extend roadmap through v5.0.0",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/2559ed8abc67625052a1dbb148de2fa64c29a3f7"
+      "sha": "70d8e7fb2cf7f4c98a6e3d327229a6d900bb450f",
+      "date": "2026-08-26T14:35:42Z",
+      "message": "docs: record v2.6 verification queue",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/70d8e7fb2cf7f4c98a6e3d327229a6d900bb450f"
     }
   },
   "metrics": {
-    "tracked_commits": 2381,
-    "project_commits": 2249,
-    "monitor_commits": 132,
-    "detected_project_commits_this_scan": 105,
+    "tracked_commits": 2386,
+    "project_commits": 2253,
+    "monitor_commits": 133,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
