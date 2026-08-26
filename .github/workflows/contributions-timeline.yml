@@ -1,0 +1,58 @@
+name: Publish contribution timeline
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 6 * * *"
+  push:
+    paths:
+      - "scripts/update_contribution_timeline.py"
+      - "docs/CONTRIBUTIONS_TIMELINE.md"
+      - ".github/workflows/contributions-timeline.yml"
+
+concurrency:
+  group: contribution-timeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  timeline:
+    name: regenerate-and-publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout profile repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Regenerate contribution timeline
+        env:
+          PROFILE_LOGIN: Lucas-Belucci-Bellini
+          PROFILE_README_TOKEN: ${{ secrets.PROFILE_README_TOKEN || github.token }}
+        run: python3 scripts/update_contribution_timeline.py
+
+      - name: Validate generated artifacts
+        run: |
+          python3 -m py_compile scripts/update_contribution_timeline.py
+          python3 scripts/validate_profile.py
+          python3 scripts/validate_exclusions.py
+          python3 scripts/validate_language_badges.py
+          git diff --check
+
+      - name: Commit only real changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/assets/contributions-timeline-data.json docs/assets/contributions-timeline.html
+          if git diff --cached --quiet; then
+            echo "Timeline unchanged; nothing to publish."
+            exit 0
+          fi
+          git commit -m "chore(profile): refresh contribution timeline [skip ci]"
+          git push
