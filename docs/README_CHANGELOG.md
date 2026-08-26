@@ -36,3 +36,12 @@ O workflow passou a salvar uma cópia do README antes do refresh e a executar `s
 Os repositórios `sujok-brasil-backend`, `sujok-brasil-frontend` e `casa-de-apoio-mmg` foram adicionados a `docs/README_EXCLUDED.json` e deixaram de participar da renderização do README. O filtro é aplicado antes do dashboard, dos catálogos, do mapa, dos destaques, dos sites e das métricas, reduzindo o inventário publicado de 82 para 79 projetos, com 62 públicos e 17 privados visíveis no README.
 
 O teste `scripts/validate_exclusions.py` foi incorporado ao workflow para impedir que os nomes retornem em refreshs futuros.
+
+
+## 2026-08-26 — redesign field report
+
+O README recebeu uma nova camada visual inspirada no formato de relatório de campo: `GITHUB SNAPSHOT`, métricas em painel, `LANGUAGE MATRIX`, continuidade, atividade e troféus com títulos técnicos consistentes. A estética anterior foi preservada — paleta Ouro de Fábula, banners, badges e blocos de missão — enquanto as seções ganharam hierarquia e espaçamento mais claros.
+
+A seção visual de linguagens passou a apresentar o conjunto completo das 17 linguagens públicas auditadas, com badges de contagem e fallback textual para linguagens menos comuns. Ferramentas e plataformas foram reorganizadas no Arsenal, incluindo Git, GitHub, VS Code, Linux, Node.js, Vite, React, Tailwind CSS, MySQL, PostgreSQL, Blender, Electron, Docker, Supabase, Unity, Arduino, Obsidian, Vercel e Claude.
+
+O painel `assets/profile-snapshot.svg` é gerado pelo mesmo script do catálogo e entra no commit automático junto com `README.md` e `assets/lang-stats.svg`. Nenhuma métrica privada ou repositório editorialmente excluído participa da publicação.

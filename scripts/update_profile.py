@@ -28,6 +28,7 @@ SITES_FILE = ROOT / "docs" / "README_SITES.json"
 FEATURED_FILE = ROOT / "docs" / "README_FEATURED.json"
 STACK_FILE = ROOT / "docs" / "README_STACK.json"
 EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
+SNAPSHOT_SVG = ROOT / "assets" / "profile-snapshot.svg"
 
 LANGUAGE_DISPLAY = {
     "Batchfile": "Batch",
@@ -277,17 +278,25 @@ def render_dashboard(repos: list[dict[str, Any]], languages: list[dict[str, Any]
     public = sum(not repo.get("private") for repo in repos)
     private = sum(bool(repo.get("private")) for repo in repos)
     academic = sum(category == "Academia" for _, category in categorized)
+    excluded = len(load_excluded_names())
     return "\n".join([
+        "> `GITHUB SNAPSHOT // FIELD REPORT` · inventário autenticado, métricas públicas e governança editorial.",
+        "",
+        "![GitHub snapshot](./assets/profile-snapshot.svg)",
+        "",
         "<div align=\"center\">",
         "",
-        "| PROJECTS | LANGUAGES | ACTIVE PROJECTS | PUBLIC PROJECTS | PRIVATE PROJECTS | DEPLOYED PROJECTS | ACADEMIC PROJECTS |",
-        "|:---:|:---:|:---:|:---:|:---:|:---:|:---:|",
-        f"| **{len(repos)}** | **{len(languages)}** | **{active}** | **{public}** | **{private}** | **{len(verified_sites)}** | **{academic}** |",
+        "| REPOSITÓRIOS | PÚBLICOS | PRIVADOS VISÍVEIS | DEPLOYMENTS |",
+        "|:---:|:---:|:---:|:---:|",
+        f"| **{len(repos)}** | **{public}** | **{private}** | **{len(verified_sites)}** |",
+        "",
+        "| ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |",
+        "|:---:|:---:|:---:|:---:|",
+        f"| **{active}** | **{academic}** | **{len(languages)}** | **{excluded}** |",
         "",
         "</div>",
         "",
-        "> Counts are generated from the authenticated GitHub repository inventory. Language metrics and site checks are public-safe; private file contents are never published.",
-        "> As contagens são geradas a partir do inventário autenticado do GitHub. Métricas de linguagens e sites são seguras para publicação; conteúdo de arquivos privados nunca é publicado.",
+        "> `STATUS: ONLINE` · `PRIVACY: SAFE` · contagens geradas pelo inventário autenticado do GitHub; nenhum conteúdo de arquivo privado é publicado.",
     ])
 
 
@@ -295,11 +304,11 @@ def render_language_badges(rows: list[dict[str, Any]]) -> str:
     shields = []
     for row in rows:
         language = str(row["display"])
-        badge_language = quote(language.replace("/", "-"), safe="")
         badge_label = quote(language, safe="")
+        badge_message = quote(f"{row['repositories']} repos", safe="")
         color = "3178C6" if language == "TypeScript" else "F2C94C" if language == "JavaScript" else "555555"
         shields.append(
-            f"[![{badge_label}](https://img.shields.io/badge/{badge_language}-{row['repositories']}_repos-{color}?style=flat-square&logo={badge_language.lower()}&logoColor=white)](https://github.com/{OWNER}?tab=repositories&q=&language={quote(language, safe='')})"
+            f"[![{badge_label}](https://img.shields.io/badge?label={badge_label}&message={badge_message}&color={color}&style=flat-square)](https://github.com/{OWNER}?tab=repositories&q=&language={quote(language, safe='')})"
         )
     return "\n".join([
         "> **17 linguagens em uso** · badges gerados a partir dos repositórios públicos auditados.",
@@ -471,6 +480,45 @@ def render_project_map(repos: list[dict[str, Any]], languages: dict[str, dict[st
     return "\n".join(lines)
 
 
+def render_snapshot_svg(repos: list[dict[str, Any]], languages: list[dict[str, Any]], verified_sites: dict[str, dict[str, Any]], now: datetime, generated_at: str, destination: Path) -> None:
+    categorized = [(repo, classify(repo)) for repo in repos]
+    values = [
+        ("REPOSITORIES", str(len(repos)), "inventory"),
+        ("PUBLIC", str(sum(not repo.get("private") for repo in repos)), "visible"),
+        ("PRIVATE", str(sum(bool(repo.get("private")) for repo in repos)), "metadata"),
+        ("DEPLOYMENTS", str(len(verified_sites)), "HTTP 200"),
+        ("ACTIVE", str(sum(status_for(repo, category, now) == "🟢 Active" for repo, category in categorized)), "status"),
+        ("ACADEMIC", str(sum(category == "Academia" for _, category in categorized)), "portfolio"),
+        ("LANGUAGES", str(len(languages)), "public"),
+        ("EXCLUDED", str(len(load_excluded_names())), "editorial"),
+    ]
+    width, height = 1100, 300
+    background, surface, border = "#0e0c16", "#1d1729", "#4b3a5c"
+    light, muted, gold, green = "#f4ecdd", "#a89f91", "#d4a24e", "#3ddc84"
+    svg = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
+        f'<rect width="{width}" height="{height}" rx="18" fill="{background}"/>',
+        f'<rect x="18" y="18" width="{width - 36}" height="{height - 36}" rx="14" fill="none" stroke="{border}" stroke-width="2"/>',
+        f'<text x="48" y="58" fill="{gold}" font-family="sans-serif" font-size="22" font-weight="700">&gt;&gt; GITHUB SNAPSHOT // FIELD REPORT &lt;&lt;</text>',
+        f'<text x="48" y="84" fill="{muted}" font-family="sans-serif" font-size="13">authenticated inventory | public-safe metrics | generated {html.escape(generated_at)}</text>',
+    ]
+    card_w, card_h, gap = 245, 78, 16
+    start_x, start_y = 48, 105
+    for index, (label, value, note) in enumerate(values):
+        row, col = divmod(index, 4)
+        x, y = start_x + col * (card_w + gap), start_y + row * (card_h + gap)
+        value_color = green if label in {"DEPLOYMENTS", "ACTIVE"} else gold
+        svg.extend([
+            f'<rect x="{x}" y="{y}" width="{card_w}" height="{card_h}" rx="8" fill="{surface}" stroke="{border}"/>',
+            f'<text x="{x + 16}" y="{y + 29}" fill="{value_color}" font-family="sans-serif" font-size="25" font-weight="700">{html.escape(value)}</text>',
+            f'<text x="{x + 16}" y="{y + 50}" fill="{light}" font-family="sans-serif" font-size="12" font-weight="700">{html.escape(label)}</text>',
+            f'<text x="{x + 16}" y="{y + 66}" fill="{muted}" font-family="sans-serif" font-size="10">{html.escape(note)}</text>',
+        ])
+    svg.append("</svg>")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text("\n".join(svg) + "\n", encoding="utf-8")
+
+
 def render_svg(rows: list[dict[str, Any]], destination: Path) -> None:
     width, height = 1100, 620
     background = "#0e0c16"
@@ -483,8 +531,8 @@ def render_svg(rows: list[dict[str, Any]], destination: Path) -> None:
     svg: list[str] = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         f'<rect width="{width}" height="{height}" rx="18" fill="{background}"/>',
-        f'<text x="48" y="58" fill="{light}" font-family="monospace" font-size="25" font-weight="700">PUBLIC LANGUAGE DISTRIBUTION</text>',
-        f'<text x="48" y="88" fill="{muted}" font-family="monospace" font-size="15">GitHub language bytes · public repositories only</text>',
+        f'<text x="48" y="58" fill="{light}" font-family="monospace" font-size="25" font-weight="700">LANGUAGE MATRIX // TOP LANGUAGES</text>',
+        f'<text x="48" y="88" fill="{muted}" font-family="monospace" font-size="15">source: GitHub language bytes | public repositories only</text>',
     ]
     bar_x, bar_w, start_y, row_h = 270, 680, 125, 36
     for index, row in enumerate(visible):
@@ -616,6 +664,7 @@ def main() -> int:
     if args.write:
         README.write_text(text, encoding="utf-8")
         render_svg(rows, ROOT / "assets" / "lang-stats.svg")
+        render_snapshot_svg(repos, rows, verified_sites, now, generated_at, SNAPSHOT_SVG)
     else:
         print(text[:500])
     print(json.dumps({

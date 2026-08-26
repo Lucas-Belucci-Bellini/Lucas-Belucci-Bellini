@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620">
 <rect width="1100" height="620" rx="18" fill="#0e0c16"/>
-<text x="48" y="58" fill="#f4ecdd" font-family="monospace" font-size="25" font-weight="700">PUBLIC LANGUAGE DISTRIBUTION</text>
-<text x="48" y="88" fill="#a89f91" font-family="monospace" font-size="15">GitHub language bytes · public repositories only</text>
+<text x="48" y="58" fill="#f4ecdd" font-family="monospace" font-size="25" font-weight="700">LANGUAGE MATRIX // TOP LANGUAGES</text>
+<text x="48" y="88" fill="#a89f91" font-family="monospace" font-size="15">source: GitHub language bytes | public repositories only</text>
 <text x="48" y="144" fill="#f4ecdd" font-family="monospace" font-size="16"> 1 JavaScript</text>
 <rect x="270" y="129" width="680" height="20" rx="10" fill="#1d1729"/>
 <rect x="270" y="129" width="680" height="20" rx="10" fill="#3ddc84"/>
