@@ -13,3 +13,10 @@ A backup branch named `backup/before-profile-readme-overhaul` was created before
 ## Maintenance policy
 
 Future profile changes should update the generator or its data contract rather than manually editing generated blocks. Each significant change should add a dated entry here and preserve the backup/branch/validation flow described in `docs/README_DATA.md`.
+
+
+## 2026-08-26 — restauração da estética original
+
+A estética anterior foi restaurada a partir da branch `backup/before-profile-readme-overhaul`. O README voltou a incluir o banner `capsule-render`, os títulos animados `readme-typing-svg`, badges, bloco ASCII de field manual, ícones `skillicons`, assets de estatísticas, núcleo visual do J.A.R.V.I.S., CPU build log, deployments, gaming log, fan fiction, activity graph, contribution snake, canais de contato, contador de visitas e footer.
+
+Os dados auditados continuam presentes em blocos dinâmicos separados: dashboard, mapa completo, catálogo público, seção privada, estatísticas de linguagens, projetos em destaque e sites verificados. O gerador foi testado novamente com `generator-idempotency=pass`, e os assets visuais originais foram mantidos no diretório `assets/`.
