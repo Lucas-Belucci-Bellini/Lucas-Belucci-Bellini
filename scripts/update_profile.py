@@ -395,7 +395,8 @@ def render_arsenal_stack(rows: list[dict[str, Any]], manifest: dict[str, Any]) -
 
 
 def render_featured_projects(repos: list[dict[str, Any]], verified_sites: dict[str, dict[str, Any]], now: datetime) -> str:
-    selected = sorted(repos, key=lambda repo: featured_score(repo, now), reverse=True)[:10]
+    # The hero section is public-facing; keep private repository metadata out of it.
+    selected = sorted((repo for repo in repos if not repo.get("private")), key=lambda repo: featured_score(repo, now), reverse=True)[:10]
     lines = [
         "| Projeto | O que a evidência pública confirma | Status | Acesso |",
         "|:---|:---|:---|:---|",
@@ -403,10 +404,7 @@ def render_featured_projects(repos: list[dict[str, Any]], verified_sites: dict[s
     for repo in selected:
         name = str(repo["name"])
         category = classify(repo)
-        if repo.get("private"):
-            summary = "Repositório privado identificado no inventário autenticado. Nenhum detalhe interno é publicado."
-        else:
-            summary = FEATURED_SUMMARIES.get(name) or str(repo.get("description") or "Descrição pública não informada.")
+        summary = FEATURED_SUMMARIES.get(name) or str(repo.get("description") or "Descrição pública não informada.")
         access = repo_link(repo)
         if str(repo["full_name"]) in verified_sites:
             access += f" · [Site]({verified_sites[str(repo['full_name'])]['url']})"
