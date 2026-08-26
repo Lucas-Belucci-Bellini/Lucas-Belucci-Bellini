@@ -25,19 +25,28 @@
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
-## `// LEITURA DO ECOSSISTEMA` · ECOSYSTEM READOUT
+## `// RELATÓRIO DE CAMPO` · GITHUB SNAPSHOT
+
+> `FIELD REPORT // PROFILE READOUT` · uma visão compacta do ecossistema, da atividade pública e das frentes em construção.
 
 <!-- PROFILE-DASHBOARD:START -->
+> `GITHUB SNAPSHOT // FIELD REPORT` · inventário autenticado, métricas públicas e governança editorial.
+
+![GitHub snapshot](./assets/profile-snapshot.svg)
+
 <div align="center">
 
-| PROJECTS | LANGUAGES | ACTIVE PROJECTS | PUBLIC PROJECTS | PRIVATE PROJECTS | DEPLOYED PROJECTS | ACADEMIC PROJECTS |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **79** | **17** | **13** | **62** | **17** | **9** | **10** |
+| REPOSITÓRIOS | PÚBLICOS | PRIVADOS VISÍVEIS | DEPLOYMENTS |
+|:---:|:---:|:---:|:---:|
+| **79** | **62** | **17** | **9** |
+
+| ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
+|:---:|:---:|:---:|:---:|
+| **13** | **10** | **17** | **3** |
 
 </div>
 
-> Counts are generated from the authenticated GitHub repository inventory. Language metrics and site checks are public-safe; private file contents are never published.
-> As contagens são geradas a partir do inventário autenticado do GitHub. Métricas de linguagens e sites são seguras para publicação; conteúdo de arquivos privados nunca é publicado.
+> `STATUS: ONLINE` · `PRIVACY: SAFE` · contagens geradas pelo inventário autenticado do GitHub; nenhum conteúdo de arquivo privado é publicado.
 <!-- PROFILE-DASHBOARD:END -->
 
 ## `// FICHA DE AGENTE` — PT-BR
@@ -72,15 +81,17 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 <div align="center">
 
-[![Languages](https://skillicons.dev/icons?i=python,c,cpp,java,js,html,css,arduino&theme=dark)](https://skillicons.dev)
+[![Core Languages](https://skillicons.dev/icons?i=python,c,cpp,cs,java,js,html,css,rust,arduino&theme=dark)](https://skillicons.dev)
+
+[![Extended Languages](https://skillicons.dev/icons?i=bash,powershell,gdscript,docker&theme=dark)](https://skillicons.dev)
 
 <!-- LANGUAGE-BADGES:START -->
 > **17 linguagens em uso** · badges gerados a partir dos repositórios públicos auditados.
 > A lista abaixo mostra a amplitude do portfólio; a tabela de análise informa peso em bytes e participação relativa.
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-17_repos-F2C94C?style=flat-square&logo=javascript&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=JavaScript) [![TypeScript](https://img.shields.io/badge/TypeScript-5_repos-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=TypeScript) [![HTML](https://img.shields.io/badge/HTML-18_repos-555555?style=flat-square&logo=html&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=HTML) [![CSS](https://img.shields.io/badge/CSS-13_repos-555555?style=flat-square&logo=css&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=CSS) [![Java](https://img.shields.io/badge/Java-4_repos-555555?style=flat-square&logo=java&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Java) [![Python](https://img.shields.io/badge/Python-6_repos-555555?style=flat-square&logo=python&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Python) [![C%23](https://img.shields.io/badge/C%23-2_repos-555555?style=flat-square&logo=c%23&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C%23) [![PL%2FpgSQL](https://img.shields.io/badge/PL-pgSQL-2_repos-555555?style=flat-square&logo=pl-pgsql&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PL%2FpgSQL) [![Rust](https://img.shields.io/badge/Rust-3_repos-555555?style=flat-square&logo=rust&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Rust)
+[![JavaScript](https://img.shields.io/badge?label=JavaScript&message=17%20repos&color=F2C94C&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=JavaScript) [![TypeScript](https://img.shields.io/badge?label=TypeScript&message=5%20repos&color=3178C6&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=TypeScript) [![HTML](https://img.shields.io/badge?label=HTML&message=18%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=HTML) [![CSS](https://img.shields.io/badge?label=CSS&message=13%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=CSS) [![Java](https://img.shields.io/badge?label=Java&message=4%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Java) [![Python](https://img.shields.io/badge?label=Python&message=6%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Python) [![C%23](https://img.shields.io/badge?label=C%23&message=2%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C%23) [![PL%2FpgSQL](https://img.shields.io/badge?label=PL%2FpgSQL&message=2%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PL%2FpgSQL) [![Rust](https://img.shields.io/badge?label=Rust&message=3%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Rust)
 
-[![SQF](https://img.shields.io/badge/SQF-1_repos-555555?style=flat-square&logo=sqf&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=SQF) [![Shell](https://img.shields.io/badge/Shell-5_repos-555555?style=flat-square&logo=shell&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Shell) [![GDScript](https://img.shields.io/badge/GDScript-1_repos-555555?style=flat-square&logo=gdscript&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=GDScript) [![PowerShell](https://img.shields.io/badge/PowerShell-2_repos-555555?style=flat-square&logo=powershell&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PowerShell) [![Portugol](https://img.shields.io/badge/Portugol-4_repos-555555?style=flat-square&logo=portugol&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Portugol) [![Batch](https://img.shields.io/badge/Batch-5_repos-555555?style=flat-square&logo=batch&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Batch) [![ShaderLab](https://img.shields.io/badge/ShaderLab-1_repos-555555?style=flat-square&logo=shaderlab&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=ShaderLab) [![Dockerfile](https://img.shields.io/badge/Dockerfile-1_repos-555555?style=flat-square&logo=dockerfile&logoColor=white)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Dockerfile)
+[![SQF](https://img.shields.io/badge?label=SQF&message=1%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=SQF) [![Shell](https://img.shields.io/badge?label=Shell&message=5%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Shell) [![GDScript](https://img.shields.io/badge?label=GDScript&message=1%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=GDScript) [![PowerShell](https://img.shields.io/badge?label=PowerShell&message=2%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PowerShell) [![Portugol](https://img.shields.io/badge?label=Portugol&message=4%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Portugol) [![Batch](https://img.shields.io/badge?label=Batch&message=5%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Batch) [![ShaderLab](https://img.shields.io/badge?label=ShaderLab&message=1%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=ShaderLab) [![Dockerfile](https://img.shields.io/badge?label=Dockerfile&message=1%20repos&color=555555&style=flat-square)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Dockerfile)
 <!-- LANGUAGE-BADGES:END -->
 
 </div>
@@ -89,7 +100,7 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 
 <div align="center">
 
-[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,vite,react,tailwind,mysql,blender,electron,docker,supabase,unity,arduino,obsidian&theme=dark)](https://skillicons.dev)
+[![Tools](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,vite,react,tailwind,mysql,postgres,blender,electron,docker,supabase,unity,arduino,obsidian,vercel,claude&theme=dark)](https://skillicons.dev)
 
 </div>
 
@@ -187,6 +198,8 @@ The J.A.R.V.I.S. visual core is available in Projeto-Baluarte:
 </div>
 
 ## `// MAPA DO ECOSSISTEMA` · PROJECT MAP
+
+> `MISSION BOARD // ARCHITECTURE` · cada projeto é apresentado com categoria, stack, estado e acesso; os três repositórios excluídos editorialmente continuam fora de todas as tabelas.
 
 <!-- PROJECT-MAP:START -->
 <details>
@@ -529,9 +542,27 @@ Uma seção dedicada à minha fan fiction — histórias e universos que eu crio
 ![GitHub Stats](./assets/profile-stats.svg)
 ![Top Languages](./assets/profile-top-langs.svg)
 
+</div>
+
+![Field Streak](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=3DDC84&center=true&vCenter=true&width=560&height=30&lines=%E2%97%86+CONTINUIDADE+%2F%2F+FIELD+STREAK+%E2%97%86)
+
+<div align="center">
+
 ![GitHub Streak](./assets/profile-streak.svg)
 
+</div>
+
+![Activity Graph Header](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=E8C07A&center=true&vCenter=true&width=560&height=30&lines=%E2%97%86+ATIVIDADE+%2F%2F+ACTIVITY+GRAPH+%E2%97%86)
+
+<div align="center">
+
 ![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Lucas-Belucci-Bellini&theme=react-dark&bg_color=0e0c16&color=d4a24e&line=e8c07a&point=3ddc84&area=true&hide_border=false)
+
+</div>
+
+![Trophies Header](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=14&duration=4000&pause=9999&color=D4A24E&center=true&vCenter=true&width=560&height=30&lines=%E2%97%86+TROF%C3%89US+%2F%2F+FIELD+MISSION+%E2%97%86)
+
+<div align="center">
 
 ![Trophies](./assets/profile-trophies.svg)
 
