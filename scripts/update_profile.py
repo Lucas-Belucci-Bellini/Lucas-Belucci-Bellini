@@ -25,6 +25,9 @@ OWNER = "Lucas-Belucci-Bellini"
 ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
 SITES_FILE = ROOT / "docs" / "README_SITES.json"
+FEATURED_FILE = ROOT / "docs" / "README_FEATURED.json"
+STACK_FILE = ROOT / "docs" / "README_STACK.json"
+EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
 
 LANGUAGE_DISPLAY = {
     "Batchfile": "Batch",
@@ -307,6 +310,61 @@ def render_language_stats(repos: list[dict[str, Any]], rows: list[dict[str, Any]
     return "\n".join(lines)
 
 
+def render_curated_featured(repos: list[dict[str, Any]], verified_sites: dict[str, dict[str, Any]], manifest: dict[str, Any], now: datetime) -> str:
+    by_name = {str(repo.get("name")): repo for repo in repos}
+    lines = [
+        f"> {manifest.get('intro', 'Seleção editorial de projetos públicos.')}",
+        "",
+        "| # | Missão | Foco confirmado | Status | Acesso |",
+        "|:--:|:---|:---|:---|:---|",
+    ]
+    entries = sorted(manifest.get("projects", []), key=lambda item: int(item.get("order", 999)))
+    index = 0
+    for entry in entries:
+        name = str(entry.get("name", ""))
+        repo = by_name.get(name)
+        if not repo or repo.get("private"):
+            continue
+        index += 1
+        label = str(entry.get("label", "MISSÃO")).replace("|", "\\|")
+        focus = str(entry.get("focus", repo.get("description") or "Descrição pública não informada.")).replace("|", "\\|").replace("\n", " ")
+        category = classify(repo)
+        access = repo_link(repo)
+        site = verified_sites.get(str(repo["full_name"]))
+        if site:
+            access += f" · [Site]({site.get('url')})"
+        lines.append(f"| {index} | **{label}** · {name} | {focus} | {status_for(repo, category, now)} | {access} |")
+    if index == 0:
+        lines.append("| — | Nenhuma missão pública encontrada | O manifesto será revisado no próximo refresh. | — | — |")
+    return "\n".join(lines)
+
+
+def render_arsenal_stack(rows: list[dict[str, Any]], manifest: dict[str, Any]) -> str:
+    lines = [
+        f"> **{len(rows)} linguagens detectadas** no inventário público. O peso e a quantidade de repositórios são calculados automaticamente pelo GitHub.",
+        "",
+        "| Linguagem | Repositórios | Participação |",
+        "|:---|---:|---:|",
+    ]
+    for row in rows:
+        lines.append(f"| **{row['display']}** | {row['repositories']} | `{row['share']:.2f}%` |")
+    lines.extend([
+        "",
+        "### Ferramentas, plataformas e ambientes",
+        "",
+        "| Ferramenta | Papel | Evidência pública |",
+        "|:---|:---|:---|",
+    ])
+    for tool in manifest.get("tools", []):
+        name = str(tool.get("name", "")).replace("|", "\\|")
+        family = str(tool.get("family", "")).replace("|", "\\|")
+        evidence = str(tool.get("evidence", "")).replace("|", "\\|")
+        lines.append(f"| **{name}** | {family} | {evidence} |")
+    lines.append("")
+    lines.append("> A lista de ferramentas é editorial e baseada em READMEs, manifests, configurações e seções visuais preservadas; ela não substitui o mapa automático de linguagens.")
+    return "\n".join(lines)
+
+
 def render_featured_projects(repos: list[dict[str, Any]], verified_sites: dict[str, dict[str, Any]], now: datetime) -> str:
     selected = sorted(repos, key=lambda repo: featured_score(repo, now), reverse=True)[:10]
     lines = [
@@ -426,6 +484,24 @@ def render_svg(rows: list[dict[str, Any]], destination: Path) -> None:
     destination.write_text("\n".join(svg) + "\n", encoding="utf-8")
 
 
+def load_json_object(path: Path) -> dict[str, Any]:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as error:
+        raise ValueError(f"invalid JSON manifest: {path}: {error}") from error
+    if not isinstance(data, dict):
+        raise ValueError(f"JSON manifest must be an object: {path}")
+    return data
+
+
+def load_excluded_names() -> set[str]:
+    data = load_json_object(EXCLUDED_FILE)
+    values = data.get("repositories", [])
+    if not isinstance(values, list):
+        raise ValueError(f"repositories must be a list: {EXCLUDED_FILE}")
+    return {str(value) for value in values}
+
+
 def load_site_overrides() -> dict[str, str]:
     if not SITES_FILE.exists():
         return {}
@@ -443,11 +519,19 @@ def build_data(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[str
     api_token = inventory_token or os.environ.get("GITHUB_TOKEN")
     if args.write and not args.input_repos and not inventory_token:
         raise ValueError("refusing write mode without PROFILE_GITHUB_TOKEN; this could erase private-project entries")
+    excluded_names = load_excluded_names()
     if args.input_repos:
         repos = load_local_repositories(Path(args.input_repos))
-        languages = load_local_languages(Path(args.languages_dir), repos) if args.languages_dir else {str(r["full_name"]): {} for r in repos}
     else:
         repos = fetch_repositories(inventory_token)
+    repos = [
+        repo for repo in repos
+        if str(repo.get("name", "")) not in excluded_names
+        and str(repo.get("full_name", "")) not in excluded_names
+    ]
+    if args.input_repos:
+        languages = load_local_languages(Path(args.languages_dir), repos) if args.languages_dir else {str(r["full_name"]): {} for r in repos}
+    else:
         languages = {str(repo["full_name"]): fetch_languages(str(repo["full_name"]), api_token) for repo in repos}
     return repos, languages
 
@@ -472,6 +556,8 @@ def main() -> int:
     now = datetime.now(timezone.utc)
     verified_sites: dict[str, dict[str, Any]] = {}
     manual_overrides = load_site_overrides()
+    featured_manifest = load_json_object(FEATURED_FILE)
+    stack_manifest = load_json_object(STACK_FILE)
     for repo in repos:
         # Private repositories are never included in the public live-project catalog.
         if repo.get("private"):
@@ -498,6 +584,8 @@ def main() -> int:
     text = README.read_text(encoding="utf-8")
     text = replace_block(text, "PROFILE-DASHBOARD", render_dashboard(repos, rows, verified_sites, now))
     text = replace_block(text, "FEATURED-PROJECTS", render_featured_projects(repos, verified_sites, now))
+    text = replace_block(text, "CURATED-FEATURED", render_curated_featured(repos, verified_sites, featured_manifest, now))
+    text = replace_block(text, "ARSENAL-STACK", render_arsenal_stack(rows, stack_manifest))
     text = replace_block(text, "LANGUAGE-STATS", render_language_stats(repos, rows, generated_at))
     text = replace_block(text, "PUBLIC-PROJECTS", render_public_projects(repos, now))
     text = replace_block(text, "PRIVATE-PROJECTS", render_private_projects(repos, now))
@@ -513,6 +601,7 @@ def main() -> int:
         "repositories": len(repos),
         "public_repositories": sum(not repo.get("private") for repo in repos),
         "private_repositories": sum(bool(repo.get("private")) for repo in repos),
+        "excluded_repositories": sorted(load_excluded_names()),
         "public_languages": len(rows),
         "verified_sites": len(verified_sites),
         "write": bool(args.write),

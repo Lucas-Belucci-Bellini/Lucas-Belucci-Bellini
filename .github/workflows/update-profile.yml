@@ -34,6 +34,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Snapshot README before refresh
+        run: cp README.md /tmp/README.before.md
+
       - name: Refresh README and generated assets
         if: ${{ env.PROFILE_GITHUB_TOKEN != '' }}
         run: python3 scripts/update_profile.py --write
@@ -44,12 +47,21 @@ jobs:
 
       - name: Validate generated Markdown and configuration
         run: |
-          python3 -m py_compile scripts/update_profile.py
+          python3 -m py_compile scripts/update_profile.py scripts/validate_dynamic_sections.py scripts/validate_exclusions.py
+          python3 scripts/validate_dynamic_sections.py --before /tmp/README.before.md --after README.md
+          python3 scripts/validate_exclusions.py
           python3 -m json.tool docs/README_SITES.json >/dev/null
+          python3 -m json.tool docs/README_FEATURED.json >/dev/null
+          python3 -m json.tool docs/README_STACK.json >/dev/null
+          python3 -m json.tool docs/README_EXCLUDED.json >/dev/null
           test -s README.md
           test -s assets/lang-stats.svg
           grep -q '<!-- PROFILE-DASHBOARD:START -->' README.md
           grep -q '<!-- PROFILE-DASHBOARD:END -->' README.md
+          grep -q '<!-- CURATED-FEATURED:START -->' README.md
+          grep -q '<!-- CURATED-FEATURED:END -->' README.md
+          grep -q '<!-- ARSENAL-STACK:START -->' README.md
+          grep -q '<!-- ARSENAL-STACK:END -->' README.md
           grep -q '<!-- PROJECT-MAP:START -->' README.md
           grep -q '<!-- PROJECT-MAP:END -->' README.md
           grep -q '<!-- LANGUAGE-STATS:START -->' README.md

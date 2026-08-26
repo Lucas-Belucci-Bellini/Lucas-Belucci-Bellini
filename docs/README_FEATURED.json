@@ -1,0 +1,49 @@
+{
+  "title_pt": "MISSÕES ESCOLHIDAS",
+  "title_en": "CURATED MISSIONS",
+  "intro": "Uma seleção editorial das frentes que melhor representam a construção do ecossistema: produto, lógica digital, engenharia, IA, web e jogos.",
+  "projects": [
+    {
+      "name": "Projeto-Baluarte",
+      "label": "FLAGSHIP / ECOSSISTEMA",
+      "focus": "Plataforma narrativa e técnica com J.A.R.V.I.S., Git Nexus e módulos web; o site público está em reconstrução da V2.",
+      "order": 1
+    },
+    {
+      "name": "Veritas",
+      "label": "DIGITAL LOGIC / LOCAL-FIRST",
+      "focus": "Calculadora de tabelas verdade e projetista de circuitos com editor visual, simulação e integrações documentadas.",
+      "order": 2
+    },
+    {
+      "name": "baluarte-obra-segura",
+      "label": "ENGINEERING / FIELD TOOL",
+      "focus": "Hub de engenharia para obras com editor de painéis, calculadoras, simuladores e base WikiBuild.",
+      "order": 3
+    },
+    {
+      "name": "Project-Vanguard",
+      "label": "TACTICAL WEB / MAPS",
+      "focus": "GPS topográfico tático e computador de tiro construído com stack web e visualização geográfica.",
+      "order": 4
+    },
+    {
+      "name": "Digital-Logic-Sim-CE",
+      "label": "CPU BUILD / SIMULATION",
+      "focus": "Simulação de lógica digital que documenta a linha de construção de computadores e chips funcionais.",
+      "order": 5
+    },
+    {
+      "name": "DailyPlanner",
+      "label": "WEB APP / PRODUCTIVITY",
+      "focus": "Agenda web em TypeScript para organizar, buscar, filtrar e concluir atividades no navegador.",
+      "order": 6
+    },
+    {
+      "name": "Projeto-Baluarte-World-Game",
+      "label": "GAME / WORLD-BUILDING",
+      "focus": "Protótipo de sobrevivência, construção e consequência situado no universo Baluarte.",
+      "order": 7
+    }
+  ]
+}

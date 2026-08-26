@@ -20,3 +20,19 @@ Future profile changes should update the generator or its data contract rather t
 A estética anterior foi restaurada a partir da branch `backup/before-profile-readme-overhaul`. O README voltou a incluir o banner `capsule-render`, os títulos animados `readme-typing-svg`, badges, bloco ASCII de field manual, ícones `skillicons`, assets de estatísticas, núcleo visual do J.A.R.V.I.S., CPU build log, deployments, gaming log, fan fiction, activity graph, contribution snake, canais de contato, contador de visitas e footer.
 
 Os dados auditados continuam presentes em blocos dinâmicos separados: dashboard, mapa completo, catálogo público, seção privada, estatísticas de linguagens, projetos em destaque e sites verificados. O gerador foi testado novamente com `generator-idempotency=pass`, e os assets visuais originais foram mantidos no diretório `assets/`.
+
+
+## 2026-08-26 — missões escolhidas e Arsenal expandido
+
+Foi adicionada a seção `CURATED-FEATURED`, com sete missões editoriais públicas controladas por `docs/README_FEATURED.json`. A seleção mantém o design restaurado — título animado, alinhamento central e tabela de missão — e ignora automaticamente projetos privados ou inexistentes.
+
+O bloco `ARSENAL-STACK` agora mostra as 17 linguagens detectadas nos repositórios públicos e uma matriz editorial de ferramentas, plataformas e ambientes confirmados, incluindo Git, GitHub Actions, VS Code, Linux, Node.js, Vite, React, Tailwind CSS, Electron, Docker, Supabase, MCP, Unity, Arduino, Obsidian + Claude, MapLibre GL e Flowgorithm/Portugol.
+
+O workflow passou a salvar uma cópia do README antes do refresh e a executar `scripts/validate_dynamic_sections.py`. O job falha se qualquer conteúdo fora dos blocos dinâmicos for alterado; também valida os novos manifestos JSON. A execução continua idempotente e só cria commit quando há mudança real nos arquivos gerados.
+
+
+## 2026-08-26 — exclusões editoriais solicitadas
+
+Os repositórios `sujok-brasil-backend`, `sujok-brasil-frontend` e `casa-de-apoio-mmg` foram adicionados a `docs/README_EXCLUDED.json` e deixaram de participar da renderização do README. O filtro é aplicado antes do dashboard, dos catálogos, do mapa, dos destaques, dos sites e das métricas, reduzindo o inventário publicado de 82 para 79 projetos, com 62 públicos e 17 privados visíveis no README.
+
+O teste `scripts/validate_exclusions.py` foi incorporado ao workflow para impedir que os nomes retornem em refreshs futuros.
