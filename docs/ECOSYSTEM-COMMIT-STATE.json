@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-27T09:47:06Z",
+  "scanned_at": "2026-08-27T20:30:04Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,17 +335,17 @@
     },
     "Project-Vanguard": {
       "branch": "main",
-      "sha": "94358040bbdfb4aeb200e5f86092ff366da6ca27",
-      "date": "2026-08-27T02:22:16Z",
-      "message": "docs: preparar notas da v1.0.0",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/94358040bbdfb4aeb200e5f86092ff366da6ca27"
+      "sha": "a6e5749980aed58a62815091831a0a83b39c2cfe",
+      "date": "2026-08-27T20:25:00Z",
+      "message": "docs(v2): registrar update seguro",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/a6e5749980aed58a62815091831a0a83b39c2cfe"
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "fe7d10448c1f92eedec8525d481f7fa0f500778d",
-      "date": "2026-08-27T00:58:27Z",
-      "message": "docs(v2): align alpha.19 workflow evidence",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/fe7d10448c1f92eedec8525d481f7fa0f500778d"
+      "sha": "8647310461429ea1b58855a26188d426afba3754",
+      "date": "2026-08-27T19:28:19Z",
+      "message": "docs(v2): finalize alpha.21 publication gate",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8647310461429ea1b58855a26188d426afba3754"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,22 +402,22 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "6cefbae1383c9bf8564b9507d055f3c9e51df8fd",
-      "date": "2026-08-27T03:17:00Z",
-      "message": "test: record bounded worker load baseline",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/6cefbae1383c9bf8564b9507d055f3c9e51df8fd"
+      "sha": "4ab8f59009a24fa618d5c76e89ac65ee61d2b347",
+      "date": "2026-08-27T19:06:40Z",
+      "message": "test: verify local chip library smoke",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/4ab8f59009a24fa618d5c76e89ac65ee61d2b347"
     }
   },
   "metrics": {
-    "tracked_commits": 2498,
-    "project_commits": 2362,
-    "monitor_commits": 136,
-    "detected_project_commits_this_scan": 91,
+    "tracked_commits": 2565,
+    "project_commits": 2428,
+    "monitor_commits": 137,
+    "detected_project_commits_this_scan": 66,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 59,
-    "repositories_changed": 4,
+    "repositories_changed": 3,
     "errors": 3
   },
   "errors": [

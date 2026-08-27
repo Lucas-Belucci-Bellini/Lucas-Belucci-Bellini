@@ -2,27 +2,26 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-27T09:47:06Z`  
+**Última varredura:** `2026-08-27T20:30:04Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `4`  
+**Repositórios com mudanças desde a última varredura:** `3`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2498`
-- **Commits dos projetos:** `2362`
-- **Commits do próprio monitor:** `136`
-- **Commits de projetos detectados nesta hora:** `91`
+- **Commits rastreados pelo ecossistema:** `2565`
+- **Commits dos projetos:** `2428`
+- **Commits do próprio monitor:** `137`
+- **Commits de projetos detectados nesta hora:** `66`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **OMEGA-ALFA-DELTA** — 2 commit(s) — [23d9d6090b3a](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA/commit/23d9d6090b3a6b7fdb118e9ace1e10e838736ff6) — 1231
-- **Project-Vanguard** — 56 commit(s) — [94358040bbdf](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/94358040bbdfb4aeb200e5f86092ff366da6ca27) — docs: preparar notas da v1.0.0
-- **Projeto-Baluarte** — 5 commit(s) — [fe7d10448c1f](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/fe7d10448c1f92eedec8525d481f7fa0f500778d) — docs(v2): align alpha.19 workflow evidence
-- **Veritas** — 28 commit(s) — [6cefbae1383c](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/6cefbae1383c9bf8564b9507d055f3c9e51df8fd) — test: record bounded worker load baseline
+- **Project-Vanguard** — 17 commit(s) — [a6e5749980ae](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/a6e5749980aed58a62815091831a0a83b39c2cfe) — docs(v2): registrar update seguro
+- **Projeto-Baluarte** — 10 commit(s) — [864731046142](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8647310461429ea1b58855a26188d426afba3754) — docs(v2): finalize alpha.21 publication gate
+- **Veritas** — 39 commit(s) — [4ab8f59009a2](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/4ab8f59009a24fa618d5c76e89ac65ee61d2b347) — test: verify local chip library smoke
 
 ## Erros de consulta
 
