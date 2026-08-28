@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-27T20:30:04Z`  
+**Última varredura:** `2026-08-28T05:23:41Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `3`  
@@ -10,18 +10,18 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2565`
-- **Commits dos projetos:** `2428`
-- **Commits do próprio monitor:** `137`
-- **Commits de projetos detectados nesta hora:** `66`
+- **Commits rastreados pelo ecossistema:** `2641`
+- **Commits dos projetos:** `2503`
+- **Commits do próprio monitor:** `138`
+- **Commits de projetos detectados nesta hora:** `75`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Project-Vanguard** — 17 commit(s) — [a6e5749980ae](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/a6e5749980aed58a62815091831a0a83b39c2cfe) — docs(v2): registrar update seguro
-- **Projeto-Baluarte** — 10 commit(s) — [864731046142](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8647310461429ea1b58855a26188d426afba3754) — docs(v2): finalize alpha.21 publication gate
-- **Veritas** — 39 commit(s) — [4ab8f59009a2](https://github.com/Lucas-Belucci-Bellini/Veritas/commit/4ab8f59009a24fa618d5c76e89ac65ee61d2b347) — test: verify local chip library smoke
+- **Java-activities** — 1 commit(s) — [9f201c2faacd](https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/9f201c2faacdf5efeb15a87b115acd5a42ee332e) — Update Main.java
+- **Project-Vanguard** — 61 commit(s) — [c0ca17176943](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/c0ca1717694327d708aeb5c7699e0dfa879400ea) — docs(v2): fixar hash do artifact de teste
+- **Projeto-Baluarte** — 13 commit(s) — [169a32ddebf8](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/169a32ddebf80b94e44a4e1cdf7d8d7c13b35379) — Merge pull request #535 — a sonda de saúde do Core responde em vez de levantar
 
 ## Erros de consulta
 

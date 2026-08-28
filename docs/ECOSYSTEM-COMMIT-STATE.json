@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-27T20:30:04Z",
+  "scanned_at": "2026-08-28T05:23:41Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -271,10 +271,10 @@
     },
     "Java-activities": {
       "branch": "main",
-      "sha": "af4edb6532cced91927b4e040199d16cbcd22b04",
-      "date": "2026-08-26T00:56:11Z",
-      "message": "atualizei",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/af4edb6532cced91927b4e040199d16cbcd22b04"
+      "sha": "9f201c2faacdf5efeb15a87b115acd5a42ee332e",
+      "date": "2026-08-28T00:50:07Z",
+      "message": "Update Main.java",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/9f201c2faacdf5efeb15a87b115acd5a42ee332e"
     },
     "JAVA-todos-os-codigos-em-java": {
       "branch": "main",
@@ -335,17 +335,17 @@
     },
     "Project-Vanguard": {
       "branch": "main",
-      "sha": "a6e5749980aed58a62815091831a0a83b39c2cfe",
-      "date": "2026-08-27T20:25:00Z",
-      "message": "docs(v2): registrar update seguro",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/a6e5749980aed58a62815091831a0a83b39c2cfe"
+      "sha": "c0ca1717694327d708aeb5c7699e0dfa879400ea",
+      "date": "2026-08-28T02:05:26Z",
+      "message": "docs(v2): fixar hash do artifact de teste",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/c0ca1717694327d708aeb5c7699e0dfa879400ea"
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "8647310461429ea1b58855a26188d426afba3754",
-      "date": "2026-08-27T19:28:19Z",
-      "message": "docs(v2): finalize alpha.21 publication gate",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8647310461429ea1b58855a26188d426afba3754"
+      "sha": "169a32ddebf80b94e44a4e1cdf7d8d7c13b35379",
+      "date": "2026-08-28T03:17:55Z",
+      "message": "Merge pull request #535 — a sonda de saúde do Core responde em vez de levantar",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/169a32ddebf80b94e44a4e1cdf7d8d7c13b35379"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2565,
-    "project_commits": 2428,
-    "monitor_commits": 137,
-    "detected_project_commits_this_scan": 66,
+    "tracked_commits": 2641,
+    "project_commits": 2503,
+    "monitor_commits": 138,
+    "detected_project_commits_this_scan": 75,
     "monitor_commit_this_scan": 1
   },
   "summary": {
