@@ -2,26 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-28T05:23:41Z`  
+**Última varredura:** `2026-08-28T18:41:09Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
-**Repositórios com mudanças desde a última varredura:** `3`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2641`
-- **Commits dos projetos:** `2503`
-- **Commits do próprio monitor:** `138`
-- **Commits de projetos detectados nesta hora:** `75`
+- **Commits rastreados pelo ecossistema:** `2745`
+- **Commits dos projetos:** `2606`
+- **Commits do próprio monitor:** `139`
+- **Commits de projetos detectados nesta hora:** `103`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Java-activities** — 1 commit(s) — [9f201c2faacd](https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/9f201c2faacdf5efeb15a87b115acd5a42ee332e) — Update Main.java
-- **Project-Vanguard** — 61 commit(s) — [c0ca17176943](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/c0ca1717694327d708aeb5c7699e0dfa879400ea) — docs(v2): fixar hash do artifact de teste
-- **Projeto-Baluarte** — 13 commit(s) — [169a32ddebf8](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/169a32ddebf80b94e44a4e1cdf7d8d7c13b35379) — Merge pull request #535 — a sonda de saúde do Core responde em vez de levantar
+- **Project-Vanguard** — 102 commit(s) — [6f4af6ceb05d](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/6f4af6ceb05d8d28cfa9bcdc5761fc318400cd63) — test(map): cover MapLibre integration surface
+- **Projeto-Baluarte** — 1 commit(s) — [88b9c6a4ec37](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/88b9c6a4ec379c1985039103de3702213073e726) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
