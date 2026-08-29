@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-28T18:41:09Z`  
+**Última varredura:** `2026-08-29T02:10:49Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `59`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2745`
-- **Commits dos projetos:** `2606`
-- **Commits do próprio monitor:** `139`
-- **Commits de projetos detectados nesta hora:** `103`
+- **Commits rastreados pelo ecossistema:** `2750`
+- **Commits dos projetos:** `2610`
+- **Commits do próprio monitor:** `140`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Project-Vanguard** — 102 commit(s) — [6f4af6ceb05d](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/6f4af6ceb05d8d28cfa9bcdc5761fc318400cd63) — test(map): cover MapLibre integration surface
-- **Projeto-Baluarte** — 1 commit(s) — [88b9c6a4ec37](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/88b9c6a4ec379c1985039103de3702213073e726) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Project-Vanguard** — 3 commit(s) — [9deb3dc5aed3](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/9deb3dc5aed373d69350d7eacfab61050ec08625) — fix(map): make basemap switching compatible with Map Engine
+- **Projeto-Baluarte** — 1 commit(s) — [a47c6949a892](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a47c6949a8925be94b341ba404efca04ca203fd4) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 

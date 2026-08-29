@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-28T18:41:09Z",
+  "scanned_at": "2026-08-29T02:10:49Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,17 +335,17 @@
     },
     "Project-Vanguard": {
       "branch": "main",
-      "sha": "6f4af6ceb05d8d28cfa9bcdc5761fc318400cd63",
-      "date": "2026-08-28T18:22:03Z",
-      "message": "test(map): cover MapLibre integration surface",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/6f4af6ceb05d8d28cfa9bcdc5761fc318400cd63"
+      "sha": "9deb3dc5aed373d69350d7eacfab61050ec08625",
+      "date": "2026-08-28T20:52:59Z",
+      "message": "fix(map): make basemap switching compatible with Map Engine",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/9deb3dc5aed373d69350d7eacfab61050ec08625"
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "88b9c6a4ec379c1985039103de3702213073e726",
-      "date": "2026-08-28T11:38:05Z",
+      "sha": "a47c6949a8925be94b341ba404efca04ca203fd4",
+      "date": "2026-08-28T22:32:13Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/88b9c6a4ec379c1985039103de3702213073e726"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a47c6949a8925be94b341ba404efca04ca203fd4"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -409,10 +409,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2745,
-    "project_commits": 2606,
-    "monitor_commits": 139,
-    "detected_project_commits_this_scan": 103,
+    "tracked_commits": 2750,
+    "project_commits": 2610,
+    "monitor_commits": 140,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
