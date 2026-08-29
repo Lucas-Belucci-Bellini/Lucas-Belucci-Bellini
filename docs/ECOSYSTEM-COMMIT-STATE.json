@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-29T02:10:49Z",
+  "scanned_at": "2026-08-29T09:02:18Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "a47c6949a8925be94b341ba404efca04ca203fd4",
-      "date": "2026-08-28T22:32:13Z",
+      "sha": "e12837aec4f896c1cff0c4be8720903b359f88e8",
+      "date": "2026-08-29T07:16:16Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a47c6949a8925be94b341ba404efca04ca203fd4"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/e12837aec4f896c1cff0c4be8720903b359f88e8"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -379,6 +379,13 @@
       "message": "Update README.md",
       "url": "https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes/commit/615bfbde6109a512928bcfb2e0fbf0b3b4ddbce5"
     },
+    "Subnautica-Unhinged-mod-": {
+      "branch": "main",
+      "sha": "47dc74f470920ef082003eaa4f267b5d51c663ef",
+      "date": "2026-08-29T05:00:55Z",
+      "message": "docs: add source inventory and ignore upstream",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/47dc74f470920ef082003eaa4f267b5d51c663ef"
+    },
     "Teste-": {
       "branch": "main",
       "sha": "e20a9f231f055bf299d507fa5ad21cde5a45fa2f",
@@ -409,15 +416,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2750,
-    "project_commits": 2610,
-    "monitor_commits": 140,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 2752,
+    "project_commits": 2611,
+    "monitor_commits": 141,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 59,
-    "repositories_changed": 2,
+    "repositories_scanned": 60,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
