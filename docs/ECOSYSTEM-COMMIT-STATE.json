@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-30T17:28:37Z",
+  "scanned_at": "2026-08-30T21:04:53Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -388,10 +388,10 @@
     },
     "Subnautica-Unhinged-mod-": {
       "branch": "main",
-      "sha": "47dc74f470920ef082003eaa4f267b5d51c663ef",
-      "date": "2026-08-29T05:00:55Z",
-      "message": "docs: add source inventory and ignore upstream",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/47dc74f470920ef082003eaa4f267b5d51c663ef"
+      "sha": "3244defdadcec79845fccf33ccc103e30184b7c0",
+      "date": "2026-08-30T18:57:55Z",
+      "message": "Merge PR #1: ponte SMLHelper→Nautilus, pacote v0.1.0 e import do FCS",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/3244defdadcec79845fccf33ccc103e30184b7c0"
     },
     "Teste-": {
       "branch": "main",
@@ -423,15 +423,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2761,
-    "project_commits": 2616,
-    "monitor_commits": 145,
-    "detected_project_commits_this_scan": 3,
+    "tracked_commits": 2786,
+    "project_commits": 2640,
+    "monitor_commits": 146,
+    "detected_project_commits_this_scan": 24,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 61,
-    "repositories_changed": 2,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
