@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-30T12:52:55Z`  
+**Última varredura:** `2026-08-30T17:28:37Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `61`  
-**Repositórios com mudanças desde a última varredura:** `0`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2757`
-- **Commits dos projetos:** `2613`
-- **Commits do próprio monitor:** `144`
-- **Commits de projetos detectados nesta hora:** `0`
+- **Commits rastreados pelo ecossistema:** `2761`
+- **Commits dos projetos:** `2616`
+- **Commits do próprio monitor:** `145`
+- **Commits de projetos detectados nesta hora:** `3`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- Nenhuma mudança desde a última varredura.
+- **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** — 2 commit(s) — [c784579a734d](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/c784579a734dfdc480b87d02ca0caabae5878ce7) — Update Crônicas da Baluarte_ Onde os Deuses Sangram (continuação 4).md
+- **Projeto-Baluarte** — 1 commit(s) — [b277418c1f63](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b277418c1f638eae8bd89ce1b1cc1e08ef4ccdc8) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 

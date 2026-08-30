@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-30T12:52:55Z",
+  "scanned_at": "2026-08-30T17:28:37Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -215,10 +215,10 @@
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
-      "sha": "e1a82cc46f257cb47b7687122ec3ce95903512dc",
-      "date": "2026-08-30T08:31:24Z",
-      "message": "Add files via upload",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/e1a82cc46f257cb47b7687122ec3ce95903512dc"
+      "sha": "c784579a734dfdc480b87d02ca0caabae5878ce7",
+      "date": "2026-08-30T15:29:44Z",
+      "message": "Update Crônicas da Baluarte_ Onde os Deuses Sangram (continuação 4).md",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/c784579a734dfdc480b87d02ca0caabae5878ce7"
     },
     "Customizable-birthday-invitation": {
       "branch": "main",
@@ -349,10 +349,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "faf47b93a21d9462afd06e5dd90c9497e687ff9d",
-      "date": "2026-08-30T05:39:24Z",
+      "sha": "b277418c1f638eae8bd89ce1b1cc1e08ef4ccdc8",
+      "date": "2026-08-30T16:54:39Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/faf47b93a21d9462afd06e5dd90c9497e687ff9d"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b277418c1f638eae8bd89ce1b1cc1e08ef4ccdc8"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -423,15 +423,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2757,
-    "project_commits": 2613,
-    "monitor_commits": 144,
-    "detected_project_commits_this_scan": 0,
+    "tracked_commits": 2761,
+    "project_commits": 2616,
+    "monitor_commits": 145,
+    "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 61,
-    "repositories_changed": 0,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
