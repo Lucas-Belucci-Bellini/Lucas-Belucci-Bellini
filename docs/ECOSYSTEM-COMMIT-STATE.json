@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-30T06:39:11Z",
+  "scanned_at": "2026-08-30T12:52:55Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -213,6 +213,13 @@
       "message": "feat: update v3 and add v4 with 5-minute post-ascension timer",
       "url": "https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot/commit/e888bc72ddb3379cfbf55759bd7605eec2f7320c"
     },
+    "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
+      "branch": "main",
+      "sha": "e1a82cc46f257cb47b7687122ec3ce95903512dc",
+      "date": "2026-08-30T08:31:24Z",
+      "message": "Add files via upload",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/e1a82cc46f257cb47b7687122ec3ce95903512dc"
+    },
     "Customizable-birthday-invitation": {
       "branch": "main",
       "sha": "8d98742bf864293e5628b8a0276f41f39c4fdaf9",
@@ -416,15 +423,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2756,
+    "tracked_commits": 2757,
     "project_commits": 2613,
-    "monitor_commits": 143,
-    "detected_project_commits_this_scan": 1,
+    "monitor_commits": 144,
+    "detected_project_commits_this_scan": 0,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 60,
-    "repositories_changed": 1,
+    "repositories_scanned": 61,
+    "repositories_changed": 0,
     "errors": 3
   },
   "errors": [
