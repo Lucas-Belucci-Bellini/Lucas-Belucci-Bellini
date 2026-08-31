@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-31T05:33:06Z`  
+**Última varredura:** `2026-08-31T13:47:47Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `61`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2809`
-- **Commits dos projetos:** `2662`
-- **Commits do próprio monitor:** `147`
-- **Commits de projetos detectados nesta hora:** `22`
+- **Commits rastreados pelo ecossistema:** `2812`
+- **Commits dos projetos:** `2664`
+- **Commits do próprio monitor:** `148`
+- **Commits de projetos detectados nesta hora:** `2`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** — 3 commit(s) — [697205a4d5c0](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/697205a4d5c0a8b6877e56dc6599990a0985ee29) — **nota:**((não sei fazer coisa de romance (se teve antes foi porque eu pedi ajuda de ia para escrever roteiro de romance, pode ser que no fu
-- **Subnautica-Unhinged-mod-** — 19 commit(s) — [842ca30dd5d4](https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/842ca30dd5d4aac7921408d188741ba1562bfea7) — Fechar o buraco do portao que passava vazio
+- **Projeto-Baluarte** — 1 commit(s) — [8b6cbe9c9eb8](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8b6cbe9c9eb8dc77e8918d3483068460dffb1a85) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Subnautica-Unhinged-mod-** — 1 commit(s) — [61ade4690265](https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/61ade4690265e6f5e75960b28e2d2247f954eb46) — Conferir tambem a reflexao por string, que falha DEPOIS do carregamento
 
 ## Erros de consulta
 

@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-31T05:33:06Z",
+  "scanned_at": "2026-08-31T13:47:47Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -349,10 +349,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "b277418c1f638eae8bd89ce1b1cc1e08ef4ccdc8",
-      "date": "2026-08-30T16:54:39Z",
+      "sha": "8b6cbe9c9eb8dc77e8918d3483068460dffb1a85",
+      "date": "2026-08-31T05:54:07Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b277418c1f638eae8bd89ce1b1cc1e08ef4ccdc8"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8b6cbe9c9eb8dc77e8918d3483068460dffb1a85"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -388,10 +388,10 @@
     },
     "Subnautica-Unhinged-mod-": {
       "branch": "main",
-      "sha": "842ca30dd5d4aac7921408d188741ba1562bfea7",
-      "date": "2026-08-31T04:12:01Z",
-      "message": "Fechar o buraco do portao que passava vazio",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/842ca30dd5d4aac7921408d188741ba1562bfea7"
+      "sha": "61ade4690265e6f5e75960b28e2d2247f954eb46",
+      "date": "2026-08-31T09:05:37Z",
+      "message": "Conferir tambem a reflexao por string, que falha DEPOIS do carregamento",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/61ade4690265e6f5e75960b28e2d2247f954eb46"
     },
     "Teste-": {
       "branch": "main",
@@ -423,10 +423,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2809,
-    "project_commits": 2662,
-    "monitor_commits": 147,
-    "detected_project_commits_this_scan": 22,
+    "tracked_commits": 2812,
+    "project_commits": 2664,
+    "monitor_commits": 148,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {
