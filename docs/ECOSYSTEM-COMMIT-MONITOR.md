@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-30T21:04:53Z`  
+**Última varredura:** `2026-08-31T05:33:06Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `61`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2786`
-- **Commits dos projetos:** `2640`
-- **Commits do próprio monitor:** `146`
-- **Commits de projetos detectados nesta hora:** `24`
+- **Commits rastreados pelo ecossistema:** `2809`
+- **Commits dos projetos:** `2662`
+- **Commits do próprio monitor:** `147`
+- **Commits de projetos detectados nesta hora:** `22`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Subnautica-Unhinged-mod-** — 24 commit(s) — [3244defdadce](https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/3244defdadcec79845fccf33ccc103e30184b7c0) — Merge PR #1: ponte SMLHelper→Nautilus, pacote v0.1.0 e import do FCS
+- **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** — 3 commit(s) — [697205a4d5c0](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/697205a4d5c0a8b6877e56dc6599990a0985ee29) — **nota:**((não sei fazer coisa de romance (se teve antes foi porque eu pedi ajuda de ia para escrever roteiro de romance, pode ser que no fu
+- **Subnautica-Unhinged-mod-** — 19 commit(s) — [842ca30dd5d4](https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/842ca30dd5d4aac7921408d188741ba1562bfea7) — Fechar o buraco do portao que passava vazio
 
 ## Erros de consulta
 

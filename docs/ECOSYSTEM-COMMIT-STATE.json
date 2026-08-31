@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-30T21:04:53Z",
+  "scanned_at": "2026-08-31T05:33:06Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -215,10 +215,10 @@
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
-      "sha": "c784579a734dfdc480b87d02ca0caabae5878ce7",
-      "date": "2026-08-30T15:29:44Z",
-      "message": "Update Crônicas da Baluarte_ Onde os Deuses Sangram (continuação 4).md",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/c784579a734dfdc480b87d02ca0caabae5878ce7"
+      "sha": "697205a4d5c0a8b6877e56dc6599990a0985ee29",
+      "date": "2026-08-31T04:38:33Z",
+      "message": "**nota:**((não sei fazer coisa de romance (se teve antes foi porque eu pedi ajuda de ia para escrever roteiro de romance, pode ser que no fu",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/697205a4d5c0a8b6877e56dc6599990a0985ee29"
     },
     "Customizable-birthday-invitation": {
       "branch": "main",
@@ -388,10 +388,10 @@
     },
     "Subnautica-Unhinged-mod-": {
       "branch": "main",
-      "sha": "3244defdadcec79845fccf33ccc103e30184b7c0",
-      "date": "2026-08-30T18:57:55Z",
-      "message": "Merge PR #1: ponte SMLHelper→Nautilus, pacote v0.1.0 e import do FCS",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/3244defdadcec79845fccf33ccc103e30184b7c0"
+      "sha": "842ca30dd5d4aac7921408d188741ba1562bfea7",
+      "date": "2026-08-31T04:12:01Z",
+      "message": "Fechar o buraco do portao que passava vazio",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/842ca30dd5d4aac7921408d188741ba1562bfea7"
     },
     "Teste-": {
       "branch": "main",
@@ -423,15 +423,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2786,
-    "project_commits": 2640,
-    "monitor_commits": 146,
-    "detected_project_commits_this_scan": 24,
+    "tracked_commits": 2809,
+    "project_commits": 2662,
+    "monitor_commits": 147,
+    "detected_project_commits_this_scan": 22,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 61,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
