@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-08-31T20:03:54Z",
+  "scanned_at": "2026-08-31T23:50:29Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -278,10 +278,10 @@
     },
     "Java-activities": {
       "branch": "main",
-      "sha": "9f201c2faacdf5efeb15a87b115acd5a42ee332e",
-      "date": "2026-08-28T00:50:07Z",
-      "message": "Update Main.java",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/9f201c2faacdf5efeb15a87b115acd5a42ee332e"
+      "sha": "4e33b8a71bd6bf5e80cee0c65c6301fd748d155f",
+      "date": "2026-08-31T23:04:30Z",
+      "message": "Merge branch 'main' of https://github.com/Lucas-Belucci-Bellini/Java-activities",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/4e33b8a71bd6bf5e80cee0c65c6301fd748d155f"
     },
     "JAVA-todos-os-codigos-em-java": {
       "branch": "main",
@@ -423,15 +423,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2822,
-    "project_commits": 2673,
-    "monitor_commits": 149,
-    "detected_project_commits_this_scan": 9,
+    "tracked_commits": 2825,
+    "project_commits": 2675,
+    "monitor_commits": 150,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 61,
-    "repositories_changed": 2,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [

@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-31T20:03:54Z`  
+**Última varredura:** `2026-08-31T23:50:29Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `61`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2822`
-- **Commits dos projetos:** `2673`
-- **Commits do próprio monitor:** `149`
-- **Commits de projetos detectados nesta hora:** `9`
+- **Commits rastreados pelo ecossistema:** `2825`
+- **Commits dos projetos:** `2675`
+- **Commits do próprio monitor:** `150`
+- **Commits de projetos detectados nesta hora:** `2`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Project-Vanguard** — 8 commit(s) — [973ac506b25b](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/973ac506b25b5c0d78d2abe0ea1324ee2c0a73f8) — docs: record published GitHub release 1.3.1
-- **Projeto-Baluarte** — 1 commit(s) — [470a93395ca3](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/470a93395ca347c808d455417c3fb785df6b4b5d) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Java-activities** — 2 commit(s) — [4e33b8a71bd6](https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/4e33b8a71bd6bf5e80cee0c65c6301fd748d155f) — Merge branch 'main' of https://github.com/Lucas-Belucci-Bellini/Java-activities
 
 ## Erros de consulta
 
