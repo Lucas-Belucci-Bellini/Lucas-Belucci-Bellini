@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-08-31T13:47:47Z`  
+**Última varredura:** `2026-08-31T20:03:54Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `61`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2812`
-- **Commits dos projetos:** `2664`
-- **Commits do próprio monitor:** `148`
-- **Commits de projetos detectados nesta hora:** `2`
+- **Commits rastreados pelo ecossistema:** `2822`
+- **Commits dos projetos:** `2673`
+- **Commits do próprio monitor:** `149`
+- **Commits de projetos detectados nesta hora:** `9`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [8b6cbe9c9eb8](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8b6cbe9c9eb8dc77e8918d3483068460dffb1a85) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
-- **Subnautica-Unhinged-mod-** — 1 commit(s) — [61ade4690265](https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/61ade4690265e6f5e75960b28e2d2247f954eb46) — Conferir tambem a reflexao por string, que falha DEPOIS do carregamento
+- **Project-Vanguard** — 8 commit(s) — [973ac506b25b](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/973ac506b25b5c0d78d2abe0ea1324ee2c0a73f8) — docs: record published GitHub release 1.3.1
+- **Projeto-Baluarte** — 1 commit(s) — [470a93395ca3](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/470a93395ca347c808d455417c3fb785df6b4b5d) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
