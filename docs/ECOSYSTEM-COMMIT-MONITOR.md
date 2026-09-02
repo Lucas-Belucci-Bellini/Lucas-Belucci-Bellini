@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-02T04:33:32Z`  
+**Última varredura:** `2026-09-02T09:37:00Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `62`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2845`
-- **Commits dos projetos:** `2691`
-- **Commits do próprio monitor:** `154`
-- **Commits de projetos detectados nesta hora:** `2`
+- **Commits rastreados pelo ecossistema:** `2850`
+- **Commits dos projetos:** `2695`
+- **Commits do próprio monitor:** `155`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Subnautica-Unhinged-mod-** — 2 commit(s) — [1a9b32c9cb39](https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/1a9b32c9cb3996c26b0fd315ce8d61cf58f84be4) — feat(fcs): diagnostico de registro item a item, e a analise do P0
+- **Projeto-Baluarte** — 1 commit(s) — [ed259bf74566](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ed259bf7456694c21df261f7cac8f5b4a0322f3d) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Subnautica-Unhinged-mod-** — 3 commit(s) — [afb943ef6c97](https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/afb943ef6c9757f02bcdffdb4816305d3bf71097) — docs(fcs): registrar que o build NAO e byte-reproduzivel
 
 ## Erros de consulta
 
