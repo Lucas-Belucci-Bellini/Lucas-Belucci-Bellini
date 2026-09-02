@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-01T18:30:02Z",
+  "scanned_at": "2026-09-02T00:13:14Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -388,10 +388,10 @@
     },
     "Subnautica-Unhinged-mod-": {
       "branch": "main",
-      "sha": "61ade4690265e6f5e75960b28e2d2247f954eb46",
-      "date": "2026-08-31T09:05:37Z",
-      "message": "Conferir tambem a reflexao por string, que falha DEPOIS do carregamento",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/61ade4690265e6f5e75960b28e2d2247f954eb46"
+      "sha": "1d38dff62bd1d81b6e1adaa0445a6accd5d9e7a8",
+      "date": "2026-09-01T23:33:14Z",
+      "message": "fix(manifest): a branch de modernizacao nao e o checkout atual",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/1d38dff62bd1d81b6e1adaa0445a6accd5d9e7a8"
     },
     "Teste-": {
       "branch": "main",
@@ -423,10 +423,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2829,
-    "project_commits": 2677,
-    "monitor_commits": 152,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 2842,
+    "project_commits": 2689,
+    "monitor_commits": 153,
+    "detected_project_commits_this_scan": 12,
     "monitor_commit_this_scan": 1
   },
   "summary": {
