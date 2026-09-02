@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-02T09:37:00Z",
+  "scanned_at": "2026-09-02T14:29:15Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -395,10 +395,10 @@
     },
     "Subnautica-Unhinged-mod-": {
       "branch": "main",
-      "sha": "afb943ef6c9757f02bcdffdb4816305d3bf71097",
-      "date": "2026-09-02T04:56:33Z",
-      "message": "docs(fcs): registrar que o build NAO e byte-reproduzivel",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/afb943ef6c9757f02bcdffdb4816305d3bf71097"
+      "sha": "acdc9cf74a74784ffc077664c00b2677fe6c3236",
+      "date": "2026-09-02T14:29:03Z",
+      "message": "fix(fcs 1.3.0): P0 — as DUAS causas do conteudo que nao chegava ao jogo",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/acdc9cf74a74784ffc077664c00b2677fe6c3236"
     },
     "Teste-": {
       "branch": "main",
@@ -430,15 +430,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2850,
-    "project_commits": 2695,
-    "monitor_commits": 155,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 2852,
+    "project_commits": 2696,
+    "monitor_commits": 156,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 62,
-    "repositories_changed": 2,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
