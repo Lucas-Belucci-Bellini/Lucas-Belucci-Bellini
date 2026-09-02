@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-02T14:29:15Z",
+  "scanned_at": "2026-09-02T18:42:06Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -349,10 +349,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "ed259bf7456694c21df261f7cac8f5b4a0322f3d",
-      "date": "2026-09-02T04:53:45Z",
+      "sha": "6e798093470564d90cabd7e827976acaa7542a74",
+      "date": "2026-09-02T16:46:53Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ed259bf7456694c21df261f7cac8f5b4a0322f3d"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/6e798093470564d90cabd7e827976acaa7542a74"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -395,10 +395,10 @@
     },
     "Subnautica-Unhinged-mod-": {
       "branch": "main",
-      "sha": "acdc9cf74a74784ffc077664c00b2677fe6c3236",
-      "date": "2026-09-02T14:29:03Z",
-      "message": "fix(fcs 1.3.0): P0 — as DUAS causas do conteudo que nao chegava ao jogo",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/acdc9cf74a74784ffc077664c00b2677fe6c3236"
+      "sha": "37acf42195cfaf933d23caefe8b408e0abc95aee",
+      "date": "2026-09-02T15:00:30Z",
+      "message": "docs(fcs): auditoria item a item — 56 itens, e nenhum \"Funciona\" marcado",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/37acf42195cfaf933d23caefe8b408e0abc95aee"
     },
     "Teste-": {
       "branch": "main",
@@ -430,15 +430,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2852,
-    "project_commits": 2696,
-    "monitor_commits": 156,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 2857,
+    "project_commits": 2700,
+    "monitor_commits": 157,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 62,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
