@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-03T09:48:44Z",
+  "scanned_at": "2026-09-03T18:38:16Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -264,10 +264,10 @@
     },
     "FLUX": {
       "branch": "main",
-      "sha": "bd3bd2f27097d1bcd61e43a03ed62060ac3a387f",
-      "date": "2026-09-02T22:15:06Z",
-      "message": "Initial commit",
-      "url": "https://github.com/Lucas-Belucci-Bellini/FLUX/commit/bd3bd2f27097d1bcd61e43a03ed62060ac3a387f"
+      "sha": "f1370b2ea0d000c9f14782f8a2943002c8a64b1a",
+      "date": "2026-09-03T17:51:40Z",
+      "message": "Merge pull request #1 from Lucas-Belucci-Bellini/claude/flux-social-platform-hmrgzh",
+      "url": "https://github.com/Lucas-Belucci-Bellini/FLUX/commit/f1370b2ea0d000c9f14782f8a2943002c8a64b1a"
     },
     "G-mod-Black-mesa": {
       "branch": "main",
@@ -285,10 +285,10 @@
     },
     "Java-activities": {
       "branch": "main",
-      "sha": "4e33b8a71bd6bf5e80cee0c65c6301fd748d155f",
-      "date": "2026-08-31T23:04:30Z",
-      "message": "Merge branch 'main' of https://github.com/Lucas-Belucci-Bellini/Java-activities",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/4e33b8a71bd6bf5e80cee0c65c6301fd748d155f"
+      "sha": "f40b681660d4d970c5a6d89e1b657bead5faba00",
+      "date": "2026-09-03T17:56:29Z",
+      "message": "Add files via upload",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/f40b681660d4d970c5a6d89e1b657bead5faba00"
     },
     "JAVA-todos-os-codigos-em-java": {
       "branch": "main",
@@ -326,6 +326,13 @@
       "message": "Initial commit",
       "url": "https://github.com/Lucas-Belucci-Bellini/Multi-functional-site-Baluarte/commit/5fe796e57dc5e2a3c892cfc2fe96c85f141b41f3"
     },
+    "NEXORA": {
+      "branch": "main",
+      "sha": "f1303c59e9ecd0d114b434ff609cf6e3bc3c672d",
+      "date": "2026-09-03T18:28:04Z",
+      "message": "Create BIOME ENGINE.md",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/f1303c59e9ecd0d114b434ff609cf6e3bc3c672d"
+    },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
       "sha": "610ca15bda01f0ccc0806b573bc0d8ae59c1255c",
@@ -356,10 +363,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "17bcb930fb7e6476a519c631b31f2fd7112f0084",
-      "date": "2026-09-03T04:51:42Z",
+      "sha": "15e0bbce6d008e9969713690cc8ba78e25a0594c",
+      "date": "2026-09-03T16:37:03Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/17bcb930fb7e6476a519c631b31f2fd7112f0084"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/15e0bbce6d008e9969713690cc8ba78e25a0594c"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,10 +409,10 @@
     },
     "Subnautica-Unhinged-mod-": {
       "branch": "main",
-      "sha": "37acf42195cfaf933d23caefe8b408e0abc95aee",
-      "date": "2026-09-02T15:00:30Z",
-      "message": "docs(fcs): auditoria item a item — 56 itens, e nenhum \"Funciona\" marcado",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/37acf42195cfaf933d23caefe8b408e0abc95aee"
+      "sha": "3d431c5f349475dd629e4c7029bcef36d0555e77",
+      "date": "2026-09-03T16:40:01Z",
+      "message": "docs(FCS): o primeiro marco do §40 — inventario do upstream, com a historia inteira",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/3d431c5f349475dd629e4c7029bcef36d0555e77"
     },
     "Teste-": {
       "branch": "main",
@@ -437,15 +444,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2862,
-    "project_commits": 2702,
-    "monitor_commits": 160,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 2868,
+    "project_commits": 2707,
+    "monitor_commits": 161,
+    "detected_project_commits_this_scan": 5,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 63,
-    "repositories_changed": 1,
+    "repositories_scanned": 64,
+    "repositories_changed": 4,
     "errors": 3
   },
   "errors": [
