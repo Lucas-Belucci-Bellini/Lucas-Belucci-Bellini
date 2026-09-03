@@ -2,27 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-03T18:38:16Z`  
+**Última varredura:** `2026-09-03T21:42:40Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `64`  
-**Repositórios com mudanças desde a última varredura:** `4`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2868`
-- **Commits dos projetos:** `2707`
-- **Commits do próprio monitor:** `161`
-- **Commits de projetos detectados nesta hora:** `5`
+- **Commits rastreados pelo ecossistema:** `2902`
+- **Commits dos projetos:** `2740`
+- **Commits do próprio monitor:** `162`
+- **Commits de projetos detectados nesta hora:** `33`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **FLUX** — 2 commit(s) — [f1370b2ea0d0](https://github.com/Lucas-Belucci-Bellini/FLUX/commit/f1370b2ea0d000c9f14782f8a2943002c8a64b1a) — Merge pull request #1 from Lucas-Belucci-Bellini/claude/flux-social-platform-hmrgzh
-- **Java-activities** — 1 commit(s) — [f40b681660d4](https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/f40b681660d4d970c5a6d89e1b657bead5faba00) — Add files via upload
-- **Projeto-Baluarte** — 1 commit(s) — [15e0bbce6d00](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/15e0bbce6d008e9969713690cc8ba78e25a0594c) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
-- **Subnautica-Unhinged-mod-** — 1 commit(s) — [3d431c5f3494](https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-/commit/3d431c5f349475dd629e4c7029bcef36d0555e77) — docs(FCS): o primeiro marco do §40 — inventario do upstream, com a historia inteira
+- **NEXORA** — 33 commit(s) — [56cdd2a640e1](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/56cdd2a640e196116b49369b8f1adc77f22416a3) — Structure System.md
 
 ## Erros de consulta
 
