@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-04T00:05:43Z`  
+**Última varredura:** `2026-09-04T04:31:53Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `65`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2986`
-- **Commits dos projetos:** `2823`
-- **Commits do próprio monitor:** `163`
-- **Commits de projetos detectados nesta hora:** `83`
+- **Commits rastreados pelo ecossistema:** `2990`
+- **Commits dos projetos:** `2826`
+- **Commits do próprio monitor:** `164`
+- **Commits de projetos detectados nesta hora:** `3`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **NEXORA** — 83 commit(s) — [e17980335c1e](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/e17980335c1eece06d93fe520b2903c7fd457452) — docs: integrate history knowledge lore and world continuity
+- **Java-activities** — 3 commit(s) — [30fef96c25f8](https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/30fef96c25f8b630ca06dd5b690d719ab423abc1) — atualização
 
 ## Erros de consulta
 
