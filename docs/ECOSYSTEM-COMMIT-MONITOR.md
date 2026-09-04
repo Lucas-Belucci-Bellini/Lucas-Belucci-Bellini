@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-04T09:38:32Z`  
+**Última varredura:** `2026-09-04T18:24:04Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `65`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3031`
-- **Commits dos projetos:** `2866`
-- **Commits do próprio monitor:** `165`
-- **Commits de projetos detectados nesta hora:** `40`
+- **Commits rastreados pelo ecossistema:** `3033`
+- **Commits dos projetos:** `2867`
+- **Commits do próprio monitor:** `166`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **NEXORA** — 39 commit(s) — [aebb0d8ff6b3](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/aebb0d8ff6b3745b216fdb3dd86dbc5cd91c6aaf) — docs: expand documentation index with engineering policies
-- **Projeto-Baluarte** — 1 commit(s) — [b05e4b6166ca](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b05e4b6166caa650120c3c2226fa7fee4462b2e7) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Projeto-Baluarte** — 1 commit(s) — [88c28c17fc0f](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/88c28c17fc0ffa70acfe0bfc395274f38419e82e) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
