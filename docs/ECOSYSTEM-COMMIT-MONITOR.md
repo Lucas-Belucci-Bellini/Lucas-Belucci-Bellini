@@ -2,24 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-03T21:42:40Z`  
+**Última varredura:** `2026-09-04T00:05:43Z`  
 **Intervalo configurado:** `1 hora`  
-**Repositórios acompanhados:** `64`  
+**Repositórios acompanhados:** `65`  
 **Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `2902`
-- **Commits dos projetos:** `2740`
-- **Commits do próprio monitor:** `162`
-- **Commits de projetos detectados nesta hora:** `33`
+- **Commits rastreados pelo ecossistema:** `2986`
+- **Commits dos projetos:** `2823`
+- **Commits do próprio monitor:** `163`
+- **Commits de projetos detectados nesta hora:** `83`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **NEXORA** — 33 commit(s) — [56cdd2a640e1](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/56cdd2a640e196116b49369b8f1adc77f22416a3) — Structure System.md
+- **NEXORA** — 83 commit(s) — [e17980335c1e](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/e17980335c1eece06d93fe520b2903c7fd457452) — docs: integrate history knowledge lore and world continuity
 
 ## Erros de consulta
 
