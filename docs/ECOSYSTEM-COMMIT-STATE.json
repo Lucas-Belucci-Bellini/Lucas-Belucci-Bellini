@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-04T04:31:53Z",
+  "scanned_at": "2026-09-04T09:38:32Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,10 +335,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "e17980335c1eece06d93fe520b2903c7fd457452",
-      "date": "2026-09-03T23:59:52Z",
-      "message": "docs: integrate history knowledge lore and world continuity",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/e17980335c1eece06d93fe520b2903c7fd457452"
+      "sha": "aebb0d8ff6b3745b216fdb3dd86dbc5cd91c6aaf",
+      "date": "2026-09-04T05:42:05Z",
+      "message": "docs: expand documentation index with engineering policies",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/aebb0d8ff6b3745b216fdb3dd86dbc5cd91c6aaf"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -370,10 +370,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "15e0bbce6d008e9969713690cc8ba78e25a0594c",
-      "date": "2026-09-03T16:37:03Z",
+      "sha": "b05e4b6166caa650120c3c2226fa7fee4462b2e7",
+      "date": "2026-09-04T04:54:41Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/15e0bbce6d008e9969713690cc8ba78e25a0594c"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b05e4b6166caa650120c3c2226fa7fee4462b2e7"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -451,15 +451,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 2990,
-    "project_commits": 2826,
-    "monitor_commits": 164,
-    "detected_project_commits_this_scan": 3,
+    "tracked_commits": 3031,
+    "project_commits": 2866,
+    "monitor_commits": 165,
+    "detected_project_commits_this_scan": 40,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 65,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
