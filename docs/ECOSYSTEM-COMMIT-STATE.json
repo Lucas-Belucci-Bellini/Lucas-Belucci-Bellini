@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-05T09:04:26Z",
+  "scanned_at": "2026-09-05T12:42:38Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -363,10 +363,10 @@
     },
     "Project-Vanguard": {
       "branch": "main",
-      "sha": "973ac506b25b5c0d78d2abe0ea1324ee2c0a73f8",
-      "date": "2026-08-31T16:56:28Z",
-      "message": "docs: record published GitHub release 1.3.1",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/973ac506b25b5c0d78d2abe0ea1324ee2c0a73f8"
+      "sha": "8ae166ad5fbe6e1202572207eb22a5d3d53834a7",
+      "date": "2026-09-05T10:37:47Z",
+      "message": "docs(v2): define extraction GPS background and routing remediation plan",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/8ae166ad5fbe6e1202572207eb22a5d3d53834a7"
     },
     "Projeto-Baluarte": {
       "branch": "main",
@@ -451,9 +451,9 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3080,
-    "project_commits": 2912,
-    "monitor_commits": 168,
+    "tracked_commits": 3082,
+    "project_commits": 2913,
+    "monitor_commits": 169,
     "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
