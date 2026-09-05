@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-04T18:24:04Z`  
+**Última varredura:** `2026-09-05T00:04:41Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `65`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3033`
-- **Commits dos projetos:** `2867`
-- **Commits do próprio monitor:** `166`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `3078`
+- **Commits dos projetos:** `2911`
+- **Commits do próprio monitor:** `167`
+- **Commits de projetos detectados nesta hora:** `44`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [88c28c17fc0f](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/88c28c17fc0ffa70acfe0bfc395274f38419e82e) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **FLUX** — 44 commit(s) — [82eb0b2c3a91](https://github.com/Lucas-Belucci-Bellini/FLUX/commit/82eb0b2c3a917ccdb2c1f9ee93454afebcad5ea6) — docs(web): record phase 0 implementation status
 
 ## Erros de consulta
 
