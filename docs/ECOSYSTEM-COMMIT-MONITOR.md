@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-07T22:50:11Z`  
+**Última varredura:** `2026-09-08T01:12:22Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `65`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3097`
-- **Commits dos projetos:** `2921`
-- **Commits do próprio monitor:** `176`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `3126`
+- **Commits dos projetos:** `2949`
+- **Commits do próprio monitor:** `177`
+- **Commits de projetos detectados nesta hora:** `28`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Java-activities** — 1 commit(s) — [6594d427b1c7](https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/6594d427b1c748934be6a309100270868279fc22) — 1
+- **NEXORA** — 28 commit(s) — [d247e60f2e60](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/d247e60f2e60bcf6ed6cea2730c4899806293084) — Merge pull request #3 from Lucas-Belucci-Bellini/claude/nexora-repo-inspection-0mh1zu
 
 ## Erros de consulta
 

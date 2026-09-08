@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-07T22:50:11Z",
+  "scanned_at": "2026-09-08T01:12:22Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -335,10 +335,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "aebb0d8ff6b3745b216fdb3dd86dbc5cd91c6aaf",
-      "date": "2026-09-04T05:42:05Z",
-      "message": "docs: expand documentation index with engineering policies",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/aebb0d8ff6b3745b216fdb3dd86dbc5cd91c6aaf"
+      "sha": "d247e60f2e60bcf6ed6cea2730c4899806293084",
+      "date": "2026-09-07T23:32:04Z",
+      "message": "Merge pull request #3 from Lucas-Belucci-Bellini/claude/nexora-repo-inspection-0mh1zu",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/d247e60f2e60bcf6ed6cea2730c4899806293084"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -451,10 +451,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3097,
-    "project_commits": 2921,
-    "monitor_commits": 176,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 3126,
+    "project_commits": 2949,
+    "monitor_commits": 177,
+    "detected_project_commits_this_scan": 28,
     "monitor_commit_this_scan": 1
   },
   "summary": {
