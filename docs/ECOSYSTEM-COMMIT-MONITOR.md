@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-10T05:58:08Z`  
+**Última varredura:** `2026-09-10T19:41:27Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `65`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3156`
-- **Commits dos projetos:** `2972`
-- **Commits do próprio monitor:** `184`
+- **Commits rastreados pelo ecossistema:** `3161`
+- **Commits dos projetos:** `2976`
+- **Commits do próprio monitor:** `185`
 - **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Cosmos** — 3 commit(s) — [17376aa98015](https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/17376aa98015fb11194c83be3d967345fc6516cc) — docs: inventory Baluarte pages and define minimal Arsenal migration
-- **Projeto-Baluarte** — 1 commit(s) — [1e245f5d0fc5](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1e245f5d0fc59932d738a1693ca9f74d50072f19) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Cosmos** — 3 commit(s) — [a41079104b91](https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/a41079104b911abc82824210c0070e90448711e7) — docs: add Phase 0 audit report
+- **Projeto-Baluarte** — 1 commit(s) — [1899d2fe9ca5](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1899d2fe9ca57e6be6b06617e37e1232cefcf9e7) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 

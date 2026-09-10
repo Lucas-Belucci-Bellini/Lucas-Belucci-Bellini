@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-10T05:58:08Z",
+  "scanned_at": "2026-09-10T19:41:27Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -215,10 +215,10 @@
     },
     "Cosmos": {
       "branch": "main",
-      "sha": "17376aa98015fb11194c83be3d967345fc6516cc",
-      "date": "2026-09-10T02:04:51Z",
-      "message": "docs: inventory Baluarte pages and define minimal Arsenal migration",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/17376aa98015fb11194c83be3d967345fc6516cc"
+      "sha": "a41079104b911abc82824210c0070e90448711e7",
+      "date": "2026-09-10T19:22:50Z",
+      "message": "docs: add Phase 0 audit report",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/a41079104b911abc82824210c0070e90448711e7"
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
@@ -370,10 +370,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "1e245f5d0fc59932d738a1693ca9f74d50072f19",
-      "date": "2026-09-10T05:02:32Z",
+      "sha": "1899d2fe9ca57e6be6b06617e37e1232cefcf9e7",
+      "date": "2026-09-10T16:36:18Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1e245f5d0fc59932d738a1693ca9f74d50072f19"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1899d2fe9ca57e6be6b06617e37e1232cefcf9e7"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -451,9 +451,9 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3156,
-    "project_commits": 2972,
-    "monitor_commits": 184,
+    "tracked_commits": 3161,
+    "project_commits": 2976,
+    "monitor_commits": 185,
     "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
