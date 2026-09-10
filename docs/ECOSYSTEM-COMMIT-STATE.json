@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-10T19:41:27Z",
+  "scanned_at": "2026-09-10T22:35:26Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -292,10 +292,10 @@
     },
     "Java-activities": {
       "branch": "main",
-      "sha": "9e27ac02f12b43a8399d6889521de31b5a5da677",
-      "date": "2026-09-09T02:44:24Z",
-      "message": "Merge branch 'main' of https://github.com/Lucas-Belucci-Bellini/Java-activities",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/9e27ac02f12b43a8399d6889521de31b5a5da677"
+      "sha": "8bed9581c29e04bd5a87bffad7a97e7db8494098",
+      "date": "2026-09-10T22:30:50Z",
+      "message": "Documentacao_Java/Pastas_Exemplos/Pasta_3/Cachorro.java Documentacao_Java/Pastas_Exemplos/Pasta_3/Main.java Documentacao_Java/Pastas_Exemplo",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/8bed9581c29e04bd5a87bffad7a97e7db8494098"
     },
     "JAVA-todos-os-codigos-em-java": {
       "branch": "main",
@@ -451,15 +451,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3161,
-    "project_commits": 2976,
-    "monitor_commits": 185,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 3167,
+    "project_commits": 2981,
+    "monitor_commits": 186,
+    "detected_project_commits_this_scan": 5,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 65,
-    "repositories_changed": 2,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
