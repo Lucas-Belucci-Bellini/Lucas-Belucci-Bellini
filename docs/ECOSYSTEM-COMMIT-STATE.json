@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-09T19:45:37Z",
+  "scanned_at": "2026-09-10T05:58:08Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -215,10 +215,10 @@
     },
     "Cosmos": {
       "branch": "main",
-      "sha": "d761ac1a58bd5939464ab48beae275d49fb0e1fc",
-      "date": "2026-09-03T21:43:10Z",
-      "message": "Initial commit",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/d761ac1a58bd5939464ab48beae275d49fb0e1fc"
+      "sha": "17376aa98015fb11194c83be3d967345fc6516cc",
+      "date": "2026-09-10T02:04:51Z",
+      "message": "docs: inventory Baluarte pages and define minimal Arsenal migration",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/17376aa98015fb11194c83be3d967345fc6516cc"
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
@@ -370,10 +370,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "ce21377d499543c679aa6df1308a88b150ca7b15",
-      "date": "2026-09-09T16:49:57Z",
+      "sha": "1e245f5d0fc59932d738a1693ca9f74d50072f19",
+      "date": "2026-09-10T05:02:32Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ce21377d499543c679aa6df1308a88b150ca7b15"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1e245f5d0fc59932d738a1693ca9f74d50072f19"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -451,15 +451,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3151,
-    "project_commits": 2968,
-    "monitor_commits": 183,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 3156,
+    "project_commits": 2972,
+    "monitor_commits": 184,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 65,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [

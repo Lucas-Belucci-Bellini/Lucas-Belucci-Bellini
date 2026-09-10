@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-09T19:45:37Z`  
+**Última varredura:** `2026-09-10T05:58:08Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `65`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3151`
-- **Commits dos projetos:** `2968`
-- **Commits do próprio monitor:** `183`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `3156`
+- **Commits dos projetos:** `2972`
+- **Commits do próprio monitor:** `184`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [ce21377d4995](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ce21377d499543c679aa6df1308a88b150ca7b15) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Cosmos** — 3 commit(s) — [17376aa98015](https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/17376aa98015fb11194c83be3d967345fc6516cc) — docs: inventory Baluarte pages and define minimal Arsenal migration
+- **Projeto-Baluarte** — 1 commit(s) — [1e245f5d0fc5](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1e245f5d0fc59932d738a1693ca9f74d50072f19) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
