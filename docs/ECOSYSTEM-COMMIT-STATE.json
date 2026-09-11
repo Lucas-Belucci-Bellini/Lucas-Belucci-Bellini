@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-10T22:35:26Z",
+  "scanned_at": "2026-09-11T01:04:23Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -292,10 +292,10 @@
     },
     "Java-activities": {
       "branch": "main",
-      "sha": "8bed9581c29e04bd5a87bffad7a97e7db8494098",
-      "date": "2026-09-10T22:30:50Z",
-      "message": "Documentacao_Java/Pastas_Exemplos/Pasta_3/Cachorro.java Documentacao_Java/Pastas_Exemplos/Pasta_3/Main.java Documentacao_Java/Pastas_Exemplo",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/8bed9581c29e04bd5a87bffad7a97e7db8494098"
+      "sha": "7e57bea0aaf4bd09d6c57863a9da8c31131ab13b",
+      "date": "2026-09-10T23:47:23Z",
+      "message": "Java_Outras_Coisas/biblioteca/pom.xml Java_Outras_Coisas/biblioteca/README.md Java_Outras_Coisas/biblioteca/src/main/java/biblioteca/Main.ja",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Java-activities/commit/7e57bea0aaf4bd09d6c57863a9da8c31131ab13b"
     },
     "JAVA-todos-os-codigos-em-java": {
       "branch": "main",
@@ -451,10 +451,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3167,
-    "project_commits": 2981,
-    "monitor_commits": 186,
-    "detected_project_commits_this_scan": 5,
+    "tracked_commits": 3171,
+    "project_commits": 2984,
+    "monitor_commits": 187,
+    "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
   "summary": {
