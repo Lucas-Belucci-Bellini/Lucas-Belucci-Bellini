@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-14T18:38:12Z",
+  "scanned_at": "2026-09-15T01:27:28Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -386,6 +386,13 @@
       "message": "Era 2 progressão (v0.14.0): salvar/carregar, velocidade/pausa e máquinas Mk2",
       "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game/commit/e876aa3afd944d8174e8ef2ef37035951db0aa9a"
     },
+    "Projetos-Futuros": {
+      "branch": "main",
+      "sha": "dd045bc7f6f66123a7851ed4346b07c1314d44b2",
+      "date": "2026-09-15T00:58:33Z",
+      "message": "docs: add future operating system branch",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projetos-Futuros/commit/dd045bc7f6f66123a7851ed4346b07c1314d44b2"
+    },
     "Python": {
       "branch": "main",
       "sha": "daacf698c9cb09586b63aef70ec0246b0e5c4245",
@@ -451,15 +458,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3187,
+    "tracked_commits": 3188,
     "project_commits": 2992,
-    "monitor_commits": 195,
-    "detected_project_commits_this_scan": 1,
+    "monitor_commits": 196,
+    "detected_project_commits_this_scan": 0,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 65,
-    "repositories_changed": 1,
+    "repositories_scanned": 66,
+    "repositories_changed": 0,
     "errors": 3
   },
   "errors": [
