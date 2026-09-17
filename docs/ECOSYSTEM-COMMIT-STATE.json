@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-16T22:56:00Z",
+  "scanned_at": "2026-09-17T07:38:39Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -222,10 +222,10 @@
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
-      "sha": "697205a4d5c0a8b6877e56dc6599990a0985ee29",
-      "date": "2026-08-31T04:38:33Z",
-      "message": "**nota:**((não sei fazer coisa de romance (se teve antes foi porque eu pedi ajuda de ia para escrever roteiro de romance, pode ser que no fu",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/697205a4d5c0a8b6877e56dc6599990a0985ee29"
+      "sha": "03eaaf6dccbc585aaf3e6642c58a8b12db6c8b17",
+      "date": "2026-09-17T05:10:25Z",
+      "message": "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/roteiro.md",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/03eaaf6dccbc585aaf3e6642c58a8b12db6c8b17"
     },
     "Customizable-birthday-invitation": {
       "branch": "main",
@@ -377,10 +377,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "df4ab76e24952c3c2db8041654ce643f901bab96",
-      "date": "2026-09-16T17:12:49Z",
+      "sha": "d97d6eed365878764863b536135c9262cdea358a",
+      "date": "2026-09-17T05:07:09Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/df4ab76e24952c3c2db8041654ce643f901bab96"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/d97d6eed365878764863b536135c9262cdea358a"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,10 +402,10 @@
     },
     "PromoRadar": {
       "branch": "main",
-      "sha": "6b6daf7bfb50733499bb7af00fa210523c305374",
-      "date": "2026-09-16T22:03:53Z",
-      "message": "Initial commit",
-      "url": "https://github.com/Lucas-Belucci-Bellini/PromoRadar/commit/6b6daf7bfb50733499bb7af00fa210523c305374"
+      "sha": "6e37abb6f9df40e300a278f2803955adcfb55651",
+      "date": "2026-09-17T02:34:27Z",
+      "message": "feat: add transparency page",
+      "url": "https://github.com/Lucas-Belucci-Bellini/PromoRadar/commit/6e37abb6f9df40e300a278f2803955adcfb55651"
     },
     "Python": {
       "branch": "main",
@@ -472,15 +472,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3198,
-    "project_commits": 2996,
-    "monitor_commits": 202,
-    "detected_project_commits_this_scan": 0,
+    "tracked_commits": 3219,
+    "project_commits": 3016,
+    "monitor_commits": 203,
+    "detected_project_commits_this_scan": 20,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 68,
-    "repositories_changed": 0,
+    "repositories_changed": 3,
     "errors": 3
   },
   "errors": [
