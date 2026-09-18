@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-18T05:54:41Z",
+  "scanned_at": "2026-09-18T18:28:06Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -377,10 +377,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "b282ad5e4ee7fb0d2cc078b037ec4c84aea8845c",
-      "date": "2026-09-18T05:00:26Z",
+      "sha": "35865c72e5af025f8f20a0caa4a2b5cf88d298d1",
+      "date": "2026-09-18T16:37:58Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b282ad5e4ee7fb0d2cc078b037ec4c84aea8845c"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/35865c72e5af025f8f20a0caa4a2b5cf88d298d1"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -402,10 +402,10 @@
     },
     "PromoRadar": {
       "branch": "main",
-      "sha": "6e37abb6f9df40e300a278f2803955adcfb55651",
-      "date": "2026-09-17T02:34:27Z",
-      "message": "feat: add transparency page",
-      "url": "https://github.com/Lucas-Belucci-Bellini/PromoRadar/commit/6e37abb6f9df40e300a278f2803955adcfb55651"
+      "sha": "c50e0cdfb0b9e2edad354c0e0ae8b4c0cc047b6b",
+      "date": "2026-09-18T17:01:01Z",
+      "message": "feat: add branded not found page",
+      "url": "https://github.com/Lucas-Belucci-Bellini/PromoRadar/commit/c50e0cdfb0b9e2edad354c0e0ae8b4c0cc047b6b"
     },
     "Python": {
       "branch": "main",
@@ -472,15 +472,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3223,
-    "project_commits": 3018,
-    "monitor_commits": 205,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 3284,
+    "project_commits": 3078,
+    "monitor_commits": 206,
+    "detected_project_commits_this_scan": 60,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 68,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
