@@ -19,10 +19,14 @@ Implementada em um lugar só, `resolve_presentation()` em
 [`scripts/project_catalog.py`](../scripts/project_catalog.py), e renderizada por
 `cta_cell()`:
 
-| Situação | Célula publicada |
-|:---|:---|
-| com site | `**[▸ Abrir site](url)** · [código](github)` |
-| sem site | `[código](github)` |
+| Situação | Célula publicada | Botões do card |
+|:---|:---|:---|
+| com site | `**[▸ Abrir site](url)** · [código](github)` | `▸ ABRIR SITE` em ouro + `CÓDIGO` apagado |
+| sem site | `[código](github)` | `CÓDIGO` em ouro, sozinho |
+
+Nos cards os CTAs são badges, não texto: a diferença de cor faz a hierarquia
+aparecer antes de o visitante ler o rótulo. O ouro `#d4a24e` é o mesmo do resto
+do perfil, e o botão secundário usa o roxo apagado `#4b3a5c`.
 
 O destaque do site não é decorativo: ele vem primeiro na linha e em negrito, e o
 código vem depois em peso normal. Um leitor que só bate o olho na tabela vê o
@@ -57,6 +61,8 @@ mudado, e produziriam commit a cada execução.
 
 | Bloco | O que mudou |
 |:---|:---|
+| `PRODUCT-CARDS` | **novo** — a vitrine em cards, 6 produtos, site com botão em destaque |
+| `ECOSYSTEM-MAP` | **novo** — árvore do ecossistema por categoria, com quantos têm site |
 | `FEATURED-PROJECTS` | coluna **Acesso** com o site na frente |
 | `CURATED-FEATURED` | idem |
 | `PUBLIC-PROJECTS` | coluna `GitHub` virou **Acesso**, com site quando há |
@@ -67,6 +73,48 @@ mudado, e produziriam commit a cada execução.
 Os marcadores `START`/`END` e a identidade visual (paleta, ASCII art, badges,
 ícones, seções estáticas) seguem exatamente como estavam. A mudança é de ordem e
 de peso, não de estética.
+
+## A ordem de leitura do README
+
+O README passou a ser lido como uma homepage compacta. Nenhuma seção foi
+reescrita — foram movidas inteiras, e um teste de permutação confere que nenhuma
+linha se perdeu no caminho.
+
+```
+IDENTIDADE            ← ficha de agente
+     ↓
+O QUE EU CONSTRUO     ← missão principal
+     ↓
+PRODUTOS              ← cards com botão de abrir
+     ↓
+SITES VERIFICADOS     ← o diretório de deployments
+     ↓
+ECOSSISTEMA           ← o mapa, depois o catálogo completo
+     ↓
+TECNOLOGIAS           ← arsenal e matriz de linguagens
+     ↓
+ENGENHARIA            ← snapshot, repositórios, atividade
+     ↓
+CONTATO
+```
+
+A estatística saiu do topo. Ela continua inteira, mais abaixo, posicionada como
+evidência de engenharia — não como capa.
+
+## Curadoria: `docs/README_FEATURED.json`
+
+O manifesto ganhou três campos, todos opcionais; um arquivo sem eles continua
+funcionando igual.
+
+| Campo | Efeito |
+|:---|:---|
+| `priority` | 0–100. Substitui o peso derivado de `order` no `marketing_priority`. |
+| `reason` | Por que a entrada está na curadoria. Documentação, não é renderizado. |
+| `website_required` | `true` retira a entrada da tabela curada enquanto o site não estiver verificado. |
+
+`website_required` é **opt-in**: hoje todas as entradas estão em `false`, então
+nenhum projeto desaparece por causa de um deployment caído. Quem quiser a regra
+mais dura liga por entrada.
 
 ## O que a vitrine não faz
 

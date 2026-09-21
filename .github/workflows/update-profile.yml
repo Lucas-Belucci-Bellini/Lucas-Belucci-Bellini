@@ -80,6 +80,10 @@ jobs:
           grep -q '<!-- LANGUAGE-STATS:END -->' README.md
           grep -q '<!-- LIVE-PROJECTS:START -->' README.md
           grep -q '<!-- LIVE-PROJECTS:END -->' README.md
+          grep -q '<!-- PRODUCT-CARDS:START -->' README.md
+          grep -q '<!-- PRODUCT-CARDS:END -->' README.md
+          grep -q '<!-- ECOSYSTEM-MAP:START -->' README.md
+          grep -q '<!-- ECOSYSTEM-MAP:END -->' README.md
 
       - name: Commit only real changes
         run: |

@@ -25,6 +25,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Veritas",
       "name": "Veritas",
+      "slug": "veritas",
       "description": "Descrição pública não informada.",
       "category": "Hardware & Simulation",
       "category_label": "Digital Logic / Hardware",
@@ -46,6 +47,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-obra-segura",
       "name": "baluarte-obra-segura",
+      "slug": "baluarte-obra-segura",
       "description": "A comprehensive engineering hub for construction management, featuring an electrical panel editor, material and labor calculators, tax and profit simulators, and a \"WikiBuild\" knowledge base. Includes features like drag-and-drop circuit design, unit validation, and professional report generation. · Built with Manus",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -67,6 +69,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Project-Vanguard",
       "name": "Project-Vanguard",
+      "slug": "project-vanguard",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -88,6 +91,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game",
       "name": "Projeto-Baluarte-World-Game",
+      "slug": "projeto-baluarte-world-game",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -109,6 +113,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/CodeVibe-Academy",
       "name": "CodeVibe-Academy",
+      "slug": "codevibe-academy",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -130,6 +135,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Essence-Custom-Furniture",
       "name": "Essence-Custom-Furniture",
+      "slug": "essence-custom-furniture",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -151,6 +157,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/LLBR-Innovations-Constructions",
       "name": "LLBR-Innovations-Constructions",
+      "slug": "llbr-innovations-constructions",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -172,6 +179,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-",
       "name": "Portifolio-Baluarte-Lucas-Belucci-Bellini-",
+      "slug": "portifolio-baluarte-lucas-belucci-bellini",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -193,6 +201,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Projeto-Baluarte",
       "name": "Projeto-Baluarte",
+      "slug": "projeto-baluarte",
       "description": "O Baluarte entrou na reconstrução da V2. Enquanto isso, partes do site e do app podem falhar ou mudar sem aviso. (começo 9 / 8 / 2026) por enquanto esse é o link que tá funcionando sem problemas",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -213,6 +222,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/DailyPlanner",
       "name": "DailyPlanner",
+      "slug": "dailyplanner",
       "description": "Descrição pública não informada.",
       "category": "AI & Intelligence",
       "category_label": "IA & Automação",
@@ -233,6 +243,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Digital-Logic-Sim-CE",
       "name": "Digital-Logic-Sim-CE",
+      "slug": "digital-logic-sim-ce",
       "description": "Community Edition of SebLague 's Digital Logic Sim",
       "category": "Hardware & Simulation",
       "category_label": "Digital Logic / Hardware",
@@ -249,6 +260,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Academic-Portfolio",
       "name": "Academic-Portfolio",
+      "slug": "academic-portfolio",
       "description": "Descrição pública não informada.",
       "category": "Education",
       "category_label": "Academia",
@@ -269,6 +281,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Ark-Initiative",
       "name": "Ark-Initiative",
+      "slug": "ark-initiative",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -289,6 +302,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/DriveTax-Motors",
       "name": "DriveTax-Motors",
+      "slug": "drivetax-motors",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -309,6 +323,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/FLUX",
       "name": "FLUX",
+      "slug": "flux",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -329,6 +344,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/NEXORA",
       "name": "NEXORA",
+      "slug": "nexora",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -349,6 +365,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Recycle-game",
       "name": "Recycle-game",
+      "slug": "recycle-game",
       "description": "Descrição pública não informada.",
       "category": "Games",
       "category_label": "Games",
@@ -363,12 +380,13 @@
       "private": false,
       "website_declared": "https://recycle-game-opal.vercel.app",
       "website_status": "unreachable",
-      "website_http_status": 0,
+      "website_http_status": 404,
       "website_source": "github_homepage"
     },
     {
       "repository": "Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian",
       "name": "AI-second-brain-with-Claude-and-Obsidian",
+      "slug": "ai-second-brain-with-claude-and-obsidian",
       "description": "Descrição pública não informada.",
       "category": "AI & Intelligence",
       "category_label": "IA & Automação",
@@ -385,6 +403,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Atividade-6",
       "name": "Atividade-6",
+      "slug": "atividade-6",
       "description": "Descrição pública não informada.",
       "category": "Education",
       "category_label": "Academia",
@@ -401,6 +420,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-academia",
       "name": "baluarte-academia",
+      "slug": "baluarte-academia",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -417,6 +437,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-arsenal",
       "name": "baluarte-arsenal",
+      "slug": "baluarte-arsenal",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -433,6 +454,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-audio",
       "name": "baluarte-audio",
+      "slug": "baluarte-audio",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -449,6 +471,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-cibersec",
       "name": "baluarte-cibersec",
+      "slug": "baluarte-cibersec",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -465,6 +488,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-content",
       "name": "baluarte-content",
+      "slug": "baluarte-content",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -481,6 +505,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-core",
       "name": "baluarte-core",
+      "slug": "baluarte-core",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -497,6 +522,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-data",
       "name": "baluarte-data",
+      "slug": "baluarte-data",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -513,6 +539,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-desktop",
       "name": "baluarte-desktop",
+      "slug": "baluarte-desktop",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -529,6 +556,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-docs",
       "name": "baluarte-docs",
+      "slug": "baluarte-docs",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -545,6 +573,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-economia",
       "name": "baluarte-economia",
+      "slug": "baluarte-economia",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -561,6 +590,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-elites",
       "name": "baluarte-elites",
+      "slug": "baluarte-elites",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -577,6 +607,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-geo",
       "name": "baluarte-geo",
+      "slug": "baluarte-geo",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -593,6 +624,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-infra",
       "name": "baluarte-infra",
+      "slug": "baluarte-infra",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -609,6 +641,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-jarvis-core",
       "name": "baluarte-jarvis-core",
+      "slug": "baluarte-jarvis-core",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -625,6 +658,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-jarvis-memory",
       "name": "baluarte-jarvis-memory",
+      "slug": "baluarte-jarvis-memory",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -641,6 +675,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-jarvis-tools",
       "name": "baluarte-jarvis-tools",
+      "slug": "baluarte-jarvis-tools",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -657,6 +692,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-midia",
       "name": "baluarte-midia",
+      "slug": "baluarte-midia",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -673,6 +709,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-profile",
       "name": "baluarte-profile",
+      "slug": "baluarte-profile",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -689,6 +726,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-robotica",
       "name": "baluarte-robotica",
+      "slug": "baluarte-robotica",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -705,6 +743,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-shell",
       "name": "baluarte-shell",
+      "slug": "baluarte-shell",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -721,6 +760,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/baluarte-tools",
       "name": "baluarte-tools",
+      "slug": "baluarte-tools",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -737,6 +777,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design",
       "name": "Catacombs-of-Paris-Ossuary-Escape-game-design",
+      "slug": "catacombs-of-paris-ossuary-escape-game-design",
       "description": "Descrição pública não informada.",
       "category": "Games",
       "category_label": "Games",
@@ -753,6 +794,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci",
       "name": "CHIPS-Digital-Logic-Sim-Lucas-Belucci",
+      "slug": "chips-digital-logic-sim-lucas-belucci",
       "description": "Todos os meus chips e testes te chips",
       "category": "Hardware & Simulation",
       "category_label": "Digital Logic / Hardware",
@@ -769,6 +811,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Cookie-Clicker-Bot",
       "name": "Cookie-Clicker-Bot",
+      "slug": "cookie-clicker-bot",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -785,6 +828,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Cosmos",
       "name": "Cosmos",
+      "slug": "cosmos",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -801,6 +845,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram",
       "name": "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram",
+      "slug": "cronicas-da-baluarte-onde-os-deuses-sangram",
       "description": "Crônicas da Baluarte Onde os Deuses Sangram (minha fan fic e deixando um repositorio para eu não perder ela)",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -817,6 +862,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Customizable-birthday-invitation",
       "name": "Customizable-birthday-invitation",
+      "slug": "customizable-birthday-invitation",
       "description": "Vc pode colocar em todas as informações de local e data através do código ele tem botão para grupo de Whatzapp e formulário é totalmente personalizável (esse é um projeto pessoal)",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -833,6 +879,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Decision-Structures",
       "name": "Decision-Structures",
+      "slug": "decision-structures",
       "description": "codigos que eu fiz de estruturas de Estruturas de Decisão na faculdade",
       "category": "Education",
       "category_label": "Academia",
@@ -849,6 +896,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/FanVerse",
       "name": "FanVerse",
+      "slug": "fanverse",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -865,6 +913,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Flowgorithm-",
       "name": "Flowgorithm-",
+      "slug": "flowgorithm",
       "description": "alguns exercicios que eu fiz no Flowgorithm e testes",
       "category": "Education",
       "category_label": "Academia",
@@ -881,6 +930,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/G-mod-Black-mesa",
       "name": "G-mod-Black-mesa",
+      "slug": "g-mod-black-mesa",
       "description": "Descrição pública não informada.",
       "category": "Games",
       "category_label": "Games",
@@ -897,6 +947,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Java-activities",
       "name": "Java-activities",
+      "slug": "java-activities",
       "description": "Descrição pública não informada.",
       "category": "Education",
       "category_label": "Academia",
@@ -913,6 +964,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java",
       "name": "JAVA-todos-os-codigos-em-java",
+      "slug": "java-todos-os-codigos-em-java",
       "description": "Descrição pública não informada.",
       "category": "Education",
       "category_label": "Academia",
@@ -929,6 +981,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Kizeo-Forms",
       "name": "Kizeo-Forms",
+      "slug": "kizeo-forms",
       "description": "Descrição pública não informada.",
       "category": "AI & Intelligence",
       "category_label": "IA & Automação",
@@ -945,6 +998,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/LLBR-Innovations-",
       "name": "LLBR-Innovations-",
+      "slug": "llbr-innovations",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -961,6 +1015,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Lucas-Belucci-Bellini",
       "name": "Lucas-Belucci-Bellini",
+      "slug": "lucas-belucci-bellini",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -977,6 +1032,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/MOD-PACK-MINE-BACKUP",
       "name": "MOD-PACK-MINE-BACKUP",
+      "slug": "mod-pack-mine-backup",
       "description": "Descrição pública não informada.",
       "category": "Games",
       "category_label": "Games",
@@ -993,6 +1049,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Multi-functional-site-Baluarte",
       "name": "Multi-functional-site-Baluarte",
+      "slug": "multi-functional-site-baluarte",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -1009,6 +1066,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA",
       "name": "OMEGA-ALFA-DELTA",
+      "slug": "omega-alfa-delta",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -1025,6 +1083,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Project-Baluarte-DevFlow",
       "name": "Project-Baluarte-DevFlow",
+      "slug": "project-baluarte-devflow",
       "description": "Automatizador de git e powershel e terminal e git bash a função disso aqui é fazer o processo tedioso do git ficar mais facil",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -1041,6 +1100,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Projeto-Baluarte-Social-Media",
       "name": "Projeto-Baluarte-Social-Media",
+      "slug": "projeto-baluarte-social-media",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -1057,6 +1117,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Projetos-Futuros",
       "name": "Projetos-Futuros",
+      "slug": "projetos-futuros",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -1073,6 +1134,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Python",
       "name": "Python",
+      "slug": "python",
       "description": "todos os exercicios em Python da faculdade",
       "category": "Education",
       "category_label": "Academia",
@@ -1089,6 +1151,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Save-Games-Spartan-Gamer-BR-",
       "name": "Save-Games-Spartan-Gamer-BR-",
+      "slug": "save-games-spartan-gamer-br",
       "description": "Descrição pública não informada.",
       "category": "Games",
       "category_label": "Games",
@@ -1105,6 +1168,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes",
       "name": "Some-Pseudocode-and-exercise-codes",
+      "slug": "some-pseudocode-and-exercise-codes",
       "description": "Sim estou colocando os codigos que fiz durante a falculdade",
       "category": "Education",
       "category_label": "Academia",
@@ -1121,6 +1185,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-",
       "name": "Subnautica-Unhinged-mod-",
+      "slug": "subnautica-unhinged-mod",
       "description": "A community overhaul that makes Subnautica mods work together — then pushes them beyond balance.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -1137,6 +1202,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Teste-",
       "name": "Teste-",
+      "slug": "teste",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -1153,6 +1219,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Teste-aula-git",
       "name": "Teste-aula-git",
+      "slug": "teste-aula-git",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -1169,6 +1236,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Projeto_01_endless_gnome",
       "name": "Projeto_01_endless_gnome",
+      "slug": "projeto-01-endless-gnome",
       "description": "Descrição pública não informada.",
       "category": "Experimental",
       "category_label": "Experimentos",
@@ -1185,6 +1253,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/-BANCO-DE-DADOS-",
       "name": "-BANCO-DE-DADOS-",
+      "slug": "banco-de-dados",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -1201,6 +1270,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/AEGIS",
       "name": "AEGIS",
+      "slug": "aegis",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -1217,6 +1287,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Backup-01-ALFA",
       "name": "Backup-01-ALFA",
+      "slug": "backup-01-alfa",
       "description": "Descrição pública não informada.",
       "category": "Infrastructure",
       "category_label": "Infraestrutura / Backend / Dados",
@@ -1233,6 +1304,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Baluarte",
       "name": "Baluarte",
+      "slug": "baluarte",
       "description": "Bom oque eu posso dizer é um site multi funções e com muitas coisas que são complexas",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -1249,6 +1321,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/BALUARTE-FORGE-CONSTRUCTION",
       "name": "BALUARTE-FORGE-CONSTRUCTION",
+      "slug": "baluarte-forge-construction",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -1265,6 +1338,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Baluarte-Portfolio",
       "name": "Baluarte-Portfolio",
+      "slug": "baluarte-portfolio",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -1281,6 +1355,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Baluarte_MarkIX_Node",
       "name": "Baluarte_MarkIX_Node",
+      "slug": "baluarte-markix-node",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -1297,6 +1372,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/BlockForge",
       "name": "BlockForge",
+      "slug": "blockforge",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -1313,6 +1389,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/DelaOmegaAlfa",
       "name": "DelaOmegaAlfa",
+      "slug": "delaomegaalfa",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -1329,6 +1406,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/fanfic-circulo-de-fogo",
       "name": "fanfic-circulo-de-fogo",
+      "slug": "fanfic-circulo-de-fogo",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -1345,6 +1423,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/file-D-teste-1-site_nova_era-index.htmlfile-D-teste-1-site_nova_era-index.html",
       "name": "file-D-teste-1-site_nova_era-index.htmlfile-D-teste-1-site_nova_era-index.html",
+      "slug": "file-d-teste-1-site-nova-era-index-htmlfile-d-teste-1-site-nova-era-index-html",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -1361,6 +1440,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Games",
       "name": "Games",
+      "slug": "games",
       "description": "Descrição pública não informada.",
       "category": "Games",
       "category_label": "Games",
@@ -1377,6 +1457,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Grupo-Atividade-4",
       "name": "Grupo-Atividade-4",
+      "slug": "grupo-atividade-4",
       "description": "teste de readme",
       "category": "Education",
       "category_label": "Academia",
@@ -1393,6 +1474,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/LOCAL-DE-TRABALHO",
       "name": "LOCAL-DE-TRABALHO",
+      "slug": "local-de-trabalho",
       "description": "dados para trabalho e criação de sites",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -1409,6 +1491,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Projeto-Baluarte-AI-Contador",
       "name": "Projeto-Baluarte-AI-Contador",
+      "slug": "projeto-baluarte-ai-contador",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -1425,6 +1508,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Projeto-Baluarte-New-game",
       "name": "Projeto-Baluarte-New-game",
+      "slug": "projeto-baluarte-new-game",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
@@ -1441,6 +1525,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/PromoRadar",
       "name": "PromoRadar",
+      "slug": "promoradar",
       "description": "Descrição pública não informada.",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -1457,6 +1542,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/taxforge",
       "name": "taxforge",
+      "slug": "taxforge",
       "description": "Um analisador de bolsa de valores com dashboard interativo, indicadores técnicos e bot de recomendação de compra/venda. · Built with Manus",
       "category": "Web & SaaS",
       "category_label": "Web",
@@ -1473,6 +1559,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA",
       "name": "UMBRA-LIMA-ALFA",
+      "slug": "umbra-lima-alfa",
       "description": "digital logic sim chips",
       "category": "Hardware & Simulation",
       "category_label": "Digital Logic / Hardware",
@@ -1489,6 +1576,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Zoas-",
       "name": "Zoas-",
+      "slug": "zoas",
       "description": "Descrição pública não informada.",
       "category": "Software & Tools",
       "category_label": "Software & Ferramentas",
@@ -1505,6 +1593,7 @@
     {
       "repository": "Lucas-Belucci-Bellini/Guia-De-Fallout-4-Completo-",
       "name": "Guia-De-Fallout-4-Completo-",
+      "slug": "guia-de-fallout-4-completo",
       "description": "Crie no tedio",
       "category": "Games",
       "category_label": "Games",

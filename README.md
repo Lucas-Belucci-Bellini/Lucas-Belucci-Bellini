@@ -26,30 +26,6 @@
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
-## `// GITHUB SNAPSHOT` · RELATÓRIO DE CAMPO
-
-> **Perfil em uma leitura:** construo sistemas do nível de portas lógicas a plataformas web, agentes de IA, ferramentas técnicas e jogos. O **Projeto Baluarte** é meu ecossistema-farol, com J.A.R.V.I.S., Git Nexus e uma trilha de projetos públicos documentados.
-
-<!-- PROFILE-DASHBOARD:START -->
-> `GITHUB SNAPSHOT // FIELD REPORT` · inventário autenticado, métricas públicas e governança editorial.
-
-![GitHub snapshot](./assets/profile-snapshot.svg)
-
-<div align="center">
-
-| REPOSITÓRIOS | PÚBLICOS | PRIVADOS VISÍVEIS | DEPLOYMENTS |
-|:---:|:---:|:---:|:---:|
-| **79** | **62** | **17** | **8** |
-
-| ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
-|:---:|:---:|:---:|:---:|
-| **13** | **10** | **17** | **3** |
-
-</div>
-
-> `STATUS: ONLINE` · `PRIVACY: SAFE` · contagens geradas pelo inventário autenticado do GitHub; nenhum conteúdo de arquivo privado é publicado.
-<!-- PROFILE-DASHBOARD:END -->
-
 ## `// FICHA DE AGENTE` · PT-BR
 
 Sou **Lucas Belucci Bellini**, também conhecido como **Spartan Gamer BR**. Estudo **Ciência da Computação na UNIFIL**, em Londrina/PR, e gosto de transformar ideias em sistemas que possam ser vistos, testados e melhorados.
@@ -83,112 +59,100 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 - [Abrir o J.A.R.V.I.S. Núcleo V7 — modelagem 3D funcional](https://projeto-baluarte.vercel.app/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
 - [Ver o código-fonte do núcleo visual](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/blob/main/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
 
-## `// ARSENAL` · TECH STACK & TOOLS
+## `// PRODUTOS EM DESTAQUE` · FEATURED PRODUCTS
 
-### ⚡ Linguagens / Languages
+> `VITRINE` · o que dá para abrir agora. Cada cartão traz a categoria, o que o projeto
+> entrega e o estado do deployment conferido na auditoria — **nenhum selo `SITE VERIFICADO`
+> é escrito à mão**, todos saem da verificação HTTP.
 
-<div align="center">
+<!-- PRODUCT-CARDS:START -->
+<table>
+<tr>
+<td width="50%" valign="top">
 
-**LINGUAGENS**<br>
-[![Languages](https://skillicons.dev/icons?i=python,c,cpp,cs,java,js,ts,html,css,rust,bash,powershell,gdscript&theme=dark)](https://skillicons.dev)
+<sub>`DIGITAL LOGIC / HARDWARE`</sub>
 
-**FRAMEWORKS & WEB**<br>
-[![Frameworks](https://skillicons.dev/icons?i=vite,react,tailwind,electron&theme=dark)](https://skillicons.dev)
+### Veritas
 
-**INFRAESTRUTURA & DEVOPS**<br>
-[![Infrastructure](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,mysql,postgres,docker,vercel&theme=dark)](https://skillicons.dev)
+Calculadora de tabelas verdade e ferramenta local-first para projetar circuitos lógicos, com editor visual, simulação e MCP documentados.
 
-**IA & CONHECIMENTO**<br>
-[![AI and Knowledge](https://skillicons.dev/icons?i=obsidian,claude&theme=dark)](https://skillicons.dev)<br>
-[![MCP](https://img.shields.io/badge/MCP-integra%C3%A7%C3%B5es%20de%20agentes-a68dad?style=flat-square&labelColor=0e0c16)](https://modelcontextprotocol.io/)
+![Site verificado](https://img.shields.io/badge/%E2%97%8F%20SITE%20VERIFICADO-3ddc84?style=flat-square&labelColor=0e0c16)
 
-**HARDWARE & SIMULAÇÃO**<br>
-[![Hardware and Simulation](https://skillicons.dev/icons?i=arduino,unity,blender&theme=dark)](https://skillicons.dev)
+[![Abrir site](https://img.shields.io/badge/%E2%96%B8%20ABRIR%20SITE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://veritas-opal-seven.vercel.app) [![Código](https://img.shields.io/badge/C%C3%93DIGO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Veritas)
 
-</div>
+</td>
+<td width="50%" valign="top">
 
-<!-- LANGUAGE-BADGES:START -->
-> **17 linguagens públicas detectadas** · badges gerados a partir dos repositórios auditados.
-> Os nomes permanecem legíveis mesmo quando a URL precisa escapar caracteres como `#` e `/`; a matriz abaixo informa peso em bytes e participação relativa.
+<sub>`ECOSSISTEMA BALUARTE`</sub>
 
-**PRINCIPAIS POR VOLUME**
+### baluarte-obra-segura
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-17%20repos-F7DF1E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=JavaScript) [![TypeScript](https://img.shields.io/badge/TypeScript-5%20repos-3178C6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=TypeScript) [![HTML](https://img.shields.io/badge/HTML-18%20repos-E34F26?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=HTML) [![CSS](https://img.shields.io/badge/CSS-13%20repos-1572B6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=CSS) [![Java](https://img.shields.io/badge/Java-4%20repos-ED8B00?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Java)
-<br>
-[![Python](https://img.shields.io/badge/Python-6%20repos-3776AB?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Python) [![C#](https://img.shields.io/badge/C%23-2%20repos-239120?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C%23) [![PL/pgSQL](https://img.shields.io/badge/PL%2FpgSQL-2%20repos-336791?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PLpgSQL) [![Rust](https://img.shields.io/badge/Rust-3%20repos-DEA584?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Rust)
+Hub de engenharia para gestão de obras, editor de painéis elétricos, calculadoras e base WikiBuild, conforme a descrição pública.
 
+![Site verificado](https://img.shields.io/badge/%E2%97%8F%20SITE%20VERIFICADO-3ddc84?style=flat-square&labelColor=0e0c16)
 
-**EXTENSÕES DO PORTFÓLIO**
+[![Abrir site](https://img.shields.io/badge/%E2%96%B8%20ABRIR%20SITE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://baluarte-obra-segura.vercel.app) [![Código](https://img.shields.io/badge/C%C3%93DIGO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura)
 
-[![SQF](https://img.shields.io/badge/SQF-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=SQF) [![Shell](https://img.shields.io/badge/Shell-5%20repos-4EAA25?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Shell) [![GDScript](https://img.shields.io/badge/GDScript-1%20repos-478CBF?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=GDScript) [![PowerShell](https://img.shields.io/badge/PowerShell-2%20repos-5391FE?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PowerShell) [![Portugol](https://img.shields.io/badge/Portugol-4%20repos-6A5ACD?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Portugol)
-<br>
-[![Batch](https://img.shields.io/badge/Batch-5%20repos-5C2D91?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Batchfile) [![ShaderLab](https://img.shields.io/badge/ShaderLab-1%20repos-A48EFA?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=ShaderLab) [![Dockerfile](https://img.shields.io/badge/Dockerfile-1%20repos-2496ED?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Dockerfile)
-<!-- LANGUAGE-BADGES:END -->
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
 
-<!-- ARSENAL-STACK:START -->
-> **17 linguagens detectadas** no inventário público. O peso e a quantidade de repositórios são calculados automaticamente pelo GitHub.
+<sub>`ECOSSISTEMA BALUARTE`</sub>
 
-| Linguagem | Repositórios | Participação |
-|:---|---:|---:|
-| **JavaScript** | 17 | `36.36%` |
-| **TypeScript** | 5 | `25.07%` |
-| **HTML** | 18 | `20.75%` |
-| **CSS** | 13 | `4.92%` |
-| **Java** | 4 | `4.07%` |
-| **Python** | 6 | `3.68%` |
-| **C#** | 2 | `3.07%` |
-| **PL/pgSQL** | 2 | `0.62%` |
-| **Rust** | 3 | `0.44%` |
-| **SQF** | 1 | `0.31%` |
-| **Shell** | 5 | `0.24%` |
-| **GDScript** | 1 | `0.21%` |
-| **PowerShell** | 2 | `0.16%` |
-| **Portugol** | 4 | `0.07%` |
-| **Batch** | 5 | `0.03%` |
-| **ShaderLab** | 1 | `0.01%` |
-| **Dockerfile** | 1 | `0.00%` |
+### Project-Vanguard
 
-### 🧩 Frameworks & Web
+GPS topográfico tático e computador de tiro em JavaScript/Vite/MapLibre GL, conforme o README público.
 
-| Ferramenta | Papel | Evidência pública |
-|:---|:---|:---|
-| **Vite** | build e dev server | Projeto-Baluarte, Veritas, DailyPlanner e projetos web documentados |
-| **React** | interface web | projetos públicos e dependências documentadas |
-| **Tailwind CSS** | estilo web | stack visual preservada e projetos web documentados |
-| **Electron** | desktop | Projeto-Baluarte e baluarte-obra-segura |
-| **MapLibre GL** | mapas web | Project-Vanguard |
+![Site verificado](https://img.shields.io/badge/%E2%97%8F%20SITE%20VERIFICADO-3ddc84?style=flat-square&labelColor=0e0c16)
 
-### 🛡 Infraestrutura & DevOps
+[![Abrir site](https://img.shields.io/badge/%E2%96%B8%20ABRIR%20SITE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://project-vanguard-cyan.vercel.app) [![Código](https://img.shields.io/badge/C%C3%93DIGO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard)
 
-| Ferramenta | Papel | Evidência pública |
-|:---|:---|:---|
-| **Git** | versionamento | repositórios públicos e atividades de Git/GitHub |
-| **GitHub** | colaboração e CI | repositório de perfil, Actions e inventário auditado |
-| **VS Code** | editor | stack visual preservada e documentação de desenvolvimento |
-| **Linux** | ambiente | stack visual preservada e scripts Shell/PowerShell |
-| **Node.js** | runtime web | projetos públicos JavaScript/TypeScript e manifests Node |
-| **Docker** | infraestrutura | Dockerfile detectado no inventário público |
-| **Supabase** | backend e dados | Veritas |
+</td>
+<td width="50%" valign="top">
 
-### 🤖 IA & Conhecimento
+<sub>`ECOSSISTEMA BALUARTE`</sub>
 
-| Ferramenta | Papel | Evidência pública |
-|:---|:---|:---|
-| **MCP** | integrações de agentes | Veritas e documentação pública relacionada |
-| **Obsidian + Claude** | conhecimento e IA | AI-second-brain-with-Claude-and-Obsidian |
+### Projeto-Baluarte-World-Game
 
-### ⚙ Hardware & Simulação
+Conceito e protótipo de jogo de sobrevivência, construção e consequência situado no universo Baluarte.
 
-| Ferramenta | Papel | Evidência pública |
-|:---|:---|:---|
-| **Unity** | simulação e jogos | Digital Logic Sim CE |
-| **Arduino** | eletrônica | arsenal visual original e linha de robótica/eletrônica |
-| **Flowgorithm + Portugol** | fundamentos e simulação | repositórios acadêmicos públicos |
+![Site verificado](https://img.shields.io/badge/%E2%97%8F%20SITE%20VERIFICADO-3ddc84?style=flat-square&labelColor=0e0c16)
 
-> A separação é editorial: linguagens vêm dos mapas públicos do GitHub; ferramentas e categorias vêm de READMEs, manifests, configurações e evidências visuais públicas. Nenhum bloco publica conteúdo privado.
-<!-- ARSENAL-STACK:END -->
+[![Abrir site](https://img.shields.io/badge/%E2%96%B8%20ABRIR%20SITE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://projeto-baluarte-world-game.vercel.app) [![Código](https://img.shields.io/badge/C%C3%93DIGO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game)
 
-> **Leitura do Arsenal:** os ícones aceleram o reconhecimento visual; os blocos gerados abaixo registram a evidência pública e a participação relativa das linguagens.
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+<sub>`WEB`</sub>
+
+### CodeVibe-Academy
+
+Descrição pública não informada.
+
+![Site verificado](https://img.shields.io/badge/%E2%97%8F%20SITE%20VERIFICADO-3ddc84?style=flat-square&labelColor=0e0c16)
+
+[![Abrir site](https://img.shields.io/badge/%E2%96%B8%20ABRIR%20SITE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://code-vibe-academy.vercel.app) [![Código](https://img.shields.io/badge/C%C3%93DIGO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy)
+
+</td>
+<td width="50%" valign="top">
+
+<sub>`WEB`</sub>
+
+### Essence-Custom-Furniture
+
+Descrição pública não informada.
+
+![Site verificado](https://img.shields.io/badge/%E2%97%8F%20SITE%20VERIFICADO-3ddc84?style=flat-square&labelColor=0e0c16)
+
+[![Abrir site](https://img.shields.io/badge/%E2%96%B8%20ABRIR%20SITE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://essence-custom-furniture.vercel.app) [![Código](https://img.shields.io/badge/C%C3%93DIGO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture)
+
+</td>
+</tr>
+</table>
+<!-- PRODUCT-CARDS:END -->
 
 ## `// MISSÕES EM DESTAQUE` · FEATURED MISSIONS
 
@@ -229,9 +193,64 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 | 7 | **GAME / WORLD-BUILDING** · Projeto-Baluarte-World-Game | Protótipo de sobrevivência, construção e consequência situado no universo Baluarte. | 🟡 In Development | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
 <!-- CURATED-FEATURED:END -->
 
+## `// SITES VERIFICADOS` · LIVE DEPLOYMENTS
+
+<!-- LIVE-PROJECTS:START -->
+| Projeto | Website | Código | Verificação |
+|:---|:---|:---|:---|
+| **baluarte-obra-segura** | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `HTTP 200` |
+| **CodeVibe-Academy** | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | `HTTP 200` |
+| **Essence-Custom-Furniture** | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `HTTP 200` |
+| **LLBR-Innovations-Constructions** | **[▸ Abrir site](https://llbr-innovations-constructions.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `HTTP 200` |
+| **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | **[▸ Abrir site](https://portifolio-baluarte-lucas-belucci-b.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `HTTP 200` |
+| **Project-Vanguard** | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `HTTP 200` |
+| **Projeto-Baluarte-World-Game** | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `HTTP 200` |
+| **Veritas** | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Veritas) | `HTTP 200` |
+<!-- LIVE-PROJECTS:END -->
+
+> **Critério:** um deployment só aparece aqui quando a URL declarada respondeu durante a auditoria
+> (`200`, ou um redirecionamento cujo destino respondeu). URL que falha some desta tabela e o
+> projeto volta a apresentar só o código nas demais seções — a queda de um site nunca vira link quebrado.
+>
+> A URL sai da `homepage` declarada no GitHub e, quando ela está vazia, de
+> [`docs/README_SITES.json`](docs/README_SITES.json). **Nenhuma URL é deduzida do nome do repositório.**
+> O resultado completo, legível por máquina, fica em [`docs/project-catalog.json`](docs/project-catalog.json).
+
 ## `// MAPA DO ECOSSISTEMA` · PROJECT MAP
 
 > `MISSION BOARD // ARCHITECTURE` · o mapa completo fica recolhido para manter a primeira leitura rápida.
+
+<!-- ECOSYSTEM-MAP:START -->
+```text
+ECOSSISTEMA
+│
+├── Ecossistema Baluarte ....... 32 projetos · 5 com site
+│   └─ baluarte-obra-segura ● · Project-Vanguard ● · Projeto-Baluarte-World-Game ● · LLBR-Innovations-Constructions ● · +28
+│
+├── Web ........................  7 projetos · 2 com site
+│   └─ CodeVibe-Academy ● · Essence-Custom-Furniture ● · Ark-Initiative · DriveTax-Motors · +3
+│
+├── Digital Logic / Hardware ...  4 projetos · 1 com site
+│   └─ Veritas ● · Digital-Logic-Sim-CE · CHIPS-Digital-Logic-Sim-Lucas-Belucci · UMBRA-LIMA-ALFA
+│
+├── Academia ...................  9 projetos · 0 com site
+│   └─ Academic-Portfolio · Atividade-6 · Decision-Structures · Flowgorithm- · +5
+│
+├── Software & Ferramentas .....  9 projetos · 0 com site
+│   └─ Cookie-Clicker-Bot · Cosmos · FanVerse · Lucas-Belucci-Bellini · +5
+│
+├── Games ......................  5 projetos · 0 com site
+│   └─ Recycle-game · Catacombs-of-Paris-Ossuary-Escape-game-design · G-mod-Black-mesa · MOD-PACK-MINE-BACKUP · +1
+│
+├── IA & Automação .............  3 projetos · 0 com site
+│   └─ DailyPlanner · AI-second-brain-with-Claude-and-Obsidian · Kizeo-Forms
+│
+└── Experimentos ...............  1 projeto  · 0 com site
+    └─ Projeto_01_endless_gnome
+```
+
+> `●` marca projeto com site verificado nesta auditoria. Os ramos usam os rótulos editoriais que o README já exibe; o equivalente canônico, para reuso externo, está em [`docs/project-catalog.json`](docs/project-catalog.json). Repositórios privados não entram no mapa público.
+<!-- ECOSYSTEM-MAP:END -->
 
 <!-- PROJECT-MAP:START -->
 <details>
@@ -321,6 +340,168 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 
 </details>
 <!-- PROJECT-MAP:END -->
+
+## `// ARSENAL` · TECH STACK & TOOLS
+
+### ⚡ Linguagens / Languages
+
+<div align="center">
+
+**LINGUAGENS**<br>
+[![Languages](https://skillicons.dev/icons?i=python,c,cpp,cs,java,js,ts,html,css,rust,bash,powershell,gdscript&theme=dark)](https://skillicons.dev)
+
+**FRAMEWORKS & WEB**<br>
+[![Frameworks](https://skillicons.dev/icons?i=vite,react,tailwind,electron&theme=dark)](https://skillicons.dev)
+
+**INFRAESTRUTURA & DEVOPS**<br>
+[![Infrastructure](https://skillicons.dev/icons?i=git,github,vscode,linux,nodejs,mysql,postgres,docker,vercel&theme=dark)](https://skillicons.dev)
+
+**IA & CONHECIMENTO**<br>
+[![AI and Knowledge](https://skillicons.dev/icons?i=obsidian,claude&theme=dark)](https://skillicons.dev)<br>
+[![MCP](https://img.shields.io/badge/MCP-integra%C3%A7%C3%B5es%20de%20agentes-a68dad?style=flat-square&labelColor=0e0c16)](https://modelcontextprotocol.io/)
+
+**HARDWARE & SIMULAÇÃO**<br>
+[![Hardware and Simulation](https://skillicons.dev/icons?i=arduino,unity,blender&theme=dark)](https://skillicons.dev)
+
+</div>
+
+<!-- LANGUAGE-BADGES:START -->
+> **17 linguagens públicas detectadas** · badges gerados a partir dos repositórios auditados.
+> Os nomes permanecem legíveis mesmo quando a URL precisa escapar caracteres como `#` e `/`; a matriz abaixo informa peso em bytes e participação relativa.
+
+**PRINCIPAIS POR VOLUME**
+
+[![JavaScript](https://img.shields.io/badge/JavaScript-17%20repos-F7DF1E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=JavaScript) [![TypeScript](https://img.shields.io/badge/TypeScript-5%20repos-3178C6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=TypeScript) [![HTML](https://img.shields.io/badge/HTML-18%20repos-E34F26?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=HTML) [![CSS](https://img.shields.io/badge/CSS-13%20repos-1572B6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=CSS) [![Java](https://img.shields.io/badge/Java-4%20repos-ED8B00?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Java)
+<br>
+[![Python](https://img.shields.io/badge/Python-6%20repos-3776AB?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Python) [![C#](https://img.shields.io/badge/C%23-2%20repos-239120?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C%23) [![PL/pgSQL](https://img.shields.io/badge/PL%2FpgSQL-2%20repos-336791?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PLpgSQL) [![Rust](https://img.shields.io/badge/Rust-3%20repos-DEA584?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Rust)
+
+**EXTENSÕES DO PORTFÓLIO**
+
+[![SQF](https://img.shields.io/badge/SQF-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=SQF) [![Shell](https://img.shields.io/badge/Shell-5%20repos-4EAA25?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Shell) [![GDScript](https://img.shields.io/badge/GDScript-1%20repos-478CBF?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=GDScript) [![PowerShell](https://img.shields.io/badge/PowerShell-2%20repos-5391FE?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PowerShell) [![Portugol](https://img.shields.io/badge/Portugol-4%20repos-6A5ACD?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Portugol)
+<br>
+[![Batch](https://img.shields.io/badge/Batch-5%20repos-5C2D91?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Batchfile) [![ShaderLab](https://img.shields.io/badge/ShaderLab-1%20repos-A48EFA?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=ShaderLab) [![Dockerfile](https://img.shields.io/badge/Dockerfile-1%20repos-2496ED?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Dockerfile)
+<!-- LANGUAGE-BADGES:END -->
+
+<!-- ARSENAL-STACK:START -->
+> **17 linguagens detectadas** no inventário público. O peso e a quantidade de repositórios são calculados automaticamente pelo GitHub.
+
+| Linguagem | Repositórios | Participação |
+|:---|---:|---:|
+| **JavaScript** | 17 | `36.36%` |
+| **TypeScript** | 5 | `25.07%` |
+| **HTML** | 18 | `20.75%` |
+| **CSS** | 13 | `4.92%` |
+| **Java** | 4 | `4.07%` |
+| **Python** | 6 | `3.68%` |
+| **C#** | 2 | `3.07%` |
+| **PL/pgSQL** | 2 | `0.62%` |
+| **Rust** | 3 | `0.44%` |
+| **SQF** | 1 | `0.31%` |
+| **Shell** | 5 | `0.24%` |
+| **GDScript** | 1 | `0.21%` |
+| **PowerShell** | 2 | `0.16%` |
+| **Portugol** | 4 | `0.07%` |
+| **Batch** | 5 | `0.03%` |
+| **ShaderLab** | 1 | `0.01%` |
+| **Dockerfile** | 1 | `0.00%` |
+
+### 🧩 Frameworks & Web
+
+| Ferramenta | Papel | Evidência pública |
+|:---|:---|:---|
+| **Vite** | build e dev server | Projeto-Baluarte, Veritas, DailyPlanner e projetos web documentados |
+| **React** | interface web | projetos públicos e dependências documentadas |
+| **Tailwind CSS** | estilo web | stack visual preservada e projetos web documentados |
+| **Electron** | desktop | Projeto-Baluarte e baluarte-obra-segura |
+| **MapLibre GL** | mapas web | Project-Vanguard |
+
+### 🛡 Infraestrutura & DevOps
+
+| Ferramenta | Papel | Evidência pública |
+|:---|:---|:---|
+| **Git** | versionamento | repositórios públicos e atividades de Git/GitHub |
+| **GitHub** | colaboração e CI | repositório de perfil, Actions e inventário auditado |
+| **VS Code** | editor | stack visual preservada e documentação de desenvolvimento |
+| **Linux** | ambiente | stack visual preservada e scripts Shell/PowerShell |
+| **Node.js** | runtime web | projetos públicos JavaScript/TypeScript e manifests Node |
+| **Docker** | infraestrutura | Dockerfile detectado no inventário público |
+| **Supabase** | backend e dados | Veritas |
+
+### 🤖 IA & Conhecimento
+
+| Ferramenta | Papel | Evidência pública |
+|:---|:---|:---|
+| **MCP** | integrações de agentes | Veritas e documentação pública relacionada |
+| **Obsidian + Claude** | conhecimento e IA | AI-second-brain-with-Claude-and-Obsidian |
+
+### ⚙ Hardware & Simulação
+
+| Ferramenta | Papel | Evidência pública |
+|:---|:---|:---|
+| **Unity** | simulação e jogos | Digital Logic Sim CE |
+| **Arduino** | eletrônica | arsenal visual original e linha de robótica/eletrônica |
+| **Flowgorithm + Portugol** | fundamentos e simulação | repositórios acadêmicos públicos |
+
+> A separação é editorial: linguagens vêm dos mapas públicos do GitHub; ferramentas e categorias vêm de READMEs, manifests, configurações e evidências visuais públicas. Nenhum bloco publica conteúdo privado.
+<!-- ARSENAL-STACK:END -->
+
+> **Leitura do Arsenal:** os ícones aceleram o reconhecimento visual; os blocos gerados abaixo registram a evidência pública e a participação relativa das linguagens.
+
+## `// MATRIZ DE LINGUAGENS` · LANGUAGE MATRIX
+
+> A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
+
+<!-- LANGUAGE-STATS:START -->
+> **17 linguagens** · **62 repositórios públicos** · **16.59 MB de código detectado** · atualizado em `2026-08-26 00:57 UTC`
+
+| # | Linguagem | Peso | Participação | Repositórios |
+|:--:|:---|---:|---:|---:|
+| 1 | **JavaScript** | `6.03 MB` | `36.36%` | 17 |
+| 2 | **TypeScript** | `4.16 MB` | `25.07%` | 5 |
+| 3 | **HTML** | `3.44 MB` | `20.75%` | 18 |
+| 4 | **CSS** | `836.2 KB` | `4.92%` | 13 |
+| 5 | **Java** | `692.1 KB` | `4.07%` | 4 |
+| 6 | **Python** | `625.0 KB` | `3.68%` | 6 |
+| 7 | **C#** | `520.8 KB` | `3.07%` | 2 |
+| 8 | **PL/pgSQL** | `104.6 KB` | `0.62%` | 2 |
+| 9 | **Rust** | `75.1 KB` | `0.44%` | 3 |
+| 10 | **SQF** | `52.0 KB` | `0.31%` | 1 |
+| 11 | **Shell** | `40.8 KB` | `0.24%` | 5 |
+| 12 | **GDScript** | `36.3 KB` | `0.21%` | 1 |
+| 13 | **PowerShell** | `26.9 KB` | `0.16%` | 2 |
+| 14 | **Portugol** | `11.7 KB` | `0.07%` | 4 |
+| 15 | **Batch** | `5.3 KB` | `0.03%` | 5 |
+| 16 | **ShaderLab** | `1.6 KB` | `0.01%` | 1 |
+| 17 | **Dockerfile** | `460 B` | `0.00%` | 1 |
+
+> A tabela acima considera somente repositórios públicos. Repositórios privados podem contribuir para métricas agregadas futuras, mas seus arquivos, nomes de arquivos e estrutura interna não são publicados.
+
+![Public language distribution](./assets/lang-stats.svg)
+<!-- LANGUAGE-STATS:END -->
+
+## `// GITHUB SNAPSHOT` · RELATÓRIO DE CAMPO
+
+> **Perfil em uma leitura:** construo sistemas do nível de portas lógicas a plataformas web, agentes de IA, ferramentas técnicas e jogos. O **Projeto Baluarte** é meu ecossistema-farol, com J.A.R.V.I.S., Git Nexus e uma trilha de projetos públicos documentados.
+
+<!-- PROFILE-DASHBOARD:START -->
+> `GITHUB SNAPSHOT // FIELD REPORT` · inventário autenticado, métricas públicas e governança editorial.
+
+![GitHub snapshot](./assets/profile-snapshot.svg)
+
+<div align="center">
+
+| REPOSITÓRIOS | PÚBLICOS | PRIVADOS VISÍVEIS | DEPLOYMENTS |
+|:---:|:---:|:---:|:---:|
+| **79** | **62** | **17** | **8** |
+
+| ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
+|:---:|:---:|:---:|:---:|
+| **13** | **10** | **17** | **3** |
+
+</div>
+
+> `STATUS: ONLINE` · `PRIVACY: SAFE` · contagens geradas pelo inventário autenticado do GitHub; nenhum conteúdo de arquivo privado é publicado.
+<!-- PROFILE-DASHBOARD:END -->
 
 ## `// REPOSITÓRIOS PÚBLICOS` · PUBLIC PROJECTS
 
@@ -428,60 +609,6 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 
 > 🔒 Private repository · nenhuma linha desta seção expõe código, secrets, `.env`, tokens, credenciais ou estrutura interna.
 <!-- PRIVATE-PROJECTS:END -->
-
-## `// MATRIZ DE LINGUAGENS` · LANGUAGE MATRIX
-
-> A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
-
-<!-- LANGUAGE-STATS:START -->
-> **17 linguagens** · **62 repositórios públicos** · **16.59 MB de código detectado** · atualizado em `2026-08-26 00:57 UTC`
-
-| # | Linguagem | Peso | Participação | Repositórios |
-|:--:|:---|---:|---:|---:|
-| 1 | **JavaScript** | `6.03 MB` | `36.36%` | 17 |
-| 2 | **TypeScript** | `4.16 MB` | `25.07%` | 5 |
-| 3 | **HTML** | `3.44 MB` | `20.75%` | 18 |
-| 4 | **CSS** | `836.2 KB` | `4.92%` | 13 |
-| 5 | **Java** | `692.1 KB` | `4.07%` | 4 |
-| 6 | **Python** | `625.0 KB` | `3.68%` | 6 |
-| 7 | **C#** | `520.8 KB` | `3.07%` | 2 |
-| 8 | **PL/pgSQL** | `104.6 KB` | `0.62%` | 2 |
-| 9 | **Rust** | `75.1 KB` | `0.44%` | 3 |
-| 10 | **SQF** | `52.0 KB` | `0.31%` | 1 |
-| 11 | **Shell** | `40.8 KB` | `0.24%` | 5 |
-| 12 | **GDScript** | `36.3 KB` | `0.21%` | 1 |
-| 13 | **PowerShell** | `26.9 KB` | `0.16%` | 2 |
-| 14 | **Portugol** | `11.7 KB` | `0.07%` | 4 |
-| 15 | **Batch** | `5.3 KB` | `0.03%` | 5 |
-| 16 | **ShaderLab** | `1.6 KB` | `0.01%` | 1 |
-| 17 | **Dockerfile** | `460 B` | `0.00%` | 1 |
-
-> A tabela acima considera somente repositórios públicos. Repositórios privados podem contribuir para métricas agregadas futuras, mas seus arquivos, nomes de arquivos e estrutura interna não são publicados.
-
-![Public language distribution](./assets/lang-stats.svg)
-<!-- LANGUAGE-STATS:END -->
-## `// SITES VERIFICADOS` · LIVE DEPLOYMENTS
-
-<!-- LIVE-PROJECTS:START -->
-| Projeto | Website | Código | Verificação |
-|:---|:---|:---|:---|
-| **baluarte-obra-segura** | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `HTTP 200` |
-| **CodeVibe-Academy** | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | `HTTP 200` |
-| **Essence-Custom-Furniture** | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `HTTP 200` |
-| **LLBR-Innovations-Constructions** | **[▸ Abrir site](https://llbr-innovations-constructions.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `HTTP 200` |
-| **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | **[▸ Abrir site](https://portifolio-baluarte-lucas-belucci-b.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `HTTP 200` |
-| **Project-Vanguard** | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `HTTP 200` |
-| **Projeto-Baluarte-World-Game** | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `HTTP 200` |
-| **Veritas** | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Veritas) | `HTTP 200` |
-<!-- LIVE-PROJECTS:END -->
-
-> **Critério:** um deployment só aparece aqui quando a URL declarada respondeu durante a auditoria
-> (`200`, ou um redirecionamento cujo destino respondeu). URL que falha some desta tabela e o
-> projeto volta a apresentar só o código nas demais seções — a queda de um site nunca vira link quebrado.
->
-> A URL sai da `homepage` declarada no GitHub e, quando ela está vazia, de
-> [`docs/README_SITES.json`](docs/README_SITES.json). **Nenhuma URL é deduzida do nome do repositório.**
-> O resultado completo, legível por máquina, fica em [`docs/project-catalog.json`](docs/project-catalog.json).
 
 ## `// NÚCLEO J.A.R.V.I.S.` · VISUAL CORE
 

@@ -9,6 +9,7 @@ from pathlib import Path
 
 MARKERS = [
     "PROFILE-DASHBOARD",
+    "PRODUCT-CARDS",
     "FEATURED-PROJECTS",
     "CURATED-FEATURED",
     "ARSENAL-STACK",
@@ -17,6 +18,7 @@ MARKERS = [
     "PUBLIC-PROJECTS",
     "PRIVATE-PROJECTS",
     "LIVE-PROJECTS",
+    "ECOSYSTEM-MAP",
     "PROJECT-MAP",
 ]
 

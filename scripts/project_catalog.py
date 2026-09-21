@@ -22,6 +22,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
+from urllib.parse import quote
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -245,6 +246,16 @@ class Presentation:
     marketing_priority: int
 
     @property
+    def slug(self) -> str:
+        """Identidade estável para rota futura (`/projects/<slug>`).
+
+        Derivada do nome do repositório, que é o identificador que o GitHub
+        já garante único dentro da conta. Renomear o repositório muda o slug
+        — é o preço de não manter um segundo registro de nomes à mão.
+        """
+        return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", self.name.lower())).strip("-")
+
+    @property
     def has_live_website(self) -> bool:
         return bool(self.website) and self.website_status == "verified"
 
@@ -254,6 +265,7 @@ def marketing_priority(
     check: WebsiteCheck | None,
     *,
     featured_order: int | None = None,
+    featured_priority: int | None = None,
     description_ok: bool = False,
 ) -> int:
     """Prioridade **de exibição**, de 0 a 100.
@@ -270,8 +282,11 @@ def marketing_priority(
     elif check:
         score += 5  # tem site declarado, mas fora do ar
 
-    if featured_order is not None:
-        # Curadoria manual vence heurística. Ordem 1 vale mais que ordem 7.
+    if featured_priority is not None:
+        # `priority` explícita no manifesto manda: 0-100 reescalado para o teto de 25.
+        score += round(max(0, min(100, featured_priority)) / 100 * 25)
+    elif featured_order is not None:
+        # Sem `priority`, a ordem serve. Ordem 1 vale mais que ordem 7.
         score += max(0, 25 - (featured_order - 1) * 3)
 
     if description_ok:
@@ -299,6 +314,7 @@ def resolve_presentation(
     status: str,
     description: str,
     featured_order: int | None = None,
+    featured_priority: int | None = None,
 ) -> Presentation:
     """O `ProjectPresentationResolver`: decide como o projeto aparece.
 
@@ -334,7 +350,11 @@ def resolve_presentation(
         private=private,
         featured=featured_order is not None,
         marketing_priority=marketing_priority(
-            repo, check, featured_order=featured_order, description_ok=description_ok
+            repo,
+            check,
+            featured_order=featured_order,
+            featured_priority=featured_priority,
+            description_ok=description_ok,
         ),
     )
 
@@ -353,6 +373,7 @@ def catalog_entry(presentation: Presentation) -> dict[str, Any]:
     entry: dict[str, Any] = {
         "repository": presentation.repository,
         "name": presentation.name,
+        "slug": presentation.slug,
         "description": presentation.description,
         "category": presentation.category,
         "category_label": presentation.category_label,
@@ -423,6 +444,50 @@ def write_catalog_if_changed(catalog: dict[str, Any], destination: Path) -> bool
 
 
 # ------------------------------------------------------------------ render
+
+
+BADGE = "https://img.shields.io/badge/"
+
+# Paleta do perfil (docs/DESIGN-SYSTEM equivalente): fundo, ouro, roxo, verde.
+COLOR_BACKGROUND = "0e0c16"
+COLOR_GOLD = "d4a24e"
+COLOR_MUTED = "4b3a5c"
+COLOR_GREEN = "3ddc84"
+
+
+def _badge(text: str, color: str, *, style: str = "for-the-badge") -> str:
+    """URL de um badge de uma parte só, com o texto escapado.
+
+    O shields trata `-` e `_` como sintaxe; `quote` com `safe=""` resolve os
+    dois junto com os acentos, sem precisar de regra especial por caractere.
+    """
+    return f"{BADGE}{quote(text, safe='')}-{color}?style={style}&labelColor={COLOR_BACKGROUND}"
+
+
+def cta_buttons(presentation: Presentation) -> str:
+    """Os dois botões do card, com o site em ouro e o código em tom apagado.
+
+    A diferença de cor é a regra de hierarquia ficando visível: o visitante
+    vê para onde ir antes de ler o texto do botão.
+    """
+    if presentation.website:
+        abrir = _badge("▸ ABRIR SITE", COLOR_GOLD)
+        codigo = _badge("CÓDIGO", COLOR_MUTED)
+        return (
+            f"[![Abrir site]({abrir})]({presentation.website}) "
+            f"[![Código]({codigo})]({presentation.github})"
+        )
+    codigo = _badge("CÓDIGO", COLOR_GOLD)
+    return f"[![Código]({codigo})]({presentation.github})"
+
+
+def status_pill(presentation: Presentation) -> str:
+    """Selo de estado, sempre derivado da verificação — nunca escrito à mão."""
+    if presentation.has_live_website:
+        return f"![Site verificado]({_badge('● SITE VERIFICADO', COLOR_GREEN, style='flat-square')})"
+    if presentation.website_declared:
+        return f"![Site fora do ar]({_badge('○ SITE FORA DO AR', COLOR_MUTED, style='flat-square')})"
+    return f"![Código aberto]({_badge('○ CÓDIGO ABERTO', COLOR_MUTED, style='flat-square')})"
 
 
 def cta_cell(presentation: Presentation) -> str:

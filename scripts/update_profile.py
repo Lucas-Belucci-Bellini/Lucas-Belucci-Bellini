@@ -29,7 +29,9 @@ from project_catalog import (  # noqa: E402
     Presentation,
     build_catalog,
     check_websites,
+    cta_buttons,
     cta_cell,
+    status_pill,
     discover_project_website,
     normalize_site_overrides,
     resolve_presentation,
@@ -283,6 +285,23 @@ def md_cell(text: str) -> str:
     return text.replace("|", "\\|")
 
 
+def featured_order(curadoria: dict[str, dict[str, Any]], repo: dict[str, Any]) -> int | None:
+    """Posição do repositório na curadoria, ou None quando não está nela."""
+    entry = curadoria.get(str(repo.get("name")))
+    return int(entry.get("order", 999)) if entry else None
+
+
+def featured_priority(curadoria: dict[str, dict[str, Any]], repo: dict[str, Any]) -> int | None:
+    """`priority` explícita do manifesto, quando o operador tiver declarado uma."""
+    entry = curadoria.get(str(repo.get("name")))
+    if not entry or entry.get("priority") is None:
+        return None
+    try:
+        return int(entry["priority"])
+    except (TypeError, ValueError):
+        return None
+
+
 def build_presentations(
     repos: list[dict[str, Any]],
     *,
@@ -296,8 +315,8 @@ def build_presentations(
     Toda decisão de CTA passa por `resolve_presentation`; este laço só reúne
     os insumos (site descoberto, verificação, categoria, status, curadoria).
     """
-    orders = {
-        str(entry.get("name", "")): int(entry.get("order", 999))
+    curadoria = {
+        str(entry.get("name", "")): entry
         for entry in featured_manifest.get("projects", [])
         if entry.get("name")
     }
@@ -314,7 +333,8 @@ def build_presentations(
             category=category,
             status=status_for(repo, category, now),
             description=describe(repo),
-            featured_order=orders.get(str(repo.get("name"))),
+            featured_order=featured_order(curadoria, repo),
+            featured_priority=featured_priority(curadoria, repo),
         )
     return presentations
 
@@ -452,10 +472,13 @@ def render_curated_featured(repos: list[dict[str, Any]], presentations: dict[str
         repo = by_name.get(name)
         if not repo or repo.get("private"):
             continue
+        item = presentations[str(repo["full_name"])]
+        # `website_required` é opt-in: só quem declarou sai da tabela sem site no ar.
+        if entry.get("website_required") and not item.has_live_website:
+            continue
         index += 1
         label = str(entry.get("label", "MISSÃO")).replace("|", "\\|")
         focus = str(entry.get("focus", repo.get("description") or "Descrição pública não informada.")).replace("|", "\\|").replace("\n", " ")
-        item = presentations[str(repo["full_name"])]
         lines.append(f"| {index} | **{label}** · {name} | {focus} | {item.status} | {cta_cell(item)} |")
     if index == 0:
         lines.append("| — | Nenhuma missão pública encontrada | O manifesto será revisado no próximo refresh. | — | — |")
@@ -536,6 +559,132 @@ def render_featured_projects(repos: list[dict[str, Any]], presentations: dict[st
         summary = md_cell(FEATURED_SUMMARIES.get(name) or describe(repo))
         lines.append(f"| **{name}** | {summary} | {item.status} | {cta_cell(item)} |")
     return "\n".join(lines)
+
+
+def card_summary(presentation: Presentation, limit: int = 150) -> str:
+    """Descrição do card: curta, orientada a valor, sem cortar no meio da palavra."""
+    text = FEATURED_SUMMARIES.get(presentation.name) or presentation.description
+    if len(text) <= limit:
+        return text
+    corte = text[:limit].rsplit(" ", 1)[0].rstrip(" .,;:")
+    return f"{corte}…"
+
+
+def render_product_cards(
+    repos: list[dict[str, Any]],
+    presentations: dict[str, Presentation],
+    *,
+    columns: int = 2,
+    maximum: int = 6,
+) -> str:
+    """A vitrine propriamente dita: o projeto como produto, não como repositório.
+
+    Prioriza quem tem site no ar, porque é o que o visitante consegue abrir. Se
+    não houver seis, completa com os de maior prioridade — mostrando o estado
+    real de cada um em vez de deixar buraco na grade.
+    """
+    publicos = [
+        presentations[str(repo["full_name"])]
+        for repo in repos
+        if not repo.get("private")
+    ]
+    ordenados = sorted(publicos, key=lambda p: (-p.marketing_priority, p.name.lower()))
+    com_site = [p for p in ordenados if p.has_live_website]
+    escolhidos = com_site[:maximum]
+    if len(escolhidos) < maximum:
+        restantes = [p for p in ordenados if p not in escolhidos]
+        escolhidos += restantes[: maximum - len(escolhidos)]
+    if not escolhidos:
+        return "> Nenhum projeto público disponível nesta auditoria."
+
+    largura = f"{100 // columns}%"
+    linhas = ["<table>"]
+    for inicio in range(0, len(escolhidos), columns):
+        fatia = escolhidos[inicio : inicio + columns]
+        linhas.append("<tr>")
+        for item in fatia:
+            linhas.extend([
+                f'<td width="{largura}" valign="top">',
+                "",
+                f"<sub>`{item.category_label.upper()}`</sub>",
+                "",
+                f"### {item.name}",
+                "",
+                card_summary(item),
+                "",
+                status_pill(item),
+                "",
+                cta_buttons(item),
+                "",
+                "</td>",
+            ])
+        # Célula vazia mantém a grade retangular quando a última linha é ímpar.
+        for _ in range(columns - len(fatia)):
+            linhas.append(f'<td width="{largura}"></td>')
+        linhas.append("</tr>")
+    linhas.append("</table>")
+    return "\n".join(linhas)
+
+
+def render_ecosystem_map(
+    repos: list[dict[str, Any]],
+    presentations: dict[str, Presentation],
+    *,
+    por_ramo: int = 4,
+) -> str:
+    """Árvore do ecossistema por categoria canônica.
+
+    Cada ramo traz quantos projetos existem e quantos têm site no ar — é a
+    leitura que responde «onde há produto», e não só «onde há código».
+    """
+    ramos: dict[str, list[Presentation]] = {}
+    for repo in repos:
+        if repo.get("private"):
+            continue
+        item = presentations[str(repo["full_name"])]
+        ramos.setdefault(item.category_label, []).append(item)
+
+    # Ordem: quantidade de sites no ar, depois tamanho, depois a taxonomia.
+    ordem = sorted(
+        ramos.items(),
+        key=lambda kv: (
+            -sum(1 for p in kv[1] if p.has_live_website),
+            -len(kv[1]),
+            kv[0].lower(),
+        ),
+    )
+    if not ordem:
+        return "> Nenhum projeto público para mapear nesta auditoria."
+
+    largura = max(len(nome) for nome, _ in ordem)
+    linhas = ["```text", "ECOSSISTEMA", "│"]
+    for indice, (categoria, itens) in enumerate(ordem):
+        ultimo = indice == len(ordem) - 1
+        tronco = "└──" if ultimo else "├──"
+        haste = "   " if ultimo else "│  "
+        vivos = sum(1 for p in itens if p.has_live_website)
+        pontos = "." * max(3, largura - len(categoria) + 3)
+        linhas.append(
+            f"{tronco} {categoria} {pontos} {len(itens):>2} "
+            f"{'projeto ' if len(itens) == 1 else 'projetos'} · {vivos} com site"
+        )
+        destaques = sorted(itens, key=lambda p: (-p.marketing_priority, p.name.lower()))[:por_ramo]
+        nomes = [f"{p.name}{' ●' if p.has_live_website else ''}" for p in destaques]
+        sobra = len(itens) - len(destaques)
+        if sobra > 0:
+            nomes.append(f"+{sobra}")
+        linhas.append(f"{haste} └─ " + " · ".join(nomes))
+        if not ultimo:
+            linhas.append("│")
+    linhas.extend([
+        "```",
+        "",
+        "> `●` marca projeto com site verificado nesta auditoria. Os ramos usam os rótulos "
+        "editoriais que o README já exibe; o equivalente canônico, para reuso externo, está "
+        "em [`docs/project-catalog.json`](docs/project-catalog.json). Repositórios privados "
+        "não entram no mapa público.",
+    ])
+    return "\n".join(linhas)
 
 
 def render_public_projects(repos: list[dict[str, Any]], presentations: dict[str, Presentation], now: datetime) -> str:
@@ -792,6 +941,7 @@ def main() -> int:
     generated_at = max(source_times, default=now).strftime("%Y-%m-%d %H:%M UTC")
     text = README.read_text(encoding="utf-8")
     text = replace_block(text, "PROFILE-DASHBOARD", render_dashboard(repos, rows, verified_sites, now))
+    text = replace_block(text, "PRODUCT-CARDS", render_product_cards(repos, presentations))
     text = replace_block(text, "FEATURED-PROJECTS", render_featured_projects(repos, presentations, now))
     text = replace_block(text, "CURATED-FEATURED", render_curated_featured(repos, presentations, featured_manifest, now))
     text = replace_block(text, "ARSENAL-STACK", render_arsenal_stack(rows, stack_manifest))
@@ -800,6 +950,7 @@ def main() -> int:
     text = replace_block(text, "PUBLIC-PROJECTS", render_public_projects(repos, presentations, now))
     text = replace_block(text, "PRIVATE-PROJECTS", render_private_projects(repos, now))
     text = replace_block(text, "LIVE-PROJECTS", render_live_projects(repos, presentations))
+    text = replace_block(text, "ECOSYSTEM-MAP", render_ecosystem_map(repos, presentations))
     text = replace_block(text, "PROJECT-MAP", render_project_map(repos, languages, presentations, now))
 
     catalog = build_catalog(list(presentations.values()))

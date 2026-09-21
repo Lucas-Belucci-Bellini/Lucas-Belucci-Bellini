@@ -25,7 +25,7 @@ README = ROOT / "README.md"
 CATALOG = ROOT / "docs" / "project-catalog.json"
 
 # Blocos que apresentam projetos ao visitante e, portanto, seguem a regra.
-SHOWCASE_MARKERS = ("FEATURED-PROJECTS", "CURATED-FEATURED", "LIVE-PROJECTS")
+SHOWCASE_MARKERS = ("PRODUCT-CARDS", "FEATURED-PROJECTS", "CURATED-FEATURED", "LIVE-PROJECTS")
 
 
 def block(text: str, marker: str) -> str:
@@ -95,8 +95,8 @@ def main() -> int:
             for line in body.splitlines():
                 if "](http" not in line:
                     continue
-                site_pos = line.find("Abrir site")
-                code_pos = line.find("[código]")
+                site_pos = max(line.find("Abrir site"), line.find("ABRIR%20SITE"))
+                code_pos = max(line.find("[código]"), line.find("C%C3%93DIGO"))
                 if site_pos == -1 or code_pos == -1:
                     continue
                 if code_pos < site_pos:

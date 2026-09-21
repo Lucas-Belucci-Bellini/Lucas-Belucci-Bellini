@@ -25,6 +25,7 @@ reescreve o README, para que os dois nunca discordem.
 |:---|:---|
 | `repository` | `owner/repo` |
 | `name` | nome curto, como aparece no README |
+| `slug` | identidade estável para rota futura (`/projects/<slug>`), derivada do nome |
 | `description` | descrição **pública** do repositório |
 | `category` | taxonomia canônica fechada (ver abaixo) |
 | `category_label` | o rótulo em português exibido no README |
