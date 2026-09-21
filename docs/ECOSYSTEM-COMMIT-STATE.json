@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-20T18:47:06Z",
+  "scanned_at": "2026-09-21T05:01:35Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -400,13 +400,6 @@
       "message": "docs: add future operating system branch",
       "url": "https://github.com/Lucas-Belucci-Bellini/Projetos-Futuros/commit/dd045bc7f6f66123a7851ed4346b07c1314d44b2"
     },
-    "PromoRadar": {
-      "branch": "main",
-      "sha": "c50e0cdfb0b9e2edad354c0e0ae8b4c0cc047b6b",
-      "date": "2026-09-18T17:01:01Z",
-      "message": "feat: add branded not found page",
-      "url": "https://github.com/Lucas-Belucci-Bellini/PromoRadar/commit/c50e0cdfb0b9e2edad354c0e0ae8b4c0cc047b6b"
-    },
     "Python": {
       "branch": "main",
       "sha": "daacf698c9cb09586b63aef70ec0246b0e5c4245",
@@ -472,15 +465,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3292,
+    "tracked_commits": 3293,
     "project_commits": 3082,
-    "monitor_commits": 210,
-    "detected_project_commits_this_scan": 1,
+    "monitor_commits": 211,
+    "detected_project_commits_this_scan": 0,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 68,
-    "repositories_changed": 1,
+    "repositories_scanned": 67,
+    "repositories_changed": 0,
     "errors": 3
   },
   "errors": [
