@@ -5,45 +5,75 @@
   "projects": [
     {
       "name": "Projeto-Baluarte",
+      "repository": "Lucas-Belucci-Bellini/Projeto-Baluarte",
       "label": "FLAGSHIP / ECOSSISTEMA",
       "focus": "Plataforma narrativa e técnica com J.A.R.V.I.S., Git Nexus e módulos web; o site público está em reconstrução da V2.",
-      "order": 1
+      "order": 1,
+      "priority": 100,
+      "reason": "ecossistema-farol: concentra J.A.R.V.I.S., Git Nexus e os módulos web",
+      "website_required": false
     },
     {
       "name": "Veritas",
+      "repository": "Lucas-Belucci-Bellini/Veritas",
       "label": "DIGITAL LOGIC / LOCAL-FIRST",
       "focus": "Calculadora de tabelas verdade e projetista de circuitos com editor visual, simulação e integrações documentadas.",
-      "order": 2
+      "order": 2,
+      "priority": 88,
+      "reason": "produto público com site verificado e uso independente do ecossistema",
+      "website_required": false
     },
     {
       "name": "baluarte-obra-segura",
+      "repository": "Lucas-Belucci-Bellini/baluarte-obra-segura",
       "label": "ENGINEERING / FIELD TOOL",
       "focus": "Hub de engenharia para obras com editor de painéis, calculadoras, simuladores e base WikiBuild.",
-      "order": 3
+      "order": 3,
+      "priority": 76,
+      "reason": "ferramenta de campo com site verificado e escopo de engenharia próprio",
+      "website_required": false
     },
     {
       "name": "Project-Vanguard",
+      "repository": "Lucas-Belucci-Bellini/Project-Vanguard",
       "label": "TACTICAL WEB / MAPS",
       "focus": "GPS topográfico tático e computador de tiro construído com stack web e visualização geográfica.",
-      "order": 4
+      "order": 4,
+      "priority": 64,
+      "reason": "produto civil offline-first com site verificado e motor testado",
+      "website_required": false
     },
     {
       "name": "Digital-Logic-Sim-CE",
+      "repository": "Lucas-Belucci-Bellini/Digital-Logic-Sim-CE",
       "label": "CPU BUILD / SIMULATION",
       "focus": "Simulação de lógica digital que documenta a linha de construção de computadores e chips funcionais.",
-      "order": 5
+      "order": 5,
+      "priority": 52,
+      "reason": "linha de construção de CPU do zero; evidência técnica de hardware",
+      "website_required": false
     },
     {
       "name": "DailyPlanner",
+      "repository": "Lucas-Belucci-Bellini/DailyPlanner",
       "label": "WEB APP / PRODUCTIVITY",
       "focus": "Agenda web em TypeScript para organizar, buscar, filtrar e concluir atividades no navegador.",
-      "order": 6
+      "order": 6,
+      "priority": 40,
+      "reason": "aplicação web completa e autocontida, boa porta de entrada",
+      "website_required": false
     },
     {
       "name": "Projeto-Baluarte-World-Game",
+      "repository": "Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game",
       "label": "GAME / WORLD-BUILDING",
       "focus": "Protótipo de sobrevivência, construção e consequência situado no universo Baluarte.",
-      "order": 7
+      "order": 7,
+      "priority": 28,
+      "reason": "vertente de jogo do universo Baluarte, com protótipo público",
+      "website_required": false
     }
-  ]
+  ],
+  "schema": "lucas-belucci-bellini/readme-featured@2",
+  "note": "Curadoria editorial da vitrine. `order` numera a tabela; `priority` (0-100) pesa na ordenação do catálogo; `website_required: true` retira a entrada quando o site não estiver verificado. As chaves antigas seguem válidas e um arquivo sem as novas continua funcionando."
 }

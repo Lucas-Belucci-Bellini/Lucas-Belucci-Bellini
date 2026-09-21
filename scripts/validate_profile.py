@@ -18,7 +18,7 @@ def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
 
-    for marker in ["PROFILE-DASHBOARD", "FEATURED-PROJECTS", "CURATED-FEATURED", "ARSENAL-STACK", "LANGUAGE-BADGES", "LIVE-PROJECTS", "PROJECT-MAP", "PUBLIC-PROJECTS", "PRIVATE-PROJECTS", "LANGUAGE-STATS"]:
+    for marker in ["PROFILE-DASHBOARD", "WHAT-I-BUILD", "PRODUCT-CARDS", "FEATURED-PROJECTS", "ARSENAL-STACK", "LANGUAGE-BADGES", "WEBSITE-DIRECTORY", "LIVE-PROJECTS", "ECOSYSTEM-MAP", "PROJECT-MAP", "PUBLIC-PROJECTS", "PRIVATE-PROJECTS", "LANGUAGE-STATS"]:
         start = f"<!-- {marker}:START -->"
         end = f"<!-- {marker}:END -->"
         if text.count(start) != 1 or text.count(end) != 1 or text.index(start) > text.index(end):
@@ -27,6 +27,10 @@ def main() -> int:
     try:
         import markdown  # type: ignore
         markdown.markdown(text, extensions=["tables", "fenced_code"])
+    except ImportError:
+        # Dependência opcional, como o PyYAML abaixo. Sem ela o validador segue
+        # rodando as demais conferências em vez de reprovar por falta de pacote.
+        warnings.append("markdown indisponível; o parse do Markdown não foi exercitado")
     except Exception as exc:  # pragma: no cover
         errors.append(f"Markdown parser error: {exc}")
 
@@ -34,7 +38,7 @@ def main() -> int:
         if not (ROOT / image[2:]).exists():
             errors.append(f"missing local image: {image}")
 
-    for manifest_name in ["README_SITES.json", "README_FEATURED.json", "README_STACK.json", "README_EXCLUDED.json"]:
+    for manifest_name in ["README_SITES.json", "README_FEATURED.json", "README_STACK.json", "README_EXCLUDED.json", "project-catalog.json"]:
         try:
             manifest = json.loads((ROOT / "docs" / manifest_name).read_text(encoding="utf-8"))
             if not isinstance(manifest, dict):
@@ -83,6 +87,77 @@ def main() -> int:
     for excluded_name in excluded_names:
         if excluded_name in text:
             errors.append(f"excluded repository appears in README: {excluded_name}")
+
+    # ------------------------------------------------- catálogo de projetos
+    # O catálogo é a fonte editorial reutilizável; se ele e o README discordarem,
+    # o problema aparece aqui e não na cara do visitante.
+    catalog_path = ROOT / "docs" / "project-catalog.json"
+    if not catalog_path.exists():
+        errors.append("docs/project-catalog.json ausente; rode scripts/update_profile.py --write")
+    else:
+        try:
+            catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            catalog = {}
+            errors.append(f"project-catalog.json inválido: {exc}")
+
+        projects = catalog.get("projects", [])
+        if not projects:
+            errors.append("project-catalog.json sem projetos")
+
+        categorias_validas = set(catalog.get("categories", []))
+        vistos_repo: set[str] = set()
+        vistos_slug: set[str] = set()
+        sites_vistos: dict[str, str] = {}
+
+        for project in projects:
+            nome = str(project.get("name", "?"))
+            repositorio = str(project.get("repository", ""))
+            slug = str(project.get("slug", ""))
+
+            # duplicações
+            if repositorio in vistos_repo:
+                errors.append(f"repositório duplicado no catálogo: {repositorio}")
+            vistos_repo.add(repositorio)
+            if slug in vistos_slug:
+                errors.append(f"slug duplicado no catálogo: {slug}")
+            vistos_slug.add(slug)
+
+            # exclusões editoriais
+            if nome in excluded_names or repositorio in excluded_names:
+                errors.append(f"repositório excluído presente no catálogo: {nome}")
+
+            # categoria dentro da taxonomia declarada pelo próprio arquivo
+            categoria = str(project.get("category", ""))
+            if categorias_validas and categoria not in categorias_validas:
+                errors.append(f"{nome}: categoria fora da taxonomia: {categoria!r}")
+
+            website = project.get("website")
+            if website:
+                if not str(website).startswith("https://"):
+                    errors.append(f"{nome}: site publicado sem https: {website}")
+                if project.get("website_status") != "verified":
+                    errors.append(f"{nome}: site publicado sem verificação")
+                if project.get("private"):
+                    errors.append(f"{nome}: repositório privado com site público no catálogo")
+                anterior = sites_vistos.get(str(website))
+                if anterior:
+                    errors.append(f"URL repetida em dois projetos: {website} ({anterior} e {nome})")
+                sites_vistos[str(website)] = nome
+                if str(website) not in text:
+                    errors.append(f"{nome}: site do catálogo não aparece no README")
+
+            # o link do código nunca desaparece da apresentação
+            if not project.get("github_visible", False):
+                errors.append(f"{nome}: github_visible precisa ser true")
+
+        # o README não pode anunciar um site que o catálogo não conhece
+        conhecidos = set(sites_vistos) | {
+            str(p.get("website_declared")) for p in projects if p.get("website_declared")
+        }
+        for anunciado in re.findall(r"\[▸ Abrir site\]\((https?://[^)\s]+)\)", text):
+            if anunciado not in conhecidos:
+                errors.append(f"README anuncia site ausente do catálogo: {anunciado}")
 
     # This is a policy check: the public README may mention privacy terms, but must not
     # publish internal secret names, token values, or private file paths.

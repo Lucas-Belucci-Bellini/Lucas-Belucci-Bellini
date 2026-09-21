@@ -2,6 +2,13 @@
 
 Este documento explica como o README do perfil é mantido. O objetivo é transformar o perfil em um catálogo atualizável sem publicar conteúdo privado.
 
+> A camada de vitrine — descoberta de site, verificação, ordem dos CTAs e o
+> catálogo legível por máquina — está documentada em
+> [`PORTFOLIO-MARKETING.md`](PORTFOLIO-MARKETING.md),
+> [`WEBSITE-DISCOVERY.md`](WEBSITE-DISCOVERY.md),
+> [`WEBSITE-VERIFICATION.md`](WEBSITE-VERIFICATION.md) e
+> [`PROJECT-CATALOG.md`](PROJECT-CATALOG.md).
+
 ## Fonte de verdade
 
 A fonte primária é a API autenticada do GitHub, especialmente o inventário de repositórios com afiliação `owner`, `collaborator` e `organization_member`, o endpoint de linguagens de cada repositório e os metadados públicos de cada projeto. O workflow não usa a lista manual do README como fonte de dados.
