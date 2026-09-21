@@ -25,7 +25,7 @@ README = ROOT / "README.md"
 CATALOG = ROOT / "docs" / "project-catalog.json"
 
 # Blocos que apresentam projetos ao visitante e, portanto, seguem a regra.
-SHOWCASE_MARKERS = ("PRODUCT-CARDS", "FEATURED-PROJECTS", "CURATED-FEATURED", "LIVE-PROJECTS")
+SHOWCASE_MARKERS = ("PRODUCT-CARDS", "FEATURED-PROJECTS", "WEBSITE-DIRECTORY", "LIVE-PROJECTS")
 
 
 def block(text: str, marker: str) -> str:

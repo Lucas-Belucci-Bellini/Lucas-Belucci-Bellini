@@ -26,7 +26,9 @@ from urllib.request import Request, urlopen
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from project_catalog import (  # noqa: E402
+    COLOR_GOLD,
     Presentation,
+    _badge,
     build_catalog,
     check_websites,
     cta_buttons,
@@ -457,43 +459,20 @@ def render_language_stats(repos: list[dict[str, Any]], rows: list[dict[str, Any]
     return "\n".join(lines)
 
 
-def render_curated_featured(repos: list[dict[str, Any]], presentations: dict[str, Presentation], manifest: dict[str, Any], now: datetime) -> str:
-    by_name = {str(repo.get("name")): repo for repo in repos}
-    lines = [
-        f"> {manifest.get('intro', 'Seleção editorial de projetos públicos.')}",
-        "",
-        "| # | Missão | Foco confirmado | Status | Acesso |",
-        "|:--:|:---|:---|:---|:---|",
-    ]
-    entries = sorted(manifest.get("projects", []), key=lambda item: int(item.get("order", 999)))
-    index = 0
-    for entry in entries:
-        name = str(entry.get("name", ""))
-        repo = by_name.get(name)
-        if not repo or repo.get("private"):
-            continue
-        item = presentations[str(repo["full_name"])]
-        # `website_required` é opt-in: só quem declarou sai da tabela sem site no ar.
-        if entry.get("website_required") and not item.has_live_website:
-            continue
-        index += 1
-        label = str(entry.get("label", "MISSÃO")).replace("|", "\\|")
-        focus = str(entry.get("focus", repo.get("description") or "Descrição pública não informada.")).replace("|", "\\|").replace("\n", " ")
-        lines.append(f"| {index} | **{label}** · {name} | {focus} | {item.status} | {cta_cell(item)} |")
-    if index == 0:
-        lines.append("| — | Nenhuma missão pública encontrada | O manifesto será revisado no próximo refresh. | — | — |")
-    return "\n".join(lines)
-
-
 def render_arsenal_stack(rows: list[dict[str, Any]], manifest: dict[str, Any]) -> str:
+    principais = " · ".join(f"`{row['display']}`" for row in rows[:8])
     lines = [
-        f"> **{len(rows)} linguagens detectadas** no inventário público. O peso e a quantidade de repositórios são calculados automaticamente pelo GitHub.",
+        f"> **{len(rows)} linguagens detectadas** no inventário público, por peso em bytes: {principais}.",
+        "",
+        "<details>",
+        "<summary><b>▶ Ver a participação de cada linguagem</b></summary>",
         "",
         "| Linguagem | Repositórios | Participação |",
         "|:---|---:|---:|",
     ]
     for row in rows:
         lines.append(f"| **{row['display']}** | {row['repositories']} | `{row['share']:.2f}%` |")
+    lines.extend(["", "</details>"])
 
     category_order = [
         ("Frameworks & Web", "🧩"),
@@ -546,19 +525,182 @@ def render_arsenal_stack(rows: list[dict[str, Any]], manifest: dict[str, Any]) -
     return "\n".join(lines)
 
 
-def render_featured_projects(repos: list[dict[str, Any]], presentations: dict[str, Presentation], now: datetime) -> str:
+def render_featured_projects(
+    repos: list[dict[str, Any]],
+    presentations: dict[str, Presentation],
+    manifest: dict[str, Any],
+    now: datetime,
+    *,
+    maximum: int = 10,
+) -> str:
+    """A tabela única de destaques: curadoria na frente, heurística completando.
+
+    Antes existiam duas tabelas quase iguais — uma vinda do manifesto e outra do
+    `featured_score`. Repetir os mesmos projetos com rótulos diferentes só custava
+    rolagem, então viraram uma: quem está no manifesto entra primeiro, com o
+    rótulo e o foco que o operador escreveu; o resto do espaço vai para os
+    projetos públicos de maior prioridade que ainda não apareceram.
+    """
     # The hero section is public-facing; keep private repository metadata out of it.
-    selected = sorted((repo for repo in repos if not repo.get("private")), key=lambda repo: featured_score(repo, now), reverse=True)[:10]
+    by_name = {str(repo.get("name")): repo for repo in repos if not repo.get("private")}
     lines = [
-        "| Projeto | O que a evidência pública confirma | Status | Acesso |",
-        "|:---|:---|:---|:---|",
+        f"> {manifest.get('intro', 'Seleção editorial de projetos públicos.')}",
+        "",
+        "| # | Missão | O que a evidência pública confirma | Status | Acesso |",
+        "|:--:|:---|:---|:---|:---|",
     ]
-    for repo in selected:
+
+    escolhidos: list[tuple[str, str, Presentation]] = []
+    vistos: set[str] = set()
+
+    for entry in sorted(manifest.get("projects", []), key=lambda item: int(item.get("order", 999))):
+        name = str(entry.get("name", ""))
+        repo = by_name.get(name)
+        if not repo:
+            continue
+        # Uma vez na curadoria, a decisão vale: se `website_required` tirou a
+        # entrada, ela não pode voltar pela porta dos fundos da heurística.
+        vistos.add(name)
+        item = presentations[str(repo["full_name"])]
+        if entry.get("website_required") and not item.has_live_website:
+            continue
+        rotulo = str(entry.get("label", "MISSÃO")).replace("|", "\\|")
+        foco = str(entry.get("focus") or FEATURED_SUMMARIES.get(name) or describe(repo))
+        escolhidos.append((rotulo, md_cell(" ".join(foco.split())), item))
+
+    restantes = sorted(
+        (repo for repo in by_name.values() if str(repo.get("name")) not in vistos),
+        key=lambda repo: featured_score(repo, now),
+        reverse=True,
+    )
+    for repo in restantes[: max(0, maximum - len(escolhidos))]:
         name = str(repo["name"])
         item = presentations[str(repo["full_name"])]
-        summary = md_cell(FEATURED_SUMMARIES.get(name) or describe(repo))
-        lines.append(f"| **{name}** | {summary} | {item.status} | {cta_cell(item)} |")
+        resumo = FEATURED_SUMMARIES.get(name) or describe(repo)
+        escolhidos.append((classify(repo).upper(), md_cell(resumo), item))
+
+    if not escolhidos:
+        lines.append(
+            "| — | Nenhuma missão pública encontrada | O manifesto será revisado no próximo refresh. | — | — |"
+        )
+        return "\n".join(lines)
+
+    for indice, (rotulo, foco, item) in enumerate(escolhidos, 1):
+        lines.append(
+            f"| {indice} | **{rotulo}** · {item.name} | {foco} | {item.status} | {cta_cell(item)} |"
+        )
     return "\n".join(lines)
+
+
+# Domínios da vitrine: o agrupamento largo que o visitante entende em dois
+# segundos, montado sobre os rótulos editoriais que o README já usa.
+DOMAINS = (
+    ("🌐", "WEB & SAAS", "Plataformas, ferramentas e produtos web publicados.",
+     ("Ecossistema Baluarte", "Web")),
+    ("🤖", "AI & AUTOMATION", "Agentes, automação e sistemas de conhecimento.",
+     ("IA & Automação",)),
+    ("⚙", "HARDWARE & LOGIC", "Lógica digital, CPUs do zero e eletrônica.",
+     ("Digital Logic / Hardware",)),
+    ("🎮", "GAMES & WORLDS", "Jogos, simulações e mundos jogáveis.",
+     ("Games",)),
+    ("🛠", "TOOLS & SYSTEMS", "Utilitários, scripts e infraestrutura de apoio.",
+     ("Software & Ferramentas", "Infraestrutura / Backend / Dados")),
+    ("🎓", "ACADEMIC & LABS", "Trabalhos de curso, estudos dirigidos e experimentos.",
+     ("Academia", "Experimentos")),
+)
+
+# Todo rótulo de `classify()` precisa cair em algum domínio. Uma categoria nova
+# sem domínio sumiria da vitrine em silêncio — o teste cobre exatamente isso.
+DOMAIN_LABELS = frozenset(rotulo for _, _, _, rotulos in DOMAINS for rotulo in rotulos)
+
+
+def render_what_i_build(
+    repos: list[dict[str, Any]],
+    presentations: dict[str, Presentation],
+    *,
+    columns: int = 3,
+) -> str:
+    """Os quatro domínios de trabalho, com números que saem do inventário.
+
+    A amplitude é o argumento desta seção, então ela mostra contagem real em vez
+    de adjetivo. Um domínio sem nenhum projeto público some em vez de aparecer
+    zerado — prometer menos é melhor do que exibir um vazio.
+    """
+    publicos = [
+        presentations[str(repo["full_name"])]
+        for repo in repos
+        if not repo.get("private")
+    ]
+    presentes = []
+    for icone, titulo, resumo, rotulos in DOMAINS:
+        itens = [p for p in publicos if p.category_label in rotulos]
+        if itens:
+            presentes.append((icone, titulo, resumo, itens))
+    if not presentes:
+        return "> Nenhum projeto público para agrupar nesta auditoria."
+
+    largura = f"{100 // columns}%"
+    linhas = ["<table>"]
+    for inicio in range(0, len(presentes), columns):
+        fatia = presentes[inicio : inicio + columns]
+        linhas.append("<tr>")
+        for icone, titulo, resumo, itens in fatia:
+            vivos = sum(1 for p in itens if p.has_live_website)
+            destaque = max(itens, key=lambda p: (p.marketing_priority, p.name.lower()))
+            plural = "projeto" if len(itens) == 1 else "projetos"
+            linhas.extend([
+                f'<td width="{largura}" valign="top" align="center">',
+                "",
+                f"### {icone}",
+                "",
+                f"**{titulo}**",
+                "",
+                f"<sub>{resumo}</sub>",
+                "",
+                f"`{len(itens)} {plural}` · `{vivos} com site`",
+                "",
+                f"<sub>ex.: {destaque.name}</sub>",
+                "",
+                "</td>",
+            ])
+        for _ in range(columns - len(fatia)):
+            linhas.append(f'<td width="{largura}"></td>')
+        linhas.append("</tr>")
+    linhas.append("</table>")
+    return "\n".join(linhas)
+
+
+def render_website_directory(
+    repos: list[dict[str, Any]],
+    presentations: dict[str, Presentation],
+) -> str:
+    """Diretório enxuto: todos os sites no ar, um clique cada.
+
+    É a seção que responde «o que dá para abrir agora» sem tabela e sem rolagem.
+    Só entra o que passou pela verificação.
+    """
+    vivos = sorted(
+        (
+            presentations[str(repo["full_name"])]
+            for repo in repos
+            if presentations[str(repo["full_name"])].has_live_website
+        ),
+        key=lambda p: p.name.lower(),
+    )
+    if not vivos:
+        return "> Nenhum site respondeu na última auditoria."
+    linhas = [
+        f"> **{len(vivos)} sites no ar** · cada link foi conferido por requisição HTTP nesta auditoria.",
+        "",
+        "<div align=\"center\">",
+        "",
+    ]
+    linhas.extend(
+        f"[![{item.name}]({_badge(f'🌐 {item.name.upper()}', COLOR_GOLD, style='flat-square')})]({item.website})"
+        for item in vivos
+    )
+    linhas.extend(["", "</div>"])
+    return "\n".join(linhas)
 
 
 def card_summary(presentation: Presentation, limit: int = 150) -> str:
@@ -721,8 +863,8 @@ def render_private_projects(repos: list[dict[str, Any]], now: datetime) -> str:
 def render_live_projects(repos: list[dict[str, Any]], presentations: dict[str, Presentation]) -> str:
     # A ordem das colunas é a regra da vitrine: o site vem antes do código.
     lines = [
-        "| Projeto | Website | Código | Verificação |",
-        "|:---|:---|:---|:---|",
+        "| Projeto | Website | Verificação | Código |",
+        "|:---|:---|:---:|:---|",
     ]
     live = [
         presentations[str(repo["full_name"])]
@@ -732,7 +874,7 @@ def render_live_projects(repos: list[dict[str, Any]], presentations: dict[str, P
     for item in sorted(live, key=lambda p: p.name.lower()):
         lines.append(
             f"| **{item.name}** | **[▸ Abrir site]({item.website})** "
-            f"| [código]({item.github}) | `HTTP {item.website_http_status}` |"
+            f"| `HTTP {item.website_http_status}` | [código]({item.github}) |"
         )
     if not live:
         lines.append("| — | Nenhum site verificado nesta auditoria | — | — |")
@@ -941,9 +1083,10 @@ def main() -> int:
     generated_at = max(source_times, default=now).strftime("%Y-%m-%d %H:%M UTC")
     text = README.read_text(encoding="utf-8")
     text = replace_block(text, "PROFILE-DASHBOARD", render_dashboard(repos, rows, verified_sites, now))
+    text = replace_block(text, "WHAT-I-BUILD", render_what_i_build(repos, presentations))
     text = replace_block(text, "PRODUCT-CARDS", render_product_cards(repos, presentations))
-    text = replace_block(text, "FEATURED-PROJECTS", render_featured_projects(repos, presentations, now))
-    text = replace_block(text, "CURATED-FEATURED", render_curated_featured(repos, presentations, featured_manifest, now))
+    text = replace_block(text, "FEATURED-PROJECTS", render_featured_projects(repos, presentations, featured_manifest, now))
+    text = replace_block(text, "WEBSITE-DIRECTORY", render_website_directory(repos, presentations))
     text = replace_block(text, "ARSENAL-STACK", render_arsenal_stack(rows, stack_manifest))
     text = replace_block(text, "LANGUAGE-BADGES", render_language_badges(rows))
     text = replace_block(text, "LANGUAGE-STATS", render_language_stats(repos, rows, generated_at))

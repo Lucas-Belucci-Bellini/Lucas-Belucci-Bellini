@@ -141,7 +141,7 @@ class CuratedManifestTests(unittest.TestCase):
         sites = {"dono/Caido": ("https://y.example", "github_homepage"),
                  "dono/Firme": (None, "none")}
         pres = montar(repos, sites, {"https://y.example": FORA}, self.MANIFEST)
-        tabela = UP.render_curated_featured(
+        tabela = UP.render_featured_projects(
             repos, pres, self.MANIFEST, datetime(2026, 9, 21, tzinfo=timezone.utc)
         )
         self.assertNotIn("Caido", tabela)
@@ -162,6 +162,97 @@ class CuratedManifestTests(unittest.TestCase):
             self.assertIn("priority", entry)
             self.assertIsInstance(entry["website_required"], bool)
             self.assertTrue(entry["reason"].strip())
+
+
+class FeaturedTableTests(unittest.TestCase):
+    MANIFEST = {
+        "intro": "intro editorial",
+        "projects": [{"name": "Curado", "label": "ROTULO", "focus": "foco editorial", "order": 1}],
+    }
+
+    def setUp(self) -> None:
+        self.repos = [repo("Curado"), repo("Heuristico"), repo("Privado", private=True)]
+        self.sites = {f"dono/{n}": (None, "none") for n in ("Curado", "Heuristico")}
+        self.pres = montar(self.repos, self.sites, {}, self.MANIFEST)
+
+    def test_curadoria_vem_antes_da_heuristica(self) -> None:
+        tabela = UP.render_featured_projects(
+            self.repos, self.pres, self.MANIFEST, datetime(2026, 9, 21, tzinfo=timezone.utc)
+        )
+        self.assertLess(tabela.index("Curado"), tabela.index("Heuristico"))
+        self.assertIn("**ROTULO** · Curado", tabela)
+        self.assertIn("foco editorial", tabela)
+
+    def test_nenhum_projeto_aparece_duas_vezes(self) -> None:
+        tabela = UP.render_featured_projects(
+            self.repos, self.pres, self.MANIFEST, datetime(2026, 9, 21, tzinfo=timezone.utc)
+        )
+        self.assertEqual(1, tabela.count("· Curado |"))
+
+    def test_privado_fica_fora_da_tabela(self) -> None:
+        tabela = UP.render_featured_projects(
+            self.repos, self.pres, self.MANIFEST, datetime(2026, 9, 21, tzinfo=timezone.utc)
+        )
+        self.assertNotIn("Privado", tabela)
+
+    def test_limite_e_respeitado(self) -> None:
+        muitos = [repo(f"P{i}") for i in range(20)]
+        pres = montar(muitos, {f"dono/P{i}": (None, "none") for i in range(20)}, {})
+        tabela = UP.render_featured_projects(
+            muitos, pres, {"projects": []}, datetime(2026, 9, 21, tzinfo=timezone.utc), maximum=4
+        )
+        self.assertEqual(4, sum(1 for l in tabela.splitlines() if l.startswith("| ") and "· P" in l))
+
+
+class WebsiteDirectoryTests(unittest.TestCase):
+    def test_diretorio_lista_so_o_que_esta_no_ar(self) -> None:
+        repos = [repo("NoAr"), repo("Caido", homepage="https://y.example"), repo("Sem")]
+        sites = {"dono/NoAr": ("https://x.example", "manifest"),
+                 "dono/Caido": ("https://y.example", "github_homepage"),
+                 "dono/Sem": (None, "none")}
+        pres = montar(repos, sites, {"https://x.example": NO_AR, "https://y.example": FORA})
+        d = UP.render_website_directory(repos, pres)
+        self.assertIn("](https://x.example)", d)
+        self.assertNotIn("y.example", d)
+        self.assertNotIn("Sem", d)
+        self.assertIn("**1 sites no ar**", d)
+
+    def test_sem_site_nenhum_o_diretorio_diz_isso(self) -> None:
+        repos = [repo("Sem")]
+        pres = montar(repos, {"dono/Sem": (None, "none")}, {})
+        self.assertIn("Nenhum site respondeu", UP.render_website_directory(repos, pres))
+
+
+class WhatIBuildTests(unittest.TestCase):
+    def test_dominios_mostram_contagem_real(self) -> None:
+        repos = [repo("Jogo", description="Um game de teste"), repo("NoAr")]
+        sites = {"dono/Jogo": (None, "none"), "dono/NoAr": ("https://x.example", "manifest")}
+        pres = montar(repos, sites, {"https://x.example": NO_AR})
+        html = UP.render_what_i_build(repos, pres)
+        self.assertRegex(html, r"`\d+ projetos?` · `\d+ com site`")
+        self.assertEqual(html.count("<tr>"), html.count("</tr>"))
+
+    def test_dominio_vazio_nao_aparece_zerado(self) -> None:
+        repos = [repo("SoWeb", homepage="https://x.example")]
+        pres = montar(repos, {"dono/SoWeb": ("https://x.example", "github_homepage")},
+                      {"https://x.example": NO_AR})
+        html = UP.render_what_i_build(repos, pres)
+        self.assertNotIn("`0 projetos`", html)
+
+    def test_sem_projeto_publico_nao_explode(self) -> None:
+        self.assertIn("Nenhum projeto", UP.render_what_i_build([], {}))
+
+    def test_todo_rotulo_editorial_cai_em_algum_dominio(self) -> None:
+        # Uma categoria de classify() sem domínio sumiria da vitrine em silêncio.
+        rotulos = set(PC.CATEGORY_ALIASES)
+        self.assertEqual(set(), rotulos - UP.DOMAIN_LABELS, "rótulo sem domínio")
+
+    def test_grade_de_dominios_fecha_as_linhas(self) -> None:
+        repos = [repo("Jogo"), repo("Outro")]
+        pres = montar(repos, {f"dono/{n}": (None, "none") for n in ("Jogo", "Outro")}, {})
+        html = UP.render_what_i_build(repos, pres, columns=3)
+        self.assertEqual(html.count("<tr>"), html.count("</tr>"))
+        self.assertEqual(3, html.count('<td width="33%"'))
 
 
 class SlugTests(unittest.TestCase):

@@ -9,6 +9,17 @@
 [![Location](https://img.shields.io/badge/%F0%9F%93%8D%20Londrina-Paran%C3%A1%20%C2%B7%20Brasil-e8c07a?style=for-the-badge&labelColor=0e0c16&color=e8c07a)](#)
 [![Profile Style Kit](https://img.shields.io/badge/%E2%97%88%20STYLE%20KIT-COPY%20THE%20DESIGN-3ddc84?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/tree/template/readme-style-kit)
 
+**Estudante de Ciência da Computação e desenvolvedor de sistemas, aplicações web,
+IA, jogos, automação e hardware.**
+
+Transformo ideias em produtos, experiências e sistemas que podem ser executados,
+testados e evoluídos.
+
+[![Explorar projetos](https://img.shields.io/badge/%E2%96%B8%20EXPLORAR%20PROJETOS-d4a24e?style=for-the-badge&labelColor=0e0c16)](#produtos)
+[![Sites no ar](https://img.shields.io/badge/%F0%9F%8C%90%20SITES%20NO%20AR-3ddc84?style=for-the-badge&labelColor=0e0c16)](#sites)
+[![Ecossistema](https://img.shields.io/badge/%E2%AC%A1%20ECOSSISTEMA-e8c07a?style=for-the-badge&labelColor=0e0c16)](#ecossistema)
+[![Contato](https://img.shields.io/badge/%E2%9C%89%20CONTATO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](#contato)
+
 </div>
 
 ---
@@ -26,6 +37,17 @@
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
+## `// COMECE POR AQUI` · START HERE
+
+| | |
+|:---|:---|
+| **[▸ Produtos em destaque](#produtos)** | o que dá para abrir agora, com botão de entrada |
+| **[🌐 Sites no ar](#sites)** | o diretório de deployments conferidos por requisição HTTP |
+| **[⬡ Projeto Baluarte](#baluarte)** | o ecossistema-farol e seus módulos |
+| **[◈ Ecossistema completo](#ecossistema)** | como os projetos se conectam |
+| **[⚙ Tecnologias](#arsenal)** | linguagens, frameworks e ferramentas de verdade em uso |
+| **[▤ Engenharia](#engenharia)** | atividade, métricas e o inventário completo |
+
 ## `// FICHA DE AGENTE` · PT-BR
 
 Sou **Lucas Belucci Bellini**, também conhecido como **Spartan Gamer BR**. Estudo **Ciência da Computação na UNIFIL**, em Londrina/PR, e gosto de transformar ideias em sistemas que possam ser vistos, testados e melhorados.
@@ -38,26 +60,96 @@ I am **Lucas Belucci Bellini**, also known as **Spartan Gamer BR**. I study **Co
 
 My work ranges from **8-to-64-bit CPUs built from scratch** to **web applications, AI agents, simulations, automation, hardware projects and games**. I enjoy exploring new technologies, documenting the process and finishing what I start.
 
-## `// MISSÃO PRINCIPAL` · PROJETO BALUARTE
+## `// O QUE EU CONSTRUO` · WHAT I BUILD
 
-<div align="center">
+<!-- WHAT-I-BUILD:START -->
+<table>
+<tr>
+<td width="33%" valign="top" align="center">
 
-[![Projeto Baluarte](https://img.shields.io/badge/%E2%AC%A1%20PROJETO%20BALUARTE-ECOSSISTEMA%20EM%20CAMPO-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)
-[![J.A.R.V.I.S.](https://img.shields.io/badge/%F0%9F%A4%96%20J.A.R.V.I.S.-N%C3%9ACLEO%20V7-3ddc84?style=for-the-badge&labelColor=0e0c16)](https://projeto-baluarte.vercel.app)
-[![Git Nexus](https://img.shields.io/badge/%E2%97%88%20GIT%20NEXUS-NAVEGA%C3%87%C3%83O%20E%20A%C3%87%C3%83O-e8c07a?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)
+### 🌐
 
-</div>
+**WEB & SAAS**
 
-O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital e experiências interativas. O núcleo visual do J.A.R.V.I.S. pode ser explorado aqui:
+<sub>Plataformas, ferramentas e produtos web publicados.</sub>
 
-<div align="center">
+`39 projetos` · `7 com site`
 
-![Project Portfolio](./assets/profile-projects.svg)
+<sub>ex.: baluarte-obra-segura</sub>
 
-</div>
+</td>
+<td width="33%" valign="top" align="center">
 
-- [Abrir o J.A.R.V.I.S. Núcleo V7 — modelagem 3D funcional](https://projeto-baluarte.vercel.app/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
-- [Ver o código-fonte do núcleo visual](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/blob/main/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
+### 🤖
+
+**AI & AUTOMATION**
+
+<sub>Agentes, automação e sistemas de conhecimento.</sub>
+
+`3 projetos` · `0 com site`
+
+<sub>ex.: DailyPlanner</sub>
+
+</td>
+<td width="33%" valign="top" align="center">
+
+### ⚙
+
+**HARDWARE & LOGIC**
+
+<sub>Lógica digital, CPUs do zero e eletrônica.</sub>
+
+`4 projetos` · `1 com site`
+
+<sub>ex.: Veritas</sub>
+
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top" align="center">
+
+### 🎮
+
+**GAMES & WORLDS**
+
+<sub>Jogos, simulações e mundos jogáveis.</sub>
+
+`5 projetos` · `0 com site`
+
+<sub>ex.: Recycle-game</sub>
+
+</td>
+<td width="33%" valign="top" align="center">
+
+### 🛠
+
+**TOOLS & SYSTEMS**
+
+<sub>Utilitários, scripts e infraestrutura de apoio.</sub>
+
+`9 projetos` · `0 com site`
+
+<sub>ex.: Teste-aula-git</sub>
+
+</td>
+<td width="33%" valign="top" align="center">
+
+### 🎓
+
+**ACADEMIC & LABS**
+
+<sub>Trabalhos de curso, estudos dirigidos e experimentos.</sub>
+
+`10 projetos` · `0 com site`
+
+<sub>ex.: Academic-Portfolio</sub>
+
+</td>
+</tr>
+</table>
+<!-- WHAT-I-BUILD:END -->
+
+<a id="produtos"></a>
 
 ## `// PRODUTOS EM DESTAQUE` · FEATURED PRODUCTS
 
@@ -161,28 +253,9 @@ Descrição pública não informada.
 > Projeto sem site publica só o código — nenhuma linha anuncia um endereço que não respondeu.
 
 <!-- FEATURED-PROJECTS:START -->
-| Projeto | O que a evidência pública confirma | Status | Acesso |
-|:---|:---|:---|:---|
-| **Projeto-Baluarte** | Plataforma narrativa, tática e técnica; o site público expõe o núcleo online, J.A.R.V.I.S., Git Nexus e módulos de conteúdo. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
-| **Veritas** | Calculadora de tabelas verdade e ferramenta local-first para projetar circuitos lógicos, com editor visual, simulação e MCP documentados. | 🟢 Active | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
-| **baluarte-obra-segura** | Hub de engenharia para gestão de obras, editor de painéis elétricos, calculadoras e base WikiBuild, conforme a descrição pública. | 🟢 Active | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) |
-| **Ark-Initiative** | Conceito ARCA de infraestrutura de resiliência climática e ambiental, com visão pública de dados, simulação e resposta. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
-| **Project-Vanguard** | GPS topográfico tático e computador de tiro em JavaScript/Vite/MapLibre GL, conforme o README público. | 🟢 Active | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) |
-| **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Coleção pública de chips e testes de lógica digital. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
-| **DailyPlanner** | Agenda diária em TypeScript/Vite para cadastrar, editar, concluir, excluir, buscar e filtrar atividades no navegador. | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
-| **Projeto-Baluarte-World-Game** | Conceito e protótipo de jogo de sobrevivência, construção e consequência situado no universo Baluarte. | 🟡 In Development | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
-| **Recycle-game** | Jogo educativo de reciclagem e automação com protótipo jogável documentado. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Recycle-game) |
-| **Digital-Logic-Sim-CE** | Fork público da Community Edition de Digital Logic Sim, com recursos de simulação de lógica digital documentados no README. | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
-<!-- FEATURED-PROJECTS:END -->
-
-## `// MISSÕES ESCOLHIDAS` · CURATED MISSIONS
-
 > Uma seleção editorial das frentes que melhor representam a construção do ecossistema: produto, lógica digital, engenharia, IA, web e jogos.
 
-<!-- CURATED-FEATURED:START -->
-> Uma seleção editorial das frentes que melhor representam a construção do ecossistema: produto, lógica digital, engenharia, IA, web e jogos.
-
-| # | Missão | Foco confirmado | Status | Acesso |
+| # | Missão | O que a evidência pública confirma | Status | Acesso |
 |:--:|:---|:---|:---|:---|
 | 1 | **FLAGSHIP / ECOSSISTEMA** · Projeto-Baluarte | Plataforma narrativa e técnica com J.A.R.V.I.S., Git Nexus e módulos web; o site público está em reconstrução da V2. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
 | 2 | **DIGITAL LOGIC / LOCAL-FIRST** · Veritas | Calculadora de tabelas verdade e projetista de circuitos com editor visual, simulação e integrações documentadas. | 🟢 Active | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
@@ -191,21 +264,43 @@ Descrição pública não informada.
 | 5 | **CPU BUILD / SIMULATION** · Digital-Logic-Sim-CE | Simulação de lógica digital que documenta a linha de construção de computadores e chips funcionais. | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
 | 6 | **WEB APP / PRODUCTIVITY** · DailyPlanner | Agenda web em TypeScript para organizar, buscar, filtrar e concluir atividades no navegador. | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
 | 7 | **GAME / WORLD-BUILDING** · Projeto-Baluarte-World-Game | Protótipo de sobrevivência, construção e consequência situado no universo Baluarte. | 🟡 In Development | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
-<!-- CURATED-FEATURED:END -->
+| 8 | **WEB** · Ark-Initiative | Conceito ARCA de infraestrutura de resiliência climática e ambiental, com visão pública de dados, simulação e resposta. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
+| 9 | **DIGITAL LOGIC / HARDWARE** · CHIPS-Digital-Logic-Sim-Lucas-Belucci | Coleção pública de chips e testes de lógica digital. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
+| 10 | **GAMES** · Recycle-game | Jogo educativo de reciclagem e automação com protótipo jogável documentado. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Recycle-game) |
+<!-- FEATURED-PROJECTS:END -->
 
-## `// SITES VERIFICADOS` · LIVE DEPLOYMENTS
+<a id="sites"></a>
+
+## `// SITES NO AR` · LIVE WEBSITES
+
+<!-- WEBSITE-DIRECTORY:START -->
+> **8 sites no ar** · cada link foi conferido por requisição HTTP nesta auditoria.
+
+<div align="center">
+
+[![baluarte-obra-segura](https://img.shields.io/badge/%F0%9F%8C%90%20BALUARTE-OBRA-SEGURA-d4a24e?style=flat-square&labelColor=0e0c16)](https://baluarte-obra-segura.vercel.app)
+[![CodeVibe-Academy](https://img.shields.io/badge/%F0%9F%8C%90%20CODEVIBE-ACADEMY-d4a24e?style=flat-square&labelColor=0e0c16)](https://code-vibe-academy.vercel.app)
+[![Essence-Custom-Furniture](https://img.shields.io/badge/%F0%9F%8C%90%20ESSENCE-CUSTOM-FURNITURE-d4a24e?style=flat-square&labelColor=0e0c16)](https://essence-custom-furniture.vercel.app)
+[![LLBR-Innovations-Constructions](https://img.shields.io/badge/%F0%9F%8C%90%20LLBR-INNOVATIONS-CONSTRUCTIONS-d4a24e?style=flat-square&labelColor=0e0c16)](https://llbr-innovations-constructions.vercel.app)
+[![Portifolio-Baluarte-Lucas-Belucci-Bellini-](https://img.shields.io/badge/%F0%9F%8C%90%20PORTIFOLIO-BALUARTE-LUCAS-BELUCCI-BELLINI--d4a24e?style=flat-square&labelColor=0e0c16)](https://portifolio-baluarte-lucas-belucci-b.vercel.app)
+[![Project-Vanguard](https://img.shields.io/badge/%F0%9F%8C%90%20PROJECT-VANGUARD-d4a24e?style=flat-square&labelColor=0e0c16)](https://project-vanguard-cyan.vercel.app)
+[![Projeto-Baluarte-World-Game](https://img.shields.io/badge/%F0%9F%8C%90%20PROJETO-BALUARTE-WORLD-GAME-d4a24e?style=flat-square&labelColor=0e0c16)](https://projeto-baluarte-world-game.vercel.app)
+[![Veritas](https://img.shields.io/badge/%F0%9F%8C%90%20VERITAS-d4a24e?style=flat-square&labelColor=0e0c16)](https://veritas-opal-seven.vercel.app)
+
+</div>
+<!-- WEBSITE-DIRECTORY:END -->
 
 <!-- LIVE-PROJECTS:START -->
-| Projeto | Website | Código | Verificação |
-|:---|:---|:---|:---|
-| **baluarte-obra-segura** | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `HTTP 200` |
-| **CodeVibe-Academy** | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | `HTTP 200` |
-| **Essence-Custom-Furniture** | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `HTTP 200` |
-| **LLBR-Innovations-Constructions** | **[▸ Abrir site](https://llbr-innovations-constructions.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `HTTP 200` |
-| **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | **[▸ Abrir site](https://portifolio-baluarte-lucas-belucci-b.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `HTTP 200` |
-| **Project-Vanguard** | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `HTTP 200` |
-| **Projeto-Baluarte-World-Game** | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `HTTP 200` |
-| **Veritas** | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Veritas) | `HTTP 200` |
+| Projeto | Website | Verificação | Código |
+|:---|:---|:---:|:---|
+| **baluarte-obra-segura** | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) |
+| **CodeVibe-Academy** | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) |
+| **Essence-Custom-Furniture** | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) |
+| **LLBR-Innovations-Constructions** | **[▸ Abrir site](https://llbr-innovations-constructions.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) |
+| **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | **[▸ Abrir site](https://portifolio-baluarte-lucas-belucci-b.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) |
+| **Project-Vanguard** | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) |
+| **Projeto-Baluarte-World-Game** | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
+| **Veritas** | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
 <!-- LIVE-PROJECTS:END -->
 
 > **Critério:** um deployment só aparece aqui quando a URL declarada respondeu durante a auditoria
@@ -216,7 +311,74 @@ Descrição pública não informada.
 > [`docs/README_SITES.json`](docs/README_SITES.json). **Nenhuma URL é deduzida do nome do repositório.**
 > O resultado completo, legível por máquina, fica em [`docs/project-catalog.json`](docs/project-catalog.json).
 
-## `// MAPA DO ECOSSISTEMA` · PROJECT MAP
+<a id="baluarte"></a>
+
+## `// ECOSSISTEMA-FAROL` · FLAGSHIP: PROJETO BALUARTE
+
+<div align="center">
+
+[![Projeto Baluarte](https://img.shields.io/badge/%E2%AC%A1%20PROJETO%20BALUARTE-ECOSSISTEMA%20EM%20CAMPO-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)
+[![J.A.R.V.I.S.](https://img.shields.io/badge/%F0%9F%A4%96%20J.A.R.V.I.S.-N%C3%9ACLEO%20V7-3ddc84?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/blob/main/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
+[![Git Nexus](https://img.shields.io/badge/%E2%97%88%20GIT%20NEXUS-NAVEGA%C3%87%C3%83O%20E%20A%C3%87%C3%83O-e8c07a?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)
+
+</div>
+
+O Baluarte é a marca guarda-chuva: reúne narrativa, engenharia, interface, automação,
+lógica digital e experiências interativas sob um ecossistema só.
+
+```text
+BALUARTE
+├── J.A.R.V.I.S. ......... assistente: modos local e web, memória e sessões
+├── Git Nexus ............ navegação e ação sobre o próprio repositório
+├── Veritas .............. lógica digital, tabelas verdade e circuitos
+├── Obra Segura .......... engenharia de obras, painéis e WikiBuild
+├── Vanguard Field ....... navegação civil offline-first, GPS e MGRS
+├── World Game ........... sobrevivência, construção e consequência
+└── módulos futuros ...... IDE web, Knowledge Engine, MCP
+```
+
+> ⚠️ **O deployment público do Baluarte respondeu HTTP 404 nesta auditoria.** Os links
+> abaixo apontam para o código enquanto o site não volta — a mesma regra que vale para
+> os cards vale aqui: nenhuma linha anuncia um endereço que não respondeu.
+
+<div align="center">
+
+![Project Portfolio](./assets/profile-projects.svg)
+
+</div>
+
+- [Ver o J.A.R.V.I.S. Núcleo V7 — modelagem 3D funcional](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/blob/main/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
+- [Explorar o repositório do Projeto Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)
+
+## `// NÚCLEO J.A.R.V.I.S.` · VISUAL CORE
+
+<div align="center">
+
+[![J.A.R.V.I.S. — Núcleo do Projeto Baluarte](./assets/jarvis-console.svg)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)
+
+</div>
+
+> **J.A.R.V.I.S.** é o assistente do Projeto Baluarte: modos local e web, memória, sessões persistentes e ferramentas integradas ao site por meio do Git Nexus. A imagem acima é uma amostra visual do núcleo na estética **Ouro de Fábula**.
+
+## `// DIGITAL LOGIC SIM` · CPU BUILD LOG
+
+```text
+╔══════════════════════════════════════════════════════════════╗
+║   DIGITAL LOGIC SIM — CPU BUILD LOG                          ║
+║   Computadores funcionais do zero, porta lógica por porta     ║
+╠══════════════════════════════════════════════════════════════╣
+║   [######################]   8-BIT CPU ....[CONCLUÍDO]       ║
+║   [######################]  16-BIT CPU ....[CONCLUÍDO]       ║
+║   [######################]  32-BIT CPU ....[CONCLUÍDO]       ║
+║   [######################]  64-BIT CPU ....[CONCLUÍDO]       ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+Construí computadores funcionais de **8 a 64 bits** no Digital Logic Sim — da ULA à arquitetura completa, uma porta lógica por vez.
+
+<a id="ecossistema"></a>
+
+## `// ECOSSISTEMA DIGITAL` · DIGITAL ECOSYSTEM
 
 > `MISSION BOARD // ARCHITECTURE` · o mapa completo fica recolhido para manter a primeira leitura rápida.
 
@@ -340,6 +502,8 @@ ECOSSISTEMA
 
 </details>
 <!-- PROJECT-MAP:END -->
+
+<a id="arsenal"></a>
 
 ## `// ARSENAL` · TECH STACK & TOOLS
 
@@ -479,6 +643,44 @@ ECOSSISTEMA
 ![Public language distribution](./assets/lang-stats.svg)
 <!-- LANGUAGE-STATS:END -->
 
+<a id="engenharia"></a>
+
+## `// ENGENHARIA` · ENGINEERING ACTIVITY
+
+> Prova técnica, não capa: ritmo de contribuição, métricas do inventário e o catálogo
+> completo de repositórios. A leitura dos produtos está acima.
+
+### `// CONTINUIDADE` · FIELD STREAK
+
+<div align="center">
+
+![GitHub Stats](./assets/profile-stats.svg)
+![Top Languages](./assets/profile-top-langs.svg)
+
+![GitHub Streak](./assets/profile-streak.svg)
+
+</div>
+
+> **Como ler os contadores:** `CONTRIBUIÇÕES TOTAIS` é o total oficial do GitHub na janela móvel de 365 dias e combina commits, pull requests, issues, reviews e contribuições de repositório. `COMMITS DIRETOS` conta somente commits atribuídos ao perfil. Por isso, é esperado que contribuições totais sejam maiores que commits.
+
+### `// ATIVIDADE` · ACTIVITY GRAPH
+
+<div align="center">
+
+[![Contribution timeline](https://img.shields.io/badge/INTERACTIVE-TIMELINE%20OF%20CONTRIBUTIONS-3ddc84?style=for-the-badge&labelColor=0e0c16)](./docs/assets/contributions-timeline.html)
+
+![Contribution Snake](https://raw.githubusercontent.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/output/github-contribution-grid-snake-dark.svg)
+
+</div>
+
+### `// TROFÉUS` · FIELD MISSION
+
+<div align="center">
+
+![Trophies](./assets/profile-trophies.svg)
+
+</div>
+
 ## `// GITHUB SNAPSHOT` · RELATÓRIO DE CAMPO
 
 > **Perfil em uma leitura:** construo sistemas do nível de portas lógicas a plataformas web, agentes de IA, ferramentas técnicas e jogos. O **Projeto Baluarte** é meu ecossistema-farol, com J.A.R.V.I.S., Git Nexus e uma trilha de projetos públicos documentados.
@@ -610,64 +812,10 @@ ECOSSISTEMA
 > 🔒 Private repository · nenhuma linha desta seção expõe código, secrets, `.env`, tokens, credenciais ou estrutura interna.
 <!-- PRIVATE-PROJECTS:END -->
 
-## `// NÚCLEO J.A.R.V.I.S.` · VISUAL CORE
-
-<div align="center">
-
-[![J.A.R.V.I.S. — Núcleo do Projeto Baluarte](./assets/jarvis-console.svg)](https://projeto-baluarte.vercel.app)
-
-</div>
-
-> **J.A.R.V.I.S.** é o assistente do Projeto Baluarte: modos local e web, memória, sessões persistentes e ferramentas integradas ao site por meio do Git Nexus. A imagem acima é uma amostra visual do núcleo na estética **Ouro de Fábula**.
-
-## `// DIGITAL LOGIC SIM` · CPU BUILD LOG
-
-```text
-╔══════════════════════════════════════════════════════════════╗
-║   DIGITAL LOGIC SIM — CPU BUILD LOG                          ║
-║   Computadores funcionais do zero, porta lógica por porta     ║
-╠══════════════════════════════════════════════════════════════╣
-║   [######################]   8-BIT CPU ....[CONCLUÍDO]       ║
-║   [######################]  16-BIT CPU ....[CONCLUÍDO]       ║
-║   [######################]  32-BIT CPU ....[CONCLUÍDO]       ║
-║   [######################]  64-BIT CPU ....[CONCLUÍDO]       ║
-╚══════════════════════════════════════════════════════════════╝
-```
-
-Construí computadores funcionais de **8 a 64 bits** no Digital Logic Sim — da ULA à arquitetura completa, uma porta lógica por vez.
-
-## `// CONTINUIDADE` · FIELD STREAK
-
-<div align="center">
-
-![GitHub Stats](./assets/profile-stats.svg)
-![Top Languages](./assets/profile-top-langs.svg)
-
-![GitHub Streak](./assets/profile-streak.svg)
-
-</div>
-
-> **Como ler os contadores:** `CONTRIBUIÇÕES TOTAIS` é o total oficial do GitHub na janela móvel de 365 dias e combina commits, pull requests, issues, reviews e contribuições de repositório. `COMMITS DIRETOS` conta somente commits atribuídos ao perfil. Por isso, é esperado que contribuições totais sejam maiores que commits.
-
-## `// ATIVIDADE` · ACTIVITY GRAPH
-
-<div align="center">
-
-[![Contribution timeline](https://img.shields.io/badge/INTERACTIVE-TIMELINE%20OF%20CONTRIBUTIONS-3ddc84?style=for-the-badge&labelColor=0e0c16)](./docs/assets/contributions-timeline.html)
-
-![Contribution Snake](https://raw.githubusercontent.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/output/github-contribution-grid-snake-dark.svg)
-
-</div>
-
-## `// TROFÉUS` · FIELD MISSION
-
-<div align="center">
-
-![Trophies](./assets/profile-trophies.svg)
-
-</div>
-
 ## `// ARQUIVO PESSOAL` · PERSONAL LOG
+
+<details>
+<summary><b>🎮 Gaming, universos e fan fiction</b> — a parte humana do perfil</summary>
 
 ### 🎮 Gaming
 
@@ -691,6 +839,8 @@ Uma seção dedicada às histórias e aos universos que crio — um espaço para
 
 📖 [Minha Fan Fiction — início](https://docs.google.com/document/d/1FJulPVU1WA8LTLL3NO7h2CTW7pmlNWgO-C77qwtcVgU/edit?usp=drivesdk)
 
+</details>
+
 ## `// KIT PÚBLICO` · STYLE KIT & TUTORIAL
 
 > Este GitHub disponibiliza um **template público reutilizável** para quem quiser copiar ou adaptar esta identidade visual Baluarte / Spartan / Field Manual. A branch separada contém o template completo, a versão mínima, snippets, configuração de exemplo e tutoriais explicando como a estrutura funciona.
@@ -703,20 +853,29 @@ Uma seção dedicada às histórias e aos universos que crio — um espaço para
 
 </div>
 
+<a id="contato"></a>
+
 ## `// CANAL DE COMUNICAÇÃO` · CONTACT
 
 <div align="center">
 
+**PROFISSIONAL**
+
 [![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-d4a24e?style=for-the-badge&logo=github&logoColor=white&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077b5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0e0c16)](https://www.linkedin.com/in/lucas-belucci-bellini-28044b328)
+[![Email](https://img.shields.io/badge/Email-lucasbb2007%40gmail.com-d4a24e?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0e0c16)](mailto:lucasbb2007@gmail.com)
+
+**CONTEÚDO**
+
 [![YouTube](https://img.shields.io/badge/YouTube-Spartan%20Gamer%20BR-ff0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0e0c16)](https://www.youtube.com/@Spartan_Gamer_BR)
 [![TikTok](https://img.shields.io/badge/TikTok-lucasbeluccioficial-000000?style=for-the-badge&logo=tiktok&logoColor=white&labelColor=0e0c16)](https://www.tiktok.com/@lucasbeluccioficial?lang=pt-BR)
+[![Instagram](https://img.shields.io/badge/Instagram-lucasbeluccioficial-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=0e0c16)](https://www.instagram.com/lucasbeluccioficial)
 [![Twitch](https://img.shields.io/badge/Twitch-spartan__gamer__pro-9146ff?style=for-the-badge&logo=twitch&logoColor=white&labelColor=0e0c16)](https://www.twitch.tv/spartan_gamer_pro)
+
+**PESSOAL**
 
 [![Steam](https://img.shields.io/badge/Steam-Spartan%20Gamer%20BR-1b2838?style=for-the-badge&logo=steam&logoColor=white&labelColor=0e0c16)](https://steamcommunity.com/id/spartangamerbr)
 [![Spotify](https://img.shields.io/badge/Spotify-Spartan%20BR-1db954?style=for-the-badge&logo=spotify&logoColor=white&labelColor=0e0c16)](https://open.spotify.com/user/spartanbr)
-[![Instagram](https://img.shields.io/badge/Instagram-lucasbeluccioficial-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=0e0c16)](https://www.instagram.com/lucasbeluccioficial)
-[![Email](https://img.shields.io/badge/Email-lucasbb2007%40gmail.com-d4a24e?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0e0c16)](mailto:lucasbb2007@gmail.com)
 
 </div>
 

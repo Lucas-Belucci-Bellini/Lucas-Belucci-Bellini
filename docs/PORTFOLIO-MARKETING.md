@@ -61,10 +61,11 @@ mudado, e produziriam commit a cada execução.
 
 | Bloco | O que mudou |
 |:---|:---|
+| `WHAT-I-BUILD` | **novo** — os seis domínios de trabalho, com contagem real |
 | `PRODUCT-CARDS` | **novo** — a vitrine em cards, 6 produtos, site com botão em destaque |
+| `WEBSITE-DIRECTORY` | **novo** — diretório enxuto de todos os sites no ar |
 | `ECOSYSTEM-MAP` | **novo** — árvore do ecossistema por categoria, com quantos têm site |
-| `FEATURED-PROJECTS` | coluna **Acesso** com o site na frente |
-| `CURATED-FEATURED` | idem |
+| `FEATURED-PROJECTS` | tabela **única**: absorveu `CURATED-FEATURED`, com coluna **Acesso** |
 | `PUBLIC-PROJECTS` | coluna `GitHub` virou **Acesso**, com site quando há |
 | `PROJECT-MAP` | colunas `GitHub` e `Site` fundidas em **Acesso** |
 | `LIVE-PROJECTS` | colunas reordenadas para `Projeto \| Website \| Código \| Verificação` |
@@ -81,25 +82,63 @@ reescrita — foram movidas inteiras, e um teste de permutação confere que nen
 linha se perdeu no caminho.
 
 ```
-IDENTIDADE            ← ficha de agente
+HERO                  ← identidade + 4 botões de entrada
      ↓
-O QUE EU CONSTRUO     ← missão principal
+COMECE POR AQUI       ← menu de navegação com âncoras
+     ↓
+FICHA DE AGENTE       ← quem é, PT e EN
+     ↓
+O QUE EU CONSTRUO     ← seis domínios, com contagem real
      ↓
 PRODUTOS              ← cards com botão de abrir
      ↓
-SITES VERIFICADOS     ← o diretório de deployments
+MISSÕES EM DESTAQUE   ← a tabela única
      ↓
-ECOSSISTEMA           ← o mapa, depois o catálogo completo
+SITES NO AR           ← diretório + tabela de verificação
      ↓
-TECNOLOGIAS           ← arsenal e matriz de linguagens
+BALUARTE              ← ecossistema-farol e seus módulos
      ↓
-ENGENHARIA            ← snapshot, repositórios, atividade
+ECOSSISTEMA DIGITAL   ← o mapa, depois o catálogo completo
      ↓
-CONTATO
+ARSENAL               ← tecnologias, matriz de linguagens recolhida
+     ↓
+ENGENHARIA            ← atividade, streak, troféus
+     ↓
+MÉTRICAS              ← snapshot e inventário de repositórios
+     ↓
+ARQUIVO PESSOAL       ← gaming e fan fiction, recolhidos
+     ↓
+CONTATO               ← profissional · conteúdo · pessoal
 ```
 
 A estatística saiu do topo. Ela continua inteira, mais abaixo, posicionada como
 evidência de engenharia — não como capa.
+
+## Uma seção de destaque, não duas
+
+`MISSÕES EM DESTAQUE` e `MISSÕES ESCOLHIDAS` faziam quase a mesma coisa e
+repetiam os mesmos projetos com rótulos diferentes. Viraram uma tabela só:
+quem está em `README_FEATURED.json` entra primeiro, com o rótulo e o foco que o
+operador escreveu; o resto do espaço (até 10 linhas) vai para os projetos
+públicos de maior `featured_score` que ainda não apareceram. Um projeto retirado
+pela regra `website_required` não volta pela porta dos fundos da heurística.
+
+## O que ficou recolhido
+
+Nada foi apagado. Saiu do corpo principal e foi para `<details>`:
+
+| Conteúdo | Onde está agora |
+|:---|:---|
+| participação de cada linguagem | `<details>` dentro do Arsenal |
+| catálogo de repositórios públicos e privados | `<details>`, como já estavam |
+| gaming e fan fiction | `<details>` no Arquivo Pessoal |
+
+## Domínios: a cobertura é verificada
+
+`DOMAINS` agrupa os rótulos de `classify()` em seis domínios de leitura rápida.
+`DOMAIN_LABELS` reúne todos os rótulos cobertos e um teste falha se uma
+categoria nova ficar de fora — sem ele, uma categoria recém-criada sumiria da
+vitrine em silêncio.
 
 ## Curadoria: `docs/README_FEATURED.json`
 

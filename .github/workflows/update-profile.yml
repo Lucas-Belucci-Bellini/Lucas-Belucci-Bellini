@@ -68,8 +68,10 @@ jobs:
           test -s docs/project-catalog.json
           grep -q '<!-- PROFILE-DASHBOARD:START -->' README.md
           grep -q '<!-- PROFILE-DASHBOARD:END -->' README.md
-          grep -q '<!-- CURATED-FEATURED:START -->' README.md
-          grep -q '<!-- CURATED-FEATURED:END -->' README.md
+          grep -q '<!-- WHAT-I-BUILD:START -->' README.md
+          grep -q '<!-- WHAT-I-BUILD:END -->' README.md
+          grep -q '<!-- WEBSITE-DIRECTORY:START -->' README.md
+          grep -q '<!-- WEBSITE-DIRECTORY:END -->' README.md
           grep -q '<!-- ARSENAL-STACK:START -->' README.md
           grep -q '<!-- ARSENAL-STACK:END -->' README.md
           grep -q '<!-- LANGUAGE-BADGES:START -->' README.md
