@@ -21,6 +21,21 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 
+# Este script também é carregado por importlib nos testes, sem o diretório
+# scripts/ no sys.path; o bootstrap abaixo faz o import funcionar nos dois casos.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from project_catalog import (  # noqa: E402
+    Presentation,
+    build_catalog,
+    check_websites,
+    cta_cell,
+    discover_project_website,
+    normalize_site_overrides,
+    resolve_presentation,
+    write_catalog_if_changed,
+)
+
 OWNER = "Lucas-Belucci-Bellini"
 ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
@@ -29,6 +44,7 @@ FEATURED_FILE = ROOT / "docs" / "README_FEATURED.json"
 STACK_FILE = ROOT / "docs" / "README_STACK.json"
 EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
 SNAPSHOT_SVG = ROOT / "assets" / "profile-snapshot.svg"
+CATALOG_FILE = ROOT / "docs" / "project-catalog.json"
 
 LANGUAGE_DISPLAY = {
     "Batchfile": "Batch",
@@ -125,20 +141,6 @@ def fetch_languages(full_name: str, token: str | None) -> dict[str, int]:
         return {str(key): int(value) for key, value in data.items()}
     except (HTTPError, URLError, TimeoutError, ValueError):
         return {}
-
-
-def check_url(url: str) -> tuple[bool, int, str]:
-    if not url or not re.match(r"^https?://", url):
-        return False, 0, ""
-    request = Request(url, headers={"User-Agent": "profile-readme-link-check/1.0"}, method="GET")
-    try:
-        with urlopen(request, timeout=20) as response:
-            return 200 <= response.status < 400, response.status, response.geturl()
-    except HTTPError as error:
-        # Some deployments reject HEAD/GET but still expose a meaningful redirect target.
-        return False, int(error.code), getattr(error, "url", url)
-    except (URLError, TimeoutError, ValueError):
-        return False, 0, url
 
 
 def load_local_repositories(path: Path) -> list[dict[str, Any]]:
@@ -266,13 +268,64 @@ def featured_score(repo: dict[str, Any], now: datetime) -> float:
     return score
 
 
-def site_for(repo: dict[str, Any], verified_sites: dict[str, dict[str, Any]]) -> str:
-    full_name = str(repo["full_name"])
-    site = verified_sites.get(full_name)
-    if not site:
-        return "—"
-    url = site.get("url") or repo.get("homepage")
-    return f"[Site / Demo]({url})" if url else "—"
+def describe(repo: dict[str, Any]) -> str:
+    """Descrição pública do repositório, em uma linha e sem escape.
+
+    O valor cru é o que vai para o catálogo JSON; escapar para Markdown é
+    trabalho de `md_cell`, na hora de renderizar a célula.
+    """
+    text = str(repo.get("description") or "Descrição pública não informada.")
+    return " ".join(text.split())
+
+
+def md_cell(text: str) -> str:
+    """Escapa o que quebraria uma célula de tabela Markdown."""
+    return text.replace("|", "\\|")
+
+
+def build_presentations(
+    repos: list[dict[str, Any]],
+    *,
+    sites: dict[str, tuple[str | None, str]],
+    checks: dict[str, Any],
+    featured_manifest: dict[str, Any],
+    now: datetime,
+) -> dict[str, Presentation]:
+    """Resolve como cada repositório aparece na vitrine.
+
+    Toda decisão de CTA passa por `resolve_presentation`; este laço só reúne
+    os insumos (site descoberto, verificação, categoria, status, curadoria).
+    """
+    orders = {
+        str(entry.get("name", "")): int(entry.get("order", 999))
+        for entry in featured_manifest.get("projects", [])
+        if entry.get("name")
+    }
+    presentations: dict[str, Presentation] = {}
+    for repo in repos:
+        full_name = str(repo["full_name"])
+        url, source = sites.get(full_name, (None, "none"))
+        category = classify(repo)
+        presentations[full_name] = resolve_presentation(
+            repo,
+            check=checks.get(url) if url else None,
+            website=url,
+            website_source=source,
+            category=category,
+            status=status_for(repo, category, now),
+            description=describe(repo),
+            featured_order=orders.get(str(repo.get("name"))),
+        )
+    return presentations
+
+
+def live_site_map(presentations: dict[str, Presentation]) -> dict[str, dict[str, Any]]:
+    """Mapa compacto dos sites no ar, para os contadores e o SVG."""
+    return {
+        name: {"url": item.website, "status": f"HTTP {item.website_http_status}"}
+        for name, item in presentations.items()
+        if item.has_live_website
+    }
 
 
 def repo_link(repo: dict[str, Any]) -> str:
@@ -384,7 +437,7 @@ def render_language_stats(repos: list[dict[str, Any]], rows: list[dict[str, Any]
     return "\n".join(lines)
 
 
-def render_curated_featured(repos: list[dict[str, Any]], verified_sites: dict[str, dict[str, Any]], manifest: dict[str, Any], now: datetime) -> str:
+def render_curated_featured(repos: list[dict[str, Any]], presentations: dict[str, Presentation], manifest: dict[str, Any], now: datetime) -> str:
     by_name = {str(repo.get("name")): repo for repo in repos}
     lines = [
         f"> {manifest.get('intro', 'Seleção editorial de projetos públicos.')}",
@@ -402,12 +455,8 @@ def render_curated_featured(repos: list[dict[str, Any]], verified_sites: dict[st
         index += 1
         label = str(entry.get("label", "MISSÃO")).replace("|", "\\|")
         focus = str(entry.get("focus", repo.get("description") or "Descrição pública não informada.")).replace("|", "\\|").replace("\n", " ")
-        category = classify(repo)
-        access = repo_link(repo)
-        site = verified_sites.get(str(repo["full_name"]))
-        if site:
-            access += f" · [Site]({site.get('url')})"
-        lines.append(f"| {index} | **{label}** · {name} | {focus} | {status_for(repo, category, now)} | {access} |")
+        item = presentations[str(repo["full_name"])]
+        lines.append(f"| {index} | **{label}** · {name} | {focus} | {item.status} | {cta_cell(item)} |")
     if index == 0:
         lines.append("| — | Nenhuma missão pública encontrada | O manifesto será revisado no próximo refresh. | — | — |")
     return "\n".join(lines)
@@ -474,7 +523,7 @@ def render_arsenal_stack(rows: list[dict[str, Any]], manifest: dict[str, Any]) -
     return "\n".join(lines)
 
 
-def render_featured_projects(repos: list[dict[str, Any]], verified_sites: dict[str, dict[str, Any]], now: datetime) -> str:
+def render_featured_projects(repos: list[dict[str, Any]], presentations: dict[str, Presentation], now: datetime) -> str:
     # The hero section is public-facing; keep private repository metadata out of it.
     selected = sorted((repo for repo in repos if not repo.get("private")), key=lambda repo: featured_score(repo, now), reverse=True)[:10]
     lines = [
@@ -483,26 +532,23 @@ def render_featured_projects(repos: list[dict[str, Any]], verified_sites: dict[s
     ]
     for repo in selected:
         name = str(repo["name"])
-        category = classify(repo)
-        summary = FEATURED_SUMMARIES.get(name) or str(repo.get("description") or "Descrição pública não informada.")
-        access = repo_link(repo)
-        if str(repo["full_name"]) in verified_sites:
-            access += f" · [Site]({verified_sites[str(repo['full_name'])]['url']})"
-        lines.append(f"| **{name}** | {summary} | {status_for(repo, category, now)} | {access} |")
+        item = presentations[str(repo["full_name"])]
+        summary = md_cell(FEATURED_SUMMARIES.get(name) or describe(repo))
+        lines.append(f"| **{name}** | {summary} | {item.status} | {cta_cell(item)} |")
     return "\n".join(lines)
 
 
-def render_public_projects(repos: list[dict[str, Any]], now: datetime) -> str:
+def render_public_projects(repos: list[dict[str, Any]], presentations: dict[str, Presentation], now: datetime) -> str:
     lines = [
         "<details>",
         "<summary><b>🌐 Public repository catalog</b></summary>",
         "",
-        "| Projeto | Categoria | Status | GitHub |",
+        "| Projeto | Categoria | Status | Acesso |",
         "|:---|:---|:---|:---|",
     ]
     for repo in sorted((r for r in repos if not r.get("private")), key=lambda r: str(r["name"]).lower()):
-        category = classify(repo)
-        lines.append(f"| **{repo['name']}** | {category} | {status_for(repo, category, now)} | {repo_link(repo)} |")
+        item = presentations[str(repo["full_name"])]
+        lines.append(f"| **{repo['name']}** | {item.category_label} | {item.status} | {cta_cell(item)} |")
     lines.extend(["", "</details>"])
     return "\n".join(lines)
 
@@ -523,34 +569,39 @@ def render_private_projects(repos: list[dict[str, Any]], now: datetime) -> str:
     return "\n".join(lines)
 
 
-def render_live_projects(repos: list[dict[str, Any]], verified_sites: dict[str, dict[str, Any]]) -> str:
+def render_live_projects(repos: list[dict[str, Any]], presentations: dict[str, Presentation]) -> str:
+    # A ordem das colunas é a regra da vitrine: o site vem antes do código.
     lines = [
-        "| Projeto | GitHub | Website | Status |",
+        "| Projeto | Website | Código | Verificação |",
         "|:---|:---|:---|:---|",
     ]
-    for repo in sorted(repos, key=lambda r: str(r["name"]).lower()):
-        site = verified_sites.get(str(repo["full_name"]))
-        if not site:
-            continue
-        url = site.get("url") or repo.get("homepage")
-        lines.append(f"| **{repo['name']}** | {repo_link(repo)} | [Site / Demo]({url}) | {site.get('status', 'reachable')} |")
-    if len(lines) == 3:
-        lines.append("| — | — | Site não verificado | — |")
+    live = [
+        presentations[str(repo["full_name"])]
+        for repo in repos
+        if presentations[str(repo["full_name"])].has_live_website
+    ]
+    for item in sorted(live, key=lambda p: p.name.lower()):
+        lines.append(
+            f"| **{item.name}** | **[▸ Abrir site]({item.website})** "
+            f"| [código]({item.github}) | `HTTP {item.website_http_status}` |"
+        )
+    if not live:
+        lines.append("| — | Nenhum site verificado nesta auditoria | — | — |")
     return "\n".join(lines)
 
 
-def render_project_map(repos: list[dict[str, Any]], languages: dict[str, dict[str, int]], verified_sites: dict[str, dict[str, Any]], now: datetime) -> str:
+def render_project_map(repos: list[dict[str, Any]], languages: dict[str, dict[str, int]], presentations: dict[str, Presentation], now: datetime) -> str:
     lines = [
         "<details>",
         "<summary><b>⌁ Complete project map</b></summary>",
         "",
-        "| Projeto | Categoria | Stack | Status | GitHub | Site |",
-        "|:---|:---|:---|:---|:---|:---|",
+        "| Projeto | Categoria | Stack | Status | Acesso |",
+        "|:---|:---|:---|:---|:---|",
     ]
     for repo in sorted(repos, key=lambda r: str(r["name"]).lower()):
-        category = classify(repo)
+        item = presentations[str(repo["full_name"])]
         lines.append(
-            f"| **{repo['name']}** | {category} | {stack_for(repo, languages)} | {status_for(repo, category, now)} | {repo_link(repo)} | {site_for(repo, verified_sites)} |"
+            f"| **{repo['name']}** | {item.category_label} | {stack_for(repo, languages)} | {item.status} | {cta_cell(item)} |"
         )
     lines.extend(["", "</details"])
     # Correct the closing tag after keeping the table construction visually simple above.
@@ -648,12 +699,17 @@ def load_excluded_names() -> set[str]:
     return {str(value) for value in values}
 
 
-def load_site_overrides() -> dict[str, str]:
+def load_site_overrides() -> dict[str, dict[str, Any]]:
+    """Lê `docs/README_SITES.json` e normaliza as duas formas aceitas.
+
+    O arquivo histórico mapeia `"owner/repo": "https://..."`. A forma
+    estendida aceita um objeto por repositório. Ambas continuam válidas —
+    trocar o formato do manifesto não é requisito para nada aqui.
+    """
     if not SITES_FILE.exists():
         return {}
     try:
-        data = json.loads(SITES_FILE.read_text(encoding="utf-8"))
-        return {str(k): str(v) for k, v in data.items()}
+        return normalize_site_overrides(json.loads(SITES_FILE.read_text(encoding="utf-8")))
     except (OSError, ValueError, TypeError):
         return {}
 
@@ -688,6 +744,9 @@ def main() -> int:
     parser.add_argument("--languages-dir", help="local directory containing one JSON language map per repository")
     parser.add_argument("--github-token", help="token for GitHub API access; prefer environment variables in CI")
     parser.add_argument("--write", action="store_true", help="write README and generated assets; otherwise validate/render only")
+    parser.add_argument("--skip-site-check", action="store_true", help="skip HTTP verification; renders every site as unverified")
+    parser.add_argument("--site-timeout", type=float, default=15.0, help="per-request timeout for website verification (seconds)")
+    parser.add_argument("--site-workers", type=int, default=6, help="maximum concurrent website checks")
     args = parser.parse_args()
 
     try:
@@ -700,22 +759,26 @@ def main() -> int:
         return 2
 
     now = datetime.now(timezone.utc)
-    verified_sites: dict[str, dict[str, Any]] = {}
     manual_overrides = load_site_overrides()
     featured_manifest = load_json_object(FEATURED_FILE)
     stack_manifest = load_json_object(STACK_FILE)
+
+    # Descoberta: homepage do GitHub, depois o manifesto. Nunca deduzida do nome.
+    # Private repositories are never included in the public live-project catalog.
+    sites: dict[str, tuple[str | None, str]] = {}
     for repo in repos:
-        # Private repositories are never included in the public live-project catalog.
         if repo.get("private"):
             continue
-        homepage = str(repo.get("homepage") or "").strip()
-        full_name = str(repo["full_name"])
-        if not homepage and full_name in manual_overrides:
-            homepage = manual_overrides[full_name]
-        if homepage:
-            reachable, status, effective = check_url(homepage)
-            if reachable:
-                verified_sites[full_name] = {"url": effective or homepage, "status": f"HTTP {status}"}
+        sites[str(repo["full_name"])] = discover_project_website(repo, manual_overrides)
+
+    candidates = [url for url, _ in sites.values() if url]
+    checks = {} if args.skip_site_check else check_websites(
+        candidates, max_workers=args.site_workers, timeout=args.site_timeout
+    )
+    presentations = build_presentations(
+        repos, sites=sites, checks=checks, featured_manifest=featured_manifest, now=now
+    )
+    verified_sites = live_site_map(presentations)
 
     rows = language_rows(repos, languages, public_only=True)
     # Use a source-derived timestamp so unchanged inventories do not create timestamp-only commits.
@@ -729,20 +792,24 @@ def main() -> int:
     generated_at = max(source_times, default=now).strftime("%Y-%m-%d %H:%M UTC")
     text = README.read_text(encoding="utf-8")
     text = replace_block(text, "PROFILE-DASHBOARD", render_dashboard(repos, rows, verified_sites, now))
-    text = replace_block(text, "FEATURED-PROJECTS", render_featured_projects(repos, verified_sites, now))
-    text = replace_block(text, "CURATED-FEATURED", render_curated_featured(repos, verified_sites, featured_manifest, now))
+    text = replace_block(text, "FEATURED-PROJECTS", render_featured_projects(repos, presentations, now))
+    text = replace_block(text, "CURATED-FEATURED", render_curated_featured(repos, presentations, featured_manifest, now))
     text = replace_block(text, "ARSENAL-STACK", render_arsenal_stack(rows, stack_manifest))
     text = replace_block(text, "LANGUAGE-BADGES", render_language_badges(rows))
     text = replace_block(text, "LANGUAGE-STATS", render_language_stats(repos, rows, generated_at))
-    text = replace_block(text, "PUBLIC-PROJECTS", render_public_projects(repos, now))
+    text = replace_block(text, "PUBLIC-PROJECTS", render_public_projects(repos, presentations, now))
     text = replace_block(text, "PRIVATE-PROJECTS", render_private_projects(repos, now))
-    text = replace_block(text, "LIVE-PROJECTS", render_live_projects(repos, verified_sites))
-    text = replace_block(text, "PROJECT-MAP", render_project_map(repos, languages, verified_sites, now))
+    text = replace_block(text, "LIVE-PROJECTS", render_live_projects(repos, presentations))
+    text = replace_block(text, "PROJECT-MAP", render_project_map(repos, languages, presentations, now))
 
+    catalog = build_catalog(list(presentations.values()))
+    catalog_written = False
     if args.write:
         README.write_text(text, encoding="utf-8")
         render_svg(rows, ROOT / "assets" / "lang-stats.svg")
         render_snapshot_svg(repos, rows, verified_sites, now, generated_at, SNAPSHOT_SVG)
+        # Conteúdo igual não é gravado: o catálogo não deve produzir commit vazio.
+        catalog_written = write_catalog_if_changed(catalog, CATALOG_FILE)
     else:
         print(text[:500])
     print(json.dumps({
@@ -751,7 +818,15 @@ def main() -> int:
         "private_repositories": sum(bool(repo.get("private")) for repo in repos),
         "excluded_repositories": sorted(load_excluded_names()),
         "public_languages": len(rows),
+        "declared_sites": len([url for url, _ in sites.values() if url]),
         "verified_sites": len(verified_sites),
+        "unreachable_sites": sorted(
+            item.name for item in presentations.values()
+            if item.website_status == "unreachable"
+        ),
+        "catalog_projects": len(catalog["projects"]),
+        "catalog_written": catalog_written,
+        "site_check_skipped": bool(args.skip_site_check),
         "write": bool(args.write),
     }, ensure_ascii=False))
     return 0

@@ -39,7 +39,7 @@
 
 | REPOSITÓRIOS | PÚBLICOS | PRIVADOS VISÍVEIS | DEPLOYMENTS |
 |:---:|:---:|:---:|:---:|
-| **79** | **62** | **17** | **9** |
+| **79** | **62** | **17** | **8** |
 
 | ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
 |:---:|:---:|:---:|:---:|
@@ -192,19 +192,23 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 
 ## `// MISSÕES EM DESTAQUE` · FEATURED MISSIONS
 
+> `REGRA DE ACESSO` · **▸ Abrir site** vem primeiro quando o projeto tem um deployment que
+> respondeu na auditoria; **código** é o link secundário, para quem quer ver como foi feito.
+> Projeto sem site publica só o código — nenhuma linha anuncia um endereço que não respondeu.
+
 <!-- FEATURED-PROJECTS:START -->
 | Projeto | O que a evidência pública confirma | Status | Acesso |
 |:---|:---|:---|:---|
-| **Projeto-Baluarte** | Plataforma narrativa, tática e técnica; o site público expõe o núcleo online, J.A.R.V.I.S., Git Nexus e módulos de conteúdo. | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) · [Site](https://projeto-baluarte.vercel.app) |
-| **Veritas** | Calculadora de tabelas verdade e ferramenta local-first para projetar circuitos lógicos, com editor visual, simulação e MCP documentados. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Veritas) · [Site](https://veritas-opal-seven.vercel.app) |
-| **baluarte-obra-segura** | Hub de engenharia para gestão de obras, editor de painéis elétricos, calculadoras e base WikiBuild, conforme a descrição pública. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) · [Site](https://baluarte-obra-segura.vercel.app) |
-| **Ark-Initiative** | Conceito ARCA de infraestrutura de resiliência climática e ambiental, com visão pública de dados, simulação e resposta. | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
-| **Project-Vanguard** | GPS topográfico tático e computador de tiro em JavaScript/Vite/MapLibre GL, conforme o README público. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) · [Site](https://project-vanguard-cyan.vercel.app) |
-| **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Coleção pública de chips e testes de lógica digital. | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
-| **DailyPlanner** | Agenda diária em TypeScript/Vite para cadastrar, editar, concluir, excluir, buscar e filtrar atividades no navegador. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
-| **Projeto-Baluarte-World-Game** | Conceito e protótipo de jogo de sobrevivência, construção e consequência situado no universo Baluarte. | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) · [Site](https://projeto-baluarte-world-game.vercel.app) |
-| **Recycle-game** | Jogo educativo de reciclagem e automação com protótipo jogável documentado. | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Recycle-game) |
-| **Digital-Logic-Sim-CE** | Fork público da Community Edition de Digital Logic Sim, com recursos de simulação de lógica digital documentados no README. | 🔵 Experimental | [GitHub](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
+| **Projeto-Baluarte** | Plataforma narrativa, tática e técnica; o site público expõe o núcleo online, J.A.R.V.I.S., Git Nexus e módulos de conteúdo. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
+| **Veritas** | Calculadora de tabelas verdade e ferramenta local-first para projetar circuitos lógicos, com editor visual, simulação e MCP documentados. | 🟢 Active | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
+| **baluarte-obra-segura** | Hub de engenharia para gestão de obras, editor de painéis elétricos, calculadoras e base WikiBuild, conforme a descrição pública. | 🟢 Active | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) |
+| **Ark-Initiative** | Conceito ARCA de infraestrutura de resiliência climática e ambiental, com visão pública de dados, simulação e resposta. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
+| **Project-Vanguard** | GPS topográfico tático e computador de tiro em JavaScript/Vite/MapLibre GL, conforme o README público. | 🟢 Active | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) |
+| **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Coleção pública de chips e testes de lógica digital. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
+| **DailyPlanner** | Agenda diária em TypeScript/Vite para cadastrar, editar, concluir, excluir, buscar e filtrar atividades no navegador. | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
+| **Projeto-Baluarte-World-Game** | Conceito e protótipo de jogo de sobrevivência, construção e consequência situado no universo Baluarte. | 🟡 In Development | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
+| **Recycle-game** | Jogo educativo de reciclagem e automação com protótipo jogável documentado. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Recycle-game) |
+| **Digital-Logic-Sim-CE** | Fork público da Community Edition de Digital Logic Sim, com recursos de simulação de lógica digital documentados no README. | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
 <!-- FEATURED-PROJECTS:END -->
 
 ## `// MISSÕES ESCOLHIDAS` · CURATED MISSIONS
@@ -216,13 +220,13 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 
 | # | Missão | Foco confirmado | Status | Acesso |
 |:--:|:---|:---|:---|:---|
-| 1 | **FLAGSHIP / ECOSSISTEMA** · Projeto-Baluarte | Plataforma narrativa e técnica com J.A.R.V.I.S., Git Nexus e módulos web; o site público está em reconstrução da V2. | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) · [Site](https://projeto-baluarte.vercel.app) |
-| 2 | **DIGITAL LOGIC / LOCAL-FIRST** · Veritas | Calculadora de tabelas verdade e projetista de circuitos com editor visual, simulação e integrações documentadas. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Veritas) · [Site](https://veritas-opal-seven.vercel.app) |
-| 3 | **ENGINEERING / FIELD TOOL** · baluarte-obra-segura | Hub de engenharia para obras com editor de painéis, calculadoras, simuladores e base WikiBuild. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) · [Site](https://baluarte-obra-segura.vercel.app) |
-| 4 | **TACTICAL WEB / MAPS** · Project-Vanguard | GPS topográfico tático e computador de tiro construído com stack web e visualização geográfica. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) · [Site](https://project-vanguard-cyan.vercel.app) |
-| 5 | **CPU BUILD / SIMULATION** · Digital-Logic-Sim-CE | Simulação de lógica digital que documenta a linha de construção de computadores e chips funcionais. | 🔵 Experimental | [GitHub](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
-| 6 | **WEB APP / PRODUCTIVITY** · DailyPlanner | Agenda web em TypeScript para organizar, buscar, filtrar e concluir atividades no navegador. | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
-| 7 | **GAME / WORLD-BUILDING** · Projeto-Baluarte-World-Game | Protótipo de sobrevivência, construção e consequência situado no universo Baluarte. | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) · [Site](https://projeto-baluarte-world-game.vercel.app) |
+| 1 | **FLAGSHIP / ECOSSISTEMA** · Projeto-Baluarte | Plataforma narrativa e técnica com J.A.R.V.I.S., Git Nexus e módulos web; o site público está em reconstrução da V2. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
+| 2 | **DIGITAL LOGIC / LOCAL-FIRST** · Veritas | Calculadora de tabelas verdade e projetista de circuitos com editor visual, simulação e integrações documentadas. | 🟢 Active | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
+| 3 | **ENGINEERING / FIELD TOOL** · baluarte-obra-segura | Hub de engenharia para obras com editor de painéis, calculadoras, simuladores e base WikiBuild. | 🟢 Active | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) |
+| 4 | **TACTICAL WEB / MAPS** · Project-Vanguard | GPS topográfico tático e computador de tiro construído com stack web e visualização geográfica. | 🟢 Active | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) |
+| 5 | **CPU BUILD / SIMULATION** · Digital-Logic-Sim-CE | Simulação de lógica digital que documenta a linha de construção de computadores e chips funcionais. | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
+| 6 | **WEB APP / PRODUCTIVITY** · DailyPlanner | Agenda web em TypeScript para organizar, buscar, filtrar e concluir atividades no navegador. | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
+| 7 | **GAME / WORLD-BUILDING** · Projeto-Baluarte-World-Game | Protótipo de sobrevivência, construção e consequência situado no universo Baluarte. | 🟡 In Development | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
 <!-- CURATED-FEATURED:END -->
 
 ## `// MAPA DO ECOSSISTEMA` · PROJECT MAP
@@ -233,87 +237,87 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 <details>
 <summary><b>⌁ Complete project map</b></summary>
 
-| Projeto | Categoria | Stack | Status | GitHub | Site |
-|:---|:---|:---|:---|:---|:---|
-| **-BANCO-DE-DADOS-** | Software & Ferramentas | `PowerShell` `Shell` | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/-BANCO-DE-DADOS-) | — |
-| **Academic-Portfolio** | Academia | `JavaScript` `HTML` | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) | — |
-| **AEGIS** | Web | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/AEGIS) | — |
-| **AI-second-brain-with-Claude-and-Obsidian** | IA & Automação | `Shell` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian) | — |
-| **Ark-Initiative** | Web | `TypeScript` `HTML` `JavaScript` `Rust` `CSS` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) | — |
-| **Atividade-6** | Academia | — | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Atividade-6) | — |
-| **Atividade4** | Academia | `Portugol` | 🟣 Academic | [GitHub](https://github.com/itssomeone4/Atividade4) | — |
-| **Backup-01-ALFA** | Infraestrutura / Backend / Dados | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Backup-01-ALFA) | — |
-| **Baluarte** | Ecossistema Baluarte | `HTML` `JavaScript` `CSS` | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Baluarte) | — |
-| **baluarte-academia** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-academia) | — |
-| **baluarte-arsenal** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-arsenal) | — |
-| **baluarte-audio** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-audio) | — |
-| **baluarte-cibersec** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-cibersec) | — |
-| **baluarte-content** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-content) | — |
-| **baluarte-core** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-core) | — |
-| **baluarte-data** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-data) | — |
-| **baluarte-desktop** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-desktop) | — |
-| **baluarte-docs** | Ecossistema Baluarte | `Python` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-docs) | — |
-| **baluarte-economia** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-economia) | — |
-| **baluarte-elites** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-elites) | — |
-| **BALUARTE-FORGE-CONSTRUCTION** | Ecossistema Baluarte | `JavaScript` `CSS` `HTML` `Batch` | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/BALUARTE-FORGE-CONSTRUCTION) | — |
-| **baluarte-geo** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-geo) | — |
-| **baluarte-infra** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-infra) | — |
-| **baluarte-jarvis-core** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-core) | — |
-| **baluarte-jarvis-memory** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-memory) | — |
-| **baluarte-jarvis-tools** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-tools) | — |
-| **baluarte-midia** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-midia) | — |
-| **baluarte-obra-segura** | Ecossistema Baluarte | `TypeScript` `JavaScript` `CSS` `HTML` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | [Site / Demo](https://baluarte-obra-segura.vercel.app) |
-| **Baluarte-Portfolio** | Ecossistema Baluarte | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Baluarte-Portfolio) | — |
-| **baluarte-profile** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-profile) | — |
-| **baluarte-robotica** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-robotica) | — |
-| **baluarte-shell** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-shell) | — |
-| **baluarte-tools** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-tools) | — |
-| **Baluarte_MarkIX_Node** | Ecossistema Baluarte | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Baluarte_MarkIX_Node) | — |
-| **Catacombs-of-Paris-Ossuary-Escape-game-design** | Games | `HTML` `C#` `JavaScript` `GDScript` `Batch` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) | — |
-| **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Digital Logic / Hardware | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) | — |
-| **CodeVibe-Academy** | Web | `JavaScript` `HTML` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | [Site / Demo](https://code-vibe-academy.vercel.app) |
-| **Cookie-Clicker-Bot** | Software & Ferramentas | `JavaScript` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) | — |
-| **Customizable-birthday-invitation** | Web | `HTML` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) | — |
-| **DailyPlanner** | IA & Automação | `TypeScript` `CSS` `HTML` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) | — |
-| **Decision-Structures** | Academia | `Portugol` | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Decision-Structures) | — |
-| **DelaOmegaAlfa** | Software & Ferramentas | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/DelaOmegaAlfa) | — |
-| **Digital-Logic-Sim-CE** | Digital Logic / Hardware | `C#` `CSS` `HTML` `JavaScript` `ShaderLab` | 🔵 Experimental | [GitHub](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) | — |
-| **DriveTax-Motors** | Web | `Java` `HTML` `CSS` `Python` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) | — |
-| **Essence-Custom-Furniture** | Web | `JavaScript` `HTML` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | [Site / Demo](https://essence-custom-furniture.vercel.app) |
-| **fanfic-circulo-de-fogo** | Software & Ferramentas | `TypeScript` `JavaScript` `CSS` `HTML` | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/fanfic-circulo-de-fogo) | — |
-| **file-D-teste-1-site_nova_era-index.htmlfile-D-teste-1-site_nova_era-index.html** | Web | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/file-D-teste-1-site_nova_era-index.htmlfile-D-teste-1-site_nova_era-index.html) | — |
-| **Flowgorithm-** | Academia | — | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Flowgorithm-) | — |
-| **G-mod-Black-mesa** | Games | `Python` `Batch` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) | — |
-| **Games** | Games | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Games) | — |
-| **Grupo-Atividade-4** | Academia | — | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Grupo-Atividade-4) | — |
-| **Guia-De-Fallout-4-Completo-** | Games | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Guia-De-Fallout-4-Completo-) | — |
-| **Java-activities** | Academia | `Java` | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Java-activities) | — |
-| **JAVA-todos-os-codigos-em-java** | Academia | `Java` `Portugol` | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) | — |
-| **Kizeo-Forms** | IA & Automação | — | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Kizeo-Forms) | — |
-| **LLBR-Innovations-** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-) | — |
-| **LLBR-Innovations-Constructions** | Ecossistema Baluarte | `JavaScript` `HTML` `CSS` `Batch` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | [Site / Demo](https://llbr-innovations-constructions.vercel.app) |
-| **LOCAL-DE-TRABALHO** | Web | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/LOCAL-DE-TRABALHO) | — |
-| **Lucas-Belucci-Bellini** | Software & Ferramentas | `Python` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini) | — |
-| **MOD-PACK-MINE-BACKUP** | Games | — | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/MOD-PACK-MINE-BACKUP) | — |
-| **Multi-functional-site-Baluarte** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Multi-functional-site-Baluarte) | — |
-| **OMEGA-ALFA-DELTA** | Software & Ferramentas | `HTML` `CSS` `JavaScript` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) | — |
-| **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | Ecossistema Baluarte | `HTML` `CSS` `JavaScript` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | [Site / Demo](https://portifolio-baluarte-lucas-belucci-b.vercel.app) |
-| **Project-Baluarte-DevFlow** | Ecossistema Baluarte | `PowerShell` `Shell` `Batch` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) | — |
-| **Project-Vanguard** | Ecossistema Baluarte | `JavaScript` `CSS` `HTML` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | [Site / Demo](https://project-vanguard-cyan.vercel.app) |
-| **Projeto-Baluarte** | Ecossistema Baluarte | `JavaScript` `HTML` `TypeScript` `CSS` `Python` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | [Site / Demo](https://projeto-baluarte.vercel.app) |
-| **Projeto-Baluarte-AI-Contador** | Ecossistema Baluarte | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-AI-Contador) | — |
-| **Projeto-Baluarte-New-game** | Ecossistema Baluarte | `Python` | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-New-game) | — |
-| **Projeto-Baluarte-Social-Media** | Ecossistema Baluarte | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-Social-Media) | — |
-| **Projeto-Baluarte-World-Game** | Ecossistema Baluarte | `JavaScript` `CSS` `HTML` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | [Site / Demo](https://projeto-baluarte-world-game.vercel.app) |
-| **Python** | Academia | `Python` | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Python) | — |
-| **Recycle-game** | Games | `JavaScript` `HTML` `CSS` | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Recycle-game) | — |
-| **Some-Pseudocode-and-exercise-codes** | Academia | `Portugol` | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes) | — |
-| **taxforge** | Web | `TypeScript` `HTML` `JavaScript` `Python` `CSS` | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/taxforge) | — |
-| **Teste-** | Software & Ferramentas | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Teste-) | — |
-| **Teste-aula-git** | Software & Ferramentas | — | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Teste-aula-git) | — |
-| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | `JavaScript` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) | — |
-| **Veritas** | Digital Logic / Hardware | `TypeScript` `JavaScript` `PL/pgSQL` `Rust` `CSS` | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Veritas) | [Site / Demo](https://veritas-opal-seven.vercel.app) |
-| **Zoas-** | Software & Ferramentas | — | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Zoas-) | — |
+| Projeto | Categoria | Stack | Status | Acesso |
+|:---|:---|:---|:---|:---|
+| **-BANCO-DE-DADOS-** | Software & Ferramentas | `PowerShell` `Shell` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/-BANCO-DE-DADOS-) |
+| **Academic-Portfolio** | Academia | `JavaScript` `HTML` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) |
+| **AEGIS** | Web | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/AEGIS) |
+| **AI-second-brain-with-Claude-and-Obsidian** | IA & Automação | `Shell` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian) |
+| **Ark-Initiative** | Web | `TypeScript` `HTML` `JavaScript` `Rust` `CSS` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
+| **Atividade-6** | Academia | — | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Atividade-6) |
+| **Atividade4** | Academia | `Portugol` | 🟣 Academic | [código](https://github.com/itssomeone4/Atividade4) |
+| **Backup-01-ALFA** | Infraestrutura / Backend / Dados | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Backup-01-ALFA) |
+| **Baluarte** | Ecossistema Baluarte | `HTML` `JavaScript` `CSS` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Baluarte) |
+| **baluarte-academia** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-academia) |
+| **baluarte-arsenal** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-arsenal) |
+| **baluarte-audio** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-audio) |
+| **baluarte-cibersec** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-cibersec) |
+| **baluarte-content** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-content) |
+| **baluarte-core** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-core) |
+| **baluarte-data** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-data) |
+| **baluarte-desktop** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-desktop) |
+| **baluarte-docs** | Ecossistema Baluarte | `Python` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-docs) |
+| **baluarte-economia** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-economia) |
+| **baluarte-elites** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-elites) |
+| **BALUARTE-FORGE-CONSTRUCTION** | Ecossistema Baluarte | `JavaScript` `CSS` `HTML` `Batch` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/BALUARTE-FORGE-CONSTRUCTION) |
+| **baluarte-geo** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-geo) |
+| **baluarte-infra** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-infra) |
+| **baluarte-jarvis-core** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-core) |
+| **baluarte-jarvis-memory** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-memory) |
+| **baluarte-jarvis-tools** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-tools) |
+| **baluarte-midia** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-midia) |
+| **baluarte-obra-segura** | Ecossistema Baluarte | `TypeScript` `JavaScript` `CSS` `HTML` | 🟢 Active | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) |
+| **Baluarte-Portfolio** | Ecossistema Baluarte | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Baluarte-Portfolio) |
+| **baluarte-profile** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-profile) |
+| **baluarte-robotica** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-robotica) |
+| **baluarte-shell** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-shell) |
+| **baluarte-tools** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-tools) |
+| **Baluarte_MarkIX_Node** | Ecossistema Baluarte | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Baluarte_MarkIX_Node) |
+| **Catacombs-of-Paris-Ossuary-Escape-game-design** | Games | `HTML` `C#` `JavaScript` `GDScript` `Batch` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) |
+| **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Digital Logic / Hardware | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
+| **CodeVibe-Academy** | Web | `JavaScript` `HTML` | 🟢 Active | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) |
+| **Cookie-Clicker-Bot** | Software & Ferramentas | `JavaScript` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) |
+| **Customizable-birthday-invitation** | Web | `HTML` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) |
+| **DailyPlanner** | IA & Automação | `TypeScript` `CSS` `HTML` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
+| **Decision-Structures** | Academia | `Portugol` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Decision-Structures) |
+| **DelaOmegaAlfa** | Software & Ferramentas | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/DelaOmegaAlfa) |
+| **Digital-Logic-Sim-CE** | Digital Logic / Hardware | `C#` `CSS` `HTML` `JavaScript` `ShaderLab` | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
+| **DriveTax-Motors** | Web | `Java` `HTML` `CSS` `Python` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) |
+| **Essence-Custom-Furniture** | Web | `JavaScript` `HTML` | 🟢 Active | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) |
+| **fanfic-circulo-de-fogo** | Software & Ferramentas | `TypeScript` `JavaScript` `CSS` `HTML` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/fanfic-circulo-de-fogo) |
+| **file-D-teste-1-site_nova_era-index.htmlfile-D-teste-1-site_nova_era-index.html** | Web | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/file-D-teste-1-site_nova_era-index.htmlfile-D-teste-1-site_nova_era-index.html) |
+| **Flowgorithm-** | Academia | — | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Flowgorithm-) |
+| **G-mod-Black-mesa** | Games | `Python` `Batch` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) |
+| **Games** | Games | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Games) |
+| **Grupo-Atividade-4** | Academia | — | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Grupo-Atividade-4) |
+| **Guia-De-Fallout-4-Completo-** | Games | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Guia-De-Fallout-4-Completo-) |
+| **Java-activities** | Academia | `Java` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Java-activities) |
+| **JAVA-todos-os-codigos-em-java** | Academia | `Java` `Portugol` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) |
+| **Kizeo-Forms** | IA & Automação | — | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Kizeo-Forms) |
+| **LLBR-Innovations-** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-) |
+| **LLBR-Innovations-Constructions** | Ecossistema Baluarte | `JavaScript` `HTML` `CSS` `Batch` | 🟡 In Development | **[▸ Abrir site](https://llbr-innovations-constructions.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) |
+| **LOCAL-DE-TRABALHO** | Web | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/LOCAL-DE-TRABALHO) |
+| **Lucas-Belucci-Bellini** | Software & Ferramentas | `Python` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini) |
+| **MOD-PACK-MINE-BACKUP** | Games | — | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/MOD-PACK-MINE-BACKUP) |
+| **Multi-functional-site-Baluarte** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Multi-functional-site-Baluarte) |
+| **OMEGA-ALFA-DELTA** | Software & Ferramentas | `HTML` `CSS` `JavaScript` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) |
+| **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | Ecossistema Baluarte | `HTML` `CSS` `JavaScript` | 🟡 In Development | **[▸ Abrir site](https://portifolio-baluarte-lucas-belucci-b.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) |
+| **Project-Baluarte-DevFlow** | Ecossistema Baluarte | `PowerShell` `Shell` `Batch` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) |
+| **Project-Vanguard** | Ecossistema Baluarte | `JavaScript` `CSS` `HTML` | 🟢 Active | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) |
+| **Projeto-Baluarte** | Ecossistema Baluarte | `JavaScript` `HTML` `TypeScript` `CSS` `Python` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
+| **Projeto-Baluarte-AI-Contador** | Ecossistema Baluarte | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-AI-Contador) |
+| **Projeto-Baluarte-New-game** | Ecossistema Baluarte | `Python` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-New-game) |
+| **Projeto-Baluarte-Social-Media** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-Social-Media) |
+| **Projeto-Baluarte-World-Game** | Ecossistema Baluarte | `JavaScript` `CSS` `HTML` | 🟡 In Development | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
+| **Python** | Academia | `Python` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Python) |
+| **Recycle-game** | Games | `JavaScript` `HTML` `CSS` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Recycle-game) |
+| **Some-Pseudocode-and-exercise-codes** | Academia | `Portugol` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes) |
+| **taxforge** | Web | `TypeScript` `HTML` `JavaScript` `Python` `CSS` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/taxforge) |
+| **Teste-** | Software & Ferramentas | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-) |
+| **Teste-aula-git** | Software & Ferramentas | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-aula-git) |
+| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | `JavaScript` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
+| **Veritas** | Digital Logic / Hardware | `TypeScript` `JavaScript` `PL/pgSQL` `Rust` `CSS` | 🟢 Active | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
+| **Zoas-** | Software & Ferramentas | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Zoas-) |
 
 </details>
 <!-- PROJECT-MAP:END -->
@@ -324,70 +328,70 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 <details>
 <summary><b>🌐 Public repository catalog</b></summary>
 
-| Projeto | Categoria | Status | GitHub |
+| Projeto | Categoria | Status | Acesso |
 |:---|:---|:---|:---|
-| **Academic-Portfolio** | Academia | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) |
-| **AI-second-brain-with-Claude-and-Obsidian** | IA & Automação | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian) |
-| **Ark-Initiative** | Web | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
-| **Atividade-6** | Academia | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Atividade-6) |
-| **Atividade4** | Academia | 🟣 Academic | [GitHub](https://github.com/itssomeone4/Atividade4) |
-| **baluarte-academia** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-academia) |
-| **baluarte-arsenal** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-arsenal) |
-| **baluarte-audio** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-audio) |
-| **baluarte-cibersec** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-cibersec) |
-| **baluarte-content** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-content) |
-| **baluarte-core** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-core) |
-| **baluarte-data** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-data) |
-| **baluarte-desktop** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-desktop) |
-| **baluarte-docs** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-docs) |
-| **baluarte-economia** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-economia) |
-| **baluarte-elites** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-elites) |
-| **baluarte-geo** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-geo) |
-| **baluarte-infra** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-infra) |
-| **baluarte-jarvis-core** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-core) |
-| **baluarte-jarvis-memory** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-memory) |
-| **baluarte-jarvis-tools** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-tools) |
-| **baluarte-midia** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-midia) |
-| **baluarte-obra-segura** | Ecossistema Baluarte | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) |
-| **baluarte-profile** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-profile) |
-| **baluarte-robotica** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-robotica) |
-| **baluarte-shell** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-shell) |
-| **baluarte-tools** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-tools) |
-| **Catacombs-of-Paris-Ossuary-Escape-game-design** | Games | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) |
-| **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Digital Logic / Hardware | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
-| **CodeVibe-Academy** | Web | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) |
-| **Cookie-Clicker-Bot** | Software & Ferramentas | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) |
-| **Customizable-birthday-invitation** | Web | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) |
-| **DailyPlanner** | IA & Automação | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
-| **Decision-Structures** | Academia | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Decision-Structures) |
-| **Digital-Logic-Sim-CE** | Digital Logic / Hardware | 🔵 Experimental | [GitHub](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
-| **DriveTax-Motors** | Web | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) |
-| **Essence-Custom-Furniture** | Web | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) |
-| **Flowgorithm-** | Academia | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Flowgorithm-) |
-| **G-mod-Black-mesa** | Games | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) |
-| **Grupo-Atividade-4** | Academia | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Grupo-Atividade-4) |
-| **Java-activities** | Academia | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Java-activities) |
-| **JAVA-todos-os-codigos-em-java** | Academia | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) |
-| **Kizeo-Forms** | IA & Automação | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Kizeo-Forms) |
-| **LLBR-Innovations-** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-) |
-| **LLBR-Innovations-Constructions** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) |
-| **Lucas-Belucci-Bellini** | Software & Ferramentas | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini) |
-| **MOD-PACK-MINE-BACKUP** | Games | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/MOD-PACK-MINE-BACKUP) |
-| **Multi-functional-site-Baluarte** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Multi-functional-site-Baluarte) |
-| **OMEGA-ALFA-DELTA** | Software & Ferramentas | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) |
-| **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) |
-| **Project-Baluarte-DevFlow** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) |
-| **Project-Vanguard** | Ecossistema Baluarte | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) |
-| **Projeto-Baluarte** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
-| **Projeto-Baluarte-Social-Media** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-Social-Media) |
-| **Projeto-Baluarte-World-Game** | Ecossistema Baluarte | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
-| **Python** | Academia | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Python) |
-| **Recycle-game** | Games | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Recycle-game) |
-| **Some-Pseudocode-and-exercise-codes** | Academia | 🟣 Academic | [GitHub](https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes) |
-| **Teste-** | Software & Ferramentas | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Teste-) |
-| **Teste-aula-git** | Software & Ferramentas | 🟡 In Development | [GitHub](https://github.com/Lucas-Belucci-Bellini/Teste-aula-git) |
-| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
-| **Veritas** | Digital Logic / Hardware | 🟢 Active | [GitHub](https://github.com/Lucas-Belucci-Bellini/Veritas) |
+| **Academic-Portfolio** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) |
+| **AI-second-brain-with-Claude-and-Obsidian** | IA & Automação | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian) |
+| **Ark-Initiative** | Web | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
+| **Atividade-6** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Atividade-6) |
+| **Atividade4** | Academia | 🟣 Academic | [código](https://github.com/itssomeone4/Atividade4) |
+| **baluarte-academia** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-academia) |
+| **baluarte-arsenal** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-arsenal) |
+| **baluarte-audio** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-audio) |
+| **baluarte-cibersec** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-cibersec) |
+| **baluarte-content** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-content) |
+| **baluarte-core** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-core) |
+| **baluarte-data** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-data) |
+| **baluarte-desktop** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-desktop) |
+| **baluarte-docs** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-docs) |
+| **baluarte-economia** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-economia) |
+| **baluarte-elites** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-elites) |
+| **baluarte-geo** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-geo) |
+| **baluarte-infra** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-infra) |
+| **baluarte-jarvis-core** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-core) |
+| **baluarte-jarvis-memory** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-memory) |
+| **baluarte-jarvis-tools** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-jarvis-tools) |
+| **baluarte-midia** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-midia) |
+| **baluarte-obra-segura** | Ecossistema Baluarte | 🟢 Active | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) |
+| **baluarte-profile** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-profile) |
+| **baluarte-robotica** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-robotica) |
+| **baluarte-shell** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-shell) |
+| **baluarte-tools** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-tools) |
+| **Catacombs-of-Paris-Ossuary-Escape-game-design** | Games | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) |
+| **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Digital Logic / Hardware | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
+| **CodeVibe-Academy** | Web | 🟢 Active | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) |
+| **Cookie-Clicker-Bot** | Software & Ferramentas | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) |
+| **Customizable-birthday-invitation** | Web | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) |
+| **DailyPlanner** | IA & Automação | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
+| **Decision-Structures** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Decision-Structures) |
+| **Digital-Logic-Sim-CE** | Digital Logic / Hardware | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
+| **DriveTax-Motors** | Web | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) |
+| **Essence-Custom-Furniture** | Web | 🟢 Active | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) |
+| **Flowgorithm-** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Flowgorithm-) |
+| **G-mod-Black-mesa** | Games | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) |
+| **Grupo-Atividade-4** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Grupo-Atividade-4) |
+| **Java-activities** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Java-activities) |
+| **JAVA-todos-os-codigos-em-java** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) |
+| **Kizeo-Forms** | IA & Automação | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Kizeo-Forms) |
+| **LLBR-Innovations-** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-) |
+| **LLBR-Innovations-Constructions** | Ecossistema Baluarte | 🟡 In Development | **[▸ Abrir site](https://llbr-innovations-constructions.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) |
+| **Lucas-Belucci-Bellini** | Software & Ferramentas | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini) |
+| **MOD-PACK-MINE-BACKUP** | Games | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/MOD-PACK-MINE-BACKUP) |
+| **Multi-functional-site-Baluarte** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Multi-functional-site-Baluarte) |
+| **OMEGA-ALFA-DELTA** | Software & Ferramentas | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) |
+| **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | Ecossistema Baluarte | 🟡 In Development | **[▸ Abrir site](https://portifolio-baluarte-lucas-belucci-b.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) |
+| **Project-Baluarte-DevFlow** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) |
+| **Project-Vanguard** | Ecossistema Baluarte | 🟢 Active | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) |
+| **Projeto-Baluarte** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
+| **Projeto-Baluarte-Social-Media** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-Social-Media) |
+| **Projeto-Baluarte-World-Game** | Ecossistema Baluarte | 🟡 In Development | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
+| **Python** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Python) |
+| **Recycle-game** | Games | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Recycle-game) |
+| **Some-Pseudocode-and-exercise-codes** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes) |
+| **Teste-** | Software & Ferramentas | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-) |
+| **Teste-aula-git** | Software & Ferramentas | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-aula-git) |
+| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
+| **Veritas** | Digital Logic / Hardware | 🟢 Active | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
 
 </details>
 <!-- PUBLIC-PROJECTS:END -->
@@ -459,20 +463,25 @@ O Baluarte reúne narrativa, engenharia, interface, automação, lógica digital
 ## `// SITES VERIFICADOS` · LIVE DEPLOYMENTS
 
 <!-- LIVE-PROJECTS:START -->
-| Projeto | GitHub | Website | Status |
+| Projeto | Website | Código | Verificação |
 |:---|:---|:---|:---|
-| **baluarte-obra-segura** | [GitHub](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | [Site / Demo](https://baluarte-obra-segura.vercel.app) | HTTP 200 |
-| **CodeVibe-Academy** | [GitHub](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | [Site / Demo](https://code-vibe-academy.vercel.app) | HTTP 200 |
-| **Essence-Custom-Furniture** | [GitHub](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | [Site / Demo](https://essence-custom-furniture.vercel.app) | HTTP 200 |
-| **LLBR-Innovations-Constructions** | [GitHub](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | [Site / Demo](https://llbr-innovations-constructions.vercel.app) | HTTP 200 |
-| **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | [GitHub](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | [Site / Demo](https://portifolio-baluarte-lucas-belucci-b.vercel.app) | HTTP 200 |
-| **Project-Vanguard** | [GitHub](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | [Site / Demo](https://project-vanguard-cyan.vercel.app) | HTTP 200 |
-| **Projeto-Baluarte** | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | [Site / Demo](https://projeto-baluarte.vercel.app) | HTTP 200 |
-| **Projeto-Baluarte-World-Game** | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | [Site / Demo](https://projeto-baluarte-world-game.vercel.app) | HTTP 200 |
-| **Veritas** | [GitHub](https://github.com/Lucas-Belucci-Bellini/Veritas) | [Site / Demo](https://veritas-opal-seven.vercel.app) | HTTP 200 |
+| **baluarte-obra-segura** | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) | `HTTP 200` |
+| **CodeVibe-Academy** | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) | `HTTP 200` |
+| **Essence-Custom-Furniture** | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) | `HTTP 200` |
+| **LLBR-Innovations-Constructions** | **[▸ Abrir site](https://llbr-innovations-constructions.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) | `HTTP 200` |
+| **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | **[▸ Abrir site](https://portifolio-baluarte-lucas-belucci-b.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) | `HTTP 200` |
+| **Project-Vanguard** | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | `HTTP 200` |
+| **Projeto-Baluarte-World-Game** | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) | `HTTP 200` |
+| **Veritas** | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** | [código](https://github.com/Lucas-Belucci-Bellini/Veritas) | `HTTP 200` |
 <!-- LIVE-PROJECTS:END -->
 
-> **Critério:** um deployment só aparece como live quando a homepage declarada respondeu HTTP 200 durante a auditoria. URLs que falham não são apresentadas como online.
+> **Critério:** um deployment só aparece aqui quando a URL declarada respondeu durante a auditoria
+> (`200`, ou um redirecionamento cujo destino respondeu). URL que falha some desta tabela e o
+> projeto volta a apresentar só o código nas demais seções — a queda de um site nunca vira link quebrado.
+>
+> A URL sai da `homepage` declarada no GitHub e, quando ela está vazia, de
+> [`docs/README_SITES.json`](docs/README_SITES.json). **Nenhuma URL é deduzida do nome do repositório.**
+> O resultado completo, legível por máquina, fica em [`docs/project-catalog.json`](docs/project-catalog.json).
 
 ## `// NÚCLEO J.A.R.V.I.S.` · VISUAL CORE
 

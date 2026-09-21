@@ -51,3 +51,6 @@ jobs:
 
       - name: Validate generated language badges and Arsenal categories
         run: python scripts/validate_language_badges.py
+
+      - name: Validate the showcase CTA rule (site first, code second)
+        run: python scripts/validate_project_links.py
