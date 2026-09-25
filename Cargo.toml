@@ -5,6 +5,7 @@ resolver = "3"
 members = [
     "crates/ecosystem-domain",
     "crates/store",
+    "crates/profile-core",
 ]
 
 [workspace.package]
