@@ -8,6 +8,7 @@ entrada nova que a substitui.
 
 Origem de todas as entradas até D-020: [auditoria de 2026-09-25](audits/2026-09-25-ecosystem-core-audit.md).
 D-021 e D-022 nasceram na execução da Fase 0 e revisam duas recomendações dela.
+D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust).
 
 | ID | Decisão | Status |
 |:---|:---|:---|
@@ -33,6 +34,9 @@ D-021 e D-022 nasceram na execução da Fase 0 e revisam duas recomendações de
 | [D-020](#d-020) | O monitor grava transições, não varreduras | aceita |
 | [D-021](#d-021) | `lang-stats.svg` pertence ao `lang_stats.py` | aceita |
 | [D-022](#d-022) | Corrida de push: rebase com nova tentativa, sem grupo comum | aceita |
+| [D-023](#d-023) | Paridade de domínio: fixture gerado pelo Python do CI, conferido pelo Rust | aceita |
+| [D-024](#d-024) | Migrations pelo binário: tudo ou nada, tabela do sqlx-cli, perda de dado por conexão | aceita |
+| [D-025](#d-025) | Toolchain Rust fixado (1.94.1) e versão mínima real (1.94) | aceita |
 
 ---
 
@@ -338,3 +342,86 @@ D-021 e D-022 nasceram na execução da Fase 0 e revisam duas recomendações de
   conflito real termina com código 1.
 - **Revisitar quando:** D-018 (um pipeline, um escritor) for implementada; aí
   o script deixa de ser necessário.
+
+## D-023
+
+**Paridade de domínio: fixture gerado pelo Python do CI, conferido pelo Rust.** · aceita · 2026-09-25
+
+- **Contexto:** D-006 manda o Rust reproduzir o Python antes de corrigir. O
+  golden da Fase 0 (0.11) compara o README inteiro, mas só serve quando o
+  render for portado (Fase 4); as regras de domínio chegam antes.
+- **Decisão:** `tests/test_parity_domain.py` roda as funções Python reais sobre
+  640 casos em 13 grupos (classify, status, prioridades, apresentação,
+  catálogo, descoberta de site, leitura de datas…) e grava
+  `tests/fixtures/parity/domain.json`; `crates/ecosystem-domain/tests/parity.rs`
+  exige a mesma saída, caso a caso. Um grupo que o Python passe a gerar sem
+  conferência no Rust reprova o teste. O fixture é gerado com o **Python do CI
+  (3.12)** e o teste Python roda no V2 Validation: um lado não muda sem o outro
+  perceber.
+- **O que isso obrigou a reproduzir:** `round()` com empate para o par;
+  `str.isspace()` com U+001C–U+001F (conferido nos 1,1 milhão de code points);
+  `$` do `re` antes de `\n` final; `timedelta.days` para baixo; o defeito A6; e
+  `datetime.fromisoformat`, **portado do C do CPython 3.12** em vez de
+  aproximado — `10.5` é 10:00:00,5, `+00:60` é uma hora, qualquer caractere
+  (até multibyte) separa data e hora.
+- **Descartado:** expectativas digitadas à mão — o primeiro teste unitário do
+  port esperava "Software & Ferramentas" para `plain`, e o Python responde
+  "IA & Automação" (p-l-**ai**-n, o próprio A6); e o RFC 3339 do `chrono`, que
+  recusaria formas que o Python aceita.
+- **Verificação:** 43 mutações no port, 38 mortas pelo fixture; as 5 restantes
+  são equivalentes (analisadas uma a uma) e uma delas é morta por teste
+  unitário.
+- **Divergência registrada:** `website` não-texto (float, lista, objeto) no
+  manifesto de sites vira texto em JSON, não no `repr` do Python; não muda a
+  descoberta, só o texto que `check_websites.py` relataria — a portar com ele
+  (Fase 2).
+- **Revisitar quando:** o CI trocar de Python (o fixture já tem as duas bordas
+  que o ramo 3.13 do CPython muda) e quando `classifier@2` corrigir A6 — versão
+  nova, grupo novo, o `py-classify@1` continua conferido.
+
+## D-024
+
+**Migrations pelo binário: tudo ou nada, tabela do sqlx-cli, perda de dado por conexão.** · aceita · 2026-09-25
+
+- **Contexto:** critério de saída da Fase 1 ("migrations aplicadas pelo
+  binário"), sobre D-004 (formato sqlx) e D-008 (guarda das `down`).
+- **Decisão:** o crate `store` embute `db/migrations` (`sqlx::migrate!`) e:
+  - usa a **mesma tabela de controle do `sqlx-cli`** (`_sqlx_migrations`,
+    mesmos checksums) — os dois são intercambiáveis;
+  - roda `migrate` e `revert` numa **transação externa** (o sqlx abre um
+    savepoint por migration): ou o comando inteiro entra, ou nada muda. Um
+    `revert --all` que esbarra na guarda da 0006 não reverte nem as views da
+    0007;
+  - liga `ecosystem.allow_data_loss=on` **só** com `--allow-data-loss`, como
+    opção de inicialização da conexão dedicada daquele comando — nunca numa
+    conexão compartilhada;
+  - `status` só lê (nem cria a tabela de controle);
+  - migration alterada, pela metade ou desconhecida (banco à frente do
+    binário) é recusada **antes** de qualquer mudança — inclusive no `revert`,
+    que o sqlx não confere.
+- **Descartado:** `#[sqlx::test]` — aplica as migrations sozinho, e os testes
+  precisam de banco vazio, parcialmente migrado e adulterado; cada teste cria e
+  apaga o próprio banco (`STORE_TESTS_REQUIRED=1` no CI impede que pulem
+  calados). Também adiado: `query!` com `SQLX_OFFLINE` — nesta fase a única
+  tabela lida é a de controle do sqlx; entra com os repositórios de dados.
+- **Verificação:** 6 testes de integração, 5 de ponta a ponta da CLI, e
+  `db/tests/profile_core_e2e.sh`: o schema do binário é idêntico por
+  `pg_dump --schema-only` ao das migrations aplicadas pelo psql, e os testes
+  SQL passam sobre ele. 10 de 10 mutações mortas no `store`.
+- **Consequência aceita:** uma migration `-- no-transaction` quebraria o tudo
+  ou nada; o crate cai para uma transação por migration e um teste unitário
+  reprova, forçando a decisão a ser consciente.
+
+## D-025
+
+**Toolchain Rust fixado (1.94.1) e versão mínima real (1.94).** · aceita · 2026-09-25
+
+- **Contexto:** o workspace nasceu declarando `rust-version = 1.85`, mínimo da
+  edição 2024 — mas o sqlx 0.9 exige 1.94. O número declarado era falso.
+- **Decisão:** `rust-version = 1.94`; `rust-toolchain.toml` fixa o 1.94.1 com
+  `rustfmt` e `clippy`, e o CI instala exatamente essa versão (sem depender da
+  instalação automática do rustup, que mudou entre versões).
+- **Motivo:** uma lint nova do clippy num stable novo não deixa o CI vermelho
+  sem mudança no código; subir o compilador é um PR que muda um arquivo.
+- **Revisitar quando:** sair um stable novo (a cada ~6 semanas), num PR
+  próprio que rode o `Rust Core` inteiro.

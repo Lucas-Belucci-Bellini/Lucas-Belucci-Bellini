@@ -30,6 +30,13 @@ the README generator or the database, read:
 - `docs/migration/PYTHON-TO-RUST.md` and `docs/migration/MIGRATION-MATRIX.md` — what migrates, in which order.
 - `docs/database/MIGRATIONS.md` — schema rules; run `db/tests/run.sh` after touching `db/`.
 
+Rust core (`crates/`, toolchain pinned in `rust-toolchain.toml`): run `cargo fmt --all --check`,
+`cargo clippy --workspace --all-targets -- -D warnings` and `cargo test --workspace`. Database
+tests need `STORE_TEST_DATABASE_URL` (each test creates and drops its own database). If you change
+a Python rule covered by `tests/test_parity_domain.py`, regenerate the fixture with the CI's Python
+(`UPDATE_PARITY=1 python3.12 -m unittest tests.test_parity_domain`) and update the Rust port in
+the same PR — the two sides are checked against the same file.
+
 Hard rules: never edit content between `<!-- NAME:START -->` / `<!-- NAME:END -->` markers in
 `README.md` by hand; never edit an applied migration (add a new one); never commit a real
 database, connection string or non-synthetic seed data.

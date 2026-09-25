@@ -1,19 +1,20 @@
 # Matriz de migração
 
 Baseada no código real de `28e88af` (14 scripts, 3.799 linhas). Estados:
-`planned` · `shadow` (modo B) · `switched` (modo C) · `deprecated` ·
-`removed` · `keep` · `retire`. Prioridade segue as fases do
+`planned` · `ported` (port Rust com paridade provada pelo fixture, ainda fora do
+caminho de publicação) · `shadow` (modo B) · `switched` (modo C) ·
+`deprecated` · `removed` · `keep` · `retire`. Prioridade segue as fases do
 [plano](PYTHON-TO-RUST.md#5-fases).
 
 ## 1. Por arquivo
 
 | Python | Linhas | Função | Destino Rust | Comando | Prioridade | Fase | Estado |
 |:---|---:|:---|:---|:---|:---|:--:|:---|
-| `scripts/project_catalog.py` | 501 | verificação de sites, descoberta, `Presentation`, prioridade, catálogo JSON, CTAs | `site-monitor` (verificação) · `ecosystem-domain` (apresentação, prioridade, CTA, taxonomia) · `catalog` (JSON @1) · `profile-render` (badges/CTAs) | `check sites`, `catalog build` | **alta** | 2–3 | planned |
+| `scripts/project_catalog.py` | 501 | verificação de sites, descoberta, `Presentation`, prioridade, catálogo JSON, CTAs | `site-monitor` (verificação) · `ecosystem-domain` (apresentação, prioridade, CTA, taxonomia) · `catalog` (JSON @1) · `profile-render` (badges/CTAs) | `check sites`, `catalog build` | **alta** | 2–3 | regras **ported** (`e39c9f2`); verificação HTTP, catálogo e badges planned |
 | `scripts/check_websites.py` | 123 | CLI de saúde dos sites | `profile-core check sites` | `check sites` | **alta — primeira fatia** (D-014) | 2 | planned |
 | `.github/scripts/ecosystem_watch.py` | 280 | monitor horário, estado cumulativo | `github-client` + `store` (`commit_observations`, métricas) | `sync commits`, `export legacy-state` | **alta** | 3 | planned |
 | `scripts/update_profile.py` — coleta | ~250 | inventário, linguagens, exclusões | `github-client` + `catalog` | `sync github` | **alta** | 3 | planned |
-| `scripts/update_profile.py` — regras | ~150 | `classify`, `status_for`, `featured_score` | `ecosystem-domain` | — | **alta** | 3 | planned |
+| `scripts/update_profile.py` — regras | ~150 | `classify`, `status_for`, `featured_score`, `describe` | `ecosystem-domain` | — | **alta** | 1 → 3 | **ported** (`e39c9f2`, D-023); entra no caminho de publicação com `sync github` |
 | `scripts/update_profile.py` — render | ~700 | 13 blocos, 2 SVGs | `profile-render` | `render readme`, `render assets` | alta, **por último** | 4 | planned |
 | `.github/scripts/lang_stats.py` | 555 | linguagens (duplicado), tipos de arquivo, 2 SVGs (único escritor — D-021) | linguagens: absorvidas por `sync github`; tipos de arquivo: métrica opcional; SVGs: `profile-render` | `render assets` | média | 3–4 | planned (bloco `LANG-STATS` órfão removido na Fase 0) |
 | `.github/scripts/profile_cards.py` | 207 | GraphQL de contribuições + 4 SVGs | `github-client` + `metrics`; SVGs em `profile-render`; `profile-projects.svg` passa a sair do catálogo | `sync contributions`, `render assets` | média | 3–4 | planned |
@@ -25,7 +26,7 @@ Baseada no código real de `28e88af` (14 scripts, 3.799 linhas). Estados:
 | `scripts/validate_profile.py` | 208 | validador amplo, fora do CI, caminho fixo, grava arquivo | absorvido por `validate` | `validate` | baixa | 4 | planned → **retire** |
 | `scripts/validate_restored_style.py` | 57 | componentes visuais | `validate readme --visual` | — | baixa | 4 | **keep** — no CI desde a Fase 0 (V2 Validation) |
 | `scripts/restore_original_style.py` | 129 | migração única de agosto | — | — | — | 0 | **removed** na Fase 0 (`f8b5592`; histórico em `faff9ef`) |
-| `tests/*.py` | — | 82 testes (57 + 25 da Fase 0, incluindo o golden) | casos equivalentes em `cargo test`; o golden vira o teste de paridade | — | — | 2–4 | **keep** até o script coberto sair |
+| `tests/*.py` | — | 84 testes (57 + 25 da Fase 0, incluindo o golden, + 2 do fixture de paridade da Fase 1) | casos equivalentes em `cargo test`; o golden vira o teste de paridade do render | — | — | 1–4 | **keep** até o script coberto sair |
 
 ## 2. Por função — `update_profile.py`
 
@@ -34,11 +35,12 @@ Baseada no código real de `28e88af` (14 scripts, 3.799 linhas). Estados:
 | `api_get`, `fetch_repositories`, `fetch_languages` | `github-client` | unifica 5 clientes HTTP; ETag e rate limit |
 | `load_local_repositories`, `load_local_languages` | `profile-core --offline --fixtures` | mesmo formato de arquivo |
 | `normalize_name` | `ecosystem-domain::text` | |
-| `classify` | `ecosystem-domain::classify::py_v1` | **reproduz a correspondência por substring** (A6); `classifier@2` depois |
-| `status_for` | `ecosystem-domain::lifecycle` | `now` injetado; nomes fixos viram `lifecycle_override` |
+| `classify` | `ecosystem-domain::classify::classify_py_v1` ✅ | **reproduz a correspondência por substring** (A6); `classifier@2` depois |
+| `status_for` | `ecosystem-domain::lifecycle::status_py_v1` ✅ | `now` injetado; datas lidas pelo port do `fromisoformat` (D-023); nomes fixos viram `lifecycle_override` |
 | `language_rows`, `format_bytes` | `catalog` / view `public_language_totals` | mesmo arredondamento e ordenação (`-bytes`, nome minúsculo) |
-| `featured_score`, `FEATURED_PRIORITY` | `ecosystem-domain::priority` | prioridade vira dado (`featured_entries.priority`) |
-| `describe`, `md_cell`, `repo_link`, `stack_for` | `profile-render::markdown` | |
+| `featured_score`, `FEATURED_PRIORITY` | `ecosystem-domain::priority::featured_score_py_v1` ✅ | mesmos bits em `f64`; prioridade vira dado (`featured_entries.priority`) |
+| `describe` | `ecosystem-domain::presentation::describe` ✅ | é dado (vai cru para o catálogo), não escape |
+| `md_cell`, `repo_link`, `stack_for` | `profile-render::markdown` | |
 | `featured_order`, `featured_priority`, `build_presentations` | `ecosystem-domain::presentation` | |
 | `live_site_map` | view `website_status_current` | |
 | `replace_block` | `profile-render::markers` | defeito do `\` corrigido na Fase 0 (`0d64829`); o golden cobre |
@@ -52,11 +54,12 @@ Baseada no código real de `28e88af` (14 scripts, 3.799 linhas). Estados:
 | Função / tipo | Destino |
 |:---|:---|
 | `WebsiteCheck`, `check_website`, `check_websites`, `LIVE_STATUSES` | `site-monitor` (+ tempo de resposta, contagem de redirects, tipo de erro) |
-| `_looks_like_http_url` | `ecosystem-domain::url` (mesma expressão da `CHECK` em `websites.url`) |
-| `normalize_site_overrides`, `discover_project_website` | `ecosystem-domain::discovery` + `import manifests` |
-| `Presentation`, `resolve_presentation`, `marketing_priority` | `ecosystem-domain::presentation` |
-| `CATEGORIES`, `CATEGORY_ALIASES`, `canonical_category` | tabelas `categories` / `classification_labels` (migration 0003) |
-| `catalog_entry`, `build_catalog`, `write_catalog_if_changed` | `catalog::json_v1` |
+| `_looks_like_http_url` | `ecosystem-domain::url` ✅ (mesma expressão da `CHECK` em `websites.url`) |
+| `normalize_site_overrides`, `discover_project_website` | `ecosystem-domain::discovery` ✅ + `import manifests` |
+| `Presentation`, `resolve_presentation`, `marketing_priority` | `ecosystem-domain::presentation` ✅ |
+| `CATEGORIES`, `CATEGORY_ALIASES`, `canonical_category` | `ecosystem-domain::taxonomy` ✅ + tabelas `categories` / `classification_labels` (migration 0003); `cargo test -p store` confere que as duas não divergem |
+| `catalog_entry` | `ecosystem-domain::presentation::catalog_entry` ✅ (ordem de chaves do Python) |
+| `build_catalog`, `write_catalog_if_changed` | `catalog::json_v1` |
 | `_badge`, `cta_buttons`, `status_pill`, `cta_cell` | `profile-render::badges` |
 
 ## 4. Dados embutidos no código → banco
@@ -84,4 +87,5 @@ Baseada no código real de `28e88af` (14 scripts, 3.799 linhas). Estados:
 | `contributions-timeline.yml` | Python diário | `profile-core sync contributions` dentro do job diário |
 | `snake.yml` | action externa | inalterado |
 | `v2-validation.yml` | testes Python + validadores | + `cargo test` + `profile-core parity` enquanto houver Python |
-| `db-validation.yml` | **novo** (este PR) | inalterado |
+| `db-validation.yml` | **novo** (Fase 1) | inalterado |
+| `rust.yml` (Rust Core) | **novo** (Fase 1): fmt, clippy, `cargo test` com PostgreSQL 16, e2e do `profile-core` | ganha `profile-core parity` quando o render for portado |

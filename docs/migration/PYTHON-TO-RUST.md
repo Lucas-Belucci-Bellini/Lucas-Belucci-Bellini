@@ -55,13 +55,18 @@ crates/
 └── profile-core/       bin  CLI (clap) — orquestra os demais
 ```
 
+**Existem desde a Fase 1:** `ecosystem-domain`, `store` e `profile-core`
+(`db migrate | revert | status`). Os demais entram nas fases em que são usados.
+
 Regras:
 
 - `ecosystem-domain` não depende de nada de I/O (mesma disciplina do
   `src/engine/` do Project Vanguard): é o que permite testar toda regra sem
   rede e sem banco.
-- `store` é o único crate que conhece SQL. Consultas com `sqlx::query!`
-  (checadas contra o schema em compilação, com `SQLX_OFFLINE` no CI).
+- `store` é o único crate que conhece SQL. Consultas ao schema `ecosystem` com
+  `sqlx::query!` (checadas em compilação, com `SQLX_OFFLINE` no CI) quando os
+  repositórios de dados chegarem; na Fase 1 a única tabela lida é a de controle
+  do sqlx, com consulta em tempo de execução (D-024).
 - `github-client` e `site-monitor` usam `reqwest` + `tokio`; timeouts e
   concorrência são configuração, não constantes.
 - Toda dependência de tempo recebe um relógio injetável (`now`) — a paridade
@@ -89,7 +94,7 @@ de C:** 30 dias sem regressão e equivalente Rust de cada validador.
 | Fase | Entrega | Critério de saída |
 |:---|:---|:---|
 | **0 · estabilização** (Python) ✅ parcial | itens 0.2–0.11 feitos; faltam 0.1 (secret) e 0.12 (decisão) — [auditoria](../audits/2026-09-25-ecosystem-core-audit.md#12-recomendações) | refresh diário rodando de verdade (depende de 0.1); um escritor por arquivo ✅; fixtures versionadas ✅ |
-| **1 · fundação** ✅ parcial | auditoria, docs, schema, migrations testadas, CI de banco (**este PR**); depois: workspace Cargo, `ecosystem-domain`, `store`, `profile-core db migrate` | `cargo test` verde; migrations aplicadas pelo binário |
+| **1 · fundação** ✅ | auditoria, docs, schema, migrations testadas, CI de banco; workspace Cargo, `ecosystem-domain` com paridade (`e39c9f2`, D-023), `store` (`9e133d9`, D-024), `profile-core db migrate\|revert\|status` (`4527264`, `7f6bfe4`), workflow `Rust Core` (`441eaf2`) | `cargo test` verde ✅; migrations aplicadas pelo binário ✅ — e o schema resultante é idêntico ao do psql |
 | **2 · monitor de sites** | `site-monitor` + `profile-core check sites` em modo B | relatório JSON idêntico ao de `check_websites.py --json` (exceto `checked_at` e tempo); histórico no banco |
 | **3 · coleta** | `github-client` + `catalog` + `sync github`, `sync commits`, `sync contributions`, `import manifests`, `import legacy` | `project-catalog.json` do Rust = do Python; contadores do monitor idênticos |
 | **4 · geração** | `profile-render` + `render readme/assets` em modo B → C | README byte a byte igual sobre as mesmas entradas; validadores Python verdes contra a saída do Rust |
@@ -104,9 +109,11 @@ OLD PYTHON ──▶ saída esperada (fixture golden, versionada) ◀── NEW 
 | Camada | Ferramenta | O que cobre |
 |:---|:---|:---|
 | **Unitário Rust** | `cargo test` | `ecosystem-domain`: classificação, status com `now` fixo, prioridade, CTA, slug; renderizadores bloco a bloco |
+| **Paridade de domínio** ✅ | `tests/test_parity_domain.py` → `tests/fixtures/parity/domain.json` ← `cargo test -p ecosystem-domain --test parity` | 640 casos em 13 grupos, gerados pelas funções Python reais no Python do CI (D-023) |
 | **Integração Rust** | `cargo test` + servidor HTTP local (como `tests/test_project_catalog.py`) | `site-monitor`: 200, redirect, 404, 500, conexão recusada, DNS, timeout, URL inválida, URL repetida |
 | **Parsing da API do GitHub** | respostas JSON gravadas em `tests/fixtures/github/` | paginação, campos ausentes/nulos, `304`, `409` (repo vazio), rate limit (`403` + `X-RateLimit-Remaining: 0`), GraphQL com `errors` |
-| **Banco** | `db/tests/run.sh` (já existe) + `#[sqlx::test]` | restrições, views, histórico append-only, privilégios; no Rust, cada teste num banco descartável |
+| **Banco** | `db/tests/run.sh` + `cargo test -p store` ✅ | restrições, views, histórico append-only, privilégios; no Rust, cada teste cria e apaga o próprio banco (`STORE_TEST_DATABASE_URL`; `STORE_TESTS_REQUIRED=1` no CI impede que pulem) |
+| **Binário** ✅ | `cargo test -p profile-core` + `db/tests/profile_core_e2e.sh` | CLI de ponta a ponta; schema do binário = schema do psql (`pg_dump`); testes SQL sobre ele; trava de perda de dados |
 | **Migrations** | `db/tests/run.sh` + `db-validation.yml` (já existe) | round-trip por migration, guardas, idempotência, sqlx |
 | **Paridade (regressão)** | fixture golden: `repos.json` + `languages/` + `site-checks.json` + `now` → README, catálogo, SVGs | `diff` Python × Rust byte a byte |
 | **Contrato do README** | validadores Python e Rust | só blocos mudaram, CTA site-primeiro, exclusões ausentes, badges legíveis |
@@ -132,6 +139,31 @@ rodar o binário Rust sobre a **mesma** raiz e comparar com o mesmo `expected/`.
 
 As fixtures são **sintéticas** — nunca o inventário real com repositórios
 privados.
+
+### Armadilhas de paridade
+
+O que um port mecânico erraria, e como o Rust reproduz. Cada item é caso do
+fixture de paridade; a lista cresce a cada componente portado.
+
+| Python | Rust ingênuo | Rust do núcleo |
+|:---|:---|:---|
+| `round(12.5) == 12` (empate para o par) | `f64::round` → 13 | `round_ties_even` (`priority::py_round`) |
+| `str.isspace()`, `strip()`, `split()` incluem U+001C–U+001F | `char::is_whitespace` não inclui | `text::py_is_space`, conferido nos 1,1 milhão de code points |
+| `\s` do `re` inclui U+001C–U+001F; `$` casa antes de um `\n` final | `regex` não faz nenhum dos dois | classe explícita e `\n?\z` (`url.rs`) |
+| `timedelta.days` arredonda para baixo | truncar: −6 h dá 0 dia; o Python dá −1 | `div_euclid` (`timestamps::python_days`) |
+| `datetime.fromisoformat` aceita `10.5`, `+00:60`, `2026-W38-7`, separador multibyte, caractere solto antes do fuso | RFC 3339 recusa | port do C do CPython 3.12 (`timestamps::py_fromisoformat`) |
+| `"ai" in "plain"` (A6) | tokenizar "corrigiria" | substring, de propósito (`classify_py_v1`) |
+| `str(True) == "True"` | `"true"` | `discovery::py_str` |
+| `len(s)` conta code points | `str::len` conta bytes | `chars().count()` |
+
+**Divergências conhecidas** (fora do fixture de propósito, sem efeito no que é
+publicado): `website` float/lista/objeto no manifesto de sites vira texto em
+JSON e não no `repr` do Python (D-023).
+
+**Versão do Python:** o fixture é da versão do CI (3.12). O código atual do
+ramo 3.13 do CPython muda duas bordas do `fromisoformat` (`.` sem dígitos;
+fuso só com microssegundos); as duas estão no fixture, então a troca de versão
+reprova o teste Python em vez de mudar a referência calada.
 
 ### Testes Python existentes
 
@@ -163,7 +195,10 @@ profile-core [--database-url URL | --no-db] [--offline --fixtures DIR] [--dry-ru
   validate [readme|catalog|links|exclusions|badges]
   export legacy-state           ECOSYSTEM-COMMIT-STATE.json schema 4 (compatibilidade)
 
-  db migrate | db revert | db status
+  db status [--json]            ✅ Fase 1 — só lê; sai com 1 se há migration alterada/pela metade/desconhecida
+  db migrate                    ✅ Fase 1 — tudo ou nada
+  db revert [--to V | --all] [--allow-data-loss]
+                                ✅ Fase 1 — tudo ou nada; sem a flag, a trava das `down` recusa
   parity --against python       roda os dois sobre as mesmas fixtures e mostra o diff
 ```
 
@@ -177,8 +212,11 @@ Convenções:
   dos testes de paridade.
 - Saída legível por padrão; `--json` em tudo que reporta.
 - Código de saída: `0` ok, `1` verificação falhou (ex.: `--fail-on-down`,
-  `--check` com diferença), `2` erro de execução. Nunca `0` quando uma etapa
-  foi pulada por falta de credencial (lição de A1).
+  `--check` com diferença, banco inconsistente, trava de perda de dados), `2`
+  erro de execução (inclui uso incorreto, que o clap sinaliza com 2). Nunca `0`
+  quando uma etapa foi pulada por falta de credencial (lição de A1).
+- A conexão vem de `DATABASE_URL`; `--database-url` existe, mas deixa a senha
+  na lista de processos. Nenhuma mensagem — nem a ajuda — repete a URL.
 
 ## 8. Descontinuação de um script Python
 
@@ -194,6 +232,8 @@ Convenções:
 | Risco | Mitigação |
 |:---|:---|
 | Tempo de compilação no CI | cache do `target/` e do binário; o binário só recompila quando `crates/**` muda |
+| Python do CI muda de versão e a referência muda junto | fixture gerado na versão do CI, com as bordas conhecidas entre versões (D-023) |
+| Clippy novo num stable novo | toolchain fixado em `rust-toolchain.toml`; subir é PR próprio (D-025) |
 | Divergência sutil de formatação (floats, ordenação, Unicode) | fixture golden byte a byte; `format_bytes`/percentuais reproduzidos com os mesmos arredondamentos |
 | Diferença de biblioteca HTTP (redirects, TLS) | os mesmos casos do servidor local rodam contra os dois |
 | Dono do perfil precisa de Rust para contribuir | manifestos continuam em JSON; nada editorial exige Rust |

@@ -52,7 +52,21 @@ apaga ao sair. Sem `PGHOST`, sobe um cluster em diretório temporário com
 `initdb`/`pg_ctl` (procura em `PG_BIN_DIR`, `pg_config --bindir` e
 `/usr/lib/postgresql/*/bin`).
 
-Com a ferramenta que o núcleo Rust vai usar:
+Com o binário do núcleo (Fase 1) — mesma tabela de controle do `sqlx-cli`,
+então os dois são intercambiáveis:
+
+```bash
+export DATABASE_URL=postgres://usuario@localhost/ecosystem_dev
+cargo run -p profile-core -- db status            # só lê
+cargo run -p profile-core -- db migrate           # tudo ou nada
+cargo run -p profile-core -- db revert            # só a última; --to V ou --all para mais
+cargo run -p profile-core -- db revert --all --allow-data-loss   # quando há dado: exporte antes
+```
+
+`migrate` e `revert` rodam numa transação só: se uma `down` recusa apagar dado,
+nenhuma migration é revertida (D-024).
+
+Com o `sqlx-cli`:
 
 ```bash
 cargo install sqlx-cli --no-default-features --features postgres,rustls --locked
@@ -72,6 +86,13 @@ sqlx migrate revert --source db/migrations        # uma por vez, da mais nova pa
 | 4 · guardas | todo `down` com tabela **recusa** sem `ecosystem.allow_data_loss=on` e passa com ele; no fim não sobra nenhum objeto |
 | 5 · idempotência do ciclo | reaplicar tudo reproduz exatamente o mesmo schema |
 | 6 · sqlx | `sqlx migrate run` aplica as 7 e `revert` volta a zero |
+
+O binário tem a própria prova, no workflow `Rust Core`:
+`db/tests/profile_core_e2e.sh` confere que o schema de `profile-core db migrate`
+é idêntico (`pg_dump --schema-only`) ao das migrations aplicadas pelo psql, roda
+o seed e os testes SQL sobre ele e exercita a trava de perda de dados pela CLI.
+`cargo test -p store` cobre o resto: tudo ou nada, migration alterada, pela
+metade ou desconhecida, e a taxonomia da 0003 contra o crate de domínio.
 
 Os testes foram validados por **mutação**: remover o filtro de exclusão, o
 filtro de privados, uma guarda de `down`, um trigger de histórico, a

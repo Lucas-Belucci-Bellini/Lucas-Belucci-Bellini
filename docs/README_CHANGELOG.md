@@ -83,3 +83,15 @@ A Fase 0 corrigiu o que tornava o pipeline atual imprevisível, sem mexer no des
 - Teste golden do gerador: entrada sintética fixa → README, catálogo e SVG byte a byte (`tests/test_golden_profile.py`).
 
 Pendências do dono do perfil: configurar `PROFILE_README_TOKEN` e decidir se as linguagens de repositórios privados continuam no mapa completo de projetos.
+
+
+## 2026-09-25 — Fase 1: fundação do núcleo em Rust
+
+O README e os assets não mudaram. Entrou o começo do núcleo que vai gerá-los:
+
+- **Workspace Cargo** com três crates: `ecosystem-domain` (regras puras do catálogo, sem rede nem banco), `store` (PostgreSQL) e `profile-core` (a CLI).
+- **Paridade provada, não suposta.** As regras de classificação, status, prioridade, apresentação e descoberta de site foram portadas para Rust e conferidas contra as funções Python reais em 640 casos de um fixture compartilhado (`tests/fixtures/parity/domain.json`), gerado pelo Python do CI. O port reproduz de propósito as peculiaridades do Python — inclusive o defeito A6 e a leitura de datas do `fromisoformat`, portada do C do CPython.
+- **`profile-core db migrate | revert | status`** aplica as migrations de `db/migrations`, embutidas no binário. Tudo ou nada; reverter com dado exige `--allow-data-loss`; o schema aplicado pelo binário é idêntico ao aplicado pelo psql.
+- Novo workflow **Rust Core**: formato, lints, testes (com PostgreSQL 16) e o binário de ponta a ponta.
+
+Decisões em `docs/DECISION-LOG.md` (D-023 a D-025); plano atualizado em `docs/migration/PYTHON-TO-RUST.md`.
