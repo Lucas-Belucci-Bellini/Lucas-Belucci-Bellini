@@ -366,7 +366,9 @@ def replace_block(text: str, marker: str, body: str) -> str:
     replacement = f"<!-- {marker}:START -->\n{body.rstrip()}\n<!-- {marker}:END -->"
     if not pattern.search(text):
         raise ValueError(f"README marker not found: {marker}")
-    return pattern.sub(replacement, text, count=1)
+    # Função, não string: o corpo vem de descrições do GitHub e pode conter `\`,
+    # que como string de substituição o `re` leria como escape ou grupo.
+    return pattern.sub(lambda _match: replacement, text, count=1)
 
 
 def render_dashboard(repos: list[dict[str, Any]], languages: list[dict[str, Any]], verified_sites: dict[str, dict[str, Any]], now: datetime) -> str:

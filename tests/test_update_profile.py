@@ -29,6 +29,31 @@ class LanguageBadgeTests(unittest.TestCase):
         self.assertIn("language=PLpgSQL", rendered)
 
 
+class ReplaceBlockTests(unittest.TestCase):
+    """O corpo renderizado é texto literal, nunca sintaxe de substituição do `re`.
+
+    Descrições de repositório vêm do GitHub e podem conter `\\`. Antes, o corpo
+    ia como string de substituição para `re.sub`, e `C:\\Users` derrubava o
+    refresh inteiro com `re.error: bad escape \\U` (auditoria, A5).
+    """
+
+    TEMPLATE = "antes\n<!-- X:START -->\nvelho\n<!-- X:END -->\ndepois\n"
+
+    def test_barra_invertida_passa_literal(self) -> None:
+        for body in (r"C:\Users\lucas tool", r"regex \d+ e \w", r"grupo \g<0> e \1", "fim com \\"):
+            with self.subTest(body=body):
+                rendered = MODULE.replace_block(self.TEMPLATE, "X", body)
+                self.assertIn(f"<!-- X:START -->\n{body}\n<!-- X:END -->", rendered)
+
+    def test_so_o_bloco_muda(self) -> None:
+        rendered = MODULE.replace_block(self.TEMPLATE, "X", "novo")
+        self.assertEqual("antes\n<!-- X:START -->\nnovo\n<!-- X:END -->\ndepois\n", rendered)
+
+    def test_marcador_ausente_continua_falhando(self) -> None:
+        with self.assertRaises(ValueError):
+            MODULE.replace_block(self.TEMPLATE, "Y", "novo")
+
+
 if __name__ == "__main__":
     unittest.main()
 
