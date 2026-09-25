@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-24T19:09:18Z",
+  "scanned_at": "2026-09-25T01:29:34Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "f49e905f45a961b54d433491972a5c0d2bbfc19f",
-      "date": "2026-09-08T12:25:08Z",
-      "message": "Merge pull request #29 from Lucas-Belucci-Bellini/claude/nexora-repo-inspection-0mh1zu",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/f49e905f45a961b54d433491972a5c0d2bbfc19f"
+      "sha": "03e8a7d7b2d5a2cb962a136ad3e5b0e60e1e2d20",
+      "date": "2026-09-24T23:58:36Z",
+      "message": "Merge pull request #30 from Lucas-Belucci-Bellini/claude/nexora-repo-inspection-0mh1zu",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/03e8a7d7b2d5a2cb962a136ad3e5b0e60e1e2d20"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -465,10 +465,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3309,
-    "project_commits": 3090,
-    "monitor_commits": 219,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 3338,
+    "project_commits": 3118,
+    "monitor_commits": 220,
+    "detected_project_commits_this_scan": 28,
     "monitor_commit_this_scan": 1
   },
   "summary": {

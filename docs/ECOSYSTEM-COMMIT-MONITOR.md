@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-24T19:09:18Z`  
+**Última varredura:** `2026-09-25T01:29:34Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `67`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3309`
-- **Commits dos projetos:** `3090`
-- **Commits do próprio monitor:** `219`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `3338`
+- **Commits dos projetos:** `3118`
+- **Commits do próprio monitor:** `220`
+- **Commits de projetos detectados nesta hora:** `28`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [3dcd0a834f3c](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3dcd0a834f3ca7561f5dc787f73b583adabe55e5) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **NEXORA** — 28 commit(s) — [03e8a7d7b2d5](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/03e8a7d7b2d5a2cb962a136ad3e5b0e60e1e2d20) — Merge pull request #30 from Lucas-Belucci-Bellini/claude/nexora-repo-inspection-0mh1zu
 
 ## Erros de consulta
 
