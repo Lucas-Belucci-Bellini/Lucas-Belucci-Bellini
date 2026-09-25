@@ -4,3 +4,6 @@ __pycache__/
 
 # Relatório local de scripts/validate_profile.py (checagem de links; não versionado)
 docs/README_LINK_CHECK.json
+
+# Rust (cargo)
+/target/

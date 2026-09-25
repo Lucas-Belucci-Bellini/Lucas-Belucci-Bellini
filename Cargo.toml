@@ -1,0 +1,36 @@
+# Núcleo do ecossistema em Rust (docs/migration/PYTHON-TO-RUST.md, D-013).
+# Crates por responsabilidade, não um por script Python.
+[workspace]
+resolver = "3"
+members = [
+    "crates/ecosystem-domain",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+publish = false
+
+[workspace.dependencies]
+ecosystem-domain = { path = "crates/ecosystem-domain" }
+store = { path = "crates/store" }
+
+anyhow = "1"
+chrono = { version = "0.4", default-features = false, features = ["std", "clock"] }
+clap = { version = "4", features = ["derive", "env"] }
+regex = { version = "1", default-features = false, features = ["std", "unicode"] }
+serde = { version = "1", features = ["derive"] }
+# preserve_order: o catálogo JSON tem ordem de chaves; float_roundtrip: leitura
+# exata dos floats gerados pelo Python (featured_score) nos testes de paridade.
+serde_json = { version = "1", features = ["preserve_order", "float_roundtrip"] }
+sqlx = { version = "0.9", default-features = false, features = ["runtime-tokio", "tls-rustls", "postgres", "migrate", "macros"] }
+thiserror = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
