@@ -51,4 +51,4 @@ jobs:
             exit 0
           fi
           git commit -m "chore(bot): atualiza análise de linguagens do perfil [skip ci]"
-          git push
+          bash .github/scripts/push_with_rebase.sh
