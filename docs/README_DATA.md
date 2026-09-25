@@ -67,7 +67,7 @@ As seções geradas são delimitadas por marcadores `START`/`END`. Não edite o 
 
 A versão atual do README preserva a estética original do perfil: banner `capsule-render`, faixas animadas `readme-typing-svg`, badges de status/universidade/localização, bloco ASCII `BALUARTE // FIELD MANUAL`, ícones `skillicons`, gráficos e assets de estatísticas, console visual do J.A.R.V.I.S., build log de CPU, mapa de atividade, canais de contato, contador de visitas e footer. Os blocos auditáveis são inseridos entre marcadores dedicados para que a automação atualize os dados sem remover esses elementos editoriais e visuais.
 
-A rotina de refresh deve ser executada sobre esse template preservado. O script [`scripts/restore_original_style.py`](../scripts/restore_original_style.py) documenta a migração pontual a partir da branch de backup; a atualização diária usa apenas [`scripts/update_profile.py`](../scripts/update_profile.py) e não substitui o template inteiro.
+A rotina de refresh deve ser executada sobre esse template preservado. A migração pontual a partir da branch de backup foi feita pelo script `scripts/restore_original_style.py`, que foi aposentado na Fase 0 (continua no histórico, commit `faff9ef`); a atualização diária usa apenas [`scripts/update_profile.py`](../scripts/update_profile.py) e não substitui o template inteiro.
 
 
 ## Seção personalizada e Arsenal expandido

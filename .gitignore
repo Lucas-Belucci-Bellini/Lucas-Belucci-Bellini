@@ -1,3 +1,6 @@
 # Artefatos de execução do bot de análise (Python)
 __pycache__/
 *.py[cod]
+
+# Relatório local de scripts/validate_profile.py (checagem de links; não versionado)
+docs/README_LINK_CHECK.json
