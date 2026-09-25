@@ -2,7 +2,7 @@
   "login": "Lucas-Belucci-Bellini",
   "window_start": "2025-09-25",
   "window_end": "2026-09-25",
-  "generated_at": "2026-09-25T18:10:26+00:00",
+  "generated_at": "2026-09-25T12:00:08+00:00",
   "source": "GitHub GraphQL API / contributionsCollection",
   "rows": [
     {
@@ -138,9 +138,9 @@
       "period_end": "2026-08-31"
     },
     {
-      "total": 296,
+      "total": 293,
       "commits": 225,
-      "pull_requests": 22,
+      "pull_requests": 19,
       "issues": 42,
       "reviews": 0,
       "repositories": 7,
