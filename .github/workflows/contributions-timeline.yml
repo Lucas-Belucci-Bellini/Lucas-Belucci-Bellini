@@ -4,7 +4,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "23 6 * * *"
+  # Só no main, como os outros três workflows que escrevem no repositório:
+  # sem o filtro, qualquer branch que tocasse estes caminhos recebia um
+  # commit de dados do bot.
   push:
+    branches: [main]
     paths:
       - "scripts/update_contribution_timeline.py"
       - "docs/CONTRIBUTIONS_TIMELINE.md"
