@@ -19,6 +19,21 @@
 6. Keep project-specific implementation details in the project's own repository; this repository is primarily navigation/context.
 7. Never put credentials, API keys, tokens or private connection strings in these documents.
 
+## Ecosystem core (this repository)
+
+This repository is evolving from a profile README into the ecosystem's catalog core
+(GitHub → collector → PostgreSQL → README/JSON/API). Before changing scripts, workflows,
+the README generator or the database, read:
+
+- `docs/audits/2026-09-25-ecosystem-core-audit.md` — current state, known defects, invariants.
+- `docs/DECISION-LOG.md` — accepted decisions are not re-litigated without new facts.
+- `docs/migration/PYTHON-TO-RUST.md` and `docs/migration/MIGRATION-MATRIX.md` — what migrates, in which order.
+- `docs/database/MIGRATIONS.md` — schema rules; run `db/tests/run.sh` after touching `db/`.
+
+Hard rules: never edit content between `<!-- NAME:START -->` / `<!-- NAME:END -->` markers in
+`README.md` by hand; never edit an applied migration (add a new one); never commit a real
+database, connection string or non-synthetic seed data.
+
 ## Owner-controlled synchronization
 
 The owner may synchronize local copies manually with Git:
