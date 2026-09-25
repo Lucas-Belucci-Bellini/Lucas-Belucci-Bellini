@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-25T01:29:34Z",
+  "scanned_at": "2026-09-25T07:47:12Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -222,10 +222,10 @@
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
-      "sha": "03eaaf6dccbc585aaf3e6642c58a8b12db6c8b17",
-      "date": "2026-09-17T05:10:25Z",
-      "message": "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/roteiro.md",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/03eaaf6dccbc585aaf3e6642c58a8b12db6c8b17"
+      "sha": "1506aec986b2f4cb0b987ab10491dd16a8e873a9",
+      "date": "2026-09-25T06:31:56Z",
+      "message": "atualização do roteiro do cap 23",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/1506aec986b2f4cb0b987ab10491dd16a8e873a9"
     },
     "Customizable-birthday-invitation": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "03e8a7d7b2d5a2cb962a136ad3e5b0e60e1e2d20",
-      "date": "2026-09-24T23:58:36Z",
-      "message": "Merge pull request #30 from Lucas-Belucci-Bellini/claude/nexora-repo-inspection-0mh1zu",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/03e8a7d7b2d5a2cb962a136ad3e5b0e60e1e2d20"
+      "sha": "8b9b8245b04785797841f4c8365e5651a906dbe1",
+      "date": "2026-09-25T06:42:07Z",
+      "message": "Merge pull request #36: the RHI contract, its null backend and the conformance suite",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/8b9b8245b04785797841f4c8365e5651a906dbe1"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -377,10 +377,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "3dcd0a834f3ca7561f5dc787f73b583adabe55e5",
-      "date": "2026-09-24T17:27:01Z",
+      "sha": "f3b0cb7f20dfd8fff2e72587bec71e036ee70ca7",
+      "date": "2026-09-25T05:11:59Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3dcd0a834f3ca7561f5dc787f73b583adabe55e5"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/f3b0cb7f20dfd8fff2e72587bec71e036ee70ca7"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -465,15 +465,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3338,
-    "project_commits": 3118,
-    "monitor_commits": 220,
-    "detected_project_commits_this_scan": 28,
+    "tracked_commits": 3364,
+    "project_commits": 3143,
+    "monitor_commits": 221,
+    "detected_project_commits_this_scan": 25,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 67,
-    "repositories_changed": 1,
+    "repositories_changed": 3,
     "errors": 3
   },
   "errors": [

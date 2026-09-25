@@ -2,24 +2,26 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-25T01:29:34Z`  
+**Última varredura:** `2026-09-25T07:47:12Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `67`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `3`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3338`
-- **Commits dos projetos:** `3118`
-- **Commits do próprio monitor:** `220`
-- **Commits de projetos detectados nesta hora:** `28`
+- **Commits rastreados pelo ecossistema:** `3364`
+- **Commits dos projetos:** `3143`
+- **Commits do próprio monitor:** `221`
+- **Commits de projetos detectados nesta hora:** `25`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **NEXORA** — 28 commit(s) — [03e8a7d7b2d5](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/03e8a7d7b2d5a2cb962a136ad3e5b0e60e1e2d20) — Merge pull request #30 from Lucas-Belucci-Bellini/claude/nexora-repo-inspection-0mh1zu
+- **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** — 1 commit(s) — [1506aec986b2](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/1506aec986b2f4cb0b987ab10491dd16a8e873a9) — atualização do roteiro do cap 23
+- **NEXORA** — 23 commit(s) — [8b9b8245b047](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/8b9b8245b04785797841f4c8365e5651a906dbe1) — Merge pull request #36: the RHI contract, its null backend and the conformance suite
+- **Projeto-Baluarte** — 1 commit(s) — [f3b0cb7f20df](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/f3b0cb7f20dfd8fff2e72587bec71e036ee70ca7) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
