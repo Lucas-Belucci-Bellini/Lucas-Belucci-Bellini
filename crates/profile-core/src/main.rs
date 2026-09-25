@@ -11,8 +11,9 @@
 //! A conexão vem de `DATABASE_URL` (ou `--database-url`, que deixa a senha
 //! visível na lista de processos). Nenhuma mensagem repete a URL.
 //!
-//! Saída: `0` sucesso · `1` falha (conexão, migration, recusa de perda de
-//! dados, banco inconsistente) · `2` uso incorreto.
+//! Saída (docs/migration/PYTHON-TO-RUST.md §7): `0` sucesso · `1` uma
+//! verificação reprovou (banco inconsistente, trava de perda de dados) · `2`
+//! não foi possível executar (uso incorreto, URL, conexão, erro de SQL).
 
 use std::process::ExitCode;
 
@@ -84,8 +85,25 @@ async fn main() -> ExitCode {
             if matches!(error, StoreError::DataLossRefused { .. }) {
                 eprintln!("profile-core: dica: exporte os dados e repita com --allow-data-loss");
             }
-            ExitCode::FAILURE
+            exit_code(&error)
         }
+    }
+}
+
+/// `1` quando o comando verificou algo e reprovou; `2` quando não conseguiu
+/// executar. O erro de uso do clap também sai com `2`.
+fn exit_code(error: &StoreError) -> ExitCode {
+    match error {
+        StoreError::DataLossRefused { .. }
+        | StoreError::Modified(_)
+        | StoreError::Dirty(_)
+        | StoreError::UnknownApplied(_) => ExitCode::from(1),
+        StoreError::InvalidUrl(_)
+        | StoreError::Connect(_)
+        | StoreError::UnsupportedServer { .. }
+        | StoreError::UnknownTarget(_)
+        | StoreError::Migrate(_)
+        | StoreError::Database(_) => ExitCode::from(2),
     }
 }
 

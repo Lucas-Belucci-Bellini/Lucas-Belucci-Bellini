@@ -103,15 +103,15 @@ fn uso_incorreto_sai_com_2() {
 }
 
 #[test]
-fn url_invalida_ou_servidor_fora_sai_com_1_sem_repetir_a_senha() {
+fn url_invalida_ou_servidor_fora_sai_com_2_sem_repetir_a_senha() {
     let output = profile_core(&["db", "status"], Some("mysql://usuario:segredo-mysql@h/db"));
-    assert_eq!(Some(1), output.status.code());
+    assert_eq!(Some(2), output.status.code());
     assert!(text(&output.stderr).contains("DATABASE_URL inválida"));
     assert!(!text(&output.stderr).contains("segredo-mysql"));
 
     // Porta 1 no loopback: conexão recusada na hora, sem depender de rede.
     let output = profile_core(&["db", "status"], Some("postgres://usuario:segredo-porta@127.0.0.1:1/db"));
-    assert_eq!(Some(1), output.status.code());
+    assert_eq!(Some(2), output.status.code());
     let stderr = text(&output.stderr);
     assert!(stderr.contains("não foi possível conectar"), "{stderr}");
     assert!(!stderr.contains("segredo-porta"), "{stderr}");
@@ -130,6 +130,7 @@ async fn ciclo_completo_com_trava_de_perda_de_dados() {
     assert!(migrate.status.success(), "{}", text(&migrate.stderr));
     assert_eq!(7, text(&migrate.stdout).lines().filter(|l| l.starts_with("aplicada")).count());
     assert!(text(&profile_core(&["db", "migrate"], url).stdout).starts_with("nada a aplicar"));
+    assert_eq!(Some(2), profile_core(&["db", "revert", "--to", "42"], url).status.code(), "alvo inexistente");
 
     let table = profile_core(&["db", "status"], url);
     assert!(text(&table.stdout).contains("7 migrations: 7 aplicadas, 0 pendentes"), "{}", text(&table.stdout));
