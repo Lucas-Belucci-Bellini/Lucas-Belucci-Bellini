@@ -28,6 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from project_catalog import (  # noqa: E402
     COLOR_GOLD,
     Presentation,
+    WebsiteCheck,
     _badge,
     build_catalog,
     check_websites,
@@ -49,6 +50,24 @@ STACK_FILE = ROOT / "docs" / "README_STACK.json"
 EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
 SNAPSHOT_SVG = ROOT / "assets" / "profile-snapshot.svg"
 CATALOG_FILE = ROOT / "docs" / "project-catalog.json"
+
+
+def configure_root(root: Path) -> None:
+    """Aponta README, manifestos e saídas para outra raiz (`--root`).
+
+    Existe para os testes golden (tests/test_golden_profile.py) e para a
+    comparação futura com o núcleo em Rust: a mesma árvore sintética de
+    entrada, rodada pelos dois, tem de produzir os mesmos bytes.
+    """
+    global ROOT, README, SITES_FILE, FEATURED_FILE, STACK_FILE, EXCLUDED_FILE, SNAPSHOT_SVG, CATALOG_FILE
+    ROOT = root.resolve()
+    README = ROOT / "README.md"
+    SITES_FILE = ROOT / "docs" / "README_SITES.json"
+    FEATURED_FILE = ROOT / "docs" / "README_FEATURED.json"
+    STACK_FILE = ROOT / "docs" / "README_STACK.json"
+    EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
+    SNAPSHOT_SVG = ROOT / "assets" / "profile-snapshot.svg"
+    CATALOG_FILE = ROOT / "docs" / "project-catalog.json"
 
 LANGUAGE_DISPLAY = {
     "Batchfile": "Batch",
@@ -999,6 +1018,44 @@ def load_site_overrides() -> dict[str, dict[str, Any]]:
         return {}
 
 
+def load_site_checks_fixture(path: Path, urls: list[str]) -> dict[str, WebsiteCheck]:
+    """Resultados de verificação lidos de arquivo, em vez de HTTP.
+
+    Formato: `{"https://…": {"status": "verified"|"unreachable"|"invalid",
+    "http_status": 200, "final_url": "https://…"}}`. Toda URL descoberta
+    precisa estar no arquivo: uma URL sem resultado é erro, não "fora do ar" —
+    senão o fixture poderia esconder uma descoberta nova sem ninguém notar.
+    """
+    data = load_json_object(path)
+    faltando = sorted(url for url in set(urls) if url not in data)
+    if faltando:
+        raise ValueError(f"site check fixture has no result for: {', '.join(faltando)}")
+    checks: dict[str, WebsiteCheck] = {}
+    for url in urls:
+        entry = data[url]
+        status = str(entry["status"])
+        if status not in {"verified", "unreachable", "invalid"}:
+            raise ValueError(f"invalid status in site check fixture for {url}: {status}")
+        checks[url] = WebsiteCheck(
+            url=url,
+            status=status,
+            http_status=int(entry.get("http_status", 0)),
+            final_url=str(entry.get("final_url") or url),
+            checked_at="fixture",
+        )
+    return checks
+
+
+def parse_now(value: str | None) -> datetime:
+    """Relógio da execução; `--now` fixa o valor para saídas reproduzíveis."""
+    if not value:
+        return datetime.now(timezone.utc)
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("--now must include a timezone, e.g. 2026-09-25T12:00:00Z")
+    return parsed
+
+
 def build_data(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[str, dict[str, int]]]:
     # PROFILE_GITHUB_TOKEN is optional for read-only/public previews, but write mode
     # must not replace a private-aware README with a public-only inventory.
@@ -1029,10 +1086,17 @@ def main() -> int:
     parser.add_argument("--languages-dir", help="local directory containing one JSON language map per repository")
     parser.add_argument("--github-token", help="token for GitHub API access; prefer environment variables in CI")
     parser.add_argument("--write", action="store_true", help="write README and generated assets; otherwise validate/render only")
-    parser.add_argument("--skip-site-check", action="store_true", help="skip HTTP verification; renders every site as unverified")
+    checks_source = parser.add_mutually_exclusive_group()
+    checks_source.add_argument("--skip-site-check", action="store_true", help="skip HTTP verification; renders every site as unverified")
+    checks_source.add_argument("--site-checks-fixture", help="read website check results from a JSON file instead of HTTP (tests/parity)")
     parser.add_argument("--site-timeout", type=float, default=15.0, help="per-request timeout for website verification (seconds)")
     parser.add_argument("--site-workers", type=int, default=6, help="maximum concurrent website checks")
+    parser.add_argument("--root", help="alternative repository root for README, manifests and outputs (tests/parity)")
+    parser.add_argument("--now", help="fixed clock as ISO 8601 with timezone, e.g. 2026-09-25T12:00:00Z (tests/parity)")
     args = parser.parse_args()
+
+    if args.root:
+        configure_root(Path(args.root))
 
     try:
         repos, languages = build_data(args)
@@ -1043,7 +1107,11 @@ def main() -> int:
         print("profile refresh failed: GitHub returned no repositories", file=sys.stderr)
         return 2
 
-    now = datetime.now(timezone.utc)
+    try:
+        now = parse_now(args.now)
+    except ValueError as error:
+        print(f"profile refresh failed: {error}", file=sys.stderr)
+        return 2
     manual_overrides = load_site_overrides()
     featured_manifest = load_json_object(FEATURED_FILE)
     stack_manifest = load_json_object(STACK_FILE)
@@ -1057,9 +1125,16 @@ def main() -> int:
         sites[str(repo["full_name"])] = discover_project_website(repo, manual_overrides)
 
     candidates = [url for url, _ in sites.values() if url]
-    checks = {} if args.skip_site_check else check_websites(
-        candidates, max_workers=args.site_workers, timeout=args.site_timeout
-    )
+    if args.site_checks_fixture:
+        try:
+            checks = load_site_checks_fixture(Path(args.site_checks_fixture), candidates)
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            print(f"profile refresh failed: {error}", file=sys.stderr)
+            return 2
+    elif args.skip_site_check:
+        checks = {}
+    else:
+        checks = check_websites(candidates, max_workers=args.site_workers, timeout=args.site_timeout)
     presentations = build_presentations(
         repos, sites=sites, checks=checks, featured_manifest=featured_manifest, now=now
     )
