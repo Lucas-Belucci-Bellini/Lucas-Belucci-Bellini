@@ -941,6 +941,31 @@ def render_snapshot_svg(repos: list[dict[str, Any]], languages: list[dict[str, A
     destination.write_text("\n".join(svg) + "\n", encoding="utf-8")
 
 
+def is_profile_repository(repo: dict[str, Any]) -> bool:
+    """O próprio repositório do perfil (`dono/dono`), sem diferenciar maiúsculas."""
+    return str(repo.get("full_name", "")).casefold() == f"{OWNER}/{OWNER}".casefold()
+
+
+def source_timestamp(repos: list[dict[str, Any]], now: datetime) -> datetime:
+    """Carimbo derivado dos dados, para inventário igual não gerar commit.
+
+    É o push mais recente do inventário — **exceto o do próprio perfil**: o
+    monitor horário empurra snapshots para ele, então o `pushed_at` dele muda
+    a cada hora sem nenhum dado novo nos projetos (auditoria, A7). O perfil
+    continua no inventário; só não dita o carimbo.
+    """
+    source_times = []
+    for repo in repos:
+        if is_profile_repository(repo):
+            continue
+        value = repo.get("pushed_at") or repo.get("updated_at")
+        try:
+            source_times.append(datetime.fromisoformat(str(value).replace("Z", "+00:00")))
+        except (TypeError, ValueError):
+            continue
+    return max(source_times, default=now)
+
+
 def load_json_object(path: Path) -> dict[str, Any]:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -1041,15 +1066,7 @@ def main() -> int:
     verified_sites = live_site_map(presentations)
 
     rows = language_rows(repos, languages, public_only=True)
-    # Use a source-derived timestamp so unchanged inventories do not create timestamp-only commits.
-    source_times = []
-    for repo in repos:
-        value = repo.get("pushed_at") or repo.get("updated_at")
-        try:
-            source_times.append(datetime.fromisoformat(str(value).replace("Z", "+00:00")))
-        except (TypeError, ValueError):
-            continue
-    generated_at = max(source_times, default=now).strftime("%Y-%m-%d %H:%M UTC")
+    generated_at = source_timestamp(repos, now).strftime("%Y-%m-%d %H:%M UTC")
     text = README.read_text(encoding="utf-8")
     text = replace_block(text, "PROFILE-DASHBOARD", render_dashboard(repos, rows, verified_sites, now))
     text = replace_block(text, "WHAT-I-BUILD", render_what_i_build(repos, presentations))

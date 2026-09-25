@@ -1,5 +1,6 @@
 import importlib.util
 import unittest
+from datetime import timedelta
 from pathlib import Path
 
 
@@ -52,6 +53,40 @@ class ReplaceBlockTests(unittest.TestCase):
     def test_marcador_ausente_continua_falhando(self) -> None:
         with self.assertRaises(ValueError):
             MODULE.replace_block(self.TEMPLATE, "Y", "novo")
+
+
+class SourceTimestampTests(unittest.TestCase):
+    """O carimbo "atualizado em" sai dos dados, não do relógio (auditoria, A7)."""
+
+    NOW = MODULE.datetime(2026, 9, 25, 12, 0, tzinfo=MODULE.timezone.utc)
+
+    def test_push_do_proprio_perfil_nao_dita_o_carimbo(self) -> None:
+        repos = [
+            {"full_name": "Lucas-Belucci-Bellini/projeto", "pushed_at": "2026-09-01T10:00:00Z"},
+            # O monitor horário empurra para o perfil o tempo todo.
+            {"full_name": "Lucas-Belucci-Bellini/Lucas-Belucci-Bellini", "pushed_at": "2026-09-25T11:17:00Z"},
+            {"full_name": "lucas-belucci-bellini/LUCAS-BELUCCI-BELLINI", "pushed_at": "2026-09-25T11:59:00Z"},
+        ]
+        self.assertEqual("2026-09-01 10:00 UTC", MODULE.source_timestamp(repos, self.NOW).strftime("%Y-%m-%d %H:%M UTC"))
+
+    def test_mesmo_inventario_mesmo_carimbo_em_horas_diferentes(self) -> None:
+        repos = [{"full_name": "Lucas-Belucci-Bellini/projeto", "pushed_at": "2026-09-01T10:00:00Z"}]
+        manha = MODULE.source_timestamp(repos, self.NOW)
+        noite = MODULE.source_timestamp(repos, self.NOW + timedelta(hours=10))
+        self.assertEqual(manha, noite)
+
+    def test_sem_data_valida_cai_no_relogio(self) -> None:
+        repos = [{"full_name": "Lucas-Belucci-Bellini/projeto", "pushed_at": None}]
+        self.assertEqual(self.NOW, MODULE.source_timestamp(repos, self.NOW))
+
+    def test_so_o_perfil_cai_no_relogio(self) -> None:
+        repos = [{"full_name": "Lucas-Belucci-Bellini/Lucas-Belucci-Bellini", "pushed_at": "2026-09-25T11:17:00Z"}]
+        self.assertEqual(self.NOW, MODULE.source_timestamp(repos, self.NOW))
+
+    def test_updated_at_serve_quando_falta_pushed_at(self) -> None:
+        repos = [{"full_name": "Lucas-Belucci-Bellini/projeto", "updated_at": "2026-08-01T00:00:00Z"}]
+        self.assertEqual(2026, MODULE.source_timestamp(repos, self.NOW).year)
+        self.assertEqual(8, MODULE.source_timestamp(repos, self.NOW).month)
 
 
 if __name__ == "__main__":
