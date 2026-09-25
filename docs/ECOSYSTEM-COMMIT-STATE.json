@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-25T07:47:12Z",
+  "scanned_at": "2026-09-25T18:36:05Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -377,10 +377,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "f3b0cb7f20dfd8fff2e72587bec71e036ee70ca7",
-      "date": "2026-09-25T05:11:59Z",
+      "sha": "57d9276b239dc380b5cc0c4c3dad63928fce8fd9",
+      "date": "2026-09-25T17:25:43Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/f3b0cb7f20dfd8fff2e72587bec71e036ee70ca7"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/57d9276b239dc380b5cc0c4c3dad63928fce8fd9"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -465,15 +465,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3364,
-    "project_commits": 3143,
-    "monitor_commits": 221,
-    "detected_project_commits_this_scan": 25,
+    "tracked_commits": 3366,
+    "project_commits": 3144,
+    "monitor_commits": 222,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 67,
-    "repositories_changed": 3,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
