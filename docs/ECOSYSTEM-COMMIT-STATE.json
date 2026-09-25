@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-25T18:36:05Z",
+  "scanned_at": "2026-09-25T22:19:23Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -222,10 +222,10 @@
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
-      "sha": "1506aec986b2f4cb0b987ab10491dd16a8e873a9",
-      "date": "2026-09-25T06:31:56Z",
-      "message": "atualização do roteiro do cap 23",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/1506aec986b2f4cb0b987ab10491dd16a8e873a9"
+      "sha": "4e29b076a6da23b952d802196345217152f0f830",
+      "date": "2026-09-25T18:54:09Z",
+      "message": "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/roteiro.md",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/4e29b076a6da23b952d802196345217152f0f830"
     },
     "Customizable-birthday-invitation": {
       "branch": "main",
@@ -465,10 +465,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3366,
-    "project_commits": 3144,
-    "monitor_commits": 222,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 3370,
+    "project_commits": 3147,
+    "monitor_commits": 223,
+    "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
   "summary": {
