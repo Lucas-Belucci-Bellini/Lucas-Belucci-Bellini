@@ -65,3 +65,21 @@ O workflow `v2-validation.yml` passou a executar `scripts/validate_language_badg
 Os cards de atividade agora distinguem `CONTRIBUIÇÕES TOTAIS`, `COMMITS DIRETOS` e `REPOS CRIADOS`. Na janela de 365 dias analisada, 1.807 contribuições são explicadas por 1.114 commits, 535 pull requests, 94 issues, 3 reviews e 61 contribuições de repositório. A diferença é semântica e esperada, não uma inconsistência do contador.
 
 O relatório detalhado da alteração está em `docs/README_BADGES_METRICS_REPORT.md`.
+
+
+## 2026-09-25 — auditoria do núcleo e Fase 0 de estabilização
+
+A [auditoria técnica](audits/2026-09-25-ecosystem-core-audit.md) mostrou que o refresh do README não rodava desde 26/08 (o workflow pulava sem o secret `PROFILE_README_TOKEN` e ficava verde), que quatro coletores usam quatro definições de inventário e que dois scripts gravavam o mesmo `assets/lang-stats.svg`. A arquitetura alvo (núcleo com PostgreSQL, migração gradual para Rust) está em `docs/architecture/`, `docs/database/`, `docs/migration/` e `docs/DECISION-LOG.md`; o schema e seus testes, em `db/`.
+
+A Fase 0 corrigiu o que tornava o pipeline atual imprevisível, sem mexer no design do README nem no conteúdo fora dos marcadores:
+
+- `replace_block` trata o corpo como texto literal: uma descrição com `\` não derruba mais o refresh, e `\g<0>` não é mais substituído em silêncio.
+- `assets/lang-stats.svg` tem um escritor só, o `lang_stats.py`, preservando o painel publicado; o bot parou de procurar o bloco `LANG-STATS`, que não existe desde agosto, e passou a aplicar as exclusões editoriais.
+- O carimbo "atualizado em" não é mais ditado pelo push horário do próprio perfil.
+- `update-profile.yml` termina **vermelho** quando o secret falta (testes e validações ainda rodam); ganhou `timeout-minutes`, `concurrency` e a conferência dos 13 marcadores.
+- Os quatro workflows que escrevem no `main` fazem push com rebase e nova tentativa.
+- A timeline não depende mais do shields.io para publicar.
+- `restore_original_style.py` foi aposentado; `validate_restored_style.py` passou a rodar no CI.
+- Teste golden do gerador: entrada sintética fixa → README, catálogo e SVG byte a byte (`tests/test_golden_profile.py`).
+
+Pendências do dono do perfil: configurar `PROFILE_README_TOKEN` e decidir se as linguagens de repositórios privados continuam no mapa completo de projetos.

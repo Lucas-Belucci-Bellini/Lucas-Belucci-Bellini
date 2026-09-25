@@ -15,7 +15,7 @@ Baseada no código real de `28e88af` (14 scripts, 3.799 linhas). Estados:
 | `scripts/update_profile.py` — coleta | ~250 | inventário, linguagens, exclusões | `github-client` + `catalog` | `sync github` | **alta** | 3 | planned |
 | `scripts/update_profile.py` — regras | ~150 | `classify`, `status_for`, `featured_score` | `ecosystem-domain` | — | **alta** | 3 | planned |
 | `scripts/update_profile.py` — render | ~700 | 13 blocos, 2 SVGs | `profile-render` | `render readme`, `render assets` | alta, **por último** | 4 | planned |
-| `.github/scripts/lang_stats.py` | 669 | linguagens (duplicado), tipos de arquivo, 2 SVGs, bloco órfão | linguagens: absorvidas por `sync github`; tipos de arquivo: métrica opcional; SVGs: `profile-render` | `render assets` | média | 3–4 | planned (parcial; bloco `LANG-STATS` → retire na Fase 0) |
+| `.github/scripts/lang_stats.py` | 555 | linguagens (duplicado), tipos de arquivo, 2 SVGs (único escritor — D-021) | linguagens: absorvidas por `sync github`; tipos de arquivo: métrica opcional; SVGs: `profile-render` | `render assets` | média | 3–4 | planned (bloco `LANG-STATS` órfão removido na Fase 0) |
 | `.github/scripts/profile_cards.py` | 207 | GraphQL de contribuições + 4 SVGs | `github-client` + `metrics`; SVGs em `profile-render`; `profile-projects.svg` passa a sair do catálogo | `sync contributions`, `render assets` | média | 3–4 | planned |
 | `scripts/update_contribution_timeline.py` | 178 | GraphQL mensal, JSON + HTML | coleta: `sync contributions`; HTML: template mantido, lendo JSON exportado | `sync contributions` | média | 3 | planned |
 | `scripts/validate_project_links.py` | 120 | regra de CTA | `validate links` | `validate links` | média | 4 | **keep** como oráculo até a fase D (D-015) |
@@ -23,9 +23,9 @@ Baseada no código real de `28e88af` (14 scripts, 3.799 linhas). Estados:
 | `scripts/validate_exclusions.py` | 16 | exclusões ausentes | `validate exclusions` + view do banco | `validate exclusions` | baixa | 4 | **keep** como oráculo |
 | `scripts/validate_language_badges.py` | 123 | contrato dos badges + HTTP shields | `validate badges` | `validate badges` | baixa | 4 | planned |
 | `scripts/validate_profile.py` | 208 | validador amplo, fora do CI, caminho fixo, grava arquivo | absorvido por `validate` | `validate` | baixa | 4 | planned → **retire** |
-| `scripts/validate_restored_style.py` | 57 | componentes visuais, fora do CI | `validate readme --visual` ou nada | — | baixa | 0 | decidir na Fase 0 |
-| `scripts/restore_original_style.py` | 129 | migração única de agosto | — | — | — | 0 | **retire** (arquivar) |
-| `tests/*.py` | 651 | 57 testes | casos equivalentes em `cargo test` | — | — | 2–4 | **keep** até o script coberto sair |
+| `scripts/validate_restored_style.py` | 57 | componentes visuais | `validate readme --visual` | — | baixa | 4 | **keep** — no CI desde a Fase 0 (V2 Validation) |
+| `scripts/restore_original_style.py` | 129 | migração única de agosto | — | — | — | 0 | **removed** na Fase 0 (`f8b5592`; histórico em `faff9ef`) |
+| `tests/*.py` | — | 82 testes (57 + 25 da Fase 0, incluindo o golden) | casos equivalentes em `cargo test`; o golden vira o teste de paridade | — | — | 2–4 | **keep** até o script coberto sair |
 
 ## 2. Por função — `update_profile.py`
 
@@ -41,9 +41,9 @@ Baseada no código real de `28e88af` (14 scripts, 3.799 linhas). Estados:
 | `describe`, `md_cell`, `repo_link`, `stack_for` | `profile-render::markdown` | |
 | `featured_order`, `featured_priority`, `build_presentations` | `ecosystem-domain::presentation` | |
 | `live_site_map` | view `website_status_current` | |
-| `replace_block` | `profile-render::markers` | **sem** o defeito do `\` (A5 corrigido na Fase 0 também no Python, então a paridade se mantém) |
+| `replace_block` | `profile-render::markers` | defeito do `\` corrigido na Fase 0 (`0d64829`); o golden cobre |
 | `render_dashboard` … `render_project_map` (13) | `profile-render::blocks::*` | um módulo por marcador; `PROJECT-MAP` depende da decisão A20 |
-| `render_snapshot_svg`, `render_svg` | `profile-render::svg` | `render_svg` passa a ser o único escritor de `lang-stats.svg` (A4) |
+| `render_snapshot_svg` | `profile-render::svg` | `render_svg` foi removido na Fase 0: `lang-stats.svg` é do `lang_stats` (D-021) |
 | `load_json_object`, `load_excluded_names`, `load_site_overrides` | `profile-core import manifests` | validação de manifesto aborta a etapa |
 | `build_data`, `main` | `profile-core` (`sync github`, `render …`) | recusa escrever sem inventário completo (mesma regra do `--write`) |
 

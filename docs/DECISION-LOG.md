@@ -7,6 +7,7 @@ o dono do perfil. Decisão aceita não se re-litiga sem fato novo — abre-se um
 entrada nova que a substitui.
 
 Origem de todas as entradas até D-020: [auditoria de 2026-09-25](audits/2026-09-25-ecosystem-core-audit.md).
+D-021 e D-022 nasceram na execução da Fase 0 e revisam duas recomendações dela.
 
 | ID | Decisão | Status |
 |:---|:---|:---|
@@ -30,6 +31,8 @@ Origem de todas as entradas até D-020: [auditoria de 2026-09-25](audits/2026-09
 | [D-018](#d-018) | Um pipeline, um escritor no `main` | proposta |
 | [D-019](#d-019) | Repositório excluído não é armazenado | aceita |
 | [D-020](#d-020) | O monitor grava transições, não varreduras | aceita |
+| [D-021](#d-021) | `lang-stats.svg` pertence ao `lang_stats.py` | aceita |
+| [D-022](#d-022) | Corrida de push: rebase com nova tentativa, sem grupo comum | aceita |
 
 ---
 
@@ -41,8 +44,10 @@ Origem de todas as entradas até D-020: [auditoria de 2026-09-25](audits/2026-09
   auditoria completa. A auditoria encontrou defeitos em produção (A1–A5).
 - **Decisão:** esta fase entrega documentação, schema SQL, seed sintético,
   testes de migration e um workflow de CI **aditivo** (`db-validation.yml`).
-  Nenhum script Python, workflow existente, README ou asset foi alterado. As
-  correções da Fase 0 viram PRs próprios.
+  Nenhum script Python, workflow existente, README ou asset foi alterado
+  nesse commit. As correções da Fase 0 vieram depois, **um commit por item**
+  no mesmo PR (o ambiente só publica num branch), com o estado registrado na
+  tabela da auditoria.
 - **Descartado:** corrigir os defeitos no mesmo PR — misturaria "o que
   mudou no comportamento" com "o que é só desenho" e dificultaria a revisão.
 
@@ -273,8 +278,8 @@ Origem de todas as entradas até D-020: [auditoria de 2026-09-25](audits/2026-09
 
 - **Contexto:** quatro workflows empurram para o `main` de forma independente
   (A8) e cada um refaz o inventário (A3).
-- **Decisão proposta:** no curto prazo, grupo de concorrência comum e rebase
-  antes do push (Fase 0). No fim da migração, um único job agendado roda
+- **Decisão proposta:** no curto prazo, push com rebase e nova tentativa
+  (Fase 0, implementado — D-022; o grupo comum foi descartado lá). No fim da migração, um único job agendado roda
   `profile-core sync all && profile-core render all` e faz um commit.
 
 ## D-019
@@ -294,3 +299,42 @@ Origem de todas as entradas até D-020: [auditoria de 2026-09-25](audits/2026-09
   repositório muda (SHA, erro, vazio). A varredura em si é uma linha em
   `sync_runs`. Mesma regra do `ecosystem_watch.py` atual: sem mudança
   semântica, nada gravado — e sem 67 linhas por hora de ruído.
+
+## D-021
+
+**`lang-stats.svg` pertence ao `lang_stats.py`.** · aceita · 2026-09-25
+
+- **Contexto:** dois scripts gravavam o arquivo (A4). A auditoria recomendou
+  manter o `update_profile.py` como escritor (item 0.4).
+- **Fato novo:** o painel publicado é um redesign deliberado do
+  `lang_stats.py` (`d2c0d58`, 20/08, "redesign ecosystem analysis as a
+  dashboard"); o `update_profile.py` só passou a gravar o mesmo caminho em
+  `a8ea902` (25/08), com outro desenho.
+- **Decisão:** o `lang_stats.py` é o único escritor de `lang-stats.svg` e
+  `profile-top-langs.svg`; o `update_profile.py` só referencia o arquivo no
+  bloco `LANGUAGE-STATS`. `render_svg` foi removido (commit `29a2cc9`).
+- **Consequência aceita:** a tabela (inventário do `update_profile`) e o
+  painel (inventário do `lang_stats`) continuam com números diferentes até o
+  inventário único do núcleo (A3, Fase 3). O `lang_stats` passou a aplicar
+  as mesmas exclusões editoriais.
+
+## D-022
+
+**Corrida de push: rebase com nova tentativa, sem grupo comum.** · aceita · 2026-09-25
+
+- **Contexto:** quatro workflows empurram para o `main` (A8). A auditoria
+  sugeria grupo de concorrência comum + rebase (item 0.6).
+- **Fato:** no GitHub, quando um run entra num grupo de concorrência com
+  outro já rodando, ele fica pendente — e um run novo **cancela o pendente**.
+  Com um grupo comum, o monitor horário cancelaria o refresh diário ou a
+  análise semanal que estivessem na fila.
+- **Decisão:** cada workflow mantém o próprio grupo; o push passa por
+  `.github/scripts/push_with_rebase.sh` (tenta, e se recusado faz
+  `pull --rebase` e tenta de novo, até 4 vezes). Como cada workflow commita
+  arquivos que só ele escreve, o rebase não conflita; se conflitar, é defeito
+  de posse de arquivo e o script falha alto.
+- **Verificação:** corrida simulada com dois clones rasos (como o
+  `actions/checkout`) — o segundo push é recusado, rebaseia e entra; um
+  conflito real termina com código 1.
+- **Revisitar quando:** D-018 (um pipeline, um escritor) for implementada; aí
+  o script deixa de ser necessário.

@@ -46,7 +46,7 @@ Todos por `scripts/update_profile.py` → `replace_block()`, na ordem de `main()
 | `WEBSITE-DIRECTORY` | `render_website_directory` | sites verificados | só público | badges |
 | `ARSENAL-STACK` | `render_arsenal_stack` | linhas de linguagem, `README_STACK.json` | só público | **no `main` está numa versão antiga do renderizador** (auditoria, A1/A2) |
 | `LANGUAGE-BADGES` | `render_language_badges` | linhas de linguagem, `LANGUAGE_COLORS` | só público | validado por `validate_language_badges.py` |
-| `LANGUAGE-STATS` | `render_language_stats` | linhas de linguagem, `generated_at` | só público | a imagem logo abaixo vem de outro script (A4) |
+| `LANGUAGE-STATS` | `render_language_stats` | linhas de linguagem, `generated_at` | só público | a imagem logo abaixo é do `lang_stats.py`, com outro inventário (A3; dono do arquivo: D-021) |
 | `PUBLIC-PROJECTS` | `render_public_projects` | apresentações | só público | |
 | `PRIVATE-PROJECTS` | `render_private_projects` | repositórios privados | **privado autorizado** | nome, categoria, descrição, status, link |
 | `LIVE-PROJECTS` | `render_live_projects` | sites verificados | só público | coluna site antes da coluna código |
@@ -68,9 +68,8 @@ Todos por `scripts/update_profile.py` → `replace_block()`, na ordem de `main()
 
 | Workflow | O que toca |
 |:---|:---|
-| `update-profile.yml` | os 13 blocos (quando o secret existe — A1) |
-| `lang-stats.yml` | tenta o bloco `LANG-STATS`, que não existe mais (A9) |
-| nenhum outro | — |
+| `update-profile.yml` | os 13 blocos (quando o secret existe — sem ele, o job falha desde a Fase 0) |
+| nenhum outro | — (o `lang-stats.yml` deixou de tentar o bloco órfão `LANG-STATS` na Fase 0) |
 
 As seções manuais só mudam por PR humano. `validate_dynamic_sections.py`
 garante, a cada refresh, que nada fora dos 13 blocos mudou.

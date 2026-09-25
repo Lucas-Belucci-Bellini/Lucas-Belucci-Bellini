@@ -88,7 +88,7 @@ de C:** 30 dias sem regressão e equivalente Rust de cada validador.
 
 | Fase | Entrega | Critério de saída |
 |:---|:---|:---|
-| **0 · estabilização** (Python) | itens 0.1–0.12 da [auditoria](../audits/2026-09-25-ecosystem-core-audit.md#12-recomendações); fixtures golden | refresh diário rodando de verdade; um escritor por arquivo; fixtures versionadas |
+| **0 · estabilização** (Python) ✅ parcial | itens 0.2–0.11 feitos; faltam 0.1 (secret) e 0.12 (decisão) — [auditoria](../audits/2026-09-25-ecosystem-core-audit.md#12-recomendações) | refresh diário rodando de verdade (depende de 0.1); um escritor por arquivo ✅; fixtures versionadas ✅ |
 | **1 · fundação** ✅ parcial | auditoria, docs, schema, migrations testadas, CI de banco (**este PR**); depois: workspace Cargo, `ecosystem-domain`, `store`, `profile-core db migrate` | `cargo test` verde; migrations aplicadas pelo binário |
 | **2 · monitor de sites** | `site-monitor` + `profile-core check sites` em modo B | relatório JSON idêntico ao de `check_websites.py --json` (exceto `checked_at` e tempo); histórico no banco |
 | **3 · coleta** | `github-client` + `catalog` + `sync github`, `sync commits`, `sync contributions`, `import manifests`, `import legacy` | `project-catalog.json` do Rust = do Python; contadores do monitor idênticos |
@@ -114,18 +114,24 @@ OLD PYTHON ──▶ saída esperada (fixture golden, versionada) ◀── NEW 
 
 ### Fixtures golden
 
-O `update_profile.py` já aceita `--input-repos`, `--languages-dir` e
-`--skip-site-check`. Falta um jeito de injetar **resultados** de checagem de
-site e o relógio, para que a saída seja determinística com sites "no ar". A
-Fase 0 (item 0.11) acrescenta ao Python, sem mudar o comportamento padrão:
+Pronto desde a Fase 0 (`1156461`). O `update_profile.py` aceita, sem mudar o
+comportamento padrão:
 
 ```text
+--root DIR                   README, manifestos e saídas numa raiz alternativa
+--input-repos / --languages-dir   inventário e linguagens de arquivo
 --site-checks-fixture FILE   resultados de checagem em vez de HTTP real
---now 2026-09-25T00:00:00Z   relógio fixo para status_for/featured_score
+--now 2026-09-25T12:00:00Z   relógio fixo para status_for/featured_score
 ```
 
-As fixtures são **sintéticas** ou anonimizadas — nunca o inventário real com
-repositórios privados.
+`tests/fixtures/profile/input` é uma raiz sintética (13 repositórios em
+`example.org`, cada um exercitando uma regra) e `expected/` guarda README,
+catálogo, `profile-snapshot.svg` e o resumo. `tests/test_golden_profile.py`
+compara byte a byte; `UPDATE_GOLDEN=1` regenera. O `profile-core parity` vai
+rodar o binário Rust sobre a **mesma** raiz e comparar com o mesmo `expected/`.
+
+As fixtures são **sintéticas** — nunca o inventário real com repositórios
+privados.
 
 ### Testes Python existentes
 

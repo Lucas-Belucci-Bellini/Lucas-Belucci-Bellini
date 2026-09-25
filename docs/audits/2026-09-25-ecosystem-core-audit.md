@@ -530,23 +530,44 @@ Invariantes que a migração **não pode** quebrar — cada um tem ou terá test
 
 ### Fase 0 — estabilização (Python, antes de qualquer Rust)
 
-Pequenas, independentes, cada uma um PR próprio. Nenhuma foi feita nesta
-fase — esta entrega é só auditoria, desenho e schema.
+Pequenas e independentes. A recomendação original era um PR por item; como
+o ambiente de trabalho só publica num branch, elas entraram no PR da
+auditoria com **um commit por item**, para revisão e reversão separadas.
+Estado em 2026-09-25:
 
-| # | Ação | Achado |
-|:--|:---|:---|
-| 0.1 | Configurar `PROFILE_README_TOKEN` (fine-grained, *Metadata: read*) | A1 |
-| 0.2 | Fazer `update-profile.yml` falhar (ou emitir `::warning`) quando o secret faltar | A1 |
-| 0.3 | `replace_block` com função de substituição + teste com `\` | A5 |
-| 0.4 | Um único escritor de `lang-stats.svg` (o `update_profile`, que respeita exclusões e privacidade); `lang_stats` passa a escrever só `profile-top-langs.svg` | A3, A4 |
-| 0.5 | Excluir o próprio perfil do cálculo de `generated_at` | A7 |
-| 0.6 | Grupo de concorrência comum + `git pull --rebase` nos 4 escritores | A8 |
-| 0.7 | Remover o caminho `LANG-STATS` órfão e a menção a `LANG_STATS_TOKEN` | A9 |
-| 0.8 | Tirar `validate_language_badges.py` da timeline | A10 |
-| 0.9 | Arquivar `restore_original_style.py`; pôr `validate_restored_style.py` no CI ou removê-lo | A11 |
-| 0.10 | `timeout-minutes` e `concurrency` em `update-profile.yml`; Python único | A12, A13 |
-| 0.11 | Capturar fixtures "golden" do Python (entrada fixa → README/JSON) | §6 |
-| 0.12 | **Decisão do dono:** linguagens de privados no `PROJECT-MAP` — mudar o contrato ou o gerador | A20 |
+| # | Ação | Achado | Estado |
+|:--|:---|:---|:---|
+| 0.1 | Configurar `PROFILE_README_TOKEN` (fine-grained, *Metadata: read*) | A1 | ⏳ **dono do perfil** (secret do repositório) |
+| 0.2 | Fazer `update-profile.yml` falhar quando o secret faltar | A1 | ✅ `0a5c045` — testes e validações rodam, e o job termina vermelho com `::error::` |
+| 0.3 | `replace_block` com função de substituição + teste com `\` | A5 | ✅ `0d64829` — `\g<0>` era pior que o erro: substituía em silêncio |
+| 0.4 | Um único escritor de `lang-stats.svg` | A3, A4 | ✅ `29a2cc9` — **revisado:** o escritor que fica é o `lang_stats` (ver abaixo) |
+| 0.5 | Excluir o próprio perfil do cálculo de `generated_at` | A7 | ✅ `5df54d3` |
+| 0.6 | Push resistente à corrida nos 4 escritores | A8 | ✅ `0a5c045` — **revisado:** rebase com nova tentativa, sem grupo comum (D-022) |
+| 0.7 | Remover o caminho `LANG-STATS` órfão e a menção a `LANG_STATS_TOKEN` | A9 | ✅ `29a2cc9` — e o `lang_stats` passou a aplicar as exclusões (A18) |
+| 0.8 | Tirar `validate_language_badges.py` da timeline | A10 | ✅ `0a5c045` |
+| 0.9 | Arquivar `restore_original_style.py`; `validate_restored_style.py` no CI | A11 | ✅ `f8b5592` |
+| 0.10 | `timeout-minutes` e `concurrency` em `update-profile.yml`; Python único | A12, A13 | ✅ `0a5c045` — e os 13 marcadores conferidos num laço |
+| 0.11 | Fixtures golden do Python (entrada fixa → README/JSON) | §6 | ✅ `1156461` — `--root`, `--now`, `--site-checks-fixture` |
+| 0.12 | Linguagens de privados no `PROJECT-MAP`: mudar o contrato ou o gerador | A20 | ⏳ **decisão do dono** |
+
+**Revisão de 0.4.** A recomendação original era manter o `update_profile`
+como escritor. Ao executar, o histórico mostrou que o painel atual do
+`lang-stats.svg` foi um redesign deliberado do `lang_stats.py` (`d2c0d58`,
+20/08) e que o `update_profile.py` passou a gravar o mesmo arquivo cinco dias
+depois (`a8ea902`). Manter o `update_profile` apagaria o design publicado —
+contra a regra "não destrua o design existente". O `lang_stats` ficou como
+único escritor (D-021). A divergência de números entre a tabela e o painel
+(A3) continua até o inventário único do núcleo.
+
+**Revisão de 0.6.** O grupo de concorrência comum foi descartado: no GitHub,
+um run novo cancela o run *pendente* do mesmo grupo, e o monitor horário
+poderia cancelar o refresh diário na fila. Como os quatro escritores
+commitam arquivos disjuntos, `pull --rebase` com nova tentativa resolve a
+corrida sem esse risco (D-022).
+
+**Efeito colateral esperado de 0.2:** até o secret do item 0.1 existir, o
+workflow *Refresh profile README* fica **vermelho** todo dia. É o objetivo:
+antes ele ficava verde sem atualizar nada.
 
 A correção de `classify()` (A6) **não** está na Fase 0: muda a saída pública e
 entra como `classifier@2` com diff revisado, depois da paridade.
