@@ -56,7 +56,7 @@ PROFILE_GITHUB_TOKEN=... python3 scripts/update_profile.py --write
 
 O gerador recusa o modo `--write` sem um inventário privado-aware, justamente para evitar substituir o catálogo completo por uma visão pública parcial. Para uma prévia pública sem escrita, execute `python3 scripts/update_profile.py` sem `--write`.
 
-Depois, revise `README.md`, `assets/lang-stats.svg`, os links públicos e a política de privacidade antes de abrir um pull request.
+Depois, revise `README.md`, `assets/profile-snapshot.svg`, `docs/project-catalog.json`, os links públicos e a política de privacidade antes de abrir um pull request. (`assets/lang-stats.svg` não é deste gerador: é do bot semanal `.github/scripts/lang_stats.py`, único escritor desse arquivo.)
 
 ## Contrato de mudança
 
@@ -94,7 +94,7 @@ python3 scripts/update_profile.py --input-repos /caminho/repos.json --languages-
 python3 scripts/validate_dynamic_sections.py --before /tmp/README.before.md --after README.md
 ```
 
-O resultado esperado é `dynamic-only README validation: pass`. No GitHub, a confirmação adicional é verificar o log do job `Validate generated Markdown and configuration`, o resumo do commit e o diff do workflow. Um refresh sem mudanças reais deve terminar sem novo commit, porque a etapa final usa `git diff --quiet -- README.md assets/lang-stats.svg`.
+O resultado esperado é `dynamic-only README validation: pass`. No GitHub, a confirmação adicional é verificar o log do job `Validate generated Markdown and configuration`, o resumo do commit e o diff do workflow. Um refresh sem mudanças reais deve terminar sem novo commit, porque a etapa final usa `git diff --quiet -- README.md assets/profile-snapshot.svg docs/project-catalog.json`.
 
 O workflow [`v2-validation.yml`](../.github/workflows/v2-validation.yml) também executa [`scripts/validate_language_badges.py`](../scripts/validate_language_badges.py) em cada pull request e em pushes na `main`. Esse check confirma que os 17 labels são únicos e legíveis, que `C#` e `PL/pgSQL` não aparecem percent-encoded como texto, que cada URL usa o endpoint estático do Shields.io, que as quatro categorias estão presentes, que a matriz tem a mesma quantidade de linguagens e que todos os badges respondem com HTTP 2xx/3xx.
 

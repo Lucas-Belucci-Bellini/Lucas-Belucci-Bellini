@@ -91,10 +91,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- README.md assets/lang-stats.svg assets/profile-snapshot.svg docs/project-catalog.json; then
+          if git diff --quiet -- README.md assets/profile-snapshot.svg docs/project-catalog.json; then
             echo "No generated changes detected."
             exit 0
           fi
-          git add README.md assets/lang-stats.svg assets/profile-snapshot.svg docs/project-catalog.json
+          git add README.md assets/profile-snapshot.svg docs/project-catalog.json
           git commit -m "chore(profile): refresh repository catalog"
           git push
