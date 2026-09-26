@@ -1,0 +1,1694 @@
+{
+  "schema": "lucas-belucci-bellini/parity-site-monitor@1",
+  "note": "Gerado por tests/test_parity_site_monitor.py a partir da biblioteca padrão. Não editar à mão.",
+  "python": "3.12.14",
+  "user_agent": "profile-readme-website-check/2.0",
+  "cases": {
+    "preflight": [
+      {
+        "input": "https://example.org",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://example.org/",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org/",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "http://example.org/a/b?c=d",
+        "expected": {
+          "ok": true,
+          "full_url": "http://example.org/a/b?c=d",
+          "connect_host": "example.org",
+          "port": 80,
+          "request_target": "/a/b?c=d",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://example.org#frag",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org#frag",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://example.org/p#a#b",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org/p#a#b",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/p#a",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://example.org/#",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org/",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://example.org\n",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://example.org?q=1",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org?q=1",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/?q=1",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://example.org:8443/x",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org:8443/x",
+          "connect_host": "example.org",
+          "port": 8443,
+          "request_target": "/x",
+          "host_header": "example.org:8443"
+        }
+      },
+      {
+        "input": "https://example.org:/x",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org:/x",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/x",
+          "host_header": "example.org:"
+        }
+      },
+      {
+        "input": "https://example.org:abc/x",
+        "expected": {
+          "ok": false,
+          "error": "InvalidURL",
+          "caught": false
+        }
+      },
+      {
+        "input": "https://[::1]:8080/x",
+        "expected": {
+          "ok": true,
+          "full_url": "https://[::1]:8080/x",
+          "connect_host": "::1",
+          "port": 8080,
+          "request_target": "/x",
+          "host_header": "[::1]:8080"
+        }
+      },
+      {
+        "input": "https://[::1]/x",
+        "expected": {
+          "ok": true,
+          "full_url": "https://[::1]/x",
+          "connect_host": "::1",
+          "port": 443,
+          "request_target": "/x",
+          "host_header": "[::1]"
+        }
+      },
+      {
+        "input": "https://user@example.org/",
+        "expected": {
+          "ok": true,
+          "full_url": "https://user@example.org/",
+          "connect_host": "user@example.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "user@example.org"
+        }
+      },
+      {
+        "input": "https://user:pw@example.org/",
+        "expected": {
+          "ok": false,
+          "error": "InvalidURL",
+          "caught": false
+        }
+      },
+      {
+        "input": "https://ex%61mple.org/",
+        "expected": {
+          "ok": true,
+          "full_url": "https://ex%61mple.org/",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://example.org/\u0001",
+        "expected": {
+          "ok": false,
+          "error": "InvalidURL",
+          "caught": false
+        }
+      },
+      {
+        "input": "https://example.org/",
+        "expected": {
+          "ok": false,
+          "error": "InvalidURL",
+          "caught": false
+        }
+      },
+      {
+        "input": "https://example.org/ção",
+        "expected": {
+          "ok": false,
+          "error": "UnicodeEncodeError",
+          "caught": true
+        }
+      },
+      {
+        "input": "https://ção.org/",
+        "expected": {
+          "ok": true,
+          "full_url": "https://ção.org/",
+          "connect_host": "ção.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "ção.org"
+        }
+      },
+      {
+        "input": "https://日本.jp/",
+        "expected": {
+          "ok": false,
+          "error": "UnicodeEncodeError",
+          "caught": true
+        }
+      },
+      {
+        "input": "https://EXAMPLE.org/Path",
+        "expected": {
+          "ok": true,
+          "full_url": "https://EXAMPLE.org/Path",
+          "connect_host": "EXAMPLE.org",
+          "port": 443,
+          "request_target": "/Path",
+          "host_header": "EXAMPLE.org"
+        }
+      },
+      {
+        "input": "https://example.org/a/../b",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org/a/../b",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/a/../b",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://example.org//x",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org//x",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "//x",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://example.org:443/",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org:443/",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "example.org:443"
+        }
+      },
+      {
+        "input": "http://example.org:80/",
+        "expected": {
+          "ok": true,
+          "full_url": "http://example.org:80/",
+          "connect_host": "example.org",
+          "port": 80,
+          "request_target": "/",
+          "host_header": "example.org:80"
+        }
+      },
+      {
+        "input": "https://example.org:+443/",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org:+443/",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "example.org:+443"
+        }
+      },
+      {
+        "input": "https://example.org:4_43/",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org:4_43/",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "example.org:4_43"
+        }
+      },
+      {
+        "input": "https://example.org/%zz",
+        "expected": {
+          "ok": true,
+          "full_url": "https://example.org/%zz",
+          "connect_host": "example.org",
+          "port": 443,
+          "request_target": "/%zz",
+          "host_header": "example.org"
+        }
+      },
+      {
+        "input": "https://ex ample.org/",
+        "expected": {
+          "ok": false,
+          "error": "InvalidURL",
+          "caught": false
+        }
+      },
+      {
+        "input": "https://example.org/?a=b c",
+        "expected": {
+          "ok": false,
+          "error": "InvalidURL",
+          "caught": false
+        }
+      },
+      {
+        "input": "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.org/",
+        "expected": {
+          "ok": true,
+          "full_url": "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.org/",
+          "connect_host": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.org"
+        }
+      },
+      {
+        "input": "https://xn--9ca.org/",
+        "expected": {
+          "ok": true,
+          "full_url": "https://xn--9ca.org/",
+          "connect_host": "xn--9ca.org",
+          "port": 443,
+          "request_target": "/",
+          "host_header": "xn--9ca.org"
+        }
+      },
+      {
+        "input": "https://a.b.c.d.e.example.org/~user",
+        "expected": {
+          "ok": true,
+          "full_url": "https://a.b.c.d.e.example.org/~user",
+          "connect_host": "a.b.c.d.e.example.org",
+          "port": 443,
+          "request_target": "/~user",
+          "host_header": "a.b.c.d.e.example.org"
+        }
+      }
+    ],
+    "redirect": [
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "https://www.example.org/",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://www.example.org/",
+          "full_url": "https://www.example.org/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "https://www.example.org",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://www.example.org/",
+          "full_url": "https://www.example.org/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "HTTPS://WWW.Example.org/A",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://WWW.Example.org/A",
+          "full_url": "https://WWW.Example.org/A"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "/abs/path",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/abs/path",
+          "full_url": "https://example.org/abs/path"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "rel",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/dir/rel",
+          "full_url": "https://example.org/dir/rel"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "./rel",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/dir/rel",
+          "full_url": "https://example.org/dir/rel"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "../up",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/up",
+          "full_url": "https://example.org/up"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "../../../../too-far",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/too-far",
+          "full_url": "https://example.org/too-far"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "..",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/",
+          "full_url": "https://example.org/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": ".",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/dir/",
+          "full_url": "https://example.org/dir/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "?only=query",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/dir/page?only=query",
+          "full_url": "https://example.org/dir/page?only=query"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "#only-fragment",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/dir/page?x=1#only-fragment",
+          "full_url": "https://example.org/dir/page?x=1#only-fragment"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/dir/page?x=1#top",
+          "full_url": "https://example.org/dir/page?x=1#top"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "//other.example.org/x",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://other.example.org/x",
+          "full_url": "https://other.example.org/x"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "//other.example.org",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://other.example.org/",
+          "full_url": "https://other.example.org/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "/a b/c",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/a%20b/c",
+          "full_url": "https://example.org/a%20b/c"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "/tab\there",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/tabhere",
+          "full_url": "https://example.org/tabhere"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "/ção",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/%E7%E3o",
+          "full_url": "https://example.org/%E7%E3o"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "/ção",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/%E7%E3o",
+          "full_url": "https://example.org/%E7%E3o"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "/já%20codificado",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/j%E1%20codificado",
+          "full_url": "https://example.org/j%E1%20codificado"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "/a;params?q#f",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/a;params?q#f",
+          "full_url": "https://example.org/a;params?q#f"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "mailto:alguem@example.org",
+          "uri": null
+        },
+        "expected": {
+          "kind": "not_allowed",
+          "url": "mailto:alguem@example.org"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "javascript:alert(1)",
+          "uri": null
+        },
+        "expected": {
+          "kind": "not_allowed",
+          "url": "javascript:alert(1)"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "ftp://example.org/file",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "ftp://example.org/file",
+          "full_url": "ftp://example.org/file"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "file:///etc/passwd",
+          "uri": null
+        },
+        "expected": {
+          "kind": "not_allowed",
+          "url": "file:///etc/passwd"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "data:text/plain,oi",
+          "uri": null
+        },
+        "expected": {
+          "kind": "not_allowed",
+          "url": "data:text/plain,oi"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "http://[::1/",
+          "uri": null
+        },
+        "expected": {
+          "kind": "error",
+          "error": "ValueError",
+          "caught": true
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "http://[::1]:8080/x",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "http://[::1]:8080/x",
+          "full_url": "http://[::1]:8080/x"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "https://example.org:8443",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org:8443/",
+          "full_url": "https://example.org:8443/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "https://user:pw@example.org/",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://user:pw@example.org/",
+          "full_url": "https://user:pw@example.org/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "/a/./b/../c/",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/a/c/",
+          "full_url": "https://example.org/a/c/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "a//b",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/dir/a/b",
+          "full_url": "https://example.org/dir/a/b"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "<URL:https://wrapped.example.org/>",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/dir/<URL:https:/wrapped.example.org/>",
+          "full_url": "https://example.org/dir/<URL:https:/wrapped.example.org/>"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "https://example.org/#",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/",
+          "full_url": "https://example.org/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "///triple",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/triple",
+          "full_url": "https://example.org/triple"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "////quad",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org//quad",
+          "full_url": "https://example.org//quad"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "http:////x",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "http:////x",
+          "full_url": "http:////x"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "http:x",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "http:x",
+          "full_url": "http:x"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "https:rel",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/dir/rel",
+          "full_url": "https://example.org/dir/rel"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "HTTP://Example.org",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "http://Example.org/",
+          "full_url": "http://Example.org/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": "\u0000/nul",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/nul",
+          "full_url": "https://example.org/nul"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": null,
+          "uri": "https://uri-header.example.org/"
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://uri-header.example.org/",
+          "full_url": "https://uri-header.example.org/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/dir/page?x=1#top",
+          "location": null,
+          "uri": null
+        },
+        "expected": {
+          "kind": "no_location"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org",
+          "location": "next",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/next",
+          "full_url": "https://example.org/next"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org",
+          "location": "/",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/",
+          "full_url": "https://example.org/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/a/b/",
+          "location": "c/../../d",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/a/d",
+          "full_url": "https://example.org/a/d"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/a/b/",
+          "location": "./",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/a/b/",
+          "full_url": "https://example.org/a/b/"
+        }
+      },
+      {
+        "input": {
+          "base": "https://example.org/a;p?q",
+          "location": ";x",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/;x",
+          "full_url": "https://example.org/;x"
+        }
+      },
+      {
+        "input": {
+          "base": "http://example.org/a",
+          "location": "https://example.org/a",
+          "uri": null
+        },
+        "expected": {
+          "kind": "follow",
+          "visited_key": "https://example.org/a",
+          "full_url": "https://example.org/a"
+        }
+      }
+    ],
+    "collect_urls": [
+      {
+        "input": {
+          "catalog": null,
+          "manifest": null
+        },
+        "expected": {
+          "urls": []
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": [{\"repository\": \"o/a\", \"website_declared\": \"https://a.example.org\", \"website\": \"https://a2.example.org\"}, {\"repository\": \"o/b\", \"website\": \"https://b.example.org\"}, {\"repository\": \"o/c\"}]}",
+          "manifest": "{\"o/b\": \"https://b-manifest.example.org\", \"o/d\": {\"website\": \"https://d.example.org\"}}"
+        },
+        "expected": {
+          "urls": [
+            [
+              "o/a",
+              "https://a.example.org"
+            ],
+            [
+              "o/b",
+              "https://b.example.org"
+            ],
+            [
+              "o/d",
+              "https://d.example.org"
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "catalog": "{ não é json",
+          "manifest": "{\"o/m\": \"https://m.example.org\"}"
+        },
+        "expected": {
+          "urls": [
+            [
+              "o/m",
+              "https://m.example.org"
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": [{\"repository\": \"o/a\", \"website\": \"https://a.example.org\"}]}",
+          "manifest": "[ quebrado"
+        },
+        "expected": {
+          "urls": [
+            [
+              "o/a",
+              "https://a.example.org"
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": [{\"repository\": \"o/dup\", \"website\": \"https://1.example.org\"}, {\"repository\": \"o/dup\", \"website\": \"https://2.example.org\"}]}",
+          "manifest": null
+        },
+        "expected": {
+          "urls": [
+            [
+              "o/dup",
+              "https://2.example.org"
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": [{\"repository\": null, \"website\": \"https://sem-repo.example.org\"}, {\"website\": \"https://sem-chave.example.org\"}, {\"repository\": 42, \"website\": 7}, {\"repository\": \"o/vazio\", \"website_declared\": \"\", \"website\": \"https://fallback.example.org\"}, {\"repository\": \"o/falso\", \"website_declared\": false}]}",
+          "manifest": null
+        },
+        "expected": {
+          "urls": [
+            [
+              "42",
+              "7"
+            ],
+            [
+              "None",
+              "https://sem-chave.example.org"
+            ],
+            [
+              "o/vazio",
+              "https://fallback.example.org"
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "catalog": null,
+          "manifest": "{\"o/s\": \"\", \"o/z\": {\"website\": 0}, \"o/t\": {\"website\": true}, \"o/n\": {\"website\": 42}, \"o/l\": [\"https://lista.example.org\"], \"o/x\": {\"note\": \"sem site\"}, \"o/nul\": null}"
+        },
+        "expected": {
+          "urls": [
+            [
+              "o/n",
+              "42"
+            ],
+            [
+              "o/s",
+              ""
+            ],
+            [
+              "o/t",
+              "True"
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": {}}",
+          "manifest": null
+        },
+        "expected": {
+          "urls": []
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": \"\"}",
+          "manifest": null
+        },
+        "expected": {
+          "urls": []
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": []}",
+          "manifest": "[]"
+        },
+        "expected": {
+          "urls": []
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"other\": 1}",
+          "manifest": "\"texto\""
+        },
+        "expected": {
+          "urls": []
+        }
+      },
+      {
+        "input": {
+          "catalog": "﻿{\"projects\": [{\"repository\": \"o/bom\", \"website\": \"https://bom.example.org\"}]}",
+          "manifest": null
+        },
+        "expected": {
+          "urls": []
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"o/dup\": \"https://1.example.org\", \"o/dup2\": \"x\", \"o/dup\": \"https://2.example.org\"}",
+          "manifest": null
+        },
+        "expected": {
+          "urls": []
+        }
+      },
+      {
+        "input": {
+          "catalog": null,
+          "manifest": "{\"o/dup\": \"https://1.example.org\", \"o/dup\": \"https://2.example.org\"}"
+        },
+        "expected": {
+          "urls": [
+            [
+              "o/dup",
+              "https://2.example.org"
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "catalog": "[]",
+          "manifest": null
+        },
+        "expected": {
+          "crash": "AttributeError"
+        }
+      },
+      {
+        "input": {
+          "catalog": "null",
+          "manifest": null
+        },
+        "expected": {
+          "crash": "AttributeError"
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": \"abc\"}",
+          "manifest": null
+        },
+        "expected": {
+          "crash": "AttributeError"
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": [1, 2]}",
+          "manifest": null
+        },
+        "expected": {
+          "crash": "AttributeError"
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": null}",
+          "manifest": null
+        },
+        "expected": {
+          "crash": "TypeError"
+        }
+      },
+      {
+        "input": {
+          "catalog": "{\"projects\": {\"o/a\": {}}}",
+          "manifest": null
+        },
+        "expected": {
+          "crash": "AttributeError"
+        }
+      }
+    ],
+    "report": [
+      {
+        "input": {
+          "argv": [],
+          "sites": [
+            {
+              "repository": "Lucas/Zeta",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            },
+            {
+              "repository": "Lucas/alfa",
+              "website": "https://alfa.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://www.alfa.example.org/"
+              }
+            },
+            {
+              "repository": "Lucas/beta",
+              "website": "https://beta.example.org/x",
+              "check": {
+                "status": "unreachable",
+                "http_status": 404,
+                "final_url": "https://beta.example.org/x"
+              }
+            },
+            {
+              "repository": "Lucas/gama",
+              "website": "https://gama.example.org",
+              "check": {
+                "status": "unreachable",
+                "http_status": 0,
+                "final_url": "https://gama.example.org"
+              }
+            },
+            {
+              "repository": "Lucas/délta",
+              "website": "ftp://delta.example.org",
+              "check": {
+                "status": "invalid",
+                "http_status": 0,
+                "final_url": ""
+              }
+            },
+            {
+              "repository": "Lucas/épsilon",
+              "website": "",
+              "check": null
+            },
+            {
+              "repository": "Lucas/ζeta",
+              "website": "https://grego.example.org/ ",
+              "check": {
+                "status": "verified",
+                "http_status": 302,
+                "final_url": "mailto:x@example.org"
+              }
+            },
+            {
+              "repository": "Lucas/ctrl",
+              "website": "https://ctrl.example.org/\u001f\"\\",
+              "check": {
+                "status": "verified",
+                "http_status": 1000,
+                "final_url": "https://ctrl.example.org/\u001f\"\\"
+              }
+            },
+            {
+              "repository": "Lucas/mesmo-site",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            }
+          ],
+          "checked_at": "2026-09-26T00:00:00+00:00"
+        },
+        "expected": {
+          "stdout": "  ok    200  Lucas/Zeta  →  https://zeta.example.org\n  ok    200  Lucas/alfa  →  https://alfa.example.org\n            redireciona para: https://www.alfa.example.org/\n  FORA  404  Lucas/beta  →  https://beta.example.org/x\n  ok   1000  Lucas/ctrl  →  https://ctrl.example.org/\u001f\"\\\n  FORA    —  Lucas/délta  →  ftp://delta.example.org\n  FORA    —  Lucas/gama  →  https://gama.example.org\n  ok    200  Lucas/mesmo-site  →  https://zeta.example.org\n  FORA    —  Lucas/épsilon  →  \n  ok    302  Lucas/ζeta  →  https://grego.example.org/ \n            redireciona para: mailto:x@example.org\n\n9 sites verificados · 4 fora do ar\n",
+          "exit": 0
+        }
+      },
+      {
+        "input": {
+          "argv": [
+            "--json"
+          ],
+          "sites": [
+            {
+              "repository": "Lucas/Zeta",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            },
+            {
+              "repository": "Lucas/alfa",
+              "website": "https://alfa.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://www.alfa.example.org/"
+              }
+            },
+            {
+              "repository": "Lucas/beta",
+              "website": "https://beta.example.org/x",
+              "check": {
+                "status": "unreachable",
+                "http_status": 404,
+                "final_url": "https://beta.example.org/x"
+              }
+            },
+            {
+              "repository": "Lucas/gama",
+              "website": "https://gama.example.org",
+              "check": {
+                "status": "unreachable",
+                "http_status": 0,
+                "final_url": "https://gama.example.org"
+              }
+            },
+            {
+              "repository": "Lucas/délta",
+              "website": "ftp://delta.example.org",
+              "check": {
+                "status": "invalid",
+                "http_status": 0,
+                "final_url": ""
+              }
+            },
+            {
+              "repository": "Lucas/épsilon",
+              "website": "",
+              "check": null
+            },
+            {
+              "repository": "Lucas/ζeta",
+              "website": "https://grego.example.org/ ",
+              "check": {
+                "status": "verified",
+                "http_status": 302,
+                "final_url": "mailto:x@example.org"
+              }
+            },
+            {
+              "repository": "Lucas/ctrl",
+              "website": "https://ctrl.example.org/\u001f\"\\",
+              "check": {
+                "status": "verified",
+                "http_status": 1000,
+                "final_url": "https://ctrl.example.org/\u001f\"\\"
+              }
+            },
+            {
+              "repository": "Lucas/mesmo-site",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            }
+          ],
+          "checked_at": "2026-09-26T00:00:00+00:00"
+        },
+        "expected": {
+          "stdout": "{\n  \"checked\": 9,\n  \"down\": 4,\n  \"sites\": [\n    {\n      \"repository\": \"Lucas/Zeta\",\n      \"website\": \"https://zeta.example.org\",\n      \"status\": \"verified\",\n      \"http_status\": 200,\n      \"final_url\": \"https://zeta.example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/alfa\",\n      \"website\": \"https://alfa.example.org\",\n      \"status\": \"verified\",\n      \"http_status\": 200,\n      \"final_url\": \"https://www.alfa.example.org/\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/beta\",\n      \"website\": \"https://beta.example.org/x\",\n      \"status\": \"unreachable\",\n      \"http_status\": 404,\n      \"final_url\": \"https://beta.example.org/x\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/ctrl\",\n      \"website\": \"https://ctrl.example.org/\\u001f\\\"\\\\\",\n      \"status\": \"verified\",\n      \"http_status\": 1000,\n      \"final_url\": \"https://ctrl.example.org/\\u001f\\\"\\\\\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/délta\",\n      \"website\": \"ftp://delta.example.org\",\n      \"status\": \"invalid\",\n      \"http_status\": 0,\n      \"final_url\": \"\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/gama\",\n      \"website\": \"https://gama.example.org\",\n      \"status\": \"unreachable\",\n      \"http_status\": 0,\n      \"final_url\": \"https://gama.example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/mesmo-site\",\n      \"website\": \"https://zeta.example.org\",\n      \"status\": \"verified\",\n      \"http_status\": 200,\n      \"final_url\": \"https://zeta.example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/épsilon\",\n      \"website\": \"\",\n      \"status\": \"unknown\",\n      \"http_status\": 0,\n      \"final_url\": \"\",\n      \"checked_at\": \"\"\n    },\n    {\n      \"repository\": \"Lucas/ζeta\",\n      \"website\": \"https://grego.example.org/ \",\n      \"status\": \"verified\",\n      \"http_status\": 302,\n      \"final_url\": \"mailto:x@example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    }\n  ]\n}\n",
+          "exit": 0
+        }
+      },
+      {
+        "input": {
+          "argv": [
+            "--fail-on-down"
+          ],
+          "sites": [
+            {
+              "repository": "Lucas/Zeta",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            },
+            {
+              "repository": "Lucas/alfa",
+              "website": "https://alfa.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://www.alfa.example.org/"
+              }
+            },
+            {
+              "repository": "Lucas/beta",
+              "website": "https://beta.example.org/x",
+              "check": {
+                "status": "unreachable",
+                "http_status": 404,
+                "final_url": "https://beta.example.org/x"
+              }
+            },
+            {
+              "repository": "Lucas/gama",
+              "website": "https://gama.example.org",
+              "check": {
+                "status": "unreachable",
+                "http_status": 0,
+                "final_url": "https://gama.example.org"
+              }
+            },
+            {
+              "repository": "Lucas/délta",
+              "website": "ftp://delta.example.org",
+              "check": {
+                "status": "invalid",
+                "http_status": 0,
+                "final_url": ""
+              }
+            },
+            {
+              "repository": "Lucas/épsilon",
+              "website": "",
+              "check": null
+            },
+            {
+              "repository": "Lucas/ζeta",
+              "website": "https://grego.example.org/ ",
+              "check": {
+                "status": "verified",
+                "http_status": 302,
+                "final_url": "mailto:x@example.org"
+              }
+            },
+            {
+              "repository": "Lucas/ctrl",
+              "website": "https://ctrl.example.org/\u001f\"\\",
+              "check": {
+                "status": "verified",
+                "http_status": 1000,
+                "final_url": "https://ctrl.example.org/\u001f\"\\"
+              }
+            },
+            {
+              "repository": "Lucas/mesmo-site",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            }
+          ],
+          "checked_at": "2026-09-26T00:00:00+00:00"
+        },
+        "expected": {
+          "stdout": "  ok    200  Lucas/Zeta  →  https://zeta.example.org\n  ok    200  Lucas/alfa  →  https://alfa.example.org\n            redireciona para: https://www.alfa.example.org/\n  FORA  404  Lucas/beta  →  https://beta.example.org/x\n  ok   1000  Lucas/ctrl  →  https://ctrl.example.org/\u001f\"\\\n  FORA    —  Lucas/délta  →  ftp://delta.example.org\n  FORA    —  Lucas/gama  →  https://gama.example.org\n  ok    200  Lucas/mesmo-site  →  https://zeta.example.org\n  FORA    —  Lucas/épsilon  →  \n  ok    302  Lucas/ζeta  →  https://grego.example.org/ \n            redireciona para: mailto:x@example.org\n\n9 sites verificados · 4 fora do ar\n",
+          "exit": 1
+        }
+      },
+      {
+        "input": {
+          "argv": [
+            "--json",
+            "--fail-on-down"
+          ],
+          "sites": [
+            {
+              "repository": "Lucas/Zeta",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            },
+            {
+              "repository": "Lucas/alfa",
+              "website": "https://alfa.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://www.alfa.example.org/"
+              }
+            },
+            {
+              "repository": "Lucas/beta",
+              "website": "https://beta.example.org/x",
+              "check": {
+                "status": "unreachable",
+                "http_status": 404,
+                "final_url": "https://beta.example.org/x"
+              }
+            },
+            {
+              "repository": "Lucas/gama",
+              "website": "https://gama.example.org",
+              "check": {
+                "status": "unreachable",
+                "http_status": 0,
+                "final_url": "https://gama.example.org"
+              }
+            },
+            {
+              "repository": "Lucas/délta",
+              "website": "ftp://delta.example.org",
+              "check": {
+                "status": "invalid",
+                "http_status": 0,
+                "final_url": ""
+              }
+            },
+            {
+              "repository": "Lucas/épsilon",
+              "website": "",
+              "check": null
+            },
+            {
+              "repository": "Lucas/ζeta",
+              "website": "https://grego.example.org/ ",
+              "check": {
+                "status": "verified",
+                "http_status": 302,
+                "final_url": "mailto:x@example.org"
+              }
+            },
+            {
+              "repository": "Lucas/ctrl",
+              "website": "https://ctrl.example.org/\u001f\"\\",
+              "check": {
+                "status": "verified",
+                "http_status": 1000,
+                "final_url": "https://ctrl.example.org/\u001f\"\\"
+              }
+            },
+            {
+              "repository": "Lucas/mesmo-site",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            }
+          ],
+          "checked_at": "2026-09-26T00:00:00+00:00"
+        },
+        "expected": {
+          "stdout": "{\n  \"checked\": 9,\n  \"down\": 4,\n  \"sites\": [\n    {\n      \"repository\": \"Lucas/Zeta\",\n      \"website\": \"https://zeta.example.org\",\n      \"status\": \"verified\",\n      \"http_status\": 200,\n      \"final_url\": \"https://zeta.example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/alfa\",\n      \"website\": \"https://alfa.example.org\",\n      \"status\": \"verified\",\n      \"http_status\": 200,\n      \"final_url\": \"https://www.alfa.example.org/\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/beta\",\n      \"website\": \"https://beta.example.org/x\",\n      \"status\": \"unreachable\",\n      \"http_status\": 404,\n      \"final_url\": \"https://beta.example.org/x\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/ctrl\",\n      \"website\": \"https://ctrl.example.org/\\u001f\\\"\\\\\",\n      \"status\": \"verified\",\n      \"http_status\": 1000,\n      \"final_url\": \"https://ctrl.example.org/\\u001f\\\"\\\\\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/délta\",\n      \"website\": \"ftp://delta.example.org\",\n      \"status\": \"invalid\",\n      \"http_status\": 0,\n      \"final_url\": \"\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/gama\",\n      \"website\": \"https://gama.example.org\",\n      \"status\": \"unreachable\",\n      \"http_status\": 0,\n      \"final_url\": \"https://gama.example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/mesmo-site\",\n      \"website\": \"https://zeta.example.org\",\n      \"status\": \"verified\",\n      \"http_status\": 200,\n      \"final_url\": \"https://zeta.example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/épsilon\",\n      \"website\": \"\",\n      \"status\": \"unknown\",\n      \"http_status\": 0,\n      \"final_url\": \"\",\n      \"checked_at\": \"\"\n    },\n    {\n      \"repository\": \"Lucas/ζeta\",\n      \"website\": \"https://grego.example.org/ \",\n      \"status\": \"verified\",\n      \"http_status\": 302,\n      \"final_url\": \"mailto:x@example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    }\n  ]\n}\n",
+          "exit": 1
+        }
+      },
+      {
+        "input": {
+          "argv": [
+            "--fail-on-down"
+          ],
+          "sites": [
+            {
+              "repository": "Lucas/Zeta",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            },
+            {
+              "repository": "Lucas/alfa",
+              "website": "https://alfa.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://www.alfa.example.org/"
+              }
+            },
+            {
+              "repository": "Lucas/ζeta",
+              "website": "https://grego.example.org/ ",
+              "check": {
+                "status": "verified",
+                "http_status": 302,
+                "final_url": "mailto:x@example.org"
+              }
+            },
+            {
+              "repository": "Lucas/ctrl",
+              "website": "https://ctrl.example.org/\u001f\"\\",
+              "check": {
+                "status": "verified",
+                "http_status": 1000,
+                "final_url": "https://ctrl.example.org/\u001f\"\\"
+              }
+            },
+            {
+              "repository": "Lucas/mesmo-site",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            }
+          ],
+          "checked_at": "2026-09-26T00:00:00+00:00"
+        },
+        "expected": {
+          "stdout": "  ok    200  Lucas/Zeta  →  https://zeta.example.org\n  ok    200  Lucas/alfa  →  https://alfa.example.org\n            redireciona para: https://www.alfa.example.org/\n  ok   1000  Lucas/ctrl  →  https://ctrl.example.org/\u001f\"\\\n  ok    200  Lucas/mesmo-site  →  https://zeta.example.org\n  ok    302  Lucas/ζeta  →  https://grego.example.org/ \n            redireciona para: mailto:x@example.org\n\n5 sites verificados · 0 fora do ar\n",
+          "exit": 0
+        }
+      },
+      {
+        "input": {
+          "argv": [
+            "--json",
+            "--fail-on-down"
+          ],
+          "sites": [
+            {
+              "repository": "Lucas/Zeta",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            },
+            {
+              "repository": "Lucas/alfa",
+              "website": "https://alfa.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://www.alfa.example.org/"
+              }
+            },
+            {
+              "repository": "Lucas/ζeta",
+              "website": "https://grego.example.org/ ",
+              "check": {
+                "status": "verified",
+                "http_status": 302,
+                "final_url": "mailto:x@example.org"
+              }
+            },
+            {
+              "repository": "Lucas/ctrl",
+              "website": "https://ctrl.example.org/\u001f\"\\",
+              "check": {
+                "status": "verified",
+                "http_status": 1000,
+                "final_url": "https://ctrl.example.org/\u001f\"\\"
+              }
+            },
+            {
+              "repository": "Lucas/mesmo-site",
+              "website": "https://zeta.example.org",
+              "check": {
+                "status": "verified",
+                "http_status": 200,
+                "final_url": "https://zeta.example.org"
+              }
+            }
+          ],
+          "checked_at": "2026-09-26T00:00:00+00:00"
+        },
+        "expected": {
+          "stdout": "{\n  \"checked\": 5,\n  \"down\": 0,\n  \"sites\": [\n    {\n      \"repository\": \"Lucas/Zeta\",\n      \"website\": \"https://zeta.example.org\",\n      \"status\": \"verified\",\n      \"http_status\": 200,\n      \"final_url\": \"https://zeta.example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/alfa\",\n      \"website\": \"https://alfa.example.org\",\n      \"status\": \"verified\",\n      \"http_status\": 200,\n      \"final_url\": \"https://www.alfa.example.org/\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/ctrl\",\n      \"website\": \"https://ctrl.example.org/\\u001f\\\"\\\\\",\n      \"status\": \"verified\",\n      \"http_status\": 1000,\n      \"final_url\": \"https://ctrl.example.org/\\u001f\\\"\\\\\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/mesmo-site\",\n      \"website\": \"https://zeta.example.org\",\n      \"status\": \"verified\",\n      \"http_status\": 200,\n      \"final_url\": \"https://zeta.example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    },\n    {\n      \"repository\": \"Lucas/ζeta\",\n      \"website\": \"https://grego.example.org/ \",\n      \"status\": \"verified\",\n      \"http_status\": 302,\n      \"final_url\": \"mailto:x@example.org\",\n      \"checked_at\": \"2026-09-26T00:00:00+00:00\"\n    }\n  ]\n}\n",
+          "exit": 0
+        }
+      },
+      {
+        "input": {
+          "argv": [
+            "--json",
+            "--fail-on-down"
+          ],
+          "sites": [],
+          "checked_at": "2026-09-26T00:00:00+00:00"
+        },
+        "expected": {
+          "stdout": "nenhuma URL conhecida; rode o gerador ou preencha docs/README_SITES.json\n",
+          "exit": 0
+        }
+      },
+      {
+        "input": {
+          "argv": [],
+          "sites": [],
+          "checked_at": "2026-09-26T00:00:00+00:00"
+        },
+        "expected": {
+          "stdout": "nenhuma URL conhecida; rode o gerador ou preencha docs/README_SITES.json\n",
+          "exit": 0
+        }
+      }
+    ]
+  }
+}

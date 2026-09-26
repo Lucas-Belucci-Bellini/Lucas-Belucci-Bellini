@@ -31,17 +31,20 @@ SITES_FILE = ROOT / "docs" / "README_SITES.json"
 CATALOG_FILE = ROOT / "docs" / "project-catalog.json"
 
 
-def collect_urls() -> dict[str, str]:
+def collect_urls(root: Path = ROOT) -> dict[str, str]:
     """URLs conhecidas, por repositório.
 
     Usa o catálogo gerado quando existir (é a fonte mais completa, porque
     inclui homepages descobertas via GitHub) e cai no manifesto quando não.
+    `root` só muda nos testes e na comparação com o `profile-core check sites`.
     """
     urls: dict[str, str] = {}
+    catalog_file = root / CATALOG_FILE.relative_to(ROOT)
+    sites_file = root / SITES_FILE.relative_to(ROOT)
 
-    if CATALOG_FILE.exists():
+    if catalog_file.exists():
         try:
-            catalog = json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
+            catalog = json.loads(catalog_file.read_text(encoding="utf-8"))
             for project in catalog.get("projects", []):
                 # `website_declared` inclui os deployments que estavam fora do ar
                 # na última geração; são justamente os que precisam ser cobrados.
@@ -51,9 +54,9 @@ def collect_urls() -> dict[str, str]:
         except (OSError, ValueError):
             pass
 
-    if SITES_FILE.exists():
+    if sites_file.exists():
         try:
-            overrides = normalize_site_overrides(json.loads(SITES_FILE.read_text(encoding="utf-8")))
+            overrides = normalize_site_overrides(json.loads(sites_file.read_text(encoding="utf-8")))
             for repo, entry in overrides.items():
                 urls.setdefault(repo, str(entry["website"]))
         except (OSError, ValueError):
@@ -62,7 +65,7 @@ def collect_urls() -> dict[str, str]:
     return urls
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true", help="saída em JSON")
     parser.add_argument("--timeout", type=float, default=15.0)
@@ -73,9 +76,10 @@ def main() -> int:
         action="store_true",
         help="sai com código 1 se algum site conhecido estiver fora",
     )
-    args = parser.parse_args()
+    parser.add_argument("--root", type=Path, default=ROOT, help="raiz com docs/ (padrão: este repositório)")
+    args = parser.parse_args(argv)
 
-    urls = collect_urls()
+    urls = collect_urls(args.root)
     if not urls:
         print("nenhuma URL conhecida; rode o gerador ou preencha docs/README_SITES.json")
         return 0
