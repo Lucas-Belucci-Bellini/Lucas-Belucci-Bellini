@@ -111,6 +111,27 @@ class GoldenProfileTests(unittest.TestCase):
             with self.subTest(arquivo=source):
                 self.assertEqual(content, (self.root / source).read_bytes())
 
+    def test_catalog_out_sem_write_e_sem_token_grava_so_o_catalogo(self) -> None:
+        # Modo sombra: o catálogo sai num arquivo à parte, o README não muda.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "profile"
+            shutil.copytree(INPUT, root)
+            out = Path(tmp) / "catalog.json"
+            result = subprocess.run(
+                [
+                    sys.executable, str(SCRIPT), "--root", str(root),
+                    "--input-repos", str(root / "repos.json"), "--languages-dir", str(root / "languages"),
+                    "--site-checks-fixture", str(root / "site-checks.json"), "--now", NOW,
+                    "--catalog-out", str(out),
+                ],
+                capture_output=True, text=True, check=False,
+                env={key: value for key, value in os.environ.items() if "TOKEN" not in key},
+            )
+            self.assertEqual(0, result.returncode, result.stderr)
+            self.assertEqual((EXPECTED / "project-catalog.json").read_bytes(), out.read_bytes())
+            self.assertEqual((INPUT / "README.md").read_bytes(), (root / "README.md").read_bytes())
+            self.assertFalse((root / "docs" / "project-catalog.json").exists())
+
     def test_so_os_blocos_gerados_mudaram(self) -> None:
         sys.path.insert(0, str(ROOT / "scripts"))
         try:

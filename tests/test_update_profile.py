@@ -1,7 +1,10 @@
 import importlib.util
 import unittest
+from urllib.error import HTTPError
 from datetime import timedelta
 from pathlib import Path
+
+from fake_github import FakeGitHub
 
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "update_profile.py"
@@ -87,6 +90,48 @@ class SourceTimestampTests(unittest.TestCase):
         repos = [{"full_name": "Lucas-Belucci-Bellini/projeto", "updated_at": "2026-08-01T00:00:00Z"}]
         self.assertEqual(2026, MODULE.source_timestamp(repos, self.NOW).year)
         self.assertEqual(8, MODULE.source_timestamp(repos, self.NOW).month)
+
+
+class GitHubFetchTests(unittest.TestCase):
+    """Coleta do inventário contra um GitHub simulado (GITHUB_API_URL).
+
+    É o comportamento que o `profile-core` reproduz: página cheia (100) pede
+    a próxima; com token, `/user/repos` (privados inclusive); sem token, só os
+    públicos do dono; linguagem que falha vira mapa vazio, sem derrubar nada.
+    """
+
+    def setUp(self) -> None:
+        self.saved = MODULE.API
+        self.fake = FakeGitHub()
+
+    def tearDown(self) -> None:
+        MODULE.API = self.saved
+
+    def test_pagina_cheia_pede_a_proxima_e_token_muda_o_endpoint(self) -> None:
+        owner = MODULE.OWNER
+        page1 = [{"name": f"r{i}", "full_name": f"{owner}/r{i}"} for i in range(100)]
+        self.fake.get(f"/users/{owner}/repos?type=owner&per_page=100&page=1", page1)
+        self.fake.get(f"/users/{owner}/repos?type=owner&per_page=100&page=2", [{"name": "last"}])
+        self.fake.get("/user/repos?affiliation=owner,collaborator,organization_member&per_page=100&page=1", [])
+        with self.fake:
+            MODULE.API = self.fake.url
+            public = MODULE.fetch_repositories(None)
+            private_aware = MODULE.fetch_repositories("t0ken")
+        self.assertEqual(101, len(public))
+        self.assertEqual([], private_aware)
+        self.assertEqual([None, None, "Bearer t0ken"], [auth for _, _, auth in self.fake.requests])
+
+    def test_erro_no_inventario_propaga_e_na_linguagem_vira_vazio(self) -> None:
+        self.fake.get("/repos/o/ok/languages", {"Rust": 10, "Python": "7"})
+        self.fake.get("/repos/o/gone/languages", {"message": "Not Found"}, status=404)
+        self.fake.get("/repos/o/bad/languages", raw=b"<html>")
+        with self.fake:
+            MODULE.API = self.fake.url
+            self.assertEqual({"Rust": 10, "Python": 7}, MODULE.fetch_languages("o/ok", None))
+            self.assertEqual({}, MODULE.fetch_languages("o/gone", None))
+            self.assertEqual({}, MODULE.fetch_languages("o/bad", None))
+            with self.assertRaises(HTTPError):
+                MODULE.fetch_repositories(None)
 
 
 if __name__ == "__main__":

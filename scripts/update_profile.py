@@ -42,6 +42,11 @@ from project_catalog import (  # noqa: E402
 )
 
 OWNER = "Lucas-Belucci-Bellini"
+# Base da API REST. O GitHub Actions já define GITHUB_API_URL com este mesmo
+# valor; fora dele, a variável aponta o gerador para um GitHub simulado — é o
+# que permite ao teste de ponta a ponta (tests/e2e) rodar o Python e o núcleo
+# em Rust contra as mesmas respostas.
+API = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
 ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
 SITES_FILE = ROOT / "docs" / "README_SITES.json"
@@ -141,13 +146,13 @@ def fetch_repositories(token: str | None) -> list[dict[str, Any]]:
     while True:
         if token:
             url = (
-                "https://api.github.com/user/repos?"
+                f"{API}/user/repos?"
                 "affiliation=owner,collaborator,organization_member&per_page=100&page="
                 + str(page)
             )
         else:
             # Unauthenticated fallback: only public repositories owned by this profile.
-            url = f"https://api.github.com/users/{OWNER}/repos?type=owner&per_page=100&page={page}"
+            url = f"{API}/users/{OWNER}/repos?type=owner&per_page=100&page={page}"
         batch = api_get(url, token)
         if not batch:
             break
@@ -160,7 +165,7 @@ def fetch_repositories(token: str | None) -> list[dict[str, Any]]:
 
 def fetch_languages(full_name: str, token: str | None) -> dict[str, int]:
     try:
-        data = api_get(f"https://api.github.com/repos/{full_name}/languages", token)
+        data = api_get(f"{API}/repos/{full_name}/languages", token)
         return {str(key): int(value) for key, value in data.items()}
     except (HTTPError, URLError, TimeoutError, ValueError):
         return {}
@@ -1093,6 +1098,10 @@ def main() -> int:
     parser.add_argument("--site-workers", type=int, default=6, help="maximum concurrent website checks")
     parser.add_argument("--root", help="alternative repository root for README, manifests and outputs (tests/parity)")
     parser.add_argument("--now", help="fixed clock as ISO 8601 with timezone, e.g. 2026-09-25T12:00:00Z (tests/parity)")
+    parser.add_argument(
+        "--catalog-out",
+        help="also write the catalog JSON to this file, leaving README and assets untouched (shadow comparison)",
+    )
     args = parser.parse_args()
 
     if args.root:
@@ -1169,6 +1178,11 @@ def main() -> int:
         catalog_written = write_catalog_if_changed(catalog, CATALOG_FILE)
     else:
         print(text[:500])
+    # --catalog-out não substitui nada publicado (README, assets e o catálogo
+    # versionado ficam como estão), por isso vale também sem token: é como o
+    # modo sombra compara o catálogo do Python com o do profile-core.
+    if args.catalog_out:
+        write_catalog_if_changed(catalog, Path(args.catalog_out))
     print(json.dumps({
         "repositories": len(repos),
         "public_repositories": sum(not repo.get("private") for repo in repos),
