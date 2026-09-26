@@ -172,20 +172,7 @@ fn get_hostport(host: &str, default_port: i64) -> Result<(String, i64), Prefligh
 /// aceita dígitos de outros sistemas numéricos (`٨٠`); aqui eles contam como
 /// porta não numérica.
 fn py_int(text: &str) -> Option<i64> {
-    let trimmed = ecosystem_domain::text::py_strip(text);
-    let (negative, digits) = match trimmed.as_bytes().first() {
-        Some(b'-') => (true, &trimmed[1..]),
-        Some(b'+') => (false, &trimmed[1..]),
-        _ => (false, trimmed),
-    };
-    if digits.is_empty() || digits.starts_with('_') || digits.ends_with('_') || digits.contains("__") {
-        return None;
-    }
-    if !digits.chars().all(|c| c.is_ascii_digit() || c == '_') {
-        return None;
-    }
-    let value: i64 = digits.replace('_', "").parse().ok()?;
-    Some(if negative { -value } else { value })
+    ecosystem_domain::pyjson::py_int_str(text)
 }
 
 #[cfg(test)]

@@ -14,9 +14,19 @@ use sqlx::{AssertSqlSafe, Connection};
 pub const BIN: &str = env!("CARGO_BIN_EXE_profile-core");
 static COUNTER: AtomicUsize = AtomicUsize::new(0);
 
-/// Variáveis do ambiente que mudam o que o binário grava (proveniência).
-/// Os testes não as herdam: no GitHub Actions elas existem, localmente não.
-const PROVENANCE: [&str; 3] = ["GITHUB_WORKFLOW", "GITHUB_SHA", "GITHUB_RUN_ID"];
+/// Variáveis do ambiente que mudam o que o binário faz: proveniência gravada,
+/// tokens e o endereço da API do GitHub. Os testes não as herdam (no GitHub
+/// Actions elas existem, localmente não); quem precisa passa explicitamente.
+const INHERITED: [&str; 8] = [
+    "GITHUB_WORKFLOW",
+    "GITHUB_SHA",
+    "GITHUB_RUN_ID",
+    "GITHUB_API_URL",
+    "GITHUB_GRAPHQL_URL",
+    "GITHUB_TOKEN",
+    "PROFILE_GITHUB_TOKEN",
+    "PROFILE_README_TOKEN",
+];
 
 pub fn profile_core(args: &[&str], database_url: Option<&str>) -> Output {
     profile_core_env(args, database_url, &[])
@@ -26,7 +36,7 @@ pub fn profile_core(args: &[&str], database_url: Option<&str>) -> Output {
 pub fn profile_core_env(args: &[&str], database_url: Option<&str>, env: &[(&str, &str)]) -> Output {
     let mut command = Command::new(BIN);
     command.args(args).env_remove("DATABASE_URL");
-    for name in PROVENANCE {
+    for name in INHERITED {
         command.env_remove(name);
     }
     if let Some(url) = database_url {
@@ -38,6 +48,48 @@ pub fn profile_core_env(args: &[&str], database_url: Option<&str>, env: &[(&str,
 
 pub fn text(bytes: &[u8]) -> String {
     String::from_utf8_lossy(bytes).into_owned()
+}
+
+/// Cópia de um diretório numa pasta temporária, apagada no `Drop`.
+pub struct TempTree(pub std::path::PathBuf);
+
+impl TempTree {
+    pub fn copy_of(source: &std::path::Path) -> Self {
+        let target = std::env::temp_dir().join(format!(
+            "profile-core-tree-{}-{}",
+            std::process::id(),
+            COUNTER.fetch_add(1, Ordering::SeqCst)
+        ));
+        copy_dir(source, &target);
+        Self(target)
+    }
+
+    pub fn path(&self) -> &str {
+        self.0.to_str().expect("caminho UTF-8")
+    }
+
+    pub fn join(&self, relative: &str) -> String {
+        self.0.join(relative).to_str().expect("caminho UTF-8").to_string()
+    }
+}
+
+impl Drop for TempTree {
+    fn drop(&mut self) {
+        let _ = std::fs::remove_dir_all(&self.0);
+    }
+}
+
+fn copy_dir(source: &std::path::Path, target: &std::path::Path) {
+    std::fs::create_dir_all(target).expect("diretório de destino");
+    for entry in std::fs::read_dir(source).expect("lê diretório") {
+        let entry = entry.expect("entrada");
+        let destination = target.join(entry.file_name());
+        if entry.file_type().expect("tipo").is_dir() {
+            copy_dir(&entry.path(), &destination);
+        } else {
+            std::fs::copy(entry.path(), destination).expect("copia arquivo");
+        }
+    }
 }
 
 pub struct TempDb {

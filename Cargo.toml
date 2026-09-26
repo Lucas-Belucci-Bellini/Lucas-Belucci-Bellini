@@ -7,6 +7,7 @@ members = [
     "crates/store",
     "crates/site-monitor",
     "crates/github-client",
+    "crates/catalog",
     "crates/profile-core",
 ]
 
@@ -17,6 +18,7 @@ rust-version = "1.94"  # sqlx 0.9 exige 1.94
 publish = false
 
 [workspace.dependencies]
+catalog = { path = "crates/catalog" }
 ecosystem-domain = { path = "crates/ecosystem-domain" }
 github-client = { path = "crates/github-client" }
 site-monitor = { path = "crates/site-monitor" }

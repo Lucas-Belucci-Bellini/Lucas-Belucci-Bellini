@@ -21,6 +21,7 @@ pub mod discovery;
 pub mod lifecycle;
 pub mod presentation;
 pub mod priority;
+pub mod pyjson;
 pub mod repo;
 pub mod slug;
 pub mod taxonomy;

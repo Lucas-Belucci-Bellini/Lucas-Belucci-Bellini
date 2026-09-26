@@ -6,7 +6,16 @@
 //! profile-core db revert     [--to VERSÃO | --all] [--allow-data-loss]
 //! profile-core check sites   [--json] [--fail-on-down] [--timeout S] [--retries N]
 //!                            [--max-workers N] [--root DIR] [--no-db] [--trigger T]
+//! profile-core catalog build [--root DIR] [--input-repos FILE] [--now ISO] [--write]
+//!                            [--site-checks-fixture FILE | --skip-site-check]
+//!                            [--site-timeout S] [--site-workers N] [--site-checks-out FILE]
 //! ```
+//!
+//! `catalog build` gera o `docs/project-catalog.json` com os mesmos bytes do
+//! `update_profile.py`. Sem `--write`, imprime o catálogo e não grava nada;
+//! com `--write`, recusa sem `PROFILE_GITHUB_TOKEN` (a menos que o inventário
+//! venha de arquivo), como o Python: um inventário só de públicos apagaria os
+//! privados do catálogo.
 //!
 //! `check sites` imprime o relatório do `scripts/check_websites.py` byte a
 //! byte (exceto o `checked_at`) e grava cada checagem em
@@ -25,6 +34,7 @@ use std::process::ExitCode;
 use std::time::Duration;
 
 use clap::{Args, Parser, Subcommand};
+use profile_core::catalog_build::{self, BuildOptions, ChecksSource};
 use profile_core::sites;
 use serde_json::json;
 use site_monitor::check::BuildError;
@@ -46,6 +56,46 @@ enum Command {
     /// Verificações.
     #[command(subcommand)]
     Check(CheckCommand),
+    /// Catálogo do ecossistema (docs/project-catalog.json).
+    #[command(subcommand)]
+    Catalog(CatalogCommand),
+}
+
+#[derive(Subcommand)]
+enum CatalogCommand {
+    /// Gera o catálogo a partir do inventário do GitHub (o update_profile.py, sem o README).
+    Build(CatalogArgs),
+}
+
+#[derive(Args)]
+struct CatalogArgs {
+    /// Raiz com docs/ (manifestos e catálogo).
+    #[arg(long, default_value = ".")]
+    root: PathBuf,
+    /// Inventário de um arquivo (array JSON da API) em vez do GitHub.
+    #[arg(long, value_name = "FILE")]
+    input_repos: Option<PathBuf>,
+    /// Resultados de verificação de um arquivo em vez de HTTP.
+    #[arg(long, value_name = "FILE", conflicts_with = "skip_site_check")]
+    site_checks_fixture: Option<PathBuf>,
+    /// Não verifica os sites: todos saem como não verificados.
+    #[arg(long)]
+    skip_site_check: bool,
+    /// Timeout de cada verificação, em segundos.
+    #[arg(long, default_value_t = 15.0, value_parser = positive_seconds)]
+    site_timeout: f64,
+    /// Verificações simultâneas.
+    #[arg(long, default_value_t = 6)]
+    site_workers: usize,
+    /// Relógio fixo, ISO 8601 com fuso (2026-09-25T12:00:00Z).
+    #[arg(long, value_name = "ISO")]
+    now: Option<String>,
+    /// Grava docs/project-catalog.json (só se mudou).
+    #[arg(long)]
+    write: bool,
+    /// Grava também os resultados de verificação usados, no formato de --site-checks-fixture.
+    #[arg(long, value_name = "FILE")]
+    site_checks_out: Option<PathBuf>,
 }
 
 #[derive(Subcommand)]
@@ -97,6 +147,8 @@ fn positive_seconds(value: &str) -> Result<f64, String> {
 enum CliError {
     #[error(transparent)]
     Store(#[from] StoreError),
+    #[error(transparent)]
+    Catalog(#[from] catalog_build::BuildError),
     #[error(transparent)]
     Collect(#[from] sites::CollectError),
     #[error(transparent)]
@@ -184,6 +236,7 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
     let command = match cli.command {
         Command::Db(command) => command,
         Command::Check(CheckCommand::Sites(args)) => return check_sites(args).await,
+        Command::Catalog(CatalogCommand::Build(args)) => return build_catalog(args).await,
     };
     match command {
         DbCommand::Status { connection, json } => {
@@ -279,6 +332,31 @@ async fn check_sites(args: SitesArgs) -> Result<ExitCode, CliError> {
         );
     }
     Ok(ExitCode::from(sites::exit_code(&rows, args.fail_on_down)))
+}
+
+async fn build_catalog(args: CatalogArgs) -> Result<ExitCode, CliError> {
+    let checks = match (args.site_checks_fixture, args.skip_site_check) {
+        (Some(path), _) => ChecksSource::Fixture(path),
+        (None, true) => ChecksSource::Skip,
+        (None, false) => {
+            ChecksSource::Live { timeout: Duration::from_secs_f64(args.site_timeout), workers: args.site_workers }
+        }
+    };
+    let options = BuildOptions {
+        root: args.root,
+        input_repos: args.input_repos,
+        checks,
+        now: args.now,
+        write: args.write,
+        checks_out: args.site_checks_out,
+    };
+    let token = std::env::var("PROFILE_GITHUB_TOKEN").ok();
+    let built = catalog_build::run(&options, token).await?;
+    if built.written.is_none() {
+        print!("{}", built.text);
+    }
+    eprintln!("profile-core: {}", catalog_build::summary(&built));
+    Ok(ExitCode::SUCCESS)
 }
 
 fn to_record(check: &WebsiteCheck) -> WebsiteCheckRecord {
