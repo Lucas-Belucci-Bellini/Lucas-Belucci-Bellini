@@ -5,6 +5,7 @@ resolver = "3"
 members = [
     "crates/ecosystem-domain",
     "crates/store",
+    "crates/site-monitor",
     "crates/profile-core",
 ]
 
@@ -16,6 +17,7 @@ publish = false
 
 [workspace.dependencies]
 ecosystem-domain = { path = "crates/ecosystem-domain" }
+site-monitor = { path = "crates/site-monitor" }
 store = { path = "crates/store" }
 
 anyhow = "1"

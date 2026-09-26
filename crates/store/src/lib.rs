@@ -247,6 +247,159 @@ impl Database {
     }
 }
 
+/// Proveniência de uma execução — vira uma linha de `ecosystem.sync_runs`.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct RunContext {
+    /// `schedule` | `manual` | `push` | `api` | `test`.
+    pub trigger: String,
+    /// Quem executou (`cli`, `github-actions:<workflow>`).
+    pub source: String,
+    /// SHA do código.
+    pub code_version: Option<String>,
+    /// Referência externa (id do run no GitHub Actions).
+    pub external_ref: Option<String>,
+}
+
+/// Uma checagem de site, no formato de `ecosystem.website_checks`.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct WebsiteCheckRecord {
+    /// URL verificada; casa com `websites.url` ativos.
+    pub url: String,
+    /// Início da checagem (ISO 8601 com fuso).
+    pub checked_at: String,
+    /// `verified` | `unreachable` | `invalid`.
+    pub outcome: String,
+    /// Código HTTP (100–599); `None` sem resposta.
+    pub http_status: Option<i16>,
+    /// Destino após redirects.
+    pub final_url: Option<String>,
+    /// Redirects seguidos.
+    pub redirect_count: i16,
+    /// Tempo até a resposta final.
+    pub response_time_ms: Option<i32>,
+    /// Tentativas (≥ 1).
+    pub attempts: i16,
+    /// `timeout` | `dns` | `connect` | `tls` | `http_status` | `invalid_url` | `other`.
+    pub error_kind: Option<String>,
+    /// Mensagem do erro.
+    pub error_message: Option<String>,
+}
+
+/// O que foi gravado.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct RecordReport {
+    /// A execução (`sync_runs.id`).
+    pub sync_run_id: i64,
+    /// Linhas acrescentadas a `website_checks`.
+    pub recorded: usize,
+    /// URLs sem site ativo em `ecosystem.websites` (quem registra sites é a
+    /// coleta e a importação de manifestos, não o monitor).
+    pub unregistered: Vec<String>,
+}
+
+impl Database {
+    /// Acrescenta as checagens ao histórico, numa execução `websites`.
+    ///
+    /// Cada checagem vira uma linha para **cada** site ativo com aquela URL.
+    /// Tudo numa transação: ou a execução entra inteira como `succeeded`, ou
+    /// nada entra — e então fica registrada uma execução `failed` com o motivo
+    /// ("falha é dado", D-007). O monitor não cria projetos nem sites: URL sem
+    /// site registrado é só relatada.
+    pub async fn record_website_checks(
+        &self,
+        run: &RunContext,
+        checks: &[WebsiteCheckRecord],
+    ) -> Result<RecordReport, StoreError> {
+        let mut conn = self.connect(false).await?;
+        match record_on(&mut conn, run, checks).await {
+            Ok(report) => Ok(report),
+            Err(error) => {
+                let _ = sqlx::query(
+                    "INSERT INTO ecosystem.sync_runs \
+                       (kind, trigger, source, code_version, external_ref, status, finished_at, items_seen, error_message) \
+                     VALUES ('websites', $1, $2, $3, $4, 'failed', now(), $5, $6)",
+                )
+                .bind(&run.trigger)
+                .bind(&run.source)
+                .bind(&run.code_version)
+                .bind(&run.external_ref)
+                .bind(i32::try_from(checks.len()).unwrap_or(i32::MAX))
+                .bind(error.to_string())
+                .execute(&mut conn)
+                .await;
+                Err(error)
+            }
+        }
+    }
+}
+
+async fn record_on(
+    conn: &mut PgConnection,
+    run: &RunContext,
+    checks: &[WebsiteCheckRecord],
+) -> Result<RecordReport, StoreError> {
+    let mut tx = conn.begin().await?;
+    let sync_run_id: i64 = sqlx::query_scalar(
+        "INSERT INTO ecosystem.sync_runs (kind, trigger, source, code_version, external_ref) \
+         VALUES ('websites', $1, $2, $3, $4) RETURNING id",
+    )
+    .bind(&run.trigger)
+    .bind(&run.source)
+    .bind(&run.code_version)
+    .bind(&run.external_ref)
+    .fetch_one(&mut *tx)
+    .await?;
+
+    let mut recorded = 0_usize;
+    let mut unregistered = Vec::new();
+    for check in checks {
+        let website_ids: Vec<i64> =
+            sqlx::query_scalar("SELECT id FROM ecosystem.websites WHERE url = $1 AND retired_at IS NULL ORDER BY id")
+                .bind(&check.url)
+                .fetch_all(&mut *tx)
+                .await?;
+        if website_ids.is_empty() {
+            unregistered.push(check.url.clone());
+            continue;
+        }
+        for website_id in website_ids {
+            sqlx::query(
+                "INSERT INTO ecosystem.website_checks \
+                   (website_id, sync_run_id, checked_at, outcome, http_status, final_url, redirect_count, \
+                    response_time_ms, attempts, error_kind, error_message) \
+                 VALUES ($1, $2, $3::timestamptz, $4, $5, $6, $7, $8, $9, $10, $11)",
+            )
+            .bind(website_id)
+            .bind(sync_run_id)
+            .bind(&check.checked_at)
+            .bind(&check.outcome)
+            .bind(check.http_status)
+            .bind(&check.final_url)
+            .bind(check.redirect_count)
+            .bind(check.response_time_ms)
+            .bind(check.attempts)
+            .bind(&check.error_kind)
+            .bind(&check.error_message)
+            .execute(&mut *tx)
+            .await?;
+            recorded += 1;
+        }
+    }
+
+    sqlx::query(
+        "UPDATE ecosystem.sync_runs \
+         SET status = 'succeeded', finished_at = clock_timestamp(), items_seen = $2, items_changed = $3 \
+         WHERE id = $1",
+    )
+    .bind(sync_run_id)
+    .bind(i32::try_from(checks.len()).unwrap_or(i32::MAX))
+    .bind(i32::try_from(recorded).unwrap_or(i32::MAX))
+    .execute(&mut *tx)
+    .await?;
+    tx.commit().await?;
+    Ok(RecordReport { sync_run_id, recorded, unregistered })
+}
+
 /// Transação externa, a menos que alguma migration não possa rodar em uma.
 async fn begin_if_atomic(conn: &mut PgConnection) -> Result<Option<Transaction<'_, Postgres>>, StoreError> {
     if MIGRATOR.iter().any(|m| m.no_tx) {

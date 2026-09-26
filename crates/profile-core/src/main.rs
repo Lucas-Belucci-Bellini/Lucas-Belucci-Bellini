@@ -1,12 +1,17 @@
 //! `profile-core` — o binário do núcleo do ecossistema.
 //!
-//! Fase 1 (docs/migration/PYTHON-TO-RUST.md): só o schema do PostgreSQL.
-//!
 //! ```text
-//! profile-core db status   [--json]
+//! profile-core db status     [--json]
 //! profile-core db migrate
-//! profile-core db revert   [--to VERSÃO | --all] [--allow-data-loss]
+//! profile-core db revert     [--to VERSÃO | --all] [--allow-data-loss]
+//! profile-core check sites   [--json] [--fail-on-down] [--timeout S] [--retries N]
+//!                            [--max-workers N] [--root DIR] [--no-db] [--trigger T]
 //! ```
+//!
+//! `check sites` imprime o relatório do `scripts/check_websites.py` byte a
+//! byte (exceto o `checked_at`) e grava cada checagem em
+//! `ecosystem.website_checks`. Sem banco configurado ele **recusa** em vez de
+//! pular o histórico calado (lição do A1): use `--no-db` para só verificar.
 //!
 //! A conexão vem de `DATABASE_URL` (ou `--database-url`, que deixa a senha
 //! visível na lista de processos). Nenhuma mensagem repete a URL.
@@ -15,11 +20,16 @@
 //! verificação reprovou (banco inconsistente, trava de perda de dados) · `2`
 //! não foi possível executar (uso incorreto, URL, conexão, erro de SQL).
 
+use std::path::PathBuf;
 use std::process::ExitCode;
+use std::time::Duration;
 
 use clap::{Args, Parser, Subcommand};
+use profile_core::sites;
 use serde_json::json;
-use store::{Database, MigrationState, MigrationStatus, RevertTarget, StoreError};
+use site_monitor::check::BuildError;
+use site_monitor::{Checker, Options, Status, WebsiteCheck};
+use store::{Database, MigrationState, MigrationStatus, RevertTarget, RunContext, StoreError, WebsiteCheckRecord};
 
 #[derive(Parser)]
 #[command(name = "profile-core", version, about = "Núcleo do ecossistema do perfil.")]
@@ -33,6 +43,66 @@ enum Command {
     /// Schema do PostgreSQL: as migrations de db/migrations, embutidas no binário.
     #[command(subcommand)]
     Db(DbCommand),
+    /// Verificações.
+    #[command(subcommand)]
+    Check(CheckCommand),
+}
+
+#[derive(Subcommand)]
+enum CheckCommand {
+    /// Verifica os sites do catálogo e do manifesto (o check_websites.py) e
+    /// grava o histórico.
+    Sites(SitesArgs),
+}
+
+#[derive(Args)]
+struct SitesArgs {
+    /// Saída em JSON (o formato do check_websites.py --json).
+    #[arg(long)]
+    json: bool,
+    /// Sai com 1 se algum site conhecido estiver fora.
+    #[arg(long)]
+    fail_on_down: bool,
+    /// Timeout de cada conexão e de cada leitura, em segundos.
+    #[arg(long, default_value_t = 15.0, value_parser = positive_seconds)]
+    timeout: f64,
+    /// Tentativas extras por URL.
+    #[arg(long, default_value_t = 1)]
+    retries: u32,
+    /// Verificações simultâneas.
+    #[arg(long, default_value_t = 6)]
+    max_workers: usize,
+    /// Raiz com docs/project-catalog.json e docs/README_SITES.json.
+    #[arg(long, default_value = ".")]
+    root: PathBuf,
+    /// URL do PostgreSQL onde o histórico é gravado. Prefira a variável de ambiente.
+    #[arg(long, env = "DATABASE_URL", hide_env_values = true, value_name = "URL")]
+    database_url: Option<String>,
+    /// Só verifica, sem gravar histórico (modo sombra, comparação com o Python).
+    #[arg(long)]
+    no_db: bool,
+    /// Gatilho registrado em ecosystem.sync_runs.
+    #[arg(long, default_value = "manual", value_parser = ["schedule", "manual", "push", "api", "test"])]
+    trigger: String,
+}
+
+fn positive_seconds(value: &str) -> Result<f64, String> {
+    match value.parse::<f64>() {
+        Ok(seconds) if seconds.is_finite() && seconds > 0.0 => Ok(seconds),
+        _ => Err("precisa ser um número de segundos maior que zero".into()),
+    }
+}
+
+#[derive(Debug, thiserror::Error)]
+enum CliError {
+    #[error(transparent)]
+    Store(#[from] StoreError),
+    #[error(transparent)]
+    Collect(#[from] sites::CollectError),
+    #[error(transparent)]
+    Http(#[from] BuildError),
+    #[error("check sites grava o histórico no banco: defina DATABASE_URL ou passe --no-db")]
+    NoDatabase,
 }
 
 #[derive(Args)]
@@ -82,7 +152,7 @@ async fn main() -> ExitCode {
         Ok(code) => code,
         Err(error) => {
             eprintln!("profile-core: erro: {error}");
-            if matches!(error, StoreError::DataLossRefused { .. }) {
+            if matches!(error, CliError::Store(StoreError::DataLossRefused { .. })) {
                 eprintln!("profile-core: dica: exporte os dados e repita com --allow-data-loss");
             }
             exit_code(&error)
@@ -92,7 +162,10 @@ async fn main() -> ExitCode {
 
 /// `1` quando o comando verificou algo e reprovou; `2` quando não conseguiu
 /// executar. O erro de uso do clap também sai com `2`.
-fn exit_code(error: &StoreError) -> ExitCode {
+fn exit_code(error: &CliError) -> ExitCode {
+    let CliError::Store(error) = error else {
+        return ExitCode::from(2);
+    };
     match error {
         StoreError::DataLossRefused { .. }
         | StoreError::Modified(_)
@@ -107,8 +180,11 @@ fn exit_code(error: &StoreError) -> ExitCode {
     }
 }
 
-async fn run(cli: Cli) -> Result<ExitCode, StoreError> {
-    let Command::Db(command) = cli.command;
+async fn run(cli: Cli) -> Result<ExitCode, CliError> {
+    let command = match cli.command {
+        Command::Db(command) => command,
+        Command::Check(CheckCommand::Sites(args)) => return check_sites(args).await,
+    };
     match command {
         DbCommand::Status { connection, json } => {
             let status = Database::from_url(&connection.database_url)?.status().await?;
@@ -158,6 +234,82 @@ async fn run(cli: Cli) -> Result<ExitCode, StoreError> {
             }
             Ok(ExitCode::SUCCESS)
         }
+    }
+}
+
+async fn check_sites(args: SitesArgs) -> Result<ExitCode, CliError> {
+    let database = if args.no_db {
+        None
+    } else {
+        Some(Database::from_url(args.database_url.as_deref().ok_or(CliError::NoDatabase)?)?)
+    };
+    let urls = sites::collect_urls(&args.root)?;
+    if urls.is_empty() {
+        print!("{}", sites::NO_URLS);
+        return Ok(ExitCode::SUCCESS);
+    }
+
+    let options = Options {
+        timeout: Duration::from_secs_f64(args.timeout),
+        retries: args.retries,
+        max_workers: args.max_workers,
+    };
+    let checks = Checker::new(options)?.check_websites(urls.values().cloned()).await;
+    let rows = sites::build_rows(&urls, &checks);
+    print!("{}", if args.json { sites::render_json(&rows) } else { sites::render_text(&rows) });
+
+    let mut ordered: Vec<&WebsiteCheck> = checks.values().collect();
+    ordered.sort_by(|a, b| a.url.cmp(&b.url));
+    for check in ordered.iter().filter(|c| c.python_crash.is_some()) {
+        eprintln!(
+            "profile-core: aviso: {:?} derrubaria o check_websites.py ({}); aqui conta como fora do ar",
+            check.url,
+            check.python_crash.unwrap_or_default()
+        );
+    }
+    if let Some(database) = database {
+        let records: Vec<WebsiteCheckRecord> =
+            ordered.iter().filter(|c| c.status != Status::Invalid).map(|c| to_record(c)).collect();
+        let report = database.record_website_checks(&run_context(&args.trigger), &records).await?;
+        eprintln!(
+            "profile-core: histórico: {} checagens gravadas (sync_run {}); {} URLs sem site registrado",
+            report.recorded,
+            report.sync_run_id,
+            report.unregistered.len()
+        );
+    }
+    Ok(ExitCode::from(sites::exit_code(&rows, args.fail_on_down)))
+}
+
+fn to_record(check: &WebsiteCheck) -> WebsiteCheckRecord {
+    let http_status = (100..=599).contains(&check.http_status).then_some(check.http_status as i16);
+    let error_message = if check.http_status != 0 && http_status.is_none() {
+        Some(format!("HTTP {} (fora de 100–599)", check.http_status))
+    } else {
+        check.error_message.clone()
+    };
+    WebsiteCheckRecord {
+        url: check.url.clone(),
+        checked_at: check.checked_at.clone(),
+        outcome: check.status.as_str().into(),
+        http_status,
+        final_url: (!check.final_url.is_empty()).then(|| check.final_url.clone()),
+        redirect_count: i16::try_from(check.redirect_count).unwrap_or(i16::MAX),
+        response_time_ms: check.response_time_ms.map(|ms| i32::try_from(ms).unwrap_or(i32::MAX)),
+        attempts: i16::try_from(check.attempts.max(1)).unwrap_or(i16::MAX),
+        error_kind: check.error_kind.map(|kind| kind.as_str().into()),
+        error_message,
+    }
+}
+
+/// Proveniência: no GitHub Actions, o workflow, o SHA e o run.
+fn run_context(trigger: &str) -> RunContext {
+    let env = |name: &str| std::env::var(name).ok().filter(|value| !value.is_empty());
+    RunContext {
+        trigger: trigger.into(),
+        source: env("GITHUB_WORKFLOW").map_or_else(|| "cli".into(), |workflow| format!("github-actions:{workflow}")),
+        code_version: env("GITHUB_SHA"),
+        external_ref: env("GITHUB_RUN_ID"),
     }
 }
 

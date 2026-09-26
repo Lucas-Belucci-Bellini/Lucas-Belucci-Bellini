@@ -69,10 +69,11 @@ pub fn normalize_site_overrides(raw: &Value) -> BTreeMap<String, String> {
         .collect()
 }
 
-/// `str()` do Python para o que `json.loads` devolve — exata para booleano e
-/// inteiro; ver a divergência em [`normalize_site_overrides`].
-fn py_str(value: &Value) -> String {
+/// `str()` do Python para o que `json.loads` devolve — exata para texto,
+/// `None`, booleano e inteiro; ver a divergência em [`normalize_site_overrides`].
+pub fn py_str(value: &Value) -> String {
     match value {
+        Value::Null => "None".into(),
         Value::Bool(true) => "True".into(),
         Value::Bool(false) => "False".into(),
         Value::String(text) => text.clone(),
@@ -82,7 +83,7 @@ fn py_str(value: &Value) -> String {
 
 /// Verdade do Python para um valor JSON: `null`, `false`, `0`, `""`, `[]` e
 /// `{}` são falsos.
-fn json_truthy(value: &Value) -> bool {
+pub fn json_truthy(value: &Value) -> bool {
     match value {
         Value::Null => false,
         Value::Bool(flag) => *flag,
