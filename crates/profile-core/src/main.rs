@@ -11,6 +11,7 @@
 //!                            [--site-timeout S] [--site-workers N] [--site-checks-out FILE]
 //! profile-core sync commits  [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
 //! profile-core sync github   [--root DIR] [--input-repos FILE [--languages-dir DIR]] [--no-db] [--trigger T]
+//! profile-core sync contributions [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
 //! ```
 //!
 //! `sync github` grava donos, repositórios, linguagens e projetos. Gravar
@@ -47,6 +48,7 @@ use std::time::Duration;
 use clap::{Args, Parser, Subcommand};
 use profile_core::catalog_build::{self, BuildOptions, ChecksSource};
 use profile_core::commits;
+use profile_core::contributions;
 use profile_core::inventory_sync::{self, SyncOptions};
 use profile_core::sites;
 use serde_json::json;
@@ -83,6 +85,30 @@ enum SyncCommand {
     Commits(CommitsArgs),
     /// Inventário do GitHub: donos, repositórios, linguagens e projetos.
     Github(GithubArgs),
+    /// Contribuições mensais do GraphQL (o update_contribution_timeline.py).
+    Contributions(ContributionsArgs),
+}
+
+#[derive(Args)]
+struct ContributionsArgs {
+    /// Raiz onde docs/assets/ é gravado.
+    #[arg(long, default_value = ".")]
+    root: PathBuf,
+    /// Relógio fixo, ISO 8601 com fuso.
+    #[arg(long, value_name = "ISO")]
+    now: Option<String>,
+    /// Grava o JSON e a página em docs/assets/; sem ela, o JSON vai para a saída padrão.
+    #[arg(long)]
+    write: bool,
+    /// URL do PostgreSQL. Prefira a variável de ambiente.
+    #[arg(long, env = "DATABASE_URL", hide_env_values = true, value_name = "URL")]
+    database_url: Option<String>,
+    /// Só coleta, sem gravar no banco (modo sombra).
+    #[arg(long)]
+    no_db: bool,
+    /// Gatilho registrado em ecosystem.sync_runs.
+    #[arg(long, default_value = "manual", value_parser = ["schedule", "manual", "push", "api", "test"])]
+    trigger: String,
 }
 
 #[derive(Args)]
@@ -234,6 +260,10 @@ enum CliError {
     Io(String, std::io::Error),
     #[error(transparent)]
     Inventory(#[from] inventory_sync::SyncError),
+    #[error("PROFILE_README_TOKEN ou GITHUB_TOKEN ausente")]
+    NoGraphQlToken,
+    #[error("timeline generation failed: {0}")]
+    Timeline(String),
     #[error(
         "sync github grava o inventário completo: defina PROFILE_GITHUB_TOKEN ou use --input-repos \
          (só com os públicos, os privados pareceriam sumidos), ou passe --no-db"
@@ -327,6 +357,7 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
         Command::Catalog(CatalogCommand::Build(args)) => return build_catalog(args).await,
         Command::Sync(SyncCommand::Commits(args)) => return sync_commits(args).await,
         Command::Sync(SyncCommand::Github(args)) => return sync_github(args).await,
+        Command::Sync(SyncCommand::Contributions(args)) => return sync_contributions(args).await,
     };
     match command {
         DbCommand::Status { connection, json } => {
@@ -546,6 +577,45 @@ async fn sync_github(args: GithubArgs) -> Result<ExitCode, CliError> {
         report.projects_created,
         report.sync_run_id
     );
+    Ok(ExitCode::SUCCESS)
+}
+
+async fn sync_contributions(args: ContributionsArgs) -> Result<ExitCode, CliError> {
+    let env = |name: &str| std::env::var(name).ok().filter(|value| !value.is_empty());
+    let now = match &args.now {
+        Some(value) => catalog::parse_now(value)?,
+        None => chrono::Utc::now(),
+    };
+    let token = env("PROFILE_README_TOKEN").or_else(|| env("GITHUB_TOKEN")).ok_or(CliError::NoGraphQlToken)?;
+    let database = if args.no_db {
+        None
+    } else {
+        Some(Database::from_url(args.database_url.as_deref().ok_or(CliError::NoDatabase("sync contributions"))?)?)
+    };
+    let login = env("PROFILE_LOGIN").unwrap_or_else(|| "Lucas-Belucci-Bellini".into());
+    let graphql = contributions::GitHub::new(token)?;
+    let payload = contributions::collect(&graphql, &login, now).await.map_err(CliError::Timeline)?;
+    let rows = payload["rows"].as_array().map_or(0, Vec::len);
+    if args.write {
+        contributions::write(&args.root, &payload)
+            .map_err(|error| CliError::Io(args.root.join(contributions::DATA_FILE).display().to_string(), error))?;
+        println!("timeline updated: rows={rows} html={}", contributions::HTML_FILE);
+    } else {
+        print!("{}", contributions::render_data(&payload));
+    }
+    if let Some(database) = database {
+        let (samples, skipped) = contributions::samples(&payload);
+        for reason in &skipped {
+            eprintln!("profile-core: aviso: {reason}; amostra não gravada");
+        }
+        let report = database.record_samples("contributions", &run_context(&args.trigger), &samples).await?;
+        eprintln!(
+            "profile-core: histórico: {} de {} amostras mudaram e foram gravadas (sync_run {})",
+            report.recorded,
+            samples.len(),
+            report.sync_run_id
+        );
+    }
     Ok(ExitCode::SUCCESS)
 }
 

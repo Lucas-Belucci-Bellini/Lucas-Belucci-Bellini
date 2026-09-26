@@ -56,8 +56,8 @@ fn key_error(key: &str) -> PyException {
     PyException::new("KeyError", format!("'{key}'"))
 }
 
-/// `value.get(key, default)` — só dicionários têm `.get`.
-fn py_get<'a>(value: &'a Value, key: &str) -> Result<Option<&'a Value>, PyException> {
+/// `value.get(key)` — só dicionários têm `.get`.
+pub fn py_get<'a>(value: &'a Value, key: &str) -> Result<Option<&'a Value>, PyException> {
     match value {
         Value::Object(map) => Ok(map.get(key)),
         other => {
@@ -66,8 +66,9 @@ fn py_get<'a>(value: &'a Value, key: &str) -> Result<Option<&'a Value>, PyExcept
     }
 }
 
-/// `value[key]` com chave texto.
-fn py_index_str<'a>(value: &'a Value, key: &str) -> Result<&'a Value, PyException> {
+/// `value[key]` com chave texto: `KeyError` sem a chave, `TypeError` quando
+/// o valor não é dicionário — com o texto que o Python mostraria.
+pub fn py_index_str<'a>(value: &'a Value, key: &str) -> Result<&'a Value, PyException> {
     match value {
         Value::Object(map) => map.get(key).ok_or_else(|| key_error(key)),
         Value::Array(_) => Err(PyException::new("TypeError", "list indices must be integers or slices, not str")),
