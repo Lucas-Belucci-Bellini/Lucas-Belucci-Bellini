@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Critério de saída da Fase 3: coleta Python = coleta Rust, contra o mesmo GitHub.
+"""Critérios de saída das Fases 3 e 4: Python = Rust, contra o mesmo GitHub.
 
 Sobe um GitHub simulado (tests/fake_github.py) com um ecossistema sintético —
 inventário paginado, privados, forks, arquivados, colaboração, exclusões,
@@ -8,6 +8,9 @@ dois programas contra ele:
 
     catálogo       update_profile.py --catalog-out   ×  profile-core catalog build
                    (com PROFILE_GITHUB_TOKEN e sem ele)
+    README         update_profile.py --out-dir       ×  profile-core render readme --out-dir
+                   (README, profile-snapshot.svg, catálogo e saída padrão, com e sem
+                   token; com token também --write na raiz, como no workflow)
     monitor        ecosystem_watch.py --root         ×  profile-core sync commits --write --no-db
                    (5 varreduras encadeadas: commits novos, comparação que falha,
                    409, 503 que passa na segunda tentativa, rate limit, repositório
@@ -189,28 +192,53 @@ def compare(label: str, python: str | None, rust: str | None, failures: list[str
 
 
 def read(path: Path) -> str | None:
-    return path.read_text(encoding="utf-8") if path.exists() else None
+    # Bytes, não read_text: as quebras universais esconderiam um `\r` a mais.
+    return path.read_bytes().decode("utf-8") if path.exists() else None
 
 
-def catalog_parity(binary: str, fake: FakeGitHub, work: Path, failures: list[str]) -> None:
+PROFILE_OUTPUTS = {"README.md": "README.md", "profile-snapshot.svg": "assets/profile-snapshot.svg",
+                   "project-catalog.json": "docs/project-catalog.json"}
+
+
+def profile_parity(binary: str, fake: FakeGitHub, work: Path, failures: list[str]) -> None:
+    """Catálogo e README inteiro: mesmas leituras do GitHub, mesmos bytes."""
     for tag, token in (("com token", "inventory-token"), ("sem token", None)):
-        py_root, rs_root = work / f"catalog-py-{tag}", work / f"catalog-rs-{tag}"
+        py_root, rs_root = work / f"profile-py-{tag}", work / f"profile-rs-{tag}"
         build_root(py_root)
         build_root(rs_root)
         env = {"GITHUB_API_URL": fake.url, "GITHUB_TOKEN": "actions-token"}
         if token:
             env["PROFILE_GITHUB_TOKEN"] = token
-        py_out = work / f"catalog-py-{tag}.json"
+        py_catalog, py_out, rs_out = work / f"catalog-py-{tag}.json", work / f"out-py-{tag}", work / f"out-rs-{tag}"
         python = run([sys.executable, str(ROOT / "scripts" / "update_profile.py"), "--root", str(py_root),
                       "--site-checks-fixture", str(py_root / "site-checks.json"), "--now", NOW,
-                      "--catalog-out", str(py_out)], env)
-        rust = run([binary, "catalog", "build", "--root", str(rs_root),
-                    "--site-checks-fixture", str(rs_root / "site-checks.json"), "--now", NOW], env)
-        if python.returncode != 0 or rust.returncode != 0:
-            failures.append(f"catálogo {tag}: python {python.returncode} ({python.stderr.strip()[-300:]}) / "
-                            f"rust {rust.returncode} ({rust.stderr.strip()[-300:]})")
+                      "--catalog-out", str(py_catalog), "--out-dir", str(py_out)], env)
+        catalog = run([binary, "catalog", "build", "--root", str(rs_root),
+                       "--site-checks-fixture", str(rs_root / "site-checks.json"), "--now", NOW], env)
+        rust = run([binary, "render", "readme", "--root", str(rs_root),
+                    "--site-checks-fixture", str(rs_root / "site-checks.json"), "--now", NOW,
+                    "--out-dir", str(rs_out)], env)
+        if python.returncode != 0 or catalog.returncode != 0 or rust.returncode != 0:
+            failures.append(f"perfil {tag}: python {python.returncode} ({python.stderr.strip()[-300:]}) / "
+                            f"catalog {catalog.returncode} / render {rust.returncode} ({rust.stderr.strip()[-300:]})")
             continue
-        compare(f"catálogo {tag}", read(py_out), rust.stdout, failures)
+        compare(f"catálogo {tag}", read(py_catalog), catalog.stdout, failures)
+        compare(f"README {tag}: saída", python.stdout, rust.stdout, failures)
+        for name in PROFILE_OUTPUTS:
+            compare(f"README {tag}: {name}", read(py_out / name), read(rs_out / name), failures)
+        if not token:
+            continue
+        # O que o workflow faz: --write na raiz (exige o token).
+        python = run([sys.executable, str(ROOT / "scripts" / "update_profile.py"), "--root", str(py_root),
+                      "--site-checks-fixture", str(py_root / "site-checks.json"), "--now", NOW, "--write"], env)
+        rust = run([binary, "render", "readme", "--root", str(rs_root),
+                    "--site-checks-fixture", str(rs_root / "site-checks.json"), "--now", NOW, "--write"], env)
+        if python.returncode != 0 or rust.returncode != 0:
+            failures.append(f"perfil --write: python {python.returncode} / rust {rust.returncode} ({rust.stderr.strip()[-300:]})")
+            continue
+        compare("README --write: saída", python.stdout, rust.stdout, failures)
+        for path in PROFILE_OUTPUTS.values():
+            compare(f"README --write: {path}", read(py_root / path), read(rs_root / path), failures)
 
 
 REPO_STATES: dict[str, Any] = {}
@@ -323,16 +351,23 @@ def main() -> int:
         fake.get(path, items)
     for path, items in pages(PUBLIC_OWNER, lambda p: f"/users/{OWNER}/repos?type=owner&per_page=100&page={p}").items():
         fake.get(path, items)
+    languages = [
+        lambda n: {"Python": 1000 + n, "Rust": n},
+        lambda n: {"C#": 5000 * n, "PLpgSQL": 7},
+        lambda n: {"JavaScript": 2_000_000 + n, "HTML": 3000, "CSS": 1024, "Shell": 12, "Batchfile": 1, "Dockerfile": 2},
+        lambda n: {"Jupyter Notebook": 9},
+        lambda n: {"Python": "não é número"},  # o mapa inteiro vira vazio
+    ]
     for n, repo in enumerate(ALL_REPOS):
         if n % 10 == 3:
             fake.get(f"/repos/{repo['full_name']}/languages", {"message": "Not Found"}, status=404)
         else:
-            fake.get(f"/repos/{repo['full_name']}/languages", {"Python": 1000 + n, "Rust": n})
+            fake.get(f"/repos/{repo['full_name']}/languages", languages[n % 5](n))
     failures: list[str] = []
     with fake, tempfile.TemporaryDirectory() as tmp:
         work = Path(tmp)
         print(f"GitHub simulado: {len(ALL_REPOS)} repositórios ({len(PUBLIC_OWNER)} públicos do dono)")
-        catalog_parity(binary, fake, work, failures)
+        profile_parity(binary, fake, work, failures)
         monitor_parity(binary, fake, work, failures)
         contributions_parity(binary, fake, work, failures)
     if failures:

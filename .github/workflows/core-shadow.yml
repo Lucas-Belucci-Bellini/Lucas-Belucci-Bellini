@@ -7,17 +7,18 @@ name: Core Shadow
 #   monitor de commits  .github/scripts/ecosystem_watch.py  × sync commits
 #                       (os dois sobre uma cópia do ECOSYSTEM-COMMIT-STATE.json)
 #   contribuições       scripts/update_contribution_timeline.py × sync contributions
-#   catálogo            scripts/update_profile.py --catalog-out × catalog build
-#                       (o Rust verifica os sites e entrega as mesmas checagens
-#                       ao Python: a comparação fica só no catálogo)
+#   README e catálogo   scripts/update_profile.py --out-dir × render readme --out-dir
+#                       (README.md, profile-snapshot.svg, project-catalog.json e a
+#                       saída padrão; o Rust verifica os sites e entrega as mesmas
+#                       checagens ao Python: a comparação fica só no gerador)
 #
 # Não escreve no repositório e não publica nada: o Python continua sendo quem
 # gera o que é público. Critério para sair do modo B: 14 execuções agendadas
 # seguidas sem diferença, ou com todas explicadas (uma mudança real no GitHub
 # entre as duas leituras, que são simultâneas mas não atômicas).
 #
-# Sem PROFILE_README_TOKEN, o catálogo comparado é o dos repositórios públicos
-# (o mesmo recorte para os dois). Com DATABASE_URL, o profile-core também grava
+# Sem PROFILE_README_TOKEN, o README e o catálogo comparados são os dos
+# repositórios públicos (o mesmo recorte para os dois). Com DATABASE_URL, o profile-core também grava
 # no banco (inventário, transições e contribuições); o schema precisa estar
 # migrado (profile-core db migrate) e a carga legada feita (import legacy).
 
@@ -105,11 +106,12 @@ jobs:
           wait "$python_pid"
           wait "$rust_pid"
 
-      - name: Catálogo (o Rust verifica os sites; o Python recebe as mesmas checagens)
+      - name: README e catálogo (o Rust verifica os sites; o Python recebe as mesmas checagens)
         run: |
-          target/release/profile-core catalog build --now "$NOW" --site-checks-out shadow/site-checks.json > shadow/catalog-rs.json
+          target/release/profile-core render readme --now "$NOW" --site-checks-out shadow/site-checks.json \
+            --out-dir shadow/profile-rs > shadow/profile-rs.out
           python scripts/update_profile.py --now "$NOW" --site-checks-fixture shadow/site-checks.json \
-            --catalog-out shadow/catalog-py.json > /dev/null
+            --out-dir shadow/profile-py > shadow/profile-py.out
 
       - name: Comparar
         run: |
@@ -119,4 +121,7 @@ jobs:
             "monitor: relatório=shadow/monitor-py/docs/ECOSYSTEM-COMMIT-MONITOR.md:shadow/monitor-rs/docs/ECOSYSTEM-COMMIT-MONITOR.md" \
             "contribuições: dados=shadow/timeline-py/docs/assets/contributions-timeline-data.json:shadow/timeline-rs/docs/assets/contributions-timeline-data.json" \
             "contribuições: página=shadow/timeline-py/docs/assets/contributions-timeline.html:shadow/timeline-rs/docs/assets/contributions-timeline.html" \
-            "catálogo=shadow/catalog-py.json:shadow/catalog-rs.json"
+            "README: saída=shadow/profile-py.out:shadow/profile-rs.out" \
+            "README=shadow/profile-py/README.md:shadow/profile-rs/README.md" \
+            "README: snapshot=shadow/profile-py/profile-snapshot.svg:shadow/profile-rs/profile-snapshot.svg" \
+            "catálogo=shadow/profile-py/project-catalog.json:shadow/profile-rs/project-catalog.json"
