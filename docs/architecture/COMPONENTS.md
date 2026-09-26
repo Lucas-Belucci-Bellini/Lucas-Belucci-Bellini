@@ -94,7 +94,8 @@ passa a ler do banco (ou de um JSON exportado dele).
 **Estado (Fase 3):** `profile-core sync contributions` em modo sombra — o
 mesmo JSON e o mesmo HTML do Python (o template foi extraído do
 `render_html()`), e amostras no banco só quando o valor muda (D-033). A janela
-de 365 dias do `profile_cards.py` sai junto com os SVGs, na Fase 4.
+de 365 dias do `profile_cards.py` saiu junto com os cards, na Fase 4
+(`render cards`, D-036).
 
 ## Ecosystem Activity
 
@@ -133,8 +134,12 @@ produziu. O escopo da definição é imposto por trigger.
 - Byte a byte igual ao Python na paridade (D-006). Sem carimbo de tempo que
   mude sem dado novo — corrigindo A7.
 - Detalhe de cada bloco: [README-ANATOMY.md](README-ANATOMY.md).
-- **Estado (Fase 3):** o catálogo (`profile-core catalog build`) já sai byte
-  a byte igual ao do Python e roda em modo sombra; README e SVGs são a Fase 4.
+- **Estado (Fase 4):** `profile-render` + `profile-core render readme`
+  geram README, snapshot e catálogo byte a byte iguais aos do Python, e
+  `render lang-stats | cards | assets`, os seis SVGs de `assets/` — todos em
+  modo sombra no *Core Shadow*. Por enquanto o gerador parte das mesmas
+  entradas do Python (GitHub ou arquivo), não das views: é o que prova a
+  paridade (D-034). Ler das views é a Fase 5.
 
 ## Sync Runs
 

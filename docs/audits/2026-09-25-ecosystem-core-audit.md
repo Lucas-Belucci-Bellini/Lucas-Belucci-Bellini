@@ -561,6 +561,34 @@ precisa fixar `now` nos testes.
   linguagem" e mantém o mapa anterior no banco (D-031). O README continua
   gerado pelo Python até a Fase 4, com o comportamento atual.
 
+### A26 · baixo — um branch padrão com acento derruba a análise de linguagens inteira
+
+*Encontrado na Fase 4 (2026-09-26).*
+
+- **Evidência:** o `api()` do `.github/scripts/lang_stats.py` monta a URL
+  concatenando dono, nome e branch sem codificar nada. O `http.client` recusa
+  caminho com espaço, caractere de controle (`InvalidURL`) ou fora do ASCII
+  (`UnicodeEncodeError`) antes de ir à rede — e nenhuma das duas exceções é
+  tratada: um único repositório com `default_branch` acentuado (Git permite)
+  derruba o script e os dois SVGs não são atualizados. Do mesmo jeito, um
+  tamanho de linguagem que não seja inteiro vira `TypeError` na soma.
+- **Paridade:** `render lang-stats` reproduz as duas quedas (código 1), e o
+  e2e tem um cenário de cada (D-036). A correção (codificar o caminho como o
+  monitor faz; ignorar o valor ruim) entra como versão nova.
+
+### A27 · baixo — os cards do GraphQL são regravados a cada execução
+
+*Encontrado na Fase 4 (2026-09-26).*
+
+- **Evidência:** o `profile_cards.py` grava `profile-stats.svg`,
+  `profile-streak.svg` e `profile-trophies.svg` sempre, com o carimbo
+  "updated automatically | <agora>". O `lang-stats.yml` commita se
+  `git diff --cached` não estiver vazio — ou seja, toda execução gera commit,
+  mesmo sem número novo. É o problema que o `mesmo_conteudo()` já resolveu
+  para os dois SVGs do `lang_stats.py` (e o A7 para o carimbo do README).
+- **Paridade:** `render cards` também grava sempre (D-036); a correção é
+  aplicar a mesma comparação sem o carimbo.
+
 ### Evidência adicional de A1/A2 — blocos de versões diferentes do gerador
 
 O bloco `ARSENAL-STACK` no `main` não é o que o `render_arsenal_stack()` atual

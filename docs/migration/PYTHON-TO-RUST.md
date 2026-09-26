@@ -51,7 +51,7 @@ crates/
 ├── catalog/            lib  inventário → snapshot normalizado;
 │                            project-catalog.json (schema @1, paridade)
 ├── store/              lib  sqlx + migrations embutidas (db/migrations)
-├── profile-render/     lib  13 blocos, SVGs, validadores
+├── profile-render/     lib  13 blocos, SVGs (sem I/O)
 └── profile-core/       bin  CLI (clap) — orquestra os demais
 ```
 
@@ -59,7 +59,8 @@ crates/
 revert | status`) desde a Fase 1; `site-monitor` e `profile-core check sites`
 desde a Fase 2; `github-client`, `catalog` e os comandos `catalog build`,
 `sync github | commits | contributions` e `import manifests | legacy` desde a
-Fase 3. Falta o `profile-render` (Fase 4).
+Fase 3; `profile-render` e `render readme | lang-stats | cards | assets`
+desde a Fase 4. Os validadores continuam em Python, como oráculo (D-015).
 
 Regras:
 
@@ -100,7 +101,7 @@ de C:** 30 dias sem regressão e equivalente Rust de cada validador.
 | **1 · fundação** ✅ | auditoria, docs, schema, migrations testadas, CI de banco; workspace Cargo, `ecosystem-domain` com paridade (`e39c9f2`, D-023), `store` (`9e133d9`, D-024), `profile-core db migrate\|revert\|status` (`4527264`, `7f6bfe4`), workflow `Rust Core` (`441eaf2`) | `cargo test` verde ✅; migrations aplicadas pelo binário ✅ — e o schema resultante é idêntico ao do psql |
 | **2 · monitor de sites** ✅ | `site-monitor` + `profile-core check sites` (`1d2e955`, `5daa524`, D-026 a D-028); modo B no workflow *Site Monitor Shadow* (`b00e33a`) | relatório JSON idêntico ao de `check_websites.py --json` (exceto `checked_at`) ✅ — texto e código de saída também, em 45 cenários locais e nos 16 sites reais; histórico no banco ✅ (`website_checks`, para os sites registrados — D-027). **Sai do modo B** com 14 execuções agendadas seguidas sem diferença |
 | **3 · coleta** ✅ | `github-client` (D-029), `catalog` + `catalog build`, `sync commits` (D-030), `sync github` (D-031), `sync contributions` (D-033), `import manifests` + `import legacy` (D-032); modo B no workflow *Core Shadow* | `project-catalog.json` do Rust = do Python ✅ — byte a byte no golden e no GitHub simulado, com e sem token; contadores do monitor idênticos ✅ — estado, relatório e saída em 12 cenários do fixture e 5 varreduras encadeadas; timeline idêntica ✅. **Sai do modo B** com 14 execuções agendadas seguidas sem diferença |
-| **4 · geração** | `profile-render` + `render readme/assets` em modo B → C | README byte a byte igual sobre as mesmas entradas; validadores Python verdes contra a saída do Rust |
+| **4 · geração** ✅ | `profile-render` (blocos, snapshot, SVGs do `lang_stats` e cards), `render readme` (D-034), `render lang-stats \| cards \| assets` (D-036); modo B no *Core Shadow* (D-035) | README byte a byte igual sobre as mesmas entradas ✅ — golden, 17 cenários de borda do fixture, GitHub simulado (com e sem token, e `--write`) e a árvore real do perfil; validadores Python verdes contra a saída do Rust ✅ (`tests/e2e/readme_validators.py`); os seis SVGs de `assets/` iguais ✅ — 4 conjuntos de dados de borda no fixture e 13 cenários no GitHub simulado. **Sai do modo B** com 14 execuções agendadas seguidas sem diferença; a virada (C) não está neste PR |
 | **5 · consolidação** | um workflow, um commit (D-018); scripts Python removidos; correções editoriais (`classifier@2`, A20) | nenhum Python no caminho de publicação |
 
 ## 6. Estratégia de testes
@@ -238,6 +239,29 @@ catálogo não tem):
   §7) e com 1 no Python;
 - uma falha de linguagens não apaga o mapa no banco (A25, D-031).
 
+### Armadilhas de paridade — geração
+
+| Python | Rust ingênuo | Rust do núcleo |
+|:---|:---|:---|
+| `max(itens, key=...)` fica com o **primeiro** no empate | `max_by` (fica com o último) | `first_max` (o fixture tem `Arena`/`arena` empatados) |
+| `sorted(..., reverse=True)` é estável | desempate invertido | `sort_by` estável com a comparação trocada |
+| `{nome: repo for repo in repos}`: posição do primeiro, valor do último | `HashMap` | vetor com substituição no lugar |
+| `len()` e `text[:150]` contam code points | bytes | `py_len`, `py_prefix` |
+| `quote(safe="")`, `html.escape` (escapa `'`), e o `esc()` do `lang_stats` (não escapa `'`) | um escape só | três funções |
+| `strftime("%Y")` do glibc não completa o ano com zeros; a hora é a do **fuso da data** (e o texto diz "UTC") | `%Y` do chrono, hora em UTC | `py_fromisoformat_local` + formatação manual |
+| datas com e sem fuso no mesmo inventário: `max()` levanta `TypeError` | compara | `RenderError::PythonCrash` (código 1) |
+| `README.read_text()` troca `\r\n` e `\r` por `\n` | lê os bytes | a mesma troca ao ler (o fixture tem um README com CRLF) |
+| `json.dumps` separa com `", "` e `": "`; `sort_keys` nos cards | `serde_json` compacto | `pytext::py_dumps` |
+| `f'...{count:,}'.replace(',', '.')` vale para a linha inteira (literais adjacentes viram um só antes do método) | troca só no número | a troca sobre a linha toda |
+| `int(176 * size / total)` trunca | `round` | `trunc` |
+| o `lang_stats` não codifica a URL; o `http.client` derruba o script com espaço, controle ou acento no caminho (A26) | codifica e segue | reproduzido (código 1) |
+
+**Divergências conhecidas** (fora do fixture): `isalnum()` do Python usa a
+categoria geral Unicode e o `is_alphanumeric()` do Rust, as propriedades
+Alphabetic/Numeric — diferem só em marcas combinantes, que extensão de arquivo
+real não tem; bytes de linguagem com fração (o Python somaria `float`) derrubam
+o Rust; e um SVG existente ilegível é regravado pelo Rust (o Python quebraria).
+
 ### Testes Python existentes
 
 Os 57 testes **não são removidos** para facilitar a migração. Cada um vira
@@ -271,9 +295,13 @@ profile-core [--database-url URL | --no-db] [--offline --fixtures DIR] [--dry-ru
   catalog build [--root DIR] [--input-repos F] [--now T] [--write]
                 [--site-checks-fixture F | --skip-site-check] [--site-checks-out F]
                                 ✅ Fase 3 — o project-catalog.json do update_profile.py
-  render readme [--write | --check]    só entre marcadores; --check falha se mudaria
-  render assets [--write | --check]    SVGs
-  render all    [--write | --check]
+  render readme [--root DIR] [--input-repos F [--languages-dir D]] [--now T] [--write]
+                [--out-dir DIR] [--catalog-out F] [--site-checks-fixture F | --skip-site-check]
+                                ✅ Fase 4 — o update_profile.py inteiro: README (só entre
+                                marcadores), snapshot e catálogo; mesma saída (D-034, D-035)
+  render lang-stats | cards | assets [--root DIR] [--now T] [--include-forks] [--skip-files]
+                                ✅ Fase 4 — o lang_stats.py e o profile_cards.py (D-036)
+  render … --check              planejado: sai com 1 se a saída mudaria (Fase 5)
 
   validate [readme|catalog|links|exclusions|badges]
   export legacy-state           ECOSYSTEM-COMMIT-STATE.json schema 4 (compatibilidade)

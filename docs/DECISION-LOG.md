@@ -588,3 +588,63 @@ D-029 a D-033, na Fase 3 (coleta).
   cujo valor difere da mais recente da mesma série (métrica × janela). As
   janelas da ponta mudam de data todo dia e, por isso, entram diariamente.
 
+
+## D-034
+
+**O README em Rust parte das mesmas entradas do Python; o banco entra depois.** · aceita · 2026-09-26
+
+- **Contexto:** o critério da Fase 4 é "README byte a byte igual sobre as
+  mesmas entradas". As views públicas do banco (`public_projects`,
+  `public_language_totals`) ainda não existem em produção — o banco depende do
+  dono (MIGRATIONS.md §6) — e, mesmo com elas, gerar do banco agora trocaria a
+  entrada e tiraria a prova de paridade.
+- **Decisão:** `profile-core render readme` usa o mesmo preparo do
+  `catalog build` (`catalog_build::prepare`: inventário do GitHub ou de
+  arquivo, exclusões, linguagens, sites, verificação, curadoria), na ordem do
+  `main()` do Python, e os 13 blocos vêm de um crate puro (`profile-render`),
+  sem disco nem rede. Os códigos de saída seguem o Python: `2` onde ele trata
+  o erro (`profile refresh failed:`), `1` onde ele sairia com traceback
+  (curadoria ou arsenal com formato errado, marcador ausente, datas com e sem
+  fuso, falha de disco). Com isso o `catalog build` também passa a sair com `1`
+  para uma curadoria quebrada (antes, `2`), e a curadoria aceita `"projects":
+  {}` e `""` vazios, como o laço do Python.
+- **Depois:** ler das views públicas (Profile Generator, COMPONENTS.md) é a
+  Fase 5, quando o banco estiver em produção e o modo B tiver acabado.
+
+## D-035
+
+**Sombra do README inteiro com `--out-dir`; os validadores do Python julgam a saída do Rust.** · aceita · 2026-09-26
+
+- **Decisão:** gancho aditivo no `update_profile.py`: `--out-dir DIR` grava
+  README, snapshot e catálogo num diretório à parte, sem tocar no que é
+  publicado e sem exigir token (o `--catalog-out` da Fase 3 continua). O
+  *Core Shadow* roda `render readme --out-dir` e `update_profile.py --out-dir`
+  com o mesmo relógio e as mesmas checagens de site, e compara os três
+  arquivos e a saída padrão.
+- **Oráculo:** `tests/e2e/readme_validators.py` usa a árvore **real** do perfil
+  (o README publicado, com todo o desenho, os manifestos e os assets) e um
+  inventário reconstruído do `docs/project-catalog.json` versionado; exige
+  Python = Rust e roda sobre a saída do Rust os validadores do
+  `update-profile.yml`, o `validate_restored_style` e as conferências offline
+  do `validate_language_badges` e do `validate_profile` (a parte online deles
+  checa sites de terceiros, não o gerador).
+- **Virada (modo C):** não neste PR. O `update-profile.yml` continua chamando
+  o Python até 14 execuções agendadas seguidas do *Core Shadow* sem diferença
+  (§4 do plano) — e até o `PROFILE_README_TOKEN` existir, sem o qual nenhum
+  dos dois pode publicar.
+
+## D-036
+
+**Assets: a política do `lang_stats.py` é mais uma no cliente, e os defeitos dele vão junto.** · aceita · 2026-09-26
+
+- **Decisão:** `render lang-stats`, `render cards` e `render assets` (os dois,
+  na ordem do `lang-stats.yml`) reproduzem os dois scripts: mesmas variáveis
+  de ambiente, mesma saída, mesmos SVGs, mesma sequência de chamadas. O
+  `github-client` ganha `Retry::LangStats { retry_denied }` (403/429 e falha
+  de rede esperam 2ⁿ⁺¹ s; com `retry_denied`, 404/409 viram "nada"). Ganchos
+  aditivos nos scripts: `GITHUB_API_URL`/`GITHUB_GRAPHQL_URL`, `--root` e
+  `--now`.
+- **Reproduzido de propósito (D-006):** a URL sem codificação que derruba a
+  análise inteira (A26) e os cards regravados a cada execução (A27). O
+  `profile-projects.svg` continua com a lista fixa do script; derivá-lo da
+  curadoria é mudança editorial, da Fase 5.

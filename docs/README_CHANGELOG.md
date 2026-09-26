@@ -120,3 +120,15 @@ O README e os assets não mudaram. Os três coletores Python ganharam equivalent
 - **Achados:** um estado ilegível do monitor zera o contador acumulado (A23); o estado grava mensagens internas do Python (A24); uma falha passageira apaga as linguagens de um repositório no README do dia (A25).
 
 Decisões em `docs/DECISION-LOG.md` (D-029 a D-033).
+
+## 2026-09-26 — Fase 4: README e SVGs em Rust, em modo sombra
+
+O README e os assets publicados não mudaram — o Python continua gerando o que vai ao ar. Os geradores ganharam equivalentes em Rust, comparados todo dia:
+
+- **README:** `profile-core render readme` faz o que o `update_profile.py` faz — os 13 blocos, o `profile-snapshot.svg` e o catálogo — com os mesmos bytes e a mesma saída. O desenho do README fora dos marcadores não é tocado.
+- **SVGs de `assets/`:** `render lang-stats` e `render cards` geram os seis SVGs do `lang_stats.py` e do `profile_cards.py`, iguais.
+- **Prova:** o teste golden; 17 cenários de borda gerados pelo próprio Python (empates, nomes que só diferem na caixa, manifestos tortos, fuso, README com CRLF, estados vazios, tracebacks); o README inteiro e os SVGs contra um GitHub simulado; e o README real do perfil, gerado pelos dois lados, aprovado pelos validadores Python sobre a saída do Rust. Mutações no código: 48 de 49 pegas (a restante é equivalente).
+- **Modo sombra:** o *Core Shadow* passa a comparar README, snapshot, catálogo e os seis SVGs sobre os dados reais. A troca do gerador (modo C) só vem depois de 14 execuções seguidas sem diferença.
+- **Achados:** um branch padrão com acento derruba a análise de linguagens inteira (A26); os cards do GraphQL são regravados — e commitados — a cada execução, mesmo sem número novo (A27). O Rust reproduz os dois até a correção.
+
+Decisões em `docs/DECISION-LOG.md` (D-034 a D-036).

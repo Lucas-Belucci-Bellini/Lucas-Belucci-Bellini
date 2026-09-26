@@ -49,6 +49,15 @@ target/release/profile-core` runs both sides against the same simulated GitHub
 (`tests/fake_github.py`, selected through `GITHUB_API_URL`/`GITHUB_GRAPHQL_URL`) — no test
 talks to the real GitHub.
 
+The generators have Rust equivalents in shadow mode too: `profile-core render readme`
+(`update_profile.py`: README, snapshot, catalog) and `render lang-stats | cards | assets`
+(`lang_stats.py`, `profile_cards.py`). If you change a `render_*` function, a badge helper or one
+of those scripts, regenerate `tests/fixtures/parity/render.json` / `assets.json` with the CI's
+Python (`tests/test_parity_render.py`, `tests/test_parity_assets.py`) and port the change to
+`crates/profile-render` in the same PR. `tests/e2e/readme_validators.py target/release/profile-core`
+renders the real README tree with both sides and runs the Python validators on the Rust output;
+`E2E_ONLY=assets tests/e2e/github_parity.py …` runs one section of the GitHub e2e.
+
 Hard rules: never edit content between `<!-- NAME:START -->` / `<!-- NAME:END -->` markers in
 `README.md` by hand; never edit an applied migration (add a new one); never commit a real
 database, connection string or non-synthetic seed data.

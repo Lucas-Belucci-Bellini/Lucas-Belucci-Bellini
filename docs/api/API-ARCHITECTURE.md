@@ -20,7 +20,7 @@ Nenhum deles precisa **escrever** — escrita é do pipeline e dos manifestos.
 | Estágio | Forma | Quando |
 |:---|:---|:---|
 | **v0 · hoje** | `docs/project-catalog.json` versionado no Git (`raw.githubusercontent.com`) | já existe |
-| **v1 · estático com contrato** | JSON Schema publicado + arquivos estáticos derivados das views públicas: `projects.json`, `sites.json`, `languages.json` | depois da Fase 3: a coleta em Rust já povoa as views; os arquivos saem com o render (Fase 4) ou antes, se aparecer um consumidor |
+| **v1 · estático com contrato** | JSON Schema publicado + arquivos estáticos derivados das views públicas: `projects.json`, `sites.json`, `languages.json` | quando o banco estiver em produção: a coleta em Rust já povoa as views, mas o render da Fase 4 ainda parte das entradas do Python para provar a paridade (D-034); os arquivos saem com a leitura das views (Fase 5) ou antes, se aparecer um consumidor |
 | **v2 · HTTP read-only** | serviço `axum` sobre as views `public_*`, papel `ecosystem_public_reader` | quando um consumidor precisar de dado mais fresco que o commit, ou de histórico |
 | **v3 · MCP** | servidor MCP com ferramentas de leitura sobre a mesma camada | quando um agente for consumidor recorrente |
 | **v4 · administrativa** | escrita editorial autenticada | só se a autoria editorial sair do Git (D-002) |
