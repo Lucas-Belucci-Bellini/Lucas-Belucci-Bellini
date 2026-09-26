@@ -31,6 +31,7 @@ use sqlx::postgres::{PgConnectOptions, PgConnection};
 use sqlx::{Connection, Postgres, Transaction};
 
 pub mod activity;
+pub mod inventory;
 
 /// As migrations de `db/migrations`, embutidas em tempo de compilação.
 pub static MIGRATOR: Migrator = sqlx::migrate!("../../db/migrations");

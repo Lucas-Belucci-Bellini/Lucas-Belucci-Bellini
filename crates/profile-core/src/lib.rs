@@ -3,4 +3,5 @@
 
 pub mod catalog_build;
 pub mod commits;
+pub mod inventory_sync;
 pub mod sites;

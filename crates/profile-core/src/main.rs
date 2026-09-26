@@ -10,7 +10,12 @@
 //!                            [--site-checks-fixture FILE | --skip-site-check]
 //!                            [--site-timeout S] [--site-workers N] [--site-checks-out FILE]
 //! profile-core sync commits  [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
+//! profile-core sync github   [--root DIR] [--input-repos FILE [--languages-dir DIR]] [--no-db] [--trigger T]
 //! ```
+//!
+//! `sync github` grava donos, repositórios, linguagens e projetos. Gravar
+//! exige o inventário completo (`PROFILE_GITHUB_TOKEN` ou `--input-repos`):
+//! sem os privados, eles pareceriam sumidos.
 //!
 //! `sync commits` é o `ecosystem_watch.py`: mesmo estado, mesmo relatório e
 //! mesmos contadores, lendo o `docs/ECOSYSTEM-COMMIT-STATE.json` como estado
@@ -42,6 +47,7 @@ use std::time::Duration;
 use clap::{Args, Parser, Subcommand};
 use profile_core::catalog_build::{self, BuildOptions, ChecksSource};
 use profile_core::commits;
+use profile_core::inventory_sync::{self, SyncOptions};
 use profile_core::sites;
 use serde_json::json;
 use site_monitor::check::BuildError;
@@ -75,6 +81,30 @@ enum Command {
 enum SyncCommand {
     /// Monitor de commits do ecossistema (o ecosystem_watch.py).
     Commits(CommitsArgs),
+    /// Inventário do GitHub: donos, repositórios, linguagens e projetos.
+    Github(GithubArgs),
+}
+
+#[derive(Args)]
+struct GithubArgs {
+    /// Raiz com docs/README_EXCLUDED.json.
+    #[arg(long, default_value = ".")]
+    root: PathBuf,
+    /// Inventário de um arquivo (array JSON da API) em vez do GitHub.
+    #[arg(long, value_name = "FILE")]
+    input_repos: Option<PathBuf>,
+    /// Linguagens de arquivo, um owner__nome.json por repositório (com --input-repos).
+    #[arg(long, value_name = "DIR", requires = "input_repos")]
+    languages_dir: Option<PathBuf>,
+    /// URL do PostgreSQL. Prefira a variável de ambiente.
+    #[arg(long, env = "DATABASE_URL", hide_env_values = true, value_name = "URL")]
+    database_url: Option<String>,
+    /// Só lê e relata, sem gravar (modo sombra).
+    #[arg(long)]
+    no_db: bool,
+    /// Gatilho registrado em ecosystem.sync_runs.
+    #[arg(long, default_value = "manual", value_parser = ["schedule", "manual", "push", "api", "test"])]
+    trigger: String,
 }
 
 #[derive(Args)]
@@ -202,6 +232,13 @@ enum CliError {
     Crash(#[from] commits::Crash),
     #[error("{0}: {1}")]
     Io(String, std::io::Error),
+    #[error(transparent)]
+    Inventory(#[from] inventory_sync::SyncError),
+    #[error(
+        "sync github grava o inventário completo: defina PROFILE_GITHUB_TOKEN ou use --input-repos \
+         (só com os públicos, os privados pareceriam sumidos), ou passe --no-db"
+    )]
+    IncompleteInventory,
 }
 
 #[derive(Args)]
@@ -289,6 +326,7 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
         Command::Check(CheckCommand::Sites(args)) => return check_sites(args).await,
         Command::Catalog(CatalogCommand::Build(args)) => return build_catalog(args).await,
         Command::Sync(SyncCommand::Commits(args)) => return sync_commits(args).await,
+        Command::Sync(SyncCommand::Github(args)) => return sync_github(args).await,
     };
     match command {
         DbCommand::Status { connection, json } => {
@@ -473,6 +511,41 @@ async fn sync_commits(args: CommitsArgs) -> Result<ExitCode, CliError> {
             report.unregistered.len()
         );
     }
+    Ok(ExitCode::SUCCESS)
+}
+
+async fn sync_github(args: GithubArgs) -> Result<ExitCode, CliError> {
+    let env = |name: &str| std::env::var(name).ok().filter(|value| !value.is_empty());
+    let inventory_token = env("PROFILE_GITHUB_TOKEN");
+    let database = if args.no_db {
+        None
+    } else {
+        let url = args.database_url.as_deref().ok_or(CliError::NoDatabase("sync github"))?;
+        if args.input_repos.is_none() && inventory_token.is_none() {
+            return Err(CliError::IncompleteInventory);
+        }
+        Some(Database::from_url(url)?)
+    };
+    let options = SyncOptions { root: args.root, input_repos: args.input_repos, languages_dir: args.languages_dir };
+    let api_token = inventory_token.clone().or_else(|| env("GITHUB_TOKEN"));
+    let collected = inventory_sync::collect(&options, inventory_token, api_token).await?;
+    let summary = inventory_sync::summary(&collected);
+    let Some(database) = database else {
+        println!("{summary}");
+        return Ok(ExitCode::SUCCESS);
+    };
+    let report = database.record_inventory(&run_context(&args.trigger), &collected.record).await?;
+    eprintln!(
+        "profile-core: inventário: {} repositórios ({} novos, {} alterados, {} sumidos); {} mapas de linguagem \
+         trocados; {} projetos criados (sync_run {})",
+        collected.record.repos.len(),
+        report.inserted,
+        report.updated,
+        report.gone,
+        report.languages_changed,
+        report.projects_created,
+        report.sync_run_id
+    );
     Ok(ExitCode::SUCCESS)
 }
 

@@ -48,6 +48,22 @@ pub async fn fetch_languages(client: &Client, full_name: &str) -> Vec<(String, i
     }
 }
 
+/// Como [`fetch_languages`], mas distinguindo "a consulta falhou" (`None`) de
+/// "não há linguagem" — o banco não troca um mapa bom por um erro passageiro.
+pub async fn try_fetch_languages(client: &Client, full_name: &str) -> Option<Vec<(String, i64)>> {
+    match client.get_json(&format!("/repos/{full_name}/languages"), Retry::Never).await {
+        Ok(Value::Object(map)) => language_map(&map),
+        _ => None,
+    }
+}
+
+/// Como [`load_local_languages`], com `None` quando o arquivo não existe ou é inválido.
+pub fn try_load_local_languages(directory: &Path, full_name: &str) -> Option<Vec<(String, i64)>> {
+    let path = directory.join(format!("{}.json", full_name.replace('/', "__")));
+    let value = serde_json::from_str::<Value>(&std::fs::read_to_string(path).ok()?).ok()?;
+    language_map(value.as_object()?)
+}
+
 /// `{str(k): int(v) for k, v in data.items()}` — um valor ruim anula o mapa inteiro.
 fn language_map(map: &Map<String, Value>) -> Option<Vec<(String, i64)>> {
     map.iter().map(|(language, bytes)| py_int(bytes).ok().map(|bytes| (language.clone(), bytes))).collect()
