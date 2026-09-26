@@ -16,7 +16,9 @@ fn run() -> RunContext {
 fn verified(url: &str) -> WebsiteCheckRecord {
     WebsiteCheckRecord {
         url: url.into(),
-        checked_at: "2026-09-26T12:00:00+00:00".into(),
+        // Agora, não uma hora fixa: o seed põe checagens em now() - intervalo,
+        // e uma hora fixa deixaria de ser "a mais recente" com o passar do dia.
+        checked_at: chrono::Utc::now().to_rfc3339(),
         outcome: "verified".into(),
         http_status: Some(200),
         final_url: Some(format!("{url}/")),
