@@ -60,6 +60,10 @@ pub struct RepoRecord {
     pub primary_language: Option<String>,
     /// `homepage` (vazia vira ausente).
     pub homepage: Option<String>,
+    /// A `homepage` quando ela é um site anunciável (URL http(s) válida, sem
+    /// espaços nas pontas) e o repositório é público — a descoberta do
+    /// `project_catalog.py`. Vira um site `github_homepage` do projeto.
+    pub homepage_site: Option<String>,
     /// Tópicos.
     pub topics: Vec<String>,
     /// Tamanho em KB.
@@ -109,6 +113,8 @@ pub struct InventoryReport {
     pub languages_changed: usize,
     /// Projetos criados.
     pub projects_created: usize,
+    /// Sites de homepage aposentados (a homepage mudou ou saiu).
+    pub sites_retired: usize,
 }
 
 impl Database {
@@ -292,9 +298,33 @@ async fn record_on(
             }
         }
 
-        if ensure_project(&mut tx, repository_id, repo).await? {
+        let (project_id, created) = ensure_project(&mut tx, repository_id, repo).await?;
+        if created {
             report.projects_created += 1;
         }
+        if let Some(url) = &repo.homepage_site {
+            sqlx::query(
+                "INSERT INTO ecosystem.websites (project_id, url, source, is_primary) \
+                 VALUES ($1, $2, 'github_homepage', false) \
+                 ON CONFLICT (project_id, url) DO UPDATE SET retired_at = NULL",
+            )
+            .bind(project_id)
+            .bind(url)
+            .execute(&mut *tx)
+            .await?;
+        }
+        // A homepage mudou ou saiu: o site antigo é aposentado (as checagens ficam).
+        report.sites_retired += sqlx::query(
+            "UPDATE ecosystem.websites SET retired_at = now(), is_primary = false \
+             WHERE project_id = $1 AND source = 'github_homepage' AND retired_at IS NULL \
+               AND url IS DISTINCT FROM $2",
+        )
+        .bind(project_id)
+        .bind(&repo.homepage_site)
+        .execute(&mut *tx)
+        .await?
+        .rows_affected() as usize;
+        crate::refresh_primary(&mut tx, project_id).await?;
     }
 
     let changed = report.inserted + report.updated + report.gone;
@@ -310,12 +340,12 @@ fn normalize_timestamp(value: &str) -> String {
 }
 
 /// Projeto 1:1 do repositório: cria se não existe; atualiza o rótulo da
-/// heurística (nunca o editorial). Devolve se criou.
+/// heurística (nunca o editorial). Devolve o projeto e se ele foi criado.
 async fn ensure_project(
     tx: &mut sqlx::Transaction<'_, sqlx::Postgres>,
     repository_id: i64,
     repo: &RepoRecord,
-) -> Result<bool, StoreError> {
+) -> Result<(i64, bool), StoreError> {
     let label_slug: Option<String> =
         sqlx::query_scalar("SELECT slug FROM ecosystem.classification_labels WHERE label = $1")
             .bind(&repo.label)
@@ -337,7 +367,7 @@ async fn ensure_project(
         .bind(&repo.classifier_version)
         .execute(&mut **tx)
         .await?;
-        return Ok(false);
+        return Ok((project_id, false));
     }
 
     let mut slug = None;
@@ -372,5 +402,5 @@ async fn ensure_project(
     .bind(repository_id)
     .execute(&mut **tx)
     .await?;
-    Ok(true)
+    Ok((project_id, true))
 }

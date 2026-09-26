@@ -17,7 +17,10 @@ static COUNTER: AtomicUsize = AtomicUsize::new(0);
 /// Variáveis do ambiente que mudam o que o binário faz: proveniência gravada,
 /// tokens e o endereço da API do GitHub. Os testes não as herdam (no GitHub
 /// Actions elas existem, localmente não); quem precisa passa explicitamente.
-const INHERITED: [&str; 8] = [
+const INHERITED: [&str; 11] = [
+    "GH_USER",
+    "PROFILE_REPOSITORY_NAME",
+    "PROFILE_LOGIN",
     "GITHUB_WORKFLOW",
     "GITHUB_SHA",
     "GITHUB_RUN_ID",

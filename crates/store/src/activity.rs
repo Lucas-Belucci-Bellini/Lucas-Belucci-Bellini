@@ -126,33 +126,7 @@ async fn record_scan_on(
             unregistered.push(full_name);
             continue;
         };
-        let (sha, committed_at, message, url, empty, stage, error) = match &observation.state {
-            HeadState::Commit { sha, committed_at, message, url } => {
-                (Some(sha), committed_at.as_ref(), Some(message), url.as_ref(), false, None, None)
-            }
-            HeadState::Empty => (None, None, None, None, true, None, None),
-            HeadState::Error { stage, message } => (None, None, None, None, false, Some(stage), Some(message)),
-        };
-        sqlx::query(
-            "INSERT INTO ecosystem.commit_observations \
-               (repository_id, sync_run_id, branch, head_sha, head_committed_at, head_message, head_url, \
-                commits_since_previous, is_empty, error_stage, error_message) \
-             VALUES ($1, $2, $3, $4, $5::timestamptz, $6, $7, $8, $9, $10, $11)",
-        )
-        .bind(repository_id)
-        .bind(sync_run_id)
-        .bind(&observation.branch)
-        .bind(sha)
-        .bind(committed_at)
-        .bind(message)
-        .bind(url)
-        // Negativo não existe no GitHub; se vier, é "não determinado".
-        .bind(observation.commits_since_previous.filter(|n| *n >= 0).and_then(|n| i32::try_from(n).ok()))
-        .bind(empty)
-        .bind(stage)
-        .bind(error)
-        .execute(&mut *tx)
-        .await?;
+        insert_observation(&mut tx, repository_id, sync_run_id, observation).await?;
         recorded += 1;
     }
 
@@ -177,4 +151,41 @@ async fn record_scan_on(
     close_run(&mut tx, sync_run_id, scan.scanned, recorded).await?;
     tx.commit().await?;
     Ok(CommitScanReport { sync_run_id, recorded, unregistered })
+}
+
+/// Uma linha de `commit_observations`.
+pub(crate) async fn insert_observation(
+    tx: &mut sqlx::Transaction<'_, sqlx::Postgres>,
+    repository_id: i64,
+    sync_run_id: i64,
+    observation: &HeadObservation,
+) -> Result<(), StoreError> {
+    let (sha, committed_at, message, url, empty, stage, error) = match &observation.state {
+        HeadState::Commit { sha, committed_at, message, url } => {
+            (Some(sha), committed_at.as_ref(), Some(message), url.as_ref(), false, None, None)
+        }
+        HeadState::Empty => (None, None, None, None, true, None, None),
+        HeadState::Error { stage, message } => (None, None, None, None, false, Some(stage), Some(message)),
+    };
+    sqlx::query(
+        "INSERT INTO ecosystem.commit_observations \
+           (repository_id, sync_run_id, branch, head_sha, head_committed_at, head_message, head_url, \
+        commits_since_previous, is_empty, error_stage, error_message) \
+         VALUES ($1, $2, $3, $4, $5::timestamptz, $6, $7, $8, $9, $10, $11)",
+    )
+    .bind(repository_id)
+    .bind(sync_run_id)
+    .bind(&observation.branch)
+    .bind(sha)
+    .bind(committed_at)
+    .bind(message)
+    .bind(url)
+    // Negativo não existe no GitHub; se vier, é "não determinado".
+    .bind(observation.commits_since_previous.filter(|n| *n >= 0).and_then(|n| i32::try_from(n).ok()))
+    .bind(empty)
+    .bind(stage)
+    .bind(error)
+    .execute(&mut **tx)
+    .await?;
+    Ok(())
 }

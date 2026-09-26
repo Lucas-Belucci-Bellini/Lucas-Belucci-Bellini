@@ -497,7 +497,6 @@ pub fn state_path(root: &Path) -> PathBuf {
 /// do banco — só os repositórios cujo estado mudou (D-020). Devolve também os
 /// que não cabem no schema (SHA fora do formato de 40 dígitos hexadecimais).
 pub fn transitions(scan: &Scan, previous: &Previous) -> (Vec<store::activity::HeadObservation>, Vec<String>) {
-    use store::activity::{HeadObservation, HeadState};
     let before = previous.repositories();
     let mut observations = Vec::new();
     let mut skipped = Vec::new();
@@ -505,36 +504,41 @@ pub fn transitions(scan: &Scan, previous: &Previous) -> (Vec<store::activity::He
         if before.get(name) == Some(entry) {
             continue;
         }
-        let text = |key: &str| entry.get(key).and_then(Value::as_str).map(str::to_string);
-        let state = if let Some(message) = text("error") {
-            HeadState::Error { stage: "latest_commit".into(), message }
-        } else if entry.get("empty").is_some_and(json_truthy) {
-            HeadState::Empty
-        } else {
-            match text("sha")
-                .filter(|sha| sha.len() == 40 && sha.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b)))
-            {
-                Some(sha) => HeadState::Commit {
-                    sha,
-                    committed_at: text("date")
-                        .and_then(|date| ecosystem_domain::timestamps::parse_github_timestamp(&date))
-                        .map(|date| date.to_rfc3339()),
-                    message: text("message").unwrap_or_default(),
-                    url: text("url"),
-                },
-                None => {
-                    skipped.push(name.clone());
-                    continue;
-                }
-            }
-        };
-        let commits_since_previous = scan.changes.iter().find(|change| &change.name == name).and_then(|c| c.count);
-        observations.push(HeadObservation {
-            name: name.clone(),
-            branch: py_str(&entry["branch"]),
-            state,
-            commits_since_previous,
-        });
+        let count = scan.changes.iter().find(|change| &change.name == name).and_then(|c| c.count);
+        match observation(name, entry, count) {
+            Some(observation) => observations.push(observation),
+            None => skipped.push(name.clone()),
+        }
     }
     (observations, skipped)
+}
+
+/// Uma entrada de `repositories` do estado (`{branch, sha, …}`, `{branch,
+/// empty}` ou `{branch, error}`) como observação do banco; `None` quando o
+/// SHA não tem o formato que o schema exige.
+pub fn observation(name: &str, entry: &Value, count: Option<i64>) -> Option<store::activity::HeadObservation> {
+    use store::activity::{HeadObservation, HeadState};
+    let text = |key: &str| entry.get(key).and_then(Value::as_str).map(str::to_string);
+    let state = if let Some(message) = text("error") {
+        HeadState::Error { stage: "latest_commit".into(), message }
+    } else if entry.get("empty").is_some_and(json_truthy) {
+        HeadState::Empty
+    } else {
+        let sha = text("sha")
+            .filter(|sha| sha.len() == 40 && sha.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b)))?;
+        HeadState::Commit {
+            sha,
+            committed_at: text("date")
+                .and_then(|date| ecosystem_domain::timestamps::parse_github_timestamp(&date))
+                .map(|date| date.to_rfc3339()),
+            message: text("message").unwrap_or_default(),
+            url: text("url"),
+        }
+    };
+    Some(HeadObservation {
+        name: name.to_string(),
+        branch: py_str(&entry["branch"]),
+        state,
+        commits_since_previous: count,
+    })
 }

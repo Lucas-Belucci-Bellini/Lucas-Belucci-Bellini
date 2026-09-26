@@ -31,7 +31,9 @@ use sqlx::postgres::{PgConnectOptions, PgConnection};
 use sqlx::{Connection, Postgres, Transaction};
 
 pub mod activity;
+pub mod editorial;
 pub mod inventory;
+pub mod legacy;
 pub mod metrics;
 
 /// As migrations de `db/migrations`, embutidas em tempo de compilação.
@@ -93,6 +95,10 @@ pub enum StoreError {
     /// Outra falha do mecanismo de migrations.
     #[error(transparent)]
     Migrate(MigrateError),
+    /// Manifesto editorial que não casa com o banco (projeto inexistente,
+    /// categoria desconhecida): a importação inteira é recusada.
+    #[error("manifesto recusado: {0}")]
+    Manifest(String),
     /// Outra falha de banco.
     #[error(transparent)]
     Database(#[from] sqlx::Error),
@@ -349,6 +355,25 @@ pub(crate) async fn record_failed_run(
     .bind(error.to_string())
     .execute(conn)
     .await;
+}
+
+/// Recalcula o site primário ativo de um projeto: a `homepage` do GitHub
+/// ganha do manifesto, que ganha do editorial — a ordem da descoberta de
+/// `project_catalog.py`. Um só primário ativo por projeto (índice único).
+pub(crate) async fn refresh_primary(tx: &mut Transaction<'_, Postgres>, project_id: i64) -> Result<(), StoreError> {
+    sqlx::query("UPDATE ecosystem.websites SET is_primary = false WHERE project_id = $1 AND is_primary")
+        .bind(project_id)
+        .execute(&mut **tx)
+        .await?;
+    sqlx::query(
+        "UPDATE ecosystem.websites SET is_primary = true WHERE id = ( \
+           SELECT id FROM ecosystem.websites WHERE project_id = $1 AND retired_at IS NULL \
+           ORDER BY (source = 'github_homepage') DESC, (source = 'manifest') DESC, id LIMIT 1)",
+    )
+    .bind(project_id)
+    .execute(&mut **tx)
+    .await?;
+    Ok(())
 }
 
 /// Abre uma execução (`running`) dentro da transação e devolve o id.

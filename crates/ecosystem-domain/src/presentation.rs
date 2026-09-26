@@ -19,6 +19,46 @@ use crate::slug::slug;
 use crate::taxonomy::canonical_category;
 use crate::text::{py_split_join, py_strip};
 
+/// Resumos editoriais da vitrine — `FEATURED_SUMMARIES` de `scripts/update_profile.py`.
+/// No banco, `ecosystem.projects.summary` (carga legada). `tests/parity.rs`
+/// confere que a cópia é igual à do Python.
+pub const FEATURED_SUMMARIES: [(&str, &str); 10] = [
+    (
+        "Projeto-Baluarte",
+        "Plataforma narrativa, tática e técnica; o site público expõe o núcleo online, J.A.R.V.I.S., Git Nexus e módulos de conteúdo.",
+    ),
+    (
+        "Veritas",
+        "Calculadora de tabelas verdade e ferramenta local-first para projetar circuitos lógicos, com editor visual, simulação e MCP documentados.",
+    ),
+    (
+        "Ark-Initiative",
+        "Conceito ARCA de infraestrutura de resiliência climática e ambiental, com visão pública de dados, simulação e resposta.",
+    ),
+    (
+        "baluarte-obra-segura",
+        "Hub de engenharia para gestão de obras, editor de painéis elétricos, calculadoras e base WikiBuild, conforme a descrição pública.",
+    ),
+    (
+        "Project-Vanguard",
+        "GPS topográfico tático e computador de tiro em JavaScript/Vite/MapLibre GL, conforme o README público.",
+    ),
+    (
+        "Digital-Logic-Sim-CE",
+        "Fork público da Community Edition de Digital Logic Sim, com recursos de simulação de lógica digital documentados no README.",
+    ),
+    ("CHIPS-Digital-Logic-Sim-Lucas-Belucci", "Coleção pública de chips e testes de lógica digital."),
+    (
+        "DailyPlanner",
+        "Agenda diária em TypeScript/Vite para cadastrar, editar, concluir, excluir, buscar e filtrar atividades no navegador.",
+    ),
+    (
+        "Projeto-Baluarte-World-Game",
+        "Conceito e protótipo de jogo de sobrevivência, construção e consequência situado no universo Baluarte.",
+    ),
+    ("Recycle-game", "Jogo educativo de reciclagem e automação com protótipo jogável documentado."),
+];
+
 /// Resultado de uma verificação HTTP.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize)]
 #[serde(rename_all = "lowercase")]

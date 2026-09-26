@@ -12,7 +12,13 @@
 //! profile-core sync commits  [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
 //! profile-core sync github   [--root DIR] [--input-repos FILE [--languages-dir DIR]] [--no-db] [--trigger T]
 //! profile-core sync contributions [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
+//! profile-core import manifests   [--root DIR] [--trigger T]
+//! profile-core import legacy      [--root DIR] [--trigger T]
 //! ```
+//!
+//! `import manifests` deixa o banco igual aos manifestos editoriais
+//! (docs/README_*.json); `import legacy` é a carga única do estado que hoje
+//! vive em JSON (docs/database/MIGRATIONS.md §6) — idempotente.
 //!
 //! `sync github` grava donos, repositórios, linguagens e projetos. Gravar
 //! exige o inventário completo (`PROFILE_GITHUB_TOKEN` ou `--input-repos`):
@@ -49,6 +55,7 @@ use clap::{Args, Parser, Subcommand};
 use profile_core::catalog_build::{self, BuildOptions, ChecksSource};
 use profile_core::commits;
 use profile_core::contributions;
+use profile_core::imports;
 use profile_core::inventory_sync::{self, SyncOptions};
 use profile_core::sites;
 use serde_json::json;
@@ -77,6 +84,29 @@ enum Command {
     /// Coleta do GitHub.
     #[command(subcommand)]
     Sync(SyncCommand),
+    /// Importações para o banco.
+    #[command(subcommand)]
+    Import(ImportCommand),
+}
+
+#[derive(Subcommand)]
+enum ImportCommand {
+    /// Manifestos editoriais (exclusões, curadoria, arsenal, sites manuais).
+    Manifests(ImportArgs),
+    /// Carga única do estado legado (catálogo, monitor, timeline, constantes do código).
+    Legacy(ImportArgs),
+}
+
+#[derive(Args)]
+struct ImportArgs {
+    /// Raiz com docs/.
+    #[arg(long, default_value = ".")]
+    root: PathBuf,
+    #[command(flatten)]
+    connection: Connection,
+    /// Gatilho registrado em ecosystem.sync_runs.
+    #[arg(long, default_value = "manual", value_parser = ["schedule", "manual", "push", "api", "test"])]
+    trigger: String,
 }
 
 #[derive(Subcommand)]
@@ -346,6 +376,7 @@ fn exit_code(error: &CliError) -> ExitCode {
         | StoreError::UnsupportedServer { .. }
         | StoreError::UnknownTarget(_)
         | StoreError::Migrate(_)
+        | StoreError::Manifest(_)
         | StoreError::Database(_) => ExitCode::from(2),
     }
 }
@@ -358,6 +389,8 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
         Command::Sync(SyncCommand::Commits(args)) => return sync_commits(args).await,
         Command::Sync(SyncCommand::Github(args)) => return sync_github(args).await,
         Command::Sync(SyncCommand::Contributions(args)) => return sync_contributions(args).await,
+        Command::Import(ImportCommand::Manifests(args)) => return import_manifests(args).await,
+        Command::Import(ImportCommand::Legacy(args)) => return import_legacy(args).await,
     };
     match command {
         DbCommand::Status { connection, json } => {
@@ -616,6 +649,53 @@ async fn sync_contributions(args: ContributionsArgs) -> Result<ExitCode, CliErro
             report.sync_run_id
         );
     }
+    Ok(ExitCode::SUCCESS)
+}
+
+async fn import_manifests(args: ImportArgs) -> Result<ExitCode, CliError> {
+    let database = Database::from_url(&args.connection.database_url)?;
+    let (manifests, ignored) = imports::read_manifests(&args.root)?;
+    for reason in &ignored {
+        eprintln!("profile-core: aviso: {reason}");
+    }
+    let report = database.import_manifests(&run_context(&args.trigger), &manifests).await?;
+    for reason in &report.skipped_sites {
+        eprintln!("profile-core: aviso: site manual ignorado: {reason}");
+    }
+    println!(
+        "manifestos importados (sync_run {}): exclusões {} (−{}), curadoria {} (−{}), arsenal {} (−{}), \
+         sites manuais {} ativos ({} aposentados)",
+        report.sync_run_id,
+        report.exclusions.0,
+        report.exclusions.1,
+        report.featured.0,
+        report.featured.1,
+        report.tools.0,
+        report.tools.1,
+        report.sites.0,
+        report.sites.1
+    );
+    Ok(ExitCode::SUCCESS)
+}
+
+async fn import_legacy(args: ImportArgs) -> Result<ExitCode, CliError> {
+    let database = Database::from_url(&args.connection.database_url)?;
+    let owner = std::env::var("GH_USER").unwrap_or_else(|_| catalog::OWNER.into());
+    let record = imports::read_legacy(&args.root, &owner)?;
+    let report = database.import_legacy(&run_context(&args.trigger), &record).await?;
+    for reason in &report.skipped {
+        eprintln!("profile-core: aviso: não importado: {reason}");
+    }
+    let verified = record.sites.iter().filter(|site| site.outcome == "verified").count();
+    println!("carga legada (sync_run {}):", report.sync_run_id);
+    println!("  resumos editoriais        {} gravados de {}", report.summaries, record.summaries.len());
+    println!("  sobreposições de status   {} gravadas", report.overrides);
+    println!(
+        "  sites do catálogo         {} criados, {} checagens iniciais ({} no ar no catálogo)",
+        report.sites_created, report.checks, verified
+    );
+    println!("  estado do monitor         {} de {} repositórios", report.heads, record.heads.len());
+    println!("  amostras importadas       {} de {}", report.samples, record.samples.len());
     Ok(ExitCode::SUCCESS)
 }
 

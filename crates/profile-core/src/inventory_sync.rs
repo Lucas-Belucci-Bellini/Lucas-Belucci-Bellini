@@ -140,6 +140,10 @@ fn record(
         default_branch: text("default_branch"),
         primary_language: text("language"),
         homepage: text("homepage"),
+        homepage_site: match ecosystem_domain::discovery::discover_project_website(fact, &Default::default()) {
+            (Some(url), ecosystem_domain::discovery::WebsiteSource::GithubHomepage) if !fact.private => Some(url),
+            _ => None,
+        },
         topics: repo
             .get("topics")
             .and_then(Value::as_array)
