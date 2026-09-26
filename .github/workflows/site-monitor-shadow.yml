@@ -1,0 +1,76 @@
+name: Site Monitor Shadow
+
+# Modo B (sombra) do monitor de sites — docs/migration/PYTHON-TO-RUST.md §4.
+# Roda o scripts/check_websites.py e o profile-core check sites ao mesmo tempo,
+# sobre os sites reais do catálogo, e compara os relatórios (exceto checked_at).
+# Não escreve no repositório e não publica nada: o Python continua sendo quem
+# decide o README. Critério para sair do modo B: 14 execuções agendadas seguidas
+# sem diferença (ou com todas as diferenças explicadas).
+#
+# Histórico no banco: só quando o secret DATABASE_URL existir (o banco de
+# produção é provisionado pelo dono do perfil, D-003). Este job não roda
+# migrations — o schema precisa estar migrado (profile-core db migrate).
+
+on:
+  schedule:
+    - cron: "41 7 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: site-monitor-shadow
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  shadow:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CARGO_TERM_COLOR: always
+      CARGO_INCREMENTAL: "0"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Toolchain (versão fixada em rust-toolchain.toml)
+        run: |
+          toolchain="$(sed -n 's/^channel = "\(.*\)"$/\1/p' rust-toolchain.toml)"
+          rustup toolchain install "$toolchain" --profile minimal
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            target
+          key: cargo-release-${{ runner.os }}-${{ hashFiles('rust-toolchain.toml') }}-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            cargo-release-${{ runner.os }}-${{ hashFiles('rust-toolchain.toml') }}-
+
+      - name: Build profile-core
+        run: cargo build --release --locked -p profile-core
+
+      - name: Python e Rust ao mesmo tempo
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          database="--no-db"
+          if [ -n "$DATABASE_URL" ]; then database="--trigger=schedule"; fi
+          python scripts/check_websites.py --json > python.json &
+          python_pid=$!
+          target/release/profile-core check sites --json $database > rust.json &
+          rust_pid=$!
+          wait "$python_pid"
+          wait "$rust_pid"
+
+      - name: Comparar
+        run: python .github/scripts/compare_site_reports.py python.json rust.json
