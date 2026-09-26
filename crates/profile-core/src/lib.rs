@@ -6,4 +6,5 @@ pub mod commits;
 pub mod contributions;
 pub mod imports;
 pub mod inventory_sync;
+pub mod render;
 pub mod sites;

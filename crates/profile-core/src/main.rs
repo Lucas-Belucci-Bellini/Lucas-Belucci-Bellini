@@ -9,6 +9,10 @@
 //! profile-core catalog build [--root DIR] [--input-repos FILE] [--now ISO] [--write]
 //!                            [--site-checks-fixture FILE | --skip-site-check]
 //!                            [--site-timeout S] [--site-workers N] [--site-checks-out FILE]
+//! profile-core render readme [--root DIR] [--input-repos FILE [--languages-dir DIR]] [--now ISO]
+//!                            [--write] [--out-dir DIR] [--catalog-out FILE]
+//!                            [--site-checks-fixture FILE | --skip-site-check]
+//!                            [--site-timeout S] [--site-workers N] [--site-checks-out FILE]
 //! profile-core sync commits  [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
 //! profile-core sync github   [--root DIR] [--input-repos FILE [--languages-dir DIR]] [--no-db] [--trigger T]
 //! profile-core sync contributions [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
@@ -35,6 +39,11 @@
 //! venha de arquivo), como o Python: um inventário só de públicos apagaria os
 //! privados do catálogo.
 //!
+//! `render readme` é o `update_profile.py` inteiro: README, snapshot e
+//! catálogo com os mesmos bytes, e a mesma saída padrão. Com `--write`, as
+//! mesmas regras do `catalog build`; `--out-dir` grava tudo num diretório à
+//! parte, sem tocar no que é publicado (o modo sombra).
+//!
 //! `check sites` imprime o relatório do `scripts/check_websites.py` byte a
 //! byte (exceto o `checked_at`) e grava cada checagem em
 //! `ecosystem.website_checks`. Sem banco configurado ele **recusa** em vez de
@@ -52,11 +61,12 @@ use std::process::ExitCode;
 use std::time::Duration;
 
 use clap::{Args, Parser, Subcommand};
-use profile_core::catalog_build::{self, BuildOptions, ChecksSource};
+use profile_core::catalog_build::{self, BuildOptions, ChecksSource, Tokens};
 use profile_core::commits;
 use profile_core::contributions;
 use profile_core::imports;
 use profile_core::inventory_sync::{self, SyncOptions};
+use profile_core::render::{self, RenderOptions};
 use profile_core::sites;
 use serde_json::json;
 use site_monitor::check::BuildError;
@@ -87,6 +97,31 @@ enum Command {
     /// Importações para o banco.
     #[command(subcommand)]
     Import(ImportCommand),
+    /// Saídas publicadas no perfil.
+    #[command(subcommand)]
+    Render(RenderCommand),
+}
+
+#[derive(Subcommand)]
+enum RenderCommand {
+    /// README, profile-snapshot.svg e catálogo (o update_profile.py inteiro).
+    Readme(ReadmeArgs),
+}
+
+#[derive(Args)]
+struct ReadmeArgs {
+    #[command(flatten)]
+    catalog: CatalogArgs,
+    /// Linguagens de arquivo, um owner__nome.json por repositório (com --input-repos).
+    #[arg(long, value_name = "DIR", requires = "input_repos")]
+    languages_dir: Option<PathBuf>,
+    /// Grava também o catálogo neste arquivo.
+    #[arg(long, value_name = "FILE")]
+    catalog_out: Option<PathBuf>,
+    /// Grava README.md, profile-snapshot.svg e project-catalog.json neste
+    /// diretório, sem tocar no que é publicado (vale sem token).
+    #[arg(long, value_name = "DIR")]
+    out_dir: Option<PathBuf>,
 }
 
 #[derive(Subcommand)]
@@ -359,8 +394,8 @@ async fn main() -> ExitCode {
 /// `1` quando o comando verificou algo e reprovou; `2` quando não conseguiu
 /// executar. O erro de uso do clap também sai com `2`.
 fn exit_code(error: &CliError) -> ExitCode {
-    if matches!(error, CliError::Crash(_)) {
-        // Onde o Python sairia com traceback (código 1), sem gravar nada.
+    if matches!(error, CliError::Crash(_)) || matches!(error, CliError::Catalog(error) if error.is_python_crash()) {
+        // Onde o Python sairia com traceback (código 1).
         return ExitCode::from(1);
     }
     let CliError::Store(error) = error else {
@@ -391,6 +426,7 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
         Command::Sync(SyncCommand::Contributions(args)) => return sync_contributions(args).await,
         Command::Import(ImportCommand::Manifests(args)) => return import_manifests(args).await,
         Command::Import(ImportCommand::Legacy(args)) => return import_legacy(args).await,
+        Command::Render(RenderCommand::Readme(args)) => return render_readme(args).await,
     };
     match command {
         DbCommand::Status { connection, json } => {
@@ -488,7 +524,7 @@ async fn check_sites(args: SitesArgs) -> Result<ExitCode, CliError> {
     Ok(ExitCode::from(sites::exit_code(&rows, args.fail_on_down)))
 }
 
-async fn build_catalog(args: CatalogArgs) -> Result<ExitCode, CliError> {
+fn build_options(args: CatalogArgs, languages_dir: Option<PathBuf>) -> BuildOptions {
     let checks = match (args.site_checks_fixture, args.skip_site_check) {
         (Some(path), _) => ChecksSource::Fixture(path),
         (None, true) => ChecksSource::Skip,
@@ -496,16 +532,34 @@ async fn build_catalog(args: CatalogArgs) -> Result<ExitCode, CliError> {
             ChecksSource::Live { timeout: Duration::from_secs_f64(args.site_timeout), workers: args.site_workers }
         }
     };
-    let options = BuildOptions {
+    BuildOptions {
         root: args.root,
         input_repos: args.input_repos,
+        languages_dir,
         checks,
         now: args.now,
         write: args.write,
         checks_out: args.site_checks_out,
+    }
+}
+
+async fn render_readme(args: ReadmeArgs) -> Result<ExitCode, CliError> {
+    let site_check_skipped = args.catalog.skip_site_check;
+    let options = RenderOptions {
+        build: build_options(args.catalog, args.languages_dir),
+        catalog_out: args.catalog_out,
+        out_dir: args.out_dir,
+        site_check_skipped,
     };
-    let token = std::env::var("PROFILE_GITHUB_TOKEN").ok();
-    let built = catalog_build::run(&options, token).await?;
+    let rendered = render::run(&options, &Tokens::from_env()).await?;
+    print!("{}", rendered.stdout);
+    eprintln!("profile-core: {}", rendered.note);
+    Ok(ExitCode::SUCCESS)
+}
+
+async fn build_catalog(args: CatalogArgs) -> Result<ExitCode, CliError> {
+    let options = build_options(args, None);
+    let built = catalog_build::run(&options, &Tokens::from_env()).await?;
     if built.written.is_none() {
         print!("{}", built.text);
     }

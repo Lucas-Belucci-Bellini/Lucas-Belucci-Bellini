@@ -1102,6 +1102,11 @@ def main() -> int:
         "--catalog-out",
         help="also write the catalog JSON to this file, leaving README and assets untouched (shadow comparison)",
     )
+    parser.add_argument(
+        "--out-dir",
+        help="also write README.md, profile-snapshot.svg and project-catalog.json to this directory, "
+        "leaving the published files untouched (shadow comparison)",
+    )
     args = parser.parse_args()
 
     if args.root:
@@ -1183,6 +1188,14 @@ def main() -> int:
     # modo sombra compara o catálogo do Python com o do profile-core.
     if args.catalog_out:
         write_catalog_if_changed(catalog, Path(args.catalog_out))
+    # --out-dir é o mesmo gancho para o README inteiro: o modo sombra compara
+    # estes três arquivos com os do `profile-core render readme --out-dir`.
+    if args.out_dir:
+        out_dir = Path(args.out_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "README.md").write_text(text, encoding="utf-8")
+        render_snapshot_svg(repos, rows, verified_sites, now, generated_at, out_dir / "profile-snapshot.svg")
+        write_catalog_if_changed(catalog, out_dir / "project-catalog.json")
     print(json.dumps({
         "repositories": len(repos),
         "public_repositories": sum(not repo.get("private") for repo in repos),

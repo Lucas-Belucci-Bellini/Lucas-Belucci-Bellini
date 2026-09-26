@@ -21,7 +21,7 @@ pub mod inventory;
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 use std::path::{Path, PathBuf};
 
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, NaiveDateTime, Utc};
 use ecosystem_domain::classify::classify_py_v1;
 use ecosystem_domain::discovery::{
     WebsiteSource, discover_project_website, json_truthy, normalize_site_overrides, py_str,
@@ -33,7 +33,7 @@ use ecosystem_domain::presentation::{
 use ecosystem_domain::pyjson::py_int;
 use ecosystem_domain::repo::RepoFacts;
 use ecosystem_domain::taxonomy::CATEGORIES;
-use ecosystem_domain::timestamps::{PyIsoDatetime, py_fromisoformat};
+use ecosystem_domain::timestamps::{PyLocalDatetime, py_fromisoformat_local};
 use serde_json::{Map, Value, json};
 
 /// Dono do perfil (`OWNER` do `update_profile.py`).
@@ -138,10 +138,19 @@ impl Curadoria {
     /// `{str(e.get("name", "")): e for e in manifest.get("projects", []) if e.get("name")}`.
     pub fn from_manifest(manifest: &Map<String, Value>, path: &str) -> Result<Self, CatalogError> {
         let crash = |kind, detail: &str| CatalogError::PythonCrash { kind, path: path.into(), detail: detail.into() };
+        // O Python percorre o valor: objeto e texto vazios são listas vazias;
+        // objeto e texto com conteúdo dão chaves e caracteres, `str` sem `.get`;
+        // `null`, número e booleano não são iteráveis.
+        let empty = Self { path: path.into(), entries: HashMap::new() };
         let projects = match manifest.get("projects") {
-            None => return Ok(Self { path: path.into(), entries: HashMap::new() }),
+            None => return Ok(empty),
             Some(Value::Array(projects)) => projects,
-            Some(_) => return Err(crash("AttributeError", "\"projects\" não é uma lista de objetos")),
+            Some(Value::Object(map)) if map.is_empty() => return Ok(empty),
+            Some(Value::String(text)) if text.is_empty() => return Ok(empty),
+            Some(Value::Object(_) | Value::String(_)) => {
+                return Err(crash("AttributeError", "\"projects\" não é uma lista de objetos"));
+            }
+            Some(_) => return Err(crash("TypeError", "\"projects\" não é iterável")),
         };
         let mut entries = HashMap::new();
         for entry in projects {
@@ -251,12 +260,18 @@ pub fn load_checks_fixture(path: &Path, urls: &[String]) -> Result<HashMap<Strin
 
 /// `parse_now()`: `--now` precisa de fuso.
 pub fn parse_now(value: &str) -> Result<DateTime<Utc>, CatalogError> {
-    match py_fromisoformat(&value.replace('Z', "+00:00")) {
-        PyIsoDatetime::Aware(now) => Ok(now),
-        PyIsoDatetime::Naive => {
+    parse_now_local(value).map(|(instant, _)| instant)
+}
+
+/// Como [`parse_now`], devolvendo também o relógio local (no fuso dado): é
+/// o que o `strftime` do carimbo do README imprime quando não há data melhor.
+pub fn parse_now_local(value: &str) -> Result<(DateTime<Utc>, NaiveDateTime), CatalogError> {
+    match py_fromisoformat_local(&value.replace('Z', "+00:00")) {
+        PyLocalDatetime::Aware { local, instant } => Ok((instant, local)),
+        PyLocalDatetime::Naive(_) => {
             Err(CatalogError::Input("--now must include a timezone, e.g. 2026-09-25T12:00:00Z".into()))
         }
-        PyIsoDatetime::Invalid => Err(CatalogError::Input(format!("Invalid isoformat string: {value:?}"))),
+        PyLocalDatetime::Invalid => Err(CatalogError::Input(format!("Invalid isoformat string: {value:?}"))),
     }
 }
 

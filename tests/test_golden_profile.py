@@ -132,6 +132,31 @@ class GoldenProfileTests(unittest.TestCase):
             self.assertEqual((INPUT / "README.md").read_bytes(), (root / "README.md").read_bytes())
             self.assertFalse((root / "docs" / "project-catalog.json").exists())
 
+    def test_out_dir_sem_write_e_sem_token_grava_as_tres_saidas_a_parte(self) -> None:
+        # Modo sombra do README inteiro: nada do que é publicado muda.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "profile"
+            shutil.copytree(INPUT, root)
+            out = Path(tmp) / "saida"
+            result = subprocess.run(
+                [
+                    sys.executable, str(SCRIPT), "--root", str(root),
+                    "--input-repos", str(root / "repos.json"), "--languages-dir", str(root / "languages"),
+                    "--site-checks-fixture", str(root / "site-checks.json"), "--now", NOW,
+                    "--out-dir", str(out),
+                ],
+                capture_output=True, text=True, check=False,
+                env={key: value for key, value in os.environ.items() if "TOKEN" not in key},
+            )
+            self.assertEqual(0, result.returncode, result.stderr)
+            for name in ("README.md", "profile-snapshot.svg", "project-catalog.json"):
+                with self.subTest(arquivo=name):
+                    self.assertEqual((EXPECTED / name).read_bytes(), (out / name).read_bytes())
+            self.assertEqual((INPUT / "README.md").read_bytes(), (root / "README.md").read_bytes())
+            self.assertFalse((root / "assets" / "profile-snapshot.svg").exists())
+            self.assertFalse((root / "docs" / "project-catalog.json").exists())
+            self.assertFalse(json.loads(result.stdout.splitlines()[-1])["write"])
+
     def test_so_os_blocos_gerados_mudaram(self) -> None:
         sys.path.insert(0, str(ROOT / "scripts"))
         try:
