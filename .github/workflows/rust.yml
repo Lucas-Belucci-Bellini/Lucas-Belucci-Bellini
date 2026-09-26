@@ -29,6 +29,8 @@ on:
       - "scripts/update_contribution_timeline.py"
       - "scripts/validate_*.py"
       - ".github/scripts/ecosystem_watch.py"
+      - ".github/scripts/lang_stats.py"
+      - ".github/scripts/profile_cards.py"
       - ".github/workflows/rust.yml"
   push:
     branches: [main]
@@ -50,6 +52,8 @@ on:
       - "scripts/update_contribution_timeline.py"
       - "scripts/validate_*.py"
       - ".github/scripts/ecosystem_watch.py"
+      - ".github/scripts/lang_stats.py"
+      - ".github/scripts/profile_cards.py"
       - ".github/workflows/rust.yml"
   workflow_dispatch:
 
@@ -133,7 +137,7 @@ jobs:
       - name: check sites = check_websites.py (servidor local, texto, JSON e código de saída)
         run: python tests/e2e/check_sites_parity.py target/release/profile-core
 
-      - name: coleta e README Rust = Python (catálogo, README, monitor, contribuições; GitHub simulado)
+      - name: coleta, README e assets Rust = Python (catálogo, README, monitor, contribuições, SVGs; GitHub simulado)
         run: python tests/e2e/github_parity.py target/release/profile-core
 
       - name: README do Rust na árvore real do perfil = Python, aprovado pelos validadores

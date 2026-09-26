@@ -13,6 +13,8 @@
 //!                            [--write] [--out-dir DIR] [--catalog-out FILE]
 //!                            [--site-checks-fixture FILE | --skip-site-check]
 //!                            [--site-timeout S] [--site-workers N] [--site-checks-out FILE]
+//! profile-core render lang-stats | cards | assets [--root DIR] [--now ISO]
+//!                            [--include-forks] [--skip-files]
 //! profile-core sync commits  [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
 //! profile-core sync github   [--root DIR] [--input-repos FILE [--languages-dir DIR]] [--no-db] [--trigger T]
 //! profile-core sync contributions [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
@@ -44,6 +46,10 @@
 //! mesmas regras do `catalog build`; `--out-dir` grava tudo num diretório à
 //! parte, sem tocar no que é publicado (o modo sombra).
 //!
+//! `render lang-stats` e `render cards` são o `lang_stats.py` e o
+//! `profile_cards.py` (os SVGs de `assets/`); `render assets` roda os dois,
+//! como o `lang-stats.yml`. Mesmas variáveis de ambiente dos scripts.
+//!
 //! `check sites` imprime o relatório do `scripts/check_websites.py` byte a
 //! byte (exceto o `checked_at`) e grava cada checagem em
 //! `ecosystem.website_checks`. Sem banco configurado ele **recusa** em vez de
@@ -61,6 +67,7 @@ use std::process::ExitCode;
 use std::time::Duration;
 
 use clap::{Args, Parser, Subcommand};
+use profile_core::assets::{self, AssetsError};
 use profile_core::catalog_build::{self, BuildOptions, ChecksSource, Tokens};
 use profile_core::commits;
 use profile_core::contributions;
@@ -106,6 +113,28 @@ enum Command {
 enum RenderCommand {
     /// README, profile-snapshot.svg e catálogo (o update_profile.py inteiro).
     Readme(ReadmeArgs),
+    /// assets/lang-stats.svg e assets/profile-top-langs.svg (o lang_stats.py).
+    LangStats(AssetsArgs),
+    /// Os quatro cards do GraphQL (o profile_cards.py).
+    Cards(AssetsArgs),
+    /// lang-stats e cards, nessa ordem, parando no primeiro que falhar.
+    Assets(AssetsArgs),
+}
+
+#[derive(Args)]
+struct AssetsArgs {
+    /// Raiz com docs/README_EXCLUDED.json e assets/.
+    #[arg(long, default_value = ".")]
+    root: PathBuf,
+    /// Relógio fixo, ISO 8601 com fuso.
+    #[arg(long, value_name = "ISO")]
+    now: Option<String>,
+    /// Inclui os forks (ou INCLUDE_FORKS=1, como no script).
+    #[arg(long)]
+    include_forks: bool,
+    /// Não lê as árvores git: sem tipos de arquivo (ou SEM_ARQUIVOS=1).
+    #[arg(long)]
+    skip_files: bool,
 }
 
 #[derive(Args)]
@@ -321,6 +350,8 @@ enum CliError {
     GitHubClient(#[from] github_client::BuildError),
     #[error(transparent)]
     Crash(#[from] commits::Crash),
+    #[error(transparent)]
+    Assets(#[from] AssetsError),
     #[error("{0}: {1}")]
     Io(String, std::io::Error),
     #[error(transparent)]
@@ -394,7 +425,9 @@ async fn main() -> ExitCode {
 /// `1` quando o comando verificou algo e reprovou; `2` quando não conseguiu
 /// executar. O erro de uso do clap também sai com `2`.
 fn exit_code(error: &CliError) -> ExitCode {
-    if matches!(error, CliError::Crash(_)) || matches!(error, CliError::Catalog(error) if error.is_python_crash()) {
+    if matches!(error, CliError::Crash(_) | CliError::Assets(AssetsError::Crash(_)))
+        || matches!(error, CliError::Catalog(error) if error.is_python_crash())
+    {
         // Onde o Python sairia com traceback (código 1).
         return ExitCode::from(1);
     }
@@ -427,6 +460,9 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
         Command::Import(ImportCommand::Manifests(args)) => return import_manifests(args).await,
         Command::Import(ImportCommand::Legacy(args)) => return import_legacy(args).await,
         Command::Render(RenderCommand::Readme(args)) => return render_readme(args).await,
+        Command::Render(RenderCommand::LangStats(args)) => return render_assets(args, true, false).await,
+        Command::Render(RenderCommand::Cards(args)) => return render_assets(args, false, true).await,
+        Command::Render(RenderCommand::Assets(args)) => return render_assets(args, true, true).await,
     };
     match command {
         DbCommand::Status { connection, json } => {
@@ -554,6 +590,29 @@ async fn render_readme(args: ReadmeArgs) -> Result<ExitCode, CliError> {
     let rendered = render::run(&options, &Tokens::from_env()).await?;
     print!("{}", rendered.stdout);
     eprintln!("profile-core: {}", rendered.note);
+    Ok(ExitCode::SUCCESS)
+}
+
+async fn render_assets(args: AssetsArgs, lang_stats: bool, cards: bool) -> Result<ExitCode, CliError> {
+    let env = |name: &str| std::env::var(name).ok();
+    let options = assets::Options {
+        root: args.root,
+        now: args.now,
+        token: env("GITHUB_TOKEN").filter(|token| !token.is_empty()),
+        user: env("GH_USER").unwrap_or_else(|| catalog::OWNER.into()),
+        include_forks: args.include_forks || env("INCLUDE_FORKS").as_deref() == Some("1"),
+        skip_files: args.skip_files || env("SEM_ARQUIVOS").as_deref() == Some("1"),
+    };
+    if lang_stats {
+        let outcome = assets::run_lang_stats(&options).await?;
+        print!("{}", outcome.stdout);
+        if outcome.code != 0 {
+            return Ok(ExitCode::from(outcome.code));
+        }
+    }
+    if cards {
+        print!("{}", assets::run_cards(&options).await?.stdout);
+    }
     Ok(ExitCode::SUCCESS)
 }
 

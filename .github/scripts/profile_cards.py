@@ -3,10 +3,17 @@
 
 Os cards são SVGs versionados no repositório para que o README não dependa de
 serviços públicos de terceiros sujeitos a pausa, cobrança ou rate limit.
+
+Opções (paridade com o profile-core render cards, tests/e2e):
+    --root DIR   outra raiz para assets/
+    --now ISO    relógio fixo, com fuso (janela de 365 dias e carimbo)
+
+GITHUB_GRAPHQL_URL aponta para outro endpoint GraphQL (o GitHub simulado).
 """
 
 from __future__ import annotations
 
+import argparse
 import html
 import json
 import os
@@ -19,7 +26,7 @@ ROOT = Path(__file__).resolve().parents[2]
 ASSETS = ROOT / "assets"
 USER = os.environ.get("GH_USER", "Lucas-Belucci-Bellini")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
-GRAPHQL_URL = "https://api.github.com/graphql"
+GRAPHQL_URL = os.environ.get("GITHUB_GRAPHQL_URL", "https://api.github.com/graphql")
 
 QUERY = """
 query($login:String!, $from:DateTime!, $to:DateTime!) {
@@ -56,10 +63,10 @@ def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
 
 
-def request_data() -> dict:
+def request_data(fixed_now: datetime | None = None) -> dict:
     if not TOKEN:
         raise RuntimeError("GITHUB_TOKEN ausente")
-    now = datetime.now(timezone.utc)
+    now = fixed_now or datetime.now(timezone.utc)
     variables = {
         "login": USER,
         "from": (now - timedelta(days=365)).strftime("%Y-%m-%dT00:00:00Z"),
@@ -100,7 +107,7 @@ def request_data() -> dict:
         "repository_contributions": collection["totalRepositoryContributions"],
         "restricted": collection["restrictedContributionsCount"],
         "repositories": user["repositories"]["totalCount"],
-        "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        "generated": (fixed_now or datetime.now(timezone.utc)).strftime("%Y-%m-%d %H:%M UTC"),
     }
 
 
@@ -187,8 +194,25 @@ def trophies_svg(data: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
-def main() -> int:
-    data = request_data()
+def parse_now(value: str | None) -> datetime | None:
+    """`--now`: relógio fixo com fuso; sem ele, o relógio de verdade."""
+    if not value:
+        return None
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("--now must include a timezone, e.g. 2026-09-25T12:00:00Z")
+    return parsed
+
+
+def main(argv: list[str] | None = None) -> int:
+    global ASSETS
+    parser = argparse.ArgumentParser(description="Gera os cards SVG do perfil a partir do GraphQL do GitHub.")
+    parser.add_argument("--root", help="outra raiz para assets/ (testes/paridade)")
+    parser.add_argument("--now", help="relógio fixo, ISO 8601 com fuso (testes/paridade)")
+    args = parser.parse_args(argv)
+    if args.root:
+        ASSETS = Path(args.root).resolve() / "assets"
+    data = request_data(parse_now(args.now))
     ASSETS.mkdir(parents=True, exist_ok=True)
     outputs = {
         "profile-stats.svg": stats_svg(data),

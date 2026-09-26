@@ -16,6 +16,11 @@ dois programas contra ele:
                    409, 503 que passa na segunda tentativa, rate limit, repositório
                    novo e sumido, varredura sem mudança)
     contribuições  update_contribution_timeline.py   ×  profile-core sync contributions --write --no-db
+    assets         lang_stats.py / profile_cards.py   ×  profile-core render lang-stats / cards
+                   (listagem com e sem token, token recusado, forks, árvores git
+                   truncadas, vazias, que falham e 429 que passa; segunda rodada
+                   sem mudança; tracebacks; GraphQL com e sem erro) — saída,
+                   SVGs, código de saída e a sequência de chamadas à API
 
 Exige os mesmos bytes em cada arquivo e a mesma saída do monitor.
 
@@ -341,6 +346,157 @@ def contributions_parity(binary: str, fake: FakeGitHub, work: Path, failures: li
                 read(rs_root / "docs" / "assets" / name), failures)
 
 
+# ------------------------------------------------------------------ assets
+
+LS_LISTING = "/user/repos?affiliation=owner&sort=pushed&per_page=100&page={}"
+PUBLIC_LISTING = "/users/{}/repos?type=owner&per_page=100&page={}"
+ASSET_FILES = ("lang-stats.svg", "profile-top-langs.svg", "profile-stats.svg", "profile-streak.svg",
+               "profile-trophies.svg", "profile-projects.svg")
+
+
+def tree_of(i: int) -> dict[str, Any]:
+    paths = ["src/main.rs", "README.md", "lib/util.rs", "img/Logo.PNG", "Makefile", ".gitignore", "data/tabela.csv",
+             f"src/f{i}.ts", "estranho.a-b", "arquivo.ÇÃO", "docs/manual.pdf", "dist/pacote.tar.gz",
+             "3d/modelo.glb", f"fontes/f{i % 3}.woff2", "x.abcdefghijklm"]
+    nodes = [{"path": path, "type": "blob"} for path in paths[: 4 + i % len(paths)]]
+    # Diretório e submódulo com cara de extensão: só "blob" conta.
+    nodes += [{"path": "src", "type": "tree"}, {"path": "conf.d", "type": "tree"}, {"path": "vendor/lib.js", "type": "commit"}]
+    return {"sha": sha(i), "tree": nodes, "truncated": i % 4 == 1}
+
+
+def assets_routes(fake: FakeGitHub, *, listing: list[dict[str, Any]], user_repos: str = "ok",
+                  flaky: bool = False, bad_language: bool = False) -> None:
+    """GitHub da análise de linguagens; refeito antes de cada programa (as filas de resposta se gastam)."""
+    fake.routes.clear()
+    if user_repos == "ok":
+        for path, items in pages(listing, LS_LISTING.format).items():
+            fake.get(path, items)
+    elif user_repos == "403":
+        fake.get(LS_LISTING.format(1), {"message": "Resource not accessible by integration"}, status=403)
+    public = [r for r in listing if not r["private"]]
+    for path, items in pages(public, lambda n: PUBLIC_LISTING.format(OWNER, n)).items():
+        fake.get(path, items)
+    languages = [
+        lambda n: {"Python": 1000 + n, "Rust": n},
+        lambda n: {"C#": 5000 * n, "PLpgSQL": 7},
+        lambda n: {"JavaScript": 2_000_000 + n, "HTML": 3000, "CSS": 1024, "Shell": 12, "Batchfile": 1},
+        # Odin e Zig empatam no total: a ordem é a de chegada (sorted estável).
+        lambda n: {"Jupyter Notebook": 9, "Odin": 1_300_000_000, "Zig": 1_300_000_000},
+        lambda n: {},
+    ]
+    for n, repo in enumerate(listing):
+        full, branch = repo["full_name"], repo["default_branch"]
+        if bad_language and n == 0:
+            fake.get(f"/repos/{full}/languages", {"Python": "não é número"})
+        elif n % 10 == 7:
+            # Falha tratada: aviso, repositório com falha, e não conta como "sem linguagem".
+            fake.get(f"/repos/{full}/languages", {"message": "Server Error"}, status=500)
+        elif n % 10 != 3:
+            fake.get(f"/repos/{full}/languages", languages[n % 5](n))
+        tree_path = f"/repos/{full}/git/trees/{branch}?recursive=1"
+        i = repo["id"] - 10_000
+        if i % 7 == 2:
+            fake.get(tree_path, {"message": "Git Repository is empty."}, status=409)
+        elif i % 7 == 3:
+            fake.get(tree_path, {"message": "Server Error"}, status=500)
+        elif i % 7 == 5 and flaky and i < 20:
+            fake.get(tree_path, responses=[Response(429, {"message": "secondary rate limit"}), Response(200, tree_of(i))])
+        elif i % 7 != 0:
+            fake.get(tree_path, tree_of(i))
+
+
+def cards_handler(case: str) -> Callable[[dict[str, Any]], Any]:
+    def respond(variables: dict[str, Any]) -> Any:
+        if case == "502":
+            return Response(502, {"message": "Bad Gateway"})
+        if case == "erros":
+            return {"errors": [{"message": "Something went wrong"}, {"type": "SEM_MENSAGEM"}]}
+        window = f"{variables['from']} → {variables['to']} · {variables['login']}"
+        return {"data": {"user": {
+            "login": OWNER, "name": None if case == "sem nome" else f"Nome <{window}> & 'cia'",
+            "contributionsCollection": {
+                "totalCommitContributions": 987, "totalIssueContributions": 12,
+                "totalPullRequestContributions": 34, "totalPullRequestReviewContributions": 5,
+                "totalRepositoryContributions": 7, "restrictedContributionsCount": 1200,
+                "contributionCalendar": {"totalContributions": 1245}},
+            "repositories": {"totalCount": 98}}}}
+    return respond
+
+
+def assets_parity(binary: str, fake: FakeGitHub, work: Path, failures: list[str]) -> None:
+    base = [r for r in OWNER_REPOS if " " not in str(r["default_branch"])]
+    accented = [{**owner_repo(0), "default_branch": "função"}]
+    scenarios = [
+        ("lang-stats com token", "lang-stats", {"GITHUB_TOKEN": "tok"}, dict(listing=base, flaky=True), None),
+        ("lang-stats token recusado (cai no público)", "lang-stats", {"GITHUB_TOKEN": "tok"},
+         dict(listing=base, user_repos="403"), None),
+        ("lang-stats sem token", "lang-stats", {}, dict(listing=base), None),
+        ("lang-stats com forks e sem árvores", "lang-stats",
+         {"GITHUB_TOKEN": "tok", "INCLUDE_FORKS": "1", "SEM_ARQUIVOS": "1"}, dict(listing=base), None),
+        ("lang-stats segunda rodada: só o carimbo mudaria", "lang-stats", {"GITHUB_TOKEN": "tok"},
+         dict(listing=base), "lang-stats com token"),
+        ("lang-stats de quem não tem repositório", "lang-stats", {"GH_USER": "ninguem"}, dict(listing=[]), None),
+        ("lang-stats com branch acentuado (traceback)", "lang-stats", {"GITHUB_TOKEN": "tok"},
+         dict(listing=accented), None),
+        ("lang-stats com linguagem que não é número (traceback)", "lang-stats", {"GITHUB_TOKEN": "tok"},
+         dict(listing=base[:3], bad_language=True), None),
+        ("cards", "cards", {"GITHUB_TOKEN": "tok"}, "ok", None),
+        ("cards sem nome e com fuso", "cards", {"GITHUB_TOKEN": "tok", "NOW": "2026-01-01T01:00:00+05:00"},
+         "sem nome", None),
+        ("cards sem token", "cards", {}, "ok", None),
+        ("cards com erros do GraphQL", "cards", {"GITHUB_TOKEN": "tok"}, "erros", None),
+        ("cards com HTTP 502", "cards", {"GITHUB_TOKEN": "tok"}, "502", None),
+    ]
+    scripts = {"lang-stats": ROOT / ".github" / "scripts" / "lang_stats.py",
+               "cards": ROOT / ".github" / "scripts" / "profile_cards.py"}
+    for label, command, extra, routes, reuse in scenarios:
+        env = {"GITHUB_API_URL": fake.url, "GITHUB_GRAPHQL_URL": f"{fake.url}/graphql", "GH_USER": OWNER,
+               **{k: v for k, v in extra.items() if k != "NOW"}}
+        now = extra.get("NOW", NOW)
+        if reuse:
+            now = "2026-09-26T08:00:00Z"
+        roots = {side: work / f"assets-{side}-{reuse or label}" for side in ("py", "rs")}
+        results, logs = {}, {}
+        for side in ("py", "rs"):
+            if command == "lang-stats":
+                assets_routes(fake, **routes)
+            else:
+                fake.graphql(cards_handler(routes))
+            fake.requests.clear()
+            if side == "py":
+                cmd = [sys.executable, str(scripts[command]), "--root", str(roots[side]), "--now", now]
+            else:
+                cmd = [binary, "render", command, "--root", str(roots[side]), "--now", now]
+            results[side] = run(cmd, env)
+            logs[side] = list(fake.requests)
+        python, rust = results["py"], results["rs"]
+        if python.returncode != rust.returncode:
+            failures.append(f"{label}: python saiu com {python.returncode}, rust com {rust.returncode}\n"
+                            f"    python: {python.stderr.strip()[-300:]}\n    rust: {rust.stderr.strip()[-300:]}")
+            print(f"  FAIL {label} (código)")
+            continue
+        print(f"  ok   {label}: código {python.returncode}")
+        compare(f"{label}: saída", python.stdout, rust.stdout, failures)
+        compare(f"{label}: chamadas à API", "\n".join(map(str, logs["py"])), "\n".join(map(str, logs["rs"])), failures)
+        # O cenário exercita o que diz? (Python = Rust não basta se os dois pularem o caminho.)
+        paths = [path for _, path, _ in logs["py"]]
+        expectations = {
+            "lang-stats com token": ("svg_changed=True" in python.stdout
+                                     and len(paths) != len(set(paths)), "grava e repete a árvore que deu 429"),
+            "lang-stats token recusado (cai no público)": (
+                LS_LISTING.format(1) in paths and PUBLIC_LISTING.format(OWNER, 1) in paths, "tenta e cai no público"),
+            "lang-stats segunda rodada: só o carimbo mudaria": (
+                "svg_changed=False top_langs_changed=False" in python.stdout, "não regrava"),
+            "lang-stats com forks e sem árvores": (
+                not any("/git/trees/" in path for path in paths), "não lê árvore"),
+        }
+        if label in expectations and not expectations[label][0]:
+            failures.append(f"{label}: o cenário não exercitou o caminho ({expectations[label][1]})")
+        for name in ASSET_FILES:
+            compare(f"{label}: {name}", read(roots["py"] / "assets" / name), read(roots["rs"] / "assets" / name),
+                    failures)
+
+
 def main() -> int:
     if len(sys.argv) != 2:
         print(__doc__, file=sys.stderr)
@@ -367,9 +523,12 @@ def main() -> int:
     with fake, tempfile.TemporaryDirectory() as tmp:
         work = Path(tmp)
         print(f"GitHub simulado: {len(ALL_REPOS)} repositórios ({len(PUBLIC_OWNER)} públicos do dono)")
-        profile_parity(binary, fake, work, failures)
-        monitor_parity(binary, fake, work, failures)
-        contributions_parity(binary, fake, work, failures)
+        # E2E_ONLY=assets (etc.) roda só uma parte — útil para testar mutações.
+        only = os.environ.get("E2E_ONLY")
+        for name, section in (("profile", profile_parity), ("monitor", monitor_parity),
+                              ("contributions", contributions_parity), ("assets", assets_parity)):
+            if not only or only == name:
+                section(binary, fake, work, failures)
     if failures:
         print(f"\n{len(failures)} divergência(s):", file=sys.stderr)
         for failure in failures:

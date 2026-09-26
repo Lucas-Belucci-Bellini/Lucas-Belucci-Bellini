@@ -11,6 +11,8 @@ name: Core Shadow
 #                       (README.md, profile-snapshot.svg, project-catalog.json e a
 #                       saída padrão; o Rust verifica os sites e entrega as mesmas
 #                       checagens ao Python: a comparação fica só no gerador)
+#   SVGs de assets/     .github/scripts/lang_stats.py + profile_cards.py × render assets
+#                       (os seis SVGs e a saída; mesmo relógio, leituras simultâneas)
 #
 # Não escreve no repositório e não publica nada: o Python continua sendo quem
 # gera o que é público. Critério para sair do modo B: 14 execuções agendadas
@@ -113,6 +115,25 @@ jobs:
           python scripts/update_profile.py --now "$NOW" --site-checks-fixture shadow/site-checks.json \
             --out-dir shadow/profile-py > shadow/profile-py.out
 
+      - name: SVGs de assets/ (lang_stats.py e profile_cards.py × render assets)
+        env:
+          INCLUDE_FORKS: "0"
+        run: |
+          # Mesmo ponto de partida da produção: exclusões e os SVGs publicados
+          # (o "mudou?" ignora o carimbo e compara com eles).
+          for side in py rs; do
+            mkdir -p "shadow/assets-$side/docs"
+            cp docs/README_EXCLUDED.json "shadow/assets-$side/docs/"
+            cp -r assets "shadow/assets-$side/"
+          done
+          (python .github/scripts/lang_stats.py --root shadow/assets-py --now "$NOW" \
+            && python .github/scripts/profile_cards.py --root shadow/assets-py --now "$NOW") > shadow/assets-py.out &
+          python_pid=$!
+          target/release/profile-core render assets --root shadow/assets-rs --now "$NOW" > shadow/assets-rs.out &
+          rust_pid=$!
+          wait "$python_pid"
+          wait "$rust_pid"
+
       - name: Comparar
         run: |
           python .github/scripts/compare_files.py \
@@ -124,4 +145,11 @@ jobs:
             "README: saída=shadow/profile-py.out:shadow/profile-rs.out" \
             "README=shadow/profile-py/README.md:shadow/profile-rs/README.md" \
             "README: snapshot=shadow/profile-py/profile-snapshot.svg:shadow/profile-rs/profile-snapshot.svg" \
-            "catálogo=shadow/profile-py/project-catalog.json:shadow/profile-rs/project-catalog.json"
+            "catálogo=shadow/profile-py/project-catalog.json:shadow/profile-rs/project-catalog.json" \
+            "assets: saída=shadow/assets-py.out:shadow/assets-rs.out" \
+            "assets: lang-stats.svg=shadow/assets-py/assets/lang-stats.svg:shadow/assets-rs/assets/lang-stats.svg" \
+            "assets: profile-top-langs.svg=shadow/assets-py/assets/profile-top-langs.svg:shadow/assets-rs/assets/profile-top-langs.svg" \
+            "assets: profile-stats.svg=shadow/assets-py/assets/profile-stats.svg:shadow/assets-rs/assets/profile-stats.svg" \
+            "assets: profile-streak.svg=shadow/assets-py/assets/profile-streak.svg:shadow/assets-rs/assets/profile-streak.svg" \
+            "assets: profile-trophies.svg=shadow/assets-py/assets/profile-trophies.svg:shadow/assets-rs/assets/profile-trophies.svg" \
+            "assets: profile-projects.svg=shadow/assets-py/assets/profile-projects.svg:shadow/assets-rs/assets/profile-projects.svg"

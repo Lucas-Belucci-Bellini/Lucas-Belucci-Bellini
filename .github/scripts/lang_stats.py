@@ -31,9 +31,16 @@ Variáveis de ambiente:
     GH_USER        login do dono (padrão: Lucas-Belucci-Bellini)
     INCLUDE_FORKS  "1" para incluir forks (padrão: 0)
     SEM_ARQUIVOS   "1" pula a varredura de tipos de arquivo (padrão: 0)
+    GITHUB_API_URL base da API REST (o Actions já define; os testes apontam
+                   para um GitHub simulado)
+
+Opções (paridade com o profile-core render lang-stats, tests/e2e):
+    --root DIR     outra raiz para docs/README_EXCLUDED.json e assets/
+    --now ISO      relógio fixo, com fuso (o carimbo dos SVGs)
 """
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import re
@@ -44,7 +51,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-API = "https://api.github.com"
+API = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
 USER = os.environ.get("GH_USER", "Lucas-Belucci-Bellini")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 INCLUDE_FORKS = os.environ.get("INCLUDE_FORKS", "0") == "1"
@@ -74,6 +81,15 @@ ROOT = Path(__file__).resolve().parents[2]
 EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
 SVG_OUT = ROOT / "assets" / "lang-stats.svg"
 PROFILE_TOP_LANGS_OUT = ROOT / "assets" / "profile-top-langs.svg"
+
+
+def configure_root(root: Path) -> None:
+    """Aponta o manifesto de exclusões e os SVGs para outra raiz (`--root`)."""
+    global ROOT, EXCLUDED_FILE, SVG_OUT, PROFILE_TOP_LANGS_OUT
+    ROOT = root.resolve()
+    EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
+    SVG_OUT = ROOT / "assets" / "lang-stats.svg"
+    PROFILE_TOP_LANGS_OUT = ROOT / "assets" / "profile-top-langs.svg"
 
 # Paleta "Ouro de Fábula" (docs/DESIGN-SYSTEM.md do Projeto Baluarte)
 BG = "#0e0c16"
@@ -267,8 +283,8 @@ def without_excluded(repos: list[dict], excluded: set[str]) -> list[dict]:
     ]
 
 
-def collect() -> dict:
-    repos = without_excluded(list_repos(), load_excluded_names())
+def collect(now: datetime | None = None) -> dict:
+    repos = without_excluded(list_repos(), load_excluded_names(EXCLUDED_FILE))
     per_lang: dict[str, int] = {}
     per_lang_repos: dict[str, list[tuple[str, int, bool]]] = {}
     per_ext: dict[str, int] = {}
@@ -338,7 +354,7 @@ def collect() -> dict:
         "falhados": falhados,
         "arquivos_total": arquivos_total,
         "total_bytes": sum(per_lang.values()),
-        "generated": datetime.now(timezone.utc),
+        "generated": now or datetime.now(timezone.utc),
     }
 
 
@@ -526,8 +542,24 @@ def mesmo_conteudo(novo: str, antigo: str) -> bool:
     return CARIMBO_RE.sub("@", novo) == CARIMBO_RE.sub("@", antigo)
 
 
-def main() -> int:
-    data = collect()
+def parse_now(value: str | None) -> datetime | None:
+    """`--now`: relógio fixo com fuso; sem ele, o relógio de verdade."""
+    if not value:
+        return None
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("--now must include a timezone, e.g. 2026-09-25T12:00:00Z")
+    return parsed
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Gera assets/lang-stats.svg e assets/profile-top-langs.svg.")
+    parser.add_argument("--root", help="outra raiz para docs/README_EXCLUDED.json e assets/ (testes/paridade)")
+    parser.add_argument("--now", help="relógio fixo, ISO 8601 com fuso (testes/paridade)")
+    args = parser.parse_args(argv)
+    if args.root:
+        configure_root(Path(args.root))
+    data = collect(parse_now(args.now))
     if not data["per_lang"]:
         print("Nenhuma linguagem coletada — abortando sem alterar arquivos.", file=sys.stderr)
         return 1
