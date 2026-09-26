@@ -4,6 +4,7 @@
 //! no mapa), o Python conta **code points**, não bytes: `chars()` aqui.
 
 use ecosystem_domain::text::py_is_space;
+use serde_json::Value;
 
 /// `urllib.parse.quote(text, safe="")`: só letras e dígitos ASCII e `_.-~`
 /// passam; o resto vira `%XX` (maiúsculo) sobre os bytes UTF-8.
@@ -58,9 +59,38 @@ pub fn md_cell(text: &str) -> String {
     text.replace('|', "\\|")
 }
 
+/// `json.dumps(value, ensure_ascii=False[, sort_keys=True])`: separadores
+/// `", "` e `": "`, texto sem escapar o que não é ASCII.
+pub fn py_dumps(value: &Value, sort_keys: bool) -> String {
+    match value {
+        Value::Object(map) => {
+            let mut fields: Vec<(&String, &Value)> = map.iter().collect();
+            if sort_keys {
+                fields.sort_by(|a, b| a.0.cmp(b.0));
+            }
+            let fields: Vec<String> = fields
+                .into_iter()
+                .map(|(key, value)| format!("{}: {}", Value::String(key.clone()), py_dumps(value, sort_keys)))
+                .collect();
+            format!("{{{}}}", fields.join(", "))
+        }
+        Value::Array(items) => {
+            format!("[{}]", items.iter().map(|item| py_dumps(item, sort_keys)).collect::<Vec<_>>().join(", "))
+        }
+        other => other.to_string(),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn dumps_como_o_python() {
+        let value = serde_json::json!({"b": ["x", "ç\"\n"], "a": 1, "c": true, "d": []});
+        assert_eq!(r#"{"b": ["x", "ç\"\n"], "a": 1, "c": true, "d": []}"#, py_dumps(&value, false));
+        assert_eq!(r#"{"a": 1, "b": ["x", "ç\"\n"], "c": true, "d": []}"#, py_dumps(&value, true));
+    }
 
     #[test]
     fn quote_sem_nada_seguro() {

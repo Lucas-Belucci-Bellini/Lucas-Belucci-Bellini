@@ -23,6 +23,8 @@
 
 pub mod badges;
 pub mod blocks;
+pub mod cards;
+pub mod lang_stats;
 pub mod languages;
 pub mod pytext;
 pub mod snapshot;

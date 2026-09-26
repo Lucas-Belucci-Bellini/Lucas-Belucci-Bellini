@@ -7,6 +7,8 @@
 //! | `update_profile.api_get` | 1 | nada: erro propaga |
 //! | `ecosystem_watch.api` | até 4 | 429, 5xx, 403 com `X-RateLimit-Remaining: 0` (esperando `Retry-After` só com dígitos, senão 2ⁿ s, no máximo 30); falha de conexão e timeout (2ⁿ s) |
 //! | `update_contribution_timeline.query_period` | 1 | nada (POST GraphQL) |
+//! | `lang_stats.api` | até 4 | 403 e 429 (2ⁿ⁺¹ s) e, com `retry_denied`, 404/409 viram "nada" (`null`); falha de conexão e timeout (2ⁿ⁺¹ s) |
+//! | `profile_cards.request_data` | 1 | nada (POST GraphQL) |
 //!
 //! O cliente é um só; a política é argumento ([`Retry`]). Os erros sabem o
 //! texto que o Python gravaria (`str(exc)`, pelo `Display` de [`ApiError`]):
@@ -27,6 +29,8 @@ pub const DEFAULT_GRAPHQL_URL: &str = "https://api.github.com/graphql";
 pub const TIMEOUT: Duration = Duration::from_secs(30);
 /// `MAX_RETRIES` do `ecosystem_watch.py`.
 pub const WATCH_ATTEMPTS: u32 = 4;
+/// `for attempt in range(4)` do `lang_stats.api`.
+pub const LANG_STATS_ATTEMPTS: u32 = 4;
 /// Teto de espera entre tentativas (`min(delay, 30)`).
 pub const MAX_DELAY_UNITS: u64 = 30;
 
@@ -67,6 +71,23 @@ pub enum Retry {
     Never,
     /// `ecosystem_watch.api()`.
     Watch,
+    /// `lang_stats.api(..., retry_denied)`. Com `retry_denied`, 403/429
+    /// esperam e tentam de novo, e 404/409 devolvem `null` (o `None` do
+    /// Python: "não há nada aqui"); sem ele, os quatro propagam na hora.
+    LangStats {
+        /// O `retry_denied` do Python.
+        retry_denied: bool,
+    },
+}
+
+/// O que o `lang_stats.api` faz com um erro.
+enum LangStatsStep {
+    /// Espera tantas unidades e tenta de novo.
+    Wait(u64),
+    /// Devolve `None`.
+    Nothing,
+    /// Propaga.
+    Raise,
 }
 
 /// Configuração do cliente.
@@ -168,6 +189,19 @@ impl ApiError {
             Self::Transport(_) | Self::Json(_) => None,
         }
     }
+
+    /// `lang_stats.api()`: 403/429 (com `retry_denied`) e falha de rede
+    /// esperam `2 ** (attempt + 1)` s nas três primeiras tentativas.
+    fn lang_stats_step(&self, attempt: u32, retry_denied: bool) -> LangStatsStep {
+        let wait = attempt + 1 < LANG_STATS_ATTEMPTS;
+        let backoff = 2_u64.pow(attempt + 1);
+        match self {
+            Self::Http { status: 403 | 429, .. } if retry_denied && wait => LangStatsStep::Wait(backoff),
+            Self::Http { status: 404 | 409, .. } if retry_denied => LangStatsStep::Nothing,
+            Self::Url(_) | Self::Timeout if wait => LangStatsStep::Wait(backoff),
+            _ => LangStatsStep::Raise,
+        }
+    }
 }
 
 /// Cliente REST + GraphQL. Clonar é barato (o pool HTTP é compartilhado).
@@ -225,21 +259,24 @@ impl Client {
     /// GET de um caminho REST que devolve JSON, com a política dada.
     pub async fn get_json(&self, path: &str, retry: Retry) -> Result<Value, ApiError> {
         let url = self.rest_url(path);
-        let attempts = match retry {
-            Retry::Never => 1,
-            Retry::Watch => WATCH_ATTEMPTS,
-        };
         let mut attempt = 0;
         loop {
-            match self.send(self.authorize(self.http.get(&url))).await {
+            let error = match self.send(self.authorize(self.http.get(&url))).await {
                 Ok(value) => return Ok(value),
-                Err(error) => {
-                    let delay = error.watch_delay(attempt).filter(|_| attempt + 1 < attempts);
-                    let Some(delay) = delay else { return Err(error) };
-                    tokio::time::sleep(self.settings.delay_unit * u32::try_from(delay).unwrap_or(u32::MAX)).await;
-                    attempt += 1;
-                }
-            }
+                Err(error) => error,
+            };
+            let delay = match retry {
+                Retry::Never => None,
+                Retry::Watch => error.watch_delay(attempt).filter(|_| attempt + 1 < WATCH_ATTEMPTS),
+                Retry::LangStats { retry_denied } => match error.lang_stats_step(attempt, retry_denied) {
+                    LangStatsStep::Wait(delay) => Some(delay),
+                    LangStatsStep::Nothing => return Ok(Value::Null),
+                    LangStatsStep::Raise => None,
+                },
+            };
+            let Some(delay) = delay else { return Err(error) };
+            tokio::time::sleep(self.settings.delay_unit * u32::try_from(delay).unwrap_or(u32::MAX)).await;
+            attempt += 1;
         }
     }
 
@@ -417,6 +454,26 @@ mod tests {
         assert_eq!(Some(2), ApiError::Url("x".into()).watch_delay(1));
         assert_eq!(None, ApiError::Transport("x".into()).watch_delay(0));
         assert_eq!(None, ApiError::Json("x".into()).watch_delay(0));
+    }
+
+    #[test]
+    fn politica_do_lang_stats() {
+        let step = |error: ApiError, attempt, denied| match error.lang_stats_step(attempt, denied) {
+            LangStatsStep::Wait(delay) => format!("espera {delay}"),
+            LangStatsStep::Nothing => "nada".into(),
+            LangStatsStep::Raise => "propaga".into(),
+        };
+        assert_eq!("espera 2", step(http(403, None, None), 0, true));
+        assert_eq!("espera 8", step(http(429, None, None), 2, true));
+        assert_eq!("propaga", step(http(429, None, None), 3, true), "quarta tentativa");
+        assert_eq!("propaga", step(http(403, None, None), 0, false), "sem retry_denied o chamador decide");
+        assert_eq!("nada", step(http(404, None, None), 0, true));
+        assert_eq!("nada", step(http(409, None, None), 3, true));
+        assert_eq!("propaga", step(http(404, None, None), 0, false));
+        assert_eq!("propaga", step(http(500, None, None), 0, true), "5xx não tenta de novo aqui");
+        assert_eq!("espera 4", step(ApiError::Url("x".into()), 1, false));
+        assert_eq!("propaga", step(ApiError::Timeout, 3, true));
+        assert_eq!("propaga", step(ApiError::Json("x".into()), 0, true));
     }
 
     #[test]

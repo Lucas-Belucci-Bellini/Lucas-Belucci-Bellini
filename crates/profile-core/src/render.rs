@@ -16,7 +16,7 @@
 
 use std::path::{Path, PathBuf};
 
-use profile_render::pytext::py_prefix;
+use profile_render::pytext::{py_dumps, py_prefix};
 use profile_render::snapshot::generated_at;
 use profile_render::{Inputs, Profile};
 use serde_json::{Value, json};
@@ -64,19 +64,6 @@ fn write_catalog(text: &str, path: &Path) -> Result<bool, BuildError> {
         catalog::CatalogError::Io { path, source } => BuildError::Disk { path, source },
         other => BuildError::Catalog(other),
     })
-}
-
-/// `json.dumps(summary, ensure_ascii=False)`: separadores `", "` e `": "`.
-fn py_dumps(value: &Value) -> String {
-    match value {
-        Value::Object(map) => {
-            let fields: Vec<String> =
-                map.iter().map(|(key, value)| format!("{}: {}", Value::String(key.clone()), py_dumps(value))).collect();
-            format!("{{{}}}", fields.join(", "))
-        }
-        Value::Array(items) => format!("[{}]", items.iter().map(py_dumps).collect::<Vec<_>>().join(", ")),
-        other => other.to_string(),
-    }
 }
 
 /// O resumo que o `main()` do Python imprime por último.
@@ -140,7 +127,7 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
         write_catalog(&catalog_text, &dir.join("project-catalog.json"))?;
     }
     let summary = summary(&prepared, profile.rows.len(), catalog_written, options);
-    stdout.push_str(&py_dumps(&summary));
+    stdout.push_str(&py_dumps(&summary, false));
     stdout.push('\n');
     let note = format!(
         "README: {} repositórios, {} linguagens públicas, {} sites no ar; carimbo {stamp}{}",
@@ -150,15 +137,4 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
         if options.build.write { "; gravado" } else { "" }
     );
     Ok(Rendered { stdout, note })
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn dumps_como_o_python() {
-        let value = json!({"a": 1, "b": ["x", "ç\"\n"], "c": true, "d": []});
-        assert_eq!(r#"{"a": 1, "b": ["x", "ç\"\n"], "c": true, "d": []}"#, py_dumps(&value));
-    }
 }
