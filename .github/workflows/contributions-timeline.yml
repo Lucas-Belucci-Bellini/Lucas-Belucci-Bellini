@@ -4,7 +4,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "23 6 * * *"
+  # Só no main, como os outros três workflows que escrevem no repositório:
+  # sem o filtro, qualquer branch que tocasse estes caminhos recebia um
+  # commit de dados do bot.
   push:
+    branches: [main]
     paths:
       - "scripts/update_contribution_timeline.py"
       - "docs/CONTRIBUTIONS_TIMELINE.md"
@@ -29,7 +33,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Regenerate contribution timeline
         env:
@@ -39,9 +43,12 @@ jobs:
 
       - name: Validate generated artifacts
         run: |
+          # Só o que este workflow gera. A checagem HTTP dos badges do shields.io
+          # saiu daqui: ela bloqueava a timeline por instabilidade de terceiros
+          # que não tem relação com o gráfico (auditoria, A10).
           python3 -m py_compile scripts/update_contribution_timeline.py
-          python3 scripts/validate_exclusions.py
-          python3 scripts/validate_language_badges.py
+          python3 -m json.tool docs/assets/contributions-timeline-data.json >/dev/null
+          test -s docs/assets/contributions-timeline.html
           git diff --check
 
       - name: Commit only real changes
@@ -54,4 +61,4 @@ jobs:
             exit 0
           fi
           git commit -m "chore(profile): refresh contribution timeline [skip ci]"
-          git push
+          bash .github/scripts/push_with_rebase.sh

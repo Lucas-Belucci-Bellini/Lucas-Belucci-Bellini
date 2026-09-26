@@ -1,0 +1,140 @@
+name: Rust Core
+
+# Núcleo em Rust (crates/**): formato, lints, testes (inclusive a paridade com
+# o Python e os testes de banco contra PostgreSQL 16) e o binário profile-core
+# de ponta a ponta — migrations, check sites contra o check_websites.py, a
+# coleta (catálogo, monitor de commits, contribuições) e o README contra os
+# geradores Python, os dois lendo o mesmo GitHub simulado; e o README do Rust
+# sobre a árvore real do perfil, aprovado pelos validadores do Python.
+# Aditivo: não escreve no repositório. Ver docs/migration/PYTHON-TO-RUST.md.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "crates/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "rust-toolchain.toml"
+      - "rustfmt.toml"
+      - "db/migrations/**"
+      - "db/seeds/**"
+      - "db/tests/**"
+      - "tests/fixtures/parity/**"
+      - "tests/e2e/**"
+      - "tests/fake_github.py"
+      - "scripts/check_websites.py"
+      - "scripts/project_catalog.py"
+      - "scripts/update_profile.py"
+      - "scripts/update_contribution_timeline.py"
+      - "scripts/validate_*.py"
+      - ".github/scripts/ecosystem_watch.py"
+      - ".github/workflows/rust.yml"
+  push:
+    branches: [main]
+    paths:
+      - "crates/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "rust-toolchain.toml"
+      - "rustfmt.toml"
+      - "db/migrations/**"
+      - "db/seeds/**"
+      - "db/tests/**"
+      - "tests/fixtures/parity/**"
+      - "tests/e2e/**"
+      - "tests/fake_github.py"
+      - "scripts/check_websites.py"
+      - "scripts/project_catalog.py"
+      - "scripts/update_profile.py"
+      - "scripts/update_contribution_timeline.py"
+      - "scripts/validate_*.py"
+      - ".github/scripts/ecosystem_watch.py"
+      - ".github/workflows/rust.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: rust-core-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      CARGO_TERM_COLOR: always
+      CARGO_INCREMENTAL: "0"
+      PGHOST: localhost
+      PGPORT: "5432"
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      # Testes de banco: cada um cria e apaga o próprio banco a partir desta
+      # URL. REQUIRED faz a falta de banco reprovar em vez de pular calada.
+      STORE_TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+      STORE_TESTS_REQUIRED: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python (a referência de paridade é o Python do CI)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Toolchain (versão fixada em rust-toolchain.toml)
+        run: |
+          toolchain="$(sed -n 's/^channel = "\(.*\)"$/\1/p' rust-toolchain.toml)"
+          rustup toolchain install "$toolchain" --profile minimal --component rustfmt,clippy
+          rustc --version && cargo --version
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            target
+          key: cargo-${{ runner.os }}-${{ hashFiles('rust-toolchain.toml') }}-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            cargo-${{ runner.os }}-${{ hashFiles('rust-toolchain.toml') }}-
+
+      - name: Format
+        run: cargo fmt --all --check
+
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+
+      - name: Tests (paridade com o Python, banco, CLI)
+        run: cargo test --workspace --locked
+
+      - name: profile-core de ponta a ponta (schema = psql, testes SQL, trava de perda de dados)
+        run: |
+          cargo build --release --locked -p profile-core
+          bash db/tests/profile_core_e2e.sh target/release/profile-core
+
+      - name: check sites = check_websites.py (servidor local, texto, JSON e código de saída)
+        run: python tests/e2e/check_sites_parity.py target/release/profile-core
+
+      - name: coleta e README Rust = Python (catálogo, README, monitor, contribuições; GitHub simulado)
+        run: python tests/e2e/github_parity.py target/release/profile-core
+
+      - name: README do Rust na árvore real do perfil = Python, aprovado pelos validadores
+        run: python tests/e2e/readme_validators.py target/release/profile-core

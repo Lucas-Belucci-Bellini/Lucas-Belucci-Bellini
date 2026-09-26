@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import html
 import json
 import os
@@ -14,7 +15,9 @@ LOGIN = os.environ.get("PROFILE_LOGIN", "Lucas-Belucci-Bellini")
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "docs/assets/contributions-timeline-data.json"
 HTML_PATH = ROOT / "docs/assets/contributions-timeline.html"
-GRAPHQL_URL = "https://api.github.com/graphql"
+# O Actions já define GITHUB_GRAPHQL_URL com este valor; fora dele, a
+# variável aponta a coleta para um GitHub simulado (tests/e2e).
+GRAPHQL_URL = os.environ.get("GITHUB_GRAPHQL_URL", "https://api.github.com/graphql")
 QUERY = """
 query($login:String!, $from:DateTime!, $to:DateTime!) {
   user(login:$login) {
@@ -80,8 +83,9 @@ def query_period(token: str, start: date, end: date) -> dict[str, int]:
     }
 
 
-def collect(token: str) -> dict[str, object]:
-    today = datetime.now(timezone.utc).date()
+def collect(token: str, now: datetime | None = None) -> dict[str, object]:
+    now = now or datetime.now(timezone.utc)
+    today = now.date()
     start = today - timedelta(days=365)
     rows: list[dict[str, object]] = []
     for period_start, period_end in period_ranges(start, today):
@@ -92,7 +96,7 @@ def collect(token: str) -> dict[str, object]:
         "login": LOGIN,
         "window_start": start.isoformat(),
         "window_end": today.isoformat(),
-        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "generated_at": now.isoformat(timespec="seconds"),
         "source": "GitHub GraphQL API / contributionsCollection",
         "rows": rows,
     }
@@ -157,20 +161,43 @@ def render_html(payload: dict[str, object]) -> str:
 '''
 
 
-def main() -> int:
+def parse_now(value: str | None) -> datetime | None:
+    """`--now` fixa o relógio (testes e modo sombra); sem ele, o relógio real."""
+    if not value:
+        return None
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("--now must include a timezone, e.g. 2026-09-25T12:00:00Z")
+    return parsed.astimezone(timezone.utc)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Coleta mensal de contribuições (GraphQL) e timeline HTML.")
+    # --root e --now não mudam nada quando omitidos: existem para o teste de
+    # ponta a ponta rodar o Python e o núcleo em Rust com a mesma raiz e relógio.
+    parser.add_argument("--root", type=Path, default=ROOT, help="raiz onde docs/assets/ é gravado")
+    parser.add_argument("--now", help="relógio fixo, ISO 8601 com fuso")
+    args = parser.parse_args(argv)
+    data_path = args.root / DATA_PATH.relative_to(ROOT)
+    html_path = args.root / HTML_PATH.relative_to(ROOT)
+    try:
+        now = parse_now(args.now)
+    except ValueError as error:
+        print(f"timeline generation failed: {error}", file=sys.stderr)
+        return 2
     token = os.environ.get("PROFILE_README_TOKEN") or os.environ.get("GITHUB_TOKEN")
     if not token:
         print("PROFILE_README_TOKEN ou GITHUB_TOKEN ausente", file=sys.stderr)
         return 2
     try:
-        payload = collect(token)
+        payload = collect(token, now)
     except Exception as error:  # noqa: BLE001
         print(f"timeline generation failed: {error}", file=sys.stderr)
         return 1
-    DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
-    DATA_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    HTML_PATH.write_text(render_html(payload), encoding="utf-8")
-    print(f"timeline updated: rows={len(payload['rows'])} html={HTML_PATH.relative_to(ROOT)}")
+    data_path.parent.mkdir(parents=True, exist_ok=True)
+    data_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    html_path.write_text(render_html(payload), encoding="utf-8")
+    print(f"timeline updated: rows={len(payload['rows'])} html={html_path.relative_to(args.root)}")
     return 0
 
 

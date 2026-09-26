@@ -65,3 +65,58 @@ O workflow `v2-validation.yml` passou a executar `scripts/validate_language_badg
 Os cards de atividade agora distinguem `CONTRIBUIÇÕES TOTAIS`, `COMMITS DIRETOS` e `REPOS CRIADOS`. Na janela de 365 dias analisada, 1.807 contribuições são explicadas por 1.114 commits, 535 pull requests, 94 issues, 3 reviews e 61 contribuições de repositório. A diferença é semântica e esperada, não uma inconsistência do contador.
 
 O relatório detalhado da alteração está em `docs/README_BADGES_METRICS_REPORT.md`.
+
+
+## 2026-09-25 — auditoria do núcleo e Fase 0 de estabilização
+
+A [auditoria técnica](audits/2026-09-25-ecosystem-core-audit.md) mostrou que o refresh do README não rodava desde 26/08 (o workflow pulava sem o secret `PROFILE_README_TOKEN` e ficava verde), que quatro coletores usam quatro definições de inventário e que dois scripts gravavam o mesmo `assets/lang-stats.svg`. A arquitetura alvo (núcleo com PostgreSQL, migração gradual para Rust) está em `docs/architecture/`, `docs/database/`, `docs/migration/` e `docs/DECISION-LOG.md`; o schema e seus testes, em `db/`.
+
+A Fase 0 corrigiu o que tornava o pipeline atual imprevisível, sem mexer no design do README nem no conteúdo fora dos marcadores:
+
+- `replace_block` trata o corpo como texto literal: uma descrição com `\` não derruba mais o refresh, e `\g<0>` não é mais substituído em silêncio.
+- `assets/lang-stats.svg` tem um escritor só, o `lang_stats.py`, preservando o painel publicado; o bot parou de procurar o bloco `LANG-STATS`, que não existe desde agosto, e passou a aplicar as exclusões editoriais.
+- O carimbo "atualizado em" não é mais ditado pelo push horário do próprio perfil.
+- `update-profile.yml` termina **vermelho** quando o secret falta (testes e validações ainda rodam); ganhou `timeout-minutes`, `concurrency` e a conferência dos 13 marcadores.
+- Os quatro workflows que escrevem no `main` fazem push com rebase e nova tentativa.
+- A timeline não depende mais do shields.io para publicar.
+- `restore_original_style.py` foi aposentado; `validate_restored_style.py` passou a rodar no CI.
+- Teste golden do gerador: entrada sintética fixa → README, catálogo e SVG byte a byte (`tests/test_golden_profile.py`).
+
+Pendências do dono do perfil: configurar `PROFILE_README_TOKEN` e decidir se as linguagens de repositórios privados continuam no mapa completo de projetos.
+
+
+## 2026-09-25 — Fase 1: fundação do núcleo em Rust
+
+O README e os assets não mudaram. Entrou o começo do núcleo que vai gerá-los:
+
+- **Workspace Cargo** com três crates: `ecosystem-domain` (regras puras do catálogo, sem rede nem banco), `store` (PostgreSQL) e `profile-core` (a CLI).
+- **Paridade provada, não suposta.** As regras de classificação, status, prioridade, apresentação e descoberta de site foram portadas para Rust e conferidas contra as funções Python reais em 640 casos de um fixture compartilhado (`tests/fixtures/parity/domain.json`), gerado pelo Python do CI. O port reproduz de propósito as peculiaridades do Python — inclusive o defeito A6 e a leitura de datas do `fromisoformat`, portada do C do CPython.
+- **`profile-core db migrate | revert | status`** aplica as migrations de `db/migrations`, embutidas no binário. Tudo ou nada; reverter com dado exige `--allow-data-loss`; o schema aplicado pelo binário é idêntico ao aplicado pelo psql.
+- Novo workflow **Rust Core**: formato, lints, testes (com PostgreSQL 16) e o binário de ponta a ponta.
+
+Decisões em `docs/DECISION-LOG.md` (D-023 a D-025); plano atualizado em `docs/migration/PYTHON-TO-RUST.md`.
+
+
+## 2026-09-26 — Fase 2: monitor de sites em Rust, em modo sombra
+
+O README e os assets não mudaram. O `scripts/check_websites.py` ganhou um equivalente em Rust, que por enquanto só roda ao lado dele:
+
+- **`profile-core check sites`** imprime o mesmo relatório (texto, `--json` e código de saída), byte a byte, exceto o horário da checagem. Para chegar lá, o crate `site-monitor` porta do Python a parte que decide o relatório — a forma como o `urllib` monta a URL final, resolve redirecionamentos e detecta laços — e confere contra um fixture gerado pela própria biblioteca padrão, na versão do CI.
+- **Histórico:** cada checagem pode ser gravada em `ecosystem.website_checks` (nunca sobrescrita). Sem banco configurado, o comando recusa em vez de pular o histórico sem avisar.
+- **Prova:** Python e Rust rodam contra o mesmo servidor local com 45 cenários (redirects, laços, erros, timeout, TLS) e dão o mesmo resultado. O novo workflow *Site Monitor Shadow* repete a comparação todo dia sobre os sites reais.
+- **Achados:** o monitor Python publica como "no ar" sites cujo redirecionamento falha em laço ou aponta para `mailto:` (A21), e uma URL com porta inválida derruba a verificação inteira (A22). O Rust reproduz o primeiro de propósito, até a decisão editorial, e não reproduz a queda.
+
+Decisões em `docs/DECISION-LOG.md` (D-026 a D-028).
+
+## 2026-09-26 — Fase 3: coleta do GitHub em Rust, em modo sombra
+
+O README e os assets não mudaram. Os três coletores Python ganharam equivalentes em Rust, que por enquanto só rodam ao lado deles e são comparados todo dia:
+
+- **Catálogo:** `profile-core catalog build` gera o `docs/project-catalog.json` com os mesmos bytes do `update_profile.py` — conferido no teste golden e num GitHub simulado com 109 repositórios, com e sem token.
+- **Monitor de commits:** `profile-core sync commits` lê o mesmo `ECOSYSTEM-COMMIT-STATE.json` e produz o mesmo estado, o mesmo relatório e os mesmos contadores do `ecosystem_watch.py`, inclusive os textos de erro que o Python grava.
+- **Contribuições:** `profile-core sync contributions` gera o mesmo JSON e a mesma página da timeline.
+- **Banco:** `sync github` grava o inventário (repositórios, linguagens, projetos, sites de homepage) sem nunca apagar — quem some ganha data de saída, e só com inventário completo. `import manifests` espelha os manifestos editoriais; `import legacy` faz a carga única do que só existe em JSON, e pode rodar de novo sem duplicar nada.
+- **Prova:** fixtures gerados pelos scripts Python reais (12 cenários do monitor, 8 da timeline), um teste de ponta a ponta com os dois lados contra o mesmo GitHub simulado e o novo workflow *Core Shadow*, que compara tudo sobre os dados reais.
+- **Achados:** um estado ilegível do monitor zera o contador acumulado (A23); o estado grava mensagens internas do Python (A24); uma falha passageira apaga as linguagens de um repositório no README do dia (A25).
+
+Decisões em `docs/DECISION-LOG.md` (D-029 a D-033).

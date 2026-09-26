@@ -18,6 +18,11 @@ on:
 permissions:
   contents: write
 
+# Um refresh por vez; o seguinte espera em vez de cancelar o que está rodando.
+concurrency:
+  group: update-profile
+  cancel-in-progress: false
+
 env:
   PROFILE_GITHUB_TOKEN: ${{ secrets.PROFILE_README_TOKEN }}
   GITHUB_TOKEN: ${{ github.token }}
@@ -26,6 +31,7 @@ jobs:
   refresh:
     name: Audit repositories and refresh generated profile sections
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out profile repository
         uses: actions/checkout@v4
@@ -35,7 +41,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Snapshot README before refresh
         run: cp README.md /tmp/README.before.md
@@ -46,7 +52,7 @@ jobs:
 
       - name: Skip refresh when private-aware inventory is unavailable
         if: ${{ env.PROFILE_GITHUB_TOKEN == '' }}
-        run: echo "PROFILE_README_TOKEN is not configured; preserving the private-aware catalog."
+        run: echo "::warning::PROFILE_README_TOKEN is not configured; refresh skipped, README preserved. The job will fail at the end so this is not mistaken for success."
 
       - name: Run the profile test suite
         run: python3 -m unittest discover -s tests
@@ -66,35 +72,30 @@ jobs:
           test -s assets/lang-stats.svg
           test -s assets/profile-snapshot.svg
           test -s docs/project-catalog.json
-          grep -q '<!-- PROFILE-DASHBOARD:START -->' README.md
-          grep -q '<!-- PROFILE-DASHBOARD:END -->' README.md
-          grep -q '<!-- WHAT-I-BUILD:START -->' README.md
-          grep -q '<!-- WHAT-I-BUILD:END -->' README.md
-          grep -q '<!-- WEBSITE-DIRECTORY:START -->' README.md
-          grep -q '<!-- WEBSITE-DIRECTORY:END -->' README.md
-          grep -q '<!-- ARSENAL-STACK:START -->' README.md
-          grep -q '<!-- ARSENAL-STACK:END -->' README.md
-          grep -q '<!-- LANGUAGE-BADGES:START -->' README.md
-          grep -q '<!-- LANGUAGE-BADGES:END -->' README.md
-          grep -q '<!-- PROJECT-MAP:START -->' README.md
-          grep -q '<!-- PROJECT-MAP:END -->' README.md
-          grep -q '<!-- LANGUAGE-STATS:START -->' README.md
-          grep -q '<!-- LANGUAGE-STATS:END -->' README.md
-          grep -q '<!-- LIVE-PROJECTS:START -->' README.md
-          grep -q '<!-- LIVE-PROJECTS:END -->' README.md
-          grep -q '<!-- PRODUCT-CARDS:START -->' README.md
-          grep -q '<!-- PRODUCT-CARDS:END -->' README.md
-          grep -q '<!-- ECOSYSTEM-MAP:START -->' README.md
-          grep -q '<!-- ECOSYSTEM-MAP:END -->' README.md
+          # Os 13 blocos gerados (antes faltavam FEATURED-PROJECTS, PUBLIC-PROJECTS e PRIVATE-PROJECTS).
+          for marker in PROFILE-DASHBOARD WHAT-I-BUILD PRODUCT-CARDS FEATURED-PROJECTS \
+                        WEBSITE-DIRECTORY LIVE-PROJECTS ECOSYSTEM-MAP PROJECT-MAP \
+                        LANGUAGE-BADGES ARSENAL-STACK LANGUAGE-STATS PUBLIC-PROJECTS PRIVATE-PROJECTS; do
+            grep -q "<!-- ${marker}:START -->" README.md && grep -q "<!-- ${marker}:END -->" README.md \
+              || { echo "::error::marcador ausente no README: ${marker}"; exit 1; }
+          done
 
       - name: Commit only real changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- README.md assets/lang-stats.svg assets/profile-snapshot.svg docs/project-catalog.json; then
+          if git diff --quiet -- README.md assets/profile-snapshot.svg docs/project-catalog.json; then
             echo "No generated changes detected."
             exit 0
           fi
-          git add README.md assets/lang-stats.svg assets/profile-snapshot.svg docs/project-catalog.json
+          git add README.md assets/profile-snapshot.svg docs/project-catalog.json
           git commit -m "chore(profile): refresh repository catalog"
-          git push
+          bash .github/scripts/push_with_rebase.sh
+
+      # Verde que não fez nada é o pior estado possível (auditoria, A1): sem o
+      # token, os testes e validações acima rodam, mas o job termina vermelho.
+      - name: Fail when the refresh was skipped
+        if: ${{ env.PROFILE_GITHUB_TOKEN == '' }}
+        run: |
+          echo "::error::PROFILE_README_TOKEN is not configured: the README was NOT refreshed. Add a fine-grained PAT (Metadata: read) as the repository secret PROFILE_README_TOKEN."
+          exit 1
