@@ -10,7 +10,7 @@ use std::net::TcpListener;
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicUsize, Ordering};
 
-use common::{TempDb, profile_core, text};
+use common::{TempDb, profile_core, profile_core_env, text};
 use sqlx::postgres::PgConnection;
 
 static ROOTS: AtomicUsize = AtomicUsize::new(0);
@@ -159,4 +159,19 @@ async fn grava_o_historico_dos_sites_registrados() {
     fail.push("--fail-on-down");
     assert_eq!(Some(1), profile_core(&fail, url).status.code());
     assert_eq!(before + 1, sync_runs(&mut conn).await);
+
+    // No GitHub Actions, a proveniência vem do ambiente.
+    let actions = [("GITHUB_WORKFLOW", "Site Monitor Shadow"), ("GITHUB_SHA", "deadbeef"), ("GITHUB_RUN_ID", "42")];
+    assert!(profile_core_env(&args, url, &actions).status.success());
+    let provenance: (String, Option<String>, Option<String>) = sqlx::query_as(
+        "SELECT source, code_version, external_ref FROM ecosystem.sync_runs \
+         WHERE kind = 'websites' ORDER BY id DESC LIMIT 1",
+    )
+    .fetch_one(&mut conn)
+    .await
+    .unwrap();
+    assert_eq!(
+        ("github-actions:Site Monitor Shadow".to_string(), Some("deadbeef".to_string()), Some("42".to_string())),
+        provenance
+    );
 }

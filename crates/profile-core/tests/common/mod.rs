@@ -14,12 +14,25 @@ use sqlx::{AssertSqlSafe, Connection};
 pub const BIN: &str = env!("CARGO_BIN_EXE_profile-core");
 static COUNTER: AtomicUsize = AtomicUsize::new(0);
 
+/// Variáveis do ambiente que mudam o que o binário grava (proveniência).
+/// Os testes não as herdam: no GitHub Actions elas existem, localmente não.
+const PROVENANCE: [&str; 3] = ["GITHUB_WORKFLOW", "GITHUB_SHA", "GITHUB_RUN_ID"];
+
 pub fn profile_core(args: &[&str], database_url: Option<&str>) -> Output {
+    profile_core_env(args, database_url, &[])
+}
+
+/// Como [`profile_core`], com variáveis de ambiente extras.
+pub fn profile_core_env(args: &[&str], database_url: Option<&str>, env: &[(&str, &str)]) -> Output {
     let mut command = Command::new(BIN);
     command.args(args).env_remove("DATABASE_URL");
+    for name in PROVENANCE {
+        command.env_remove(name);
+    }
     if let Some(url) = database_url {
         command.env("DATABASE_URL", url);
     }
+    command.envs(env.iter().copied());
     command.output().expect("executa profile-core")
 }
 
