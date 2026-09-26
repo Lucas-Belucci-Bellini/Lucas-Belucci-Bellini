@@ -115,16 +115,28 @@ No CI: [`db-validation.yml`](../../.github/workflows/db-validation.yml), com
    `down` existe para desenvolvimento, CI e emergência; em produção, só com
    exportação prévia e opt-in explícito.
 
-## 6. Carga inicial do estado existente (planejada)
+## 6. Carga inicial do estado existente
 
-Executada uma vez, por `profile-core import legacy`, dentro de um `sync_run`
-do tipo `legacy_import`. Ordem e checagens:
+Implementada na Fase 3 (D-032). A ordem num banco novo:
+
+```bash
+profile-core db migrate
+profile-core sync github            # passo 2 — exige PROFILE_GITHUB_TOKEN (inventário completo)
+profile-core import manifests       # passos 1 e 3 — os docs/README_*.json
+profile-core import legacy          # passos 3b a 7 — o que só existe em JSON
+```
+
+`import legacy` roda num `sync_run` do tipo `legacy_import` e é
+**idempotente**: cada passo grava só o que ainda não existe, então rodar de
+novo não duplica nada nem sobrescreve o que a coleta já gravou. Ele imprime,
+passo a passo, quanto gravou e quanto havia na origem — a coluna de
+verificação abaixo. Ordem e checagens:
 
 | Passo | Origem | Destino | Verificação |
 |:--|:---|:---|:---|
 | 1 | `docs/README_EXCLUDED.json` | `repository_exclusions` | contagem = tamanho da lista |
 | 2 | GitHub (`sync github`) | `github_owners`, `repositories`, `repository_languages`, `projects` | contagens batem com o inventário do `update_profile.py` na mesma hora |
-| 3 | `README_FEATURED.json`, `README_STACK.json`, `README_SITES.json`, constantes do código (`FEATURED_SUMMARIES`, nomes fixos de `status_for`) | tabelas editoriais | `project-catalog.json` regenerado a partir do banco = o do Python |
+| 3 | `README_FEATURED.json`, `README_STACK.json`, `README_SITES.json` (`import manifests`); constantes do código (`FEATURED_SUMMARIES`, nomes fixos de `status_for`) (`import legacy`, 3b) | tabelas editoriais | contagens de curadoria, arsenal e sites iguais aos manifestos; `project-catalog.json` regenerado **a partir do banco** = o do Python fica para a Fase 4 (render a partir do banco) |
 | 4 | `docs/project-catalog.json` (`website_declared`, `website_status`, `website_http_status`) | `websites` + uma checagem inicial | nº de sites verificados igual |
 | 5 | `docs/ECOSYSTEM-COMMIT-STATE.json` — `repositories.*` | `commit_observations` (uma por repositório, `commits_since_previous = NULL`) | SHA atual de cada repositório igual |
 | 6 | `docs/ECOSYSTEM-COMMIT-STATE.json` — `metrics.project_commits`, `monitor_commits`, `tracked_commits` | `metric_samples` (`legacy_import`) | valores idênticos; o monitor Python continua rodando até a paridade |

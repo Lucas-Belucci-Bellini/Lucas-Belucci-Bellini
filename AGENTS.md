@@ -40,6 +40,15 @@ the same PR — the two sides are checked against the same file. The site-monito
 install 3.12.14`), because `urllib` changes within 3.12. `tests/e2e/check_sites_parity.py
 target/release/profile-core` runs both site monitors against the same local server.
 
+The collectors (`update_profile.py`, `ecosystem_watch.py`, `update_contribution_timeline.py`)
+have Rust equivalents in shadow mode (`profile-core catalog build`, `sync commits`,
+`sync contributions`). If you change one, regenerate its fixture with the CI's Python
+(`tests/test_parity_monitor.py`, `tests/test_parity_contributions.py`; the catalog is checked
+against the golden fixture) and port the change in the same PR. `tests/e2e/github_parity.py
+target/release/profile-core` runs both sides against the same simulated GitHub
+(`tests/fake_github.py`, selected through `GITHUB_API_URL`/`GITHUB_GRAPHQL_URL`) — no test
+talks to the real GitHub.
+
 Hard rules: never edit content between `<!-- NAME:START -->` / `<!-- NAME:END -->` markers in
 `README.md` by hand; never edit an applied migration (add a new one); never commit a real
 database, connection string or non-synthetic seed data.

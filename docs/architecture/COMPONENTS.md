@@ -31,6 +31,12 @@ já existem em `db/migrations`.
   dela, não refazem a consulta.
 - **Não faz:** ler conteúdo de repositório privado; copiar campos que o
   catálogo não usa.
+- **Estado (Fase 3):** `github-client` + `catalog` + `profile-core sync
+  github` (D-031): upsert por `github_id`, `gone_at` só com inventário
+  completo, excluídos nem consultados, linguagens mantidas quando a consulta
+  falha, homepage pública registrada como site. Ainda não: ETag (o custo de
+  rate limit não apareceu) e a listagem única — enquanto a paridade vale, o
+  monitor faz a própria listagem, como o Python.
 
 ## Project Metadata
 
@@ -43,6 +49,9 @@ já existem em `db/migrations`.
   (`featured_entries`, hoje `README_FEATURED.json` + `FEATURED_PRIORITY`).
 - **Modelo:** projeto ≠ repositório. Hoje 1:1; aceita um projeto com vários
   repositórios (ex.: Projeto Baluarte + domínios `baluarte-*`), um primário.
+- **Estado (Fase 3):** `sync github` cria o projeto de cada repositório com o
+  rótulo `py-classify@1`; `import manifests` traz a curadoria; `import
+  legacy`, os resumos e as sobreposições que estavam no código (D-032).
 
 ## Website Monitor
 
@@ -82,6 +91,11 @@ Consultas GraphQL por janela mensal → `metric_samples` com `window_start` /
 `window_end`. O HTML interativo (Plotly) continua sendo um template: ele só
 passa a ler do banco (ou de um JSON exportado dele).
 
+**Estado (Fase 3):** `profile-core sync contributions` em modo sombra — o
+mesmo JSON e o mesmo HTML do Python (o template foi extraído do
+`render_html()`), e amostras no banco só quando o valor muda (D-033). A janela
+de 365 dias do `profile_cards.py` sai junto com os SVGs, na Fase 4.
+
 ## Ecosystem Activity
 
 Paridade com `ecosystem_watch.py`: último commit do branch padrão de cada
@@ -91,6 +105,11 @@ importados uma vez (`legacy_import`) e passam a ser derivados:
 `project_total = baseline + Σ commits_since_previous`. O arquivo
 `ECOSYSTEM-COMMIT-STATE.json` continua sendo **exportado** no schema 4 até
 nenhum consumidor depender dele.
+
+**Estado (Fase 3):** `profile-core sync commits` em modo sombra (D-030): lê o
+mesmo JSON como estado anterior e produz estado, relatório e contadores
+idênticos; com banco, grava as transições e os contadores. O `export
+legacy-state` a partir do banco entra na virada.
 
 ## Deployment Status
 
@@ -114,6 +133,8 @@ produziu. O escopo da definição é imposto por trigger.
 - Byte a byte igual ao Python na paridade (D-006). Sem carimbo de tempo que
   mude sem dado novo — corrigindo A7.
 - Detalhe de cada bloco: [README-ANATOMY.md](README-ANATOMY.md).
+- **Estado (Fase 3):** o catálogo (`profile-core catalog build`) já sai byte
+  a byte igual ao do Python e roda em modo sombra; README e SVGs são a Fase 4.
 
 ## Sync Runs
 

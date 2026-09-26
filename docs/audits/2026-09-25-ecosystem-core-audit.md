@@ -513,6 +513,54 @@ precisa fixar `now` nos testes.
   avisa que o Python quebraria; catálogo malformado sai com código 2 e a
   exceção que o Python levantaria.
 
+### A23 · médio — estado ilegível do monitor zera o contador acumulado
+
+*Encontrado na Fase 3, ao portar o monitor de commits (2026-09-26).*
+
+- **Evidência:** `ecosystem_watch.main()` lê o estado anterior com
+  `try: json.loads(...) except Exception: previous_state = {}`. Um
+  `ECOSYSTEM-COMMIT-STATE.json` truncado ou com um conflito de merge não
+  derruba a varredura: ela recomeça do zero, com `project_commits = 1538`
+  (`LEGACY_BASELINE`) e `monitor_commits = 0`, e **publica** esse estado — o
+  contador exibido no perfil cai de 3.364 para ~1.540 sem nenhum aviso, e o
+  histórico acumulado só existe no Git.
+- **Prova:** cenário "estado ilegível volta ao baseline 1538" de
+  `tests/fixtures/parity/monitor.json`, gerado pelo script real.
+- **Paridade:** o `profile-core sync commits` reproduz (D-006). Com banco, os
+  contadores ficam também em `metric_samples`, então a queda aparece como uma
+  amostra nova e o valor anterior continua consultável. A correção
+  (recusar estado ilegível, com código de saída) muda o comportamento e entra
+  como versão nova do monitor.
+
+### A24 · baixo — o estado do monitor grava o texto de exceções do Python
+
+*Encontrado na Fase 3 (2026-09-26).*
+
+- **Evidência:** qualquer exceção de `latest_commit()` vira
+  `{"branch": …, "error": str(exc)[:180]}` no estado. Além do `HTTP Error 409:
+  Conflict` esperado (repositório vazio), um formato inesperado da API grava
+  mensagens internas do CPython: `"list index out of range"` (commit com
+  mensagem vazia), `"'NoneType' object has no attribute 'get'"` (`commit:
+  null`), `"string indices must be integers, not 'str'"`. O estado entra na
+  comparação semântica: se uma versão nova do Python mudar a redação de uma
+  dessas mensagens, a varredura seguinte vê "mudança", publica um snapshot e
+  soma 1 ao contador do monitor sem nada ter mudado nos projetos.
+- **Paridade:** o Rust grava as mesmas mensagens (as do 3.12, conferidas pelo
+  fixture) enquanto o JSON for o estado de referência. No banco, o erro fica
+  em `commit_observations.error_message` e o texto não conta como contador.
+
+### A25 · baixo — uma falha passageira nas linguagens apaga as linguagens do repositório
+
+*Encontrado na Fase 3 (2026-09-26).*
+
+- **Evidência:** `update_profile.fetch_languages()` devolve `{}` para
+  qualquer erro (HTTP, rede, JSON). Um 502 momentâneo tira as linguagens
+  daquele repositório da tabela, dos badges, do `PROJECT-MAP` e das
+  contagens da execução — que é publicada.
+- **No núcleo:** `sync github` distingue "a consulta falhou" de "não há
+  linguagem" e mantém o mapa anterior no banco (D-031). O README continua
+  gerado pelo Python até a Fase 4, com o comportamento atual.
+
 ### Evidência adicional de A1/A2 — blocos de versões diferentes do gerador
 
 O bloco `ARSENAL-STACK` no `main` não é o que o `render_arsenal_stack()` atual

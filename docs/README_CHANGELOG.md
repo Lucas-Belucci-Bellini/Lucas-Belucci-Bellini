@@ -107,3 +107,16 @@ O README e os assets não mudaram. O `scripts/check_websites.py` ganhou um equiv
 - **Achados:** o monitor Python publica como "no ar" sites cujo redirecionamento falha em laço ou aponta para `mailto:` (A21), e uma URL com porta inválida derruba a verificação inteira (A22). O Rust reproduz o primeiro de propósito, até a decisão editorial, e não reproduz a queda.
 
 Decisões em `docs/DECISION-LOG.md` (D-026 a D-028).
+
+## 2026-09-26 — Fase 3: coleta do GitHub em Rust, em modo sombra
+
+O README e os assets não mudaram. Os três coletores Python ganharam equivalentes em Rust, que por enquanto só rodam ao lado deles e são comparados todo dia:
+
+- **Catálogo:** `profile-core catalog build` gera o `docs/project-catalog.json` com os mesmos bytes do `update_profile.py` — conferido no teste golden e num GitHub simulado com 109 repositórios, com e sem token.
+- **Monitor de commits:** `profile-core sync commits` lê o mesmo `ECOSYSTEM-COMMIT-STATE.json` e produz o mesmo estado, o mesmo relatório e os mesmos contadores do `ecosystem_watch.py`, inclusive os textos de erro que o Python grava.
+- **Contribuições:** `profile-core sync contributions` gera o mesmo JSON e a mesma página da timeline.
+- **Banco:** `sync github` grava o inventário (repositórios, linguagens, projetos, sites de homepage) sem nunca apagar — quem some ganha data de saída, e só com inventário completo. `import manifests` espelha os manifestos editoriais; `import legacy` faz a carga única do que só existe em JSON, e pode rodar de novo sem duplicar nada.
+- **Prova:** fixtures gerados pelos scripts Python reais (12 cenários do monitor, 8 da timeline), um teste de ponta a ponta com os dois lados contra o mesmo GitHub simulado e o novo workflow *Core Shadow*, que compara tudo sobre os dados reais.
+- **Achados:** um estado ilegível do monitor zera o contador acumulado (A23); o estado grava mensagens internas do Python (A24); uma falha passageira apaga as linguagens de um repositório no README do dia (A25).
+
+Decisões em `docs/DECISION-LOG.md` (D-029 a D-033).

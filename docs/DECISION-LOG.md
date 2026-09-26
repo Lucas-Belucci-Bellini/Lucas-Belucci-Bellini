@@ -8,7 +8,8 @@ entrada nova que a substitui.
 
 Origem de todas as entradas até D-020: [auditoria de 2026-09-25](audits/2026-09-25-ecosystem-core-audit.md).
 D-021 e D-022 nasceram na execução da Fase 0 e revisam duas recomendações dela.
-D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust); D-026 a D-028, na Fase 2 (monitor de sites).
+D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust); D-026 a D-028, na Fase 2 (monitor de sites);
+D-029 a D-033, na Fase 3 (coleta).
 
 | ID | Decisão | Status |
 |:---|:---|:---|
@@ -40,6 +41,11 @@ D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust); D-026 a D-028,
 | [D-026](#d-026) | Monitor de sites: o `urllib` do CPython 3.12.14 é a especificação, portado; o transporte é o `reqwest` | aceita |
 | [D-027](#d-027) | `check sites` grava histórico ou recusa; o monitor não cria projetos nem sites | aceita |
 | [D-028](#d-028) | Fixture de paridade preso à versão exata do Python do CI | aceita |
+| [D-029](#d-029) | Um cliente do GitHub; a política de nova tentativa de cada coletor é parâmetro | aceita |
+| [D-030](#d-030) | No modo B, o JSON versionado continua sendo o estado do monitor | aceita |
+| [D-031](#d-031) | Inventário no banco: sumido só com inventário completo; erro não apaga dado | aceita |
+| [D-032](#d-032) | Manifestos espelhados no banco; carga legada idempotente, só preenche o vazio | aceita |
+| [D-033](#d-033) | Métrica coletada só entra quando o valor muda | aceita |
 
 ---
 
@@ -496,3 +502,89 @@ D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust); D-026 a D-028,
 - **Como regenerar:** `uv python install 3.12.14` e
   `UPDATE_PARITY=1 python3.12 -m unittest tests.test_parity_site_monitor`
   com esse interpretador.
+
+## D-029
+
+**Um cliente do GitHub; a política de nova tentativa de cada coletor é parâmetro.** · aceita · 2026-09-26
+
+- **Contexto:** três scripts Python falam com a API, cada um com o seu
+  `api()`: o `update_profile.py` tenta uma vez; o `ecosystem_watch.py` tenta
+  até 4 vezes (429, 5xx, 403 com `X-RateLimit-Remaining: 0`, falha de
+  conexão, timeout), esperando `Retry-After` só quando é número; a timeline
+  faz um POST GraphQL sem nova tentativa. E o monitor grava o texto do erro
+  no estado (A24).
+- **Decisão:** um crate `github-client` (reqwest, rustls) com `Retry::Never`
+  e `Retry::Watch` como argumento de cada chamada, a paginação comum aos
+  coletores (página de 100 pede a próxima) e erros cujo `Display` é o
+  `str(exc)` do `urllib` (`HTTP Error 409: Conflict`, `<urlopen error [Errno
+  111] Connection refused>`, `timed out`). `GITHUB_API_URL` e
+  `GITHUB_GRAPHQL_URL` (que o Actions já define com os valores públicos)
+  apontam os dois lados para um GitHub simulado nos testes.
+- **Descartado:** uma política única "melhor" para todos — mudaria quando o
+  monitor registra erro e, com isso, os contadores (D-006).
+- **Divergência que sobra:** texto de erro que não é HTTP (DNS, TLS, JSON
+  inválido) é aproximado; a frase de status é a canônica do código.
+
+## D-030
+
+**No modo B, o JSON versionado continua sendo o estado do monitor.** · aceita · 2026-09-26
+
+- **Contexto:** o contador do monitor não pode ser recalculado a partir do
+  GitHub (parte de 1538 e soma só snapshots publicados). Enquanto o Python
+  publica, o `ECOSYSTEM-COMMIT-STATE.json` é a verdade.
+- **Decisão:** `profile-core sync commits` lê o mesmo arquivo como estado
+  anterior e produz o mesmo estado, relatório e saída — conferidos pelo
+  fixture (`monitor.json`, 12 cenários do `main()` real, inclusive a sequência
+  de chamadas à API) e pelo e2e de 5 varreduras. Com banco, grava a
+  varredura (`sync_runs`), as transições em relação a esse estado
+  (`commit_observations`, D-020) e os contadores (`metric_samples`) quando o
+  snapshot é publicado.
+- **Consequência:** exportar o estado a partir do banco (`export
+  legacy-state`) só é necessário na virada (modo C) e fica para ela.
+
+## D-031
+
+**Inventário no banco: sumido só com inventário completo; erro não apaga dado.** · aceita · 2026-09-26
+
+- **Decisão:** `sync github` grava donos, repositórios (identidade
+  `github_id`: renomear atualiza a linha), linguagens e um projeto por
+  repositório (rótulo da heurística `py-classify@1`; o editorial nunca é
+  sobrescrito; slug do nome, com o dono em caso de colisão). Marca
+  `gone_at` em quem sumiu **só** quando o inventário é completo
+  (`PROFILE_GITHUB_TOKEN` ou arquivo): sem token, recusa gravar. Repositório
+  excluído nem é consultado (D-019). Uma consulta de linguagens que falhou
+  mantém o mapa anterior (A25). A `homepage` de repositório público vira
+  site `github_homepage`; o primário segue a ordem da descoberta do Python
+  (homepage, manifesto, editorial).
+- **Por quê:** "nunca destruir dados existentes": um erro passageiro ou um
+  inventário parcial não pode apagar o que o banco sabe.
+
+## D-032
+
+**Manifestos espelhados no banco; carga legada idempotente, só preenche o vazio.** · aceita · 2026-09-26
+
+- **`import manifests`:** deixa `repository_exclusions`, `featured_entries`,
+  `stack_tools` e os sites `manifest` iguais aos `docs/README_*.json`, numa
+  transação. O que sai do manifesto sai do banco — exceto site, que é
+  aposentado (`retired_at`), porque as checagens dele são histórico. Uma
+  referência que não casa (projeto que o `sync github` não trouxe, categoria
+  que não existe) recusa a importação inteira.
+- **`import legacy`:** MIGRATIONS.md §6, passos 3b–7. Cada passo grava só o
+  que ainda não existe (resumo e sobreposição vazios, site sem checagem,
+  repositório sem observação, métrica sem amostra importada). Rodar de novo
+  não duplica nada e não sobrescreve o que a coleta já gravou.
+- **Constantes do código:** `FEATURED_SUMMARIES` e os nomes fixos do
+  `status_for()` foram copiados para o `ecosystem-domain`; um teste lê o
+  `update_profile.py` e reprova se as cópias divergirem.
+
+## D-033
+
+**Métrica coletada só entra quando o valor muda.** · aceita · 2026-09-26
+
+- **Contexto:** a timeline consulta 13 janelas × 7 métricas por dia; as
+  janelas fechadas quase nunca mudam. Gravar todas, todo dia, é duplicar o
+  GitHub sem informação nova ("não duplicar indiscriminadamente").
+- **Decisão:** `sync contributions` grava em `metric_samples` só a amostra
+  cujo valor difere da mais recente da mesma série (métrica × janela). As
+  janelas da ponta mudam de data todo dia e, por isso, entram diariamente.
+

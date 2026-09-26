@@ -57,7 +57,9 @@ crates/
 
 **Existem:** `ecosystem-domain`, `store` e `profile-core` (`db migrate |
 revert | status`) desde a Fase 1; `site-monitor` e `profile-core check sites`
-desde a Fase 2. Os demais entram nas fases em que são usados.
+desde a Fase 2; `github-client`, `catalog` e os comandos `catalog build`,
+`sync github | commits | contributions` e `import manifests | legacy` desde a
+Fase 3. Falta o `profile-render` (Fase 4).
 
 Regras:
 
@@ -97,7 +99,7 @@ de C:** 30 dias sem regressão e equivalente Rust de cada validador.
 | **0 · estabilização** (Python) ✅ parcial | itens 0.2–0.11 feitos; faltam 0.1 (secret) e 0.12 (decisão) — [auditoria](../audits/2026-09-25-ecosystem-core-audit.md#12-recomendações) | refresh diário rodando de verdade (depende de 0.1); um escritor por arquivo ✅; fixtures versionadas ✅ |
 | **1 · fundação** ✅ | auditoria, docs, schema, migrations testadas, CI de banco; workspace Cargo, `ecosystem-domain` com paridade (`e39c9f2`, D-023), `store` (`9e133d9`, D-024), `profile-core db migrate\|revert\|status` (`4527264`, `7f6bfe4`), workflow `Rust Core` (`441eaf2`) | `cargo test` verde ✅; migrations aplicadas pelo binário ✅ — e o schema resultante é idêntico ao do psql |
 | **2 · monitor de sites** ✅ | `site-monitor` + `profile-core check sites` (`1d2e955`, `5daa524`, D-026 a D-028); modo B no workflow *Site Monitor Shadow* (`b00e33a`) | relatório JSON idêntico ao de `check_websites.py --json` (exceto `checked_at`) ✅ — texto e código de saída também, em 45 cenários locais e nos 16 sites reais; histórico no banco ✅ (`website_checks`, para os sites registrados — D-027). **Sai do modo B** com 14 execuções agendadas seguidas sem diferença |
-| **3 · coleta** | `github-client` + `catalog` + `sync github`, `sync commits`, `sync contributions`, `import manifests`, `import legacy` | `project-catalog.json` do Rust = do Python; contadores do monitor idênticos |
+| **3 · coleta** ✅ | `github-client` (D-029), `catalog` + `catalog build`, `sync commits` (D-030), `sync github` (D-031), `sync contributions` (D-033), `import manifests` + `import legacy` (D-032); modo B no workflow *Core Shadow* | `project-catalog.json` do Rust = do Python ✅ — byte a byte no golden e no GitHub simulado, com e sem token; contadores do monitor idênticos ✅ — estado, relatório e saída em 12 cenários do fixture e 5 varreduras encadeadas; timeline idêntica ✅. **Sai do modo B** com 14 execuções agendadas seguidas sem diferença |
 | **4 · geração** | `profile-render` + `render readme/assets` em modo B → C | README byte a byte igual sobre as mesmas entradas; validadores Python verdes contra a saída do Rust |
 | **5 · consolidação** | um workflow, um commit (D-018); scripts Python removidos; correções editoriais (`classifier@2`, A20) | nenhum Python no caminho de publicação |
 
@@ -112,7 +114,12 @@ OLD PYTHON ──▶ saída esperada (fixture golden, versionada) ◀── NEW 
 | **Unitário Rust** | `cargo test` | `ecosystem-domain`: classificação, status com `now` fixo, prioridade, CTA, slug; renderizadores bloco a bloco |
 | **Paridade de domínio** ✅ | `tests/test_parity_domain.py` → `tests/fixtures/parity/domain.json` ← `cargo test -p ecosystem-domain --test parity` | 640 casos em 13 grupos, gerados pelas funções Python reais no Python do CI (D-023) |
 | **Integração Rust** | `cargo test` + servidor HTTP local (como `tests/test_project_catalog.py`) | `site-monitor`: 200, redirect, 404, 500, conexão recusada, DNS, timeout, URL inválida, URL repetida |
-| **Parsing da API do GitHub** | respostas JSON gravadas em `tests/fixtures/github/` | paginação, campos ausentes/nulos, `304`, `409` (repo vazio), rate limit (`403` + `X-RateLimit-Remaining: 0`), GraphQL com `errors` |
+| **Cliente do GitHub** ✅ | `cargo test -p github-client` (servidor local) | paginação, as duas políticas de nova tentativa, `409`, rate limit (`403` + `X-RateLimit-Remaining: 0`), `Retry-After`, conexão recusada e fechada, timeout, JSON inválido, GraphQL com `errors`, cabeçalhos e token |
+| **Paridade do monitor de commits** ✅ | `tests/test_parity_monitor.py` → `tests/fixtures/parity/monitor.json` ← `cargo test -p profile-core --test parity_commits` | 12 cenários do `main()` real sobre respostas fixas: estado, relatório, saída, sequência de chamadas e onde o Python quebra |
+| **Paridade das contribuições** ✅ | `tests/test_parity_contributions.py` → `tests/fixtures/parity/contributions.json` ← `--test parity_contributions` | janelas mensais e 8 execuções: pedidos, JSON e HTML byte a byte, erros |
+| **Catálogo** ✅ | `crates/catalog/tests/golden.rs` e `--test catalog_build` | o `expected/project-catalog.json` do golden, byte a byte |
+| **Coleta de ponta a ponta** ✅ | `tests/e2e/github_parity.py` (no Rust Core) | os dois lados contra o mesmo GitHub simulado (109 repositórios): catálogo com e sem token, 5 varreduras do monitor, timeline |
+| **Sombra da coleta** ✅ | workflow *Core Shadow* + `.github/scripts/compare_files.py` | os mesmos pares sobre os dados reais, diariamente |
 | **Banco** | `db/tests/run.sh` + `cargo test -p store` ✅ | restrições, views, histórico append-only, privilégios; no Rust, cada teste cria e apaga o próprio banco (`STORE_TEST_DATABASE_URL`; `STORE_TESTS_REQUIRED=1` no CI impede que pulem) |
 | **Binário** ✅ | `cargo test -p profile-core` + `db/tests/profile_core_e2e.sh` | CLI de ponta a ponta; schema do binário = schema do psql (`pg_dump`); testes SQL sobre ele; trava de perda de dados |
 | **Paridade do monitor** ✅ | `tests/test_parity_site_monitor.py` → `tests/fixtures/parity/site_monitor.json` ← `cargo test -p site-monitor --test parity` e `-p profile-core --test parity_sites` | 111 casos gerados **chamando** o `urllib`/`http.client` do CPython 3.12.14 e o `check_websites.py` (D-028) |
@@ -204,6 +211,33 @@ catálogo não tem):
 - catálogo malformado: o Python quebra com traceback (código 1); o Rust sai
   com 2 e o nome da exceção.
 
+### Armadilhas de paridade — coleta
+
+| Python | Rust ingênuo | Rust do núcleo |
+|:---|:---|:---|
+| `api()` do monitor tenta 4 vezes; o do gerador, 1; `Retry-After` só vale com dígitos | uma política para todos | `Retry::Watch` / `Retry::Never` (D-029) |
+| o estado grava `str(exc)[:180]`: `list index out of range`, `'NoneType' object has no attribute 'get'`, `HTTP Error 409: Conflict` (A24) | erro tipado | o texto do CPython 3.12, conferido pelo fixture |
+| `splitlines()` quebra em `\v`, `\f`, U+001C–U+001E, U+0085, U+2028/9; `[:140]` conta code points | `lines()` e bytes | `monitor::py_splitlines`, `py_prefix` |
+| `int(data.get("ahead_by", 0))`: `" 7 "` é 7, `2.9` é 2, `None` é "não determinado" | `as_i64` | `pyjson::py_int` |
+| estado ilegível vira `{}` e o contador volta a 1538 (A23) | erro | reproduzido |
+| a comparação de estado ignora a ordem das chaves, mas o arquivo publicado a mantém | mapa ordenado | `serde_json` com `preserve_order` |
+| `sorted(..., key=name.lower())` desempata sem caixa | `cmp` | `to_lowercase` (o e2e tem um nome com maiúscula empatado) |
+| `order` da curadoria em texto (`"3"`) vale; `priority` inválida vira ausente | recusa | `py_int`, com a mesma tolerância |
+| `period_ranges(start, end)` com início depois do fim no mesmo mês devolve uma janela invertida | nenhuma janela | reproduzido |
+| a timeline usa a data **UTC** de `--now` (um `+03:00` à meia-noite é o dia anterior) | data local | `date_naive()` em UTC |
+
+**Divergências conhecidas** (fora do fixture):
+
+- texto de erro que não é HTTP (DNS, TLS, JSON inválido) é aproximado, e a
+  frase de status HTTP é a canônica do código (D-029);
+- `casefold()` do nome do perfil é `to_lowercase()` (iguais em ASCII, que é o
+  que o GitHub aceita em nome de repositório);
+- exclusão: o Python compara o nome exato; o banco (`repository_exclusions`)
+  compara sem caixa — o catálogo do Rust segue o Python;
+- falha da coleta de contribuições sai com 2 no Rust (erro de execução,
+  §7) e com 1 no Python;
+- uma falha de linguagens não apaga o mapa no banco (A25, D-031).
+
 ### Testes Python existentes
 
 Os 57 testes **não são removidos** para facilitar a migração. Cada um vira
@@ -216,19 +250,27 @@ Python só sai junto com o script que ele cobre, na fase D daquele componente.
 profile-core [--database-url URL | --no-db] [--offline --fixtures DIR] [--dry-run] <comando>
 
   sync all                      github → manifests → commits → contributions → sites
-  sync github                   inventário, linguagens, classificação  (Repository Catalog)
-  sync commits                  monitor do ecossistema                 (Ecosystem Activity)
-  sync contributions            GraphQL por janela mensal              (Contribution Data)
+  sync github [--input-repos F [--languages-dir D]] [--no-db]
+                                ✅ Fase 3 — inventário, linguagens, projetos, sites de homepage;
+                                gravar exige inventário completo (D-031)   (Repository Catalog)
+  sync commits [--root DIR] [--now T] [--write] [--no-db]
+                                ✅ Fase 3 — o ecosystem_watch.py; transições e contadores
+                                no banco (D-030)                            (Ecosystem Activity)
+  sync contributions [--root DIR] [--now T] [--write] [--no-db]
+                                ✅ Fase 3 — GraphQL por janela mensal; JSON + HTML da
+                                timeline; amostras só quando mudam (D-033) (Contribution Data)
 
   check sites [--json] [--fail-on-down] [--timeout S] [--retries N] [--max-workers N]
               [--root DIR] [--no-db] [--trigger T]
                                 ✅ Fase 2 — relatório do check_websites.py; grava histórico
                                 (sem DATABASE_URL e sem --no-db, recusa)  (Website Monitor)
 
-  import manifests              docs/README_*.json → banco (manifesto vence)
-  import legacy                 carga única do estado atual (MIGRATIONS.md §6)
+  import manifests              ✅ Fase 3 — docs/README_*.json → banco (manifesto vence; D-032)
+  import legacy                 ✅ Fase 3 — carga única, idempotente (MIGRATIONS.md §6)
 
-  catalog build [--out docs/project-catalog.json]
+  catalog build [--root DIR] [--input-repos F] [--now T] [--write]
+                [--site-checks-fixture F | --skip-site-check] [--site-checks-out F]
+                                ✅ Fase 3 — o project-catalog.json do update_profile.py
   render readme [--write | --check]    só entre marcadores; --check falha se mudaria
   render assets [--write | --check]    SVGs
   render all    [--write | --check]
