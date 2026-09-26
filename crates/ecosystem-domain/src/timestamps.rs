@@ -15,7 +15,7 @@
 //! estão no fixture: um Python do CI com essa mudança reprova
 //! `tests/test_parity_domain.py` em vez de mudar a referência em silêncio.
 
-use chrono::{DateTime, Datelike, Duration, NaiveDate, NaiveTime, Utc, Weekday};
+use chrono::{DateTime, Datelike, Duration, NaiveDate, NaiveDateTime, NaiveTime, Utc, Weekday};
 
 /// O que `datetime.fromisoformat()` devolve para um texto.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -48,21 +48,47 @@ pub fn python_days(later: DateTime<Utc>, earlier: DateTime<Utc>) -> i64 {
     }
 }
 
+/// O `datetime` que o `fromisoformat` devolve, com o relógio **local**: é o
+/// que o `strftime` imprime (um `+02:00` mostra a hora de lá, não a de UTC).
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum PyLocalDatetime {
+    /// Com fuso: o relógio local e o instante.
+    Aware {
+        /// Data e hora como escritas (no fuso delas).
+        local: NaiveDateTime,
+        /// O mesmo instante em UTC.
+        instant: DateTime<Utc>,
+    },
+    /// Sem fuso.
+    Naive(NaiveDateTime),
+    /// `ValueError`.
+    Invalid,
+}
+
 /// `datetime_fromisoformat()` do CPython 3.12.
 pub fn py_fromisoformat(value: &str) -> PyIsoDatetime {
+    match py_fromisoformat_local(value) {
+        PyLocalDatetime::Aware { instant, .. } => PyIsoDatetime::Aware(instant),
+        PyLocalDatetime::Naive(_) => PyIsoDatetime::Naive,
+        PyLocalDatetime::Invalid => PyIsoDatetime::Invalid,
+    }
+}
+
+/// Como [`py_fromisoformat`], sem perder o relógio local.
+pub fn py_fromisoformat_local(value: &str) -> PyLocalDatetime {
     // _sanitize_isoformat_str: menos de 7 caracteres (code points) é inválido.
     // (Separador substituto — o outro trabalho dela — não existe em `&str`.)
     if value.chars().count() < 7 {
-        return PyIsoDatetime::Invalid;
+        return PyLocalDatetime::Invalid;
     }
     let b = Bytes(value.as_bytes());
     let len = value.len();
 
     let Some(separator) = find_isoformat_datetime_separator(&b, len) else {
-        return PyIsoDatetime::Invalid;
+        return PyLocalDatetime::Invalid;
     };
     let Some((year, month, day)) = parse_isoformat_date(&b, separator) else {
-        return PyIsoDatetime::Invalid;
+        return PyLocalDatetime::Invalid;
     };
 
     let mut time = ParsedTime::default();
@@ -80,7 +106,7 @@ pub fn py_fromisoformat(value: &str) -> PyIsoDatetime {
         };
         let start = separator + width;
         let Some(parsed) = len.checked_sub(start).and_then(|dtlen| parse_isoformat_time(&b, start, dtlen)) else {
-            return PyIsoDatetime::Invalid;
+            return PyLocalDatetime::Invalid;
         };
         time = parsed;
     }
@@ -94,7 +120,7 @@ pub fn py_fromisoformat(value: &str) -> PyIsoDatetime {
         Some((seconds, micros)) => {
             let total = i64::from(seconds) * 1_000_000 + i64::from(micros);
             if total.abs() >= 86_400_000_000 {
-                return PyIsoDatetime::Invalid;
+                return PyLocalDatetime::Invalid;
             }
             Some(total)
         }
@@ -102,16 +128,17 @@ pub fn py_fromisoformat(value: &str) -> PyIsoDatetime {
 
     // new_datetime: checagem de faixa de cada campo.
     if !(1..=9999).contains(&year) || time.hour > 23 || time.minute > 59 || time.second > 59 {
-        return PyIsoDatetime::Invalid;
+        return PyLocalDatetime::Invalid;
     }
     let Some(date) = NaiveDate::from_ymd_opt(year, month, day) else {
-        return PyIsoDatetime::Invalid;
+        return PyLocalDatetime::Invalid;
     };
     let clock = NaiveTime::from_hms_micro_opt(time.hour, time.minute, time.second, time.microsecond)
         .expect("campos já checados");
+    let local = date.and_time(clock);
     match offset_us {
-        None => PyIsoDatetime::Naive,
-        Some(offset) => PyIsoDatetime::Aware((date.and_time(clock) - Duration::microseconds(offset)).and_utc()),
+        None => PyLocalDatetime::Naive(local),
+        Some(offset) => PyLocalDatetime::Aware { local, instant: (local - Duration::microseconds(offset)).and_utc() },
     }
 }
 

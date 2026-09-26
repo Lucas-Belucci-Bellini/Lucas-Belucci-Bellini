@@ -1142,12 +1142,24 @@ dependencies = [
  "clap",
  "ecosystem-domain",
  "github-client",
+ "profile-render",
  "serde_json",
  "site-monitor",
  "sqlx",
  "store",
  "thiserror",
  "tokio",
+]
+
+[[package]]
+name = "profile-render"
+version = "0.1.0"
+dependencies = [
+ "catalog",
+ "chrono",
+ "ecosystem-domain",
+ "serde_json",
+ "thiserror",
 ]
 
 [[package]]

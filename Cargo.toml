@@ -8,6 +8,7 @@ members = [
     "crates/site-monitor",
     "crates/github-client",
     "crates/catalog",
+    "crates/profile-render",
     "crates/profile-core",
 ]
 
@@ -21,6 +22,7 @@ publish = false
 catalog = { path = "crates/catalog" }
 ecosystem-domain = { path = "crates/ecosystem-domain" }
 github-client = { path = "crates/github-client" }
+profile-render = { path = "crates/profile-render" }
 site-monitor = { path = "crates/site-monitor" }
 store = { path = "crates/store" }
 
