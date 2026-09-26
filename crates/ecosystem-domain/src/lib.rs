@@ -19,6 +19,7 @@
 pub mod classify;
 pub mod discovery;
 pub mod lifecycle;
+pub mod monitor;
 pub mod presentation;
 pub mod priority;
 pub mod pyjson;

@@ -9,7 +9,13 @@
 //! profile-core catalog build [--root DIR] [--input-repos FILE] [--now ISO] [--write]
 //!                            [--site-checks-fixture FILE | --skip-site-check]
 //!                            [--site-timeout S] [--site-workers N] [--site-checks-out FILE]
+//! profile-core sync commits  [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
 //! ```
+//!
+//! `sync commits` é o `ecosystem_watch.py`: mesmo estado, mesmo relatório e
+//! mesmos contadores, lendo o `docs/ECOSYSTEM-COMMIT-STATE.json` como estado
+//! anterior. Com banco, grava as transições e os contadores; sem banco
+//! configurado recusa, a menos que `--no-db`.
 //!
 //! `catalog build` gera o `docs/project-catalog.json` com os mesmos bytes do
 //! `update_profile.py`. Sem `--write`, imprime o catálogo e não grava nada;
@@ -35,6 +41,7 @@ use std::time::Duration;
 
 use clap::{Args, Parser, Subcommand};
 use profile_core::catalog_build::{self, BuildOptions, ChecksSource};
+use profile_core::commits;
 use profile_core::sites;
 use serde_json::json;
 use site_monitor::check::BuildError;
@@ -59,6 +66,38 @@ enum Command {
     /// Catálogo do ecossistema (docs/project-catalog.json).
     #[command(subcommand)]
     Catalog(CatalogCommand),
+    /// Coleta do GitHub.
+    #[command(subcommand)]
+    Sync(SyncCommand),
+}
+
+#[derive(Subcommand)]
+enum SyncCommand {
+    /// Monitor de commits do ecossistema (o ecosystem_watch.py).
+    Commits(CommitsArgs),
+}
+
+#[derive(Args)]
+struct CommitsArgs {
+    /// Raiz com docs/ECOSYSTEM-COMMIT-STATE.json (o estado anterior).
+    #[arg(long, default_value = ".")]
+    root: PathBuf,
+    /// Relógio fixo, ISO 8601 com fuso.
+    #[arg(long, value_name = "ISO")]
+    now: Option<String>,
+    /// Grava o estado e o relatório em docs/ quando houver mudança; sem ela,
+    /// o estado novo vai para a saída padrão.
+    #[arg(long)]
+    write: bool,
+    /// URL do PostgreSQL onde as transições são gravadas. Prefira a variável de ambiente.
+    #[arg(long, env = "DATABASE_URL", hide_env_values = true, value_name = "URL")]
+    database_url: Option<String>,
+    /// Só varre, sem gravar no banco (modo sombra).
+    #[arg(long)]
+    no_db: bool,
+    /// Gatilho registrado em ecosystem.sync_runs.
+    #[arg(long, default_value = "manual", value_parser = ["schedule", "manual", "push", "api", "test"])]
+    trigger: String,
 }
 
 #[derive(Subcommand)]
@@ -153,8 +192,16 @@ enum CliError {
     Collect(#[from] sites::CollectError),
     #[error(transparent)]
     Http(#[from] BuildError),
-    #[error("check sites grava o histórico no banco: defina DATABASE_URL ou passe --no-db")]
-    NoDatabase,
+    #[error("{0} grava o histórico no banco: defina DATABASE_URL ou passe --no-db")]
+    NoDatabase(&'static str),
+    #[error(transparent)]
+    CatalogInput(#[from] catalog::CatalogError),
+    #[error(transparent)]
+    GitHubClient(#[from] github_client::BuildError),
+    #[error(transparent)]
+    Crash(#[from] commits::Crash),
+    #[error("{0}: {1}")]
+    Io(String, std::io::Error),
 }
 
 #[derive(Args)]
@@ -215,6 +262,10 @@ async fn main() -> ExitCode {
 /// `1` quando o comando verificou algo e reprovou; `2` quando não conseguiu
 /// executar. O erro de uso do clap também sai com `2`.
 fn exit_code(error: &CliError) -> ExitCode {
+    if matches!(error, CliError::Crash(_)) {
+        // Onde o Python sairia com traceback (código 1), sem gravar nada.
+        return ExitCode::from(1);
+    }
     let CliError::Store(error) = error else {
         return ExitCode::from(2);
     };
@@ -237,6 +288,7 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
         Command::Db(command) => command,
         Command::Check(CheckCommand::Sites(args)) => return check_sites(args).await,
         Command::Catalog(CatalogCommand::Build(args)) => return build_catalog(args).await,
+        Command::Sync(SyncCommand::Commits(args)) => return sync_commits(args).await,
     };
     match command {
         DbCommand::Status { connection, json } => {
@@ -294,7 +346,7 @@ async fn check_sites(args: SitesArgs) -> Result<ExitCode, CliError> {
     let database = if args.no_db {
         None
     } else {
-        Some(Database::from_url(args.database_url.as_deref().ok_or(CliError::NoDatabase)?)?)
+        Some(Database::from_url(args.database_url.as_deref().ok_or(CliError::NoDatabase("check sites"))?)?)
     };
     let urls = sites::collect_urls(&args.root)?;
     if urls.is_empty() {
@@ -356,6 +408,71 @@ async fn build_catalog(args: CatalogArgs) -> Result<ExitCode, CliError> {
         print!("{}", built.text);
     }
     eprintln!("profile-core: {}", catalog_build::summary(&built));
+    Ok(ExitCode::SUCCESS)
+}
+
+async fn sync_commits(args: CommitsArgs) -> Result<ExitCode, CliError> {
+    let database = if args.no_db {
+        None
+    } else {
+        Some(Database::from_url(args.database_url.as_deref().ok_or(CliError::NoDatabase("sync commits"))?)?)
+    };
+    let now = match &args.now {
+        Some(value) => catalog::parse_now(value)?,
+        None => chrono::Utc::now(),
+    };
+    let identity = commits::Identity::from_env();
+    let previous = commits::Previous::read(&args.root)?;
+    let mut settings = github_client::Settings::new(commits::USER_AGENT);
+    settings.api_version_header = true;
+    let client = github_client::Client::new(settings)?.with_token(std::env::var("GITHUB_TOKEN").ok());
+    let scan = commits::scan(&commits::GitHub(client), &identity, &previous).await?;
+
+    if scan.changed {
+        let published = commits::publish(&scan, now);
+        if args.write {
+            commits::write(&args.root, &published)
+                .map_err(|error| CliError::Io(commits::state_path(&args.root).display().to_string(), error))?;
+        } else {
+            print!("{}", published.state);
+        }
+        published.report?;
+    } else {
+        print!("{}", ecosystem_domain::monitor::UNCHANGED);
+    }
+    eprintln!(
+        "profile-core: monitor: {} repositórios, {} com mudança, {} erros; contadores {} = {} dos projetos + {} do monitor",
+        scan.current.len(),
+        scan.changes.len(),
+        scan.errors.len(),
+        scan.tracked_commits(),
+        scan.project_commits,
+        scan.monitor_commits
+    );
+
+    if let Some(database) = database {
+        let (observations, skipped) = commits::transitions(&scan, &previous);
+        for name in &skipped {
+            eprintln!("profile-core: aviso: {name}: SHA fora do formato; transição não gravada no banco");
+        }
+        let record = store::activity::CommitScanRecord {
+            owner: identity.user.clone(),
+            scanned: scan.current.len(),
+            observations,
+            counters: scan.changed.then_some(store::activity::MonitorCounters {
+                project: scan.project_commits,
+                monitor: scan.monitor_commits,
+                tracked: scan.tracked_commits(),
+            }),
+        };
+        let report = database.record_commit_scan(&run_context(&args.trigger), &record).await?;
+        eprintln!(
+            "profile-core: histórico: {} transições gravadas (sync_run {}); {} repositórios sem registro",
+            report.recorded,
+            report.sync_run_id,
+            report.unregistered.len()
+        );
+    }
     Ok(ExitCode::SUCCESS)
 }
 

@@ -2,4 +2,5 @@
 //! de paridade e de ponta a ponta.
 
 pub mod catalog_build;
+pub mod commits;
 pub mod sites;

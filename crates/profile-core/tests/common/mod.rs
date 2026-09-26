@@ -64,6 +64,17 @@ impl TempTree {
         Self(target)
     }
 
+    /// Uma raiz vazia, só com `docs/`.
+    pub fn empty() -> Self {
+        let target = std::env::temp_dir().join(format!(
+            "profile-core-tree-{}-{}",
+            std::process::id(),
+            COUNTER.fetch_add(1, Ordering::SeqCst)
+        ));
+        std::fs::create_dir_all(target.join("docs")).expect("docs/");
+        Self(target)
+    }
+
     pub fn path(&self) -> &str {
         self.0.to_str().expect("caminho UTF-8")
     }
@@ -142,5 +153,74 @@ impl Drop for TempDb {
         })
         .join()
         .ok();
+    }
+}
+
+/// Rotas do GitHub local: caminho com query → (status, corpo).
+pub type Routes = std::sync::Arc<std::sync::Mutex<std::collections::HashMap<String, (u16, String)>>>;
+/// Pedidos recebidos: (caminho com query, Authorization).
+pub type Requests = std::sync::Arc<std::sync::Mutex<Vec<(String, Option<String>)>>>;
+
+/// GitHub local para os testes do binário: rotas (caminho com query → status
+/// e corpo) que o teste pode trocar entre execuções, e o registro de cada
+/// pedido (caminho, Authorization).
+pub struct FakeGitHub {
+    pub url: String,
+    pub routes: Routes,
+    pub requests: Requests,
+}
+
+impl FakeGitHub {
+    pub fn start() -> Self {
+        use std::io::{Read, Write};
+        let listener = std::net::TcpListener::bind("127.0.0.1:0").expect("porta local");
+        let url = format!("http://{}", listener.local_addr().expect("endereço"));
+        let routes: Routes = Routes::default();
+        let requests: Requests = Requests::default();
+        let (table, log) = (routes.clone(), requests.clone());
+        std::thread::spawn(move || {
+            for mut stream in listener.incoming().flatten() {
+                let mut request = Vec::new();
+                let mut buffer = [0_u8; 4096];
+                while !request.windows(4).any(|w| w == b"\r\n\r\n") {
+                    match stream.read(&mut buffer) {
+                        Ok(0) | Err(_) => break,
+                        Ok(n) => request.extend_from_slice(&buffer[..n]),
+                    }
+                }
+                let request = String::from_utf8_lossy(&request).to_string();
+                let path = request.split(' ').nth(1).unwrap_or_default().to_string();
+                let auth = request.lines().find_map(|line| {
+                    let (name, value) = line.split_once(": ")?;
+                    name.eq_ignore_ascii_case("authorization").then(|| value.to_string())
+                });
+                log.lock().unwrap().push((path.clone(), auth));
+                let (status, body) = table
+                    .lock()
+                    .unwrap()
+                    .get(&path)
+                    .cloned()
+                    .unwrap_or((404, r#"{"message":"Not Found"}"#.to_string()));
+                let reason = match status {
+                    200 => "OK",
+                    404 => "Not Found",
+                    409 => "Conflict",
+                    500 => "Internal Server Error",
+                    _ => "Status",
+                };
+                let _ = stream.write_all(
+                    format!(
+                        "HTTP/1.1 {status} {reason}\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{body}",
+                        body.len()
+                    )
+                    .as_bytes(),
+                );
+            }
+        });
+        Self { url, routes, requests }
+    }
+
+    pub fn set(&self, path: &str, status: u16, body: serde_json::Value) {
+        self.routes.lock().unwrap().insert(path.to_string(), (status, body.to_string()));
     }
 }

@@ -1,8 +1,9 @@
 //! PostgreSQL do ecossistema.
 //!
-//! Hoje este crate faz uma coisa: aplica, reverte e relata as migrations de
-//! `db/migrations`, **embutidas no binário** em tempo de compilação. Os
-//! repositórios de dados (coleta, catálogo) entram aqui nas próximas fases.
+//! Aplica, reverte e relata as migrations de `db/migrations`, **embutidas no
+//! binário** em tempo de compilação, e grava o que os coletores observam:
+//! checagens de site (`record_website_checks`), varreduras do monitor de
+//! commits ([`activity`]) e o inventário do GitHub.
 //!
 //! # Garantias
 //!
@@ -28,6 +29,8 @@ use std::str::FromStr;
 use sqlx::migrate::{MigrateError, Migrator};
 use sqlx::postgres::{PgConnectOptions, PgConnection};
 use sqlx::{Connection, Postgres, Transaction};
+
+pub mod activity;
 
 /// As migrations de `db/migrations`, embutidas em tempo de compilação.
 pub static MIGRATOR: Migrator = sqlx::migrate!("../../db/migrations");
@@ -314,23 +317,75 @@ impl Database {
         match record_on(&mut conn, run, checks).await {
             Ok(report) => Ok(report),
             Err(error) => {
-                let _ = sqlx::query(
-                    "INSERT INTO ecosystem.sync_runs \
-                       (kind, trigger, source, code_version, external_ref, status, finished_at, items_seen, error_message) \
-                     VALUES ('websites', $1, $2, $3, $4, 'failed', now(), $5, $6)",
-                )
-                .bind(&run.trigger)
-                .bind(&run.source)
-                .bind(&run.code_version)
-                .bind(&run.external_ref)
-                .bind(i32::try_from(checks.len()).unwrap_or(i32::MAX))
-                .bind(error.to_string())
-                .execute(&mut conn)
-                .await;
+                record_failed_run(&mut conn, "websites", run, checks.len(), &error).await;
                 Err(error)
             }
         }
     }
+}
+
+/// A transação falhou e foi desfeita: registra a execução como `failed`, com
+/// o motivo, fora dela. Falhar aqui também não esconde o erro original.
+pub(crate) async fn record_failed_run(
+    conn: &mut PgConnection,
+    kind: &str,
+    run: &RunContext,
+    items_seen: usize,
+    error: &StoreError,
+) {
+    let _ = sqlx::query(
+        "INSERT INTO ecosystem.sync_runs \
+           (kind, trigger, source, code_version, external_ref, status, finished_at, items_seen, error_message) \
+         VALUES ($1, $2, $3, $4, $5, 'failed', now(), $6, $7)",
+    )
+    .bind(kind)
+    .bind(&run.trigger)
+    .bind(&run.source)
+    .bind(&run.code_version)
+    .bind(&run.external_ref)
+    .bind(i32::try_from(items_seen).unwrap_or(i32::MAX))
+    .bind(error.to_string())
+    .execute(conn)
+    .await;
+}
+
+/// Abre uma execução (`running`) dentro da transação e devolve o id.
+pub(crate) async fn open_run(
+    tx: &mut Transaction<'_, Postgres>,
+    kind: &str,
+    run: &RunContext,
+) -> Result<i64, StoreError> {
+    Ok(sqlx::query_scalar(
+        "INSERT INTO ecosystem.sync_runs (kind, trigger, source, code_version, external_ref) \
+         VALUES ($1, $2, $3, $4, $5) RETURNING id",
+    )
+    .bind(kind)
+    .bind(&run.trigger)
+    .bind(&run.source)
+    .bind(&run.code_version)
+    .bind(&run.external_ref)
+    .fetch_one(&mut **tx)
+    .await?)
+}
+
+/// Fecha uma execução como `succeeded`.
+pub(crate) async fn close_run(
+    tx: &mut Transaction<'_, Postgres>,
+    sync_run_id: i64,
+    items_seen: usize,
+    items_changed: usize,
+) -> Result<(), StoreError> {
+    sqlx::query(
+        "UPDATE ecosystem.sync_runs \
+         SET status = 'succeeded', finished_at = clock_timestamp(), items_seen = $2, items_changed = $3 \
+         WHERE id = $1",
+    )
+    .bind(sync_run_id)
+    .bind(i32::try_from(items_seen).unwrap_or(i32::MAX))
+    .bind(i32::try_from(items_changed).unwrap_or(i32::MAX))
+    .execute(&mut **tx)
+    .await?;
+    Ok(())
 }
 
 async fn record_on(
@@ -339,16 +394,7 @@ async fn record_on(
     checks: &[WebsiteCheckRecord],
 ) -> Result<RecordReport, StoreError> {
     let mut tx = conn.begin().await?;
-    let sync_run_id: i64 = sqlx::query_scalar(
-        "INSERT INTO ecosystem.sync_runs (kind, trigger, source, code_version, external_ref) \
-         VALUES ('websites', $1, $2, $3, $4) RETURNING id",
-    )
-    .bind(&run.trigger)
-    .bind(&run.source)
-    .bind(&run.code_version)
-    .bind(&run.external_ref)
-    .fetch_one(&mut *tx)
-    .await?;
+    let sync_run_id = open_run(&mut tx, "websites", run).await?;
 
     let mut recorded = 0_usize;
     let mut unregistered = Vec::new();
@@ -386,16 +432,7 @@ async fn record_on(
         }
     }
 
-    sqlx::query(
-        "UPDATE ecosystem.sync_runs \
-         SET status = 'succeeded', finished_at = clock_timestamp(), items_seen = $2, items_changed = $3 \
-         WHERE id = $1",
-    )
-    .bind(sync_run_id)
-    .bind(i32::try_from(checks.len()).unwrap_or(i32::MAX))
-    .bind(i32::try_from(recorded).unwrap_or(i32::MAX))
-    .execute(&mut *tx)
-    .await?;
+    close_run(&mut tx, sync_run_id, checks.len(), recorded).await?;
     tx.commit().await?;
     Ok(RecordReport { sync_run_id, recorded, unregistered })
 }
