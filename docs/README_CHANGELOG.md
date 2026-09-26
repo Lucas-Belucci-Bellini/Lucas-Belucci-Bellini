@@ -95,3 +95,15 @@ O README e os assets não mudaram. Entrou o começo do núcleo que vai gerá-los
 - Novo workflow **Rust Core**: formato, lints, testes (com PostgreSQL 16) e o binário de ponta a ponta.
 
 Decisões em `docs/DECISION-LOG.md` (D-023 a D-025); plano atualizado em `docs/migration/PYTHON-TO-RUST.md`.
+
+
+## 2026-09-26 — Fase 2: monitor de sites em Rust, em modo sombra
+
+O README e os assets não mudaram. O `scripts/check_websites.py` ganhou um equivalente em Rust, que por enquanto só roda ao lado dele:
+
+- **`profile-core check sites`** imprime o mesmo relatório (texto, `--json` e código de saída), byte a byte, exceto o horário da checagem. Para chegar lá, o crate `site-monitor` porta do Python a parte que decide o relatório — a forma como o `urllib` monta a URL final, resolve redirecionamentos e detecta laços — e confere contra um fixture gerado pela própria biblioteca padrão, na versão do CI.
+- **Histórico:** cada checagem pode ser gravada em `ecosystem.website_checks` (nunca sobrescrita). Sem banco configurado, o comando recusa em vez de pular o histórico sem avisar.
+- **Prova:** Python e Rust rodam contra o mesmo servidor local com 45 cenários (redirects, laços, erros, timeout, TLS) e dão o mesmo resultado. O novo workflow *Site Monitor Shadow* repete a comparação todo dia sobre os sites reais.
+- **Achados:** o monitor Python publica como "no ar" sites cujo redirecionamento falha em laço ou aponta para `mailto:` (A21), e uma URL com porta inválida derruba a verificação inteira (A22). O Rust reproduz o primeiro de propósito, até a decisão editorial, e não reproduz a queda.
+
+Decisões em `docs/DECISION-LOG.md` (D-026 a D-028).

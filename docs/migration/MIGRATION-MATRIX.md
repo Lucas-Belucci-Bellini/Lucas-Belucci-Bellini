@@ -10,8 +10,8 @@ caminho de publicação) · `shadow` (modo B) · `switched` (modo C) ·
 
 | Python | Linhas | Função | Destino Rust | Comando | Prioridade | Fase | Estado |
 |:---|---:|:---|:---|:---|:---|:--:|:---|
-| `scripts/project_catalog.py` | 501 | verificação de sites, descoberta, `Presentation`, prioridade, catálogo JSON, CTAs | `site-monitor` (verificação) · `ecosystem-domain` (apresentação, prioridade, CTA, taxonomia) · `catalog` (JSON @1) · `profile-render` (badges/CTAs) | `check sites`, `catalog build` | **alta** | 2–3 | regras **ported** (`e39c9f2`); verificação HTTP, catálogo e badges planned |
-| `scripts/check_websites.py` | 123 | CLI de saúde dos sites | `profile-core check sites` | `check sites` | **alta — primeira fatia** (D-014) | 2 | planned |
+| `scripts/project_catalog.py` | 501 | verificação de sites, descoberta, `Presentation`, prioridade, catálogo JSON, CTAs | `site-monitor` (verificação) · `ecosystem-domain` (apresentação, prioridade, CTA, taxonomia) · `catalog` (JSON @1) · `profile-render` (badges/CTAs) | `check sites`, `catalog build` | **alta** | 2–3 | regras **ported** (`e39c9f2`); verificação HTTP **shadow** (`5daa524`); catálogo e badges planned |
+| `scripts/check_websites.py` | 123 | CLI de saúde dos sites | `profile-core check sites` | `check sites` | **alta — primeira fatia** (D-014) | 2 | **shadow** desde 2026-09-26 (*Site Monitor Shadow*); sai com 14 execuções sem diferença |
 | `.github/scripts/ecosystem_watch.py` | 280 | monitor horário, estado cumulativo | `github-client` + `store` (`commit_observations`, métricas) | `sync commits`, `export legacy-state` | **alta** | 3 | planned |
 | `scripts/update_profile.py` — coleta | ~250 | inventário, linguagens, exclusões | `github-client` + `catalog` | `sync github` | **alta** | 3 | planned |
 | `scripts/update_profile.py` — regras | ~150 | `classify`, `status_for`, `featured_score`, `describe` | `ecosystem-domain` | — | **alta** | 1 → 3 | **ported** (`e39c9f2`, D-023); entra no caminho de publicação com `sync github` |
@@ -26,7 +26,7 @@ caminho de publicação) · `shadow` (modo B) · `switched` (modo C) ·
 | `scripts/validate_profile.py` | 208 | validador amplo, fora do CI, caminho fixo, grava arquivo | absorvido por `validate` | `validate` | baixa | 4 | planned → **retire** |
 | `scripts/validate_restored_style.py` | 57 | componentes visuais | `validate readme --visual` | — | baixa | 4 | **keep** — no CI desde a Fase 0 (V2 Validation) |
 | `scripts/restore_original_style.py` | 129 | migração única de agosto | — | — | — | 0 | **removed** na Fase 0 (`f8b5592`; histórico em `faff9ef`) |
-| `tests/*.py` | — | 84 testes (57 + 25 da Fase 0, incluindo o golden, + 2 do fixture de paridade da Fase 1) | casos equivalentes em `cargo test`; o golden vira o teste de paridade do render | — | — | 1–4 | **keep** até o script coberto sair |
+| `tests/*.py` | — | 86 testes (57 + 25 da Fase 0, incluindo o golden, + 2 do fixture de domínio e 2 do fixture do monitor) | casos equivalentes em `cargo test`; o golden vira o teste de paridade do render | — | — | 1–4 | **keep** até o script coberto sair |
 
 ## 2. Por função — `update_profile.py`
 
@@ -53,7 +53,7 @@ caminho de publicação) · `shadow` (modo B) · `switched` (modo C) ·
 
 | Função / tipo | Destino |
 |:---|:---|
-| `WebsiteCheck`, `check_website`, `check_websites`, `LIVE_STATUSES` | `site-monitor` (+ tempo de resposta, contagem de redirects, tipo de erro) |
+| `WebsiteCheck`, `check_website`, `check_websites`, `LIVE_STATUSES` | `site-monitor::check` ✅ shadow (+ tentativas, redirects, tempo, tipo de erro); a semântica do `urllib` em `pyurl`/`pyrequest`/`redirect` (D-026) |
 | `_looks_like_http_url` | `ecosystem-domain::url` ✅ (mesma expressão da `CHECK` em `websites.url`) |
 | `normalize_site_overrides`, `discover_project_website` | `ecosystem-domain::discovery` ✅ + `import manifests` |
 | `Presentation`, `resolve_presentation`, `marketing_priority` | `ecosystem-domain::presentation` ✅ |
@@ -88,4 +88,5 @@ caminho de publicação) · `shadow` (modo B) · `switched` (modo C) ·
 | `snake.yml` | action externa | inalterado |
 | `v2-validation.yml` | testes Python + validadores | + `cargo test` + `profile-core parity` enquanto houver Python |
 | `db-validation.yml` | **novo** (Fase 1) | inalterado |
-| `rust.yml` (Rust Core) | **novo** (Fase 1): fmt, clippy, `cargo test` com PostgreSQL 16, e2e do `profile-core` | ganha `profile-core parity` quando o render for portado |
+| `rust.yml` (Rust Core) | **novo** (Fase 1): fmt, clippy, `cargo test` com PostgreSQL 16, e2e do `profile-core`; Fase 2: e2e do `check sites` × `check_websites.py` | ganha `profile-core parity` quando o render for portado |
+| `site-monitor-shadow.yml` | **novo** (Fase 2): modo B diário do monitor — Python e Rust sobre os sites reais | vira o monitor de produção (modo C), gravando histórico, quando sair do modo B |

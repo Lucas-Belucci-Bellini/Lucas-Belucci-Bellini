@@ -476,6 +476,43 @@ precisa fixar `now` nos testes.
   expõe linguagens — até a decisão, a paridade (D-006) deste bloco fica
   pendente.
 
+### A21 · médio — o monitor conta como "no ar" redirecionamentos que falham
+
+*Encontrado na Fase 2, ao portar a verificação (2026-09-26).*
+
+- **Evidência:** `check_website()` trata como `verified` qualquer `HTTPError`
+  cujo código esteja em `LIVE_STATUSES` (200, 301, 302, 307, 308). O `urllib`
+  levanta `HTTPError` **com o código do redirect** em três situações em que o
+  site não chega a responder: laço (4 visitas à mesma URL ou 11 destinos
+  distintos), 3xx sem `Location`, e redirect para esquema proibido
+  (`mailto:`, `javascript:`, `file:`, `data:`). Nos três casos o site é
+  publicado como online e ganha o CTA primário. O 303 sem `Location` sai
+  `unreachable` só porque 303 não está na lista — a regra não é nem coerente.
+- **Prova:** cenários `/r/loop`, `/r/no-location-302`, `/r/mailto` e
+  `/r/distinct/0` de `tests/e2e/check_sites_parity.py` — todos `verified`.
+- **Paridade:** o Rust reproduz de propósito (`py-check@1`, D-006). Corrigir
+  é decisão editorial (um laço de redirect deve tirar o site do ar?) e entra
+  como versão nova, com o diff revisado.
+
+### A22 · médio — uma URL ou resposta malformada derruba o `check_websites.py` inteiro
+
+*Encontrado na Fase 2 (2026-09-26).*
+
+- **Evidência:** `check_website()` captura `URLError`, `TimeoutError`,
+  `ValueError` e `OSError`. Escapam as `http.client.HTTPException` que não são
+  nenhuma delas: `InvalidURL` (porta não numérica `https://x.org:abc/`, senha
+  na URL `https://u:p@x.org/`, caractere de controle no host ou no caminho) e
+  `BadStatusLine`/`LineTooLong` de um servidor que responde fora do HTTP. A
+  exceção sobe pelo `ThreadPoolExecutor.map` e derruba o script **sem
+  relatório** — no `update_profile.py`, derruba a geração do catálogo. Um
+  `project-catalog.json` com formato inesperado (lista na raiz, `projects`
+  que não é lista) também quebra o `collect_urls()` com `AttributeError` ou
+  `TypeError`.
+- **Rust:** não reproduz a queda (não há saída com que ter paridade): a URL
+  conta como fora do ar (`error_kind` `invalid_url` ou `other`) e o stderr
+  avisa que o Python quebraria; catálogo malformado sai com código 2 e a
+  exceção que o Python levantaria.
+
 ### Evidência adicional de A1/A2 — blocos de versões diferentes do gerador
 
 O bloco `ARSENAL-STACK` no `main` não é o que o `render_arsenal_stack()` atual

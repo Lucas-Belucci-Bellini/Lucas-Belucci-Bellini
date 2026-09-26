@@ -61,6 +61,10 @@ já existem em `db/migrations`.
 - **Reutilizável:** o crate não conhece README nem GitHub; recebe URLs,
   devolve resultados. Serve ao CLI, a um serviço contínuo e a outros projetos
   do ecossistema.
+- **Estado (Fase 2):** `site-monitor` + `profile-core check sites` em modo
+  sombra, com a semântica do `urllib` portada (D-026) e histórico para os
+  sites registrados (D-027). Ainda não: concorrência limitada por host e
+  histerese — hoje o limite é global, como no Python.
 
 ## Language Statistics
 

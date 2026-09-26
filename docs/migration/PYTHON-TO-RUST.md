@@ -55,8 +55,9 @@ crates/
 └── profile-core/       bin  CLI (clap) — orquestra os demais
 ```
 
-**Existem desde a Fase 1:** `ecosystem-domain`, `store` e `profile-core`
-(`db migrate | revert | status`). Os demais entram nas fases em que são usados.
+**Existem:** `ecosystem-domain`, `store` e `profile-core` (`db migrate |
+revert | status`) desde a Fase 1; `site-monitor` e `profile-core check sites`
+desde a Fase 2. Os demais entram nas fases em que são usados.
 
 Regras:
 
@@ -95,7 +96,7 @@ de C:** 30 dias sem regressão e equivalente Rust de cada validador.
 |:---|:---|:---|
 | **0 · estabilização** (Python) ✅ parcial | itens 0.2–0.11 feitos; faltam 0.1 (secret) e 0.12 (decisão) — [auditoria](../audits/2026-09-25-ecosystem-core-audit.md#12-recomendações) | refresh diário rodando de verdade (depende de 0.1); um escritor por arquivo ✅; fixtures versionadas ✅ |
 | **1 · fundação** ✅ | auditoria, docs, schema, migrations testadas, CI de banco; workspace Cargo, `ecosystem-domain` com paridade (`e39c9f2`, D-023), `store` (`9e133d9`, D-024), `profile-core db migrate\|revert\|status` (`4527264`, `7f6bfe4`), workflow `Rust Core` (`441eaf2`) | `cargo test` verde ✅; migrations aplicadas pelo binário ✅ — e o schema resultante é idêntico ao do psql |
-| **2 · monitor de sites** | `site-monitor` + `profile-core check sites` em modo B | relatório JSON idêntico ao de `check_websites.py --json` (exceto `checked_at` e tempo); histórico no banco |
+| **2 · monitor de sites** ✅ | `site-monitor` + `profile-core check sites` (`1d2e955`, `5daa524`, D-026 a D-028); modo B no workflow *Site Monitor Shadow* (`b00e33a`) | relatório JSON idêntico ao de `check_websites.py --json` (exceto `checked_at`) ✅ — texto e código de saída também, em 45 cenários locais e nos 16 sites reais; histórico no banco ✅ (`website_checks`, para os sites registrados — D-027). **Sai do modo B** com 14 execuções agendadas seguidas sem diferença |
 | **3 · coleta** | `github-client` + `catalog` + `sync github`, `sync commits`, `sync contributions`, `import manifests`, `import legacy` | `project-catalog.json` do Rust = do Python; contadores do monitor idênticos |
 | **4 · geração** | `profile-render` + `render readme/assets` em modo B → C | README byte a byte igual sobre as mesmas entradas; validadores Python verdes contra a saída do Rust |
 | **5 · consolidação** | um workflow, um commit (D-018); scripts Python removidos; correções editoriais (`classifier@2`, A20) | nenhum Python no caminho de publicação |
@@ -114,6 +115,9 @@ OLD PYTHON ──▶ saída esperada (fixture golden, versionada) ◀── NEW 
 | **Parsing da API do GitHub** | respostas JSON gravadas em `tests/fixtures/github/` | paginação, campos ausentes/nulos, `304`, `409` (repo vazio), rate limit (`403` + `X-RateLimit-Remaining: 0`), GraphQL com `errors` |
 | **Banco** | `db/tests/run.sh` + `cargo test -p store` ✅ | restrições, views, histórico append-only, privilégios; no Rust, cada teste cria e apaga o próprio banco (`STORE_TEST_DATABASE_URL`; `STORE_TESTS_REQUIRED=1` no CI impede que pulem) |
 | **Binário** ✅ | `cargo test -p profile-core` + `db/tests/profile_core_e2e.sh` | CLI de ponta a ponta; schema do binário = schema do psql (`pg_dump`); testes SQL sobre ele; trava de perda de dados |
+| **Paridade do monitor** ✅ | `tests/test_parity_site_monitor.py` → `tests/fixtures/parity/site_monitor.json` ← `cargo test -p site-monitor --test parity` e `-p profile-core --test parity_sites` | 111 casos gerados **chamando** o `urllib`/`http.client` do CPython 3.12.14 e o `check_websites.py` (D-028) |
+| **Monitor de ponta a ponta** ✅ | `tests/e2e/check_sites_parity.py` (no Rust Core) | os dois programas contra o mesmo servidor local: 45 cenários, texto, JSON e código de saída |
+| **Sombra do monitor** ✅ | workflow *Site Monitor Shadow* + `.github/scripts/compare_site_reports.py` | os dois ao mesmo tempo sobre os sites reais, diariamente |
 | **Migrations** | `db/tests/run.sh` + `db-validation.yml` (já existe) | round-trip por migration, guardas, idempotência, sqlx |
 | **Paridade (regressão)** | fixture golden: `repos.json` + `languages/` + `site-checks.json` + `now` → README, catálogo, SVGs | `diff` Python × Rust byte a byte |
 | **Contrato do README** | validadores Python e Rust | só blocos mudaram, CTA site-primeiro, exclusões ausentes, badges legíveis |
@@ -165,6 +169,41 @@ ramo 3.13 do CPython muda duas bordas do `fromisoformat` (`.` sem dígitos;
 fuso só com microssegundos); as duas estão no fixture, então a troca de versão
 reprova o teste Python em vez de mudar a referência calada.
 
+### Armadilhas de paridade — monitor de sites
+
+O relatório do `check_websites.py` é o texto que o `urllib` produz, não uma
+URL normalizada. Portado de `Lib/urllib` e `Lib/http/client.py` do 3.12.14
+(`crates/site-monitor/src/{pyurl,pyrequest,redirect}.rs`).
+
+| Python (`urllib`) | Cliente HTTP comum | `site-monitor` |
+|:---|:---|:---|
+| `final_url` sem redirect é o texto dado: `https://example.org` | normaliza para `https://example.org/` | `Request.full_url` portado |
+| `Location` passa por `urlparse` → `urlunparse` → `quote(latin-1, safe=pontuação)` → `urljoin` | resolve pelo WHATWG | a mesma sequência: `/ção` em bytes vira `/%E7%E3o`, `..` além da raiz some, `//x` é host |
+| laço: 4 visitas à mesma URL ou 10 destinos distintos → `HTTPError` do redirect | limite próprio (10 no `reqwest`) | `RedirectGuard`, com a mesma ordem de checagem |
+| `HTTPError` com código em `LIVE_STATUSES` conta como no ar: laço, 302 sem `Location`, `mailto:` (A21) | redirect falho é erro | reproduzido (`py-check@1`) |
+| falha de rede num salto: `final_url` é a URL **original**, HTTP 0 | a URL do salto | a original |
+| `http.client.InvalidURL` e `BadStatusLine` derrubam o script (A22) | — | conta como fora do ar e avisa no stderr |
+| caminho não-ASCII: `UnicodeEncodeError` antes da rede; host fora do latin-1 também | codifica e conecta | recusa antes da rede, como o Python |
+| cabeçalho `URI` vale quando falta `Location` | ignora | aceito |
+| corpo do redirect é lido antes de seguir | descartado | lido (o erro de leitura conta) |
+
+**Divergências conhecidas** (fora do fixture; efeito só em casos que o
+catálogo não tem):
+
+- o `reqwest` sempre envia `Accept: */*`;
+- um `#` interno no caminho (`/p#a#b`) vai na linha de pedido do Python, não
+  na do Rust (o `final_url` é o mesmo);
+- espaço no fim do `Location` é aparado pelo `httparse`: o Python segue para
+  `/ok%20%20%20`, o Rust para `/ok` (conferido);
+- redirect para `ftp://`: o Python tenta FTP, o Rust falha na hora (os dois
+  saem `unreachable` 0, em tempos diferentes);
+- porta com dígitos não-ASCII (`٨٠`) é número para o `int()` do Python;
+- host latin-1 não-ASCII: IDNA 2003 no Python, UTS 46 no Rust;
+- `--timeout` ≤ 0 e `--retries` negativo: o Python aceita e toda checagem
+  falha; o Rust recusa como uso incorreto (código 2);
+- catálogo malformado: o Python quebra com traceback (código 1); o Rust sai
+  com 2 e o nome da exceção.
+
 ### Testes Python existentes
 
 Os 57 testes **não são removidos** para facilitar a migração. Cada um vira
@@ -181,8 +220,10 @@ profile-core [--database-url URL | --no-db] [--offline --fixtures DIR] [--dry-ru
   sync commits                  monitor do ecossistema                 (Ecosystem Activity)
   sync contributions            GraphQL por janela mensal              (Contribution Data)
 
-  check sites [--json] [--fail-on-down] [--timeout S] [--workers N]
-                                verifica e grava histórico             (Website Monitor)
+  check sites [--json] [--fail-on-down] [--timeout S] [--retries N] [--max-workers N]
+              [--root DIR] [--no-db] [--trigger T]
+                                ✅ Fase 2 — relatório do check_websites.py; grava histórico
+                                (sem DATABASE_URL e sem --no-db, recusa)  (Website Monitor)
 
   import manifests              docs/README_*.json → banco (manifesto vence)
   import legacy                 carga única do estado atual (MIGRATIONS.md §6)

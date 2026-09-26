@@ -8,7 +8,7 @@ entrada nova que a substitui.
 
 Origem de todas as entradas até D-020: [auditoria de 2026-09-25](audits/2026-09-25-ecosystem-core-audit.md).
 D-021 e D-022 nasceram na execução da Fase 0 e revisam duas recomendações dela.
-D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust).
+D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust); D-026 a D-028, na Fase 2 (monitor de sites).
 
 | ID | Decisão | Status |
 |:---|:---|:---|
@@ -25,7 +25,7 @@ D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust).
 | [D-011](#d-011) | Taxonomia por migration; editorial por importação | aceita |
 | [D-012](#d-012) | Rust pelo que traz de correção, não por desempenho | proposta |
 | [D-013](#d-013) | Workspace Rust neste repositório, crates por responsabilidade | proposta |
-| [D-014](#d-014) | Primeira fatia em Rust: o monitor de sites | proposta |
+| [D-014](#d-014) | Primeira fatia em Rust: o monitor de sites | aceita (Fase 2) |
 | [D-015](#d-015) | Validadores Python ficam como oráculo durante a transição | proposta |
 | [D-016](#d-016) | `deployments` só quando houver quem escreva nela | aceita |
 | [D-017](#d-017) | API começa como JSON estático versionado | proposta |
@@ -37,6 +37,9 @@ D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust).
 | [D-023](#d-023) | Paridade de domínio: fixture gerado pelo Python do CI, conferido pelo Rust | aceita |
 | [D-024](#d-024) | Migrations pelo binário: tudo ou nada, tabela do sqlx-cli, perda de dado por conexão | aceita |
 | [D-025](#d-025) | Toolchain Rust fixado (1.94.1) e versão mínima real (1.94) | aceita |
+| [D-026](#d-026) | Monitor de sites: o `urllib` do CPython 3.12.14 é a especificação, portado; o transporte é o `reqwest` | aceita |
+| [D-027](#d-027) | `check sites` grava histórico ou recusa; o monitor não cria projetos nem sites | aceita |
+| [D-028](#d-028) | Fixture de paridade preso à versão exata do Python do CI | aceita |
 
 ---
 
@@ -236,7 +239,7 @@ D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust).
 
 ## D-014
 
-**Primeira fatia em Rust: o monitor de sites.** · proposta · 2026-09-25
+**Primeira fatia em Rust: o monitor de sites.** · aceita · 2026-09-25 (implementada em 2026-09-26: D-026 a D-028)
 
 - **Por quê ele:** comportamento já especificado por 25 testes; entrada e
   saída pequenas e comparáveis (lista de URLs → relatório JSON); não escreve no
@@ -425,3 +428,71 @@ D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust).
   sem mudança no código; subir o compilador é um PR que muda um arquivo.
 - **Revisitar quando:** sair um stable novo (a cada ~6 semanas), num PR
   próprio que rode o `Rust Core` inteiro.
+
+## D-026
+
+**Monitor de sites: o `urllib` do CPython 3.12.14 é a especificação, portado; o transporte é o `reqwest`.** · aceita · 2026-09-26
+
+- **Contexto:** o critério de saída da Fase 2 é o relatório do
+  `check_websites.py --json` idêntico. Ele depende de detalhes do `urllib` que
+  um cliente HTTP moderno faz diferente: o texto do `final_url` (sem
+  normalizar: `https://example.org` sem barra, `/ção` de um `Location` vira
+  `/%E7%E3o`), a resolução de `Location` relativo, o limite de laço e o que
+  conta como "no ar" quando o redirect falha (A21).
+- **Decisão:** o crate `site-monitor` porta do código da biblioteca padrão o
+  que decide o relatório — `urllib.parse`, `Request`, as validações do
+  `http.client` antes da rede e o `http_error_302` com a contagem de laço — e
+  confere contra um fixture gerado **chamando** a biblioteca padrão
+  (`tests/test_parity_site_monitor.py`, 111 casos). O transporte é o
+  `reqwest` 0.13: HTTP/1.1, sem redirect automático, rustls com `ring` (o
+  mesmo provedor do sqlx), certificados do sistema, `Host` igual ao do Python,
+  timeout por conexão e por leitura (o `timeout` do socket).
+- **Descartado:** escrever um cliente HTTP próprio para reproduzir a linha de
+  pedido byte a byte (proxy, TLS e HTTP/1.1 corretos custam mais do que as
+  diferenças valem); e usar o redirect automático do `reqwest` (normaliza a
+  URL e não reproduz A21).
+- **Divergências que sobram** (fora do fixture, documentadas em
+  PYTHON-TO-RUST.md): o `reqwest` sempre envia `Accept: */*`; um `#` interno
+  no caminho não vai na linha de pedido; espaço no fim do `Location` é aparado
+  pelo `httparse`; redirect para `ftp://` é falha imediata em vez de uma
+  tentativa FTP; dígitos não-ASCII de porta; IDNA 2008 × 2003 em host
+  latin-1. E o que derruba o Python (A22) aqui é "fora do ar".
+- **Verificação:** e2e contra servidor local com 45 cenários (texto, JSON e
+  código de saída idênticos); mutações 17 de 19 mortas — uma sobrevivente
+  virou cenário novo (hub→spoke), a outra é o controle; e o modo sombra sobre
+  os 16 sites reais, idêntico na primeira execução.
+
+## D-027
+
+**`check sites` grava histórico ou recusa; o monitor não cria projetos nem sites.** · aceita · 2026-09-26
+
+- **Contexto:** o histórico vai para `website_checks`, que referencia
+  `websites`, que referencia `projects`. Quem cria projetos é a coleta
+  (`sync github`, Fase 3); quem registra sites é ela e a importação de
+  manifestos (DATA-MODEL §5, MIGRATIONS §6).
+- **Decisão:** `check sites` grava uma linha por checagem **para cada site
+  ativo com aquela URL**, numa execução `websites` de `sync_runs`, tudo ou
+  nada (falha vira execução `failed` com o motivo). URL sem site registrado é
+  relatada, não inventada. E, pela lição do A1, sem `DATABASE_URL` e sem
+  `--no-db` o comando recusa (código 2) em vez de pular o histórico calado.
+- **Consequência aceita:** até a Fase 3 povoar `projects` e `websites` (e o
+  dono provisionar o banco de produção), o histórico em produção fica vazio;
+  a capacidade está provada nos testes. O workflow sombra grava só quando o
+  secret `DATABASE_URL` existir, e não roda migrations.
+
+## D-028
+
+**Fixture de paridade preso à versão exata do Python do CI.** · aceita · 2026-09-26
+
+- **Fato:** o `urllib` muda **dentro** da série 3.12: o `urlunsplit` do
+  3.12.3 (o do Ubuntu 24.04) difere do 3.12.14 (o que o `setup-python`
+  instala). Um fixture gerado com o Python do sistema poderia divergir do CI
+  sem ninguém ter mudado nada.
+- **Decisão:** `site_monitor.json` é gerado com o CPython 3.12.14 (o do CI,
+  lido no log do job) e registra a versão; o teste compara só em 3.12.x e
+  pula em outra versão menor. O Rust Core usa o mesmo Python no e2e. Quando o
+  CI trocar de patch e a biblioteca padrão mudar um caso, o teste Python
+  reprova: é o sinal para regenerar e portar a mudança no mesmo PR.
+- **Como regenerar:** `uv python install 3.12.14` e
+  `UPDATE_PARITY=1 python3.12 -m unittest tests.test_parity_site_monitor`
+  com esse interpretador.
