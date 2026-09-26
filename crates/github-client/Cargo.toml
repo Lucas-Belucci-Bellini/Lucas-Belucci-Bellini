@@ -1,0 +1,20 @@
+[package]
+name = "github-client"
+description = "Cliente da API do GitHub (REST e GraphQL) com a semântica dos coletores Python: paginação, novas tentativas e mensagens de erro."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+reqwest = { version = "0.13", default-features = false, features = ["rustls-no-provider", "system-proxy"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std"] }
+serde_json.workspace = true
+thiserror.workspace = true
+tokio = { workspace = true, features = ["time"] }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["net", "io-util", "time", "macros", "rt-multi-thread"] }
+
+[lints]
+workspace = true

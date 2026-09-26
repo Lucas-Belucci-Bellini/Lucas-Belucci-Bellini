@@ -576,6 +576,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "github-client"
+version = "0.1.0"
+dependencies = [
+ "reqwest",
+ "rustls",
+ "serde_json",
+ "thiserror",
+ "tokio",
+]
+
+[[package]]
 name = "hashbrown"
 version = "0.16.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
