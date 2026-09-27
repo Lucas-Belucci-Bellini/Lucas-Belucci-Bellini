@@ -21,6 +21,10 @@ dois programas contra ele:
                    truncadas, vazias, que falham e 429 que passa; segunda rodada
                    sem mudança; tracebacks; GraphQL com e sem erro) — saída,
                    SVGs, código de saída e a sequência de chamadas à API
+    pipeline       os três scripts em sequência      ×  profile-core render all --out-dir / --write
+                   (Fase 5: mesmos arquivos, mesma saída e mesmas chamadas; e o
+                   --check: publicação em dia sai 0, carimbo diferente não conta,
+                   bloco editado à mão e SVG apagado saem 1)
 
 Exige os mesmos bytes em cada arquivo e a mesma saída do monitor.
 
@@ -497,28 +501,153 @@ def assets_parity(binary: str, fake: FakeGitHub, work: Path, failures: list[str]
                     failures)
 
 
-def main() -> int:
-    if len(sys.argv) != 2:
-        print(__doc__, file=sys.stderr)
-        return 2
-    binary = str(Path(sys.argv[1]).resolve())
-    fake = FakeGitHub()
-    for path, items in pages(ALL_REPOS, lambda p: f"/user/repos?affiliation=owner,collaborator,organization_member&per_page=100&page={p}").items():
+PROFILE_LISTING = "/user/repos?affiliation=owner,collaborator,organization_member&per_page=100&page={}"
+
+
+def profile_routes(fake: FakeGitHub, *, sane_languages: bool = False) -> None:
+    """O GitHub do update_profile.py: inventário com e sem token e as linguagens."""
+    for path, items in pages(ALL_REPOS, PROFILE_LISTING.format).items():
         fake.get(path, items)
-    for path, items in pages(PUBLIC_OWNER, lambda p: f"/users/{OWNER}/repos?type=owner&per_page=100&page={p}").items():
+    for path, items in pages(PUBLIC_OWNER, lambda p: PUBLIC_LISTING.format(OWNER, p)).items():
         fake.get(path, items)
     languages = [
         lambda n: {"Python": 1000 + n, "Rust": n},
         lambda n: {"C#": 5000 * n, "PLpgSQL": 7},
         lambda n: {"JavaScript": 2_000_000 + n, "HTML": 3000, "CSS": 1024, "Shell": 12, "Batchfile": 1, "Dockerfile": 2},
         lambda n: {"Jupyter Notebook": 9},
-        lambda n: {"Python": "não é número"},  # o mapa inteiro vira vazio
+        # O mapa inteiro vira vazio no update_profile.py; o lang_stats.py quebraria (A26).
+        (lambda n: {"Go": 4096 + n}) if sane_languages else (lambda n: {"Python": "não é número"}),
     ]
     for n, repo in enumerate(ALL_REPOS):
         if n % 10 == 3:
             fake.get(f"/repos/{repo['full_name']}/languages", {"message": "Not Found"}, status=404)
         else:
             fake.get(f"/repos/{repo['full_name']}/languages", languages[n % 5](n))
+
+
+def pipeline_routes(fake: FakeGitHub) -> None:
+    """Um GitHub só para os três programas: o do README, as árvores do lang-stats e o GraphQL dos cards."""
+    fake.routes.clear()
+    profile_routes(fake, sane_languages=True)
+    listing = [r for r in OWNER_REPOS if " " not in str(r["default_branch"])]
+    for path, items in pages(listing, LS_LISTING.format).items():
+        fake.get(path, items)
+    for repo in listing:
+        i = repo["id"] - 10_000
+        tree_path = f"/repos/{repo['full_name']}/git/trees/{repo['default_branch']}?recursive=1"
+        if i % 7 == 2:
+            fake.get(tree_path, {"message": "Git Repository is empty."}, status=409)
+        elif i % 7 != 0:
+            fake.get(tree_path, tree_of(i))
+    fake.graphql(cards_handler("ok"))
+
+
+def pipeline_parity(binary: str, fake: FakeGitHub, work: Path, failures: list[str]) -> None:
+    """`render all` = update_profile.py + lang_stats.py + profile_cards.py, e o --check."""
+    pipeline_routes(fake)
+    env = {"GITHUB_API_URL": fake.url, "GITHUB_GRAPHQL_URL": f"{fake.url}/graphql", "GH_USER": OWNER,
+           "GITHUB_TOKEN": "tok", "PROFILE_GITHUB_TOKEN": "inventory-token"}
+    checks = ["--site-checks-fixture"]
+
+    def python_side(root: Path, *mode: str) -> tuple[str, int, list[Any]]:
+        fake.requests.clear()
+        out, code = "", 0
+        for command in ([sys.executable, str(ROOT / "scripts" / "update_profile.py"), "--root", str(root),
+                         *checks, str(root / "site-checks.json"), "--now", NOW, *mode],
+                        [sys.executable, str(ROOT / ".github" / "scripts" / "lang_stats.py"), "--root", str(root),
+                         "--now", NOW],
+                        [sys.executable, str(ROOT / ".github" / "scripts" / "profile_cards.py"), "--root", str(root),
+                         "--now", NOW]):
+            result = run(command, env)
+            out += result.stdout
+            code = code or result.returncode
+            if result.returncode != 0:
+                failures.append(f"pipeline python: {command[1]} saiu com {result.returncode}: {result.stderr[-300:]}")
+                break
+        return out, code, list(fake.requests)
+
+    def rust_side(root: Path, *mode: str) -> subprocess.CompletedProcess[str]:
+        fake.requests.clear()
+        return run([binary, "render", "all", "--root", str(root), *checks, str(root / "site-checks.json"),
+                    "--now", NOW, *mode], env)
+
+    # --write: o que o workflow consolidado faria.
+    py_write, rs_write = work / "pipeline-py-write", work / "pipeline-rs-write"
+    build_root(py_write)
+    build_root(rs_write)
+    py_stdout, py_code, _ = python_side(py_write, "--write")
+    rust = rust_side(rs_write, "--write")
+    if py_code != 0 or rust.returncode != 0:
+        failures.append(f"pipeline --write: python {py_code} / rust {rust.returncode} ({rust.stderr.strip()[-300:]})")
+        return
+    compare("render all --write: saída", py_stdout, rust.stdout, failures)
+    for path in [*PROFILE_OUTPUTS.values(), *(f"assets/{name}" for name in ASSET_FILES)]:
+        compare(f"render all --write: {path}", read(py_write / path), read(rs_write / path), failures)
+
+    # --out-dir: o modo sombra do pipeline inteiro, a partir do que está publicado
+    # (o "mudou?" do lang-stats compara com os SVGs da raiz).
+    py_root, rs_root, py_out, rs_out = (work / f"pipeline-{n}" for n in ("py", "rs", "py-out", "rs-out"))
+    shutil.copytree(py_write, py_root)
+    shutil.copytree(rs_write, rs_root)
+    before = {path: read(rs_root / path) for path in [*PROFILE_OUTPUTS.values(), *(f"assets/{n}" for n in ASSET_FILES)]}
+    py_stdout, py_code, py_calls = python_side(py_root, "--out-dir", str(py_out))
+    rust = rust_side(rs_root, "--out-dir", str(rs_out))
+    rs_calls = list(fake.requests)
+    if py_code != 0 or rust.returncode != 0:
+        failures.append(f"pipeline --out-dir: python {py_code} / rust {rust.returncode} ({rust.stderr.strip()[-300:]})")
+        return
+    if "svg_changed=False top_langs_changed=False" not in py_stdout:
+        failures.append("pipeline --out-dir: o cenário não partiu dos SVGs publicados")
+    compare("render all --out-dir: saída", py_stdout, rust.stdout, failures)
+    compare("render all --out-dir: chamadas à API", "\n".join(map(str, py_calls)), "\n".join(map(str, rs_calls)),
+            failures)
+    for name, path in PROFILE_OUTPUTS.items():
+        compare(f"render all --out-dir: {path}", read(py_out / name), read(rs_out / path), failures)
+    for name in ASSET_FILES:
+        compare(f"render all --out-dir: assets/{name}", read(py_root / "assets" / name),
+                read(rs_out / "assets" / name), failures)
+    if any(read(rs_root / path) != text for path, text in before.items()):
+        failures.append("render all --out-dir tocou na raiz")
+
+    # --check: publicação em dia sai 0; carimbo diferente não conta; o resto, sim.
+    published = work / "pipeline-published"
+    shutil.copytree(rs_write, published)
+    stats = published / "assets" / "profile-stats.svg"
+    stats.write_text(stats.read_text(encoding="utf-8").replace(NOW[:10], "2020-01-01"), encoding="utf-8")
+    fresh = rust_side(published, "--check")
+    ok = fresh.returncode == 0 and "nada mudaria" in fresh.stdout and "mudaria  " not in fresh.stdout
+    print(f"  {'ok  ' if ok else 'FAIL'} render all --check: publicação em dia (carimbo antigo num card) sai 0")
+    if not ok:
+        failures.append(f"render all --check em dia: {fresh.returncode}\n{fresh.stdout}{fresh.stderr[-300:]}")
+    readme = published / "README.md"
+    text = readme.read_text(encoding="utf-8")
+    readme.write_text(text.replace("<!-- PROFILE-DASHBOARD:START -->", "<!-- PROFILE-DASHBOARD:START -->\neditado à mão", 1),
+                      encoding="utf-8")
+    (published / "assets" / "profile-trophies.svg").unlink()
+    stale = rust_side(published, "--check")
+    changed = sorted(line.split()[1] for line in stale.stdout.splitlines() if line.strip().startswith("mudaria "))
+    ok = stale.returncode == 1 and changed == ["README.md", "assets/profile-trophies.svg"]
+    print(f"  {'ok  ' if ok else 'FAIL'} render all --check: bloco editado e SVG apagado saem 1 ({changed})")
+    if not ok:
+        failures.append(f"render all --check desatualizado: {stale.returncode} {changed}\n{stale.stdout}")
+    readme_only = run([binary, "render", "readme", "--root", str(published), *checks,
+                       str(published / "site-checks.json"), "--now", NOW, "--check"], env)
+    changed = sorted(line.split()[1] for line in readme_only.stdout.splitlines() if line.strip().startswith("mudaria "))
+    ok = readme_only.returncode == 1 and changed == ["README.md"]
+    print(f"  {'ok  ' if ok else 'FAIL'} render readme --check: só o README ({changed})")
+    if not ok:
+        failures.append(f"render readme --check: {readme_only.returncode} {changed}\n{readme_only.stdout}")
+    if read(readme) is None or "editado à mão" not in (read(readme) or ""):
+        failures.append("--check gravou na raiz")
+
+
+def main() -> int:
+    if len(sys.argv) != 2:
+        print(__doc__, file=sys.stderr)
+        return 2
+    binary = str(Path(sys.argv[1]).resolve())
+    fake = FakeGitHub()
+    profile_routes(fake)
     failures: list[str] = []
     with fake, tempfile.TemporaryDirectory() as tmp:
         work = Path(tmp)
@@ -526,7 +655,8 @@ def main() -> int:
         # E2E_ONLY=assets (etc.) roda só uma parte — útil para testar mutações.
         only = os.environ.get("E2E_ONLY")
         for name, section in (("profile", profile_parity), ("monitor", monitor_parity),
-                              ("contributions", contributions_parity), ("assets", assets_parity)):
+                              ("contributions", contributions_parity), ("assets", assets_parity),
+                              ("pipeline", pipeline_parity)):
             if not only or only == name:
                 section(binary, fake, work, failures)
     if failures:

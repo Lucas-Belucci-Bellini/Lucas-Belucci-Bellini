@@ -34,6 +34,25 @@ fn uso_incorreto_sai_com_2() {
 }
 
 #[test]
+fn pipeline_exige_um_modo_e_sync_all_exige_banco() {
+    let output = profile_core(&["render", "all", "--skip-site-check"], None);
+    assert_eq!(Some(2), output.status.code());
+    assert!(text(&output.stderr).contains("--write, --out-dir DIR ou --check"), "{}", text(&output.stderr));
+    for conflict in [
+        &["render", "all", "--write", "--check"][..],
+        &["render", "all", "--write", "--out-dir", "x"],
+        &["render", "all", "--check", "--out-dir", "x"],
+        &["render", "readme", "--check", "--write"],
+        &["render", "readme", "--check", "--out-dir", "x"],
+    ] {
+        assert_eq!(Some(2), profile_core(conflict, None).status.code(), "{conflict:?}");
+    }
+    let output = profile_core(&["sync", "all"], None);
+    assert_eq!(Some(2), output.status.code());
+    assert!(text(&output.stderr).contains("defina DATABASE_URL ou passe --no-db"), "{}", text(&output.stderr));
+}
+
+#[test]
 fn url_invalida_ou_servidor_fora_sai_com_2_sem_repetir_a_senha() {
     let output = profile_core(&["db", "status"], Some("mysql://usuario:segredo-mysql@h/db"));
     assert_eq!(Some(2), output.status.code());

@@ -85,6 +85,15 @@ pub struct Options {
     pub include_forks: bool,
     /// `SEM_ARQUIVOS=1`: pula as árvores git.
     pub skip_files: bool,
+    /// Onde fica o `assets/` comparado e gravado; sem ele, o da raiz
+    /// (`render all --out-dir` e `--check` gravam numa cópia).
+    pub out: Option<PathBuf>,
+}
+
+impl Options {
+    fn assets_dir(&self) -> PathBuf {
+        self.out.as_deref().unwrap_or(&self.root).join("assets")
+    }
 }
 
 /// Resultado: a saída padrão do script e o código de saída.
@@ -364,7 +373,7 @@ pub async fn run_lang_stats(options: &Options) -> Result<Outcome, AssetsError> {
         eprintln!("Nenhuma linguagem coletada — abortando sem alterar arquivos.");
         return Ok(Outcome { stdout, code: 1 });
     }
-    let assets = options.root.join("assets");
+    let assets = options.assets_dir();
     std::fs::create_dir_all(&assets).map_err(|error| crash(format!("{}: {error}", assets.display())))?;
     let svg_changed = write_if_changed(&assets.join("lang-stats.svg"), &lang_stats::build_svg(&data))?;
     let top_changed = write_if_changed(&assets.join("profile-top-langs.svg"), &lang_stats::build_top_langs_svg(&data))?;
@@ -450,7 +459,7 @@ async fn request_data(options: &Options, now: NaiveDateTime) -> Result<Map<Strin
 pub async fn run_cards(options: &Options) -> Result<Outcome, AssetsError> {
     let now = clock(options.now.as_deref())?;
     let data = request_data(options, now).await?;
-    let assets = options.root.join("assets");
+    let assets = options.assets_dir();
     std::fs::create_dir_all(&assets).map_err(|error| crash(format!("{}: {error}", assets.display())))?;
     for (file, svg) in cards::FILES.iter().zip(cards::all(&data)) {
         write(&assets.join(file), &svg)?;

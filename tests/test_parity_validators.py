@@ -66,6 +66,19 @@ sys.exit(v.main())
 """
 
 BADGE = "https://img.shields.io/badge/{}-x?style=flat-square&labelColor=0e0c16"
+SYNTHETIC_WORKFLOW = """on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+permissions:
+  contents: write
+jobs:
+  refresh:
+    steps:
+      - run: python3 scripts/update_profile.py --write
+      - run: python3 scripts/validate_dynamic_sections.py && python3 scripts/validate_exclusions.py
+      - run: git diff --quiet || git commit -am refresh
+"""
 
 
 def block(marker: str, body: str) -> str:
@@ -146,7 +159,9 @@ def base_tree() -> dict[str, Any]:
         "docs/README_STACK.json": "{}\n",
         "docs/README_EXCLUDED.json": '{"repositories": ["segredo", "o/oculto"]}\n',
         "docs/project-catalog.json": catalog(),
-        ".github/workflows/update-profile.yml": (ROOT / ".github/workflows/update-profile.yml").read_text(),
+        # O validate_profile.py lê este arquivo fora do try; o conteúdo é
+        # sintético para o fixture não depender do workflow de verdade.
+        ".github/workflows/update-profile.yml": SYNTHETIC_WORKFLOW,
     }
     for asset in ("jarvis-console.svg", "lang-stats.svg", "profile-projects.svg", "profile-stats.svg",
                   "profile-streak.svg", "profile-top-langs.svg", "profile-trophies.svg", "profile-snapshot.svg"):

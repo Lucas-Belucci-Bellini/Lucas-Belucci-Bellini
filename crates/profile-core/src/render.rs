@@ -43,6 +43,37 @@ pub struct Rendered {
     pub stdout: String,
     /// Linha de resumo para o stderr.
     pub note: String,
+    /// Os três arquivos gerados (gravados ou não).
+    pub outputs: Outputs,
+}
+
+/// O que o `update_profile.py` gera, na ordem do [`OUTPUT_FILES`].
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Outputs {
+    /// `README.md`.
+    pub readme: String,
+    /// `assets/profile-snapshot.svg`.
+    pub snapshot: String,
+    /// `docs/project-catalog.json`.
+    pub catalog: String,
+}
+
+/// Onde cada saída mora na raiz do perfil.
+pub const OUTPUT_FILES: [&str; 3] = ["README.md", "assets/profile-snapshot.svg", catalog::CATALOG_FILE];
+
+impl Outputs {
+    /// Os três, com o caminho relativo à raiz.
+    pub fn files(&self) -> [(&'static str, &str); 3] {
+        [(OUTPUT_FILES[0], &self.readme), (OUTPUT_FILES[1], &self.snapshot), (OUTPUT_FILES[2], &self.catalog)]
+    }
+
+    /// Grava os três em `dir`, no mesmo lugar que teriam na raiz.
+    pub fn stage(&self, dir: &Path) -> Result<(), BuildError> {
+        for (file, text) in self.files() {
+            write(&dir.join(file), text)?;
+        }
+        Ok(())
+    }
 }
 
 /// `README.read_text()`: modo texto, com as quebras universais do Python
@@ -136,5 +167,6 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
         profile.verified_sites(),
         if options.build.write { "; gravado" } else { "" }
     );
-    Ok(Rendered { stdout, note })
+    let outputs = Outputs { snapshot: profile.snapshot_svg(), readme, catalog: catalog_text };
+    Ok(Rendered { stdout, note, outputs })
 }

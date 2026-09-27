@@ -15,6 +15,10 @@
 //!                            [--site-timeout S] [--site-workers N] [--site-checks-out FILE]
 //! profile-core render lang-stats | cards | assets [--root DIR] [--now ISO]
 //!                            [--include-forks] [--skip-files]
+//! profile-core render readme … --check
+//! profile-core render all    (--write | --out-dir DIR | --check) [as opções do render readme]
+//!                            [--include-forks] [--skip-files]
+//! profile-core sync all      [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
 //! profile-core sync commits  [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
 //! profile-core sync github   [--root DIR] [--input-repos FILE [--languages-dir DIR]] [--no-db] [--trigger T]
 //! profile-core sync contributions [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
@@ -59,6 +63,11 @@
 //! `profile_cards.py` (os SVGs de `assets/`); `render assets` roda os dois,
 //! como o `lang-stats.yml`. Mesmas variáveis de ambiente dos scripts.
 //!
+//! `render all` é o pipeline único do D-018: README, lang-stats e cards num
+//! processo. `--check` (também no `render readme`) não grava nada e sai com
+//! `1` se algum arquivo publicado mudaria. `sync all` roda a coleta inteira:
+//! github → manifestos → commits → contribuições → sites.
+//!
 //! `check sites` imprime o relatório do `scripts/check_websites.py` byte a
 //! byte (exceto o `checked_at`) e grava cada checagem em
 //! `ecosystem.website_checks`. Sem banco configurado ele **recusa** em vez de
@@ -82,6 +91,7 @@ use profile_core::commits;
 use profile_core::contributions;
 use profile_core::imports;
 use profile_core::inventory_sync::{self, SyncOptions};
+use profile_core::pipeline::{self, Mode, PipelineError};
 use profile_core::render::{self, RenderOptions};
 use profile_core::sites;
 use profile_core::validate::{self, Crash, Outcome};
@@ -179,6 +189,29 @@ enum RenderCommand {
     Cards(AssetsArgs),
     /// lang-stats e cards, nessa ordem, parando no primeiro que falhar.
     Assets(AssetsArgs),
+    /// README, lang-stats e cards num processo (o pipeline único do D-018).
+    All(AllArgs),
+}
+
+#[derive(Args)]
+struct AllArgs {
+    #[command(flatten)]
+    catalog: CatalogArgs,
+    /// Linguagens de arquivo, um owner__nome.json por repositório (com --input-repos).
+    #[arg(long, value_name = "DIR", requires = "input_repos")]
+    languages_dir: Option<PathBuf>,
+    /// Grava tudo neste diretório, com o layout da raiz, sem tocar no que é publicado.
+    #[arg(long, value_name = "DIR", conflicts_with_all = ["write", "check"])]
+    out_dir: Option<PathBuf>,
+    /// Não grava nada: sai com 1 se algum arquivo publicado mudaria.
+    #[arg(long, conflicts_with = "write")]
+    check: bool,
+    /// Inclui os forks nos SVGs de linguagem (ou INCLUDE_FORKS=1).
+    #[arg(long)]
+    include_forks: bool,
+    /// Não lê as árvores git: sem tipos de arquivo (ou SEM_ARQUIVOS=1).
+    #[arg(long)]
+    skip_files: bool,
 }
 
 #[derive(Args)]
@@ -211,6 +244,9 @@ struct ReadmeArgs {
     /// diretório, sem tocar no que é publicado (vale sem token).
     #[arg(long, value_name = "DIR")]
     out_dir: Option<PathBuf>,
+    /// Não grava nada: sai com 1 se o README, o snapshot ou o catálogo mudariam.
+    #[arg(long, conflicts_with_all = ["write", "out_dir", "catalog_out"])]
+    check: bool,
 }
 
 #[derive(Subcommand)]
@@ -241,6 +277,30 @@ enum SyncCommand {
     Github(GithubArgs),
     /// Contribuições mensais do GraphQL (o update_contribution_timeline.py).
     Contributions(ContributionsArgs),
+    /// A coleta inteira: github → manifestos → commits → contribuições → sites.
+    All(SyncAllArgs),
+}
+
+#[derive(Args)]
+struct SyncAllArgs {
+    /// Raiz com docs/.
+    #[arg(long, default_value = ".")]
+    root: PathBuf,
+    /// Relógio fixo, ISO 8601 com fuso.
+    #[arg(long, value_name = "ISO")]
+    now: Option<String>,
+    /// Grava os arquivos do monitor e da timeline em docs/.
+    #[arg(long)]
+    write: bool,
+    /// URL do PostgreSQL. Prefira a variável de ambiente.
+    #[arg(long, env = "DATABASE_URL", hide_env_values = true, value_name = "URL")]
+    database_url: Option<String>,
+    /// Sem banco: só coleta e relata (os manifestos não são importados).
+    #[arg(long)]
+    no_db: bool,
+    /// Gatilho registrado em ecosystem.sync_runs.
+    #[arg(long, default_value = "manual", value_parser = ["schedule", "manual", "push", "api", "test"])]
+    trigger: String,
 }
 
 #[derive(Args)]
@@ -412,6 +472,8 @@ enum CliError {
     Crash(#[from] commits::Crash),
     #[error(transparent)]
     Assets(#[from] AssetsError),
+    #[error(transparent)]
+    Pipeline(#[from] PipelineError),
     #[error("{0}: {1}")]
     Io(String, std::io::Error),
     #[error(transparent)]
@@ -487,6 +549,7 @@ async fn main() -> ExitCode {
 fn exit_code(error: &CliError) -> ExitCode {
     if matches!(error, CliError::Crash(_) | CliError::Assets(AssetsError::Crash(_)))
         || matches!(error, CliError::Catalog(error) if error.is_python_crash())
+        || matches!(error, CliError::Pipeline(error) if error.is_python_crash())
     {
         // Onde o Python sairia com traceback (código 1).
         return ExitCode::from(1);
@@ -517,12 +580,14 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
         Command::Sync(SyncCommand::Commits(args)) => return sync_commits(args).await,
         Command::Sync(SyncCommand::Github(args)) => return sync_github(args).await,
         Command::Sync(SyncCommand::Contributions(args)) => return sync_contributions(args).await,
+        Command::Sync(SyncCommand::All(args)) => return sync_all(args).await,
         Command::Import(ImportCommand::Manifests(args)) => return import_manifests(args).await,
         Command::Import(ImportCommand::Legacy(args)) => return import_legacy(args).await,
         Command::Render(RenderCommand::Readme(args)) => return render_readme(args).await,
         Command::Render(RenderCommand::LangStats(args)) => return render_assets(args, true, false).await,
         Command::Render(RenderCommand::Cards(args)) => return render_assets(args, false, true).await,
         Command::Render(RenderCommand::Assets(args)) => return render_assets(args, true, true).await,
+        Command::Render(RenderCommand::All(args)) => return render_all(args).await,
         Command::Validate(command) => return Ok(run_validate(command).await),
     };
     match command {
@@ -648,22 +713,61 @@ async fn render_readme(args: ReadmeArgs) -> Result<ExitCode, CliError> {
         out_dir: args.out_dir,
         site_check_skipped,
     };
+    if args.check {
+        return Ok(print_report(pipeline::check_readme(&options, &Tokens::from_env()).await?));
+    }
     let rendered = render::run(&options, &Tokens::from_env()).await?;
     print!("{}", rendered.stdout);
     eprintln!("profile-core: {}", rendered.note);
     Ok(ExitCode::SUCCESS)
 }
 
-async fn render_assets(args: AssetsArgs, lang_stats: bool, cards: bool) -> Result<ExitCode, CliError> {
+/// As opções dos SVGs, com as variáveis de ambiente dos scripts.
+fn assets_options(root: PathBuf, now: Option<String>, include_forks: bool, skip_files: bool) -> assets::Options {
     let env = |name: &str| std::env::var(name).ok();
-    let options = assets::Options {
-        root: args.root,
-        now: args.now,
+    assets::Options {
+        root,
+        now,
         token: env("GITHUB_TOKEN").filter(|token| !token.is_empty()),
         user: env("GH_USER").unwrap_or_else(|| catalog::OWNER.into()),
-        include_forks: args.include_forks || env("INCLUDE_FORKS").as_deref() == Some("1"),
-        skip_files: args.skip_files || env("SEM_ARQUIVOS").as_deref() == Some("1"),
+        include_forks: include_forks || env("INCLUDE_FORKS").as_deref() == Some("1"),
+        skip_files: skip_files || env("SEM_ARQUIVOS").as_deref() == Some("1"),
+        out: None,
+    }
+}
+
+fn print_report(report: pipeline::Report) -> ExitCode {
+    print!("{}", report.stdout);
+    for note in &report.notes {
+        eprintln!("profile-core: {note}");
+    }
+    ExitCode::from(report.code)
+}
+
+async fn render_all(args: AllArgs) -> Result<ExitCode, CliError> {
+    let mode = match (args.catalog.write, args.out_dir, args.check) {
+        (true, _, _) => Mode::Write,
+        (false, Some(dir), _) => Mode::OutDir(dir),
+        (false, None, true) => Mode::Check,
+        (false, None, false) => {
+            eprintln!("profile-core: erro: render all precisa de --write, --out-dir DIR ou --check");
+            return Ok(ExitCode::from(2));
+        }
     };
+    let assets =
+        assets_options(args.catalog.root.clone(), args.catalog.now.clone(), args.include_forks, args.skip_files);
+    let site_check_skipped = args.catalog.skip_site_check;
+    let options = RenderOptions {
+        build: build_options(args.catalog, args.languages_dir),
+        catalog_out: None,
+        out_dir: None,
+        site_check_skipped,
+    };
+    Ok(print_report(pipeline::render_all(&options, &assets, &Tokens::from_env(), &mode).await?))
+}
+
+async fn render_assets(args: AssetsArgs, lang_stats: bool, cards: bool) -> Result<ExitCode, CliError> {
+    let options = assets_options(args.root, args.now, args.include_forks, args.skip_files);
     if lang_stats {
         let outcome = assets::run_lang_stats(&options).await?;
         print!("{}", outcome.stdout);
@@ -824,6 +928,76 @@ async fn sync_contributions(args: ContributionsArgs) -> Result<ExitCode, CliErro
         );
     }
     Ok(ExitCode::SUCCESS)
+}
+
+/// `sync all`: os passos em ordem, parando no primeiro erro. Sem banco
+/// (`--no-db`), os manifestos não são importados — eles só vão para o banco.
+async fn sync_all(args: SyncAllArgs) -> Result<ExitCode, CliError> {
+    let SyncAllArgs { root, now, write, database_url, no_db, trigger } = args;
+    if !no_db && database_url.is_none() {
+        return Err(CliError::NoDatabase("sync all"));
+    }
+    let step = |name: &str| eprintln!("profile-core: sync all: {name}");
+
+    step("github");
+    sync_github(GithubArgs {
+        root: root.clone(),
+        input_repos: None,
+        languages_dir: None,
+        database_url: database_url.clone(),
+        no_db,
+        trigger: trigger.clone(),
+    })
+    .await?;
+
+    match &database_url {
+        Some(url) if !no_db => {
+            step("manifestos");
+            import_manifests(ImportArgs {
+                root: root.clone(),
+                connection: Connection { database_url: url.clone() },
+                trigger: trigger.clone(),
+            })
+            .await?;
+        }
+        _ => eprintln!("profile-core: sync all: manifestos — pulado (sem banco, não há onde importar)"),
+    }
+
+    step("commits");
+    sync_commits(CommitsArgs {
+        root: root.clone(),
+        now: now.clone(),
+        write,
+        database_url: database_url.clone(),
+        no_db,
+        trigger: trigger.clone(),
+    })
+    .await?;
+
+    step("contribuições");
+    sync_contributions(ContributionsArgs {
+        root: root.clone(),
+        now,
+        write,
+        database_url: database_url.clone(),
+        no_db,
+        trigger: trigger.clone(),
+    })
+    .await?;
+
+    step("sites");
+    check_sites(SitesArgs {
+        json: false,
+        fail_on_down: false,
+        timeout: 15.0,
+        retries: 1,
+        max_workers: 6,
+        root,
+        database_url,
+        no_db,
+        trigger,
+    })
+    .await
 }
 
 async fn import_manifests(args: ImportArgs) -> Result<ExitCode, CliError> {
