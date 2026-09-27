@@ -9,3 +9,4 @@ pub mod imports;
 pub mod inventory_sync;
 pub mod render;
 pub mod sites;
+pub mod validate;

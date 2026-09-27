@@ -1143,6 +1143,7 @@ dependencies = [
  "ecosystem-domain",
  "github-client",
  "profile-render",
+ "regex",
  "serde_json",
  "site-monitor",
  "sqlx",

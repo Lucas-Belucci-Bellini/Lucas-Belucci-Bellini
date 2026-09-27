@@ -43,11 +43,7 @@ impl WebsiteSource {
 ///
 /// Entrada que não é texto nem objeto, ou objeto sem `website` verdadeiro (no
 /// sentido do Python), é ignorada. Um `website` verdadeiro que não é texto
-/// vira texto como a `str()` do Python faz para booleano e inteiro (`True`,
-/// `42`). **Divergência conhecida:** float, lista e objeto saem em forma JSON,
-/// não no `repr` do Python. Nenhum dos dois passa por [`looks_like_http_url`],
-/// então a descoberta de site não muda; o que mudaria é o texto que
-/// `scripts/check_websites.py` relata como URL inválida — a portar junto com ele.
+/// vira texto como a `str()` do Python faz (`True`, `42`, `1e+16`, `['a']`).
 pub fn normalize_site_overrides(raw: &Value) -> BTreeMap<String, String> {
     let Some(entries) = raw.as_object() else {
         return BTreeMap::new();
@@ -69,16 +65,9 @@ pub fn normalize_site_overrides(raw: &Value) -> BTreeMap<String, String> {
         .collect()
 }
 
-/// `str()` do Python para o que `json.loads` devolve — exata para texto,
-/// `None`, booleano e inteiro; ver a divergência em [`normalize_site_overrides`].
+/// `str()` do Python para o que `json.loads` devolve (ver [`crate::pyrepr`]).
 pub fn py_str(value: &Value) -> String {
-    match value {
-        Value::Null => "None".into(),
-        Value::Bool(true) => "True".into(),
-        Value::Bool(false) => "False".into(),
-        Value::String(text) => text.clone(),
-        other => other.to_string(),
-    }
+    crate::pyrepr::py_str(value)
 }
 
 /// Verdade do Python para um valor JSON: `null`, `false`, `0`, `""`, `[]` e

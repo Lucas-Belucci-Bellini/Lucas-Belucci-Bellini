@@ -14,15 +14,20 @@
 //! — o mesmo arquivo que `tests/test_parity_domain.py` gera a partir do Python.
 //!
 //! As armadilhas de semântica do Python estão isoladas em [`text`],
-//! [`url`], [`timestamps`] e [`priority::py_round`].
+//! [`url`], [`timestamps`] e [`priority::py_round`]; o que a biblioteca padrão
+//! diz ao ler e mostrar dados (`json.loads`, `repr`, `OSError`,
+//! `UnicodeDecodeError`), em [`pyjson`], [`pyrepr`] e [`pyio`].
 
 pub mod classify;
 pub mod discovery;
 pub mod lifecycle;
 pub mod monitor;
 pub mod presentation;
+mod printable;
 pub mod priority;
+pub mod pyio;
 pub mod pyjson;
+pub mod pyrepr;
 pub mod repo;
 pub mod slug;
 pub mod taxonomy;

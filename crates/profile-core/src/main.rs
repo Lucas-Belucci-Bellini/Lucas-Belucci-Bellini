@@ -20,7 +20,16 @@
 //! profile-core sync contributions [--root DIR] [--now ISO] [--write] [--no-db] [--trigger T]
 //! profile-core import manifests   [--root DIR] [--trigger T]
 //! profile-core import legacy      [--root DIR] [--trigger T]
+//! profile-core validate readme    --before FILE --after FILE
+//! profile-core validate exclusions | links | visual | catalog [--root DIR]
+//! profile-core validate badges    [--root DIR] [--offline]
+//! profile-core validate all       --before FILE [--root DIR] [--online]
 //! ```
+//!
+//! `validate` são os `scripts/validate_*.py`: mesma saída, mesmo stderr e
+//! mesmo código de saída (onde o script sairia com traceback, `1` e a
+//! exceção). `validate all` roda o que o `update-profile.yml` confere depois
+//! de gerar, sem parar no primeiro que reprovar.
 //!
 //! `import manifests` deixa o banco igual aos manifestos editoriais
 //! (docs/README_*.json); `import legacy` é a carga única do estado que hoje
@@ -75,6 +84,7 @@ use profile_core::imports;
 use profile_core::inventory_sync::{self, SyncOptions};
 use profile_core::render::{self, RenderOptions};
 use profile_core::sites;
+use profile_core::validate::{self, Crash, Outcome};
 use serde_json::json;
 use site_monitor::check::BuildError;
 use site_monitor::{Checker, Options, Status, WebsiteCheck};
@@ -107,6 +117,56 @@ enum Command {
     /// Saídas publicadas no perfil.
     #[command(subcommand)]
     Render(RenderCommand),
+    /// Validadores do README e do catálogo (os scripts/validate_*.py).
+    #[command(subcommand)]
+    Validate(ValidateCommand),
+}
+
+#[derive(Subcommand)]
+enum ValidateCommand {
+    /// Fora dos 13 blocos gerados, nada mudou (validate_dynamic_sections.py).
+    Readme {
+        /// README antes da geração.
+        #[arg(long, value_name = "FILE")]
+        before: PathBuf,
+        /// README depois da geração.
+        #[arg(long, value_name = "FILE")]
+        after: PathBuf,
+    },
+    /// Nenhum repositório excluído aparece no README (validate_exclusions.py).
+    Exclusions(ValidateRoot),
+    /// Com site verificado, o site vem antes do código (validate_project_links.py).
+    Links(ValidateRoot),
+    /// A identidade visual do README continua lá (validate_restored_style.py).
+    Visual(ValidateRoot),
+    /// Badges de linguagem e categorias do Arsenal (validate_language_badges.py).
+    Badges {
+        #[command(flatten)]
+        root: ValidateRoot,
+        /// Não confere as URLs dos badges (o resto, sim).
+        #[arg(long)]
+        offline: bool,
+    },
+    /// Catálogo coerente com o README e os manifestos (validate_profile.py, sem a rede).
+    Catalog(ValidateRoot),
+    /// Tudo o que o update-profile.yml confere, sem parar no primeiro que reprovar.
+    All {
+        #[command(flatten)]
+        root: ValidateRoot,
+        /// README antes da geração (para `readme`).
+        #[arg(long, value_name = "FILE")]
+        before: PathBuf,
+        /// Confere também as URLs dos badges.
+        #[arg(long)]
+        online: bool,
+    },
+}
+
+#[derive(Args)]
+struct ValidateRoot {
+    /// Raiz com README.md, docs/ e assets/.
+    #[arg(long, default_value = ".")]
+    root: PathBuf,
 }
 
 #[derive(Subcommand)]
@@ -463,6 +523,7 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
         Command::Render(RenderCommand::LangStats(args)) => return render_assets(args, true, false).await,
         Command::Render(RenderCommand::Cards(args)) => return render_assets(args, false, true).await,
         Command::Render(RenderCommand::Assets(args)) => return render_assets(args, true, true).await,
+        Command::Validate(command) => return Ok(run_validate(command).await),
     };
     match command {
         DbCommand::Status { connection, json } => {
@@ -810,6 +871,72 @@ async fn import_legacy(args: ImportArgs) -> Result<ExitCode, CliError> {
     println!("  estado do monitor         {} de {} repositórios", report.heads, record.heads.len());
     println!("  amostras importadas       {} de {}", report.samples, record.samples.len());
     Ok(ExitCode::SUCCESS)
+}
+
+/// Imprime o resultado de um validador e devolve o código de saída: o do
+/// script; `1` onde ele sairia com traceback; `2` para o valor JSON que o
+/// Python aceita e o Rust não representa.
+fn report(label: &str, result: Result<Outcome, Crash>) -> u8 {
+    match result {
+        Ok(outcome) => {
+            print!("{}", outcome.stdout);
+            eprint!("{}", outcome.stderr);
+            outcome.code
+        }
+        Err(crash) => {
+            eprintln!("profile-core: erro: validate {label}: {}: {}", crash.kind, crash.message);
+            if crash.kind == "Unsupported" { 2 } else { 1 }
+        }
+    }
+}
+
+/// Os arquivos que o `update-profile.yml` exige não vazios.
+fn generated_files(root: &std::path::Path) -> Outcome {
+    const FILES: [&str; 4] =
+        ["README.md", "assets/lang-stats.svg", "assets/profile-snapshot.svg", "docs/project-catalog.json"];
+    let empty: Vec<&str> = FILES
+        .into_iter()
+        .filter(|file| std::fs::metadata(root.join(file)).map(|meta| meta.len()).unwrap_or(0) == 0)
+        .collect();
+    if empty.is_empty() {
+        return Outcome {
+            stdout: format!("generated files present: {}\n", FILES.len()),
+            stderr: String::new(),
+            code: 0,
+        };
+    }
+    Outcome {
+        stdout: String::new(),
+        stderr: format!("generated files missing or empty: {}\n", empty.join(", ")),
+        code: 1,
+    }
+}
+
+async fn run_validate(command: ValidateCommand) -> ExitCode {
+    let code = match command {
+        ValidateCommand::Readme { before, after } => report("readme", validate::readme(&before, &after)),
+        ValidateCommand::Exclusions(args) => report("exclusions", validate::exclusions(&args.root)),
+        ValidateCommand::Links(args) => report("links", validate::links(&args.root)),
+        ValidateCommand::Visual(args) => report("visual", validate::visual(&args.root)),
+        ValidateCommand::Badges { root, offline } => report("badges", validate::badges(&root.root, !offline).await),
+        ValidateCommand::Catalog(args) => {
+            report("catalog", validate::catalog(&args.root).map(|errors| validate::catalog_outcome(&errors)))
+        }
+        ValidateCommand::All { root, before, online } => {
+            let root = root.root;
+            let codes = [
+                report("readme", validate::readme(&before, &root.join("README.md"))),
+                report("exclusions", validate::exclusions(&root)),
+                report("links", validate::links(&root)),
+                report("visual", validate::visual(&root)),
+                report("badges", validate::badges(&root, online).await),
+                report("catalog", validate::catalog(&root).map(|errors| validate::catalog_outcome(&errors))),
+                report("files", Ok(generated_files(&root))),
+            ];
+            codes.into_iter().max().unwrap_or(0)
+        }
+    };
+    ExitCode::from(code)
 }
 
 fn to_record(check: &WebsiteCheck) -> WebsiteCheckRecord {

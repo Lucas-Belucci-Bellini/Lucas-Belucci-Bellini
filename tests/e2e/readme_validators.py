@@ -18,7 +18,10 @@ Os dois geradores rodam com --write, cada um na sua cópia, e o teste exige:
      (validate_dynamic_sections contra o README publicado, validate_exclusions,
      validate_project_links), o validate_restored_style e as conferências de
      validate_language_badges e validate_profile — estes dois sem a rede (o
-     que eles checam online são sites de terceiros, não o gerador).
+     que eles checam online são sites de terceiros, não o gerador);
+  3. (Fase 5) o `profile-core validate` sobre a mesma cópia dizendo o mesmo
+     que cada script: saída, stderr e código — e, no `catalog`, os mesmos
+     erros do validate_profile.
 
     python3 tests/e2e/readme_validators.py target/release/profile-core
 """
@@ -143,12 +146,11 @@ OFFLINE_BADGES = """
 import sys
 sys.path.insert(0, sys.argv[1])
 import validate_language_badges as v
-readme = v.README.read_text(encoding="utf-8")
-count, labels, _ = v.assert_language_badges(readme)
-categories = v.assert_categories(readme)
-v.assert_language_count_matches(readme, count)
-print(f"language badges (offline): {count} badges, {len(categories)} categorias")
+v.check_urls = lambda urls: None
+sys.exit(v.main())
 """
+BADGES_ONLINE_NOTE = "HTTP 2xx/3xx for all badge URLs"
+BADGES_OFFLINE_NOTE = "badge URLs not checked (offline)"
 
 OFFLINE_PROFILE = """
 import sys
@@ -209,13 +211,42 @@ def main() -> int:
             ("validate_language_badges (sem rede)", [sys.executable, "-c", OFFLINE_BADGES, str(scripts)]),
             ("validate_profile (sem rede)", [sys.executable, "-c", OFFLINE_PROFILE, str(scripts)]),
         ]
+        results = {}
         for label, command in validators:
             result = run(command)
+            results[label] = result
             if result.returncode == 0:
                 print(f"  ok   {label}")
             else:
                 print(f"  FAIL {label}")
                 failures.append(f"{label}: {(result.stderr or result.stdout).strip()[-800:]}")
+
+        # O mesmo julgamento em Rust, sobre a mesma cópia (Fase 5, D-037).
+        root = str(rs_root)
+        rust_validators = [
+            ("validate_dynamic_sections", ["readme", "--before", str(ROOT / "README.md"),
+                                           "--after", str(rs_root / "README.md")]),
+            ("validate_exclusions", ["exclusions", "--root", root]),
+            ("validate_project_links", ["links", "--root", root]),
+            ("validate_restored_style", ["visual", "--root", root]),
+            ("validate_language_badges (sem rede)", ["badges", "--offline", "--root", root]),
+        ]
+        for label, args in rust_validators:
+            python, rust = results[label], run([binary, "validate", *args])
+            same = (python.returncode == rust.returncode
+                    and python.stdout.replace(BADGES_ONLINE_NOTE, BADGES_OFFLINE_NOTE) == rust.stdout
+                    and python.stderr == rust.stderr)
+            print(f"  {'ok  ' if same else 'FAIL'} profile-core validate {args[0]} = {label}")
+            if not same:
+                failures.append(f"validate {args[0]}: Python {python.returncode} {python.stdout!r} {python.stderr!r}"
+                                f" × Rust {rust.returncode} {rust.stdout!r} {rust.stderr!r}")
+        python_errors = [e for e in json.loads(results["validate_profile (sem rede)"].stdout)["errors"]
+                         if not e.startswith(("workflow missing required construct", "workflow YAML"))]
+        rust = run([binary, "validate", "catalog", "--root", root])
+        same = python_errors == [] and rust.returncode == 0
+        print(f"  {'ok  ' if same else 'FAIL'} profile-core validate catalog = validate_profile (sem rede)")
+        if not same:
+            failures.append(f"validate catalog: Python {python_errors} × Rust {rust.returncode} {rust.stderr!r}")
     if failures:
         print(f"\n{len(failures)} falha(s):", file=sys.stderr)
         for failure in failures:

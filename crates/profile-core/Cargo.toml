@@ -17,6 +17,7 @@ clap.workspace = true
 ecosystem-domain.workspace = true
 github-client.workspace = true
 profile-render.workspace = true
+regex.workspace = true
 serde_json.workspace = true
 site-monitor.workspace = true
 store.workspace = true

@@ -33,7 +33,8 @@ pub struct PyException {
 }
 
 impl PyException {
-    fn new(kind: &'static str, message: impl Into<String>) -> Self {
+    /// Uma exceção do tipo `kind` com o texto `message`.
+    pub fn new(kind: &'static str, message: impl Into<String>) -> Self {
         Self { kind, message: message.into() }
     }
 }
