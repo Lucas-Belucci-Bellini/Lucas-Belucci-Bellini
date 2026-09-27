@@ -60,7 +60,9 @@ revert | status`) desde a Fase 1; `site-monitor` e `profile-core check sites`
 desde a Fase 2; `github-client`, `catalog` e os comandos `catalog build`,
 `sync github | commits | contributions` e `import manifests | legacy` desde a
 Fase 3; `profile-render` e `render readme | lang-stats | cards | assets`
-desde a Fase 4. Os validadores continuam em Python, como oráculo (D-015).
+desde a Fase 4; `validate …`, `render all`, `render … --check`, `sync all`,
+`--from-db` e `--classifier` desde a Fase 5. Os validadores Python continuam
+no CI como oráculo (D-015), agora ao lado dos equivalentes Rust (D-037).
 
 Regras:
 
@@ -102,7 +104,7 @@ de C:** 30 dias sem regressão e equivalente Rust de cada validador.
 | **2 · monitor de sites** ✅ | `site-monitor` + `profile-core check sites` (`1d2e955`, `5daa524`, D-026 a D-028); modo B no workflow *Site Monitor Shadow* (`b00e33a`) | relatório JSON idêntico ao de `check_websites.py --json` (exceto `checked_at`) ✅ — texto e código de saída também, em 45 cenários locais e nos 16 sites reais; histórico no banco ✅ (`website_checks`, para os sites registrados — D-027). **Sai do modo B** com 14 execuções agendadas seguidas sem diferença |
 | **3 · coleta** ✅ | `github-client` (D-029), `catalog` + `catalog build`, `sync commits` (D-030), `sync github` (D-031), `sync contributions` (D-033), `import manifests` + `import legacy` (D-032); modo B no workflow *Core Shadow* | `project-catalog.json` do Rust = do Python ✅ — byte a byte no golden e no GitHub simulado, com e sem token; contadores do monitor idênticos ✅ — estado, relatório e saída em 12 cenários do fixture e 5 varreduras encadeadas; timeline idêntica ✅. **Sai do modo B** com 14 execuções agendadas seguidas sem diferença |
 | **4 · geração** ✅ | `profile-render` (blocos, snapshot, SVGs do `lang_stats` e cards), `render readme` (D-034), `render lang-stats \| cards \| assets` (D-036); modo B no *Core Shadow* (D-035) | README byte a byte igual sobre as mesmas entradas ✅ — golden, 17 cenários de borda do fixture, GitHub simulado (com e sem token, e `--write`) e a árvore real do perfil; validadores Python verdes contra a saída do Rust ✅ (`tests/e2e/readme_validators.py`); os seis SVGs de `assets/` iguais ✅ — 4 conjuntos de dados de borda no fixture e 13 cenários no GitHub simulado. **Sai do modo B** com 14 execuções agendadas seguidas sem diferença; a virada (C) não está neste PR |
-| **5 · consolidação** | um workflow, um commit (D-018); scripts Python removidos; correções editoriais (`classifier@2`, A20) | nenhum Python no caminho de publicação |
+| **5 · consolidação** 🟡 | ✅ `validate` em Rust com a saída dos scripts byte a byte (D-037); ✅ `render all` / `--check` / `sync all` e a virada como interruptor do dono, desligada (D-038); ✅ `--from-db` com a ordem de chegada no banco, migration 0008 (D-040); ✅ `classifier@2` desligado, com o diff para revisão (D-039). **Falta, e não é código:** 14 execuções limpas do *Core Shadow* no `main`, o `PROFILE_README_TOKEN`, o dono ligar `PROFILE_CORE_MODE=publish`; 30 dias depois, a fase D (remover os scripts, §8); A20 (decisão do dono) | nenhum Python no caminho de publicação — o caminho Rust existe inteiro e validado; a troca é do dono |
 
 ## 6. Estratégia de testes
 
@@ -120,7 +122,11 @@ OLD PYTHON ──▶ saída esperada (fixture golden, versionada) ◀── NEW 
 | **Paridade das contribuições** ✅ | `tests/test_parity_contributions.py` → `tests/fixtures/parity/contributions.json` ← `--test parity_contributions` | janelas mensais e 8 execuções: pedidos, JSON e HTML byte a byte, erros |
 | **Catálogo** ✅ | `crates/catalog/tests/golden.rs` e `--test catalog_build` | o `expected/project-catalog.json` do golden, byte a byte |
 | **Coleta de ponta a ponta** ✅ | `tests/e2e/github_parity.py` (no Rust Core) | os dois lados contra o mesmo GitHub simulado (109 repositórios): catálogo com e sem token, 5 varreduras do monitor, timeline |
-| **Sombra da coleta** ✅ | workflow *Core Shadow* + `.github/scripts/compare_files.py` | os mesmos pares sobre os dados reais, diariamente |
+| **Sombra da coleta** ✅ | workflow *Core Shadow* + `.github/scripts/compare_files.py` | os mesmos pares sobre os dados reais, diariamente; desde a Fase 5, a geração inteira pelo `render all --out-dir` e, com banco, o README do banco × o do GitHub |
+| **Biblioteca padrão do Python** ✅ | `tests/test_parity_pytext.py` → `tests/fixtures/parity/pytext.json` ← `cargo test -p ecosystem-domain --test pytext_parity` | `json.loads` (340 textos, com prefixos e trocas de caractere), `repr`/`str`, UTF-8, `OSError` e a tabela do `str.isprintable()` em todos os code points (D-037) |
+| **Paridade dos validadores** ✅ | `tests/test_parity_validators.py` → `tests/fixtures/parity/validators.json` ← `cargo test -p profile-core --test parity_validate` | 53 árvores rodadas pelos seis `validate_*.py`: saída, stderr, código e traceback (D-037) |
+| **Pipeline** ✅ | `tests/e2e/github_parity.py` (seção `pipeline`) | `render all --write`/`--out-dir` = os três scripts em sequência (arquivos, saída, chamadas); `--check` em dia sai 0, desatualizado sai 1 (D-038) |
+| **Banco como fonte** ✅ | `cargo test -p profile-core --test from_db` | README, snapshot, catálogo e saída do banco = do arquivo; sem a ordem gravada, o teste pega (D-040) |
 | **Banco** | `db/tests/run.sh` + `cargo test -p store` ✅ | restrições, views, histórico append-only, privilégios; no Rust, cada teste cria e apaga o próprio banco (`STORE_TEST_DATABASE_URL`; `STORE_TESTS_REQUIRED=1` no CI impede que pulem) |
 | **Binário** ✅ | `cargo test -p profile-core` + `db/tests/profile_core_e2e.sh` | CLI de ponta a ponta; schema do binário = schema do psql (`pg_dump`); testes SQL sobre ele; trava de perda de dados |
 | **Paridade do monitor** ✅ | `tests/test_parity_site_monitor.py` → `tests/fixtures/parity/site_monitor.json` ← `cargo test -p site-monitor --test parity` e `-p profile-core --test parity_sites` | 111 casos gerados **chamando** o `urllib`/`http.client` do CPython 3.12.14 e o `check_websites.py` (D-028) |
@@ -262,6 +268,22 @@ Alphabetic/Numeric — diferem só em marcas combinantes, que extensão de arqui
 real não tem; bytes de linguagem com fração (o Python somaria `float`) derrubam
 o Rust; e um SVG existente ilegível é regravado pelo Rust (o Python quebraria).
 
+### Armadilhas de paridade — validadores e biblioteca padrão
+
+| Python | Rust ingênuo | Rust do núcleo |
+|:---|:---|:---|
+| `json.loads` aceita `NaN`, `Infinity`, inteiro de qualquer tamanho e surrogate isolado; chave repetida fica com o último valor na posição da primeira | `serde_json` recusa ou arredonda | `pyjson::loads` (o `_json.c` portado); o que não cabe num `Value` vira `Unsupported`, **depois** de conferir a sintaxe inteira (um erro adiante é o que o Python relataria) |
+| a mensagem do `JSONDecodeError` conta **code points** e colunas desde o último `\n`; `{"a":1,}` pede "property name" (o 3.13 mudou para "trailing comma") | a mensagem do `serde_json` | as mensagens do 3.12, conferidas em 340 textos |
+| `"\ud83d\ude00` sem aspas de fecho diz *Invalid \uXXXX escape*, não *Unterminated* (o par só é lido com `end + 6 < len`) | "unterminated" | a mesma condição |
+| `repr()` escolhe `"` quando há `'` e não há `"`; escapa pelo `isprintable()` do Unicode do próprio CPython | `{:?}` do Rust | `pyrepr::py_repr_str` + tabela gerada do CPython (712 intervalos), conferida em todos os code points |
+| `repr(1e16)` é `1e+16`, `repr(1e-5)` é `1e-05`, `repr(100.0)` é `100.0` | `1e16`, `0.00001` | `py_float_repr` (expoente em `-4 < decpt <= 16`) |
+| `{str(n) for n in ...}` vira texto **antes** de entrar no `set` (lista não quebra) | checar `unhashable` | só onde o Python põe o valor cru no `set` (`categories`) |
+| iterar um `set` de textos tem ordem aleatória por processo (`PYTHONHASHSEED`) | igualar a ordem | ordem do manifesto; o fixture grava a lista ordenada |
+| `str.splitlines()` quebra em `\v`, `\f`, `\x1c`–`\x1e`, `\x85`, `\u2028`, `\u2029` | `lines()` | `py_splitlines` |
+| `\s` do `re` em texto inclui `\x1c`–`\x1f` | `\s` do `regex` | classe explícita `[^)\s\x{1c}-\x{1f}]` |
+| o `main()` do `validate_language_badges` trata `OSError`, mas não `UnicodeDecodeError` (é `ValueError`) | tratar os dois | `is_os_error` decide |
+| `urlparse` remove `\t\r\n` da URL antes de separar a query | procurar na URL crua | `pyurl::urlparse` do `site-monitor` |
+
 ### Testes Python existentes
 
 Os 57 testes **não são removidos** para facilitar a migração. Cada um vira
@@ -273,7 +295,6 @@ Python só sai junto com o script que ele cobre, na fase D daquele componente.
 ```text
 profile-core [--database-url URL | --no-db] [--offline --fixtures DIR] [--dry-run] <comando>
 
-  sync all                      github → manifests → commits → contributions → sites
   sync github [--input-repos F [--languages-dir D]] [--no-db]
                                 ✅ Fase 3 — inventário, linguagens, projetos, sites de homepage;
                                 gravar exige inventário completo (D-031)   (Repository Catalog)
@@ -301,9 +322,22 @@ profile-core [--database-url URL | --no-db] [--offline --fixtures DIR] [--dry-ru
                                 marcadores), snapshot e catálogo; mesma saída (D-034, D-035)
   render lang-stats | cards | assets [--root DIR] [--now T] [--include-forks] [--skip-files]
                                 ✅ Fase 4 — o lang_stats.py e o profile_cards.py (D-036)
-  render … --check              planejado: sai com 1 se a saída mudaria (Fase 5)
+  render readme --check         ✅ Fase 5 — não grava; sai com 1 se README, snapshot ou catálogo mudariam
+  render all (--write | --out-dir DIR | --check) [as opções do render readme] [--include-forks] [--skip-files]
+                                ✅ Fase 5 — README, lang-stats e cards num processo; --out-dir com o
+                                layout da raiz; --check compara os SVGs sem o carimbo (D-038)
+  catalog build | render … --from-db
+                                ✅ Fase 5 — inventário, linguagens e checagens do banco; editorial
+                                dos manifestos (D-040)
+  catalog build | render … | sync github --classifier py-classify@1|classifier@2
+                                ✅ Fase 5 — padrão py-classify@1 (o Python); classifier@2 corrige A6 (D-039)
+  sync all [--root DIR] [--now T] [--write] [--no-db] [--trigger T]
+                                ✅ Fase 5 — github → manifestos → commits → contribuições → sites
 
-  validate [readme|catalog|links|exclusions|badges]
+  validate readme --before F --after F | exclusions | links | visual | catalog [--root DIR]
+  validate badges [--root DIR] [--offline]
+  validate all --before F [--root DIR] [--online]
+                                ✅ Fase 5 — os scripts/validate_*.py, mesma saída e código (D-037)
   export legacy-state           ECOSYSTEM-COMMIT-STATE.json schema 4 (compatibilidade)
 
   db status [--json]            ✅ Fase 1 — só lê; sai com 1 se há migration alterada/pela metade/desconhecida

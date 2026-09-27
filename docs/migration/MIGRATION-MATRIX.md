@@ -19,14 +19,14 @@ caminho de publicação) · `shadow` (modo B) · `switched` (modo C) ·
 | `.github/scripts/lang_stats.py` | 555 | linguagens (duplicado), tipos de arquivo, 2 SVGs (único escritor — D-021) | coleta: `profile-core::assets` (`Retry::LangStats`); SVGs: `profile-render::lang_stats`; no banco, linguagens já vêm do `sync github` | `render lang-stats` | média | 4 | **shadow** desde a Fase 4 (D-036; A26 reproduzido) |
 | `.github/scripts/profile_cards.py` | 207 | GraphQL de contribuições + 4 SVGs | coleta: `profile-core::assets`; SVGs: `profile-render::cards`; `profile-projects.svg` sai da curadoria na Fase 5 | `render cards` | média | 4 | **shadow** desde a Fase 4 (D-036; A27 reproduzido) |
 | `scripts/update_contribution_timeline.py` | 178 | GraphQL mensal, JSON + HTML | coleta: `sync contributions`; HTML: o template do Python (`crates/profile-core/templates/`) | `sync contributions` | média | 3 | **shadow** desde a Fase 3: JSON e HTML iguais; amostras no banco (D-033) |
-| `scripts/validate_project_links.py` | 120 | regra de CTA | `validate links` | `validate links` | média | 4 | **keep** como oráculo até a fase D (D-015); roda sobre a saída do Rust (`readme_validators.py`) |
-| `scripts/validate_dynamic_sections.py` | 58 | só blocos mudaram | `validate readme` / `render readme --check` | `validate readme` | média | 4 | **keep** como oráculo; roda sobre a saída do Rust |
-| `scripts/validate_exclusions.py` | 16 | exclusões ausentes | `validate exclusions` + view do banco | `validate exclusions` | baixa | 4 | **keep** como oráculo; roda sobre a saída do Rust |
-| `scripts/validate_language_badges.py` | 123 | contrato dos badges + HTTP shields | `validate badges` | `validate badges` | baixa | 5 | **keep**; a parte offline roda sobre a saída do Rust |
-| `scripts/validate_profile.py` | 208 | validador amplo, fora do CI, caminho fixo, grava arquivo | absorvido por `validate` | `validate` | baixa | 5 | a parte offline roda sobre a saída do Rust; → **retire** |
-| `scripts/validate_restored_style.py` | 57 | componentes visuais | `validate readme --visual` | — | baixa | 4 | **keep** — no CI desde a Fase 0 (V2 Validation) |
+| `scripts/validate_project_links.py` | 120 | regra de CTA | `profile-core::validate::links` | `validate links` | média | 5 | **ported** (D-037: saída, stderr e código byte a byte, `validators.json`); o script fica como oráculo até a fase D (D-015) |
+| `scripts/validate_dynamic_sections.py` | 58 | só blocos mudaram | `validate::readme` | `validate readme` | média | 5 | **ported** (D-037); oráculo até a fase D |
+| `scripts/validate_exclusions.py` | 16 | exclusões ausentes | `validate::exclusions` | `validate exclusions` | baixa | 5 | **ported** (D-037); oráculo até a fase D |
+| `scripts/validate_language_badges.py` | 123 | contrato dos badges + HTTP shields | `validate::badges` | `validate badges [--offline]` | baixa | 5 | **ported** (D-037; a parte online usa o transporte do `site-monitor`); oráculo até a fase D |
+| `scripts/validate_profile.py` | 208 | validador amplo, fora do CI, caminho fixo, grava arquivo | `validate::catalog` (os erros do gerador, sem rede nem YAML) | `validate catalog` | baixa | 5 | **ported** na parte que julga o gerador (D-037); → **retire** |
+| `scripts/validate_restored_style.py` | 57 | componentes visuais | `validate::visual` | `validate visual` | baixa | 5 | **ported** (D-037); no CI desde a Fase 0 (V2 Validation), fica como oráculo |
 | `scripts/restore_original_style.py` | 129 | migração única de agosto | — | — | — | 0 | **removed** na Fase 0 (`f8b5592`; histórico em `faff9ef`) |
-| `tests/*.py` | — | 103 testes (57 + 25 da Fase 0, incluindo o golden, + 2 do fixture de domínio, 2 do monitor de sites, 12 da Fase 3 e 5 da Fase 4: `--out-dir` no golden e os fixtures do README e dos SVGs) | casos equivalentes em `cargo test`; o golden vira o teste de paridade do render | — | — | 1–4 | **keep** até o script coberto sair |
+| `tests/*.py` | — | 108 testes (57 + 25 da Fase 0, incluindo o golden, + 2 do fixture de domínio, 2 do monitor de sites, 12 da Fase 3, 5 da Fase 4: `--out-dir` no golden e os fixtures do README e dos SVGs, e 5 da Fase 5: os fixtures da biblioteca padrão e dos validadores) | casos equivalentes em `cargo test`; o golden vira o teste de paridade do render | — | — | 1–4 | **keep** até o script coberto sair |
 
 ## 2. Por função — `update_profile.py`
 
@@ -35,7 +35,7 @@ caminho de publicação) · `shadow` (modo B) · `switched` (modo C) ·
 | `api_get`, `fetch_repositories`, `fetch_languages` | `github-client` ✅ + `catalog::inventory` ✅ | um cliente, a política de cada script como parâmetro (D-029); ETag fica para quando o custo de rate limit aparecer |
 | `load_local_repositories`, `load_local_languages` | `catalog::inventory` ✅ (`--input-repos`, `--languages-dir`) | mesmo formato de arquivo |
 | `normalize_name` | `ecosystem-domain::text` | |
-| `classify` | `ecosystem-domain::classify::classify_py_v1` ✅ | **reproduz a correspondência por substring** (A6); `classifier@2` depois |
+| `classify` | `ecosystem-domain::classify::classify_py_v1` ✅ | **reproduz a correspondência por substring** (A6); `classifier@2` (palavras inteiras) existe desde a Fase 5, desligado (`--classifier`, D-039) |
 | `status_for` | `ecosystem-domain::lifecycle::status_py_v1` ✅ | `now` injetado; datas lidas pelo port do `fromisoformat` (D-023); nomes fixos viram `lifecycle_override` |
 | `language_rows`, `format_bytes` | `profile-render::languages` ✅ / view `public_language_totals` | mesmo arredondamento e ordenação (`-bytes`, nome minúsculo; repetido no inventário conta duas vezes) |
 | `featured_score`, `FEATURED_PRIORITY` | `ecosystem-domain::priority::featured_score_py_v1` ✅ | mesmos bits em `f64`; prioridade vira dado (`featured_entries.priority`) |
@@ -81,13 +81,14 @@ caminho de publicação) · `shadow` (modo B) · `switched` (modo C) ·
 
 | Workflow | Hoje | Alvo |
 |:---|:---|:---|
-| `update-profile.yml` | Python, pulado sem secret | `profile-core sync all && profile-core render all --write` (um commit) |
-| `lang-stats.yml` | Python semanal | absorvido pelo job acima |
+| `update-profile.yml` | Python, pulado sem secret; desde a Fase 5, pula também com `PROFILE_CORE_MODE=publish` (D-038) | absorvido pelo `profile-core.yml` |
+| `lang-stats.yml` | Python semanal; pula com `PROFILE_CORE_MODE=publish` | absorvido pelo `profile-core.yml` |
+| `profile-core.yml` | **novo** (Fase 5), **desligado**: só roda com `PROFILE_CORE_MODE=publish` — `sync contributions --write`, `render readme --write` (diário) ou `render all --write` (semanal/manual), `validate all`, os validadores Python e um commit (D-038) | o job único do D-018, quando o dono ligar |
 | `ecosystem-watch.yml` | Python horário | `profile-core sync commits` horário (grava no banco; commit só do export de compatibilidade enquanto existir) |
-| `contributions-timeline.yml` | Python diário | `profile-core sync contributions` dentro do job diário |
+| `contributions-timeline.yml` | Python diário; pula com `PROFILE_CORE_MODE=publish` | `profile-core sync contributions` dentro do `profile-core.yml` |
 | `snake.yml` | action externa | inalterado |
 | `v2-validation.yml` | testes Python + validadores | + `cargo test` + `profile-core parity` enquanto houver Python |
 | `db-validation.yml` | **novo** (Fase 1) | inalterado |
 | `rust.yml` (Rust Core) | **novo** (Fase 1): fmt, clippy, `cargo test` com PostgreSQL 16, e2e do `profile-core`; Fase 2: e2e do `check sites` × `check_websites.py`; Fase 3: e2e da coleta × coletores Python (GitHub simulado); Fase 4: README e SVGs no mesmo e2e, e o README do Rust na árvore real sob os validadores | inalterado até a Fase 5 |
 | `site-monitor-shadow.yml` | **novo** (Fase 2): modo B diário do monitor — Python e Rust sobre os sites reais | vira o monitor de produção (modo C), gravando histórico, quando sair do modo B |
-| `core-shadow.yml` (Core Shadow) | **novo** (Fase 3): modo B diário da coleta — monitor de commits, contribuições e catálogo, Python e Rust sobre os dados reais; Fase 4: README, snapshot e os seis SVGs de `assets/` | some quando cada coletor passar ao modo C |
+| `core-shadow.yml` (Core Shadow) | **novo** (Fase 3): modo B diário da coleta — monitor de commits, contribuições e catálogo, Python e Rust sobre os dados reais; Fase 4: README, snapshot e os seis SVGs de `assets/`; Fase 5: a geração pelo `render all --out-dir` (o comando da virada) e, com banco, o README do banco × o do GitHub | some quando cada coletor passar ao modo C |

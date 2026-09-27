@@ -47,8 +47,8 @@ erDiagram
 |:---|:---|:---|:---|
 | `github_owners` | `id`; único `github_id` | login, tipo | login **não** é único ao longo do tempo |
 | `languages` | `name` (nome do GitHub) | rótulo público, cor do badge, cor do gráfico | cores em hex de 6 dígitos; 16 linguagens de referência |
-| `repositories` | `id`; único `github_id` | recorte do GitHub + `first_seen_at`, `last_synced_at`, `gone_at`, `etag` | `full_name` termina em `/name`; nome ativo único sem diferenciar maiúsculas, adiável |
-| `repository_languages` | (`repository_id`, `language`) | bytes atuais | bytes ≥ 0; percentual não é armazenado |
+| `repositories` | `id`; único `github_id` | recorte do GitHub + `first_seen_at`, `last_synced_at`, `gone_at`, `etag`; `inventory_position` (0008) | `full_name` termina em `/name`; nome ativo único sem diferenciar maiúsculas, adiável; posição ≥ 0, derivada (a última listagem) |
+| `repository_languages` | (`repository_id`, `language`) | bytes atuais; `position` na resposta da API (0008) | bytes ≥ 0; percentual não é armazenado; posição ≥ 0, derivada |
 | `repository_exclusions` | `id`; único `lower(match_name)` | nome casado, motivo, origem | sem FK de propósito |
 
 ### Projetos — `0003_projects`

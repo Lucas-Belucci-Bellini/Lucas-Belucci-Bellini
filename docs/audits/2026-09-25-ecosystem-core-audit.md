@@ -368,6 +368,11 @@ Corrigir muda a saída pública — é uma decisão editorial, não um refactor.
 Por isso a migração congela o comportamento atual como `py-classify@1` e a
 correção entra como versão nova, com diff revisado (D-006).
 
+- **Fase 5 (2026-09-27):** a versão nova existe — `classifier@2`, palavras
+  inteiras, desligada (`--classifier`, D-039). O diff medido na árvore real
+  está em [2026-09-27-classifier-v2.md](2026-09-27-classifier-v2.md); ligar é
+  decisão do dono.
+
 ### A7 · médio — o carimbo "determinístico" não é determinístico
 
 `generated_at` é o maior `pushed_at` do inventário, para que dados iguais não
@@ -560,6 +565,9 @@ precisa fixar `now` nos testes.
 - **No núcleo:** `sync github` distingue "a consulta falhou" de "não há
   linguagem" e mantém o mapa anterior no banco (D-031). O README continua
   gerado pelo Python até a Fase 4, com o comportamento atual.
+- **Fase 5:** o README gerado do banco (`--from-db`, D-040) já não tem o
+  defeito — usa o mapa que o banco manteve. O caminho pelo GitHub continua
+  reproduzindo-o, pela paridade.
 
 ### A26 · baixo — um branch padrão com acento derruba a análise de linguagens inteira
 

@@ -14,7 +14,7 @@ já existem em `db/migrations`.
 | [Ecosystem Activity](#ecosystem-activity) | último commit por repositório, contadores | `ecosystem_watch.py` | `github-client`, `metrics` | `sync commits` | `commit_observations`, `repository_head_current`, `metric_samples` (`ecosystem.commits.*`) |
 | [Deployment Status](#deployment-status) | eventos de deploy do provedor | — (não existe) | futuro | futuro | planejada (D-016) |
 | [Metrics](#metrics) | séries numéricas com janela e proveniência | espalhado em JSON e SVG | `metrics` | — | `metric_definitions`, `metric_samples`, `metric_latest` |
-| [Profile Generator](#profile-generator) | README, SVGs, catálogo JSON | 13 `render_*`, `render_svg`, `build_svg`, `*_svg` | `profile-render` | `render readme`, `render assets`, `catalog build` | views públicas |
+| [Profile Generator](#profile-generator) | README, SVGs, catálogo JSON | 13 `render_*`, `render_svg`, `build_svg`, `*_svg` | `profile-render` | `render readme | assets | all`, `catalog build` (`--from-db`) | inventário do banco + manifestos |
 | [Sync Runs](#sync-runs) | proveniência e saúde de cada execução | `scanned_at`, prints | `store` | todos | `sync_runs`, `sync_run_errors` |
 | [Validation](#validation) | contratos do README e do catálogo | 6 `validate_*.py` | `profile-render` (`validate`) | `validate` | — |
 
@@ -139,7 +139,16 @@ produziu. O escopo da definição é imposto por trigger.
   `render lang-stats | cards | assets`, os seis SVGs de `assets/` — todos em
   modo sombra no *Core Shadow*. Por enquanto o gerador parte das mesmas
   entradas do Python (GitHub ou arquivo), não das views: é o que prova a
-  paridade (D-034). Ler das views é a Fase 5.
+  paridade (D-034).
+- **Estado (Fase 5):** `--from-db` (D-040) lê do banco o que é coletado — o
+  inventário, as linguagens e a checagem mais recente de cada site — e dos
+  manifestos o que é editorial; com as mesmas entradas, a saída é a mesma do
+  caminho pelo GitHub. O README inclui os privados autorizados (PRIVATE-PROJECTS,
+  e hoje as linguagens deles no PROJECT-MAP, A20), então o gerador lê
+  `repositories` filtrando pelas mesmas regras de `listed_repositories`, não só
+  as views públicas; as views continuam sendo o contrato para leitor externo.
+  `render all` gera tudo num processo (D-038); `--classifier classifier@2`
+  corrige A6 quando o dono quiser (D-039).
 
 ## Sync Runs
 
@@ -150,5 +159,8 @@ a execução e o SHA do código que decidiu.
 
 ## Validation
 
-Os validadores Python viram subcomandos `profile-core validate …`, mas
-**continuam rodando** no CI como oráculo independente até a Fase 5 (D-015).
+Os validadores Python viraram subcomandos `profile-core validate readme |
+exclusions | links | visual | badges | catalog | all` na Fase 5, com a mesma
+saída, stderr e código de saída dos scripts (D-037). Os scripts **continuam
+rodando** no CI como oráculo independente até a fase D de cada componente
+(D-015); o `profile-core.yml` roda os dois.

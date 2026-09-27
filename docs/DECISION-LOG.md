@@ -9,7 +9,8 @@ entrada nova que a substitui.
 Origem de todas as entradas até D-020: [auditoria de 2026-09-25](audits/2026-09-25-ecosystem-core-audit.md).
 D-021 e D-022 nasceram na execução da Fase 0 e revisam duas recomendações dela.
 D-023 a D-025 nasceram na Fase 1 (fundação do núcleo em Rust); D-026 a D-028, na Fase 2 (monitor de sites);
-D-029 a D-033, na Fase 3 (coleta).
+D-029 a D-033, na Fase 3 (coleta); D-034 a D-036, na Fase 4 (geração); D-037 a D-040, na Fase 5
+(consolidação).
 
 | ID | Decisão | Status |
 |:---|:---|:---|
@@ -46,6 +47,13 @@ D-029 a D-033, na Fase 3 (coleta).
 | [D-031](#d-031) | Inventário no banco: sumido só com inventário completo; erro não apaga dado | aceita |
 | [D-032](#d-032) | Manifestos espelhados no banco; carga legada idempotente, só preenche o vazio | aceita |
 | [D-033](#d-033) | Métrica coletada só entra quando o valor muda | aceita |
+| [D-034](#d-034) | O README em Rust parte das mesmas entradas do Python; o banco entra depois | aceita |
+| [D-035](#d-035) | Sombra do README inteiro com `--out-dir`; os validadores do Python julgam a saída do Rust | aceita |
+| [D-036](#d-036) | Assets: a política do `lang_stats.py` é mais uma no cliente, e os defeitos dele vão junto | aceita |
+| [D-037](#d-037) | Validadores em Rust com a saída do Python byte a byte, sobre a biblioteca padrão portada | aceita |
+| [D-038](#d-038) | Pipeline único (`render all`) e a virada como interruptor do dono | proposta |
+| [D-039](#d-039) | `classifier@2`: A6 corrigido como versão nomeada, desligada | proposta |
+| [D-040](#d-040) | `--from-db`: o coletado vem do banco, o editorial dos manifestos | aceita |
 
 ---
 
@@ -648,3 +656,106 @@ D-029 a D-033, na Fase 3 (coleta).
   análise inteira (A26) e os cards regravados a cada execução (A27). O
   `profile-projects.svg` continua com a lista fixa do script; derivá-lo da
   curadoria é mudança editorial, da Fase 5.
+
+## D-037
+
+**Validadores em Rust com a saída do Python byte a byte, sobre a biblioteca padrão portada.** · aceita · 2026-09-27
+
+- **Contexto:** o §4 do plano só deixa um componente sair do modo C com o
+  "equivalente Rust de cada validador". Os validadores imprimem o que a
+  biblioteca padrão diz: a mensagem do `JSONDecodeError` (linha, coluna,
+  posição em code points), o `str()` de `OSError` e `UnicodeDecodeError`, e o
+  `repr()` de valores lidos de JSON (aspas escolhidas pelo conteúdo, escapes
+  pelo `str.isprintable()` do Unicode do CPython).
+- **Decisão:** `profile-core validate readme | exclusions | links | visual |
+  badges | catalog | all`. Os cinco primeiros produzem a mesma saída padrão,
+  o mesmo stderr e o mesmo código de saída dos scripts; onde o script sairia
+  com traceback, o Rust sai com `1` pela mesma exceção, com o mesmo texto. A
+  base vai para o `ecosystem-domain` (`pyjson::loads` — o `_json.c` portado —,
+  `pyrepr`, `pyio`), conferida por `tests/fixtures/parity/pytext.json`
+  (340 textos JSON, prefixos e trocas de caractere, e a tabela de
+  imprimíveis gerada do CPython). `discovery::py_str` passa a usá-la e deixa
+  de divergir em float, lista e objeto.
+- **Prova:** `tests/fixtures/parity/validators.json`, 53 árvores sintéticas
+  rodadas pelos scripts reais (318 comparações); mutações 21/21 pegas, fora
+  as equivalentes. O e2e da árvore real exige o mesmo julgamento dos dois
+  lados.
+- **Não reproduzido:** o que o Python aceita e um `serde_json::Value` não
+  representa (`NaN`, `Infinity`, inteiro fora de 64 bits, float que estoura,
+  surrogate isolado) sai como `Unsupported` (código 2), depois de conferir a
+  sintaxe inteira como o Python — nunca como um valor inventado. O `catalog`
+  deixa de fora o que o `validate_profile.py` confere fora do gerador (a
+  rede, o YAML do workflow, o Markdown com pacote opcional); a ordem dos
+  excluídos achados é a do manifesto (no Python, a de um `set`, que muda a
+  cada processo). O `badges` online usa o transporte do `site-monitor`: o
+  julgamento segue o do monitor (redirect quebrado conta como no ar, A21) e
+  o texto do erro de rede é o dele, não o do `urllib`.
+- **Os scripts Python continuam no CI como oráculo (D-015)** até a fase D.
+
+## D-038
+
+**Pipeline único (`render all`) e a virada como interruptor do dono.** · proposta · 2026-09-27
+
+- **Decisão:** `render all` gera README, snapshot, catálogo e os seis SVGs num
+  processo (`--write`, `--out-dir` com o layout da raiz, ou `--check`, que não
+  grava e sai com `1` se algo publicado mudaria — SVGs comparados sem o
+  carimbo, senão os cards reprovariam sempre, A27). `sync all` roda a coleta
+  inteira. O *Core Shadow* passa a sombrear o `render all --out-dir`, o
+  comando da virada.
+- **A virada não é um PR:** `profile-core.yml` publica com o Rust, valida em
+  Rust e com os scripts Python, e faz um commit — mas só roda com a variável
+  de repositório `PROFILE_CORE_MODE=publish`. Os três workflows Python ganham
+  `if: vars.PROFILE_CORE_MODE != 'publish'`: sem a variável nada muda; com
+  ela, pulam. Desligar é apagar a variável. Horários preservados (README e
+  timeline diários, SVGs semanais).
+- **Critério para ligar, inalterado:** 14 execuções agendadas seguidas do
+  *Core Shadow* sem diferença e o `PROFILE_README_TOKEN` configurado. O
+  monitor horário (`ecosystem-watch.yml`) fica fora deste interruptor: a
+  virada dele é a próxima (`sync commits --write`).
+- **Revisitar:** remover os scripts (fase D) depois de 30 dias em C (§4, §8).
+
+## D-039
+
+**`classifier@2`: A6 corrigido como versão nomeada, desligada.** · proposta · 2026-09-27
+
+- **Decisão:** as mesmas listas e a mesma precedência do `py-classify@1`,
+  casadas como palavras inteiras. Tudo que não é letra nem dígito separa
+  palavras dos dois lados (`teste aula` casa `Teste-aula-git`); no **nome** do
+  repositório também `camelCase` e letra/dígito (`DailyPlanner` → "daily
+  planner"); na descrição não — "JavaScript" viraria "java script".
+- `--classifier` em `catalog build`, `render readme | all` e `sync github`;
+  padrão `py-classify@1`. O banco grava a versão em `classifier_version`;
+  rótulo editorial nunca é sobrescrito.
+- **Diff revisado (D-006):** [auditoria de 2026-09-27](audits/2026-09-27-classifier-v2.md)
+  — na árvore real reconstruída, 4 de 89 projetos mudam de rótulo (2
+  públicos) e 68 linhas do README. Ligar é do dono.
+
+## D-040
+
+**`--from-db`: o coletado vem do banco, o editorial dos manifestos.** · aceita · 2026-09-27
+
+- **Contexto:** D-034 deixou "ler do banco" para a Fase 5. Reconstruir tudo
+  das tabelas perderia o que elas não guardam de propósito (a `intro` da
+  curadoria, uma categoria de arsenal fora da taxonomia, as tolerâncias do
+  Python com manifesto torto), e os manifestos continuam sendo a fonte
+  (D-032).
+- **Decisão:** `catalog build`, `render readme` e `render all` aceitam
+  `--from-db`: inventário (os repositórios que não sumiram), linguagens e a
+  checagem mais recente de cada site vêm do PostgreSQL (`store::snapshot`);
+  exclusões, curadoria, arsenal e sites manuais vêm de `docs/`. Site sem
+  checagem gravada conta como fora do ar, e o resumo avisa.
+- **Migration 0008:** `repositories.inventory_position` e
+  `repository_languages.position`. O README desempata pela ordem da listagem
+  do GitHub e mostra as linguagens na ordem da API; sem ela, gerar do banco
+  trocaria empates. O `sync github` grava as duas; mesmo mapa em outra ordem
+  só reposiciona. O `down` recusa sem opt-in se houver ordem gravada.
+- **Prova:** `crates/profile-core/tests/from_db.rs` — README, snapshot,
+  catálogo e saída do banco = do arquivo (golden com empates e um mapa fora
+  da ordem de bytes); zerando a ordem, o README muda e o teste pega. No
+  *Core Shadow*, com banco e token, o README do banco é comparado com o do
+  GitHub nas mesmas checagens.
+- **Diferenças assumidas:** datas que o GitHub não mandaria (texto
+  inválido, fuso diferente de `Z`) não sobrevivem ao `timestamptz`; uma
+  consulta de linguagens que falhou mantém o mapa anterior no banco (D-031),
+  então o `--from-db` não reproduz o A25.
+

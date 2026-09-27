@@ -1,4 +1,4 @@
-//! `--from-db` (Fase 5, D-037): o README e o catálogo gerados do banco são
+//! `--from-db` (Fase 5, D-040): o README e o catálogo gerados do banco são
 //! os mesmos gerados do inventário em arquivo, quando o banco recebeu esse
 //! inventário (`sync github`), os manifestos (`import manifests`) e as mesmas
 //! checagens de site.

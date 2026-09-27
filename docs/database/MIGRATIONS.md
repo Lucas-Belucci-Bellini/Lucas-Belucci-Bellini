@@ -14,7 +14,8 @@ db/
 │   ├── 0004_websites.{up,down}.sql           websites, website_checks, views de estado
 │   ├── 0005_activity_metrics.{up,down}.sql   commit_observations, métricas
 │   ├── 0006_editorial_stack.{up,down}.sql    arsenal
-│   └── 0007_public_views.{up,down}.sql       projeção pública
+│   ├── 0007_public_views.{up,down}.sql       projeção pública
+│   └── 0008_inventory_order.{up,down}.sql    ordem da listagem e das linguagens (D-040)
 ├── seeds/dev/0001_demo_ecosystem.sql ← dados sintéticos (example.org)
 └── tests/
     ├── run.sh                        ← harness: round-trip, seed, testes, guardas, sqlx
@@ -136,7 +137,7 @@ verificação abaixo. Ordem e checagens:
 |:--|:---|:---|:---|
 | 1 | `docs/README_EXCLUDED.json` | `repository_exclusions` | contagem = tamanho da lista |
 | 2 | GitHub (`sync github`) | `github_owners`, `repositories`, `repository_languages`, `projects` | contagens batem com o inventário do `update_profile.py` na mesma hora |
-| 3 | `README_FEATURED.json`, `README_STACK.json`, `README_SITES.json` (`import manifests`); constantes do código (`FEATURED_SUMMARIES`, nomes fixos de `status_for`) (`import legacy`, 3b) | tabelas editoriais | contagens de curadoria, arsenal e sites iguais aos manifestos; `project-catalog.json` regenerado **a partir do banco** = o do Python fica para a Fase 4 (render a partir do banco) |
+| 3 | `README_FEATURED.json`, `README_STACK.json`, `README_SITES.json` (`import manifests`); constantes do código (`FEATURED_SUMMARIES`, nomes fixos de `status_for`) (`import legacy`, 3b) | tabelas editoriais | contagens de curadoria, arsenal e sites iguais aos manifestos; desde a Fase 5, `profile-core catalog build --from-db` = `catalog build` pelo GitHub, na mesma hora e com as mesmas checagens (D-040) |
 | 4 | `docs/project-catalog.json` (`website_declared`, `website_status`, `website_http_status`) | `websites` + uma checagem inicial | nº de sites verificados igual |
 | 5 | `docs/ECOSYSTEM-COMMIT-STATE.json` — `repositories.*` | `commit_observations` (uma por repositório, `commits_since_previous = NULL`) | SHA atual de cada repositório igual |
 | 6 | `docs/ECOSYSTEM-COMMIT-STATE.json` — `metrics.project_commits`, `monitor_commits`, `tracked_commits` | `metric_samples` (`legacy_import`) | valores idênticos; o monitor Python continua rodando até a paridade |
@@ -145,10 +146,18 @@ verificação abaixo. Ordem e checagens:
 Nenhum arquivo de origem é apagado: eles continuam sendo gerados pelo Python
 até a fase C do componente correspondente ([PYTHON-TO-RUST.md](../migration/PYTHON-TO-RUST.md)).
 
+### Depois da 0008 (Fase 5)
+
+A `0008` só acrescenta colunas derivadas (a ordem em que o GitHub listou os
+repositórios e as linguagens). Num banco que já existe: `profile-core db
+migrate` e um `sync github` para preencher a ordem; até lá, o `--from-db` usa a
+ordem de nome (e o README pode trocar empates). O `down` recusa sem
+`--allow-data-loss` se houver ordem gravada.
+
 ## 7. Próximas migrations previstas
 
 | Versão | Conteúdo | Gatilho |
 |:---|:---|:---|
-| `0008_deployments` | tabela `deployments` (D-016) | existir o coletor da API do provedor |
-| `0009_website_policy` | política de exibição com histerese por site | decisão editorial de adotar histerese |
+| `0009_deployments` | tabela `deployments` (D-016) | existir o coletor da API do provedor |
+| `0010_website_policy` | política de exibição com histerese por site | decisão editorial de adotar histerese |
 | — | papéis e `GRANT`s | fora das migrations: script do provedor ([DATABASE-ARCHITECTURE.md §5](DATABASE-ARCHITECTURE.md)) |

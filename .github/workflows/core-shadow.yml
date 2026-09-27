@@ -136,7 +136,7 @@ jobs:
         run: |
           # O inventário que o sync github gravou no começo do job, as mesmas
           # checagens de site e o mesmo relógio: a diferença, se houver, é do
-          # banco (D-037). Um push entre o sync e o render explica diferença.
+          # banco (D-040). Um push entre o sync e o render explica diferença.
           target/release/profile-core render readme --from-db --now "$NOW" \
             --site-checks-fixture shadow/site-checks.json --out-dir shadow/db-rs > shadow/db-rs.out
           python .github/scripts/compare_files.py \

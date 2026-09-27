@@ -10,7 +10,7 @@
 //!
 //! Sem `--write`, o catálogo vai para a saída padrão e nada é gravado.
 //!
-//! Com `--from-db` (Fase 5, D-037) o que é **coletado** vem do PostgreSQL:
+//! Com `--from-db` (Fase 5, D-040) o que é **coletado** vem do PostgreSQL:
 //! o inventário (na ordem da última listagem), as linguagens (na ordem da
 //! API) e a checagem mais recente de cada site. O que é **editorial** —
 //! exclusões, curadoria, arsenal, sites manuais — continua vindo dos

@@ -132,3 +132,15 @@ O README e os assets publicados não mudaram — o Python continua gerando o que
 - **Achados:** um branch padrão com acento derruba a análise de linguagens inteira (A26); os cards do GraphQL são regravados — e commitados — a cada execução, mesmo sem número novo (A27). O Rust reproduz os dois até a correção.
 
 Decisões em `docs/DECISION-LOG.md` (D-034 a D-036).
+
+## 2026-09-27 — Fase 5 (início): consolidação preparada, virada nas mãos do dono
+
+O README e os assets publicados continuam não mudando — o Python segue publicando. O que a Fase 5 entregou é o caminho inteiro em Rust, validado e pronto para a virada:
+
+- **Validadores em Rust:** `profile-core validate` refaz os seis `scripts/validate_*.py` com a mesma saída, os mesmos erros e o mesmo código de saída — inclusive as mensagens que vêm do próprio Python (JSON inválido, arquivo ausente, `repr` de valores). Provado em 53 árvores rodadas pelos scripts reais. Os scripts continuam no CI como segunda opinião.
+- **Um pipeline:** `render all` gera README, snapshot, catálogo e os seis SVGs num processo; `--check` diz, sem gravar nada, se a publicação está em dia; `sync all` roda a coleta inteira. O *Core Shadow* passa a comparar exatamente esse comando com os scripts.
+- **A virada como interruptor:** o workflow `profile-core.yml` publica com o Rust, mas só com a variável `PROFILE_CORE_MODE=publish`. Sem ela, nada muda; com ela, os três workflows Python pulam. Desligar é apagar a variável. O critério para ligar continua 14 execuções limpas do *Core Shadow* e o `PROFILE_README_TOKEN`.
+- **O banco como fonte:** `--from-db` gera o README e o catálogo a partir do PostgreSQL (inventário, linguagens e checagens de site), com os manifestos continuando a fonte editorial; mesma saída do caminho pelo GitHub. A migration `0008` guarda a ordem em que o GitHub lista repositórios e linguagens — sem ela, empates mudariam.
+- **Correção A6 pronta, desligada:** `classifier@2` rotula por palavra inteira ("ai" deixa de casar "daily"). Na árvore real, 4 de 89 projetos mudariam de categoria; o diff está em `docs/audits/2026-09-27-classifier-v2.md` para a decisão do dono.
+
+Decisões em `docs/DECISION-LOG.md` (D-037 a D-040).
