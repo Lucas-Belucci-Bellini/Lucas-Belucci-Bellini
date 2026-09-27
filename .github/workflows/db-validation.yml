@@ -1,0 +1,69 @@
+name: DB Validation
+
+# Valida as migrations do núcleo (db/**) contra um PostgreSQL de verdade.
+# Aditivo: não escreve no repositório, não toca README nem assets e só roda
+# quando o schema muda. Ver docs/database/MIGRATIONS.md.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "db/**"
+      - ".github/workflows/db-validation.yml"
+  push:
+    branches: [main]
+    paths:
+      - "db/**"
+      - ".github/workflows/db-validation.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: db-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  migrations:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: "5432"
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      SQLX_CLI_VERSION: "0.9.0"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore sqlx-cli
+        id: sqlx-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/sqlx
+          key: sqlx-cli-${{ env.SQLX_CLI_VERSION }}-${{ runner.os }}
+
+      - name: Install sqlx-cli
+        if: steps.sqlx-cache.outputs.cache-hit != 'true'
+        run: cargo install sqlx-cli --version "$SQLX_CLI_VERSION" --no-default-features --features postgres,rustls --locked
+
+      - name: Run migration tests (round-trip, seed, SQL tests, guards, sqlx)
+        run: |
+          export PATH="$HOME/.cargo/bin:$PATH"
+          bash db/tests/run.sh

@@ -1,0 +1,16 @@
+[package]
+name = "ecosystem-domain"
+description = "Tipos e regras puras do catálogo do ecossistema: sem rede, sem banco, sem disco."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+chrono.workspace = true
+regex.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[lints]
+workspace = true

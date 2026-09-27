@@ -1,0 +1,22 @@
+{
+  "https://web-app.example.org": {
+    "status": "verified",
+    "http_status": 200,
+    "final_url": "https://web-app.example.org"
+  },
+  "https://lab.example.org": {
+    "status": "unreachable",
+    "http_status": 404,
+    "final_url": "https://lab.example.org"
+  },
+  "https://manifest-site.example.org": {
+    "status": "verified",
+    "http_status": 200,
+    "final_url": "https://www.manifest-site.example.org/"
+  },
+  "https://down.example.org": {
+    "status": "unreachable",
+    "http_status": 0,
+    "final_url": "https://down.example.org"
+  }
+}

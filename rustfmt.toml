@@ -1,0 +1,3 @@
+# O código do núcleo tem linhas de regra que ficam mais legíveis inteiras.
+max_width = 120
+use_small_heuristics = "Max"

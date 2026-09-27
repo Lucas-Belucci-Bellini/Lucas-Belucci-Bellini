@@ -1,0 +1,7 @@
+# Toolchain fixo: o CI e quem clona o repositório compilam com a mesma versão,
+# e uma lint nova do clippy num stable novo não deixa o CI vermelho de surpresa.
+# Subir de versão é uma mudança deliberada (e revisada) deste arquivo.
+[toolchain]
+channel = "1.94.1"
+components = ["rustfmt", "clippy"]
+profile = "minimal"

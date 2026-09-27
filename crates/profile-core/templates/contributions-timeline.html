@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baluarte // GitHub Contributions Timeline</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    :root { color-scheme: dark; }
+    html, body { margin: 0; min-height: 100%; background: #0e0c16; }
+    body { color: #f4ecdd; font-family: "DejaVu Sans Mono", "Courier New", monospace; }
+    main { max-width: 1440px; margin: 0 auto; padding: 28px 22px 40px; }
+    h1 { margin: 0; color: #e8c07a; font-size: clamp(22px, 3vw, 34px); letter-spacing: 1px; }
+    .meta { color: #a89a80; font-size: 12px; line-height: 1.6; margin-top: 8px; }
+    #chart { width: 100%; min-height: 760px; margin-top: 22px; }
+    .fallback { color: #a89a80; font-family: Arial, sans-serif; line-height: 1.5; margin-top: 22px; }
+    code { color: #3ddc84; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>BALUARTE // GITHUB CONTRIBUTIONS TIMELINE</h1>
+    <div class="meta">Perfil: <code>{{LOGIN}}</code> · Janela móvel de 365 dias · Snapshot: <code>{{GENERATED}}</code></div>
+    <div id="chart" aria-label="Timeline interativa de contribuições do GitHub"></div>
+    <noscript><p class="fallback">Ative JavaScript para visualizar o gráfico interativo. O snapshot bruto está disponível em <code>contributions-timeline-data.json</code>.</p></noscript>
+  </main>
+  <script>
+    const payload = {{DATA_JSON}};
+    const months = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+    const rows = payload.rows;
+    const labels = rows.map(row => { const d = row.period_start.split("-"); return `${months[Number(d[1]) - 1]}/${d[0]}`; });
+    const totals = rows.map(row => row.total);
+    const commits = rows.map(row => row.commits);
+    const prs = rows.map(row => row.pull_requests);
+    const issues = rows.map(row => row.issues);
+    const reviews = rows.map(row => row.reviews);
+    const repos = rows.map(row => row.repositories);
+    const others = totals.map((total, index) => Math.max(0, total - commits[index] - prs[index] - issues[index]));
+    const colors = { commits: "#d4a24e", prs: "#3ddc84", issues: "#a68dad", reviews: "#e8c07a", repos: "#8fa6c4", total: "#f4ecdd" };
+    const trace = (values, name, color) => ({ type: "bar", x: labels, y: values, name, marker: { color }, hovertemplate: `<b>${name}</b>: %{y}<extra></extra>` });
+    const pct = (values) => values.map((value, index) => totals[index] ? 100 * value / totals[index] : 0);
+    const traces = [trace(commits, "Commits", colors.commits), trace(prs, "Pull requests", colors.prs), trace(issues, "Issues", colors.issues), trace(reviews, "Reviews", colors.reviews), trace(repos, "Repositórios", colors.repos), { type: "scatter", x: labels, y: totals, name: "Contribuições totais", mode: "lines+markers", line: { color: colors.total, width: 3 }, marker: { color: colors.total, size: 8 }, hovertemplate: "<b>Total</b>: %{y}<extra></extra>" }];
+    const shareTraces = [{ type: "scatter", x: labels, y: pct(commits), name: "% Commits", mode: "lines+markers", line: { color: colors.commits, width: 2 } }, { type: "scatter", x: labels, y: pct(prs), name: "% PRs", mode: "lines+markers", line: { color: colors.prs, width: 2 } }, { type: "scatter", x: labels, y: pct(issues), name: "% Issues", mode: "lines+markers", line: { color: colors.issues, width: 2 } }, { type: "scatter", x: labels, y: pct(others), name: "% Outras contribuições", mode: "lines+markers", line: { color: colors.reviews, width: 2 } }];
+    const layout = { template: "plotly_dark", paper_bgcolor: "#0e0c16", plot_bgcolor: "#0e0c16", font: { family: "DejaVu Sans Mono, monospace", color: "#f4ecdd" }, barmode: "stack", hovermode: "x unified", height: 820, margin: { l: 68, r: 24, t: 70, b: 90 }, legend: { orientation: "h", y: 1.04, x: 0 }, xaxis: { showgrid: false, rangeslider: { visible: true, thickness: 0.08 }, title: "Passe o cursor para detalhar; use o slider para ampliar a janela" }, yaxis: { title: "Quantidade", gridcolor: "#3b3047" }, annotations: [{ text: "Volume mensal e composição", x: 0.5, y: 1.11, xref: "paper", yref: "paper", showarrow: false, font: { color: "#e8c07a", size: 15 } }] };
+    Plotly.newPlot("chart", traces, layout, { responsive: true, displaylogo: false });
+    const shareStart = traces.length;
+    const shareLayout = { ...layout, barmode: "overlay", yaxis: { title: "Participação (%)", range: [0, 100], ticksuffix: "%", gridcolor: "#3b3047" }, annotations: [{ text: "Proporção por tipo", x: 0.5, y: 1.11, xref: "paper", yref: "paper", showarrow: false, font: { color: "#e8c07a", size: 15 } }] };
+    const divider = document.createElement("div"); divider.id = "share"; divider.style.width = "100%"; divider.style.minHeight = "500px"; divider.style.marginTop = "24px"; document.querySelector("main").appendChild(divider);
+    Plotly.newPlot("share", shareTraces, shareLayout, { responsive: true, displaylogo: false });
+  </script>
+</body>
+</html>

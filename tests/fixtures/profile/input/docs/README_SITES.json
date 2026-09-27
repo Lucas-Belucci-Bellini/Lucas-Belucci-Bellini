@@ -1,0 +1,7 @@
+{
+  "Lucas-Belucci-Bellini/demo-baluarte-tool": "https://manifest-site.example.org",
+  "Lucas-Belucci-Bellini/demo-down-site": {
+    "website": "https://down.example.org"
+  },
+  "Lucas-Belucci-Bellini/demo-web-app": "https://ignored-because-homepage-wins.example.org"
+}

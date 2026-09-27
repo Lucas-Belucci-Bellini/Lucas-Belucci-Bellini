@@ -1,0 +1,1 @@
+{"repositories": 12, "public_repositories": 11, "private_repositories": 1, "excluded_repositories": ["demo-excluded"], "public_languages": 13, "declared_sites": 4, "verified_sites": 2, "unreachable_sites": ["demo-down-site", "demo-lab"], "catalog_projects": 12, "catalog_written": true, "site_check_skipped": false, "write": true}

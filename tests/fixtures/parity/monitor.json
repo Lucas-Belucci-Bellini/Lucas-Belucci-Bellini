@@ -1,0 +1,1991 @@
+{
+  "schema": "lucas-belucci-bellini/parity-monitor@1",
+  "note": "Gerado por tests/test_parity_monitor.py a partir do ecosystem_watch.py real. Não editar à mão.",
+  "python": "3.12.14",
+  "now": "2026-09-26T07:17:00Z",
+  "user": "o",
+  "cases": [
+    {
+      "name": "primeira varredura: filtros, repositório vazio, 409 e formatos estranhos",
+      "input": {
+        "previous": null,
+        "api": {
+          "/users/o/repos?type=owner&per_page=100&page=1": {
+            "json": [
+              {
+                "name": "alpha",
+                "default_branch": "main"
+              },
+              {
+                "name": "beta",
+                "default_branch": null
+              },
+              {
+                "name": "conflito"
+              },
+              {
+                "name": "fork",
+                "fork": true
+              },
+              {
+                "name": "segredo",
+                "private": true
+              },
+              {
+                "name": "O"
+              },
+              {
+                "name": "o-irmao"
+              },
+              {
+                "name": "dev-branch",
+                "default_branch": "feature/x y"
+              },
+              {
+                "name": "mensagens"
+              },
+              {
+                "name": "vazia-dict"
+              },
+              {
+                "name": "dict-cheio"
+              },
+              {
+                "name": "texto"
+              },
+              {
+                "name": "nulo-na-lista"
+              },
+              {
+                "name": "commit-nulo"
+              },
+              {
+                "name": "sem-mensagem"
+              },
+              {
+                "name": "mensagem-nula"
+              },
+              {
+                "name": "sha-numero"
+              },
+              {
+                "name": "sem-sha"
+              },
+              {
+                "name": "sem-data"
+              },
+              {
+                "name": "timeout"
+              },
+              {
+                "name": "recusado"
+              }
+            ]
+          },
+          "/repos/o/alpha/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: primeira\n\ncorpo longo"
+                },
+                "html_url": "https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          },
+          "/repos/o/beta/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/conflito/commits?sha=main&per_page=1": {
+            "http": 409,
+            "reason": "Conflict"
+          },
+          "/repos/o/o-irmao/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "cccccccccccccccccccccccccccccccccccccccc",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/cccccccccccccccccccccccccccccccccccccccc"
+              }
+            ]
+          },
+          "/repos/o/dev-branch/commits?sha=feature/x%20y&per_page=1": {
+            "json": [
+              {
+                "sha": "dddddddddddddddddddddddddddddddddddddddd",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "branch com barra e espaço"
+                },
+                "html_url": "https://github.com/o/r/commit/dddddddddddddddddddddddddddddddddddddddd"
+              }
+            ]
+          },
+          "/repos/o/mensagens/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé\nresto"
+                },
+                "html_url": "https://github.com/o/r/commit/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+              }
+            ]
+          },
+          "/repos/o/vazia-dict/commits?sha=main&per_page=1": {
+            "json": {}
+          },
+          "/repos/o/dict-cheio/commits?sha=main&per_page=1": {
+            "json": {
+              "message": "Not Found"
+            }
+          },
+          "/repos/o/texto/commits?sha=main&per_page=1": {
+            "json": "abc"
+          },
+          "/repos/o/nulo-na-lista/commits?sha=main&per_page=1": {
+            "json": [
+              null
+            ]
+          },
+          "/repos/o/commit-nulo/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "ffffffffffffffffffffffffffffffffffffffff",
+                "commit": null
+              }
+            ]
+          },
+          "/repos/o/sem-mensagem/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "ffffffffffffffffffffffffffffffffffffffff",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": ""
+                },
+                "html_url": "https://github.com/o/r/commit/ffffffffffffffffffffffffffffffffffffffff"
+              }
+            ]
+          },
+          "/repos/o/mensagem-nula/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "ffffffffffffffffffffffffffffffffffffffff",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": null
+                },
+                "html_url": "https://github.com/o/r/commit/ffffffffffffffffffffffffffffffffffffffff"
+              }
+            ]
+          },
+          "/repos/o/sha-numero/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": 5,
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/5"
+              }
+            ]
+          },
+          "/repos/o/sem-sha/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "commit": {
+                  "message": "m"
+                }
+              }
+            ]
+          },
+          "/repos/o/sem-data/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "1111111111111111111111111111111111111111",
+                "commit": {
+                  "message": "m"
+                }
+              }
+            ]
+          },
+          "/repos/o/timeout/commits?sha=main&per_page=1": {
+            "timeout": true
+          },
+          "/repos/o/recusado/commits?sha=main&per_page=1": {
+            "url_error": "[Errno 111] Connection refused"
+          }
+        }
+      },
+      "expected": {
+        "stdout": "",
+        "calls": [
+          "/users/o/repos?type=owner&per_page=100&page=1",
+          "/repos/o/alpha/commits?sha=main&per_page=1",
+          "/repos/o/beta/commits?sha=main&per_page=1",
+          "/repos/o/conflito/commits?sha=main&per_page=1",
+          "/repos/o/o-irmao/commits?sha=main&per_page=1",
+          "/repos/o/dev-branch/commits?sha=feature/x%20y&per_page=1",
+          "/repos/o/mensagens/commits?sha=main&per_page=1",
+          "/repos/o/vazia-dict/commits?sha=main&per_page=1",
+          "/repos/o/dict-cheio/commits?sha=main&per_page=1",
+          "/repos/o/texto/commits?sha=main&per_page=1",
+          "/repos/o/nulo-na-lista/commits?sha=main&per_page=1",
+          "/repos/o/commit-nulo/commits?sha=main&per_page=1",
+          "/repos/o/sem-mensagem/commits?sha=main&per_page=1",
+          "/repos/o/mensagem-nula/commits?sha=main&per_page=1",
+          "/repos/o/sha-numero/commits?sha=main&per_page=1",
+          "/repos/o/sem-sha/commits?sha=main&per_page=1",
+          "/repos/o/sem-data/commits?sha=main&per_page=1",
+          "/repos/o/timeout/commits?sha=main&per_page=1",
+          "/repos/o/recusado/commits?sha=main&per_page=1"
+        ],
+        "state": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T07:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: primeira\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    },\n    \"beta\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"conflito\": {\n      \"branch\": \"main\",\n      \"error\": \"HTTP Error 409: Conflict\"\n    },\n    \"o-irmao\": {\n      \"branch\": \"main\",\n      \"sha\": \"cccccccccccccccccccccccccccccccccccccccc\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/cccccccccccccccccccccccccccccccccccccccc\"\n    },\n    \"dev-branch\": {\n      \"branch\": \"feature/x y\",\n      \"sha\": \"dddddddddddddddddddddddddddddddddddddddd\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"branch com barra e espaço\",\n      \"url\": \"https://github.com/o/r/commit/dddddddddddddddddddddddddddddddddddddddd\"\n    },\n    \"mensagens\": {\n      \"branch\": \"main\",\n      \"sha\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé\",\n      \"url\": \"https://github.com/o/r/commit/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\"\n    },\n    \"vazia-dict\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"dict-cheio\": {\n      \"branch\": \"main\",\n      \"error\": \"0\"\n    },\n    \"texto\": {\n      \"branch\": \"main\",\n      \"error\": \"string indices must be integers, not 'str'\"\n    },\n    \"nulo-na-lista\": {\n      \"branch\": \"main\",\n      \"error\": \"'NoneType' object is not subscriptable\"\n    },\n    \"commit-nulo\": {\n      \"branch\": \"main\",\n      \"error\": \"'NoneType' object has no attribute 'get'\"\n    },\n    \"sem-mensagem\": {\n      \"branch\": \"main\",\n      \"error\": \"list index out of range\"\n    },\n    \"mensagem-nula\": {\n      \"branch\": \"main\",\n      \"error\": \"'NoneType' object has no attribute 'splitlines'\"\n    },\n    \"sha-numero\": {\n      \"branch\": \"main\",\n      \"sha\": 5,\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/5\"\n    },\n    \"sem-sha\": {\n      \"branch\": \"main\",\n      \"error\": \"'sha'\"\n    },\n    \"sem-data\": {\n      \"branch\": \"main\",\n      \"sha\": \"1111111111111111111111111111111111111111\",\n      \"date\": null,\n      \"message\": \"m\",\n      \"url\": null\n    },\n    \"timeout\": {\n      \"branch\": \"main\",\n      \"error\": \"timed out\"\n    },\n    \"recusado\": {\n      \"branch\": \"main\",\n      \"error\": \"<urlopen error [Errno 111] Connection refused>\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 1539,\n    \"project_commits\": 1538,\n    \"monitor_commits\": 1,\n    \"detected_project_commits_this_scan\": 0,\n    \"monitor_commit_this_scan\": 1\n  },\n  \"summary\": {\n    \"repositories_scanned\": 18,\n    \"repositories_changed\": 0,\n    \"errors\": 10\n  },\n  \"errors\": [\n    {\n      \"name\": \"conflito\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"HTTP Error 409: Conflict\"\n    },\n    {\n      \"name\": \"dict-cheio\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"0\"\n    },\n    {\n      \"name\": \"texto\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"string indices must be integers, not 'str'\"\n    },\n    {\n      \"name\": \"nulo-na-lista\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"'NoneType' object is not subscriptable\"\n    },\n    {\n      \"name\": \"commit-nulo\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"'NoneType' object has no attribute 'get'\"\n    },\n    {\n      \"name\": \"sem-mensagem\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"list index out of range\"\n    },\n    {\n      \"name\": \"mensagem-nula\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"'NoneType' object has no attribute 'splitlines'\"\n    },\n    {\n      \"name\": \"sem-sha\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"'sha'\"\n    },\n    {\n      \"name\": \"timeout\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"timed out\"\n    },\n    {\n      \"name\": \"recusado\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"<urlopen error [Errno 111] Connection refused>\"\n    }\n  ]\n}\n",
+        "report": "# Ecosystem Commit Monitor\n\n> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.\n\n**Última varredura:** `2026-09-26T07:17:00Z`  \n**Intervalo configurado:** `1 hora`  \n**Repositórios acompanhados:** `18`  \n**Repositórios com mudanças desde a última varredura:** `0`  \n**Falhas de consulta:** `10`\n\n## Contadores\n\n- **Commits rastreados pelo ecossistema:** `1539`\n- **Commits dos projetos:** `1538`\n- **Commits do próprio monitor:** `1`\n- **Commits de projetos detectados nesta hora:** `0`\n\n> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.\n\n## Mudanças detectadas\n\n- Nenhuma mudança desde a última varredura.\n\n## Erros de consulta\n\n- **conflito** — `latest_commit` — HTTP Error 409: Conflict\n- **dict-cheio** — `latest_commit` — 0\n- **texto** — `latest_commit` — string indices must be integers, not 'str'\n- **nulo-na-lista** — `latest_commit` — 'NoneType' object is not subscriptable\n- **commit-nulo** — `latest_commit` — 'NoneType' object has no attribute 'get'\n- **sem-mensagem** — `latest_commit` — list index out of range\n- **mensagem-nula** — `latest_commit` — 'NoneType' object has no attribute 'splitlines'\n- **sem-sha** — `latest_commit` — 'sha'\n- **timeout** — `latest_commit` — timed out\n- **recusado** — `latest_commit` — <urlopen error [Errno 111] Connection refused>\n\n## Arquitetura\n\n```text\nprojetos individuais\n       │\n       │ latest SHA + comparação\n       ▼\necosystem_watch.py\n       │\n       ├── estado dos projetos\n       ├── commits dos projetos\n       ├── + 1 commit do monitor\n       └── contador acumulado\n       │\n       ▼\nsnapshot agregado a cada hora\n```\n\n### Regras de estabilidade\n\n1. O perfil faz uma varredura programada por hora.\n2. Cada snapshot publicado acrescenta exatamente 1 ao contador de commits do monitor; varreduras sem mudança semântica não geram commit.\n3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.\n4. Retries e backoff protegem contra falhas transitórias da API.\n5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.\n6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.\n\nA varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.\n"
+      }
+    },
+    {
+      "name": "mensagem de erro longa é cortada em 180 caracteres",
+      "input": {
+        "previous": null,
+        "api": {
+          "/users/o/repos?type=owner&per_page=100&page=1": {
+            "json": [
+              {
+                "name": "alpha"
+              }
+            ]
+          },
+          "/repos/o/alpha/commits?sha=main&per_page=1": {
+            "http": 500,
+            "reason": "motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo "
+          }
+        }
+      },
+      "expected": {
+        "stdout": "",
+        "calls": [
+          "/users/o/repos?type=owner&per_page=100&page=1",
+          "/repos/o/alpha/commits?sha=main&per_page=1"
+        ],
+        "state": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T07:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"error\": \"HTTP Error 500: motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo mot\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 1539,\n    \"project_commits\": 1538,\n    \"monitor_commits\": 1,\n    \"detected_project_commits_this_scan\": 0,\n    \"monitor_commit_this_scan\": 1\n  },\n  \"summary\": {\n    \"repositories_scanned\": 1,\n    \"repositories_changed\": 0,\n    \"errors\": 1\n  },\n  \"errors\": [\n    {\n      \"name\": \"alpha\",\n      \"stage\": \"latest_commit\",\n      \"error\": \"HTTP Error 500: motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo mot\"\n    }\n  ]\n}\n",
+        "report": "# Ecosystem Commit Monitor\n\n> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.\n\n**Última varredura:** `2026-09-26T07:17:00Z`  \n**Intervalo configurado:** `1 hora`  \n**Repositórios acompanhados:** `1`  \n**Repositórios com mudanças desde a última varredura:** `0`  \n**Falhas de consulta:** `1`\n\n## Contadores\n\n- **Commits rastreados pelo ecossistema:** `1539`\n- **Commits dos projetos:** `1538`\n- **Commits do próprio monitor:** `1`\n- **Commits de projetos detectados nesta hora:** `0`\n\n> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.\n\n## Mudanças detectadas\n\n- Nenhuma mudança desde a última varredura.\n\n## Erros de consulta\n\n- **alpha** — `latest_commit` — HTTP Error 500: motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo motivo mot\n\n## Arquitetura\n\n```text\nprojetos individuais\n       │\n       │ latest SHA + comparação\n       ▼\necosystem_watch.py\n       │\n       ├── estado dos projetos\n       ├── commits dos projetos\n       ├── + 1 commit do monitor\n       └── contador acumulado\n       │\n       ▼\nsnapshot agregado a cada hora\n```\n\n### Regras de estabilidade\n\n1. O perfil faz uma varredura programada por hora.\n2. Cada snapshot publicado acrescenta exatamente 1 ao contador de commits do monitor; varreduras sem mudança semântica não geram commit.\n3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.\n4. Retries e backoff protegem contra falhas transitórias da API.\n5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.\n6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.\n\nA varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.\n"
+      }
+    },
+    {
+      "name": "99 itens: uma página só",
+      "input": {
+        "previous": null,
+        "api": {
+          "/users/o/repos?type=owner&per_page=100&page=1": {
+            "json": [
+              {
+                "name": "r000",
+                "fork": true
+              },
+              {
+                "name": "r001",
+                "fork": true
+              },
+              {
+                "name": "r002",
+                "fork": true
+              },
+              {
+                "name": "r003",
+                "fork": true
+              },
+              {
+                "name": "r004",
+                "fork": true
+              },
+              {
+                "name": "r005",
+                "fork": true
+              },
+              {
+                "name": "r006",
+                "fork": true
+              },
+              {
+                "name": "r007",
+                "fork": true
+              },
+              {
+                "name": "r008",
+                "fork": true
+              },
+              {
+                "name": "r009",
+                "fork": true
+              },
+              {
+                "name": "r010",
+                "fork": true
+              },
+              {
+                "name": "r011",
+                "fork": true
+              },
+              {
+                "name": "r012",
+                "fork": true
+              },
+              {
+                "name": "r013",
+                "fork": true
+              },
+              {
+                "name": "r014",
+                "fork": true
+              },
+              {
+                "name": "r015",
+                "fork": true
+              },
+              {
+                "name": "r016",
+                "fork": true
+              },
+              {
+                "name": "r017",
+                "fork": true
+              },
+              {
+                "name": "r018",
+                "fork": true
+              },
+              {
+                "name": "r019",
+                "fork": true
+              },
+              {
+                "name": "r020",
+                "fork": true
+              },
+              {
+                "name": "r021",
+                "fork": true
+              },
+              {
+                "name": "r022",
+                "fork": true
+              },
+              {
+                "name": "r023",
+                "fork": true
+              },
+              {
+                "name": "r024",
+                "fork": true
+              },
+              {
+                "name": "r025",
+                "fork": true
+              },
+              {
+                "name": "r026",
+                "fork": true
+              },
+              {
+                "name": "r027",
+                "fork": true
+              },
+              {
+                "name": "r028",
+                "fork": true
+              },
+              {
+                "name": "r029",
+                "fork": true
+              },
+              {
+                "name": "r030",
+                "fork": true
+              },
+              {
+                "name": "r031",
+                "fork": true
+              },
+              {
+                "name": "r032",
+                "fork": true
+              },
+              {
+                "name": "r033",
+                "fork": true
+              },
+              {
+                "name": "r034",
+                "fork": true
+              },
+              {
+                "name": "r035",
+                "fork": true
+              },
+              {
+                "name": "r036",
+                "fork": true
+              },
+              {
+                "name": "r037",
+                "fork": true
+              },
+              {
+                "name": "r038",
+                "fork": true
+              },
+              {
+                "name": "r039",
+                "fork": true
+              },
+              {
+                "name": "r040",
+                "fork": true
+              },
+              {
+                "name": "r041",
+                "fork": true
+              },
+              {
+                "name": "r042",
+                "fork": true
+              },
+              {
+                "name": "r043",
+                "fork": true
+              },
+              {
+                "name": "r044",
+                "fork": true
+              },
+              {
+                "name": "r045",
+                "fork": true
+              },
+              {
+                "name": "r046",
+                "fork": true
+              },
+              {
+                "name": "r047",
+                "fork": true
+              },
+              {
+                "name": "r048",
+                "fork": true
+              },
+              {
+                "name": "r049",
+                "fork": true
+              },
+              {
+                "name": "r050",
+                "fork": true
+              },
+              {
+                "name": "r051",
+                "fork": true
+              },
+              {
+                "name": "r052",
+                "fork": true
+              },
+              {
+                "name": "r053",
+                "fork": true
+              },
+              {
+                "name": "r054",
+                "fork": true
+              },
+              {
+                "name": "r055",
+                "fork": true
+              },
+              {
+                "name": "r056",
+                "fork": true
+              },
+              {
+                "name": "r057",
+                "fork": true
+              },
+              {
+                "name": "r058",
+                "fork": true
+              },
+              {
+                "name": "r059",
+                "fork": true
+              },
+              {
+                "name": "r060",
+                "fork": true
+              },
+              {
+                "name": "r061",
+                "fork": true
+              },
+              {
+                "name": "r062",
+                "fork": true
+              },
+              {
+                "name": "r063",
+                "fork": true
+              },
+              {
+                "name": "r064",
+                "fork": true
+              },
+              {
+                "name": "r065",
+                "fork": true
+              },
+              {
+                "name": "r066",
+                "fork": true
+              },
+              {
+                "name": "r067",
+                "fork": true
+              },
+              {
+                "name": "r068",
+                "fork": true
+              },
+              {
+                "name": "r069",
+                "fork": true
+              },
+              {
+                "name": "r070",
+                "fork": true
+              },
+              {
+                "name": "r071",
+                "fork": true
+              },
+              {
+                "name": "r072",
+                "fork": true
+              },
+              {
+                "name": "r073",
+                "fork": true
+              },
+              {
+                "name": "r074",
+                "fork": true
+              },
+              {
+                "name": "r075",
+                "fork": true
+              },
+              {
+                "name": "r076",
+                "fork": true
+              },
+              {
+                "name": "r077",
+                "fork": true
+              },
+              {
+                "name": "r078",
+                "fork": true
+              },
+              {
+                "name": "r079",
+                "fork": true
+              },
+              {
+                "name": "r080",
+                "fork": true
+              },
+              {
+                "name": "r081",
+                "fork": true
+              },
+              {
+                "name": "r082",
+                "fork": true
+              },
+              {
+                "name": "r083",
+                "fork": true
+              },
+              {
+                "name": "r084",
+                "fork": true
+              },
+              {
+                "name": "r085",
+                "fork": true
+              },
+              {
+                "name": "r086",
+                "fork": true
+              },
+              {
+                "name": "r087",
+                "fork": true
+              },
+              {
+                "name": "r088",
+                "fork": true
+              },
+              {
+                "name": "r089",
+                "fork": true
+              },
+              {
+                "name": "r090",
+                "fork": true
+              },
+              {
+                "name": "r091",
+                "fork": true
+              },
+              {
+                "name": "r092",
+                "fork": true
+              },
+              {
+                "name": "r093",
+                "fork": true
+              },
+              {
+                "name": "r094",
+                "fork": true
+              },
+              {
+                "name": "r095",
+                "fork": true
+              },
+              {
+                "name": "r096",
+                "fork": true
+              },
+              {
+                "name": "r097",
+                "fork": true
+              },
+              {
+                "name": "unico"
+              }
+            ]
+          },
+          "/repos/o/unico/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "stdout": "",
+        "calls": [
+          "/users/o/repos?type=owner&per_page=100&page=1",
+          "/repos/o/unico/commits?sha=main&per_page=1"
+        ],
+        "state": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T07:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"unico\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 1539,\n    \"project_commits\": 1538,\n    \"monitor_commits\": 1,\n    \"detected_project_commits_this_scan\": 0,\n    \"monitor_commit_this_scan\": 1\n  },\n  \"summary\": {\n    \"repositories_scanned\": 1,\n    \"repositories_changed\": 0,\n    \"errors\": 0\n  },\n  \"errors\": []\n}\n",
+        "report": "# Ecosystem Commit Monitor\n\n> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.\n\n**Última varredura:** `2026-09-26T07:17:00Z`  \n**Intervalo configurado:** `1 hora`  \n**Repositórios acompanhados:** `1`  \n**Repositórios com mudanças desde a última varredura:** `0`  \n**Falhas de consulta:** `0`\n\n## Contadores\n\n- **Commits rastreados pelo ecossistema:** `1539`\n- **Commits dos projetos:** `1538`\n- **Commits do próprio monitor:** `1`\n- **Commits de projetos detectados nesta hora:** `0`\n\n> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.\n\n## Mudanças detectadas\n\n- Nenhuma mudança desde a última varredura.\n\n## Arquitetura\n\n```text\nprojetos individuais\n       │\n       │ latest SHA + comparação\n       ▼\necosystem_watch.py\n       │\n       ├── estado dos projetos\n       ├── commits dos projetos\n       ├── + 1 commit do monitor\n       └── contador acumulado\n       │\n       ▼\nsnapshot agregado a cada hora\n```\n\n### Regras de estabilidade\n\n1. O perfil faz uma varredura programada por hora.\n2. Cada snapshot publicado acrescenta exatamente 1 ao contador de commits do monitor; varreduras sem mudança semântica não geram commit.\n3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.\n4. Retries e backoff protegem contra falhas transitórias da API.\n5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.\n6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.\n\nA varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.\n"
+      }
+    },
+    {
+      "name": "mudanças: contagem, falha da comparação, repositório novo e sumido",
+      "input": {
+        "previous": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T06:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    },\n    \"beta\": {\n      \"branch\": \"main\",\n      \"sha\": \"cccccccccccccccccccccccccccccccccccccccc\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/cccccccccccccccccccccccccccccccccccccccc\"\n    },\n    \"gama\": {\n      \"branch\": \"main\",\n      \"sha\": \"dddddddddddddddddddddddddddddddddddddddd\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/dddddddddddddddddddddddddddddddddddddddd\"\n    },\n    \"delta\": {\n      \"branch\": \"main\",\n      \"sha\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\"\n    },\n    \"erro-antes\": {\n      \"branch\": \"main\",\n      \"error\": \"HTTP Error 409: Conflict\"\n    },\n    \"sumiu\": {\n      \"branch\": \"main\",\n      \"sha\": \"ffffffffffffffffffffffffffffffffffffffff\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/ffffffffffffffffffffffffffffffffffffffff\"\n    },\n    \"Zeta\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    },\n    \"Ábaco\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    },\n    \"_sub\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 1700,\n    \"project_commits\": 1650,\n    \"monitor_commits\": 50\n  }\n}\n",
+        "api": {
+          "/users/o/repos?type=owner&per_page=100&page=1": {
+            "json": [
+              {
+                "name": "alpha"
+              },
+              {
+                "name": "beta"
+              },
+              {
+                "name": "gama"
+              },
+              {
+                "name": "delta"
+              },
+              {
+                "name": "erro-antes"
+              },
+              {
+                "name": "novo"
+              },
+              {
+                "name": "Zeta"
+              },
+              {
+                "name": "Ábaco"
+              },
+              {
+                "name": "_sub"
+              }
+            ]
+          },
+          "/repos/o/alpha/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "fix: segunda"
+                },
+                "html_url": "https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            ]
+          },
+          "/repos/o/alpha/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+            "json": {
+              "ahead_by": 3,
+              "status": "ahead"
+            }
+          },
+          "/repos/o/beta/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            ]
+          },
+          "/repos/o/beta/compare/cccccccccccccccccccccccccccccccccccccccc...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+            "http": 404,
+            "reason": "Not Found"
+          },
+          "/repos/o/gama/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "dddddddddddddddddddddddddddddddddddddddd",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/dddddddddddddddddddddddddddddddddddddddd"
+              }
+            ]
+          },
+          "/repos/o/delta/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            ]
+          },
+          "/repos/o/delta/compare/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+            "json": {
+              "ahead_by": " 7 "
+            }
+          },
+          "/repos/o/erro-antes/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "1111111111111111111111111111111111111111",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/1111111111111111111111111111111111111111"
+              }
+            ]
+          },
+          "/repos/o/novo/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "1111111111111111111111111111111111111111",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/1111111111111111111111111111111111111111"
+              }
+            ]
+          },
+          "/repos/o/Zeta/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            ]
+          },
+          "/repos/o/Zeta/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+            "json": {
+              "status": "diverged"
+            }
+          },
+          "/repos/o/%C3%81baco/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            ]
+          },
+          "/repos/o/%C3%81baco/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+            "json": {
+              "ahead_by": null
+            }
+          },
+          "/repos/o/_sub/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            ]
+          },
+          "/repos/o/_sub/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+            "json": {
+              "ahead_by": 2.9
+            }
+          }
+        }
+      },
+      "expected": {
+        "stdout": "",
+        "calls": [
+          "/users/o/repos?type=owner&per_page=100&page=1",
+          "/repos/o/alpha/commits?sha=main&per_page=1",
+          "/repos/o/alpha/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "/repos/o/beta/commits?sha=main&per_page=1",
+          "/repos/o/beta/compare/cccccccccccccccccccccccccccccccccccccccc...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "/repos/o/gama/commits?sha=main&per_page=1",
+          "/repos/o/delta/commits?sha=main&per_page=1",
+          "/repos/o/delta/compare/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "/repos/o/erro-antes/commits?sha=main&per_page=1",
+          "/repos/o/novo/commits?sha=main&per_page=1",
+          "/repos/o/Zeta/commits?sha=main&per_page=1",
+          "/repos/o/Zeta/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "/repos/o/%C3%81baco/commits?sha=main&per_page=1",
+          "/repos/o/%C3%81baco/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "/repos/o/_sub/commits?sha=main&per_page=1",
+          "/repos/o/_sub/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        ],
+        "state": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T07:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"fix: segunda\",\n      \"url\": \"https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"\n    },\n    \"beta\": {\n      \"branch\": \"main\",\n      \"sha\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"\n    },\n    \"gama\": {\n      \"branch\": \"main\",\n      \"sha\": \"dddddddddddddddddddddddddddddddddddddddd\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/dddddddddddddddddddddddddddddddddddddddd\"\n    },\n    \"delta\": {\n      \"branch\": \"main\",\n      \"sha\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"\n    },\n    \"erro-antes\": {\n      \"branch\": \"main\",\n      \"sha\": \"1111111111111111111111111111111111111111\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/1111111111111111111111111111111111111111\"\n    },\n    \"novo\": {\n      \"branch\": \"main\",\n      \"sha\": \"1111111111111111111111111111111111111111\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/1111111111111111111111111111111111111111\"\n    },\n    \"Zeta\": {\n      \"branch\": \"main\",\n      \"sha\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"\n    },\n    \"Ábaco\": {\n      \"branch\": \"main\",\n      \"sha\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"\n    },\n    \"_sub\": {\n      \"branch\": \"main\",\n      \"sha\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 1713,\n    \"project_commits\": 1662,\n    \"monitor_commits\": 51,\n    \"detected_project_commits_this_scan\": 12,\n    \"monitor_commit_this_scan\": 1\n  },\n  \"summary\": {\n    \"repositories_scanned\": 9,\n    \"repositories_changed\": 6,\n    \"errors\": 0\n  },\n  \"errors\": []\n}\n",
+        "report": "# Ecosystem Commit Monitor\n\n> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.\n\n**Última varredura:** `2026-09-26T07:17:00Z`  \n**Intervalo configurado:** `1 hora`  \n**Repositórios acompanhados:** `9`  \n**Repositórios com mudanças desde a última varredura:** `6`  \n**Falhas de consulta:** `0`\n\n## Contadores\n\n- **Commits rastreados pelo ecossistema:** `1713`\n- **Commits dos projetos:** `1662`\n- **Commits do próprio monitor:** `51`\n- **Commits de projetos detectados nesta hora:** `12`\n\n> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.\n\n## Mudanças detectadas\n\n- **_sub** — 2 commit(s) — [bbbbbbbbbbbb](https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb) — feat: x\n- **alpha** — 3 commit(s) — [bbbbbbbbbbbb](https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb) — fix: segunda\n- **beta** — quantidade não determinada — [bbbbbbbbbbbb](https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb) — feat: x\n- **delta** — 7 commit(s) — [bbbbbbbbbbbb](https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb) — feat: x\n- **Zeta** — 0 commit(s) — [bbbbbbbbbbbb](https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb) — feat: x\n- **Ábaco** — quantidade não determinada — [bbbbbbbbbbbb](https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb) — feat: x\n\n## Arquitetura\n\n```text\nprojetos individuais\n       │\n       │ latest SHA + comparação\n       ▼\necosystem_watch.py\n       │\n       ├── estado dos projetos\n       ├── commits dos projetos\n       ├── + 1 commit do monitor\n       └── contador acumulado\n       │\n       ▼\nsnapshot agregado a cada hora\n```\n\n### Regras de estabilidade\n\n1. O perfil faz uma varredura programada por hora.\n2. Cada snapshot publicado acrescenta exatamente 1 ao contador de commits do monitor; varreduras sem mudança semântica não geram commit.\n3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.\n4. Retries e backoff protegem contra falhas transitórias da API.\n5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.\n6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.\n\nA varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.\n"
+      }
+    },
+    {
+      "name": "sem mudança semântica: nada reescrito",
+      "input": {
+        "previous": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T06:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 1700,\n    \"project_commits\": 1650,\n    \"monitor_commits\": 50\n  }\n}\n",
+        "api": {
+          "/users/o/repos?type=owner&per_page=100&page=1": {
+            "json": [
+              {
+                "name": "alpha"
+              }
+            ]
+          },
+          "/repos/o/alpha/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "stdout": "Nenhuma mudança semântica; snapshot não será reescrito.\n",
+        "calls": [
+          "/users/o/repos?type=owner&per_page=100&page=1",
+          "/repos/o/alpha/commits?sha=main&per_page=1"
+        ],
+        "state": null,
+        "report": null
+      }
+    },
+    {
+      "name": "estado ilegível volta ao baseline 1538",
+      "input": {
+        "previous": "{isto não é json",
+        "api": {
+          "/users/o/repos?type=owner&per_page=100&page=1": {
+            "json": [
+              {
+                "name": "alpha"
+              }
+            ]
+          },
+          "/repos/o/alpha/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "stdout": "",
+        "calls": [
+          "/users/o/repos?type=owner&per_page=100&page=1",
+          "/repos/o/alpha/commits?sha=main&per_page=1"
+        ],
+        "state": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T07:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 1539,\n    \"project_commits\": 1538,\n    \"monitor_commits\": 1,\n    \"detected_project_commits_this_scan\": 0,\n    \"monitor_commit_this_scan\": 1\n  },\n  \"summary\": {\n    \"repositories_scanned\": 1,\n    \"repositories_changed\": 0,\n    \"errors\": 0\n  },\n  \"errors\": []\n}\n",
+        "report": "# Ecosystem Commit Monitor\n\n> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.\n\n**Última varredura:** `2026-09-26T07:17:00Z`  \n**Intervalo configurado:** `1 hora`  \n**Repositórios acompanhados:** `1`  \n**Repositórios com mudanças desde a última varredura:** `0`  \n**Falhas de consulta:** `0`\n\n## Contadores\n\n- **Commits rastreados pelo ecossistema:** `1539`\n- **Commits dos projetos:** `1538`\n- **Commits do próprio monitor:** `1`\n- **Commits de projetos detectados nesta hora:** `0`\n\n> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.\n\n## Mudanças detectadas\n\n- Nenhuma mudança desde a última varredura.\n\n## Arquitetura\n\n```text\nprojetos individuais\n       │\n       │ latest SHA + comparação\n       ▼\necosystem_watch.py\n       │\n       ├── estado dos projetos\n       ├── commits dos projetos\n       ├── + 1 commit do monitor\n       └── contador acumulado\n       │\n       ▼\nsnapshot agregado a cada hora\n```\n\n### Regras de estabilidade\n\n1. O perfil faz uma varredura programada por hora.\n2. Cada snapshot publicado acrescenta exatamente 1 ao contador de commits do monitor; varreduras sem mudança semântica não geram commit.\n3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.\n4. Retries e backoff protegem contra falhas transitórias da API.\n5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.\n6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.\n\nA varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.\n"
+      }
+    },
+    {
+      "name": "métricas em texto e sem metrics",
+      "input": {
+        "previous": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T06:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    }\n  },\n  \"metrics\": {\n    \"project_commits\": \"2000\",\n    \"monitor_commits\": \" 5\"\n  }\n}\n",
+        "api": {
+          "/users/o/repos?type=owner&per_page=100&page=1": {
+            "json": [
+              {
+                "name": "alpha"
+              }
+            ]
+          },
+          "/repos/o/alpha/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            ]
+          },
+          "/repos/o/alpha/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+            "json": {
+              "ahead_by": true
+            }
+          }
+        }
+      },
+      "expected": {
+        "stdout": "",
+        "calls": [
+          "/users/o/repos?type=owner&per_page=100&page=1",
+          "/repos/o/alpha/commits?sha=main&per_page=1",
+          "/repos/o/alpha/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        ],
+        "state": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T07:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 2007,\n    \"project_commits\": 2001,\n    \"monitor_commits\": 6,\n    \"detected_project_commits_this_scan\": 1,\n    \"monitor_commit_this_scan\": 1\n  },\n  \"summary\": {\n    \"repositories_scanned\": 1,\n    \"repositories_changed\": 1,\n    \"errors\": 0\n  },\n  \"errors\": []\n}\n",
+        "report": "# Ecosystem Commit Monitor\n\n> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.\n\n**Última varredura:** `2026-09-26T07:17:00Z`  \n**Intervalo configurado:** `1 hora`  \n**Repositórios acompanhados:** `1`  \n**Repositórios com mudanças desde a última varredura:** `1`  \n**Falhas de consulta:** `0`\n\n## Contadores\n\n- **Commits rastreados pelo ecossistema:** `2007`\n- **Commits dos projetos:** `2001`\n- **Commits do próprio monitor:** `6`\n- **Commits de projetos detectados nesta hora:** `1`\n\n> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.\n\n## Mudanças detectadas\n\n- **alpha** — 1 commit(s) — [bbbbbbbbbbbb](https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb) — feat: x\n\n## Arquitetura\n\n```text\nprojetos individuais\n       │\n       │ latest SHA + comparação\n       ▼\necosystem_watch.py\n       │\n       ├── estado dos projetos\n       ├── commits dos projetos\n       ├── + 1 commit do monitor\n       └── contador acumulado\n       │\n       ▼\nsnapshot agregado a cada hora\n```\n\n### Regras de estabilidade\n\n1. O perfil faz uma varredura programada por hora.\n2. Cada snapshot publicado acrescenta exatamente 1 ao contador de commits do monitor; varreduras sem mudança semântica não geram commit.\n3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.\n4. Retries e backoff protegem contra falhas transitórias da API.\n5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.\n6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.\n\nA varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.\n"
+      }
+    },
+    {
+      "name": "estado sem metrics conta a partir do baseline",
+      "input": {
+        "previous": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T06:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    }\n  }\n}\n",
+        "api": {
+          "/users/o/repos?type=owner&per_page=100&page=1": {
+            "json": [
+              {
+                "name": "alpha"
+              }
+            ]
+          },
+          "/repos/o/alpha/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            ]
+          },
+          "/repos/o/alpha/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+            "json": {
+              "ahead_by": 1
+            }
+          }
+        }
+      },
+      "expected": {
+        "stdout": "",
+        "calls": [
+          "/users/o/repos?type=owner&per_page=100&page=1",
+          "/repos/o/alpha/commits?sha=main&per_page=1",
+          "/repos/o/alpha/compare/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        ],
+        "state": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T07:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 1540,\n    \"project_commits\": 1539,\n    \"monitor_commits\": 1,\n    \"detected_project_commits_this_scan\": 1,\n    \"monitor_commit_this_scan\": 1\n  },\n  \"summary\": {\n    \"repositories_scanned\": 1,\n    \"repositories_changed\": 1,\n    \"errors\": 0\n  },\n  \"errors\": []\n}\n",
+        "report": "# Ecosystem Commit Monitor\n\n> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.\n\n**Última varredura:** `2026-09-26T07:17:00Z`  \n**Intervalo configurado:** `1 hora`  \n**Repositórios acompanhados:** `1`  \n**Repositórios com mudanças desde a última varredura:** `1`  \n**Falhas de consulta:** `0`\n\n## Contadores\n\n- **Commits rastreados pelo ecossistema:** `1540`\n- **Commits dos projetos:** `1539`\n- **Commits do próprio monitor:** `1`\n- **Commits de projetos detectados nesta hora:** `1`\n\n> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.\n\n## Mudanças detectadas\n\n- **alpha** — 1 commit(s) — [bbbbbbbbbbbb](https://github.com/o/r/commit/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb) — feat: x\n\n## Arquitetura\n\n```text\nprojetos individuais\n       │\n       │ latest SHA + comparação\n       ▼\necosystem_watch.py\n       │\n       ├── estado dos projetos\n       ├── commits dos projetos\n       ├── + 1 commit do monitor\n       └── contador acumulado\n       │\n       ▼\nsnapshot agregado a cada hora\n```\n\n### Regras de estabilidade\n\n1. O perfil faz uma varredura programada por hora.\n2. Cada snapshot publicado acrescenta exatamente 1 ao contador de commits do monitor; varreduras sem mudança semântica não geram commit.\n3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.\n4. Retries e backoff protegem contra falhas transitórias da API.\n5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.\n6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.\n\nA varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.\n"
+      }
+    },
+    {
+      "name": "métrica ilegível derruba antes da rede",
+      "input": {
+        "previous": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T06:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    }\n  },\n  \"metrics\": {\n    \"project_commits\": \"abc\"\n  }\n}\n",
+        "api": {}
+      },
+      "expected": {
+        "crash": "ValueError",
+        "stdout": "",
+        "calls": [],
+        "state": null,
+        "report": null
+      }
+    },
+    {
+      "name": "estado que não é objeto derruba",
+      "input": {
+        "previous": "[]\n",
+        "api": {}
+      },
+      "expected": {
+        "crash": "AttributeError",
+        "stdout": "",
+        "calls": [],
+        "state": null,
+        "report": null
+      }
+    },
+    {
+      "name": "listagem que falha derruba sem gravar",
+      "input": {
+        "previous": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T06:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"alpha\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 1700,\n    \"project_commits\": 1650,\n    \"monitor_commits\": 50\n  }\n}\n",
+        "api": {
+          "/users/o/repos?type=owner&per_page=100&page=1": {
+            "http": 502,
+            "reason": "Bad Gateway"
+          }
+        }
+      },
+      "expected": {
+        "crash": "HTTPError",
+        "stdout": "",
+        "calls": [
+          "/users/o/repos?type=owner&per_page=100&page=1"
+        ],
+        "state": null,
+        "report": null
+      }
+    },
+    {
+      "name": "duas páginas: página cheia pede a próxima",
+      "input": {
+        "previous": null,
+        "api": {
+          "/users/o/repos?type=owner&per_page=100&page=1": {
+            "json": [
+              {
+                "name": "r000",
+                "fork": true
+              },
+              {
+                "name": "r001",
+                "fork": false
+              },
+              {
+                "name": "r002",
+                "fork": false
+              },
+              {
+                "name": "r003",
+                "fork": false
+              },
+              {
+                "name": "r004",
+                "fork": false
+              },
+              {
+                "name": "r005",
+                "fork": false
+              },
+              {
+                "name": "r006",
+                "fork": false
+              },
+              {
+                "name": "r007",
+                "fork": false
+              },
+              {
+                "name": "r008",
+                "fork": false
+              },
+              {
+                "name": "r009",
+                "fork": false
+              },
+              {
+                "name": "r010",
+                "fork": true
+              },
+              {
+                "name": "r011",
+                "fork": false
+              },
+              {
+                "name": "r012",
+                "fork": false
+              },
+              {
+                "name": "r013",
+                "fork": false
+              },
+              {
+                "name": "r014",
+                "fork": false
+              },
+              {
+                "name": "r015",
+                "fork": false
+              },
+              {
+                "name": "r016",
+                "fork": false
+              },
+              {
+                "name": "r017",
+                "fork": false
+              },
+              {
+                "name": "r018",
+                "fork": false
+              },
+              {
+                "name": "r019",
+                "fork": false
+              },
+              {
+                "name": "r020",
+                "fork": true
+              },
+              {
+                "name": "r021",
+                "fork": false
+              },
+              {
+                "name": "r022",
+                "fork": false
+              },
+              {
+                "name": "r023",
+                "fork": false
+              },
+              {
+                "name": "r024",
+                "fork": false
+              },
+              {
+                "name": "r025",
+                "fork": false
+              },
+              {
+                "name": "r026",
+                "fork": false
+              },
+              {
+                "name": "r027",
+                "fork": false
+              },
+              {
+                "name": "r028",
+                "fork": false
+              },
+              {
+                "name": "r029",
+                "fork": false
+              },
+              {
+                "name": "r030",
+                "fork": true
+              },
+              {
+                "name": "r031",
+                "fork": false
+              },
+              {
+                "name": "r032",
+                "fork": false
+              },
+              {
+                "name": "r033",
+                "fork": false
+              },
+              {
+                "name": "r034",
+                "fork": false
+              },
+              {
+                "name": "r035",
+                "fork": false
+              },
+              {
+                "name": "r036",
+                "fork": false
+              },
+              {
+                "name": "r037",
+                "fork": false
+              },
+              {
+                "name": "r038",
+                "fork": false
+              },
+              {
+                "name": "r039",
+                "fork": false
+              },
+              {
+                "name": "r040",
+                "fork": true
+              },
+              {
+                "name": "r041",
+                "fork": false
+              },
+              {
+                "name": "r042",
+                "fork": false
+              },
+              {
+                "name": "r043",
+                "fork": false
+              },
+              {
+                "name": "r044",
+                "fork": false
+              },
+              {
+                "name": "r045",
+                "fork": false
+              },
+              {
+                "name": "r046",
+                "fork": false
+              },
+              {
+                "name": "r047",
+                "fork": false
+              },
+              {
+                "name": "r048",
+                "fork": false
+              },
+              {
+                "name": "r049",
+                "fork": false
+              },
+              {
+                "name": "r050",
+                "fork": true
+              },
+              {
+                "name": "r051",
+                "fork": false
+              },
+              {
+                "name": "r052",
+                "fork": false
+              },
+              {
+                "name": "r053",
+                "fork": false
+              },
+              {
+                "name": "r054",
+                "fork": false
+              },
+              {
+                "name": "r055",
+                "fork": false
+              },
+              {
+                "name": "r056",
+                "fork": false
+              },
+              {
+                "name": "r057",
+                "fork": false
+              },
+              {
+                "name": "r058",
+                "fork": false
+              },
+              {
+                "name": "r059",
+                "fork": false
+              },
+              {
+                "name": "r060",
+                "fork": true
+              },
+              {
+                "name": "r061",
+                "fork": false
+              },
+              {
+                "name": "r062",
+                "fork": false
+              },
+              {
+                "name": "r063",
+                "fork": false
+              },
+              {
+                "name": "r064",
+                "fork": false
+              },
+              {
+                "name": "r065",
+                "fork": false
+              },
+              {
+                "name": "r066",
+                "fork": false
+              },
+              {
+                "name": "r067",
+                "fork": false
+              },
+              {
+                "name": "r068",
+                "fork": false
+              },
+              {
+                "name": "r069",
+                "fork": false
+              },
+              {
+                "name": "r070",
+                "fork": true
+              },
+              {
+                "name": "r071",
+                "fork": false
+              },
+              {
+                "name": "r072",
+                "fork": false
+              },
+              {
+                "name": "r073",
+                "fork": false
+              },
+              {
+                "name": "r074",
+                "fork": false
+              },
+              {
+                "name": "r075",
+                "fork": false
+              },
+              {
+                "name": "r076",
+                "fork": false
+              },
+              {
+                "name": "r077",
+                "fork": false
+              },
+              {
+                "name": "r078",
+                "fork": false
+              },
+              {
+                "name": "r079",
+                "fork": false
+              },
+              {
+                "name": "r080",
+                "fork": true
+              },
+              {
+                "name": "r081",
+                "fork": false
+              },
+              {
+                "name": "r082",
+                "fork": false
+              },
+              {
+                "name": "r083",
+                "fork": false
+              },
+              {
+                "name": "r084",
+                "fork": false
+              },
+              {
+                "name": "r085",
+                "fork": false
+              },
+              {
+                "name": "r086",
+                "fork": false
+              },
+              {
+                "name": "r087",
+                "fork": false
+              },
+              {
+                "name": "r088",
+                "fork": false
+              },
+              {
+                "name": "r089",
+                "fork": false
+              },
+              {
+                "name": "r090",
+                "fork": true
+              },
+              {
+                "name": "r091",
+                "fork": false
+              },
+              {
+                "name": "r092",
+                "fork": false
+              },
+              {
+                "name": "r093",
+                "fork": false
+              },
+              {
+                "name": "r094",
+                "fork": false
+              },
+              {
+                "name": "r095",
+                "fork": false
+              },
+              {
+                "name": "r096",
+                "fork": false
+              },
+              {
+                "name": "r097",
+                "fork": false
+              },
+              {
+                "name": "r098",
+                "fork": false
+              },
+              {
+                "name": "r099",
+                "fork": false
+              }
+            ]
+          },
+          "/users/o/repos?type=owner&per_page=100&page=2": {
+            "json": [
+              {
+                "name": "ultimo"
+              }
+            ]
+          },
+          "/repos/o/r000/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r001/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r002/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r003/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r004/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r005/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r006/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r007/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r008/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r009/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r010/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r011/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r012/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r013/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r014/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r015/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r016/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r017/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r018/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r019/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r020/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r021/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r022/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r023/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r024/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r025/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r026/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r027/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r028/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r029/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r030/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r031/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r032/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r033/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r034/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r035/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r036/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r037/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r038/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r039/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r040/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r041/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r042/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r043/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r044/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r045/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r046/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r047/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r048/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r049/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r050/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r051/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r052/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r053/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r054/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r055/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r056/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r057/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r058/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r059/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r060/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r061/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r062/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r063/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r064/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r065/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r066/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r067/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r068/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r069/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r070/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r071/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r072/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r073/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r074/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r075/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r076/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r077/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r078/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r079/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r080/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r081/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r082/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r083/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r084/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r085/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r086/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r087/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r088/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r089/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r090/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r091/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r092/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r093/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r094/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r095/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r096/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r097/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r098/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/r099/commits?sha=main&per_page=1": {
+            "json": []
+          },
+          "/repos/o/ultimo/commits?sha=main&per_page=1": {
+            "json": [
+              {
+                "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "commit": {
+                  "committer": {
+                    "date": "2026-09-20T10:00:00Z"
+                  },
+                  "message": "feat: x"
+                },
+                "html_url": "https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "stdout": "",
+        "calls": [
+          "/users/o/repos?type=owner&per_page=100&page=1",
+          "/users/o/repos?type=owner&per_page=100&page=2",
+          "/repos/o/r001/commits?sha=main&per_page=1",
+          "/repos/o/r002/commits?sha=main&per_page=1",
+          "/repos/o/r003/commits?sha=main&per_page=1",
+          "/repos/o/r004/commits?sha=main&per_page=1",
+          "/repos/o/r005/commits?sha=main&per_page=1",
+          "/repos/o/r006/commits?sha=main&per_page=1",
+          "/repos/o/r007/commits?sha=main&per_page=1",
+          "/repos/o/r008/commits?sha=main&per_page=1",
+          "/repos/o/r009/commits?sha=main&per_page=1",
+          "/repos/o/r011/commits?sha=main&per_page=1",
+          "/repos/o/r012/commits?sha=main&per_page=1",
+          "/repos/o/r013/commits?sha=main&per_page=1",
+          "/repos/o/r014/commits?sha=main&per_page=1",
+          "/repos/o/r015/commits?sha=main&per_page=1",
+          "/repos/o/r016/commits?sha=main&per_page=1",
+          "/repos/o/r017/commits?sha=main&per_page=1",
+          "/repos/o/r018/commits?sha=main&per_page=1",
+          "/repos/o/r019/commits?sha=main&per_page=1",
+          "/repos/o/r021/commits?sha=main&per_page=1",
+          "/repos/o/r022/commits?sha=main&per_page=1",
+          "/repos/o/r023/commits?sha=main&per_page=1",
+          "/repos/o/r024/commits?sha=main&per_page=1",
+          "/repos/o/r025/commits?sha=main&per_page=1",
+          "/repos/o/r026/commits?sha=main&per_page=1",
+          "/repos/o/r027/commits?sha=main&per_page=1",
+          "/repos/o/r028/commits?sha=main&per_page=1",
+          "/repos/o/r029/commits?sha=main&per_page=1",
+          "/repos/o/r031/commits?sha=main&per_page=1",
+          "/repos/o/r032/commits?sha=main&per_page=1",
+          "/repos/o/r033/commits?sha=main&per_page=1",
+          "/repos/o/r034/commits?sha=main&per_page=1",
+          "/repos/o/r035/commits?sha=main&per_page=1",
+          "/repos/o/r036/commits?sha=main&per_page=1",
+          "/repos/o/r037/commits?sha=main&per_page=1",
+          "/repos/o/r038/commits?sha=main&per_page=1",
+          "/repos/o/r039/commits?sha=main&per_page=1",
+          "/repos/o/r041/commits?sha=main&per_page=1",
+          "/repos/o/r042/commits?sha=main&per_page=1",
+          "/repos/o/r043/commits?sha=main&per_page=1",
+          "/repos/o/r044/commits?sha=main&per_page=1",
+          "/repos/o/r045/commits?sha=main&per_page=1",
+          "/repos/o/r046/commits?sha=main&per_page=1",
+          "/repos/o/r047/commits?sha=main&per_page=1",
+          "/repos/o/r048/commits?sha=main&per_page=1",
+          "/repos/o/r049/commits?sha=main&per_page=1",
+          "/repos/o/r051/commits?sha=main&per_page=1",
+          "/repos/o/r052/commits?sha=main&per_page=1",
+          "/repos/o/r053/commits?sha=main&per_page=1",
+          "/repos/o/r054/commits?sha=main&per_page=1",
+          "/repos/o/r055/commits?sha=main&per_page=1",
+          "/repos/o/r056/commits?sha=main&per_page=1",
+          "/repos/o/r057/commits?sha=main&per_page=1",
+          "/repos/o/r058/commits?sha=main&per_page=1",
+          "/repos/o/r059/commits?sha=main&per_page=1",
+          "/repos/o/r061/commits?sha=main&per_page=1",
+          "/repos/o/r062/commits?sha=main&per_page=1",
+          "/repos/o/r063/commits?sha=main&per_page=1",
+          "/repos/o/r064/commits?sha=main&per_page=1",
+          "/repos/o/r065/commits?sha=main&per_page=1",
+          "/repos/o/r066/commits?sha=main&per_page=1",
+          "/repos/o/r067/commits?sha=main&per_page=1",
+          "/repos/o/r068/commits?sha=main&per_page=1",
+          "/repos/o/r069/commits?sha=main&per_page=1",
+          "/repos/o/r071/commits?sha=main&per_page=1",
+          "/repos/o/r072/commits?sha=main&per_page=1",
+          "/repos/o/r073/commits?sha=main&per_page=1",
+          "/repos/o/r074/commits?sha=main&per_page=1",
+          "/repos/o/r075/commits?sha=main&per_page=1",
+          "/repos/o/r076/commits?sha=main&per_page=1",
+          "/repos/o/r077/commits?sha=main&per_page=1",
+          "/repos/o/r078/commits?sha=main&per_page=1",
+          "/repos/o/r079/commits?sha=main&per_page=1",
+          "/repos/o/r081/commits?sha=main&per_page=1",
+          "/repos/o/r082/commits?sha=main&per_page=1",
+          "/repos/o/r083/commits?sha=main&per_page=1",
+          "/repos/o/r084/commits?sha=main&per_page=1",
+          "/repos/o/r085/commits?sha=main&per_page=1",
+          "/repos/o/r086/commits?sha=main&per_page=1",
+          "/repos/o/r087/commits?sha=main&per_page=1",
+          "/repos/o/r088/commits?sha=main&per_page=1",
+          "/repos/o/r089/commits?sha=main&per_page=1",
+          "/repos/o/r091/commits?sha=main&per_page=1",
+          "/repos/o/r092/commits?sha=main&per_page=1",
+          "/repos/o/r093/commits?sha=main&per_page=1",
+          "/repos/o/r094/commits?sha=main&per_page=1",
+          "/repos/o/r095/commits?sha=main&per_page=1",
+          "/repos/o/r096/commits?sha=main&per_page=1",
+          "/repos/o/r097/commits?sha=main&per_page=1",
+          "/repos/o/r098/commits?sha=main&per_page=1",
+          "/repos/o/r099/commits?sha=main&per_page=1",
+          "/repos/o/ultimo/commits?sha=main&per_page=1"
+        ],
+        "state": "{\n  \"schema\": 4,\n  \"scanned_at\": \"2026-09-26T07:17:00Z\",\n  \"scan_interval\": \"hourly\",\n  \"repositories\": {\n    \"r001\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r002\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r003\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r004\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r005\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r006\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r007\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r008\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r009\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r011\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r012\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r013\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r014\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r015\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r016\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r017\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r018\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r019\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r021\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r022\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r023\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r024\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r025\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r026\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r027\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r028\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r029\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r031\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r032\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r033\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r034\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r035\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r036\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r037\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r038\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r039\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r041\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r042\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r043\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r044\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r045\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r046\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r047\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r048\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r049\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r051\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r052\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r053\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r054\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r055\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r056\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r057\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r058\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r059\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r061\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r062\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r063\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r064\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r065\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r066\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r067\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r068\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r069\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r071\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r072\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r073\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r074\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r075\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r076\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r077\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r078\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r079\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r081\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r082\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r083\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r084\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r085\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r086\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r087\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r088\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r089\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r091\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r092\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r093\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r094\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r095\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r096\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r097\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r098\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"r099\": {\n      \"branch\": \"main\",\n      \"empty\": true\n    },\n    \"ultimo\": {\n      \"branch\": \"main\",\n      \"sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n      \"date\": \"2026-09-20T10:00:00Z\",\n      \"message\": \"feat: x\",\n      \"url\": \"https://github.com/o/r/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n    }\n  },\n  \"metrics\": {\n    \"tracked_commits\": 1539,\n    \"project_commits\": 1538,\n    \"monitor_commits\": 1,\n    \"detected_project_commits_this_scan\": 0,\n    \"monitor_commit_this_scan\": 1\n  },\n  \"summary\": {\n    \"repositories_scanned\": 91,\n    \"repositories_changed\": 0,\n    \"errors\": 0\n  },\n  \"errors\": []\n}\n",
+        "report": "# Ecosystem Commit Monitor\n\n> Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.\n\n**Última varredura:** `2026-09-26T07:17:00Z`  \n**Intervalo configurado:** `1 hora`  \n**Repositórios acompanhados:** `91`  \n**Repositórios com mudanças desde a última varredura:** `0`  \n**Falhas de consulta:** `0`\n\n## Contadores\n\n- **Commits rastreados pelo ecossistema:** `1539`\n- **Commits dos projetos:** `1538`\n- **Commits do próprio monitor:** `1`\n- **Commits de projetos detectados nesta hora:** `0`\n\n> O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.\n\n## Mudanças detectadas\n\n- Nenhuma mudança desde a última varredura.\n\n## Arquitetura\n\n```text\nprojetos individuais\n       │\n       │ latest SHA + comparação\n       ▼\necosystem_watch.py\n       │\n       ├── estado dos projetos\n       ├── commits dos projetos\n       ├── + 1 commit do monitor\n       └── contador acumulado\n       │\n       ▼\nsnapshot agregado a cada hora\n```\n\n### Regras de estabilidade\n\n1. O perfil faz uma varredura programada por hora.\n2. Cada snapshot publicado acrescenta exatamente 1 ao contador de commits do monitor; varreduras sem mudança semântica não geram commit.\n3. As mudanças dos projetos são agregadas: um snapshot pode registrar quantos commits cada repositório recebeu desde a varredura anterior, sem copiar esses commits para o perfil.\n4. Retries e backoff protegem contra falhas transitórias da API.\n5. Repositórios novos do usuário são descobertos automaticamente; forks são ignorados.\n6. O contador próprio do ecossistema não tenta reproduzir a métrica oficial de GitHub Contributions.\n\nA varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.\n"
+      }
+    }
+  ]
+}

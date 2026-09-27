@@ -54,3 +54,8 @@ jobs:
 
       - name: Validate the showcase CTA rule (site first, code second)
         run: python scripts/validate_project_links.py
+
+      # Banner, títulos animados, ícones, cards locais, snake, contador:
+      # a identidade visual do README não some num PR sem ninguém ver.
+      - name: Validate the preserved visual identity of the README
+        run: python scripts/validate_restored_style.py

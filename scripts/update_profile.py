@@ -28,6 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from project_catalog import (  # noqa: E402
     COLOR_GOLD,
     Presentation,
+    WebsiteCheck,
     _badge,
     build_catalog,
     check_websites,
@@ -41,6 +42,11 @@ from project_catalog import (  # noqa: E402
 )
 
 OWNER = "Lucas-Belucci-Bellini"
+# Base da API REST. O GitHub Actions já define GITHUB_API_URL com este mesmo
+# valor; fora dele, a variável aponta o gerador para um GitHub simulado — é o
+# que permite ao teste de ponta a ponta (tests/e2e) rodar o Python e o núcleo
+# em Rust contra as mesmas respostas.
+API = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
 ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
 SITES_FILE = ROOT / "docs" / "README_SITES.json"
@@ -49,6 +55,24 @@ STACK_FILE = ROOT / "docs" / "README_STACK.json"
 EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
 SNAPSHOT_SVG = ROOT / "assets" / "profile-snapshot.svg"
 CATALOG_FILE = ROOT / "docs" / "project-catalog.json"
+
+
+def configure_root(root: Path) -> None:
+    """Aponta README, manifestos e saídas para outra raiz (`--root`).
+
+    Existe para os testes golden (tests/test_golden_profile.py) e para a
+    comparação futura com o núcleo em Rust: a mesma árvore sintética de
+    entrada, rodada pelos dois, tem de produzir os mesmos bytes.
+    """
+    global ROOT, README, SITES_FILE, FEATURED_FILE, STACK_FILE, EXCLUDED_FILE, SNAPSHOT_SVG, CATALOG_FILE
+    ROOT = root.resolve()
+    README = ROOT / "README.md"
+    SITES_FILE = ROOT / "docs" / "README_SITES.json"
+    FEATURED_FILE = ROOT / "docs" / "README_FEATURED.json"
+    STACK_FILE = ROOT / "docs" / "README_STACK.json"
+    EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
+    SNAPSHOT_SVG = ROOT / "assets" / "profile-snapshot.svg"
+    CATALOG_FILE = ROOT / "docs" / "project-catalog.json"
 
 LANGUAGE_DISPLAY = {
     "Batchfile": "Batch",
@@ -122,13 +146,13 @@ def fetch_repositories(token: str | None) -> list[dict[str, Any]]:
     while True:
         if token:
             url = (
-                "https://api.github.com/user/repos?"
+                f"{API}/user/repos?"
                 "affiliation=owner,collaborator,organization_member&per_page=100&page="
                 + str(page)
             )
         else:
             # Unauthenticated fallback: only public repositories owned by this profile.
-            url = f"https://api.github.com/users/{OWNER}/repos?type=owner&per_page=100&page={page}"
+            url = f"{API}/users/{OWNER}/repos?type=owner&per_page=100&page={page}"
         batch = api_get(url, token)
         if not batch:
             break
@@ -141,7 +165,7 @@ def fetch_repositories(token: str | None) -> list[dict[str, Any]]:
 
 def fetch_languages(full_name: str, token: str | None) -> dict[str, int]:
     try:
-        data = api_get(f"https://api.github.com/repos/{full_name}/languages", token)
+        data = api_get(f"{API}/repos/{full_name}/languages", token)
         return {str(key): int(value) for key, value in data.items()}
     except (HTTPError, URLError, TimeoutError, ValueError):
         return {}
@@ -366,7 +390,9 @@ def replace_block(text: str, marker: str, body: str) -> str:
     replacement = f"<!-- {marker}:START -->\n{body.rstrip()}\n<!-- {marker}:END -->"
     if not pattern.search(text):
         raise ValueError(f"README marker not found: {marker}")
-    return pattern.sub(replacement, text, count=1)
+    # Função, não string: o corpo vem de descrições do GitHub e pode conter `\`,
+    # que como string de substituição o `re` leria como escape ou grupo.
+    return pattern.sub(lambda _match: replacement, text, count=1)
 
 
 def render_dashboard(repos: list[dict[str, Any]], languages: list[dict[str, Any]], verified_sites: dict[str, dict[str, Any]], now: datetime) -> str:
@@ -939,37 +965,29 @@ def render_snapshot_svg(repos: list[dict[str, Any]], languages: list[dict[str, A
     destination.write_text("\n".join(svg) + "\n", encoding="utf-8")
 
 
-def render_svg(rows: list[dict[str, Any]], destination: Path) -> None:
-    width, height = 1100, 620
-    background = "#0e0c16"
-    gold = "#d4a24e"
-    light = "#f4ecdd"
-    muted = "#a89f91"
-    green = "#3ddc84"
-    max_bytes = max((row["bytes"] for row in rows), default=1)
-    visible = rows[:12]
-    svg: list[str] = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
-        f'<rect width="{width}" height="{height}" rx="18" fill="{background}"/>',
-        f'<text x="48" y="58" fill="{light}" font-family="monospace" font-size="25" font-weight="700">LANGUAGE MATRIX // TOP LANGUAGES</text>',
-        f'<text x="48" y="88" fill="{muted}" font-family="monospace" font-size="15">source: GitHub language bytes | public repositories only</text>',
-    ]
-    bar_x, bar_w, start_y, row_h = 270, 680, 125, 36
-    for index, row in enumerate(visible):
-        y = start_y + index * row_h
-        label = html.escape(row["display"])
-        bar = max(3, int(bar_w * row["bytes"] / max_bytes))
-        fill = green if index == 0 else gold
-        svg.append(f'<text x="48" y="{y + 19}" fill="{light}" font-family="monospace" font-size="16">{index + 1:>2} {label}</text>')
-        svg.append(f'<rect x="{bar_x}" y="{y + 4}" width="{bar_w}" height="20" rx="10" fill="#1d1729"/>')
-        svg.append(f'<rect x="{bar_x}" y="{y + 4}" width="{bar}" height="20" rx="10" fill="{fill}"/>')
-        svg.append(f'<text x="{bar_x + bar_w + 16}" y="{y + 19}" fill="{light}" font-family="monospace" font-size="14">{row["share"]:.1f}%</text>')
-    svg.extend([
-        f'<text x="48" y="{height - 36}" fill="{muted}" font-family="monospace" font-size="14">Generated by scripts/update_profile.py · no private file contents published</text>',
-        "</svg>",
-    ])
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text("\n".join(svg) + "\n", encoding="utf-8")
+def is_profile_repository(repo: dict[str, Any]) -> bool:
+    """O próprio repositório do perfil (`dono/dono`), sem diferenciar maiúsculas."""
+    return str(repo.get("full_name", "")).casefold() == f"{OWNER}/{OWNER}".casefold()
+
+
+def source_timestamp(repos: list[dict[str, Any]], now: datetime) -> datetime:
+    """Carimbo derivado dos dados, para inventário igual não gerar commit.
+
+    É o push mais recente do inventário — **exceto o do próprio perfil**: o
+    monitor horário empurra snapshots para ele, então o `pushed_at` dele muda
+    a cada hora sem nenhum dado novo nos projetos (auditoria, A7). O perfil
+    continua no inventário; só não dita o carimbo.
+    """
+    source_times = []
+    for repo in repos:
+        if is_profile_repository(repo):
+            continue
+        value = repo.get("pushed_at") or repo.get("updated_at")
+        try:
+            source_times.append(datetime.fromisoformat(str(value).replace("Z", "+00:00")))
+        except (TypeError, ValueError):
+            continue
+    return max(source_times, default=now)
 
 
 def load_json_object(path: Path) -> dict[str, Any]:
@@ -1005,6 +1023,44 @@ def load_site_overrides() -> dict[str, dict[str, Any]]:
         return {}
 
 
+def load_site_checks_fixture(path: Path, urls: list[str]) -> dict[str, WebsiteCheck]:
+    """Resultados de verificação lidos de arquivo, em vez de HTTP.
+
+    Formato: `{"https://…": {"status": "verified"|"unreachable"|"invalid",
+    "http_status": 200, "final_url": "https://…"}}`. Toda URL descoberta
+    precisa estar no arquivo: uma URL sem resultado é erro, não "fora do ar" —
+    senão o fixture poderia esconder uma descoberta nova sem ninguém notar.
+    """
+    data = load_json_object(path)
+    faltando = sorted(url for url in set(urls) if url not in data)
+    if faltando:
+        raise ValueError(f"site check fixture has no result for: {', '.join(faltando)}")
+    checks: dict[str, WebsiteCheck] = {}
+    for url in urls:
+        entry = data[url]
+        status = str(entry["status"])
+        if status not in {"verified", "unreachable", "invalid"}:
+            raise ValueError(f"invalid status in site check fixture for {url}: {status}")
+        checks[url] = WebsiteCheck(
+            url=url,
+            status=status,
+            http_status=int(entry.get("http_status", 0)),
+            final_url=str(entry.get("final_url") or url),
+            checked_at="fixture",
+        )
+    return checks
+
+
+def parse_now(value: str | None) -> datetime:
+    """Relógio da execução; `--now` fixa o valor para saídas reproduzíveis."""
+    if not value:
+        return datetime.now(timezone.utc)
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("--now must include a timezone, e.g. 2026-09-25T12:00:00Z")
+    return parsed
+
+
 def build_data(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[str, dict[str, int]]]:
     # PROFILE_GITHUB_TOKEN is optional for read-only/public previews, but write mode
     # must not replace a private-aware README with a public-only inventory.
@@ -1035,10 +1091,26 @@ def main() -> int:
     parser.add_argument("--languages-dir", help="local directory containing one JSON language map per repository")
     parser.add_argument("--github-token", help="token for GitHub API access; prefer environment variables in CI")
     parser.add_argument("--write", action="store_true", help="write README and generated assets; otherwise validate/render only")
-    parser.add_argument("--skip-site-check", action="store_true", help="skip HTTP verification; renders every site as unverified")
+    checks_source = parser.add_mutually_exclusive_group()
+    checks_source.add_argument("--skip-site-check", action="store_true", help="skip HTTP verification; renders every site as unverified")
+    checks_source.add_argument("--site-checks-fixture", help="read website check results from a JSON file instead of HTTP (tests/parity)")
     parser.add_argument("--site-timeout", type=float, default=15.0, help="per-request timeout for website verification (seconds)")
     parser.add_argument("--site-workers", type=int, default=6, help="maximum concurrent website checks")
+    parser.add_argument("--root", help="alternative repository root for README, manifests and outputs (tests/parity)")
+    parser.add_argument("--now", help="fixed clock as ISO 8601 with timezone, e.g. 2026-09-25T12:00:00Z (tests/parity)")
+    parser.add_argument(
+        "--catalog-out",
+        help="also write the catalog JSON to this file, leaving README and assets untouched (shadow comparison)",
+    )
+    parser.add_argument(
+        "--out-dir",
+        help="also write README.md, profile-snapshot.svg and project-catalog.json to this directory, "
+        "leaving the published files untouched (shadow comparison)",
+    )
     args = parser.parse_args()
+
+    if args.root:
+        configure_root(Path(args.root))
 
     try:
         repos, languages = build_data(args)
@@ -1049,7 +1121,11 @@ def main() -> int:
         print("profile refresh failed: GitHub returned no repositories", file=sys.stderr)
         return 2
 
-    now = datetime.now(timezone.utc)
+    try:
+        now = parse_now(args.now)
+    except ValueError as error:
+        print(f"profile refresh failed: {error}", file=sys.stderr)
+        return 2
     manual_overrides = load_site_overrides()
     featured_manifest = load_json_object(FEATURED_FILE)
     stack_manifest = load_json_object(STACK_FILE)
@@ -1063,24 +1139,23 @@ def main() -> int:
         sites[str(repo["full_name"])] = discover_project_website(repo, manual_overrides)
 
     candidates = [url for url, _ in sites.values() if url]
-    checks = {} if args.skip_site_check else check_websites(
-        candidates, max_workers=args.site_workers, timeout=args.site_timeout
-    )
+    if args.site_checks_fixture:
+        try:
+            checks = load_site_checks_fixture(Path(args.site_checks_fixture), candidates)
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            print(f"profile refresh failed: {error}", file=sys.stderr)
+            return 2
+    elif args.skip_site_check:
+        checks = {}
+    else:
+        checks = check_websites(candidates, max_workers=args.site_workers, timeout=args.site_timeout)
     presentations = build_presentations(
         repos, sites=sites, checks=checks, featured_manifest=featured_manifest, now=now
     )
     verified_sites = live_site_map(presentations)
 
     rows = language_rows(repos, languages, public_only=True)
-    # Use a source-derived timestamp so unchanged inventories do not create timestamp-only commits.
-    source_times = []
-    for repo in repos:
-        value = repo.get("pushed_at") or repo.get("updated_at")
-        try:
-            source_times.append(datetime.fromisoformat(str(value).replace("Z", "+00:00")))
-        except (TypeError, ValueError):
-            continue
-    generated_at = max(source_times, default=now).strftime("%Y-%m-%d %H:%M UTC")
+    generated_at = source_timestamp(repos, now).strftime("%Y-%m-%d %H:%M UTC")
     text = README.read_text(encoding="utf-8")
     text = replace_block(text, "PROFILE-DASHBOARD", render_dashboard(repos, rows, verified_sites, now))
     text = replace_block(text, "WHAT-I-BUILD", render_what_i_build(repos, presentations))
@@ -1100,12 +1175,27 @@ def main() -> int:
     catalog_written = False
     if args.write:
         README.write_text(text, encoding="utf-8")
-        render_svg(rows, ROOT / "assets" / "lang-stats.svg")
+        # assets/lang-stats.svg é do .github/scripts/lang_stats.py (painel
+        # redesenhado em d2c0d58); este gerador só o referencia no bloco
+        # LANGUAGE-STATS. Dois escritores no mesmo arquivo eram o achado A4.
         render_snapshot_svg(repos, rows, verified_sites, now, generated_at, SNAPSHOT_SVG)
         # Conteúdo igual não é gravado: o catálogo não deve produzir commit vazio.
         catalog_written = write_catalog_if_changed(catalog, CATALOG_FILE)
     else:
         print(text[:500])
+    # --catalog-out não substitui nada publicado (README, assets e o catálogo
+    # versionado ficam como estão), por isso vale também sem token: é como o
+    # modo sombra compara o catálogo do Python com o do profile-core.
+    if args.catalog_out:
+        write_catalog_if_changed(catalog, Path(args.catalog_out))
+    # --out-dir é o mesmo gancho para o README inteiro: o modo sombra compara
+    # estes três arquivos com os do `profile-core render readme --out-dir`.
+    if args.out_dir:
+        out_dir = Path(args.out_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "README.md").write_text(text, encoding="utf-8")
+        render_snapshot_svg(repos, rows, verified_sites, now, generated_at, out_dir / "profile-snapshot.svg")
+        write_catalog_if_changed(catalog, out_dir / "project-catalog.json")
     print(json.dumps({
         "repositories": len(repos),
         "public_repositories": sum(not repo.get("private") for repo in repos),

@@ -1,0 +1,20 @@
+[package]
+name = "catalog"
+description = "Inventário do GitHub → docs/project-catalog.json (schema @1), com a mesma saída do update_profile.py."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+chrono.workspace = true
+ecosystem-domain.workspace = true
+github-client.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tokio.workspace = true
+
+[lints]
+workspace = true

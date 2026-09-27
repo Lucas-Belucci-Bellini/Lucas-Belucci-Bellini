@@ -1,0 +1,27 @@
+{
+  "intro": "Seleção sintética para o teste golden.",
+  "projects": [
+    {
+      "name": "demo-web-app",
+      "label": "WEB / DEMO",
+      "focus": "Painel publicado com site verificado.",
+      "order": 1,
+      "priority": 90,
+      "website_required": false
+    },
+    {
+      "name": "demo-lab",
+      "label": "LAB / SITE OBRIGATÓRIO",
+      "focus": "Some da curadoria porque o site está fora do ar.",
+      "order": 2,
+      "website_required": true
+    },
+    {
+      "name": "demo-private",
+      "label": "PRIVADO",
+      "focus": "Nunca aparece: é privado.",
+      "order": 3
+    }
+  ],
+  "schema": "lucas-belucci-bellini/readme-featured@2"
+}

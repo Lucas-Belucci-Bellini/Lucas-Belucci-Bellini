@@ -1,0 +1,22 @@
+{
+  "tools": [
+    {
+      "name": "Vite",
+      "category": "Frameworks & Web",
+      "family": "build",
+      "evidence": "demo-web-app"
+    },
+    {
+      "name": "Docker",
+      "category": "Infraestrutura & DevOps",
+      "family": "container",
+      "evidence": "demo | com barra vertical"
+    },
+    {
+      "name": "Zig Toolkit",
+      "category": "Ferramentas Extras",
+      "family": "experimento",
+      "evidence": "demo-daily-notes"
+    }
+  ]
+}

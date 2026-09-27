@@ -2,37 +2,45 @@
 """
 Bot de análise de linguagens e arquivos — ⬡ Projeto Baluarte / perfil.
 
-Varre TODOS os repositórios do perfil — **incluindo os privados** — e gera:
+Varre os repositórios do perfil e gera dois cards, e só eles:
 
-  1. assets/lang-stats.svg  — card visual no tema "Ouro de Fábula"
-  2. bloco no README.md entre os marcadores LANG-STATS: linguagens por peso,
-     tipos de arquivo por contagem, e em quais repositórios cada um aparece.
+  1. assets/lang-stats.svg       — painel "Ouro de Fábula": linguagens, tipos
+                                   de arquivo e famílias (redesenhado em d2c0d58)
+  2. assets/profile-top-langs.svg — card compacto de linguagens
 
-⚠️ **Privado entra, e isso tem consequência.** Este README é público. Incluir
-repositório privado nas estatísticas é decisão do dono do perfil (pedida
-explicitamente); o efeito colateral é que o NOME dele aparece na seção de
-detalhe. Quem não quiser isso liga `OCULTAR_NOMES_PRIVADOS=1`: os números
-continuam completos e o nome vira `repositório privado`.
+Este script é o **único** escritor desses dois arquivos. O README os
+referencia; quem escreve os blocos do README é scripts/update_profile.py.
+(Até a Fase 0 os dois scripts gravavam lang-stats.svg — auditoria, A4 — e
+este ainda tentava reescrever um bloco `LANG-STATS` que o README não tem
+desde agosto — A9.)
 
-Para enxergar privado é preciso um **PAT com escopo `repo`** em
-`LANG_STATS_TOKEN`. O `GITHUB_TOKEN` do Actions é token de instalação, sem
-contexto de usuário — ele responde 401/403 em `/user/repos` e a análise cai no
-endpoint público, que só lista os abertos. Sem o PAT, nada quebra: o relatório
-diz quantos ficaram de fora, em vez de fingir que o número está completo.
+Exclusões editoriais de docs/README_EXCLUDED.json são aplicadas antes de
+qualquer contagem, com a mesma regra do update_profile.py (nome curto ou
+owner/nome).
+
+Privados: com um PAT de usuário, /user/repos também lista os privados. O
+GITHUB_TOKEN do Actions é token de instalação, sem contexto de usuário — ele
+responde 401/403 nesse endpoint e a análise cai no endpoint público. É o que
+acontece hoje no workflow: os cards contam só repositórios públicos.
 
 Uso:
     GITHUB_TOKEN=... python3 .github/scripts/lang_stats.py
 
 Variáveis de ambiente:
-    GITHUB_TOKEN            token de leitura (PAT com `repo` para ver privados)
-    GH_USER                 login do dono (padrão: Lucas-Belucci-Bellini)
-    INCLUDE_FORKS           "1" para incluir forks (padrão: 0)
-    OCULTAR_NOMES_PRIVADOS  "1" anonimiza o nome dos privados (padrão: 0)
-    SEM_ARQUIVOS            "1" pula a varredura de tipos de arquivo (padrão: 0)
-"""
+    GITHUB_TOKEN   token de leitura (PAT de usuário para incluir privados)
+    GH_USER        login do dono (padrão: Lucas-Belucci-Bellini)
+    INCLUDE_FORKS  "1" para incluir forks (padrão: 0)
+    SEM_ARQUIVOS   "1" pula a varredura de tipos de arquivo (padrão: 0)
+    GITHUB_API_URL base da API REST (o Actions já define; os testes apontam
+                   para um GitHub simulado)
 
+Opções (paridade com o profile-core render lang-stats, tests/e2e):
+    --root DIR     outra raiz para docs/README_EXCLUDED.json e assets/
+    --now ISO      relógio fixo, com fuso (o carimbo dos SVGs)
+"""
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import re
@@ -43,16 +51,11 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-API = "https://api.github.com"
+API = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
 USER = os.environ.get("GH_USER", "Lucas-Belucci-Bellini")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 INCLUDE_FORKS = os.environ.get("INCLUDE_FORKS", "0") == "1"
-OCULTAR_PRIV = os.environ.get("OCULTAR_NOMES_PRIVADOS", "0") == "1"
 SEM_ARQUIVOS = os.environ.get("SEM_ARQUIVOS", "0") == "1"
-
-# Quantos tipos de arquivo listar na tabela. O resto vira uma linha "outros" —
-# a cauda de extensões únicas é longa e não informa nada.
-TOP_EXT = 24
 
 # Extensão -> família, para a leitura ficar por assunto e não por acaso
 # alfabético. Só agrupa o que é inequívoco; o que não está aqui cai em "outros"
@@ -75,12 +78,18 @@ FAMILIA_EXT = {
 EXT_FAMILIA = {e: f for f, exts in FAMILIA_EXT.items() for e in exts}
 
 ROOT = Path(__file__).resolve().parents[2]
-README = ROOT / "README.md"
+EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
 SVG_OUT = ROOT / "assets" / "lang-stats.svg"
 PROFILE_TOP_LANGS_OUT = ROOT / "assets" / "profile-top-langs.svg"
 
-START = "<!-- LANG-STATS:START -->"
-END = "<!-- LANG-STATS:END -->"
+
+def configure_root(root: Path) -> None:
+    """Aponta o manifesto de exclusões e os SVGs para outra raiz (`--root`)."""
+    global ROOT, EXCLUDED_FILE, SVG_OUT, PROFILE_TOP_LANGS_OUT
+    ROOT = root.resolve()
+    EXCLUDED_FILE = ROOT / "docs" / "README_EXCLUDED.json"
+    SVG_OUT = ROOT / "assets" / "lang-stats.svg"
+    PROFILE_TOP_LANGS_OUT = ROOT / "assets" / "profile-top-langs.svg"
 
 # Paleta "Ouro de Fábula" (docs/DESIGN-SYSTEM.md do Projeto Baluarte)
 BG = "#0e0c16"
@@ -198,8 +207,8 @@ def list_repos() -> list[dict]:
                 raise
             print("aviso: /user/repos indisponível para este token "
                   f"(HTTP {exc.code}); usando o endpoint público — "
-                  "repositórios privados ficam de fora. Defina o secret "
-                  "LANG_STATS_TOKEN (PAT com escopo `repo`) para incluí-los.",
+                  "repositórios privados ficam de fora (esperado com o "
+                  "GITHUB_TOKEN do Actions).",
                   file=sys.stderr)
     return _paginate(f"/users/{USER}/repos", {"type": "owner"})
 
@@ -255,8 +264,27 @@ def arquivos_do_repo(owner: str, name: str, branch: str) -> tuple[dict, bool, bo
     return contagem, bool(arv.get("truncated")), False
 
 
-def collect() -> dict:
-    repos = list_repos()
+def load_excluded_names(path: Path = EXCLUDED_FILE) -> set[str]:
+    """Nomes de docs/README_EXCLUDED.json; arquivo ausente = nenhuma exclusão."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return set()
+    return {str(name) for name in data.get("repositories", [])}
+
+
+def without_excluded(repos: list[dict], excluded: set[str]) -> list[dict]:
+    """Remove os excluídos pelo nome curto ou pelo owner/nome — mesma regra
+    de build_data() em scripts/update_profile.py."""
+    return [
+        repo for repo in repos
+        if str(repo.get("name", "")) not in excluded
+        and str(repo.get("full_name", "")) not in excluded
+    ]
+
+
+def collect(now: datetime | None = None) -> dict:
+    repos = without_excluded(list_repos(), load_excluded_names(EXCLUDED_FILE))
     per_lang: dict[str, int] = {}
     per_lang_repos: dict[str, list[tuple[str, int, bool]]] = {}
     per_ext: dict[str, int] = {}
@@ -326,7 +354,7 @@ def collect() -> dict:
         "falhados": falhados,
         "arquivos_total": arquivos_total,
         "total_bytes": sum(per_lang.values()),
-        "generated": datetime.now(timezone.utc),
+        "generated": now or datetime.now(timezone.utc),
     }
 
 
@@ -499,117 +527,8 @@ def build_profile_top_langs_svg(data: dict) -> str:
     return "\n".join(parts) + "\n"
 
 
-# ----------------------------------------------------------------- Markdown
-
-def rotulo_repo(name: str, priv: bool) -> str:
-    """Como o repositório aparece na tabela pública."""
-    if priv and OCULTAR_PRIV:
-        return "🔒 _repositório privado_"
-    if priv:
-        return f"🔒 {name}"
-    return f"[{name}](https://github.com/{USER}/{name})"
-
-
-def build_markdown(data: dict) -> str:
-    """Mantém o README limpo: resumo visual aberto, auditoria em detalhes."""
-    per_lang = data["per_lang"]
-    per_ext = data["per_ext"]
-    total = data["total_bytes"] or 1
-    stamp = data["generated"].strftime("%d/%m/%Y %H:%M UTC")
-
-    resumo = (f"> **{len(per_lang)} linguagens** · **{len(per_ext)} tipos de arquivo** · "
-              f"**{data['repo_count']} repositórios** · **{human(data['total_bytes'])}** de código · "
-              f"**{data['arquivos_total']:,}** arquivos".replace(',', '.'))
-    if data["privados"]:
-        resumo += f" · **{data['privados']}** privados"
-    resumo += f" · atualizado em `{stamp}`"
-
-    out = [
-        START,
-        "",
-        resumo,
-        "",
-        '<div align="center">',
-        "",
-        "![Análise visual do ecossistema](./assets/lang-stats.svg)",
-        "",
-        "</div>",
-        "",
-        "> **Leitura rápida:** o painel acima prioriza o que importa — volume, linguagens dominantes, formatos de arquivo e famílias do portfólio. A auditoria completa fica recolhida para manter o README elegante e rápido de ler.",
-        "",
-    ]
-
-    if data["sem_linguagem"]:
-        out += [f"> {data['sem_linguagem']} repositório(s) sem linguagem detectada pelo GitHub — contam no total, mas não na tabela detalhada.", ""]
-    if data.get("falhados"):
-        out += [f"> ⚠️ {data['falhados']} repositório(s) não responderam nesta rodada; os números são parciais e serão reavaliados na próxima execução.", ""]
-
-    out += [
-        "<details>",
-        "<summary><b>⌁ Auditoria de linguagens e repositórios</b></summary>",
-        "",
-        "### Linguagens por peso",
-        "",
-        "| # | Linguagem | Peso | Participação | Repositórios |",
-        "| :--: | :--- | ---: | ---: | ---: |",
-    ]
-    for i, (lang, size) in enumerate(per_lang.items(), 1):
-        pct = size / total * 100
-        n_repos = len(data["per_lang_repos"].get(lang, []))
-        out.append(f"| {i} | **{lang}** | `{human(size)}` | `{pct:.2f}%` | {n_repos} |")
-    out += ["", "#### Onde cada linguagem foi usada", ""]
-    for lang, size in per_lang.items():
-        repos = data["per_lang_repos"].get(lang, [])
-        out.append(f"<details><summary><b>{lang}</b> · `{human(size)}` · {len(repos)} repositórios</summary>")
-        out += ["", "| Repositório | Peso |", "| :--- | ---: |"]
-        for name, rsize, priv in repos[:12]:
-            out.append(f"| {rotulo_repo(name, priv)} | `{human(rsize)}` |")
-        if len(repos) > 12:
-            out.append(f"| _… +{len(repos) - 12} repositórios_ | |")
-        out += ["", "</details>", ""]
-    out += ["</details>", ""]
-
-    if per_ext:
-        arq_total = data["arquivos_total"] or 1
-        ordenado = sorted(per_ext.items(), key=lambda kv: (-kv[1], kv[0]))
-        out += [
-            "<details>",
-            "<summary><b>⌘ Auditoria de tipos de arquivo e famílias</b></summary>",
-            "",
-            "### Formatos mais frequentes",
-            "",
-            "| # | Tipo | Arquivos | Participação | Família | Repositórios |",
-            "| :--: | :--- | ---: | ---: | :--- | ---: |",
-        ]
-        for i, (ext, n) in enumerate(ordenado[:TOP_EXT], 1):
-            pct = n / arq_total * 100
-            fam = EXT_FAMILIA.get(ext, "outros")
-            nrep = len(data["per_ext_repos"].get(ext, ()))
-            out.append(f"| {i} | `.{ext}` | `{n}` | `{pct:.2f}%` | {fam} | {nrep} |")
-        resto = ordenado[TOP_EXT:]
-        if resto:
-            n_resto = sum(n for _e, n in resto)
-            out.append(f"|  | _… +{len(resto)} outros tipos_ | `{n_resto}` | `{n_resto / arq_total * 100:.2f}%` |  |  |")
-
-        por_fam: dict[str, int] = {}
-        for ext, n in per_ext.items():
-            fam = EXT_FAMILIA.get(ext, "outros")
-            por_fam[fam] = por_fam.get(fam, 0) + n
-        out += ["", "### Famílias de arquivo", "", "| Família | Arquivos | Participação |", "| :--- | ---: | ---: |"]
-        for fam, n in sorted(por_fam.items(), key=lambda kv: kv[1], reverse=True):
-            out.append(f"| {fam} | `{n}` | `{n / arq_total * 100:.2f}%` |")
-        if data["truncados"]:
-            out += ["", f"> ⚠️ {data['truncados']} repositório(s) têm árvore grande demais para uma leitura só; a contagem de arquivos deles é parcial."]
-        out += ["", "</details>"]
-
-    out += ["", END]
-    return "\n".join(out)
-
-
-# Os dois formatos de carimbo de hora que o bot escreve: `03/08/2026 00:01 UTC`
-# no README e `2026-08-03 00:01 UTC` no SVG.
-CARIMBO_RE = re.compile(
-    r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} UTC|\d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC")
+# O carimbo de hora que o bot escreve nos SVGs: `2026-08-03 00:01 UTC`.
+CARIMBO_RE = re.compile(r"\d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC")
 
 
 def mesmo_conteudo(novo: str, antigo: str) -> bool:
@@ -623,23 +542,24 @@ def mesmo_conteudo(novo: str, antigo: str) -> bool:
     return CARIMBO_RE.sub("@", novo) == CARIMBO_RE.sub("@", antigo)
 
 
-def patch_readme(block: str) -> bool:
-    text = README.read_text(encoding="utf-8")
-    achado = re.search(re.escape(START) + r".*?" + re.escape(END), text, flags=re.S)
-    if not achado:
-        print("!! marcadores LANG-STATS não encontrados no README", file=sys.stderr)
-        return False
-    if mesmo_conteudo(block, achado.group(0)):
-        return False
-    # Fatiar em vez de re.sub: o bloco tem barras invertidas e `\g` do Markdown
-    # seriam lidos como referência de grupo pelo re.
-    README.write_text(text[:achado.start()] + block + text[achado.end():],
-                      encoding="utf-8")
-    return True
+def parse_now(value: str | None) -> datetime | None:
+    """`--now`: relógio fixo com fuso; sem ele, o relógio de verdade."""
+    if not value:
+        return None
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("--now must include a timezone, e.g. 2026-09-25T12:00:00Z")
+    return parsed
 
 
-def main() -> int:
-    data = collect()
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Gera assets/lang-stats.svg e assets/profile-top-langs.svg.")
+    parser.add_argument("--root", help="outra raiz para docs/README_EXCLUDED.json e assets/ (testes/paridade)")
+    parser.add_argument("--now", help="relógio fixo, ISO 8601 com fuso (testes/paridade)")
+    args = parser.parse_args(argv)
+    if args.root:
+        configure_root(Path(args.root))
+    data = collect(parse_now(args.now))
     if not data["per_lang"]:
         print("Nenhuma linguagem coletada — abortando sem alterar arquivos.", file=sys.stderr)
         return 1
@@ -657,11 +577,9 @@ def main() -> int:
     if top_langs_changed:
         PROFILE_TOP_LANGS_OUT.write_text(top_langs_svg, encoding="utf-8")
 
-    md_changed = patch_readme(build_markdown(data))
-
     print(f"linguagens={len(data['per_lang'])} repos={data['repo_count']} "
           f"bytes={data['total_bytes']} svg_changed={svg_changed} "
-          f"top_langs_changed={top_langs_changed} md_changed={md_changed}")
+          f"top_langs_changed={top_langs_changed}")
     return 0
 
 

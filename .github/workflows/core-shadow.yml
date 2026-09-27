@@ -1,0 +1,164 @@
+name: Core Shadow
+
+# Modo B (sombra) da coleta — docs/migration/PYTHON-TO-RUST.md §4, Fase 3.
+# Roda, sobre os dados reais do GitHub, cada coletor Python e o equivalente
+# do profile-core, com o mesmo relógio, e compara os arquivos byte a byte:
+#
+#   monitor de commits  .github/scripts/ecosystem_watch.py  × sync commits
+#                       (os dois sobre uma cópia do ECOSYSTEM-COMMIT-STATE.json)
+#   contribuições       scripts/update_contribution_timeline.py × sync contributions
+#   geração (Fase 5)    scripts/update_profile.py --out-dir
+#                       + .github/scripts/lang_stats.py + profile_cards.py
+#                       × render all --out-dir — o comando da virada (D-018)
+#                       (README.md, profile-snapshot.svg, project-catalog.json, os
+#                       seis SVGs de assets/ e a saída dos três; o Rust verifica os
+#                       sites e entrega as mesmas checagens ao Python, então a
+#                       comparação fica só no gerador; os SVGs do Python começam
+#                       junto com o Rust, e o README do Python depois dele)
+#
+# Não escreve no repositório e não publica nada: o Python continua sendo quem
+# gera o que é público. Critério para sair do modo B: 14 execuções agendadas
+# seguidas sem diferença, ou com todas explicadas (uma mudança real no GitHub
+# entre as duas leituras, que são simultâneas mas não atômicas).
+#
+# Sem PROFILE_README_TOKEN, o README e o catálogo comparados são os dos
+# repositórios públicos (o mesmo recorte para os dois). Com DATABASE_URL, o profile-core também grava
+# no banco (inventário, transições e contribuições); o schema precisa estar
+# migrado (profile-core db migrate) e a carga legada feita (import legacy).
+
+on:
+  schedule:
+    - cron: "53 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: core-shadow
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  shadow:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CARGO_TERM_COLOR: always
+      CARGO_INCREMENTAL: "0"
+      GITHUB_TOKEN: ${{ github.token }}
+      GH_USER: ${{ github.repository_owner }}
+      PROFILE_REPOSITORY_NAME: ${{ github.event.repository.name }}
+      PROFILE_GITHUB_TOKEN: ${{ secrets.PROFILE_README_TOKEN }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Toolchain (versão fixada em rust-toolchain.toml)
+        run: |
+          toolchain="$(sed -n 's/^channel = "\(.*\)"$/\1/p' rust-toolchain.toml)"
+          rustup toolchain install "$toolchain" --profile minimal
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            target
+          key: cargo-release-${{ runner.os }}-${{ hashFiles('rust-toolchain.toml') }}-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            cargo-release-${{ runner.os }}-${{ hashFiles('rust-toolchain.toml') }}-
+
+      - name: Build profile-core
+        run: cargo build --release --locked -p profile-core
+
+      - name: Relógio e banco
+        run: |
+          echo "NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+          if [ -n "$DATABASE_URL" ]; then echo "DB_FLAG=--trigger=schedule" >> "$GITHUB_ENV"; else echo "DB_FLAG=--no-db" >> "$GITHUB_ENV"; fi
+
+      - name: Inventário no banco (só com DATABASE_URL e PROFILE_README_TOKEN)
+        if: ${{ env.DATABASE_URL != '' && env.PROFILE_GITHUB_TOKEN != '' }}
+        run: target/release/profile-core sync github --trigger schedule
+
+      - name: Monitor de commits — Python e Rust sobre a mesma cópia do estado
+        run: |
+          for side in py rs; do mkdir -p "shadow/monitor-$side/docs"; cp docs/ECOSYSTEM-COMMIT-STATE.json "shadow/monitor-$side/docs/"; done
+          python .github/scripts/ecosystem_watch.py --root shadow/monitor-py --now "$NOW" > shadow/monitor-py.out &
+          python_pid=$!
+          target/release/profile-core sync commits --root shadow/monitor-rs --now "$NOW" --write $DB_FLAG > shadow/monitor-rs.out &
+          rust_pid=$!
+          wait "$python_pid"
+          wait "$rust_pid"
+
+      - name: Contribuições
+        env:
+          PROFILE_README_TOKEN: ${{ secrets.PROFILE_README_TOKEN || github.token }}
+          PROFILE_LOGIN: ${{ github.repository_owner }}
+        run: |
+          python scripts/update_contribution_timeline.py --root shadow/timeline-py --now "$NOW" > shadow/timeline-py.out &
+          python_pid=$!
+          target/release/profile-core sync contributions --root shadow/timeline-rs --now "$NOW" --write $DB_FLAG > shadow/timeline-rs.out &
+          rust_pid=$!
+          wait "$python_pid"
+          wait "$rust_pid"
+
+      - name: Geração — os três scripts × render all --out-dir
+        env:
+          INCLUDE_FORKS: "0"
+        run: |
+          # SVGs do Python: mesmo ponto de partida da produção (exclusões e os
+          # SVGs publicados; o "mudou?" ignora o carimbo e compara com eles).
+          # O render all copia os publicados para o --out-dir pelo mesmo motivo.
+          mkdir -p shadow/assets-py/docs
+          cp docs/README_EXCLUDED.json shadow/assets-py/docs/
+          cp -r assets shadow/assets-py/
+          (python .github/scripts/lang_stats.py --root shadow/assets-py --now "$NOW" \
+            && python .github/scripts/profile_cards.py --root shadow/assets-py --now "$NOW") > shadow/assets-py.out &
+          python_pid=$!
+          target/release/profile-core render all --now "$NOW" --site-checks-out shadow/site-checks.json \
+            --out-dir shadow/all-rs > shadow/all-rs.out
+          wait "$python_pid"
+          # O README do Python recebe as checagens de site que o Rust fez.
+          python scripts/update_profile.py --now "$NOW" --site-checks-fixture shadow/site-checks.json \
+            --out-dir shadow/profile-py > shadow/profile-py.out
+          cat shadow/profile-py.out shadow/assets-py.out > shadow/all-py.out
+
+      - name: README do banco × README do GitHub (só com DATABASE_URL e PROFILE_README_TOKEN)
+        if: ${{ env.DATABASE_URL != '' && env.PROFILE_GITHUB_TOKEN != '' }}
+        run: |
+          # O inventário que o sync github gravou no começo do job, as mesmas
+          # checagens de site e o mesmo relógio: a diferença, se houver, é do
+          # banco (D-040). Um push entre o sync e o render explica diferença.
+          target/release/profile-core render readme --from-db --now "$NOW" \
+            --site-checks-fixture shadow/site-checks.json --out-dir shadow/db-rs > shadow/db-rs.out
+          python .github/scripts/compare_files.py \
+            "banco: README=shadow/all-rs/README.md:shadow/db-rs/README.md" \
+            "banco: snapshot=shadow/all-rs/assets/profile-snapshot.svg:shadow/db-rs/profile-snapshot.svg" \
+            "banco: catálogo=shadow/all-rs/docs/project-catalog.json:shadow/db-rs/project-catalog.json"
+
+      - name: Comparar
+        run: |
+          python .github/scripts/compare_files.py \
+            "monitor: saída=shadow/monitor-py.out:shadow/monitor-rs.out" \
+            "monitor: estado=shadow/monitor-py/docs/ECOSYSTEM-COMMIT-STATE.json:shadow/monitor-rs/docs/ECOSYSTEM-COMMIT-STATE.json" \
+            "monitor: relatório=shadow/monitor-py/docs/ECOSYSTEM-COMMIT-MONITOR.md:shadow/monitor-rs/docs/ECOSYSTEM-COMMIT-MONITOR.md" \
+            "contribuições: dados=shadow/timeline-py/docs/assets/contributions-timeline-data.json:shadow/timeline-rs/docs/assets/contributions-timeline-data.json" \
+            "contribuições: página=shadow/timeline-py/docs/assets/contributions-timeline.html:shadow/timeline-rs/docs/assets/contributions-timeline.html" \
+            "geração: saída=shadow/all-py.out:shadow/all-rs.out" \
+            "README=shadow/profile-py/README.md:shadow/all-rs/README.md" \
+            "README: snapshot=shadow/profile-py/profile-snapshot.svg:shadow/all-rs/assets/profile-snapshot.svg" \
+            "catálogo=shadow/profile-py/project-catalog.json:shadow/all-rs/docs/project-catalog.json" \
+            "assets: lang-stats.svg=shadow/assets-py/assets/lang-stats.svg:shadow/all-rs/assets/lang-stats.svg" \
+            "assets: profile-top-langs.svg=shadow/assets-py/assets/profile-top-langs.svg:shadow/all-rs/assets/profile-top-langs.svg" \
+            "assets: profile-stats.svg=shadow/assets-py/assets/profile-stats.svg:shadow/all-rs/assets/profile-stats.svg" \
+            "assets: profile-streak.svg=shadow/assets-py/assets/profile-streak.svg:shadow/all-rs/assets/profile-streak.svg" \
+            "assets: profile-trophies.svg=shadow/assets-py/assets/profile-trophies.svg:shadow/all-rs/assets/profile-trophies.svg" \
+            "assets: profile-projects.svg=shadow/assets-py/assets/profile-projects.svg:shadow/all-rs/assets/profile-projects.svg"

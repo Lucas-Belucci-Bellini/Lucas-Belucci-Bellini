@@ -13,6 +13,7 @@ snapshot commit as project activity.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import time
@@ -25,7 +26,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 STATE = ROOT / "docs" / "ECOSYSTEM-COMMIT-STATE.json"
 REPORT = ROOT / "docs" / "ECOSYSTEM-COMMIT-MONITOR.md"
-API = "https://api.github.com"
+# O Actions já define GITHUB_API_URL com este valor; fora dele, a variável
+# aponta o monitor para um GitHub simulado (tests/e2e).
+API = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
 USER = os.environ.get("GH_USER", "Lucas-Belucci-Bellini")
 PROFILE_REPOSITORY_NAME = os.environ.get("PROFILE_REPOSITORY_NAME", "Lucas-Belucci-Bellini")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -118,11 +121,32 @@ def compare_count(owner: str, name: str, base: str, head: str):
         return None
 
 
-def main():
+def parse_now(value: str | None) -> datetime:
+    """Relógio da varredura; `--now` fixa o valor para comparar saídas."""
+    if not value:
+        return datetime.now(timezone.utc)
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("--now must include a timezone, e.g. 2026-09-25T12:00:00Z")
+    return parsed.astimezone(timezone.utc)
+
+
+def main(argv: list[str] | None = None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    # --root e --now não mudam nada quando omitidos. Existem para o teste de
+    # ponta a ponta e o modo sombra rodarem o Python e o núcleo em Rust sobre
+    # a mesma cópia do estado, com o mesmo relógio.
+    parser.add_argument("--root", type=Path, default=ROOT, help="raiz com docs/ECOSYSTEM-COMMIT-STATE.json")
+    parser.add_argument("--now", help="relógio fixo, ISO 8601 com fuso (testes e modo sombra)")
+    args = parser.parse_args(argv)
+    state_path = args.root / STATE.relative_to(ROOT)
+    report_path = args.root / REPORT.relative_to(ROOT)
+    scan_time = parse_now(args.now)
+
     previous_state = {}
-    if STATE.exists():
+    if state_path.exists():
         try:
-            previous_state = json.loads(STATE.read_text(encoding="utf-8"))
+            previous_state = json.loads(state_path.read_text(encoding="utf-8"))
         except Exception:
             previous_state = {}
 
@@ -176,9 +200,9 @@ def main():
     project_commits += detected_project_commits
     tracked_commits = project_commits + monitor_commits
 
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    STATE.parent.mkdir(parents=True, exist_ok=True)
-    STATE.write_text(
+    now = scan_time.strftime("%Y-%m-%dT%H:%M:%SZ")
+    state_path.parent.mkdir(parents=True, exist_ok=True)
+    state_path.write_text(
         json.dumps(
             {
                 "schema": 4,
@@ -273,7 +297,7 @@ def main():
         "A varredura continua horária para detectar mudanças, mas o histórico só recebe commits quando há alteração semântica; o scheduler do GitHub pode atrasar a execução real.",
         "",
     ]
-    REPORT.write_text("\n".join(lines), encoding="utf-8")
+    report_path.write_text("\n".join(lines), encoding="utf-8")
 
 
 if __name__ == "__main__":
