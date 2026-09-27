@@ -160,8 +160,12 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
     let summary = summary(&prepared, profile.rows.len(), catalog_written, options);
     stdout.push_str(&py_dumps(&summary, false));
     stdout.push('\n');
+    let unchecked = match prepared.unchecked.len() {
+        0 => String::new(),
+        n => format!("; {n} site(s) sem checagem no banco, contados como fora do ar"),
+    };
     let note = format!(
-        "README: {} repositórios, {} linguagens públicas, {} sites no ar; carimbo {stamp}{}",
+        "README: {} repositórios, {} linguagens públicas, {} sites no ar; carimbo {stamp}{}{unchecked}",
         prepared.repos.len(),
         profile.rows.len(),
         profile.verified_sites(),

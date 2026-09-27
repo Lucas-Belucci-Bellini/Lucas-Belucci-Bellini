@@ -35,6 +35,7 @@ pub mod editorial;
 pub mod inventory;
 pub mod legacy;
 pub mod metrics;
+pub mod snapshot;
 
 /// As migrations de `db/migrations`, embutidas em tempo de compilação.
 pub static MIGRATOR: Migrator = sqlx::migrate!("../../db/migrations");

@@ -10,6 +10,9 @@
 //! * repositório excluído pelo manifesto não chega aqui (quem chama filtra);
 //! * o mapa de linguagens é estado atual e é trocado quando muda; uma consulta
 //!   de linguagens que **falhou** não apaga o mapa anterior;
+//! * a ordem da listagem e a de cada mapa de linguagens ficam gravadas
+//!   (`inventory_position`, `position`, migration 0008): o README desempata por
+//!   elas, e gerá-lo do banco sem elas trocaria empates;
 //! * cada repositório novo ganha um projeto com o rótulo da heurística
 //!   (`classifier_version`); rótulo editorial nunca é sobrescrito.
 
@@ -174,7 +177,7 @@ async fn record_on(
         .rows_affected() as usize;
     }
 
-    for repo in &inventory.repos {
+    for (position, repo) in inventory.repos.iter().enumerate() {
         let owner_id: i64 = sqlx::query_scalar(
             "INSERT INTO ecosystem.github_owners (github_id, login, kind) VALUES ($1, $2, $3) \
              ON CONFLICT (github_id) DO UPDATE SET login = EXCLUDED.login, kind = EXCLUDED.kind RETURNING id",
@@ -210,9 +213,9 @@ async fn record_on(
             "INSERT INTO ecosystem.repositories \
                (github_id, github_node_id, owner_id, name, full_name, description, visibility, is_fork, is_archived, \
                 is_template, default_branch, primary_language, homepage, topics, size_kb, github_created_at, \
-                github_updated_at, github_pushed_at, last_synced_at) \
+                github_updated_at, github_pushed_at, last_synced_at, inventory_position) \
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16::timestamptz, \
-                     $17::timestamptz, $18::timestamptz, now()) \
+                     $17::timestamptz, $18::timestamptz, now(), $19) \
              ON CONFLICT (github_id) DO UPDATE SET \
                github_node_id = EXCLUDED.github_node_id, owner_id = EXCLUDED.owner_id, name = EXCLUDED.name, \
                full_name = EXCLUDED.full_name, description = EXCLUDED.description, visibility = EXCLUDED.visibility, \
@@ -220,7 +223,8 @@ async fn record_on(
                default_branch = EXCLUDED.default_branch, primary_language = EXCLUDED.primary_language, \
                homepage = EXCLUDED.homepage, topics = EXCLUDED.topics, size_kb = EXCLUDED.size_kb, \
                github_created_at = EXCLUDED.github_created_at, github_updated_at = EXCLUDED.github_updated_at, \
-               github_pushed_at = EXCLUDED.github_pushed_at, last_synced_at = now(), gone_at = NULL \
+               github_pushed_at = EXCLUDED.github_pushed_at, last_synced_at = now(), gone_at = NULL, \
+               inventory_position = EXCLUDED.inventory_position \
              RETURNING id",
         )
         .bind(repo.github_id)
@@ -241,6 +245,7 @@ async fn record_on(
         .bind(&repo.created_at)
         .bind(&repo.updated_at)
         .bind(&repo.pushed_at)
+        .bind(i32::try_from(position).unwrap_or(i32::MAX))
         .fetch_one(&mut *tx)
         .await?;
 
@@ -270,31 +275,44 @@ async fn record_on(
         }
 
         if let Some(languages) = &repo.languages {
-            let current: Vec<(String, i64)> =
-                sqlx::query_as("SELECT language, bytes FROM ecosystem.repository_languages WHERE repository_id = $1")
-                    .bind(repository_id)
-                    .fetch_all(&mut *tx)
-                    .await?;
-            let current: BTreeMap<String, i64> = current.into_iter().collect();
-            let new: BTreeMap<String, i64> = languages.iter().cloned().collect();
-            if current != new {
+            // Na ordem gravada; linha sem posição (anterior à 0008) vem por último.
+            let current: Vec<(String, i64, Option<i16>)> = sqlx::query_as(
+                "SELECT language, bytes, position FROM ecosystem.repository_languages WHERE repository_id = $1 \
+                 ORDER BY position NULLS LAST, language",
+            )
+            .bind(repository_id)
+            .fetch_all(&mut *tx)
+            .await?;
+            let same_order = current.len() == languages.len()
+                && current.iter().zip(languages).enumerate().all(|(index, ((language, bytes, position), new))| {
+                    (language, bytes) == (&new.0, &new.1) && *position == i16::try_from(index).ok()
+                });
+            if !same_order {
+                let before: BTreeMap<&str, i64> = current.iter().map(|(l, b, _)| (l.as_str(), *b)).collect();
+                let after: BTreeMap<&str, i64> = languages.iter().map(|(l, b)| (l.as_str(), *b)).collect();
                 sqlx::query("DELETE FROM ecosystem.repository_languages WHERE repository_id = $1")
                     .bind(repository_id)
                     .execute(&mut *tx)
                     .await?;
-                for (language, bytes) in &new {
+                for (index, (language, bytes)) in languages.iter().enumerate() {
                     sqlx::query(
-                        "INSERT INTO ecosystem.repository_languages (repository_id, language, bytes, sync_run_id) \
-                         VALUES ($1, $2, $3, $4)",
+                        "INSERT INTO ecosystem.repository_languages \
+                           (repository_id, language, bytes, sync_run_id, position) \
+                         VALUES ($1, $2, $3, $4, $5) \
+                         ON CONFLICT (repository_id, language) DO NOTHING",
                     )
                     .bind(repository_id)
                     .bind(language)
                     .bind(bytes)
                     .bind(sync_run_id)
+                    .bind(i16::try_from(index).unwrap_or(i16::MAX))
                     .execute(&mut *tx)
                     .await?;
                 }
-                report.languages_changed += 1;
+                // Só a ordem mudou (ou a posição ainda não estava gravada): não é um mapa novo.
+                if before != after {
+                    report.languages_changed += 1;
+                }
             }
         }
 

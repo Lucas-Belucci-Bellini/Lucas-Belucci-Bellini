@@ -86,7 +86,7 @@ use std::time::Duration;
 
 use clap::{Args, Parser, Subcommand};
 use profile_core::assets::{self, AssetsError};
-use profile_core::catalog_build::{self, BuildOptions, ChecksSource, Tokens};
+use profile_core::catalog_build::{self, BuildOptions, ChecksSource, DbSource, Tokens};
 use profile_core::commits;
 use profile_core::contributions;
 use profile_core::imports;
@@ -405,6 +405,13 @@ struct CatalogArgs {
     /// Grava também os resultados de verificação usados, no formato de --site-checks-fixture.
     #[arg(long, value_name = "FILE")]
     site_checks_out: Option<PathBuf>,
+    /// Inventário, linguagens e checagens de site do banco (DATABASE_URL), não do
+    /// GitHub; o editorial continua vindo dos manifestos.
+    #[arg(long, conflicts_with = "input_repos")]
+    from_db: bool,
+    /// URL do PostgreSQL para --from-db. Prefira a variável de ambiente.
+    #[arg(long, env = "DATABASE_URL", hide_env_values = true, value_name = "URL")]
+    database_url: Option<String>,
 }
 
 #[derive(Subcommand)]
@@ -487,6 +494,8 @@ enum CliError {
          (só com os públicos, os privados pareceriam sumidos), ou passe --no-db"
     )]
     IncompleteInventory,
+    #[error("--from-db lê o inventário do banco: defina DATABASE_URL")]
+    FromDbWithoutUrl,
 }
 
 #[derive(Args)]
@@ -686,7 +695,12 @@ async fn check_sites(args: SitesArgs) -> Result<ExitCode, CliError> {
     Ok(ExitCode::from(sites::exit_code(&rows, args.fail_on_down)))
 }
 
-fn build_options(args: CatalogArgs, languages_dir: Option<PathBuf>) -> BuildOptions {
+fn build_options(args: CatalogArgs, languages_dir: Option<PathBuf>) -> Result<BuildOptions, CliError> {
+    let from_db = match (args.from_db, args.database_url) {
+        (false, _) => None,
+        (true, Some(url)) => Some(DbSource(url)),
+        (true, None) => return Err(CliError::FromDbWithoutUrl),
+    };
     let checks = match (args.site_checks_fixture, args.skip_site_check) {
         (Some(path), _) => ChecksSource::Fixture(path),
         (None, true) => ChecksSource::Skip,
@@ -694,7 +708,7 @@ fn build_options(args: CatalogArgs, languages_dir: Option<PathBuf>) -> BuildOpti
             ChecksSource::Live { timeout: Duration::from_secs_f64(args.site_timeout), workers: args.site_workers }
         }
     };
-    BuildOptions {
+    Ok(BuildOptions {
         root: args.root,
         input_repos: args.input_repos,
         languages_dir,
@@ -702,13 +716,14 @@ fn build_options(args: CatalogArgs, languages_dir: Option<PathBuf>) -> BuildOpti
         now: args.now,
         write: args.write,
         checks_out: args.site_checks_out,
-    }
+        from_db,
+    })
 }
 
 async fn render_readme(args: ReadmeArgs) -> Result<ExitCode, CliError> {
     let site_check_skipped = args.catalog.skip_site_check;
     let options = RenderOptions {
-        build: build_options(args.catalog, args.languages_dir),
+        build: build_options(args.catalog, args.languages_dir)?,
         catalog_out: args.catalog_out,
         out_dir: args.out_dir,
         site_check_skipped,
@@ -758,7 +773,7 @@ async fn render_all(args: AllArgs) -> Result<ExitCode, CliError> {
         assets_options(args.catalog.root.clone(), args.catalog.now.clone(), args.include_forks, args.skip_files);
     let site_check_skipped = args.catalog.skip_site_check;
     let options = RenderOptions {
-        build: build_options(args.catalog, args.languages_dir),
+        build: build_options(args.catalog, args.languages_dir)?,
         catalog_out: None,
         out_dir: None,
         site_check_skipped,
@@ -782,7 +797,7 @@ async fn render_assets(args: AssetsArgs, lang_stats: bool, cards: bool) -> Resul
 }
 
 async fn build_catalog(args: CatalogArgs) -> Result<ExitCode, CliError> {
-    let options = build_options(args, None);
+    let options = build_options(args, None)?;
     let built = catalog_build::run(&options, &Tokens::from_env()).await?;
     if built.written.is_none() {
         print!("{}", built.text);

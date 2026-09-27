@@ -74,32 +74,32 @@ async fn ciclo_completo_com_trava_de_perda_de_dados() {
 
     let status = profile_core(&["db", "status", "--json"], url);
     assert!(status.status.success(), "{}", text(&status.stderr));
-    assert_eq!(vec!["pending"; 7], states(&status));
+    assert_eq!(vec!["pending"; 8], states(&status));
 
     let migrate = profile_core(&["db", "migrate"], url);
     assert!(migrate.status.success(), "{}", text(&migrate.stderr));
-    assert_eq!(7, text(&migrate.stdout).lines().filter(|l| l.starts_with("aplicada")).count());
+    assert_eq!(8, text(&migrate.stdout).lines().filter(|l| l.starts_with("aplicada")).count());
     assert!(text(&profile_core(&["db", "migrate"], url).stdout).starts_with("nada a aplicar"));
     assert_eq!(Some(2), profile_core(&["db", "revert", "--to", "42"], url).status.code(), "alvo inexistente");
 
     let table = profile_core(&["db", "status"], url);
-    assert!(text(&table.stdout).contains("7 migrations: 7 aplicadas, 0 pendentes"), "{}", text(&table.stdout));
+    assert!(text(&table.stdout).contains("8 migrations: 8 aplicadas, 0 pendentes"), "{}", text(&table.stdout));
 
     db.load_seed().await;
     let refused = profile_core(&["db", "revert", "--all"], url);
     assert_eq!(Some(1), refused.status.code());
     let stderr = text(&refused.stderr);
     assert!(stderr.contains("apagaria dados") && stderr.contains("--allow-data-loss"), "{stderr}");
-    assert_eq!(vec!["applied"; 7], states(&profile_core(&["db", "status", "--json"], url)), "nada mudou");
+    assert_eq!(vec!["applied"; 8], states(&profile_core(&["db", "status", "--json"], url)), "nada mudou");
 
     let last = profile_core(&["db", "revert"], url);
     assert!(last.status.success(), "{}", text(&last.stderr));
-    assert_eq!("revertida  0007  public views\n", text(&last.stdout));
+    assert_eq!("revertida  0008  inventory order\n", text(&last.stdout));
 
     let all = profile_core(&["db", "revert", "--all", "--allow-data-loss"], url);
     assert!(all.status.success(), "{}", text(&all.stderr));
-    assert_eq!(6, text(&all.stdout).lines().count());
-    assert_eq!(vec!["pending"; 7], states(&profile_core(&["db", "status", "--json"], url)));
+    assert_eq!(7, text(&all.stdout).lines().count());
+    assert_eq!(vec!["pending"; 8], states(&profile_core(&["db", "status", "--json"], url)));
 }
 
 #[tokio::test]

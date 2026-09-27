@@ -213,3 +213,77 @@ async fn grava_renomeia_marca_sumido_e_preserva_o_editorial() {
     .unwrap();
     assert_eq!(("succeeded".to_string(), 2, 0), (status, seen, changed));
 }
+
+type Positions = (Vec<(String, Option<i32>)>, Vec<(String, Option<i16>)>);
+
+/// A ordem gravada: a do inventário e a das linguagens de me/alpha.
+async fn positions(conn: &mut PgConnection) -> Positions {
+    let repos =
+        sqlx::query_as("SELECT full_name, inventory_position FROM ecosystem.repositories ORDER BY inventory_position")
+            .fetch_all(&mut *conn)
+            .await
+            .unwrap();
+    let languages = sqlx::query_as(
+        "SELECT l.language, l.position FROM ecosystem.repository_languages l \
+         JOIN ecosystem.repositories r ON r.id = l.repository_id WHERE r.github_id = 101 ORDER BY l.position",
+    )
+    .fetch_all(&mut *conn)
+    .await
+    .unwrap();
+    (repos, languages)
+}
+
+#[tokio::test]
+async fn grava_a_ordem_da_listagem_e_das_linguagens_sem_contar_troca_de_ordem_como_mapa_novo() {
+    let Some(db) = TempDb::create().await else { return };
+    let url = Some(db.url.as_str());
+    assert!(profile_core(&["db", "migrate"], url).status.success());
+    let mut conn = db.conn().await;
+    let sync = |tree: &TempTree| {
+        profile_core(
+            &[
+                "sync",
+                "github",
+                "--root",
+                tree.path(),
+                "--input-repos",
+                &tree.join("repos.json"),
+                "--languages-dir",
+                &tree.join("languages"),
+                "--trigger",
+                "test",
+            ],
+            url,
+        )
+    };
+    // A listagem: outro/alpha, me/alpha, me/segredo (o excluído não entra).
+    let mut listed = inventory();
+    listed.swap(0, 3);
+    let tree = root(&listed, &[("me/alpha", json!({"Shell": 100, "Rust": 900}))]);
+    let first = sync(&tree);
+    assert_eq!(Some(0), first.status.code(), "{}", text(&first.stderr));
+    let (repos, languages) = positions(&mut conn).await;
+    assert_eq!(
+        vec![("outro/alpha".into(), Some(0)), ("me/segredo".into(), Some(1)), ("me/alpha".into(), Some(2))],
+        repos
+    );
+    assert_eq!(
+        vec![("Shell".into(), Some(0)), ("Rust".into(), Some(1))],
+        languages,
+        "a ordem do arquivo, não a de bytes"
+    );
+
+    // Mesmo mapa em outra ordem: a posição muda, o mapa não conta como trocado.
+    let tree = root(&inventory(), &[("me/alpha", json!({"Rust": 900, "Shell": 100}))]);
+    let second = sync(&tree);
+    assert_eq!(Some(0), second.status.code(), "{}", text(&second.stderr));
+    assert!(text(&second.stderr).contains("0 mapas de linguagem"), "{}", text(&second.stderr));
+    let (repos, languages) = positions(&mut conn).await;
+    assert_eq!(Some(0), repos.iter().find(|(name, _)| name == "me/alpha").unwrap().1);
+    assert_eq!(vec![("Rust".into(), Some(0)), ("Shell".into(), Some(1))], languages);
+
+    // Um byte a mais: aí é mapa novo.
+    let tree = root(&inventory(), &[("me/alpha", json!({"Rust": 901, "Shell": 100}))]);
+    let third = sync(&tree);
+    assert!(text(&third.stderr).contains("1 mapas de linguagem"), "{}", text(&third.stderr));
+}

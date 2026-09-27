@@ -12,7 +12,7 @@ fn states(status: &[store::MigrationStatus]) -> Vec<(i64, MigrationState)> {
 }
 
 fn all(state: MigrationState) -> Vec<(i64, MigrationState)> {
-    (1..=7).map(|version| (version, state)).collect()
+    (1..=8).map(|version| (version, state)).collect()
 }
 
 async fn scalar_i64(conn: &mut PgConnection, sql: &'static str) -> i64 {
@@ -33,7 +33,7 @@ async fn migrate_aplica_tudo_uma_vez_e_status_nao_escreve() {
     );
 
     let applied = database.migrate().await.unwrap();
-    assert_eq!((1..=7).collect::<Vec<_>>(), applied.iter().map(|m| m.version).collect::<Vec<_>>());
+    assert_eq!((1..=8).collect::<Vec<_>>(), applied.iter().map(|m| m.version).collect::<Vec<_>>());
     let status = database.status().await.unwrap();
     assert_eq!(all(MigrationState::Applied), states(&status));
     assert!(status.iter().all(|m| m.installed_on.as_deref().is_some_and(|t| t.ends_with('Z'))));
@@ -49,13 +49,13 @@ async fn revert_ultima_e_revert_total_sem_dados() {
     database.migrate().await.unwrap();
 
     let reverted = database.revert(RevertTarget::Last, false).await.unwrap();
-    assert_eq!(vec![7], reverted.iter().map(|m| m.version).collect::<Vec<_>>());
+    assert_eq!(vec![8], reverted.iter().map(|m| m.version).collect::<Vec<_>>());
     let mut expected = all(MigrationState::Applied);
-    expected[6].1 = MigrationState::Pending;
+    expected[7].1 = MigrationState::Pending;
     assert_eq!(expected, states(&database.status().await.unwrap()));
 
     let reverted = database.revert(RevertTarget::Version(0), false).await.unwrap();
-    assert_eq!((1..=6).rev().collect::<Vec<_>>(), reverted.iter().map(|m| m.version).collect::<Vec<_>>());
+    assert_eq!((1..=7).rev().collect::<Vec<_>>(), reverted.iter().map(|m| m.version).collect::<Vec<_>>());
     assert_eq!(all(MigrationState::Pending), states(&database.status().await.unwrap()));
     let mut conn = db.conn().await;
     assert_eq!(0, scalar_i64(&mut conn, "SELECT count(*) FROM pg_namespace WHERE nspname = 'ecosystem'").await);
@@ -81,7 +81,7 @@ async fn revert_com_dados_recusa_sem_opt_in_e_nao_muda_nada() {
     assert!((1..=6).contains(&version), "{version}");
     assert!(detail.starts_with("down migration would destroy data"), "{detail}");
 
-    // Tudo ou nada: nem a 0007 (views, sem dado) ficou revertida.
+    // Tudo ou nada: nem a 0008 (ordem ainda vazia) nem a 0007 (views) ficaram revertidas.
     assert_eq!(all(MigrationState::Applied), states(&database.status().await.unwrap()));
     assert_eq!(projects, scalar_i64(&mut conn, "SELECT count(*) FROM ecosystem.projects").await);
     assert_eq!(
@@ -95,7 +95,7 @@ async fn revert_com_dados_recusa_sem_opt_in_e_nao_muda_nada() {
 
     // Com opt-in explícito, passa.
     let reverted = database.revert(RevertTarget::Version(0), true).await.unwrap();
-    assert_eq!(7, reverted.len());
+    assert_eq!(8, reverted.len());
     assert_eq!(0, scalar_i64(&mut conn, "SELECT count(*) FROM pg_namespace WHERE nspname = 'ecosystem'").await);
 }
 
@@ -128,7 +128,7 @@ async fn alterada_desconhecida_e_pela_metade_sao_recusadas_antes_de_mudar() {
     assert_eq!(MigrationState::Modified, database.status().await.unwrap()[2].state);
     assert!(matches!(database.migrate().await, Err(StoreError::Modified(3))));
     assert!(matches!(database.revert(RevertTarget::Last, false).await, Err(StoreError::Modified(3))));
-    assert_eq!(0, scalar_i64(&mut conn, "SELECT 7 - count(*) FROM _sqlx_migrations").await, "nada revertido");
+    assert_eq!(0, scalar_i64(&mut conn, "SELECT 8 - count(*) FROM _sqlx_migrations").await, "nada revertido");
 
     sqlx::query("UPDATE _sqlx_migrations SET checksum = '\\x00', success = false WHERE version = 3")
         .execute(&mut conn)

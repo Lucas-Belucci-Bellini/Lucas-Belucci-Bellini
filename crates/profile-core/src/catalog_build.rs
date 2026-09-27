@@ -9,6 +9,13 @@
 //! ponta contra um GitHub simulado (`tests/e2e/github_parity.py`).
 //!
 //! Sem `--write`, o catálogo vai para a saída padrão e nada é gravado.
+//!
+//! Com `--from-db` (Fase 5, D-037) o que é **coletado** vem do PostgreSQL:
+//! o inventário (na ordem da última listagem), as linguagens (na ordem da
+//! API) e a checagem mais recente de cada site. O que é **editorial** —
+//! exclusões, curadoria, arsenal, sites manuais — continua vindo dos
+//! manifestos, que são a fonte. Com as mesmas entradas no banco, a saída é a
+//! mesma do caminho pelo GitHub (`tests/from_db.rs`).
 
 use std::collections::{BTreeSet, HashMap};
 use std::path::{Path, PathBuf};
@@ -55,6 +62,18 @@ pub struct BuildOptions {
     pub write: bool,
     /// Grava também os resultados de verificação usados, no formato do fixture.
     pub checks_out: Option<PathBuf>,
+    /// Inventário, linguagens e checagens do banco em vez do GitHub.
+    pub from_db: Option<DbSource>,
+}
+
+/// A URL do banco para `--from-db`; o `Debug` não a mostra.
+#[derive(Clone)]
+pub struct DbSource(pub String);
+
+impl std::fmt::Debug for DbSource {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str("DbSource(…)")
+    }
 }
 
 /// Falhas do comando. As mensagens são as do Python (sem o prefixo
@@ -94,6 +113,9 @@ pub enum BuildError {
         /// Erro.
         source: std::io::Error,
     },
+    /// O banco do `--from-db`.
+    #[error(transparent)]
+    Store(#[from] store::StoreError),
 }
 
 impl BuildError {
@@ -181,6 +203,61 @@ pub struct Prepared {
     pub checks: HashMap<String, WebsiteCheck>,
     /// Uma apresentação por `full_name`.
     pub presentations: Vec<Presentation>,
+    /// Com `--from-db`: sites sem checagem gravada (contam como fora do ar).
+    pub unchecked: Vec<String>,
+}
+
+/// Um repositório do banco como a API o descreveria.
+fn stored_facts(repo: &store::snapshot::StoredRepo) -> RepoFacts {
+    RepoFacts {
+        name: repo.name.clone(),
+        full_name: repo.full_name.clone(),
+        description: repo.description.clone(),
+        private: repo.visibility != "public",
+        fork: repo.is_fork,
+        archived: repo.is_archived,
+        homepage: repo.homepage.clone(),
+        pushed_at: repo.pushed_at.clone(),
+        updated_at: repo.updated_at.clone(),
+        size: repo.size_kb.and_then(|size| u64::try_from(size).ok()),
+    }
+}
+
+/// A checagem mais recente de cada URL candidata; a que nunca foi checada
+/// conta como fora do ar (e vai para `unchecked`).
+fn stored_checks(
+    urls: &[String],
+    stored: &[store::snapshot::StoredCheck],
+    unchecked: &mut Vec<String>,
+) -> HashMap<String, WebsiteCheck> {
+    let mut checks = HashMap::new();
+    for url in urls {
+        let check = match stored.iter().find(|check| check.url == *url) {
+            Some(check) => WebsiteCheck {
+                url: url.clone(),
+                status: match check.outcome.as_str() {
+                    "verified" => CheckStatus::Verified,
+                    "invalid" => CheckStatus::Invalid,
+                    _ => CheckStatus::Unreachable,
+                },
+                http_status: check.http_status.map_or(0, i64::from),
+                final_url: check.final_url.clone().filter(|final_url| !final_url.is_empty()).unwrap_or(url.clone()),
+            },
+            None => {
+                if !unchecked.contains(url) {
+                    unchecked.push(url.clone());
+                }
+                WebsiteCheck {
+                    url: url.clone(),
+                    status: CheckStatus::Unreachable,
+                    http_status: 0,
+                    final_url: url.clone(),
+                }
+            }
+        };
+        checks.insert(url.clone(), check);
+    }
+    checks
 }
 
 /// O caminho do `main()` do Python até `build_presentations()`, na mesma
@@ -188,18 +265,35 @@ pub struct Prepared {
 pub async fn prepare(options: &BuildOptions, tokens: &Tokens, purpose: Purpose) -> Result<Prepared, BuildError> {
     // build_data(): o que falha aqui sai com código 2.
     let inventory_token = tokens.inventory.clone().filter(|t| !t.is_empty());
-    if options.write && options.input_repos.is_none() && inventory_token.is_none() {
+    // O banco só marca "sumido" com inventário completo: ele conta como completo.
+    if options.write && options.input_repos.is_none() && options.from_db.is_none() && inventory_token.is_none() {
         return Err(BuildError::NoToken);
     }
     let excluded = catalog::load_excluded(&options.root)?;
     let client = Client::new(Settings::new(inventory::USER_AGENT))?;
-    let raw = match &options.input_repos {
-        Some(path) => inventory::load_local_repositories(path)?,
-        None => inventory::fetch_repositories(&client.with_token(inventory_token)).await?,
+    let snapshot = match &options.from_db {
+        Some(source) => Some(store::Database::from_url(&source.0)?.collected_snapshot().await?),
+        None => None,
     };
-    let repos = catalog::exclude(inventory::facts(&raw)?, &excluded);
+    let repos = match &snapshot {
+        Some(snapshot) => catalog::exclude(snapshot.repos.iter().map(stored_facts).collect(), &excluded),
+        None => {
+            let raw = match &options.input_repos {
+                Some(path) => inventory::load_local_repositories(path)?,
+                None => inventory::fetch_repositories(&client.with_token(inventory_token)).await?,
+            };
+            catalog::exclude(inventory::facts(&raw)?, &excluded)
+        }
+    };
     let mut languages = LanguageMap::new();
-    if purpose == Purpose::Readme {
+    if let (Some(snapshot), Purpose::Readme) = (&snapshot, purpose) {
+        for stored in &snapshot.repos {
+            if repos.iter().any(|repo| repo.full_name == stored.full_name) {
+                let map = snapshot.languages.get(&stored.id).cloned().unwrap_or_default();
+                languages.insert(stored.full_name.clone(), map);
+            }
+        }
+    } else if purpose == Purpose::Readme {
         match (&options.input_repos, &options.languages_dir) {
             (Some(_), Some(dir)) => {
                 for repo in &repos {
@@ -243,10 +337,13 @@ pub async fn prepare(options: &BuildOptions, tokens: &Tokens, purpose: Purpose) 
     };
     let sites = catalog::discover(&repos, &overrides);
     let candidates = catalog::candidates(&sites);
-    let checks = match &options.checks {
-        ChecksSource::Fixture(path) => catalog::load_checks_fixture(path, &candidates)?,
-        ChecksSource::Skip => HashMap::new(),
-        ChecksSource::Live { timeout, workers } => live_checks(&candidates, *timeout, *workers).await?,
+    let mut unchecked = Vec::new();
+    let checks = match (&options.checks, &snapshot) {
+        (ChecksSource::Fixture(path), _) => catalog::load_checks_fixture(path, &candidates)?,
+        (ChecksSource::Skip, _) => HashMap::new(),
+        // Do banco: a checagem mais recente, sem rede.
+        (ChecksSource::Live { .. }, Some(snapshot)) => stored_checks(&candidates, &snapshot.checks, &mut unchecked),
+        (ChecksSource::Live { timeout, workers }, None) => live_checks(&candidates, *timeout, *workers).await?,
     };
     if let Some(path) = &options.checks_out {
         write_checks(path, &sites, &checks)?;
@@ -255,7 +352,19 @@ pub async fn prepare(options: &BuildOptions, tokens: &Tokens, purpose: Purpose) 
         Curadoria::from_manifest(&featured, &featured_path.display().to_string()).map_err(BuildError::Unguarded)?;
     let presentations =
         catalog::presentations(&repos, &sites, &checks, &curadoria, now).map_err(BuildError::Unguarded)?;
-    Ok(Prepared { repos, excluded, languages, now, now_local, featured, stack, sites, checks, presentations })
+    Ok(Prepared {
+        repos,
+        excluded,
+        languages,
+        now,
+        now_local,
+        featured,
+        stack,
+        sites,
+        checks,
+        presentations,
+        unchecked,
+    })
 }
 
 /// Arsenal da vitrine, relativo à raiz.
