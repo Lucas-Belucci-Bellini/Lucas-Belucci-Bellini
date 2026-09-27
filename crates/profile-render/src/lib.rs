@@ -32,6 +32,7 @@ pub mod snapshot;
 use std::collections::HashMap;
 
 use chrono::{DateTime, Utc};
+use ecosystem_domain::classify::Classifier;
 use ecosystem_domain::presentation::Presentation;
 use ecosystem_domain::repo::RepoFacts;
 use serde_json::{Map, Value};
@@ -76,6 +77,8 @@ pub struct Inputs<'a> {
     pub stack: &'a Map<String, Value>,
     /// Carimbo exibido (`source_timestamp(...).strftime(...)`, ver [`snapshot::generated_at`]).
     pub generated_at: &'a str,
+    /// Versão da heurística de rótulo (`py-classify@1` por padrão).
+    pub classifier: Classifier,
 }
 
 /// As entradas com os índices que os blocos consultam.

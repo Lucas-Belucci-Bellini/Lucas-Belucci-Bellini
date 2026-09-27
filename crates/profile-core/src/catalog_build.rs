@@ -23,6 +23,7 @@ use std::time::Duration;
 
 use catalog::{CatalogError, Curadoria, DiscoveredSite, inventory};
 use chrono::{DateTime, NaiveDateTime, Utc};
+use ecosystem_domain::classify::Classifier;
 use ecosystem_domain::presentation::{CheckStatus, Presentation, WebsiteCheck};
 use ecosystem_domain::repo::RepoFacts;
 use github_client::{ApiError, Client, Settings};
@@ -64,6 +65,8 @@ pub struct BuildOptions {
     pub checks_out: Option<PathBuf>,
     /// Inventário, linguagens e checagens do banco em vez do GitHub.
     pub from_db: Option<DbSource>,
+    /// Versão da heurística de rótulo (padrão: `py-classify@1`, a do Python).
+    pub classifier: Classifier,
 }
 
 /// A URL do banco para `--from-db`; o `Debug` não a mostra.
@@ -350,8 +353,8 @@ pub async fn prepare(options: &BuildOptions, tokens: &Tokens, purpose: Purpose) 
     }
     let curadoria =
         Curadoria::from_manifest(&featured, &featured_path.display().to_string()).map_err(BuildError::Unguarded)?;
-    let presentations =
-        catalog::presentations(&repos, &sites, &checks, &curadoria, now).map_err(BuildError::Unguarded)?;
+    let presentations = catalog::presentations(&repos, &sites, &checks, &curadoria, now, options.classifier)
+        .map_err(BuildError::Unguarded)?;
     Ok(Prepared {
         repos,
         excluded,

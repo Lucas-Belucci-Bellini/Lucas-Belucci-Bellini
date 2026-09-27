@@ -3,7 +3,6 @@
 
 use std::collections::HashSet;
 
-use ecosystem_domain::classify::classify_py_v1;
 use ecosystem_domain::discovery::{json_truthy, py_str};
 use ecosystem_domain::lifecycle::status_py_v1;
 use ecosystem_domain::presentation::{FEATURED_SUMMARIES, Presentation, describe};
@@ -159,10 +158,13 @@ fn plural(count: usize) -> &'static str {
 pub fn dashboard(profile: &Profile) -> String {
     let repos = profile.inputs.repos;
     let now = profile.inputs.now;
-    let active = repos.iter().filter(|repo| status_py_v1(repo, classify_py_v1(repo), now) == "🟢 Active").count();
+    let active = repos
+        .iter()
+        .filter(|repo| status_py_v1(repo, profile.inputs.classifier.classify(repo), now) == "🟢 Active")
+        .count();
     let public = repos.iter().filter(|repo| !repo.private).count();
     let private = repos.len() - public;
-    let academic = repos.iter().filter(|repo| classify_py_v1(repo) == "Academia").count();
+    let academic = repos.iter().filter(|repo| profile.inputs.classifier.classify(repo) == "Academia").count();
     [
         "> `GITHUB SNAPSHOT // FIELD REPORT` · inventário autenticado, métricas públicas e governança editorial."
             .into(),
@@ -397,7 +399,7 @@ pub fn featured_projects(profile: &Profile) -> Result<String, RenderError> {
     for (_, repo) in rest.into_iter().take(MAXIMUM.saturating_sub(chosen.len())) {
         let item = profile.presentation(repo);
         let text = summary(&repo.name).map_or_else(|| describe(repo.description.as_deref()), str::to_string);
-        chosen.push((classify_py_v1(repo).to_uppercase(), md_cell(&text), item));
+        chosen.push((profile.inputs.classifier.classify(repo).to_uppercase(), md_cell(&text), item));
     }
 
     if chosen.is_empty() {
@@ -657,7 +659,7 @@ pub fn private_projects(profile: &Profile) -> String {
         "|:---|:---|:---|:---|:---|".into(),
     ];
     for repo in sorted_repos(profile.inputs.repos, |repo| repo.private) {
-        let category = classify_py_v1(repo);
+        let category = profile.inputs.classifier.classify(repo);
         let description = match repo.description.as_deref() {
             Some(text) if !text.is_empty() => text,
             _ => "Descrição pública não informada",

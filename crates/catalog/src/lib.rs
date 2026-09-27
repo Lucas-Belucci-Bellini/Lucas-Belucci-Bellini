@@ -22,7 +22,7 @@ use std::collections::{BTreeMap, BTreeSet, HashMap};
 use std::path::{Path, PathBuf};
 
 use chrono::{DateTime, NaiveDateTime, Utc};
-use ecosystem_domain::classify::classify_py_v1;
+use ecosystem_domain::classify::Classifier;
 use ecosystem_domain::discovery::{
     WebsiteSource, discover_project_website, json_truthy, normalize_site_overrides, py_str,
 };
@@ -283,13 +283,14 @@ pub fn presentations(
     checks: &HashMap<String, WebsiteCheck>,
     curadoria: &Curadoria,
     now: DateTime<Utc>,
+    classifier: Classifier,
 ) -> Result<Vec<Presentation>, CatalogError> {
     let mut out: Vec<Presentation> = Vec::new();
     for repo in repos {
         let site = sites.iter().find(|site| site.full_name == repo.full_name);
         let url = site.and_then(|site| site.url.as_deref());
         let source = site.map_or(WebsiteSource::None, |site| site.source);
-        let category = classify_py_v1(repo);
+        let category = classifier.classify(repo);
         let presentation = resolve_presentation(
             repo,
             url.and_then(|url| checks.get(url)),

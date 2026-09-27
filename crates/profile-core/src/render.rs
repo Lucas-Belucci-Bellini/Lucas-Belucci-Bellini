@@ -135,6 +135,7 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
         featured: &prepared.featured,
         stack,
         generated_at: &stamp,
+        classifier: options.build.classifier,
     });
     let readme = profile.readme(&template)?;
     let catalog_text = catalog::render(&catalog::build(&prepared.presentations));

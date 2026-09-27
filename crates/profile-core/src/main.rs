@@ -85,6 +85,7 @@ use std::process::ExitCode;
 use std::time::Duration;
 
 use clap::{Args, Parser, Subcommand};
+use ecosystem_domain::classify::{Classifier, PY_V1, V2};
 use profile_core::assets::{self, AssetsError};
 use profile_core::catalog_build::{self, BuildOptions, ChecksSource, DbSource, Tokens};
 use profile_core::commits;
@@ -345,6 +346,9 @@ struct GithubArgs {
     /// Gatilho registrado em ecosystem.sync_runs.
     #[arg(long, default_value = "manual", value_parser = ["schedule", "manual", "push", "api", "test"])]
     trigger: String,
+    /// Versão da heurística que rotula os projetos novos e os de rótulo heurístico.
+    #[arg(long, default_value = PY_V1, value_parser = [PY_V1, V2])]
+    classifier: String,
 }
 
 #[derive(Args)]
@@ -412,6 +416,10 @@ struct CatalogArgs {
     /// URL do PostgreSQL para --from-db. Prefira a variável de ambiente.
     #[arg(long, env = "DATABASE_URL", hide_env_values = true, value_name = "URL")]
     database_url: Option<String>,
+    /// Versão da heurística de rótulo: a do Python (padrão) ou a que casa
+    /// palavras inteiras (corrige A6; muda a saída pública — D-039).
+    #[arg(long, default_value = PY_V1, value_parser = [PY_V1, V2])]
+    classifier: String,
 }
 
 #[derive(Subcommand)]
@@ -695,6 +703,11 @@ async fn check_sites(args: SitesArgs) -> Result<ExitCode, CliError> {
     Ok(ExitCode::from(sites::exit_code(&rows, args.fail_on_down)))
 }
 
+/// A versão escolhida (o clap já recusou nome desconhecido).
+fn classifier(name: &str) -> Classifier {
+    Classifier::parse(name).unwrap_or_default()
+}
+
 fn build_options(args: CatalogArgs, languages_dir: Option<PathBuf>) -> Result<BuildOptions, CliError> {
     let from_db = match (args.from_db, args.database_url) {
         (false, _) => None,
@@ -717,6 +730,7 @@ fn build_options(args: CatalogArgs, languages_dir: Option<PathBuf>) -> Result<Bu
         write: args.write,
         checks_out: args.site_checks_out,
         from_db,
+        classifier: classifier(&args.classifier),
     })
 }
 
@@ -883,7 +897,12 @@ async fn sync_github(args: GithubArgs) -> Result<ExitCode, CliError> {
         }
         Some(Database::from_url(url)?)
     };
-    let options = SyncOptions { root: args.root, input_repos: args.input_repos, languages_dir: args.languages_dir };
+    let options = SyncOptions {
+        root: args.root,
+        input_repos: args.input_repos,
+        languages_dir: args.languages_dir,
+        classifier: classifier(&args.classifier),
+    };
     let api_token = inventory_token.clone().or_else(|| env("GITHUB_TOKEN"));
     let collected = inventory_sync::collect(&options, inventory_token, api_token).await?;
     let summary = inventory_sync::summary(&collected);
@@ -962,6 +981,7 @@ async fn sync_all(args: SyncAllArgs) -> Result<ExitCode, CliError> {
         database_url: database_url.clone(),
         no_db,
         trigger: trigger.clone(),
+        classifier: PY_V1.into(),
     })
     .await?;
 

@@ -46,7 +46,8 @@ fn readme_e_snapshot_iguais_aos_do_python() {
     let checks = load_checks_fixture(&input.join("site-checks.json"), &candidates(&sites)).unwrap();
     let now = catalog::parse_now(NOW).unwrap();
     let presentations =
-        catalog::presentations(&repos, &sites, &checks, &Curadoria::load(&input).unwrap(), now).unwrap();
+        catalog::presentations(&repos, &sites, &checks, &Curadoria::load(&input).unwrap(), now, Default::default())
+            .unwrap();
     let featured = catalog::load_json_object(&input.join("docs/README_FEATURED.json")).unwrap();
     let stack = catalog::load_json_object(&input.join("docs/README_STACK.json")).unwrap();
     let stamp = generated_at(&repos, now.naive_utc()).unwrap();
@@ -60,6 +61,7 @@ fn readme_e_snapshot_iguais_aos_do_python() {
         featured: &featured,
         stack: &stack,
         generated_at: &stamp,
+        classifier: Default::default(),
     });
     let template = std::fs::read_to_string(input.join("README.md")).unwrap();
     let expected = fixture().join("expected");

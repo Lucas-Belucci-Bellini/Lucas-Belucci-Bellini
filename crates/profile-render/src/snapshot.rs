@@ -1,7 +1,6 @@
 //! `assets/profile-snapshot.svg` e o carimbo `generated_at`.
 
 use chrono::{Datelike, NaiveDateTime, Timelike};
-use ecosystem_domain::classify::classify_py_v1;
 use ecosystem_domain::lifecycle::status_py_v1;
 use ecosystem_domain::monitor::is_profile_repository;
 use ecosystem_domain::repo::RepoFacts;
@@ -67,8 +66,11 @@ pub fn svg(profile: &Profile) -> String {
     let repos = profile.inputs.repos;
     let now = profile.inputs.now;
     let public = repos.iter().filter(|repo| !repo.private).count();
-    let active = repos.iter().filter(|repo| status_py_v1(repo, classify_py_v1(repo), now) == "🟢 Active").count();
-    let academic = repos.iter().filter(|repo| classify_py_v1(repo) == "Academia").count();
+    let active = repos
+        .iter()
+        .filter(|repo| status_py_v1(repo, profile.inputs.classifier.classify(repo), now) == "🟢 Active")
+        .count();
+    let academic = repos.iter().filter(|repo| profile.inputs.classifier.classify(repo) == "Academia").count();
     let values = [
         ("REPOSITORIES", repos.len(), "inventory"),
         ("PUBLIC", public, "visible"),

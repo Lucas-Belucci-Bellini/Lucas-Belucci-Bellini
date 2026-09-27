@@ -12,7 +12,7 @@
 use std::path::PathBuf;
 
 use catalog::{CatalogError, inventory};
-use ecosystem_domain::classify::{PY_V1, classify_py_v1};
+use ecosystem_domain::classify::Classifier;
 use ecosystem_domain::slug::slug;
 use ecosystem_domain::timestamps::parse_github_timestamp;
 use github_client::{ApiError, Client, Settings};
@@ -28,6 +28,8 @@ pub struct SyncOptions {
     pub input_repos: Option<PathBuf>,
     /// Linguagens de arquivo (`owner__nome.json`).
     pub languages_dir: Option<PathBuf>,
+    /// Versão da heurística que rotula os projetos (vai para `classifier_version`).
+    pub classifier: Classifier,
 }
 
 /// Falhas.
@@ -98,7 +100,7 @@ pub async fn collect(
             (Some(_), None) => None,
             (None, _) => inventory::try_fetch_languages(&languages_client, &fact.full_name).await,
         };
-        repos.push(record(repo, fact, languages)?);
+        repos.push(record(repo, fact, languages, options.classifier)?);
     }
     excluded.sort();
     Ok(Collected { record: InventoryRecord { repos, seen, complete }, excluded })
@@ -108,6 +110,7 @@ fn record(
     repo: &Value,
     fact: &ecosystem_domain::repo::RepoFacts,
     languages: Option<Vec<(String, i64)>>,
+    classifier: Classifier,
 ) -> Result<RepoRecord, SyncError> {
     let invalid = |why| SyncError::Invalid(fact.full_name.clone(), why);
     let text = |key: &str| repo.get(key).and_then(Value::as_str).filter(|v| !v.is_empty()).map(str::to_string);
@@ -124,7 +127,7 @@ fn record(
         _ if fact.private => "private".into(),
         _ => "public".into(),
     };
-    let label = classify_py_v1(fact);
+    let label = classifier.classify(fact);
     Ok(RepoRecord {
         github_id: repo.get("id").and_then(Value::as_i64).ok_or_else(|| invalid("sem id do GitHub"))?,
         node_id: text("node_id"),
@@ -155,7 +158,7 @@ fn record(
         pushed_at: timestamp("pushed_at"),
         languages,
         label: label.to_string(),
-        classifier_version: PY_V1.to_string(),
+        classifier_version: classifier.as_str().to_string(),
     })
 }
 

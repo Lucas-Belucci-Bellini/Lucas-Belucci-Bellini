@@ -22,7 +22,8 @@ fn catalog_text(checks_file: Option<&str>) -> String {
     };
     let now = catalog::parse_now("2026-09-25T12:00:00Z").unwrap();
     let presentations =
-        catalog::presentations(&repos, &sites, &checks, &Curadoria::load(&input).unwrap(), now).unwrap();
+        catalog::presentations(&repos, &sites, &checks, &Curadoria::load(&input).unwrap(), now, Default::default())
+            .unwrap();
     render(&build(&presentations))
 }
 
