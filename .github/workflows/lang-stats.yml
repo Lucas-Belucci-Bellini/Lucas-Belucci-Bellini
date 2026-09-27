@@ -23,6 +23,8 @@ permissions:
 
 jobs:
   analisar:
+    # Com PROFILE_CORE_MODE=publish quem publica é o profile-core.yml (D-038).
+    if: ${{ vars.PROFILE_CORE_MODE != 'publish' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

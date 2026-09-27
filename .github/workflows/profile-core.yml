@@ -1,0 +1,120 @@
+name: Profile Core (pipeline único)
+
+# A virada (modo C) do README, dos SVGs de assets/ e da timeline para o
+# profile-core — docs/migration/PYTHON-TO-RUST.md §4, D-018 e D-038.
+#
+# DESLIGADO por padrão. O job só roda com a variável de repositório
+# PROFILE_CORE_MODE = publish (Settings → Secrets and variables → Actions →
+# Variables). Sem ela o job aparece como "skipped" e os workflows Python
+# (update-profile.yml, lang-stats.yml, contributions-timeline.yml) seguem
+# publicando; com ela, os três pulam e este publica — um escritor por vez.
+# Desligar é apagar a variável: o Python volta no próximo agendamento.
+#
+# Critério para ligar (não é técnico, é do dono): 14 execuções agendadas
+# seguidas do Core Shadow sem diferença e o secret PROFILE_README_TOKEN
+# configurado. Sem o token, o render recusa gravar e o job fica vermelho
+# (lição do A1: verde que não fez nada é o pior estado).
+#
+# Os horários são os de hoje: README e timeline diários (04:17), e os SVGs de
+# assets/ semanais (domingo, 03:17) — com o render all. Os cards são regravados
+# a cada execução só pelo carimbo (A27, reproduzido): rodá-los todo dia
+# encheria o histórico de commits sem conteúdo novo.
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+    - cron: "17 3 * * 0"
+  workflow_dispatch:
+
+concurrency:
+  group: profile-core-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    if: ${{ vars.PROFILE_CORE_MODE == 'publish' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CARGO_TERM_COLOR: always
+      CARGO_INCREMENTAL: "0"
+      GITHUB_TOKEN: ${{ github.token }}
+      GH_USER: ${{ github.repository_owner }}
+      PROFILE_REPOSITORY_NAME: ${{ github.event.repository.name }}
+      PROFILE_GITHUB_TOKEN: ${{ secrets.PROFILE_README_TOKEN }}
+      PROFILE_README_TOKEN: ${{ secrets.PROFILE_README_TOKEN || github.token }}
+      PROFILE_LOGIN: ${{ github.repository_owner }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      INCLUDE_FORKS: "0"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python (validadores de oráculo, D-015)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Toolchain (versão fixada em rust-toolchain.toml)
+        run: |
+          toolchain="$(sed -n 's/^channel = "\(.*\)"$/\1/p' rust-toolchain.toml)"
+          rustup toolchain install "$toolchain" --profile minimal
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            target
+          key: cargo-release-${{ runner.os }}-${{ hashFiles('rust-toolchain.toml') }}-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            cargo-release-${{ runner.os }}-${{ hashFiles('rust-toolchain.toml') }}-
+
+      - name: Build profile-core
+        run: cargo build --release --locked -p profile-core
+
+      - name: Banco e README de antes
+        run: |
+          if [ -n "$DATABASE_URL" ]; then echo "DB_FLAG=--trigger=schedule" >> "$GITHUB_ENV"; else echo "DB_FLAG=--no-db" >> "$GITHUB_ENV"; fi
+          cp README.md "$RUNNER_TEMP/README.before.md"
+
+      - name: Timeline de contribuições
+        run: target/release/profile-core sync contributions --write $DB_FLAG
+
+      - name: README, catálogo e (no agendamento semanal ou manual) os SVGs de assets/
+        run: |
+          if [ "${{ github.event.schedule }}" = "17 4 * * *" ]; then
+            target/release/profile-core render readme --write
+          else
+            target/release/profile-core render all --write
+          fi
+
+      - name: Validar em Rust
+        run: target/release/profile-core validate all --before "$RUNNER_TEMP/README.before.md"
+
+      - name: Validar com os scripts Python (oráculo, D-015)
+        run: |
+          python3 scripts/validate_dynamic_sections.py --before "$RUNNER_TEMP/README.before.md" --after README.md
+          python3 scripts/validate_exclusions.py
+          python3 scripts/validate_project_links.py
+          python3 scripts/validate_restored_style.py
+
+      - name: Um commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md assets/profile-snapshot.svg docs/project-catalog.json \
+            assets/lang-stats.svg assets/profile-top-langs.svg assets/profile-stats.svg \
+            assets/profile-streak.svg assets/profile-trophies.svg assets/profile-projects.svg \
+            docs/assets/contributions-timeline-data.json docs/assets/contributions-timeline.html
+          if git diff --cached --quiet; then
+            echo "Nada mudou; sem commit."
+            exit 0
+          fi
+          git commit -m "chore(profile): refresh via profile-core"
+          bash .github/scripts/push_with_rebase.sh
