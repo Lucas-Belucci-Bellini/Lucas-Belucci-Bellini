@@ -2,10 +2,10 @@
   "schema": "lucas-belucci-bellini/project-catalog@1",
   "note": "Gerado por scripts/update_profile.py. Não editar à mão: ajuste docs/README_SITES.json, docs/README_FEATURED.json ou a lógica do gerador.",
   "counts": {
-    "projects": 89,
-    "public": 70,
+    "projects": 90,
+    "public": 71,
     "private": 19,
-    "with_live_website": 8
+    "with_live_website": 9
   },
   "categories": [
     "AI & Intelligence",
@@ -51,7 +51,7 @@
       "description": "A comprehensive engineering hub for construction management, featuring an electrical panel editor, material and labor calculators, tax and profit simulators, and a \"WikiBuild\" knowledge base. Includes features like drag-and-drop circuit design, unit validation, and professional report generation. · Built with Manus",
       "category": "Web & SaaS",
       "category_label": "Ecossistema Baluarte",
-      "status": "🟢 Active",
+      "status": "🟡 In Development",
       "github": "https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura",
       "github_visible": true,
       "github_role": "source",
@@ -175,6 +175,28 @@
       "website_http_status": 200,
       "website_source": "github_homepage",
       "website": "https://llbr-innovations-constructions.vercel.app"
+    },
+    {
+      "repository": "Lucas-Belucci-Bellini/NEXORA",
+      "name": "NEXORA",
+      "slug": "nexora",
+      "description": "Descrição pública não informada.",
+      "category": "Web & SaaS",
+      "category_label": "Web",
+      "status": "🟢 Active",
+      "github": "https://github.com/Lucas-Belucci-Bellini/NEXORA",
+      "github_visible": true,
+      "github_role": "source",
+      "primary_cta": "website",
+      "secondary_cta": "github",
+      "featured": false,
+      "marketing_priority": 75,
+      "private": false,
+      "website_declared": "https://web-2qfw.vercel.app",
+      "website_status": "verified",
+      "website_http_status": 200,
+      "website_source": "github_homepage",
+      "website": "https://web-2qfw.vercel.app"
     },
     {
       "repository": "Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-",
@@ -337,27 +359,6 @@
       "marketing_priority": 35,
       "private": false,
       "website_declared": "https://flux-ten-red.vercel.app",
-      "website_status": "unreachable",
-      "website_http_status": 404,
-      "website_source": "github_homepage"
-    },
-    {
-      "repository": "Lucas-Belucci-Bellini/NEXORA",
-      "name": "NEXORA",
-      "slug": "nexora",
-      "description": "Descrição pública não informada.",
-      "category": "Web & SaaS",
-      "category_label": "Web",
-      "status": "🟢 Active",
-      "github": "https://github.com/Lucas-Belucci-Bellini/NEXORA",
-      "github_visible": true,
-      "github_role": "primary",
-      "primary_cta": "github",
-      "secondary_cta": null,
-      "featured": false,
-      "marketing_priority": 35,
-      "private": false,
-      "website_declared": "https://web-2qfw.vercel.app",
       "website_status": "unreachable",
       "website_http_status": 404,
       "website_source": "github_homepage"
@@ -1283,6 +1284,23 @@
       "featured": false,
       "marketing_priority": 20,
       "private": true
+    },
+    {
+      "repository": "itssomeone4/Atividade4",
+      "name": "Atividade4",
+      "slug": "atividade4",
+      "description": "atividade da aula",
+      "category": "Education",
+      "category_label": "Academia",
+      "status": "🟣 Academic",
+      "github": "https://github.com/itssomeone4/Atividade4",
+      "github_visible": true,
+      "github_role": "primary",
+      "primary_cta": "github",
+      "secondary_cta": null,
+      "featured": false,
+      "marketing_priority": 20,
+      "private": false
     },
     {
       "repository": "Lucas-Belucci-Bellini/Backup-01-ALFA",
