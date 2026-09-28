@@ -638,7 +638,7 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **20 linguagens** · **71 repositórios públicos** · **25.99 MB de código detectado** · atualizado em `2026-09-27 17:08 UTC`
+> **20 linguagens** · **71 repositórios públicos** · **25.99 MB de código detectado** · atualizado em `2026-09-28 10:47 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
