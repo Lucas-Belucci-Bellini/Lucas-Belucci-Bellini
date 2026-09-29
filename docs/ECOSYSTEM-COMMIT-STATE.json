@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-29T08:28:51Z",
+  "scanned_at": "2026-09-29T15:50:10Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -222,10 +222,10 @@
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
-      "sha": "0524ddcd985ffa50a7834556be68909734a27ee9",
-      "date": "2026-09-26T19:04:38Z",
+      "sha": "31fc1988448700bd5e7895eab7d2a76244436457",
+      "date": "2026-09-29T15:48:07Z",
       "message": "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/roteiro.md",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/0524ddcd985ffa50a7834556be68909734a27ee9"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/31fc1988448700bd5e7895eab7d2a76244436457"
     },
     "Customizable-birthday-invitation": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "a8686cc4983e13148ce09345369a399991deab6d",
-      "date": "2026-09-26T12:30:09Z",
-      "message": "relatorio teste 5",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/a8686cc4983e13148ce09345369a399991deab6d"
+      "sha": "6ad11f295fdbb0dd20f6ea2a9e0e8dbf3f3f4c97",
+      "date": "2026-09-29T12:27:58Z",
+      "message": "Merge pull request #38 from Lucas-Belucci-Bellini/claude/amazing-feynman-zhkwac",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/6ad11f295fdbb0dd20f6ea2a9e0e8dbf3f3f4c97"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -465,15 +465,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3401,
-    "project_commits": 3169,
-    "monitor_commits": 232,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 3411,
+    "project_commits": 3178,
+    "monitor_commits": 233,
+    "detected_project_commits_this_scan": 9,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 67,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [

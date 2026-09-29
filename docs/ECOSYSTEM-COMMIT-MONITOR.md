@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-29T08:28:51Z`  
+**Última varredura:** `2026-09-29T15:50:10Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `67`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3401`
-- **Commits dos projetos:** `3169`
-- **Commits do próprio monitor:** `232`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `3411`
+- **Commits dos projetos:** `3178`
+- **Commits do próprio monitor:** `233`
+- **Commits de projetos detectados nesta hora:** `9`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [3f8671e0cd42](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3f8671e0cd42a7baca2f77581dc8606a0496fdcd) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** — 1 commit(s) — [31fc19884487](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/31fc1988448700bd5e7895eab7d2a76244436457) — Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/roteiro.md
+- **NEXORA** — 8 commit(s) — [6ad11f295fdb](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/6ad11f295fdbb0dd20f6ea2a9e0e8dbf3f3f4c97) — Merge pull request #38 from Lucas-Belucci-Bellini/claude/amazing-feynman-zhkwac
 
 ## Erros de consulta
 
