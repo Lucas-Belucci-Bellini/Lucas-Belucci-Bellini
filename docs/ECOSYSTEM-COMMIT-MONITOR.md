@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-29T15:50:10Z`  
+**Última varredura:** `2026-09-29T20:45:57Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `67`  
 **Repositórios com mudanças desde a última varredura:** `2`  
@@ -10,17 +10,17 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3411`
-- **Commits dos projetos:** `3178`
-- **Commits do próprio monitor:** `233`
-- **Commits de projetos detectados nesta hora:** `9`
+- **Commits rastreados pelo ecossistema:** `3418`
+- **Commits dos projetos:** `3184`
+- **Commits do próprio monitor:** `234`
+- **Commits de projetos detectados nesta hora:** `6`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** — 1 commit(s) — [31fc19884487](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/31fc1988448700bd5e7895eab7d2a76244436457) — Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/roteiro.md
-- **NEXORA** — 8 commit(s) — [6ad11f295fdb](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/6ad11f295fdbb0dd20f6ea2a9e0e8dbf3f3f4c97) — Merge pull request #38 from Lucas-Belucci-Bellini/claude/amazing-feynman-zhkwac
+- **NEXORA** — 5 commit(s) — [61778dc6c5e1](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/61778dc6c5e116e5f62194b2c56b4e16859841a1) — .claude/data/healthcare/documents/data.sqlite .claude/data/healthcare/documents/data.sqlite-shm .claude/data/healthcare/documents/data.sqlit
+- **Projeto-Baluarte** — 1 commit(s) — [ebe6874c2fae](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/ebe6874c2fae8f15cf2c000ee6bbd11136282474) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
