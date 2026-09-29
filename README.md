@@ -468,7 +468,7 @@ ECOSSISTEMA
 | **Decision-Structures** | Academia | `Portugol` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Decision-Structures) |
 | **DelaOmegaAlfa** | Software & Ferramentas | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/DelaOmegaAlfa) |
 | **Digital-Logic-Sim-CE** | Digital Logic / Hardware | `C#` `CSS` `HTML` `JavaScript` `ShaderLab` | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
-| **DriveTax-Motors** | Web | `Java` `HTML` `CSS` `Python` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) |
+| **DriveTax-Motors** | Web | `Java` `HTML` `CSS` `Python` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) |
 | **Essence-Custom-Furniture** | Web | `JavaScript` `HTML` | 🟡 In Development | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) |
 | **fanfic-circulo-de-fogo** | Software & Ferramentas | `TypeScript` `JavaScript` `CSS` `HTML` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/fanfic-circulo-de-fogo) |
 | **FanVerse** | Software & Ferramentas | `Java` `JavaScript` `HTML` `CSS` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/FanVerse) |
@@ -638,7 +638,7 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **20 linguagens** · **71 repositórios públicos** · **25.99 MB de código detectado** · atualizado em `2026-09-28 10:47 UTC`
+> **20 linguagens** · **71 repositórios públicos** · **25.99 MB de código detectado** · atualizado em `2026-09-29 05:59 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
@@ -723,7 +723,7 @@ ECOSSISTEMA
 
 | ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
 |:---:|:---:|:---:|:---:|
-| **18** | **10** | **20** | **3** |
+| **17** | **10** | **20** | **3** |
 
 </div>
 
@@ -775,7 +775,7 @@ ECOSSISTEMA
 | **DailyPlanner** | IA & Automação | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
 | **Decision-Structures** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Decision-Structures) |
 | **Digital-Logic-Sim-CE** | Digital Logic / Hardware | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
-| **DriveTax-Motors** | Web | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) |
+| **DriveTax-Motors** | Web | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) |
 | **Essence-Custom-Furniture** | Web | 🟡 In Development | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) |
 | **FanVerse** | Software & Ferramentas | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/FanVerse) |
 | **Flowgorithm-** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Flowgorithm-) |
