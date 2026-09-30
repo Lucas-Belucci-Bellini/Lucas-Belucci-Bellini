@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-30T13:41:49Z",
+  "scanned_at": "2026-09-30T19:18:17Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -208,10 +208,10 @@
     },
     "Cookie-Clicker-Bot": {
       "branch": "main",
-      "sha": "e888bc72ddb3379cfbf55759bd7605eec2f7320c",
-      "date": "2026-06-26T19:11:12Z",
-      "message": "feat: update v3 and add v4 with 5-minute post-ascension timer",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot/commit/e888bc72ddb3379cfbf55759bd7605eec2f7320c"
+      "sha": "cd8cd35a5721ac4ecc9825e0da0033a62d1b660d",
+      "date": "2026-09-30T19:15:55Z",
+      "message": "docs(v6): documentar rewrite runtime-first e uso do bot",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot/commit/cd8cd35a5721ac4ecc9825e0da0033a62d1b660d"
     },
     "Cosmos": {
       "branch": "main",
@@ -377,10 +377,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "a40277e7e7133ec0f92a4157a21517080212d160",
-      "date": "2026-09-30T05:49:15Z",
+      "sha": "1b24da8bbc0d1b388631d6dcc0409262010a59e2",
+      "date": "2026-09-30T18:04:28Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a40277e7e7133ec0f92a4157a21517080212d160"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/1b24da8bbc0d1b388631d6dcc0409262010a59e2"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -465,15 +465,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3424,
-    "project_commits": 3188,
-    "monitor_commits": 236,
-    "detected_project_commits_this_scan": 3,
+    "tracked_commits": 3459,
+    "project_commits": 3222,
+    "monitor_commits": 237,
+    "detected_project_commits_this_scan": 34,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 67,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
