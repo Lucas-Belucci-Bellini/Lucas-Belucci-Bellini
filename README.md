@@ -568,18 +568,18 @@ ECOSSISTEMA
 
 | Linguagem | Repositórios | Participação |
 |:---|---:|---:|
-| **JavaScript** | 22 | `25.81%` |
-| **TypeScript** | 7 | `18.77%` |
-| **C#** | 3 | `15.16%` |
-| **HTML** | 23 | `14.80%` |
-| **Rust** | 5 | `13.03%` |
-| **Python** | 9 | `3.90%` |
-| **CSS** | 17 | `3.80%` |
-| **Java** | 7 | `3.17%` |
+| **JavaScript** | 22 | `25.61%` |
+| **TypeScript** | 7 | `18.63%` |
+| **C#** | 3 | `15.04%` |
+| **HTML** | 23 | `14.69%` |
+| **Rust** | 5 | `13.70%` |
+| **Python** | 9 | `3.88%` |
+| **CSS** | 17 | `3.77%` |
+| **Java** | 7 | `3.14%` |
 | **PL/pgSQL** | 3 | `0.53%` |
-| **Shell** | 8 | `0.26%` |
+| **Shell** | 8 | `0.27%` |
 | **GDScript** | 2 | `0.21%` |
-| **SQF** | 1 | `0.20%` |
+| **SQF** | 1 | `0.19%` |
 | **C++** | 1 | `0.16%` |
 | **PowerShell** | 2 | `0.10%` |
 | **Portugol** | 4 | `0.04%` |
@@ -638,22 +638,22 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **20 linguagens** · **71 repositórios públicos** · **25.99 MB de código detectado** · atualizado em `2026-09-29 05:59 UTC`
+> **20 linguagens** · **71 repositórios públicos** · **26.20 MB de código detectado** · atualizado em `2026-09-30 05:49 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
-| 1 | **JavaScript** | `6.71 MB` | `25.81%` | 22 |
-| 2 | **TypeScript** | `4.88 MB` | `18.77%` | 7 |
-| 3 | **C#** | `3.94 MB` | `15.16%` | 3 |
-| 4 | **HTML** | `3.85 MB` | `14.80%` | 23 |
-| 5 | **Rust** | `3.39 MB` | `13.03%` | 5 |
-| 6 | **Python** | `1.01 MB` | `3.90%` | 9 |
-| 7 | **CSS** | `1011.5 KB` | `3.80%` | 17 |
-| 8 | **Java** | `843.5 KB` | `3.17%` | 7 |
+| 1 | **JavaScript** | `6.71 MB` | `25.61%` | 22 |
+| 2 | **TypeScript** | `4.88 MB` | `18.63%` | 7 |
+| 3 | **C#** | `3.94 MB` | `15.04%` | 3 |
+| 4 | **HTML** | `3.85 MB` | `14.69%` | 23 |
+| 5 | **Rust** | `3.59 MB` | `13.70%` | 5 |
+| 6 | **Python** | `1.02 MB` | `3.88%` | 9 |
+| 7 | **CSS** | `1011.5 KB` | `3.77%` | 17 |
+| 8 | **Java** | `843.5 KB` | `3.14%` | 7 |
 | 9 | **PL/pgSQL** | `141.4 KB` | `0.53%` | 3 |
-| 10 | **Shell** | `69.7 KB` | `0.26%` | 8 |
+| 10 | **Shell** | `71.5 KB` | `0.27%` | 8 |
 | 11 | **GDScript** | `56.8 KB` | `0.21%` | 2 |
-| 12 | **SQF** | `52.0 KB` | `0.20%` | 1 |
+| 12 | **SQF** | `52.0 KB` | `0.19%` | 1 |
 | 13 | **C++** | `42.2 KB` | `0.16%` | 1 |
 | 14 | **PowerShell** | `26.9 KB` | `0.10%` | 2 |
 | 15 | **Portugol** | `11.7 KB` | `0.04%` | 4 |
