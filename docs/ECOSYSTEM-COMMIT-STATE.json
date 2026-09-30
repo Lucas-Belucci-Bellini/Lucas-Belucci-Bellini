@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-09-30T06:41:59Z",
+  "scanned_at": "2026-09-30T13:41:49Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "61778dc6c5e116e5f62194b2c56b4e16859841a1",
-      "date": "2026-09-29T17:46:02Z",
-      "message": ".claude/data/healthcare/documents/data.sqlite .claude/data/healthcare/documents/data.sqlite-shm .claude/data/healthcare/documents/data.sqlit",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/61778dc6c5e116e5f62194b2c56b4e16859841a1"
+      "sha": "4132ec22bd42f935ad7f3f381c446c3a86bbc5df",
+      "date": "2026-09-30T13:22:44Z",
+      "message": "relatorio teste 12",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/4132ec22bd42f935ad7f3f381c446c3a86bbc5df"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -465,10 +465,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3420,
-    "project_commits": 3185,
-    "monitor_commits": 235,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 3424,
+    "project_commits": 3188,
+    "monitor_commits": 236,
+    "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
   "summary": {

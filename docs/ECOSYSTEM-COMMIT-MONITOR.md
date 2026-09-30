@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-09-30T06:41:59Z`  
+**Última varredura:** `2026-09-30T13:41:49Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `67`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3420`
-- **Commits dos projetos:** `3185`
-- **Commits do próprio monitor:** `235`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `3424`
+- **Commits dos projetos:** `3188`
+- **Commits do próprio monitor:** `236`
+- **Commits de projetos detectados nesta hora:** `3`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [a40277e7e713](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a40277e7e7133ec0f92a4157a21517080212d160) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **NEXORA** — 3 commit(s) — [4132ec22bd42](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/4132ec22bd42f935ad7f3f381c446c3a86bbc5df) — relatorio teste 12
 
 ## Erros de consulta
 
