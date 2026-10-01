@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-01T13:11:49Z`  
+**Última varredura:** `2026-10-01T18:52:43Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `67`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3510`
-- **Commits dos projetos:** `3271`
-- **Commits do próprio monitor:** `239`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `3521`
+- **Commits dos projetos:** `3281`
+- **Commits do próprio monitor:** `240`
+- **Commits de projetos detectados nesta hora:** `10`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [8e276857d8c2](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/8e276857d8c24eb336155c1c437c8bdde42c6c44) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **Cookie-Clicker-Bot** — 9 commit(s) — [ad52924bafbb](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot/commit/ad52924bafbb3f968a8bf2b6379fc411b542a6dd) — docs(v6.24): document controlled golden cookie spawning
+- **Projeto-Baluarte** — 1 commit(s) — [4d0e35fde1ef](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/4d0e35fde1ef82a8ea361604c377165699158596) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
