@@ -460,7 +460,7 @@ ECOSSISTEMA
 | **Catacombs-of-Paris-Ossuary-Escape-game-design** | Games | `HTML` `C#` `JavaScript` `GDScript` `Batch` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) |
 | **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Digital Logic / Hardware | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
 | **CodeVibe-Academy** | Web | `JavaScript` `HTML` | 🟡 In Development | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) |
-| **Cookie-Clicker-Bot** | Software & Ferramentas | `JavaScript` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) |
+| **Cookie-Clicker-Bot** | Software & Ferramentas | `JavaScript` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) |
 | **Cosmos** | Software & Ferramentas | `TypeScript` `JavaScript` `HTML` `Python` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cosmos) |
 | **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** | Ecossistema Baluarte | — | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram) |
 | **Customizable-birthday-invitation** | Web | `HTML` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) |
@@ -568,15 +568,15 @@ ECOSSISTEMA
 
 | Linguagem | Repositórios | Participação |
 |:---|---:|---:|
-| **JavaScript** | 22 | `25.61%` |
-| **TypeScript** | 7 | `18.63%` |
-| **C#** | 3 | `15.04%` |
-| **HTML** | 23 | `14.69%` |
-| **Rust** | 5 | `13.70%` |
-| **Python** | 9 | `3.88%` |
-| **CSS** | 17 | `3.77%` |
-| **Java** | 7 | `3.14%` |
-| **PL/pgSQL** | 3 | `0.53%` |
+| **JavaScript** | 22 | `25.93%` |
+| **TypeScript** | 7 | `18.55%` |
+| **C#** | 3 | `14.97%` |
+| **HTML** | 23 | `14.62%` |
+| **Rust** | 5 | `13.64%` |
+| **Python** | 9 | `3.86%` |
+| **CSS** | 17 | `3.75%` |
+| **Java** | 7 | `3.13%` |
+| **PL/pgSQL** | 3 | `0.52%` |
 | **Shell** | 8 | `0.27%` |
 | **GDScript** | 2 | `0.21%` |
 | **SQF** | 1 | `0.19%` |
@@ -638,19 +638,19 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **20 linguagens** · **71 repositórios públicos** · **26.20 MB de código detectado** · atualizado em `2026-09-30 05:49 UTC`
+> **20 linguagens** · **71 repositórios públicos** · **26.31 MB de código detectado** · atualizado em `2026-10-01 06:20 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
-| 1 | **JavaScript** | `6.71 MB` | `25.61%` | 22 |
-| 2 | **TypeScript** | `4.88 MB` | `18.63%` | 7 |
-| 3 | **C#** | `3.94 MB` | `15.04%` | 3 |
-| 4 | **HTML** | `3.85 MB` | `14.69%` | 23 |
-| 5 | **Rust** | `3.59 MB` | `13.70%` | 5 |
-| 6 | **Python** | `1.02 MB` | `3.88%` | 9 |
-| 7 | **CSS** | `1011.5 KB` | `3.77%` | 17 |
-| 8 | **Java** | `843.5 KB` | `3.14%` | 7 |
-| 9 | **PL/pgSQL** | `141.4 KB` | `0.53%` | 3 |
+| 1 | **JavaScript** | `6.82 MB` | `25.93%` | 22 |
+| 2 | **TypeScript** | `4.88 MB` | `18.55%` | 7 |
+| 3 | **C#** | `3.94 MB` | `14.97%` | 3 |
+| 4 | **HTML** | `3.85 MB` | `14.62%` | 23 |
+| 5 | **Rust** | `3.59 MB` | `13.64%` | 5 |
+| 6 | **Python** | `1.02 MB` | `3.86%` | 9 |
+| 7 | **CSS** | `1011.5 KB` | `3.75%` | 17 |
+| 8 | **Java** | `843.5 KB` | `3.13%` | 7 |
+| 9 | **PL/pgSQL** | `141.4 KB` | `0.52%` | 3 |
 | 10 | **Shell** | `71.5 KB` | `0.27%` | 8 |
 | 11 | **GDScript** | `56.8 KB` | `0.21%` | 2 |
 | 12 | **SQF** | `52.0 KB` | `0.19%` | 1 |
@@ -723,7 +723,7 @@ ECOSSISTEMA
 
 | ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
 |:---:|:---:|:---:|:---:|
-| **17** | **10** | **20** | **3** |
+| **18** | **10** | **20** | **3** |
 
 </div>
 
@@ -768,7 +768,7 @@ ECOSSISTEMA
 | **Catacombs-of-Paris-Ossuary-Escape-game-design** | Games | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) |
 | **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Digital Logic / Hardware | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
 | **CodeVibe-Academy** | Web | 🟡 In Development | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) |
-| **Cookie-Clicker-Bot** | Software & Ferramentas | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) |
+| **Cookie-Clicker-Bot** | Software & Ferramentas | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) |
 | **Cosmos** | Software & Ferramentas | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cosmos) |
 | **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** | Ecossistema Baluarte | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram) |
 | **Customizable-birthday-invitation** | Web | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) |
