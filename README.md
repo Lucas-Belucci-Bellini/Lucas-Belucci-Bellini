@@ -568,12 +568,12 @@ ECOSSISTEMA
 
 | Linguagem | Repositórios | Participação |
 |:---|---:|---:|
-| **JavaScript** | 22 | `25.93%` |
-| **TypeScript** | 7 | `18.55%` |
-| **C#** | 3 | `14.97%` |
-| **HTML** | 23 | `14.62%` |
-| **Rust** | 5 | `13.64%` |
-| **Python** | 9 | `3.86%` |
+| **JavaScript** | 22 | `26.02%` |
+| **TypeScript** | 7 | `18.52%` |
+| **C#** | 3 | `14.95%` |
+| **HTML** | 23 | `14.61%` |
+| **Rust** | 5 | `13.62%` |
+| **Python** | 9 | `3.85%` |
 | **CSS** | 17 | `3.75%` |
 | **Java** | 7 | `3.13%` |
 | **PL/pgSQL** | 3 | `0.52%` |
@@ -638,16 +638,16 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **20 linguagens** · **71 repositórios públicos** · **26.31 MB de código detectado** · atualizado em `2026-10-01 06:20 UTC`
+> **20 linguagens** · **71 repositórios públicos** · **26.34 MB de código detectado** · atualizado em `2026-10-02 06:00 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
-| 1 | **JavaScript** | `6.82 MB` | `25.93%` | 22 |
-| 2 | **TypeScript** | `4.88 MB` | `18.55%` | 7 |
-| 3 | **C#** | `3.94 MB` | `14.97%` | 3 |
-| 4 | **HTML** | `3.85 MB` | `14.62%` | 23 |
-| 5 | **Rust** | `3.59 MB` | `13.64%` | 5 |
-| 6 | **Python** | `1.02 MB` | `3.86%` | 9 |
+| 1 | **JavaScript** | `6.85 MB` | `26.02%` | 22 |
+| 2 | **TypeScript** | `4.88 MB` | `18.52%` | 7 |
+| 3 | **C#** | `3.94 MB` | `14.95%` | 3 |
+| 4 | **HTML** | `3.85 MB` | `14.61%` | 23 |
+| 5 | **Rust** | `3.59 MB` | `13.62%` | 5 |
+| 6 | **Python** | `1.02 MB` | `3.85%` | 9 |
 | 7 | **CSS** | `1011.5 KB` | `3.75%` | 17 |
 | 8 | **Java** | `843.5 KB` | `3.13%` | 7 |
 | 9 | **PL/pgSQL** | `141.4 KB` | `0.52%` | 3 |
