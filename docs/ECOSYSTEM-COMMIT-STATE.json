@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-02T20:43:45Z",
+  "scanned_at": "2026-10-03T00:29:22Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -222,10 +222,10 @@
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
-      "sha": "31fc1988448700bd5e7895eab7d2a76244436457",
-      "date": "2026-09-29T15:48:07Z",
-      "message": "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/roteiro.md",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/31fc1988448700bd5e7895eab7d2a76244436457"
+      "sha": "848022e27b3a9b9d3c3c106cb136c7020384e25f",
+      "date": "2026-10-03T00:08:28Z",
+      "message": "docs: adiciona README principal da fanfic",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/848022e27b3a9b9d3c3c106cb136c7020384e25f"
     },
     "Customizable-birthday-invitation": {
       "branch": "main",
@@ -465,9 +465,9 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3532,
-    "project_commits": 3289,
-    "monitor_commits": 243,
+    "tracked_commits": 3534,
+    "project_commits": 3290,
+    "monitor_commits": 244,
     "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
