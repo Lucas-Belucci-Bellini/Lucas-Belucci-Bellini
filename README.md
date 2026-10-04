@@ -509,7 +509,7 @@ ECOSSISTEMA
 | **taxforge** | Web | `TypeScript` `HTML` `JavaScript` `Python` `CSS` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/taxforge) |
 | **Teste-** | Software & Ferramentas | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-) |
 | **Teste-aula-git** | Software & Ferramentas | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-aula-git) |
-| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | `JavaScript` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
+| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | `JavaScript` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
 | **Veritas** | Digital Logic / Hardware | `TypeScript` `JavaScript` `Rust` `PL/pgSQL` `CSS` | 🟢 Active | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
 | **Zoas-** | Software & Ferramentas | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Zoas-) |
 
@@ -638,7 +638,7 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **20 linguagens** · **71 repositórios públicos** · **26.34 MB de código detectado** · atualizado em `2026-10-03 05:34 UTC`
+> **20 linguagens** · **71 repositórios públicos** · **26.34 MB de código detectado** · atualizado em `2026-10-04 06:10 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
@@ -723,7 +723,7 @@ ECOSSISTEMA
 
 | ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
 |:---:|:---:|:---:|:---:|
-| **18** | **10** | **20** | **3** |
+| **17** | **10** | **20** | **3** |
 
 </div>
 
@@ -807,7 +807,7 @@ ECOSSISTEMA
 | **Subnautica-Unhinged-mod-** | Software & Ferramentas | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-) |
 | **Teste-** | Software & Ferramentas | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-) |
 | **Teste-aula-git** | Software & Ferramentas | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-aula-git) |
-| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
+| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
 | **Veritas** | Digital Logic / Hardware | 🟢 Active | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
 
 </details>
