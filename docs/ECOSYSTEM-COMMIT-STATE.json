@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-05T09:02:10Z",
+  "scanned_at": "2026-10-05T18:26:25Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "2b1b451719717206b6710b8f31b550a5d8fedc14",
-      "date": "2026-10-05T06:51:57Z",
-      "message": "Merge pull request #41 from Lucas-Belucci-Bellini/claude/nexora-autonomous-dev-2a38f8",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/2b1b451719717206b6710b8f31b550a5d8fedc14"
+      "sha": "9aea358808134fedae57fe098093ae5778929b8b",
+      "date": "2026-10-05T13:37:59Z",
+      "message": "Merge branch 'main' of https://github.com/Lucas-Belucci-Bellini/NEXORA",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/9aea358808134fedae57fe098093ae5778929b8b"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -465,15 +465,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3556,
-    "project_commits": 3306,
-    "monitor_commits": 250,
-    "detected_project_commits_this_scan": 11,
+    "tracked_commits": 3559,
+    "project_commits": 3308,
+    "monitor_commits": 251,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 67,
-    "repositories_changed": 2,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
