@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-06T07:33:36Z`  
+**Última varredura:** `2026-10-06T15:10:45Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `67`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3561`
-- **Commits dos projetos:** `3309`
-- **Commits do próprio monitor:** `252`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `3574`
+- **Commits dos projetos:** `3321`
+- **Commits do próprio monitor:** `253`
+- **Commits de projetos detectados nesta hora:** `12`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [540d032c0630](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/540d032c0630a450ce3648b3d0d89aa138aa847b) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **NEXORA** — 12 commit(s) — [ae36360fe70d](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/ae36360fe70d95128eae3d74c5acf474c3bcac3d) — Merge branch 'main' of https://github.com/Lucas-Belucci-Bellini/NEXORA
 
 ## Erros de consulta
 
