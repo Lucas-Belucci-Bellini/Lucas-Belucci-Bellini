@@ -1581,7 +1581,7 @@
       "description": "digital logic sim chips",
       "category": "Hardware & Simulation",
       "category_label": "Digital Logic / Hardware",
-      "status": "🟡 In Development",
+      "status": "🟢 Active",
       "github": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA",
       "github_visible": true,
       "github_role": "primary",

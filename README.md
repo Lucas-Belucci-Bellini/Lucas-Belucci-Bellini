@@ -488,7 +488,7 @@ ECOSSISTEMA
 | **Lucas-Belucci-Bellini** | Software & Ferramentas | `Rust` `Python` `PL/pgSQL` `Shell` `HTML` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini) |
 | **MOD-PACK-MINE-BACKUP** | Games | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/MOD-PACK-MINE-BACKUP) |
 | **Multi-functional-site-Baluarte** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Multi-functional-site-Baluarte) |
-| **NEXORA** | Web | `Rust` `C++` `Python` `Shell` `CSS` | 🟢 Active | **[▸ Abrir site](https://web-2qfw.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/NEXORA) |
+| **NEXORA** | Web | `Rust` `Python` `C++` `Shell` `CSS` | 🟢 Active | **[▸ Abrir site](https://web-2qfw.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/NEXORA) |
 | **OMEGA-ALFA-DELTA** | Software & Ferramentas | `HTML` `CSS` `JavaScript` `Java` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) |
 | **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | Ecossistema Baluarte | `HTML` `CSS` `JavaScript` | 🟢 Active | **[▸ Abrir site](https://portifolio-baluarte-lucas-belucci-b.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) |
 | **Project-Baluarte-DevFlow** | Ecossistema Baluarte | `PowerShell` `Shell` `Batch` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) |
@@ -509,7 +509,7 @@ ECOSSISTEMA
 | **taxforge** | Web | `TypeScript` `HTML` `JavaScript` `Python` `CSS` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/taxforge) |
 | **Teste-** | Software & Ferramentas | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-) |
 | **Teste-aula-git** | Software & Ferramentas | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-aula-git) |
-| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | `JavaScript` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
+| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | `JavaScript` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
 | **Veritas** | Digital Logic / Hardware | `TypeScript` `JavaScript` `Rust` `PL/pgSQL` `CSS` | 🟢 Active | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
 | **Zoas-** | Software & Ferramentas | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Zoas-) |
 
@@ -548,7 +548,7 @@ ECOSSISTEMA
 
 **PRINCIPAIS POR VOLUME**
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-22%20repos-F7DF1E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=JavaScript) [![TypeScript](https://img.shields.io/badge/TypeScript-7%20repos-3178C6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=TypeScript) [![C#](https://img.shields.io/badge/C%23-3%20repos-239120?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C%23) [![HTML](https://img.shields.io/badge/HTML-23%20repos-E34F26?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=HTML) [![Rust](https://img.shields.io/badge/Rust-5%20repos-DEA584?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Rust)
+[![JavaScript](https://img.shields.io/badge/JavaScript-22%20repos-F7DF1E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=JavaScript) [![TypeScript](https://img.shields.io/badge/TypeScript-7%20repos-3178C6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=TypeScript) [![Rust](https://img.shields.io/badge/Rust-5%20repos-DEA584?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Rust) [![C#](https://img.shields.io/badge/C%23-3%20repos-239120?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C%23) [![HTML](https://img.shields.io/badge/HTML-23%20repos-E34F26?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=HTML)
 <br>
 [![Python](https://img.shields.io/badge/Python-9%20repos-3776AB?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Python) [![CSS](https://img.shields.io/badge/CSS-17%20repos-1572B6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=CSS) [![Java](https://img.shields.io/badge/Java-7%20repos-ED8B00?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Java) [![PL/pgSQL](https://img.shields.io/badge/PL%2FpgSQL-3%20repos-336791?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PLpgSQL) [![Shell](https://img.shields.io/badge/Shell-8%20repos-4EAA25?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Shell)
 
@@ -561,26 +561,26 @@ ECOSSISTEMA
 <!-- LANGUAGE-BADGES:END -->
 
 <!-- ARSENAL-STACK:START -->
-> **20 linguagens detectadas** no inventário público, por peso em bytes: `JavaScript` · `TypeScript` · `C#` · `HTML` · `Rust` · `Python` · `CSS` · `Java`.
+> **20 linguagens detectadas** no inventário público, por peso em bytes: `JavaScript` · `TypeScript` · `Rust` · `C#` · `HTML` · `Python` · `CSS` · `Java`.
 
 <details>
 <summary><b>▶ Ver a participação de cada linguagem</b></summary>
 
 | Linguagem | Repositórios | Participação |
 |:---|---:|---:|
-| **JavaScript** | 22 | `25.85%` |
-| **TypeScript** | 7 | `18.41%` |
-| **C#** | 3 | `14.86%` |
-| **HTML** | 23 | `14.51%` |
-| **Rust** | 5 | `14.15%` |
-| **Python** | 9 | `3.85%` |
-| **CSS** | 17 | `3.73%` |
-| **Java** | 7 | `3.11%` |
+| **JavaScript** | 22 | `25.67%` |
+| **TypeScript** | 7 | `18.28%` |
+| **Rust** | 5 | `14.76%` |
+| **C#** | 3 | `14.75%` |
+| **HTML** | 23 | `14.41%` |
+| **Python** | 9 | `3.83%` |
+| **CSS** | 17 | `3.70%` |
+| **Java** | 7 | `3.08%` |
 | **PL/pgSQL** | 3 | `0.52%` |
 | **Shell** | 8 | `0.26%` |
 | **GDScript** | 2 | `0.21%` |
 | **SQF** | 1 | `0.19%` |
-| **C++** | 1 | `0.16%` |
+| **C++** | 1 | `0.15%` |
 | **PowerShell** | 2 | `0.10%` |
 | **Portugol** | 4 | `0.04%` |
 | **Batch** | 5 | `0.02%` |
@@ -638,23 +638,23 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **20 linguagens** · **71 repositórios públicos** · **26.51 MB de código detectado** · atualizado em `2026-10-05 08:12 UTC`
+> **20 linguagens** · **71 repositórios públicos** · **26.70 MB de código detectado** · atualizado em `2026-10-06 10:52 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
-| 1 | **JavaScript** | `6.85 MB` | `25.85%` | 22 |
-| 2 | **TypeScript** | `4.88 MB` | `18.41%` | 7 |
-| 3 | **C#** | `3.94 MB` | `14.86%` | 3 |
-| 4 | **HTML** | `3.85 MB` | `14.51%` | 23 |
-| 5 | **Rust** | `3.75 MB` | `14.15%` | 5 |
-| 6 | **Python** | `1.02 MB` | `3.85%` | 9 |
-| 7 | **CSS** | `1011.5 KB` | `3.73%` | 17 |
-| 8 | **Java** | `843.5 KB` | `3.11%` | 7 |
+| 1 | **JavaScript** | `6.85 MB` | `25.67%` | 22 |
+| 2 | **TypeScript** | `4.88 MB` | `18.28%` | 7 |
+| 3 | **Rust** | `3.94 MB` | `14.76%` | 5 |
+| 4 | **C#** | `3.94 MB` | `14.75%` | 3 |
+| 5 | **HTML** | `3.85 MB` | `14.41%` | 23 |
+| 6 | **Python** | `1.02 MB` | `3.83%` | 9 |
+| 7 | **CSS** | `1011.5 KB` | `3.70%` | 17 |
+| 8 | **Java** | `843.5 KB` | `3.08%` | 7 |
 | 9 | **PL/pgSQL** | `141.4 KB` | `0.52%` | 3 |
-| 10 | **Shell** | `71.5 KB` | `0.26%` | 8 |
+| 10 | **Shell** | `72.4 KB` | `0.26%` | 8 |
 | 11 | **GDScript** | `56.8 KB` | `0.21%` | 2 |
 | 12 | **SQF** | `52.0 KB` | `0.19%` | 1 |
-| 13 | **C++** | `42.2 KB` | `0.16%` | 1 |
+| 13 | **C++** | `42.2 KB` | `0.15%` | 1 |
 | 14 | **PowerShell** | `26.9 KB` | `0.10%` | 2 |
 | 15 | **Portugol** | `11.7 KB` | `0.04%` | 4 |
 | 16 | **Batch** | `5.3 KB` | `0.02%` | 5 |
@@ -723,7 +723,7 @@ ECOSSISTEMA
 
 | ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
 |:---:|:---:|:---:|:---:|
-| **17** | **10** | **20** | **3** |
+| **18** | **10** | **20** | **3** |
 
 </div>
 
@@ -807,7 +807,7 @@ ECOSSISTEMA
 | **Subnautica-Unhinged-mod-** | Software & Ferramentas | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Subnautica-Unhinged-mod-) |
 | **Teste-** | Software & Ferramentas | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-) |
 | **Teste-aula-git** | Software & Ferramentas | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Teste-aula-git) |
-| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
+| **UMBRA-LIMA-ALFA** | Digital Logic / Hardware | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA) |
 | **Veritas** | Digital Logic / Hardware | 🟢 Active | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
 
 </details>
