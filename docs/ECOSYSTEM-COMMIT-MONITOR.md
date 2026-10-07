@@ -2,24 +2,26 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-07T00:41:10Z`  
+**Última varredura:** `2026-10-07T07:13:21Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `67`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `3`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3582`
-- **Commits dos projetos:** `3327`
-- **Commits do próprio monitor:** `255`
-- **Commits de projetos detectados nesta hora:** `3`
+- **Commits rastreados pelo ecossistema:** `3594`
+- **Commits dos projetos:** `3338`
+- **Commits do próprio monitor:** `256`
+- **Commits de projetos detectados nesta hora:** `11`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **UMBRA-LIMA-ALFA** — 3 commit(s) — [18b097af9399](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/18b097af9399a3cb038c53dc85444b22814ef6f1) — Merge pull request #6 from Lucas-Belucci-Bellini/feat/ula-catalog-30000
+- **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** — 1 commit(s) — [9f95763c7126](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/9f95763c71260ea8dc50da28fc73432d064c916d) — feat: adiciona diálogos e cenas adicionais ao roteiro
+- **NEXORA** — 9 commit(s) — [58ff6902defe](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/58ff6902defeff0c51f3fa6eecc96f52efc72aae) — Add autonomous development report for NEXORA project execution on 2026-10-07
+- **Projeto-Baluarte** — 1 commit(s) — [bef6793cdf22](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/bef6793cdf223efdca564011f89ab8531838821b) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
