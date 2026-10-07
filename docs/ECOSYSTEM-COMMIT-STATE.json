@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-07T07:13:21Z",
+  "scanned_at": "2026-10-07T14:30:26Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "58ff6902defeff0c51f3fa6eecc96f52efc72aae",
-      "date": "2026-10-07T04:27:11Z",
-      "message": "Add autonomous development report for NEXORA project execution on 2026-10-07",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/58ff6902defeff0c51f3fa6eecc96f52efc72aae"
+      "sha": "96ea433097f8b94f5e0ba9cc88ff37d906bea3f2",
+      "date": "2026-10-07T09:58:03Z",
+      "message": "Add cargo test log and status files for test results",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/96ea433097f8b94f5e0ba9cc88ff37d906bea3f2"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -465,15 +465,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3594,
-    "project_commits": 3338,
-    "monitor_commits": 256,
-    "detected_project_commits_this_scan": 11,
+    "tracked_commits": 3596,
+    "project_commits": 3339,
+    "monitor_commits": 257,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 67,
-    "repositories_changed": 3,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
