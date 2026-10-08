@@ -568,19 +568,19 @@ ECOSSISTEMA
 
 | Linguagem | Repositórios | Participação |
 |:---|---:|---:|
-| **JavaScript** | 22 | `25.74%` |
-| **TypeScript** | 7 | `18.26%` |
-| **Rust** | 5 | `14.74%` |
+| **JavaScript** | 22 | `25.73%` |
+| **TypeScript** | 7 | `18.25%` |
+| **Rust** | 5 | `14.76%` |
 | **C#** | 3 | `14.74%` |
-| **HTML** | 23 | `14.40%` |
-| **Python** | 9 | `3.83%` |
+| **HTML** | 23 | `14.39%` |
+| **Python** | 9 | `3.82%` |
 | **CSS** | 17 | `3.70%` |
 | **Java** | 7 | `3.08%` |
 | **PL/pgSQL** | 3 | `0.52%` |
 | **Shell** | 8 | `0.26%` |
 | **GDScript** | 2 | `0.21%` |
 | **SQF** | 1 | `0.19%` |
-| **C++** | 1 | `0.15%` |
+| **C++** | 1 | `0.16%` |
 | **PowerShell** | 2 | `0.10%` |
 | **Portugol** | 4 | `0.04%` |
 | **Batch** | 5 | `0.02%` |
@@ -638,23 +638,23 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **20 linguagens** · **71 repositórios públicos** · **26.73 MB de código detectado** · atualizado em `2026-10-07 09:58 UTC`
+> **20 linguagens** · **71 repositórios públicos** · **26.73 MB de código detectado** · atualizado em `2026-10-08 06:27 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
-| 1 | **JavaScript** | `6.88 MB` | `25.74%` | 22 |
-| 2 | **TypeScript** | `4.88 MB` | `18.26%` | 7 |
-| 3 | **Rust** | `3.94 MB` | `14.74%` | 5 |
+| 1 | **JavaScript** | `6.88 MB` | `25.73%` | 22 |
+| 2 | **TypeScript** | `4.88 MB` | `18.25%` | 7 |
+| 3 | **Rust** | `3.95 MB` | `14.76%` | 5 |
 | 4 | **C#** | `3.94 MB` | `14.74%` | 3 |
-| 5 | **HTML** | `3.85 MB` | `14.40%` | 23 |
-| 6 | **Python** | `1.02 MB` | `3.83%` | 9 |
+| 5 | **HTML** | `3.85 MB` | `14.39%` | 23 |
+| 6 | **Python** | `1.02 MB` | `3.82%` | 9 |
 | 7 | **CSS** | `1011.5 KB` | `3.70%` | 17 |
 | 8 | **Java** | `843.5 KB` | `3.08%` | 7 |
 | 9 | **PL/pgSQL** | `141.4 KB` | `0.52%` | 3 |
 | 10 | **Shell** | `72.4 KB` | `0.26%` | 8 |
 | 11 | **GDScript** | `56.8 KB` | `0.21%` | 2 |
 | 12 | **SQF** | `52.0 KB` | `0.19%` | 1 |
-| 13 | **C++** | `42.2 KB` | `0.15%` | 1 |
+| 13 | **C++** | `43.3 KB` | `0.16%` | 1 |
 | 14 | **PowerShell** | `26.9 KB` | `0.10%` | 2 |
 | 15 | **Portugol** | `11.7 KB` | `0.04%` | 4 |
 | 16 | **Batch** | `5.3 KB` | `0.02%` | 5 |
