@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-08T00:59:20Z",
+  "scanned_at": "2026-10-08T07:23:19Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "4d1ee4c5512c52e2ba27ebcbdb585f9a87f9cba1",
-      "date": "2026-10-08T00:54:51Z",
-      "message": "NEXORA: verify traversal across generated chunk terrain",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/4d1ee4c5512c52e2ba27ebcbdb585f9a87f9cba1"
+      "sha": "8f959ecb2fbea2fef4c2ef42f3dde733c7a2475b",
+      "date": "2026-10-08T02:32:08Z",
+      "message": "NEXORA: resolve DEBT-0054 by implementing versioned terrain with bounded slopes, enabling player traversal across chunk boundaries",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/8f959ecb2fbea2fef4c2ef42f3dde733c7a2475b"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -377,10 +377,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "a796c3fcb074c9b857b4f2dd4e6fb03859f231f4",
-      "date": "2026-10-07T19:03:10Z",
+      "sha": "b7b6fd93f6831042554bb985ac45c091186d1faf",
+      "date": "2026-10-08T06:27:26Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/a796c3fcb074c9b857b4f2dd4e6fb03859f231f4"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/b7b6fd93f6831042554bb985ac45c091186d1faf"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -465,15 +465,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3609,
-    "project_commits": 3350,
-    "monitor_commits": 259,
-    "detected_project_commits_this_scan": 10,
+    "tracked_commits": 3612,
+    "project_commits": 3352,
+    "monitor_commits": 260,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 67,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
