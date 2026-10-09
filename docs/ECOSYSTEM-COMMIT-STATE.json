@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-08T21:18:55Z",
+  "scanned_at": "2026-10-09T02:08:33Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -215,10 +215,10 @@
     },
     "Cosmos": {
       "branch": "main",
-      "sha": "a41079104b911abc82824210c0070e90448711e7",
-      "date": "2026-09-10T19:22:50Z",
-      "message": "docs: add Phase 0 audit report",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/a41079104b911abc82824210c0070e90448711e7"
+      "sha": "c5453aa33e44e81c6962b4f3365db351fcf90135",
+      "date": "2026-10-08T23:08:15Z",
+      "message": "docs(index): link Claude Code protocol and canonical master plan",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/c5453aa33e44e81c6962b4f3365db351fcf90135"
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "8f959ecb2fbea2fef4c2ef42f3dde733c7a2475b",
-      "date": "2026-10-08T02:32:08Z",
-      "message": "NEXORA: resolve DEBT-0054 by implementing versioned terrain with bounded slopes, enabling player traversal across chunk boundaries",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/8f959ecb2fbea2fef4c2ef42f3dde733c7a2475b"
+      "sha": "b686b181fb23a5002a78aa2a4d60b3eea169e977",
+      "date": "2026-10-08T22:18:51Z",
+      "message": "Merge pull request #49 from Lucas-Belucci-Bellini/chore/asset-prompts-from-issues",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/b686b181fb23a5002a78aa2a4d60b3eea169e977"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -465,15 +465,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3614,
-    "project_commits": 3353,
-    "monitor_commits": 261,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 3934,
+    "project_commits": 3672,
+    "monitor_commits": 262,
+    "detected_project_commits_this_scan": 319,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 67,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
