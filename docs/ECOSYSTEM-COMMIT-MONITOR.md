@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-09T02:08:33Z`  
+**Última varredura:** `2026-10-09T09:02:03Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `67`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3934`
-- **Commits dos projetos:** `3672`
-- **Commits do próprio monitor:** `262`
-- **Commits de projetos detectados nesta hora:** `319`
+- **Commits rastreados pelo ecossistema:** `3936`
+- **Commits dos projetos:** `3673`
+- **Commits do próprio monitor:** `263`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Cosmos** — 75 commit(s) — [c5453aa33e44](https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/c5453aa33e44e81c6962b4f3365db351fcf90135) — docs(index): link Claude Code protocol and canonical master plan
-- **NEXORA** — 244 commit(s) — [b686b181fb23](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/b686b181fb23a5002a78aa2a4d60b3eea169e977) — Merge pull request #49 from Lucas-Belucci-Bellini/chore/asset-prompts-from-issues
+- **Projeto-Baluarte** — 1 commit(s) — [58c6a26e13dd](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/58c6a26e13dd00e143dc1228add08f7547ee8226) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
