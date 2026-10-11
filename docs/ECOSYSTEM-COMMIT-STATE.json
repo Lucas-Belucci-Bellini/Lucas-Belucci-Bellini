@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-11T15:39:22Z",
+  "scanned_at": "2026-10-11T20:15:24Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -208,24 +208,24 @@
     },
     "Cookie-Clicker-Bot": {
       "branch": "main",
-      "sha": "2d4536f8e4b95e97201f0394fedadbef2f845928",
-      "date": "2026-10-01T19:29:13Z",
-      "message": "docs(v6.27): document virtual mouse click burst",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot/commit/2d4536f8e4b95e97201f0394fedadbef2f845928"
+      "sha": "c3ccedada7ce692a378fc6a99edcc386a016b4d5",
+      "date": "2026-10-11T16:29:45Z",
+      "message": "docs: add repository-specific engineering prompt",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot/commit/c3ccedada7ce692a378fc6a99edcc386a016b4d5"
     },
     "Cosmos": {
       "branch": "main",
-      "sha": "c5453aa33e44e81c6962b4f3365db351fcf90135",
-      "date": "2026-10-08T23:08:15Z",
-      "message": "docs(index): link Claude Code protocol and canonical master plan",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/c5453aa33e44e81c6962b4f3365db351fcf90135"
+      "sha": "3303c6b160118726e7fe165d4d192a4244742fc3",
+      "date": "2026-10-11T18:29:48Z",
+      "message": "Add documentation report for link integrity check on Markdown files",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cosmos/commit/3303c6b160118726e7fe165d4d192a4244742fc3"
     },
     "Cronicas-da-Baluarte-Onde-os-Deuses-Sangram": {
       "branch": "main",
-      "sha": "9f95763c71260ea8dc50da28fc73432d064c916d",
-      "date": "2026-10-07T03:35:26Z",
-      "message": "feat: adiciona diálogos e cenas adicionais ao roteiro",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/9f95763c71260ea8dc50da28fc73432d064c916d"
+      "sha": "3479ad4d74f15cdbee407509c348feaa11cf0166",
+      "date": "2026-10-11T16:29:50Z",
+      "message": "docs: add repository-specific engineering prompt",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram/commit/3479ad4d74f15cdbee407509c348feaa11cf0166"
     },
     "Customizable-birthday-invitation": {
       "branch": "main",
@@ -236,10 +236,10 @@
     },
     "DailyPlanner": {
       "branch": "main",
-      "sha": "c40c91828f3d1c0ebaedc7b2b60d01437c00d713",
-      "date": "2026-08-14T18:20:15Z",
-      "message": "fix: configurar deploy Vite na Vercel",
-      "url": "https://github.com/Lucas-Belucci-Bellini/DailyPlanner/commit/c40c91828f3d1c0ebaedc7b2b60d01437c00d713"
+      "sha": "c1a9659bc66dd8a71cf35ff5933db06898b9a109",
+      "date": "2026-10-11T16:29:52Z",
+      "message": "docs: add repository-specific engineering prompt",
+      "url": "https://github.com/Lucas-Belucci-Bellini/DailyPlanner/commit/c1a9659bc66dd8a71cf35ff5933db06898b9a109"
     },
     "Decision-Structures": {
       "branch": "main",
@@ -264,10 +264,10 @@
     },
     "FanVerse": {
       "branch": "main",
-      "sha": "8eacb09479340ff89998499e5182d0eb32d49392",
-      "date": "2026-09-15T20:10:00Z",
-      "message": "Simplifica a documentação do site FanVerse",
-      "url": "https://github.com/Lucas-Belucci-Bellini/FanVerse/commit/8eacb09479340ff89998499e5182d0eb32d49392"
+      "sha": "4f82439deb4f22d74a83883fd74d1847922d32f8",
+      "date": "2026-10-11T16:29:55Z",
+      "message": "docs: add repository-specific engineering prompt",
+      "url": "https://github.com/Lucas-Belucci-Bellini/FanVerse/commit/4f82439deb4f22d74a83883fd74d1847922d32f8"
     },
     "Flowgorithm-": {
       "branch": "main",
@@ -278,10 +278,10 @@
     },
     "FLUX": {
       "branch": "main",
-      "sha": "82eb0b2c3a917ccdb2c1f9ee93454afebcad5ea6",
-      "date": "2026-09-04T23:58:30Z",
-      "message": "docs(web): record phase 0 implementation status",
-      "url": "https://github.com/Lucas-Belucci-Bellini/FLUX/commit/82eb0b2c3a917ccdb2c1f9ee93454afebcad5ea6"
+      "sha": "315535e3ac245db15fffcfa0f7f01070e061acb4",
+      "date": "2026-10-11T16:29:57Z",
+      "message": "docs: add repository-specific engineering prompt",
+      "url": "https://github.com/Lucas-Belucci-Bellini/FLUX/commit/315535e3ac245db15fffcfa0f7f01070e061acb4"
     },
     "G-mod-Black-mesa": {
       "branch": "main",
@@ -313,10 +313,10 @@
     },
     "Kizeo-Forms": {
       "branch": "main",
-      "sha": "6cac446abbffc674012909163a185edc16f09e3d",
-      "date": "2026-08-21T00:20:38Z",
-      "message": "docs: add phase 2 experience and reporting prompt",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Kizeo-Forms/commit/6cac446abbffc674012909163a185edc16f09e3d"
+      "sha": "14674b4b471a6b19c9ebacb792ef3efcf1d63597",
+      "date": "2026-10-11T16:30:00Z",
+      "message": "docs: add repository-specific engineering prompt",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Kizeo-Forms/commit/14674b4b471a6b19c9ebacb792ef3efcf1d63597"
     },
     "LLBR-Innovations-": {
       "branch": "main",
@@ -342,10 +342,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "c2fb033c4f027fd30e5e6aa3473d18be47a230b8",
-      "date": "2026-10-11T15:15:34Z",
-      "message": "Merge pull request #58 from Lucas-Belucci-Bellini/local-walk-check",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/c2fb033c4f027fd30e5e6aa3473d18be47a230b8"
+      "sha": "015f7dcbc9e3e2b5cb8d80b21d5c0cff810fc28d",
+      "date": "2026-10-11T16:31:09Z",
+      "message": "docs(validation): record phase 0 evidence and walk checks",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/015f7dcbc9e3e2b5cb8d80b21d5c0cff810fc28d"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -370,17 +370,17 @@
     },
     "Project-Vanguard": {
       "branch": "main",
-      "sha": "c019c1f58471ce1ac34d7b10ab47f6cd19b299ba",
-      "date": "2026-09-05T16:55:01Z",
-      "message": "docs: define real data extraction contract",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/c019c1f58471ce1ac34d7b10ab47f6cd19b299ba"
+      "sha": "7c5681780be43db0ba926c765839baf8c991b866",
+      "date": "2026-10-11T16:30:07Z",
+      "message": "docs: add repository-specific engineering prompt",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Project-Vanguard/commit/7c5681780be43db0ba926c765839baf8c991b866"
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "4b681e9ee57a958bb1b2a90b86a9521b3900a1e3",
-      "date": "2026-10-11T06:10:07Z",
+      "sha": "7f82c6fe2f4a8ef8dc993ffa63888c585b6bfd88",
+      "date": "2026-10-11T17:45:11Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/4b681e9ee57a958bb1b2a90b86a9521b3900a1e3"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/7f82c6fe2f4a8ef8dc993ffa63888c585b6bfd88"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -395,10 +395,10 @@
     },
     "Projetos-Futuros": {
       "branch": "main",
-      "sha": "dd045bc7f6f66123a7851ed4346b07c1314d44b2",
-      "date": "2026-09-15T00:58:33Z",
-      "message": "docs: add future operating system branch",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projetos-Futuros/commit/dd045bc7f6f66123a7851ed4346b07c1314d44b2"
+      "sha": "1fd272dc08e8633207327e3bdd75b3c9d236cf9d",
+      "date": "2026-10-11T16:30:24Z",
+      "message": "docs: add project-specific prompts",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projetos-Futuros/commit/1fd272dc08e8633207327e3bdd75b3c9d236cf9d"
     },
     "Python": {
       "branch": "main",
@@ -458,22 +458,22 @@
     },
     "Veritas": {
       "branch": "main",
-      "sha": "4ab8f59009a24fa618d5c76e89ac65ee61d2b347",
-      "date": "2026-08-27T19:06:40Z",
-      "message": "test: verify local chip library smoke",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/4ab8f59009a24fa618d5c76e89ac65ee61d2b347"
+      "sha": "85a6c806cb992fbd5a02693641bf1b42baa86bc3",
+      "date": "2026-10-11T16:30:12Z",
+      "message": "docs: add repository-specific engineering prompt",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Veritas/commit/85a6c806cb992fbd5a02693641bf1b42baa86bc3"
     }
   },
   "metrics": {
-    "tracked_commits": 3960,
-    "project_commits": 3692,
-    "monitor_commits": 268,
-    "detected_project_commits_this_scan": 4,
+    "tracked_commits": 3982,
+    "project_commits": 3713,
+    "monitor_commits": 269,
+    "detected_project_commits_this_scan": 21,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 67,
-    "repositories_changed": 1,
+    "repositories_changed": 12,
     "errors": 3
   },
   "errors": [
