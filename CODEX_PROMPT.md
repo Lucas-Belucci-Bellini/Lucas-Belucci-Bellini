@@ -1,0 +1,3 @@
+# Lucas-Belucci-Bellini — prompt de engenharia
+
+Siga AGENTS.md e leia auditoria, decisões, migração, banco e instruções das crates afetadas. Respeite direção de dependências do workspace Rust, contratos de armazenamento, migrações SQL, determinismo e pipeline dos artefatos. Não crie dependências entre repos irmãos nem edite README gerado sem conhecer a fonte canônica. Use toolchain fixado; rode format, clippy e testes proporcionais. Mudanças DB requerem os testes documentados em ambiente isolado, nunca produção. Preserve diffs locais, não exponha segredos e reporte compatibilidade, migrações e evidências.
