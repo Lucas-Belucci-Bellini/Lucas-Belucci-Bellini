@@ -2,26 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-11T08:48:44Z`  
+**Última varredura:** `2026-10-11T15:39:22Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `67`  
-**Repositórios com mudanças desde a última varredura:** `3`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `3955`
-- **Commits dos projetos:** `3688`
-- **Commits do próprio monitor:** `267`
-- **Commits de projetos detectados nesta hora:** `12`
+- **Commits rastreados pelo ecossistema:** `3960`
+- **Commits dos projetos:** `3692`
+- **Commits do próprio monitor:** `268`
+- **Commits de projetos detectados nesta hora:** `4`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **NEXORA** — 8 commit(s) — [b1524b3eb27c](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/b1524b3eb27c102dac6592ce0c3ad7937be8b268) — Merge pull request #53 from Lucas-Belucci-Bellini/claude/pensive-fermat-2kiszu
-- **Projeto-Baluarte** — 1 commit(s) — [4b681e9ee57a](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/4b681e9ee57a958bb1b2a90b86a9521b3900a1e3) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
-- **UMBRA-LIMA-ALFA** — 3 commit(s) — [dd5ee1acc58e](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/dd5ee1acc58e99c03a2fb3fa8087dadb11cc3ebd) — Update DISPLAY BIN-9 configuration to version 2.3.0
+- **NEXORA** — 4 commit(s) — [c2fb033c4f02](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/c2fb033c4f027fd30e5e6aa3473d18be47a230b8) — Merge pull request #58 from Lucas-Belucci-Bellini/local-walk-check
 
 ## Erros de consulta
 

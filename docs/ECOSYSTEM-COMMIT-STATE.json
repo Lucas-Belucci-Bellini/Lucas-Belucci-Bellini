@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-11T08:48:44Z",
+  "scanned_at": "2026-10-11T15:39:22Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -342,10 +342,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "b1524b3eb27c102dac6592ce0c3ad7937be8b268",
-      "date": "2026-10-11T03:48:38Z",
-      "message": "Merge pull request #53 from Lucas-Belucci-Bellini/claude/pensive-fermat-2kiszu",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/b1524b3eb27c102dac6592ce0c3ad7937be8b268"
+      "sha": "c2fb033c4f027fd30e5e6aa3473d18be47a230b8",
+      "date": "2026-10-11T15:15:34Z",
+      "message": "Merge pull request #58 from Lucas-Belucci-Bellini/local-walk-check",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/c2fb033c4f027fd30e5e6aa3473d18be47a230b8"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -465,15 +465,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3955,
-    "project_commits": 3688,
-    "monitor_commits": 267,
-    "detected_project_commits_this_scan": 12,
+    "tracked_commits": 3960,
+    "project_commits": 3692,
+    "monitor_commits": 268,
+    "detected_project_commits_this_scan": 4,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 67,
-    "repositories_changed": 3,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
