@@ -86,7 +86,7 @@ My work ranges from **8-to-64-bit CPUs built from scratch** to **web application
 
 <sub>Agentes, automação e sistemas de conhecimento.</sub>
 
-`3 projetos` · `0 com site`
+`3 projetos` · `1 com site`
 
 <sub>ex.: DailyPlanner</sub>
 
@@ -203,6 +203,21 @@ GPS topográfico tático e computador de tiro em JavaScript/Vite/MapLibre GL, co
 </td>
 <td width="50%" valign="top">
 
+<sub>`IA & AUTOMAÇÃO`</sub>
+
+### DailyPlanner
+
+Agenda diária em TypeScript/Vite para cadastrar, editar, concluir, excluir, buscar e filtrar atividades no navegador.
+
+![Site verificado](https://img.shields.io/badge/%E2%97%8F%20SITE%20VERIFICADO-3ddc84?style=flat-square&labelColor=0e0c16)
+
+[![Abrir site](https://img.shields.io/badge/%E2%96%B8%20ABRIR%20SITE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://daily-planner-phi-smoky.vercel.app) [![Código](https://img.shields.io/badge/C%C3%93DIGO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/DailyPlanner)
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
 <sub>`ECOSSISTEMA BALUARTE`</sub>
 
 ### Projeto-Baluarte-World-Game
@@ -214,8 +229,6 @@ Conceito e protótipo de jogo de sobrevivência, construção e consequência si
 [![Abrir site](https://img.shields.io/badge/%E2%96%B8%20ABRIR%20SITE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://projeto-baluarte-world-game.vercel.app) [![Código](https://img.shields.io/badge/C%C3%93DIGO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game)
 
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 
 <sub>`WEB`</sub>
@@ -227,19 +240,6 @@ Descrição pública não informada.
 ![Site verificado](https://img.shields.io/badge/%E2%97%8F%20SITE%20VERIFICADO-3ddc84?style=flat-square&labelColor=0e0c16)
 
 [![Abrir site](https://img.shields.io/badge/%E2%96%B8%20ABRIR%20SITE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://code-vibe-academy.vercel.app) [![Código](https://img.shields.io/badge/C%C3%93DIGO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy)
-
-</td>
-<td width="50%" valign="top">
-
-<sub>`WEB`</sub>
-
-### Essence-Custom-Furniture
-
-Descrição pública não informada.
-
-![Site verificado](https://img.shields.io/badge/%E2%97%8F%20SITE%20VERIFICADO-3ddc84?style=flat-square&labelColor=0e0c16)
-
-[![Abrir site](https://img.shields.io/badge/%E2%96%B8%20ABRIR%20SITE-d4a24e?style=for-the-badge&labelColor=0e0c16)](https://essence-custom-furniture.vercel.app) [![Código](https://img.shields.io/badge/C%C3%93DIGO-4b3a5c?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture)
 
 </td>
 </tr>
@@ -262,7 +262,7 @@ Descrição pública não informada.
 | 3 | **ENGINEERING / FIELD TOOL** · baluarte-obra-segura | Hub de engenharia para obras com editor de painéis, calculadoras, simuladores e base WikiBuild. | 🟡 In Development | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) |
 | 4 | **TACTICAL WEB / MAPS** · Project-Vanguard | GPS topográfico tático e computador de tiro construído com stack web e visualização geográfica. | 🟢 Active | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) |
 | 5 | **CPU BUILD / SIMULATION** · Digital-Logic-Sim-CE | Simulação de lógica digital que documenta a linha de construção de computadores e chips funcionais. | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
-| 6 | **WEB APP / PRODUCTIVITY** · DailyPlanner | Agenda web em TypeScript para organizar, buscar, filtrar e concluir atividades no navegador. | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
+| 6 | **WEB APP / PRODUCTIVITY** · DailyPlanner | Agenda web em TypeScript para organizar, buscar, filtrar e concluir atividades no navegador. | 🟢 Active | **[▸ Abrir site](https://daily-planner-phi-smoky.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
 | 7 | **GAME / WORLD-BUILDING** · Projeto-Baluarte-World-Game | Protótipo de sobrevivência, construção e consequência situado no universo Baluarte. | 🟡 In Development | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
 | 8 | **WEB** · Ark-Initiative | Conceito ARCA de infraestrutura de resiliência climática e ambiental, com visão pública de dados, simulação e resposta. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
 | 9 | **DIGITAL LOGIC / HARDWARE** · CHIPS-Digital-Logic-Sim-Lucas-Belucci | Coleção pública de chips e testes de lógica digital. | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
@@ -274,12 +274,13 @@ Descrição pública não informada.
 ## `// SITES NO AR` · LIVE WEBSITES
 
 <!-- WEBSITE-DIRECTORY:START -->
-> **9 sites no ar** · cada link foi conferido por requisição HTTP nesta auditoria.
+> **10 sites no ar** · cada link foi conferido por requisição HTTP nesta auditoria.
 
 <div align="center">
 
 [![baluarte-obra-segura](https://img.shields.io/badge/%F0%9F%8C%90%20BALUARTE-OBRA-SEGURA-d4a24e?style=flat-square&labelColor=0e0c16)](https://baluarte-obra-segura.vercel.app)
 [![CodeVibe-Academy](https://img.shields.io/badge/%F0%9F%8C%90%20CODEVIBE-ACADEMY-d4a24e?style=flat-square&labelColor=0e0c16)](https://code-vibe-academy.vercel.app)
+[![DailyPlanner](https://img.shields.io/badge/%F0%9F%8C%90%20DAILYPLANNER-d4a24e?style=flat-square&labelColor=0e0c16)](https://daily-planner-phi-smoky.vercel.app)
 [![Essence-Custom-Furniture](https://img.shields.io/badge/%F0%9F%8C%90%20ESSENCE-CUSTOM-FURNITURE-d4a24e?style=flat-square&labelColor=0e0c16)](https://essence-custom-furniture.vercel.app)
 [![LLBR-Innovations-Constructions](https://img.shields.io/badge/%F0%9F%8C%90%20LLBR-INNOVATIONS-CONSTRUCTIONS-d4a24e?style=flat-square&labelColor=0e0c16)](https://llbr-innovations-constructions.vercel.app)
 [![NEXORA](https://img.shields.io/badge/%F0%9F%8C%90%20NEXORA-d4a24e?style=flat-square&labelColor=0e0c16)](https://web-2qfw.vercel.app)
@@ -296,6 +297,7 @@ Descrição pública não informada.
 |:---|:---|:---:|:---|
 | **baluarte-obra-segura** | **[▸ Abrir site](https://baluarte-obra-segura.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-obra-segura) |
 | **CodeVibe-Academy** | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) |
+| **DailyPlanner** | **[▸ Abrir site](https://daily-planner-phi-smoky.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
 | **Essence-Custom-Furniture** | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) |
 | **LLBR-Innovations-Constructions** | **[▸ Abrir site](https://llbr-innovations-constructions.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) |
 | **NEXORA** | **[▸ Abrir site](https://web-2qfw.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/NEXORA) |
@@ -397,6 +399,9 @@ ECOSSISTEMA
 ├── Digital Logic / Hardware ...  4 projetos · 1 com site
 │   └─ Veritas ● · Digital-Logic-Sim-CE · CHIPS-Digital-Logic-Sim-Lucas-Belucci · UMBRA-LIMA-ALFA
 │
+├── IA & Automação .............  3 projetos · 1 com site
+│   └─ DailyPlanner ● · AI-second-brain-with-Claude-and-Obsidian · Kizeo-Forms
+│
 ├── Academia ................... 10 projetos · 0 com site
 │   └─ Academic-Portfolio · Atividade-6 · Decision-Structures · Flowgorithm- · +6
 │
@@ -405,9 +410,6 @@ ECOSSISTEMA
 │
 ├── Games ......................  6 projetos · 0 com site
 │   └─ Recycle-game · Catacombs-of-Paris-Ossuary-Escape-game-design · G-mod-Black-mesa · MOD-PACK-MINE-BACKUP · +2
-│
-├── IA & Automação .............  3 projetos · 0 com site
-│   └─ DailyPlanner · AI-second-brain-with-Claude-and-Obsidian · Kizeo-Forms
 │
 └── Experimentos ...............  1 projeto  · 0 com site
     └─ Projeto_01_endless_gnome
@@ -464,7 +466,7 @@ ECOSSISTEMA
 | **Cosmos** | Software & Ferramentas | `TypeScript` `JavaScript` `HTML` `Python` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cosmos) |
 | **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** | Ecossistema Baluarte | — | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram) |
 | **Customizable-birthday-invitation** | Web | `HTML` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) |
-| **DailyPlanner** | IA & Automação | `TypeScript` `CSS` `HTML` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
+| **DailyPlanner** | IA & Automação | `TypeScript` `CSS` `HTML` | 🟢 Active | **[▸ Abrir site](https://daily-planner-phi-smoky.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
 | **Decision-Structures** | Academia | `Portugol` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Decision-Structures) |
 | **DelaOmegaAlfa** | Software & Ferramentas | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/DelaOmegaAlfa) |
 | **Digital-Logic-Sim-CE** | Digital Logic / Hardware | `C#` `CSS` `HTML` `JavaScript` `ShaderLab` | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
@@ -490,6 +492,7 @@ ECOSSISTEMA
 | **Multi-functional-site-Baluarte** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Multi-functional-site-Baluarte) |
 | **NEXORA** | Web | `Rust` `Python` `C++` `Shell` `CSS` | 🟢 Active | **[▸ Abrir site](https://web-2qfw.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/NEXORA) |
 | **OMEGA-ALFA-DELTA** | Software & Ferramentas | `HTML` `CSS` `JavaScript` `Java` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/OMEGA-ALFA-DELTA) |
+| **Orbital-Salvage** | Software & Ferramentas | `GDScript` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Orbital-Salvage) |
 | **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | Ecossistema Baluarte | `HTML` `CSS` `JavaScript` | 🟢 Active | **[▸ Abrir site](https://portifolio-baluarte-lucas-belucci-b.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) |
 | **procedural-backrooms-game** | Games | `Wolfram Language` `C#` `CSS` | 🟢 Active | [código](https://github.com/dannax4547/procedural-backrooms-game) |
 | **Project-Baluarte-DevFlow** | Ecossistema Baluarte | `PowerShell` `Shell` `Batch` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Project-Baluarte-DevFlow) |
@@ -571,14 +574,14 @@ ECOSSISTEMA
 
 | Linguagem | Repositórios | Participação |
 |:---|---:|---:|
-| **JavaScript** | 22 | `25.74%` |
-| **TypeScript** | 7 | `18.22%` |
-| **Rust** | 5 | `14.79%` |
+| **JavaScript** | 22 | `25.73%` |
+| **TypeScript** | 7 | `18.21%` |
+| **Rust** | 5 | `14.78%` |
 | **C#** | 4 | `14.73%` |
-| **HTML** | 23 | `14.37%` |
-| **Python** | 9 | `3.81%` |
+| **HTML** | 23 | `14.36%` |
+| **Python** | 9 | `3.84%` |
 | **CSS** | 18 | `3.69%` |
-| **Java** | 7 | `3.08%` |
+| **Java** | 7 | `3.07%` |
 | **PL/pgSQL** | 3 | `0.52%` |
 | **Shell** | 8 | `0.27%` |
 | **GDScript** | 2 | `0.21%` |
@@ -642,18 +645,18 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **21 linguagens** · **72 repositórios públicos** · **26.78 MB de código detectado** · atualizado em `2026-10-11 06:10 UTC`
+> **21 linguagens** · **72 repositórios públicos** · **26.79 MB de código detectado** · atualizado em `2026-10-12 06:17 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
-| 1 | **JavaScript** | `6.89 MB` | `25.74%` | 22 |
-| 2 | **TypeScript** | `4.88 MB` | `18.22%` | 7 |
-| 3 | **Rust** | `3.96 MB` | `14.79%` | 5 |
+| 1 | **JavaScript** | `6.89 MB` | `25.73%` | 22 |
+| 2 | **TypeScript** | `4.88 MB` | `18.21%` | 7 |
+| 3 | **Rust** | `3.96 MB` | `14.78%` | 5 |
 | 4 | **C#** | `3.95 MB` | `14.73%` | 4 |
-| 5 | **HTML** | `3.85 MB` | `14.37%` | 23 |
-| 6 | **Python** | `1.02 MB` | `3.81%` | 9 |
+| 5 | **HTML** | `3.85 MB` | `14.36%` | 23 |
+| 6 | **Python** | `1.03 MB` | `3.84%` | 9 |
 | 7 | **CSS** | `1012.7 KB` | `3.69%` | 18 |
-| 8 | **Java** | `843.5 KB` | `3.08%` | 7 |
+| 8 | **Java** | `843.5 KB` | `3.07%` | 7 |
 | 9 | **PL/pgSQL** | `141.4 KB` | `0.52%` | 3 |
 | 10 | **Shell** | `72.7 KB` | `0.27%` | 8 |
 | 11 | **GDScript** | `56.8 KB` | `0.21%` | 2 |
@@ -724,7 +727,7 @@ ECOSSISTEMA
 
 | REPOSITÓRIOS | PÚBLICOS | PRIVADOS VISÍVEIS | DEPLOYMENTS |
 |:---:|:---:|:---:|:---:|
-| **91** | **72** | **19** | **9** |
+| **92** | **72** | **20** | **10** |
 
 | ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
 |:---:|:---:|:---:|:---:|
@@ -777,7 +780,7 @@ ECOSSISTEMA
 | **Cosmos** | Software & Ferramentas | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cosmos) |
 | **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** | Ecossistema Baluarte | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram) |
 | **Customizable-birthday-invitation** | Web | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) |
-| **DailyPlanner** | IA & Automação | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
+| **DailyPlanner** | IA & Automação | 🟢 Active | **[▸ Abrir site](https://daily-planner-phi-smoky.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
 | **Decision-Structures** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Decision-Structures) |
 | **Digital-Logic-Sim-CE** | Digital Logic / Hardware | 🔵 Experimental | [código](https://github.com/Lucas-Belucci-Bellini/Digital-Logic-Sim-CE) |
 | **DriveTax-Motors** | Web | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/DriveTax-Motors) |
@@ -843,6 +846,7 @@ ECOSSISTEMA
 | **Games** | Games | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Games) |
 | **Guia-De-Fallout-4-Completo-** | Games | Crie no tedio | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Guia-De-Fallout-4-Completo-) |
 | **LOCAL-DE-TRABALHO** | Web | dados para trabalho e criação de sites | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/LOCAL-DE-TRABALHO) |
+| **Orbital-Salvage** | Software & Ferramentas | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Orbital-Salvage) |
 | **Projeto-Baluarte-AI-Contador** | Ecossistema Baluarte | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-AI-Contador) |
 | **Projeto-Baluarte-New-game** | Ecossistema Baluarte | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-New-game) |
 | **PromoRadar** | Web | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/PromoRadar) |
