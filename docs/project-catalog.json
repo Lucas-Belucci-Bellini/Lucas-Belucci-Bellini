@@ -2,9 +2,9 @@
   "schema": "lucas-belucci-bellini/project-catalog@1",
   "note": "Gerado por scripts/update_profile.py. Não editar à mão: ajuste docs/README_SITES.json, docs/README_FEATURED.json ou a lógica do gerador.",
   "counts": {
-    "projects": 92,
+    "projects": 94,
     "public": 72,
-    "private": 20,
+    "private": 22,
     "with_live_website": 10
   },
   "categories": [
@@ -1304,6 +1304,23 @@
       "private": true
     },
     {
+      "repository": "Lucas-Belucci-Bellini/All-The-Mods-10",
+      "name": "All-The-Mods-10",
+      "slug": "all-the-mods-10",
+      "description": "Descrição pública não informada.",
+      "category": "Software & Tools",
+      "category_label": "Software & Ferramentas",
+      "status": "🔒 Private",
+      "github": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10",
+      "github_visible": true,
+      "github_role": "primary",
+      "primary_cta": "github",
+      "secondary_cta": null,
+      "featured": false,
+      "marketing_priority": 20,
+      "private": true
+    },
+    {
       "repository": "itssomeone4/Atividade4",
       "name": "Atividade4",
       "slug": "atividade4",
@@ -1319,6 +1336,23 @@
       "featured": false,
       "marketing_priority": 20,
       "private": false
+    },
+    {
+      "repository": "Lucas-Belucci-Bellini/ATM-10",
+      "name": "ATM-10",
+      "slug": "atm-10",
+      "description": "Descrição pública não informada.",
+      "category": "Software & Tools",
+      "category_label": "Software & Ferramentas",
+      "status": "🔒 Private",
+      "github": "https://github.com/Lucas-Belucci-Bellini/ATM-10",
+      "github_visible": true,
+      "github_role": "primary",
+      "primary_cta": "github",
+      "secondary_cta": null,
+      "featured": false,
+      "marketing_priority": 20,
+      "private": true
     },
     {
       "repository": "Lucas-Belucci-Bellini/Backup-01-ALFA",

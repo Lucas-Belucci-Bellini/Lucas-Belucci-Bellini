@@ -428,9 +428,11 @@ ECOSSISTEMA
 | **Academic-Portfolio** | Academia | `JavaScript` `HTML` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) |
 | **AEGIS** | Web | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/AEGIS) |
 | **AI-second-brain-with-Claude-and-Obsidian** | IA & Automação | `Shell` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian) |
+| **All-The-Mods-10** | Software & Ferramentas | `GLSL` `PowerShell` `Shell` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10) |
 | **Ark-Initiative** | Web | `TypeScript` `HTML` `JavaScript` `Rust` `CSS` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
 | **Atividade-6** | Academia | — | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Atividade-6) |
 | **Atividade4** | Academia | `Portugol` | 🟣 Academic | [código](https://github.com/itssomeone4/Atividade4) |
+| **ATM-10** | Software & Ferramentas | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/ATM-10) |
 | **Backup-01-ALFA** | Infraestrutura / Backend / Dados | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Backup-01-ALFA) |
 | **Baluarte** | Ecossistema Baluarte | `HTML` `JavaScript` `CSS` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Baluarte) |
 | **baluarte-academia** | Ecossistema Baluarte | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-academia) |
@@ -645,7 +647,7 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **21 linguagens** · **72 repositórios públicos** · **26.79 MB de código detectado** · atualizado em `2026-10-13 06:58 UTC`
+> **21 linguagens** · **72 repositórios públicos** · **26.79 MB de código detectado** · atualizado em `2026-10-14 05:12 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
@@ -727,7 +729,7 @@ ECOSSISTEMA
 
 | REPOSITÓRIOS | PÚBLICOS | PRIVADOS VISÍVEIS | DEPLOYMENTS |
 |:---:|:---:|:---:|:---:|
-| **92** | **72** | **20** | **10** |
+| **94** | **72** | **22** | **10** |
 
 | ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
 |:---:|:---:|:---:|:---:|
@@ -834,6 +836,8 @@ ECOSSISTEMA
 |:---|:---|:---|:---|:---|
 | **-BANCO-DE-DADOS-** | Software & Ferramentas | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/-BANCO-DE-DADOS-) |
 | **AEGIS** | Web | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/AEGIS) |
+| **All-The-Mods-10** | Software & Ferramentas | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10) |
+| **ATM-10** | Software & Ferramentas | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/ATM-10) |
 | **Backup-01-ALFA** | Infraestrutura / Backend / Dados | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Backup-01-ALFA) |
 | **Baluarte** | Ecossistema Baluarte | Bom oque eu posso dizer é um site multi funções e com muitas coisas que são complexas  | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/Baluarte) |
 | **BALUARTE-FORGE-CONSTRUCTION** | Ecossistema Baluarte | Descrição pública não informada | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/BALUARTE-FORGE-CONSTRUCTION) |
