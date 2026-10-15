@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-15T18:17:07Z",
+  "scanned_at": "2026-10-15T22:15:58Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -16,6 +16,13 @@
       "date": "2026-05-08T18:02:54Z",
       "message": "Add setup-segundo-cerebro.sh and README",
       "url": "https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian/commit/57fc3fb931e2a66956ed00e4ae6c77a1f8102ad2"
+    },
+    "All-Skills-for-the-claude-code": {
+      "branch": "main",
+      "sha": "0bdec8aa8c723ebada415361ed7e1c6b0f4e43e7",
+      "date": "2026-10-15T17:47:52Z",
+      "message": "Merge pull request #1 from Lucas-Belucci-Bellini/feat/unified-all-skills-plugin",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/0bdec8aa8c723ebada415361ed7e1c6b0f4e43e7"
     },
     "Ark-Initiative": {
       "branch": "main",
@@ -465,15 +472,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 3999,
+    "tracked_commits": 4000,
     "project_commits": 3722,
-    "monitor_commits": 277,
-    "detected_project_commits_this_scan": 1,
+    "monitor_commits": 278,
+    "detected_project_commits_this_scan": 0,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 67,
-    "repositories_changed": 1,
+    "repositories_scanned": 68,
+    "repositories_changed": 0,
     "errors": 3
   },
   "errors": [
