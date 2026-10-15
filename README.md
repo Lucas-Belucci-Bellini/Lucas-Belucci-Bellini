@@ -73,7 +73,7 @@ My work ranges from **8-to-64-bit CPUs built from scratch** to **web application
 
 <sub>Plataformas, ferramentas e produtos web publicados.</sub>
 
-`39 projetos` · `8 com site`
+`41 projetos` · `10 com site`
 
 <sub>ex.: baluarte-obra-segura</sub>
 
@@ -127,7 +127,7 @@ My work ranges from **8-to-64-bit CPUs built from scratch** to **web application
 
 <sub>Utilitários, scripts e infraestrutura de apoio.</sub>
 
-`9 projetos` · `0 com site`
+`10 projetos` · `0 com site`
 
 <sub>ex.: Teste-aula-git</sub>
 
@@ -140,7 +140,7 @@ My work ranges from **8-to-64-bit CPUs built from scratch** to **web application
 
 <sub>Trabalhos de curso, estudos dirigidos e experimentos.</sub>
 
-`11 projetos` · `0 com site`
+`12 projetos` · `0 com site`
 
 <sub>ex.: Academic-Portfolio</sub>
 
@@ -274,7 +274,7 @@ Descrição pública não informada.
 ## `// SITES NO AR` · LIVE WEBSITES
 
 <!-- WEBSITE-DIRECTORY:START -->
-> **10 sites no ar** · cada link foi conferido por requisição HTTP nesta auditoria.
+> **12 sites no ar** · cada link foi conferido por requisição HTTP nesta auditoria.
 
 <div align="center">
 
@@ -282,11 +282,13 @@ Descrição pública não informada.
 [![CodeVibe-Academy](https://img.shields.io/badge/%F0%9F%8C%90%20CODEVIBE-ACADEMY-d4a24e?style=flat-square&labelColor=0e0c16)](https://code-vibe-academy.vercel.app)
 [![DailyPlanner](https://img.shields.io/badge/%F0%9F%8C%90%20DAILYPLANNER-d4a24e?style=flat-square&labelColor=0e0c16)](https://daily-planner-phi-smoky.vercel.app)
 [![Essence-Custom-Furniture](https://img.shields.io/badge/%F0%9F%8C%90%20ESSENCE-CUSTOM-FURNITURE-d4a24e?style=flat-square&labelColor=0e0c16)](https://essence-custom-furniture.vercel.app)
+[![hydra](https://img.shields.io/badge/%F0%9F%8C%90%20HYDRA-d4a24e?style=flat-square&labelColor=0e0c16)](https://hydralauncher.gg)
 [![LLBR-Innovations-Constructions](https://img.shields.io/badge/%F0%9F%8C%90%20LLBR-INNOVATIONS-CONSTRUCTIONS-d4a24e?style=flat-square&labelColor=0e0c16)](https://llbr-innovations-constructions.vercel.app)
 [![NEXORA](https://img.shields.io/badge/%F0%9F%8C%90%20NEXORA-d4a24e?style=flat-square&labelColor=0e0c16)](https://web-2qfw.vercel.app)
 [![Portifolio-Baluarte-Lucas-Belucci-Bellini-](https://img.shields.io/badge/%F0%9F%8C%90%20PORTIFOLIO-BALUARTE-LUCAS-BELUCCI-BELLINI--d4a24e?style=flat-square&labelColor=0e0c16)](https://portifolio-baluarte-lucas-belucci-b.vercel.app)
 [![Project-Vanguard](https://img.shields.io/badge/%F0%9F%8C%90%20PROJECT-VANGUARD-d4a24e?style=flat-square&labelColor=0e0c16)](https://project-vanguard-cyan.vercel.app)
 [![Projeto-Baluarte-World-Game](https://img.shields.io/badge/%F0%9F%8C%90%20PROJETO-BALUARTE-WORLD-GAME-d4a24e?style=flat-square&labelColor=0e0c16)](https://projeto-baluarte-world-game.vercel.app)
+[![rea](https://img.shields.io/badge/%F0%9F%8C%90%20REA-d4a24e?style=flat-square&labelColor=0e0c16)](https://rea.tools)
 [![Veritas](https://img.shields.io/badge/%F0%9F%8C%90%20VERITAS-d4a24e?style=flat-square&labelColor=0e0c16)](https://veritas-opal-seven.vercel.app)
 
 </div>
@@ -299,11 +301,13 @@ Descrição pública não informada.
 | **CodeVibe-Academy** | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) |
 | **DailyPlanner** | **[▸ Abrir site](https://daily-planner-phi-smoky.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/DailyPlanner) |
 | **Essence-Custom-Furniture** | **[▸ Abrir site](https://essence-custom-furniture.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Essence-Custom-Furniture) |
+| **hydra** | **[▸ Abrir site](https://hydralauncher.gg)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/hydra) |
 | **LLBR-Innovations-Constructions** | **[▸ Abrir site](https://llbr-innovations-constructions.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/LLBR-Innovations-Constructions) |
 | **NEXORA** | **[▸ Abrir site](https://web-2qfw.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/NEXORA) |
 | **Portifolio-Baluarte-Lucas-Belucci-Bellini-** | **[▸ Abrir site](https://portifolio-baluarte-lucas-belucci-b.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Portifolio-Baluarte-Lucas-Belucci-Bellini-) |
 | **Project-Vanguard** | **[▸ Abrir site](https://project-vanguard-cyan.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) |
 | **Projeto-Baluarte-World-Game** | **[▸ Abrir site](https://projeto-baluarte-world-game.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte-World-Game) |
+| **rea** | **[▸ Abrir site](https://rea.tools)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/rea) |
 | **Veritas** | **[▸ Abrir site](https://veritas-opal-seven.vercel.app)** | `HTTP 200` | [código](https://github.com/Lucas-Belucci-Bellini/Veritas) |
 <!-- LIVE-PROJECTS:END -->
 
@@ -393,8 +397,8 @@ ECOSSISTEMA
 ├── Ecossistema Baluarte ....... 32 projetos · 5 com site
 │   └─ baluarte-obra-segura ● · Project-Vanguard ● · Projeto-Baluarte-World-Game ● · LLBR-Innovations-Constructions ● · +28
 │
-├── Web ........................  7 projetos · 3 com site
-│   └─ CodeVibe-Academy ● · Essence-Custom-Furniture ● · NEXORA ● · Ark-Initiative · +3
+├── Web ........................  9 projetos · 5 com site
+│   └─ CodeVibe-Academy ● · Essence-Custom-Furniture ● · NEXORA ● · hydra ● · +5
 │
 ├── Digital Logic / Hardware ...  4 projetos · 1 com site
 │   └─ Veritas ● · Digital-Logic-Sim-CE · CHIPS-Digital-Logic-Sim-Lucas-Belucci · UMBRA-LIMA-ALFA
@@ -405,14 +409,14 @@ ECOSSISTEMA
 ├── Academia ................... 10 projetos · 0 com site
 │   └─ Academic-Portfolio · Atividade-6 · Decision-Structures · Flowgorithm- · +6
 │
-├── Software & Ferramentas .....  9 projetos · 0 com site
-│   └─ Cookie-Clicker-Bot · Cosmos · FanVerse · Lucas-Belucci-Bellini · +5
+├── Software & Ferramentas ..... 10 projetos · 0 com site
+│   └─ Ativ.-Geren-Proj · Cookie-Clicker-Bot · Cosmos · FanVerse · +6
 │
 ├── Games ......................  6 projetos · 0 com site
 │   └─ Recycle-game · Catacombs-of-Paris-Ossuary-Escape-game-design · G-mod-Black-mesa · MOD-PACK-MINE-BACKUP · +2
 │
-└── Experimentos ...............  1 projeto  · 0 com site
-    └─ Projeto_01_endless_gnome
+└── Experimentos ...............  2 projetos · 0 com site
+    └─ Ativ.-Geren-Proj · Projeto_01_endless_gnome
 ```
 
 > `●` marca projeto com site verificado nesta auditoria. Os ramos usam os rótulos editoriais que o README já exibe; o equivalente canônico, para reuso externo, está em [`docs/project-catalog.json`](docs/project-catalog.json). Repositórios privados não entram no mapa público.
@@ -428,8 +432,10 @@ ECOSSISTEMA
 | **Academic-Portfolio** | Academia | `JavaScript` `HTML` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) |
 | **AEGIS** | Web | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/AEGIS) |
 | **AI-second-brain-with-Claude-and-Obsidian** | IA & Automação | `Shell` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian) |
-| **All-The-Mods-10** | Software & Ferramentas | `GLSL` `PowerShell` `Shell` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10) |
+| **All-The-Mods-10** | Software & Ferramentas | `GLSL` `JavaScript` `Shell` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10) |
 | **Ark-Initiative** | Web | `TypeScript` `HTML` `JavaScript` `Rust` `CSS` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
+| **Ativ.-Geren-Proj** | Software & Ferramentas | `Python` | 🟢 Active | [código](https://github.com/jp-albano/Ativ.-Geren-Proj) |
+| **Ativ.-Geren-Proj** | Experimentos | `Python` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Ativ.-Geren-Proj) |
 | **Atividade-6** | Academia | — | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Atividade-6) |
 | **Atividade4** | Academia | `Portugol` | 🟣 Academic | [código](https://github.com/itssomeone4/Atividade4) |
 | **ATM-10** | Software & Ferramentas | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/ATM-10) |
@@ -464,7 +470,7 @@ ECOSSISTEMA
 | **Catacombs-of-Paris-Ossuary-Escape-game-design** | Games | `HTML` `C#` `JavaScript` `GDScript` `Batch` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Catacombs-of-Paris-Ossuary-Escape-game-design) |
 | **CHIPS-Digital-Logic-Sim-Lucas-Belucci** | Digital Logic / Hardware | — | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/CHIPS-Digital-Logic-Sim-Lucas-Belucci) |
 | **CodeVibe-Academy** | Web | `JavaScript` `HTML` | 🟡 In Development | **[▸ Abrir site](https://code-vibe-academy.vercel.app)** · [código](https://github.com/Lucas-Belucci-Bellini/CodeVibe-Academy) |
-| **Cookie-Clicker-Bot** | Software & Ferramentas | `JavaScript` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) |
+| **Cookie-Clicker-Bot** | Software & Ferramentas | `JavaScript` `Java` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cookie-Clicker-Bot) |
 | **Cosmos** | Software & Ferramentas | `TypeScript` `JavaScript` `HTML` `Python` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cosmos) |
 | **Cronicas-da-Baluarte-Onde-os-Deuses-Sangram** | Ecossistema Baluarte | — | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Cronicas-da-Baluarte-Onde-os-Deuses-Sangram) |
 | **Customizable-birthday-invitation** | Web | `HTML` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Customizable-birthday-invitation) |
@@ -483,6 +489,7 @@ ECOSSISTEMA
 | **Games** | Games | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Games) |
 | **Grupo-Atividade-4** | Academia | — | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Grupo-Atividade-4) |
 | **Guia-De-Fallout-4-Completo-** | Games | — | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/Guia-De-Fallout-4-Completo-) |
+| **hydra** | Web | `TypeScript` `SCSS` `Rust` `JavaScript` `C++` | 🟢 Active | **[▸ Abrir site](https://hydralauncher.gg)** · [código](https://github.com/Lucas-Belucci-Bellini/hydra) |
 | **Java-activities** | Academia | `Java` `Python` `JavaScript` `HTML` `CSS` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Java-activities) |
 | **JAVA-todos-os-codigos-em-java** | Academia | `Java` `Portugol` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) |
 | **Kizeo-Forms** | IA & Automação | — | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Kizeo-Forms) |
@@ -508,6 +515,7 @@ ECOSSISTEMA
 | **Projetos-Futuros** | Software & Ferramentas | — | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Projetos-Futuros) |
 | **PromoRadar** | Web | `TypeScript` `Rust` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/PromoRadar) |
 | **Python** | Academia | `Python` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Python) |
+| **rea** | Web | `TypeScript` `JavaScript` `HTML` `Python` `Java` | 🟢 Active | **[▸ Abrir site](https://rea.tools)** · [código](https://github.com/Lucas-Belucci-Bellini/rea) |
 | **Recycle-game** | Games | `JavaScript` `HTML` `CSS` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Recycle-game) |
 | **Save-Games-Spartan-Gamer-BR-** | Games | — | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Save-Games-Spartan-Gamer-BR-) |
 | **Some-Pseudocode-and-exercise-codes** | Academia | `Portugol` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes) |
@@ -549,54 +557,65 @@ ECOSSISTEMA
 </div>
 
 <!-- LANGUAGE-BADGES:START -->
-> **21 linguagens públicas detectadas** · badges gerados a partir dos repositórios auditados.
+> **30 linguagens públicas detectadas** · badges gerados a partir dos repositórios auditados.
 > Os nomes permanecem legíveis mesmo quando a URL precisa escapar caracteres como `#` e `/`; a matriz abaixo informa peso em bytes e participação relativa.
 
 **PRINCIPAIS POR VOLUME**
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-22%20repos-F7DF1E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=JavaScript) [![TypeScript](https://img.shields.io/badge/TypeScript-7%20repos-3178C6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=TypeScript) [![Rust](https://img.shields.io/badge/Rust-5%20repos-DEA584?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Rust) [![C#](https://img.shields.io/badge/C%23-4%20repos-239120?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C%23) [![HTML](https://img.shields.io/badge/HTML-23%20repos-E34F26?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=HTML)
+[![TypeScript](https://img.shields.io/badge/TypeScript-9%20repos-3178C6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=TypeScript) [![JavaScript](https://img.shields.io/badge/JavaScript-24%20repos-F7DF1E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=JavaScript) [![HTML](https://img.shields.io/badge/HTML-25%20repos-E34F26?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=HTML) [![Rust](https://img.shields.io/badge/Rust-6%20repos-DEA584?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Rust) [![C#](https://img.shields.io/badge/C%23-4%20repos-239120?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C%23)
 <br>
-[![Python](https://img.shields.io/badge/Python-9%20repos-3776AB?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Python) [![CSS](https://img.shields.io/badge/CSS-18%20repos-1572B6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=CSS) [![Java](https://img.shields.io/badge/Java-7%20repos-ED8B00?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Java) [![PL/pgSQL](https://img.shields.io/badge/PL%2FpgSQL-3%20repos-336791?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PLpgSQL) [![Shell](https://img.shields.io/badge/Shell-8%20repos-4EAA25?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Shell)
+[![Python](https://img.shields.io/badge/Python-13%20repos-3776AB?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Python) [![Java](https://img.shields.io/badge/Java-9%20repos-ED8B00?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Java) [![CSS](https://img.shields.io/badge/CSS-19%20repos-1572B6?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=CSS) [![SCSS](https://img.shields.io/badge/SCSS-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=SCSS) [![PL/pgSQL](https://img.shields.io/badge/PL%2FpgSQL-3%20repos-336791?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PLpgSQL)
 <br>
-[![GDScript](https://img.shields.io/badge/GDScript-2%20repos-478CBF?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=GDScript)
+[![C++](https://img.shields.io/badge/C%2B%2B-3%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C%2B%2B) [![Shell](https://img.shields.io/badge/Shell-10%20repos-4EAA25?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Shell) [![GDScript](https://img.shields.io/badge/GDScript-2%20repos-478CBF?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=GDScript) [![Swift](https://img.shields.io/badge/Swift-2%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Swift) [![SQF](https://img.shields.io/badge/SQF-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=SQF)
 
 
 **EXTENSÕES DO PORTFÓLIO**
 
-[![SQF](https://img.shields.io/badge/SQF-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=SQF) [![C++](https://img.shields.io/badge/C%2B%2B-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C%2B%2B) [![PowerShell](https://img.shields.io/badge/PowerShell-2%20repos-5391FE?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PowerShell) [![Wolfram Language](https://img.shields.io/badge/Wolfram%20Language-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Wolfram%20Language) [![Portugol](https://img.shields.io/badge/Portugol-4%20repos-6A5ACD?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Portugol)
+[![C](https://img.shields.io/badge/C-2%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=C) [![PowerShell](https://img.shields.io/badge/PowerShell-2%20repos-5391FE?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=PowerShell) [![Wolfram Language](https://img.shields.io/badge/Wolfram%20Language-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Wolfram%20Language) [![Portugol](https://img.shields.io/badge/Portugol-4%20repos-6A5ACD?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Portugol) [![Assembly](https://img.shields.io/badge/Assembly-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Assembly)
 <br>
-[![Batch](https://img.shields.io/badge/Batch-5%20repos-5C2D91?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Batchfile) [![Swift](https://img.shields.io/badge/Swift-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Swift) [![ShaderLab](https://img.shields.io/badge/ShaderLab-1%20repos-A48EFA?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=ShaderLab) [![Makefile](https://img.shields.io/badge/Makefile-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Makefile) [![Dockerfile](https://img.shields.io/badge/Dockerfile-1%20repos-2496ED?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Dockerfile)
+[![Go Template](https://img.shields.io/badge/Go%20Template-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Go%20Template) [![Batch](https://img.shields.io/badge/Batch-5%20repos-5C2D91?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Batchfile) [![Objective-C](https://img.shields.io/badge/Objective-C-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Objective-C) [![CMake](https://img.shields.io/badge/CMake-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=CMake) [![ShaderLab](https://img.shields.io/badge/ShaderLab-1%20repos-A48EFA?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=ShaderLab)
+<br>
+[![Makefile](https://img.shields.io/badge/Makefile-2%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Makefile) [![Linker Script](https://img.shields.io/badge/Linker%20Script-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Linker%20Script) [![Solidity](https://img.shields.io/badge/Solidity-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Solidity) [![Dockerfile](https://img.shields.io/badge/Dockerfile-1%20repos-2496ED?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=Dockerfile) [![NSIS](https://img.shields.io/badge/NSIS-1%20repos-6E6E6E?style=flat-square&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini?tab=repositories&q=&language=NSIS)
 <!-- LANGUAGE-BADGES:END -->
 
 <!-- ARSENAL-STACK:START -->
-> **21 linguagens detectadas** no inventário público, por peso em bytes: `JavaScript` · `TypeScript` · `Rust` · `C#` · `HTML` · `Python` · `CSS` · `Java`.
+> **30 linguagens detectadas** no inventário público, por peso em bytes: `TypeScript` · `JavaScript` · `HTML` · `Rust` · `C#` · `Python` · `Java` · `CSS`.
 
 <details>
 <summary><b>▶ Ver a participação de cada linguagem</b></summary>
 
 | Linguagem | Repositórios | Participação |
 |:---|---:|---:|
-| **JavaScript** | 22 | `25.73%` |
-| **TypeScript** | 7 | `18.21%` |
-| **Rust** | 5 | `14.78%` |
-| **C#** | 4 | `14.73%` |
-| **HTML** | 23 | `14.36%` |
-| **Python** | 9 | `3.84%` |
-| **CSS** | 18 | `3.69%` |
-| **Java** | 7 | `3.07%` |
-| **PL/pgSQL** | 3 | `0.52%` |
-| **Shell** | 8 | `0.27%` |
-| **GDScript** | 2 | `0.21%` |
-| **SQF** | 1 | `0.19%` |
-| **C++** | 1 | `0.16%` |
-| **PowerShell** | 2 | `0.10%` |
-| **Wolfram Language** | 1 | `0.06%` |
-| **Portugol** | 4 | `0.04%` |
-| **Batch** | 5 | `0.02%` |
-| **Swift** | 1 | `0.02%` |
-| **ShaderLab** | 1 | `0.01%` |
-| **Makefile** | 1 | `0.00%` |
+| **TypeScript** | 9 | `55.53%` |
+| **JavaScript** | 24 | `15.21%` |
+| **HTML** | 25 | `7.32%` |
+| **Rust** | 6 | `7.14%` |
+| **C#** | 4 | `6.36%` |
+| **Python** | 13 | `2.53%` |
+| **Java** | 9 | `1.92%` |
+| **CSS** | 19 | `1.68%` |
+| **SCSS** | 1 | `1.32%` |
+| **PL/pgSQL** | 3 | `0.22%` |
+| **C++** | 3 | `0.21%` |
+| **Shell** | 10 | `0.14%` |
+| **GDScript** | 2 | `0.09%` |
+| **Swift** | 2 | `0.09%` |
+| **SQF** | 1 | `0.08%` |
+| **C** | 2 | `0.05%` |
+| **PowerShell** | 2 | `0.04%` |
+| **Wolfram Language** | 1 | `0.02%` |
+| **Portugol** | 4 | `0.02%` |
+| **Assembly** | 1 | `0.01%` |
+| **Go Template** | 1 | `0.01%` |
+| **Batch** | 5 | `0.01%` |
+| **Objective-C** | 1 | `0.00%` |
+| **CMake** | 1 | `0.00%` |
+| **ShaderLab** | 1 | `0.00%` |
+| **Makefile** | 2 | `0.00%` |
+| **Linker Script** | 1 | `0.00%` |
+| **Solidity** | 1 | `0.00%` |
 | **Dockerfile** | 1 | `0.00%` |
+| **NSIS** | 1 | `0.00%` |
 
 </details>
 
@@ -647,31 +666,40 @@ ECOSSISTEMA
 > A matriz considera somente repositórios públicos auditados. Os três projetos excluídos editorialmente não participam de contagens, catálogos, sites ou métricas.
 
 <!-- LANGUAGE-STATS:START -->
-> **21 linguagens** · **72 repositórios públicos** · **26.79 MB de código detectado** · atualizado em `2026-10-14 05:12 UTC`
+> **30 linguagens** · **76 repositórios públicos** · **62.07 MB de código detectado** · atualizado em `2026-10-15 04:59 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
-| 1 | **JavaScript** | `6.89 MB` | `25.73%` | 22 |
-| 2 | **TypeScript** | `4.88 MB` | `18.21%` | 7 |
-| 3 | **Rust** | `3.96 MB` | `14.78%` | 5 |
-| 4 | **C#** | `3.95 MB` | `14.73%` | 4 |
-| 5 | **HTML** | `3.85 MB` | `14.36%` | 23 |
-| 6 | **Python** | `1.03 MB` | `3.84%` | 9 |
-| 7 | **CSS** | `1012.7 KB` | `3.69%` | 18 |
-| 8 | **Java** | `843.5 KB` | `3.07%` | 7 |
-| 9 | **PL/pgSQL** | `141.4 KB` | `0.52%` | 3 |
-| 10 | **Shell** | `72.7 KB` | `0.27%` | 8 |
-| 11 | **GDScript** | `56.8 KB` | `0.21%` | 2 |
-| 12 | **SQF** | `52.0 KB` | `0.19%` | 1 |
-| 13 | **C++** | `43.3 KB` | `0.16%` | 1 |
-| 14 | **PowerShell** | `26.9 KB` | `0.10%` | 2 |
-| 15 | **Wolfram Language** | `15.1 KB` | `0.06%` | 1 |
-| 16 | **Portugol** | `11.7 KB` | `0.04%` | 4 |
-| 17 | **Batch** | `5.3 KB` | `0.02%` | 5 |
-| 18 | **Swift** | `4.6 KB` | `0.02%` | 1 |
-| 19 | **ShaderLab** | `1.6 KB` | `0.01%` | 1 |
-| 20 | **Makefile** | `1.1 KB` | `0.00%` | 1 |
-| 21 | **Dockerfile** | `460 B` | `0.00%` | 1 |
+| 1 | **TypeScript** | `34.47 MB` | `55.53%` | 9 |
+| 2 | **JavaScript** | `9.44 MB` | `15.21%` | 24 |
+| 3 | **HTML** | `4.54 MB` | `7.32%` | 25 |
+| 4 | **Rust** | `4.43 MB` | `7.14%` | 6 |
+| 5 | **C#** | `3.95 MB` | `6.36%` | 4 |
+| 6 | **Python** | `1.57 MB` | `2.53%` | 13 |
+| 7 | **Java** | `1.19 MB` | `1.92%` | 9 |
+| 8 | **CSS** | `1.04 MB` | `1.68%` | 19 |
+| 9 | **SCSS** | `838.1 KB` | `1.32%` | 1 |
+| 10 | **PL/pgSQL** | `141.4 KB` | `0.22%` | 3 |
+| 11 | **C++** | `134.3 KB` | `0.21%` | 3 |
+| 12 | **Shell** | `86.6 KB` | `0.14%` | 10 |
+| 13 | **GDScript** | `56.8 KB` | `0.09%` | 2 |
+| 14 | **Swift** | `56.0 KB` | `0.09%` | 2 |
+| 15 | **SQF** | `52.0 KB` | `0.08%` | 1 |
+| 16 | **C** | `29.1 KB` | `0.05%` | 2 |
+| 17 | **PowerShell** | `26.9 KB` | `0.04%` | 2 |
+| 18 | **Wolfram Language** | `15.1 KB` | `0.02%` | 1 |
+| 19 | **Portugol** | `11.7 KB` | `0.02%` | 4 |
+| 20 | **Assembly** | `7.3 KB` | `0.01%` | 1 |
+| 21 | **Go Template** | `7.0 KB` | `0.01%` | 1 |
+| 22 | **Batch** | `5.3 KB` | `0.01%` | 5 |
+| 23 | **Objective-C** | `3.0 KB` | `0.00%` | 1 |
+| 24 | **CMake** | `1.8 KB` | `0.00%` | 1 |
+| 25 | **ShaderLab** | `1.6 KB` | `0.00%` | 1 |
+| 26 | **Makefile** | `1.3 KB` | `0.00%` | 2 |
+| 27 | **Linker Script** | `692 B` | `0.00%` | 1 |
+| 28 | **Solidity** | `470 B` | `0.00%` | 1 |
+| 29 | **Dockerfile** | `460 B` | `0.00%` | 1 |
+| 30 | **NSIS** | `119 B` | `0.00%` | 1 |
 
 > A tabela acima considera somente repositórios públicos. Repositórios privados podem contribuir para métricas agregadas futuras, mas seus arquivos, nomes de arquivos e estrutura interna não são publicados.
 
@@ -729,11 +757,11 @@ ECOSSISTEMA
 
 | REPOSITÓRIOS | PÚBLICOS | PRIVADOS VISÍVEIS | DEPLOYMENTS |
 |:---:|:---:|:---:|:---:|
-| **94** | **72** | **22** | **10** |
+| **98** | **76** | **22** | **12** |
 
 | ATIVOS | ACADÊMICOS | LINGUAGENS | EXCLUSÕES EDITORIAIS |
 |:---:|:---:|:---:|:---:|
-| **19** | **10** | **21** | **3** |
+| **23** | **10** | **30** | **3** |
 
 </div>
 
@@ -751,6 +779,8 @@ ECOSSISTEMA
 | **Academic-Portfolio** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio) |
 | **AI-second-brain-with-Claude-and-Obsidian** | IA & Automação | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/AI-second-brain-with-Claude-and-Obsidian) |
 | **Ark-Initiative** | Web | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Ark-Initiative) |
+| **Ativ.-Geren-Proj** | Software & Ferramentas | 🟢 Active | [código](https://github.com/jp-albano/Ativ.-Geren-Proj) |
+| **Ativ.-Geren-Proj** | Experimentos | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Ativ.-Geren-Proj) |
 | **Atividade-6** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Atividade-6) |
 | **Atividade4** | Academia | 🟣 Academic | [código](https://github.com/itssomeone4/Atividade4) |
 | **baluarte-academia** | Ecossistema Baluarte | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/baluarte-academia) |
@@ -792,6 +822,7 @@ ECOSSISTEMA
 | **FLUX** | Web | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/FLUX) |
 | **G-mod-Black-mesa** | Games | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/G-mod-Black-mesa) |
 | **Grupo-Atividade-4** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Grupo-Atividade-4) |
+| **hydra** | Web | 🟢 Active | **[▸ Abrir site](https://hydralauncher.gg)** · [código](https://github.com/Lucas-Belucci-Bellini/hydra) |
 | **Java-activities** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Java-activities) |
 | **JAVA-todos-os-codigos-em-java** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/JAVA-todos-os-codigos-em-java) |
 | **Kizeo-Forms** | IA & Automação | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Kizeo-Forms) |
@@ -812,6 +843,7 @@ ECOSSISTEMA
 | **Projeto_01_endless_gnome** | Experimentos | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Projeto_01_endless_gnome) |
 | **Projetos-Futuros** | Software & Ferramentas | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Projetos-Futuros) |
 | **Python** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Python) |
+| **rea** | Web | 🟢 Active | **[▸ Abrir site](https://rea.tools)** · [código](https://github.com/Lucas-Belucci-Bellini/rea) |
 | **Recycle-game** | Games | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/Recycle-game) |
 | **Save-Games-Spartan-Gamer-BR-** | Games | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Save-Games-Spartan-Gamer-BR-) |
 | **Some-Pseudocode-and-exercise-codes** | Academia | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/Some-Pseudocode-and-exercise-codes) |
