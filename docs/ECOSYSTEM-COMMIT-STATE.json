@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-16T00:26:07Z",
+  "scanned_at": "2026-10-16T05:51:04Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -23,6 +23,13 @@
       "date": "2026-10-15T23:12:08Z",
       "message": "Merge pull request #4 from Lucas-Belucci-Bellini/docs/sync-catalog-250-skills",
       "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/05ed765ce7363dc6fa0f81fb8a1ceb7c2beaa4f1"
+    },
+    "All-The-Mods-10": {
+      "branch": "main",
+      "sha": "f457944a9efd56e70ca306c61a2949a7b3df2684",
+      "date": "2026-10-16T02:56:06Z",
+      "message": "atualização do link de tensão do create que agente já usava na ultima versão",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/f457944a9efd56e70ca306c61a2949a7b3df2684"
     },
     "Ark-Initiative": {
       "branch": "main",
@@ -384,10 +391,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "eb19a04ffa2183ec7926b9693713d0e527ae5f3e",
-      "date": "2026-10-15T17:15:39Z",
+      "sha": "3ca44bc184b21f6f2790be225b9f82556d42d681",
+      "date": "2026-10-16T04:48:56Z",
       "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/eb19a04ffa2183ec7926b9693713d0e527ae5f3e"
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3ca44bc184b21f6f2790be225b9f82556d42d681"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -472,14 +479,14 @@
     }
   },
   "metrics": {
-    "tracked_commits": 4168,
-    "project_commits": 3889,
-    "monitor_commits": 279,
-    "detected_project_commits_this_scan": 167,
+    "tracked_commits": 4170,
+    "project_commits": 3890,
+    "monitor_commits": 280,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 68,
+    "repositories_scanned": 69,
     "repositories_changed": 1,
     "errors": 3
   },
