@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-16T19:56:37Z`  
+**Última varredura:** `2026-10-16T22:50:31Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `69`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `4543`
-- **Commits dos projetos:** `4261`
-- **Commits do próprio monitor:** `282`
-- **Commits de projetos detectados nesta hora:** `22`
+- **Commits rastreados pelo ecossistema:** `4549`
+- **Commits dos projetos:** `4266`
+- **Commits do próprio monitor:** `283`
+- **Commits de projetos detectados nesta hora:** `5`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **All-The-Mods-10** — 21 commit(s) — [b6b085dd66dd](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/b6b085dd66dda1cf712260514ba1ffd31bda65ba) — iniciando o jogo pela segunda vez teste de modpack 3 não consegui baixar tudo na segunda (2)
-- **Projeto-Baluarte** — 1 commit(s) — [0eaf8599abbc](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0eaf8599abbcee88e3c8b0e966a91b731946c623) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **All-The-Mods-10** — 5 commit(s) — [5fe5af621f8d](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/5fe5af621f8d81c6afc41aef6f5b43e2c34ec279) — instalando o Packet Fixer
 
 ## Erros de consulta
 
