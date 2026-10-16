@@ -2,24 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-15T22:15:58Z`  
+**Última varredura:** `2026-10-16T00:26:07Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `68`  
-**Repositórios com mudanças desde a última varredura:** `0`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `4000`
-- **Commits dos projetos:** `3722`
-- **Commits do próprio monitor:** `278`
-- **Commits de projetos detectados nesta hora:** `0`
+- **Commits rastreados pelo ecossistema:** `4168`
+- **Commits dos projetos:** `3889`
+- **Commits do próprio monitor:** `279`
+- **Commits de projetos detectados nesta hora:** `167`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- Nenhuma mudança desde a última varredura.
+- **All-Skills-for-the-claude-code** — 167 commit(s) — [05ed765ce736](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/05ed765ce7363dc6fa0f81fb8a1ceb7c2beaa4f1) — Merge pull request #4 from Lucas-Belucci-Bellini/docs/sync-catalog-250-skills
 
 ## Erros de consulta
 
