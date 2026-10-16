@@ -2,24 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-16T05:51:04Z`  
+**Última varredura:** `2026-10-16T16:37:41Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `69`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `4170`
-- **Commits dos projetos:** `3890`
-- **Commits do próprio monitor:** `280`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `4520`
+- **Commits dos projetos:** `4239`
+- **Commits do próprio monitor:** `281`
+- **Commits de projetos detectados nesta hora:** `349`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 1 commit(s) — [3ca44bc184b2](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/3ca44bc184b21f6f2790be225b9f82556d42d681) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
+- **All-Skills-for-the-claude-code** — 337 commit(s) — [546059109386](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/54605910938666bcdd724b73452fc04c278f233d) — Merge pull request #5 from Lucas-Belucci-Bellini/feat/skills-expansion-300-2026
+- **All-The-Mods-10** — 12 commit(s) — [c300591e91cc](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/c300591e91cca552779372e86bf8c350e2a8f606) — atualizando o readme
 
 ## Erros de consulta
 

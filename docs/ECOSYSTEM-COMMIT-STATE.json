@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-16T05:51:04Z",
+  "scanned_at": "2026-10-16T16:37:41Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -19,17 +19,17 @@
     },
     "All-Skills-for-the-claude-code": {
       "branch": "main",
-      "sha": "05ed765ce7363dc6fa0f81fb8a1ceb7c2beaa4f1",
-      "date": "2026-10-15T23:12:08Z",
-      "message": "Merge pull request #4 from Lucas-Belucci-Bellini/docs/sync-catalog-250-skills",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/05ed765ce7363dc6fa0f81fb8a1ceb7c2beaa4f1"
+      "sha": "54605910938666bcdd724b73452fc04c278f233d",
+      "date": "2026-10-16T13:46:04Z",
+      "message": "Merge pull request #5 from Lucas-Belucci-Bellini/feat/skills-expansion-300-2026",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/54605910938666bcdd724b73452fc04c278f233d"
     },
     "All-The-Mods-10": {
       "branch": "main",
-      "sha": "f457944a9efd56e70ca306c61a2949a7b3df2684",
-      "date": "2026-10-16T02:56:06Z",
-      "message": "atualização do link de tensão do create que agente já usava na ultima versão",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/f457944a9efd56e70ca306c61a2949a7b3df2684"
+      "sha": "c300591e91cca552779372e86bf8c350e2a8f606",
+      "date": "2026-10-16T13:33:04Z",
+      "message": "atualizando o readme",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/c300591e91cca552779372e86bf8c350e2a8f606"
     },
     "Ark-Initiative": {
       "branch": "main",
@@ -479,15 +479,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 4170,
-    "project_commits": 3890,
-    "monitor_commits": 280,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 4520,
+    "project_commits": 4239,
+    "monitor_commits": 281,
+    "detected_project_commits_this_scan": 349,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 69,
-    "repositories_changed": 1,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
