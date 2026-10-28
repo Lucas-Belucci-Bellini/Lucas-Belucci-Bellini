@@ -6,6 +6,7 @@ on:
     paths:
       - "index.html"
       - "assets/site.css"
+      - "assets/hero.css"
       - "assets/site.js"
       - "assets/favicon.svg"
       - "docs/project-catalog.json"
@@ -16,6 +17,7 @@ on:
     paths:
       - "index.html"
       - "assets/site.css"
+      - "assets/hero.css"
       - "assets/site.js"
       - "assets/favicon.svg"
       - "docs/project-catalog.json"
@@ -52,8 +54,10 @@ jobs:
         run: |
           test -s dist/index.html
           test -s dist/assets/site.css
+          test -s dist/assets/hero.css
           test -s dist/assets/site.js
           test -s dist/data/projects.json
+          grep -q 'assets/hero.css' dist/index.html
           python - <<'PY'
           import json
           from pathlib import Path
