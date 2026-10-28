@@ -313,3 +313,40 @@ a:hover {
     outline: 2px solid Highlight;
   }
 }
+
+
+/* Accessibility refinements: visible keyboard focus, readable controls and status states. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-focus, #f2c66d);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--color-canvas, #0e0c16);
+}
+:where(a, button, input, select, textarea) {
+  scroll-margin-block: 6rem 1rem;
+}
+.project-tools {
+  margin: 0 0 1.25rem;
+}
+.project-tools .search-box:focus-within,
+.project-tools .filter-label:focus-within {
+  border-color: var(--color-focus, #f2c66d);
+}
+.project-tools input::placeholder {
+  opacity: 1;
+  color: var(--color-text-muted, #c0b7c9);
+}
+.project-status {
+  white-space: normal;
+  line-height: 1.5;
+}
+.catalog-message,
+.empty-card {
+  overflow-wrap: anywhere;
+}
+@media (forced-colors: active) {
+  .project-status,
+  .project-category {
+    color: CanvasText;
+    border-color: CanvasText;
+  }
+}
