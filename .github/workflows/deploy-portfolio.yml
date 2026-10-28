@@ -6,13 +6,18 @@ on:
       - main
       - feat/profile-readme-website-v2
       - feat/profile-v2-consolidated
+      - feat/v3p3-catalog-integrity
     paths:
       - "index.html"
       - "assets/**"
       - "docs/project-catalog.json"
       - "scripts/build_portfolio.py"
+      - "scripts/validate_project_catalog.py"
+      - "docs/README_SITES.json"
+      - "tests/**"
       - ".github/workflows/deploy-portfolio.yml"
       - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
+      - "docs/PROJECT_CATALOG_CONTRACT.md"
   push:
     branches:
       - main
@@ -22,8 +27,12 @@ on:
       - "assets/**"
       - "docs/project-catalog.json"
       - "scripts/build_portfolio.py"
+      - "scripts/validate_project_catalog.py"
+      - "docs/README_SITES.json"
+      - "tests/**"
       - ".github/workflows/deploy-portfolio.yml"
       - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
+      - "docs/PROJECT_CATALOG_CONTRACT.md"
   workflow_dispatch:
 
 concurrency:
@@ -48,15 +57,18 @@ jobs:
 
       - name: Validate source and catalog
         run: |
-          python -m py_compile scripts/build_portfolio.py
+          set -euo pipefail
+          python -m py_compile scripts/build_portfolio.py scripts/validate_project_catalog.py
           python -m json.tool docs/project-catalog.json >/dev/null
+          python -m json.tool docs/README_SITES.json >/dev/null
+          python scripts/validate_project_catalog.py
           test -s index.html
           test -s assets/site.css
           test -s assets/site.js
           test -s assets/favicon.svg
 
-      - name: Run static build contract tests
-        run: python -m unittest discover -s tests -p "test_build_portfolio.py" -v
+      - name: Run complete Python regression suite
+        run: python -m unittest discover -s tests -v
 
       - name: Build public-only static artifact
         run: python scripts/build_portfolio.py
