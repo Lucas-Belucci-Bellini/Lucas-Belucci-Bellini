@@ -140,6 +140,9 @@ class PortfolioBuildTests(unittest.TestCase):
             "https://user:pass@example.com",
             "https://localhost",
             "https://intranet.local",
+            "https://127.0.0.1",
+            "https://10.0.0.1",
+            "https://example.com:not-a-port",
             " https://example.com",
         ]
         self.write_catalog([
