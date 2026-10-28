@@ -118,7 +118,7 @@ class PortfolioBuildTests(unittest.TestCase):
         asset = self.root / "assets" / "site.css"
         before = asset.read_text(encoding="utf-8")
 
-        with self.assertRaisesRegex(BuildError, "restricted to the dist"):
+        with self.assertRaisesRegex(BuildError, "exactly the repository dist"):
             build(self.root, self.root / "assets")
 
         self.assertEqual(asset.read_text(encoding="utf-8"), before)
