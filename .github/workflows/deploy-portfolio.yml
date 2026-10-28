@@ -6,11 +6,14 @@ on:
       - main
       - feat/profile-readme-website-v2
       - feat/profile-v2-consolidated
+      - feat/v2p2-project-catalog
     paths:
       - "index.html"
       - "assets/**"
       - "docs/project-catalog.json"
       - "scripts/build_portfolio.py"
+      - "tests/**"
+      - "docs/PROJECT_CATALOG_CONTRACT.md"
       - ".github/workflows/deploy-portfolio.yml"
       - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
   push:
@@ -100,7 +103,7 @@ jobs:
 
           allowed_fields = {
               "name", "slug", "description", "category", "category_label",
-              "status", "github", "website",
+              "status", "github", "website", "featured",
           }
           for index, project in enumerate(projects):
               if not isinstance(project, dict):
@@ -111,6 +114,8 @@ jobs:
                       f"Project at index {index} contains non-public fields: "
                       f"{sorted(unexpected_fields)}"
                   )
+              if not isinstance(project.get("featured"), bool):
+                  raise SystemExit(f"Project at index {index} has an invalid featured flag")
               github = project.get("github")
               parsed_github = urlparse(github) if isinstance(github, str) else None
               if not parsed_github or parsed_github.scheme != "https" or (parsed_github.hostname or "").lower() not in {"github.com", "www.github.com"}:
