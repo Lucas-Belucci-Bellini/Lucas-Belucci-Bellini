@@ -66,7 +66,7 @@ def validate(root: Path = ROOT) -> tuple[list[str], list[str], dict[str, int]]:
             if not isinstance(project, dict):
                 errors.append(f"{where} must be an object")
                 continue
-            if not isinstance(project.get("repository"), str) or not re.fullmatch(r"[^/\\s]+/[^/\\s]+", project["repository"]):
+            if not isinstance(project.get("repository"), str) or not re.fullmatch(r"[^/\s]+/[^/\s]+", project["repository"]):
                 errors.append(f"{where}.repository must be owner/repository")
             private = project.get("private")
             if not isinstance(private, bool):
