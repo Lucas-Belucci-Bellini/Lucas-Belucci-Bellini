@@ -1,0 +1,86 @@
+name: Portfolio website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "assets/site.css"
+      - "assets/site.js"
+      - "assets/favicon.svg"
+      - "docs/project-catalog.json"
+      - "scripts/build_portfolio.py"
+      - ".github/workflows/deploy-portfolio.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "assets/site.css"
+      - "assets/site.js"
+      - "assets/favicon.svg"
+      - "docs/project-catalog.json"
+      - "scripts/build_portfolio.py"
+      - ".github/workflows/deploy-portfolio.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate catalog JSON
+        run: python -m json.tool docs/project-catalog.json >/dev/null
+
+      - name: Build public-only website artifact
+        run: python scripts/build_portfolio.py
+
+      - name: Validate artifact and privacy boundary
+        run: |
+          test -s dist/index.html
+          test -s dist/assets/site.css
+          test -s dist/assets/site.js
+          test -s dist/data/projects.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("dist/data/projects.json").read_text(encoding="utf-8"))
+          assert data["projects"], "public project list must not be empty"
+          assert all(project.get("private") is not True for project in data["projects"])
+          assert all("repository" not in project for project in data["projects"])
+          print(f"Validated {len(data['projects'])} public projects")
+          PY
+
+      - name: Upload Pages artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
