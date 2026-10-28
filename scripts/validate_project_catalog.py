@@ -66,7 +66,7 @@ def validate(root: Path = ROOT) -> tuple[list[str], list[str], dict[str, int]]:
             if not isinstance(project, dict):
                 errors.append(f"{where} must be an object")
                 continue
-            if not isinstance(project.get("repository"), str) or not re.fullmatch(r"[^/\\s]+/[^/\\s]+", project["repository"]):
+            if not isinstance(project.get("repository"), str) or not re.fullmatch(r"[^/\s]+/[^/\s]+", project["repository"]):
                 errors.append(f"{where}.repository must be owner/repository")
             private = project.get("private")
             if not isinstance(private, bool):
@@ -82,17 +82,21 @@ def validate(root: Path = ROOT) -> tuple[list[str], list[str], dict[str, int]]:
                 errors.append(f"{where}.slug duplicates {slug!r}")
             else:
                 seen_slugs.add(slug)
-            if project.get("website_status") not in LIVE:
-                errors.append(f"{where}.website_status must be one of {sorted(LIVE)}")
+            website_status = project.get("website_status")
             website = project.get("website")
+            # The generated catalog omits website metadata entirely for projects
+            # without a declared candidate. Validate the status when present;
+            # never treat a missing status as proof that a site is verified.
+            if website_status is not None and website_status not in LIVE:
+                errors.append(f"{where}.website_status must be one of {sorted(LIVE)}")
             if website:
                 if not https_url(website):
                     errors.append(f"{where}.website must be a safe HTTPS URL")
-                elif project.get("website_status") != "verified":
+                elif website_status != "verified":
                     warnings.append(f"{where}: website exists but status is not verified; public builder must omit it")
-            if project.get("website_status") == "verified" and not website:
+            if website_status == "verified" and not website:
                 warnings.append(f"{where}: marked verified but no website URL is present")
-            if project.get("website_status") == "verified" and website:
+            if website_status == "verified" and website:
                 counts["verified_websites"] += 1
         declared = catalog.get("counts")
         if not isinstance(declared, dict):
@@ -113,7 +117,7 @@ def validate(root: Path = ROOT) -> tuple[list[str], list[str], dict[str, int]]:
     if isinstance(sites, dict):
         for repository, value in sites.items():
             where = f"README_SITES[{repository!r}]"
-            if not isinstance(repository, str) or not re.fullmatch(r"[^/\\s]+/[^/\\s]+", repository):
+            if not isinstance(repository, str) or not re.fullmatch(r"[^/\s]+/[^/\s]+", repository):
                 errors.append(f"{where}: key must be owner/repository")
             url = value if isinstance(value, str) else value.get("website") if isinstance(value, dict) else None
             if not https_url(url):
