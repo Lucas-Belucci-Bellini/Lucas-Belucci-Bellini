@@ -24,6 +24,8 @@ on:
       - "assets/**"
       - "docs/project-catalog.json"
       - "scripts/build_portfolio.py"
+      - "tests/**"
+      - "docs/portfolio-build.md"
       - ".github/workflows/deploy-portfolio.yml"
       - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
   workflow_dispatch:
