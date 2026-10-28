@@ -170,6 +170,7 @@ test("HTTP and malformed payload failures show an accessible error state", async
 
 
 test("catalog controls and dynamic states expose accessible semantics", () => {
+  assert.match(htmlSource, /<div class="hero-visual" aria-hidden="true">/);
   assert.match(htmlSource, /role="search" aria-label="Buscar e filtrar projetos"/);
   assert.match(htmlSource, /for="project-search"/);
   assert.match(htmlSource, /aria-describedby="project-search-help"/);
