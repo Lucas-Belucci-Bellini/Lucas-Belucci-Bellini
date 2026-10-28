@@ -22,11 +22,17 @@
     return node;
   };
 
+  // URL policy: absolute HTTPS only; reject controls, whitespace, credentials and local hosts.
+  // Keep this defensive check aligned with scripts/build_portfolio.py.
   const safeHttpsUrl = (value) => {
-    if (typeof value !== "string" || !value.trim()) return null;
+    if (typeof value !== "string" || !value || value !== value.trim()
+      || /[\u0000-\u0020\u007f\\]/.test(value)) return null;
     try {
       const url = new URL(value);
-      return url.protocol === "https:" ? url.href : null;
+      const host = url.hostname.toLowerCase();
+      if (url.protocol !== "https:" || !host || url.username || url.password) return null;
+      if (host === "localhost" || host.endsWith(".localhost") || host.endsWith(".local")) return null;
+      return url.href;
     } catch {
       return null;
     }
@@ -38,7 +44,10 @@
     try {
       const url = new URL(safe);
       const parts = url.pathname.split("/").filter(Boolean);
-      return url.hostname === "github.com" && parts.length === 2 && parts.every((part) => !part.includes(".")) ? safe : null;
+      // Repository names may legitimately contain dots; do not reject them.
+      return ["github.com", "www.github.com"].includes(url.hostname.toLowerCase())
+        && parts.length === 2 && parts.every((part) => part !== "." && part !== "..")
+        && !url.port ? safe : null;
     } catch {
       return null;
     }

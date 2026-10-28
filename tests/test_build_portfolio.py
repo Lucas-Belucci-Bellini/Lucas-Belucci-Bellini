@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.build_portfolio import BuildError, build
+from scripts.build_portfolio import BuildError, build, safe_https_url
 
 SCHEMA = "lucas-belucci-bellini/project-catalog@1"
 
@@ -30,6 +30,36 @@ def project(**overrides):
 
 
 class PortfolioBuildTests(unittest.TestCase):
+    def test_https_url_policy_accepts_valid_urls_and_rejects_unsafe_inputs(self):
+        valid = [
+            "https://example.com",
+            "https://docs.example.com/path?q=1#section",
+            "https://github.com/owner/repo.with.dots",
+            "https://www.github.com/owner/repo",
+        ]
+        invalid = [
+            "", " https://example.com", "https://example.com ",
+            "javascript:alert(1)", "data:text/html,hello",
+            "//example.com/path", "http://example.com",
+            "https://user:pass@example.com", "https://localhost",
+            "https://service.localhost", "https://printer.local",
+            "https://example.com\\\\@evil.example", "https://example.com/with space",
+            "https://example.com:bad/",
+        ]
+        for value in valid:
+            with self.subTest(value=value):
+                self.assertTrue(safe_https_url(value))
+        for value in invalid:
+            with self.subTest(value=value):
+                self.assertFalse(safe_https_url(value))
+
+    def test_dotted_github_repository_is_not_removed_from_public_catalog(self):
+        self.write_catalog([project(github="https://github.com/owner/repo.with.dots")])
+        out = self.root / "dist"
+        self.assertEqual(build(self.root, out), 1)
+        payload = json.loads((out / "data" / "projects.json").read_text(encoding="utf-8"))
+        self.assertEqual(payload["projects"][0]["github"], "https://github.com/owner/repo.with.dots")
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name) / "repo"
