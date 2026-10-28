@@ -64,13 +64,13 @@
           <div><p class="eyebrow">INDEX // 001</p><h2>Projetos selecionados<span>.</span></h2></div>
           <p class="section-note">Um catálogo vivo de coisas que estou construindo, estudando e experimentando.</p>
         </div>
-        <form class="project-tools" role="search" aria-label="Buscar e filtrar projetos" onsubmit="return false">
+        <div class="project-tools" role="search" aria-label="Buscar e filtrar projetos">
           <label class="search-box" for="project-search"><span aria-hidden="true">⌕</span><input id="project-search" type="search" placeholder="Buscar projetos..." autocomplete="off" aria-describedby="project-search-help"></label>
           <span id="project-search-help" class="sr-only">A busca considera nome, descrição, categoria e status. Os filtros podem ser usados em conjunto.</span>
           <label class="filter-label" for="category-filter"><span class="sr-only">Filtrar por categoria</span><select id="category-filter"><option value="all">Todas as categorias</option></select></label>
           <label class="filter-label" for="status-filter"><span class="sr-only">Filtrar por status</span><select id="status-filter"><option value="all">Todos os status</option></select></label>
           <output id="project-count" class="result-count" aria-live="polite" aria-atomic="true">Carregando catálogo…</output>
-        </form>
+        </div>
         <div id="project-grid" class="project-grid" aria-label="Resultados dos projetos" aria-busy="true">
           <div class="loading-card"><span class="loading-dot"></span> Carregando o catálogo de projetos…</div>
         </div>
