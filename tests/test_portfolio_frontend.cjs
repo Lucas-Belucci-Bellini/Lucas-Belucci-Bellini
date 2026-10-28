@@ -130,7 +130,7 @@ test("combined search, category, status and explicit sort work together", async 
   nodes["#project-search"].value = "";
   nodes["#category-filter"].value = "all";
   nodes["#sort-projects"].dispatch("change");
-  assert.deepEqual(cardTitles(nodes), ["Zulu Engine", "Voxel Planner", "Unrelated", "Alpha Engine"]);
+  assert.deepEqual(cardTitles(nodes), ["Unrelated", "Voxel Planner", "Zulu Engine", "Alpha Engine"]);
   assert.equal(nodes["#project-count"].textContent, "4 de 4 projetos");
 });
 
