@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const catalogUrl = "docs/project-catalog.json";
+  const catalogUrl = "data/projects.json";
   const grid = document.querySelector("#project-grid");
   const searchInput = document.querySelector("#project-search");
   const categorySelect = document.querySelector("#category-filter");
@@ -110,7 +110,7 @@
       grid.replaceChildren(make("div", "empty-card", "Não foi possível carregar o catálogo de projetos."));
       count.textContent = "Catálogo indisponível";
       message.hidden = false;
-      message.textContent = "Verifique se o site está sendo servido pela raiz do repositório e se docs/project-catalog.json está disponível. " + (error instanceof Error ? error.message : "");
+      message.textContent = "Verifique se o site foi compilado e se data/projects.json está disponível. " + (error instanceof Error ? error.message : "");
     }
   }
 
