@@ -20,8 +20,8 @@ class FakeNode {
     this.target = "";
     this.rel = "";
   }
-  append(...nodes) { this.children.push(...nodes); }
-  appendChild(node) { this.children.push(node); return node; }
+  append(...nodes) { for (const node of nodes) this.children.push(...(node.tagName === "#fragment" ? node.children : [node])); }
+  appendChild(node) { this.append(node); return node; }
   replaceChildren(...nodes) { this.children = [...nodes]; }
   setAttribute(name, value) { this.attributes[name] = String(value); }
   removeAttribute(name) { delete this.attributes[name]; }
