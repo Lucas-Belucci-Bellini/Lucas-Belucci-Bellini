@@ -13,7 +13,7 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = "lucas-belucci-bellini/project-catalog@1"
-PUBLIC_FIELDS = ("name", "slug", "description", "category", "category_label", "status", "github", "website")
+PUBLIC_FIELDS = ("name", "slug", "description", "category", "category_label", "status", "github", "website", "featured")
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 STATUSES = {"🟢 Active", "🟡 In Development", "🔵 Experimental", "🟣 Academic", "⚪ Archived"}
 STATIC_FILES = ("index.html", "assets/site.css", "assets/site.js", "assets/favicon.svg")
@@ -80,12 +80,14 @@ def public_projects(catalog: object) -> list[dict[str, object]]:
         if not safe_https_url(project.get("github")) or (urlsplit(str(project.get("github"))).hostname or "").lower() not in {"github.com", "www.github.com"}:
             # Invalid GitHub link means no safe primary project card.
             continue
-        item = {key: project[key] for key in PUBLIC_FIELDS if key in project and key != "website"}
+        item = {key: project[key] for key in PUBLIC_FIELDS if key in project and key not in {"website", "featured"}}
+        # Publish only a normalized editorial flag; never expose internal priority/ranking fields.
+        item["featured"] = project.get("featured") is True
         website = project.get("website")
         if project.get("website_status") == "verified" and safe_https_url(website):
             item["website"] = website
         result.append(item)
-    result.sort(key=lambda item: (str(item["name"]).casefold(), str(item["slug"])))
+    result.sort(key=lambda item: (not bool(item["featured"]), str(item["name"]).casefold(), str(item["slug"])))
     if not result:
         raise BuildError("no valid public projects remain after filtering")
     return result

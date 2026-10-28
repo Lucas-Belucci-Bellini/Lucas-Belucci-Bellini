@@ -6,6 +6,7 @@ on:
       - main
       - feat/profile-readme-website-v2
       - feat/profile-v2-consolidated
+      - feat/v3p3-site-experience
     paths:
       - "index.html"
       - "assets/**"
@@ -100,7 +101,7 @@ jobs:
 
           allowed_fields = {
               "name", "slug", "description", "category", "category_label",
-              "status", "github", "website",
+              "status", "github", "website", "featured",
           }
           for index, project in enumerate(projects):
               if not isinstance(project, dict):
