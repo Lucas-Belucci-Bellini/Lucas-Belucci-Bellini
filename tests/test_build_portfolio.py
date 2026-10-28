@@ -133,6 +133,27 @@ class PortfolioBuildTests(unittest.TestCase):
         with self.assertRaisesRegex(BuildError, "duplicate public slug"):
             build(self.root, self.root / "dist")
 
+    def test_malformed_catalog_json_fails_without_publishing_output(self):
+        catalog_path = self.root / "docs" / "project-catalog.json"
+        catalog_path.parent.mkdir(parents=True, exist_ok=True)
+        catalog_path.write_text('{"schema":', encoding="utf-8")
+        out = self.root / "dist"
+
+        with self.assertRaisesRegex(BuildError, "cannot read valid UTF-8 catalog JSON"):
+            build(self.root, out)
+
+        self.assertFalse(out.exists())
+
+    def test_missing_static_asset_fails_before_publishing_output(self):
+        self.write_catalog([project()])
+        (self.root / "assets" / "site.js").unlink()
+        out = self.root / "dist"
+
+        with self.assertRaisesRegex(BuildError, "required static file missing: assets/site.js"):
+            build(self.root, out)
+
+        self.assertFalse(out.exists())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -11,6 +11,8 @@ on:
       - "assets/**"
       - "docs/project-catalog.json"
       - "scripts/build_portfolio.py"
+      - "tests/**"
+      - "docs/portfolio-build.md"
       - ".github/workflows/deploy-portfolio.yml"
       - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
   push:
@@ -22,6 +24,8 @@ on:
       - "assets/**"
       - "docs/project-catalog.json"
       - "scripts/build_portfolio.py"
+      - "tests/**"
+      - "docs/portfolio-build.md"
       - ".github/workflows/deploy-portfolio.yml"
       - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
   workflow_dispatch:
@@ -55,8 +59,11 @@ jobs:
           test -s assets/site.js
           test -s assets/favicon.svg
 
-      - name: Run static build contract tests
-        run: python -m unittest discover -s tests -p "test_build_portfolio.py" -v
+      - name: Run complete Python regression suite
+        run: python -m unittest discover -s tests -v
+
+      - name: Run frontend regression tests
+        run: node --test tests/test_portfolio_frontend.cjs
 
       - name: Build public-only static artifact
         run: python scripts/build_portfolio.py
