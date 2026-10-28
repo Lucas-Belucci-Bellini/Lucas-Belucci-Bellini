@@ -19,7 +19,7 @@
   <body>
     <a class="skip-link" href="#main">Pular para o conteúdo</a>
     <header class="topbar">
-      <a class="brand" href="#" aria-label="Lucas Belucci Bellini — início">
+      <a class="brand" href="#main" aria-label="Lucas Belucci Bellini — início">
         <span class="brand-mark">LB<span>/</span></span>
         <span class="brand-name">LUCAS BELUCCI BELLINI<small>FIELD MANUAL · VOLUME II</small></span>
       </a>
@@ -34,7 +34,7 @@
     <main id="main">
       <section class="hero section-wrap">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="pulse"></span> ESTUDANTE · DESENVOLVEDOR · BUILDER</p>
+          <p class="eyebrow"><span class="pulse" aria-hidden="true"></span> ESTUDANTE · DESENVOLVEDOR · BUILDER</p>
           <h1>Ideias viram<br><span>sistemas reais.</span></h1>
           <p class="hero-lead">Construo experiências web, ferramentas, automações, jogos e experimentos de hardware — documentando o processo e evoluindo projeto por projeto.</p>
           <div class="hero-actions">
@@ -64,9 +64,10 @@
         <div class="project-tools">
           <label class="search-box"><span aria-hidden="true">⌕</span><input id="project-search" type="search" placeholder="Buscar projetos..." autocomplete="off" aria-label="Buscar projetos"></label>
           <label class="filter-label"><span class="sr-only">Filtrar por categoria</span><select id="category-filter"><option value="all">Todas as categorias</option></select></label>
-          <span id="project-count" class="result-count" aria-live="polite">Carregando catálogo…</span>
+          <label class="filter-label"><span class="sr-only">Filtrar por status</span><select id="status-filter"><option value="all">Todos os status</option></select></label>
+          <span id="project-count" class="result-count" aria-live="polite" aria-atomic="true">Carregando catálogo…</span>
         </div>
-        <div id="project-grid" class="project-grid" aria-live="polite">
+        <div id="project-grid" class="project-grid">
           <div class="loading-card"><span class="loading-dot"></span> Carregando o catálogo de projetos…</div>
         </div>
         <p id="catalog-message" class="catalog-message" role="status" hidden></p>
