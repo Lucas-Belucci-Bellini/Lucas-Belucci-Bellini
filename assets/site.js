@@ -1,11 +1,13 @@
 (() => {
   "use strict";
 
-  const catalogUrl = "data/projects.json";
+  const catalogUrl = "docs/project-catalog.json";
   const grid = document.querySelector("#project-grid");
   const searchInput = document.querySelector("#project-search");
   const categorySelect = document.querySelector("#category-filter");
   const statusSelect = document.querySelector("#status-filter");
+  const sortSelect = document.querySelector("#project-sort");
+  const clearButton = document.querySelector("#clear-project-filters");
   const count = document.querySelector("#project-count");
   const message = document.querySelector("#catalog-message");
   const year = document.querySelector("#current-year");
@@ -80,16 +82,29 @@
   }
 
   function render() {
-    if (!grid || !searchInput || !categorySelect || !statusSelect || !count) return;
+    if (!grid || !searchInput || !categorySelect || !statusSelect || !sortSelect || !count) return;
     const query = (searchInput.value || "").trim().toLocaleLowerCase("pt-BR");
     const category = categorySelect.value;
     const status = statusSelect.value;
     const filtered = projects.filter((project) => {
-      const text = [project.name, project.description, project.category, project.category_label, project.status]
+      const topics = Array.isArray(project.topics) ? project.topics : [];
+      const text = [project.name, project.description, project.category, project.category_label, project.status,
+        project.repository, project.slug, ...topics]
         .filter((value) => typeof value === "string").join(" ").toLocaleLowerCase("pt-BR");
       return (!query || text.includes(query))
         && (category === "all" || project.category === category)
         && (status === "all" || project.status === status);
+    });
+
+    const collator = new Intl.Collator("pt-BR", { sensitivity: "base", numeric: true });
+    const sortKey = sortSelect.value;
+    filtered.sort((a, b) => {
+      if (sortKey === "name-desc") return collator.compare(b.name || "", a.name || "");
+      if (sortKey === "category-asc") return collator.compare(a.category_label || a.category || "", b.category_label || b.category || "")
+        || collator.compare(a.name || "", b.name || "");
+      if (sortKey === "status-asc") return collator.compare(a.status || "", b.status || "")
+        || collator.compare(a.name || "", b.name || "");
+      return collator.compare(a.name || "", b.name || "");
     });
 
     grid.replaceChildren();
@@ -155,5 +170,14 @@
   if (searchInput) searchInput.addEventListener("input", render);
   if (categorySelect) categorySelect.addEventListener("change", render);
   if (statusSelect) statusSelect.addEventListener("change", render);
+  if (sortSelect) sortSelect.addEventListener("change", render);
+  if (clearButton) clearButton.addEventListener("click", () => {
+    searchInput.value = "";
+    categorySelect.value = "all";
+    statusSelect.value = "all";
+    sortSelect.value = "name-asc";
+    render();
+    searchInput.focus();
+  });
   loadCatalog();
 })();
