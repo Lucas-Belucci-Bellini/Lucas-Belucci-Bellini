@@ -12,7 +12,9 @@ on:
       - "scripts/build_portfolio.py"
       - ".github/workflows/deploy-portfolio.yml"
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - feat/profile-readme-website-v2
     paths:
       - "index.html"
       - "assets/site.css"
