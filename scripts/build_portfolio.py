@@ -84,7 +84,7 @@ def public_projects(catalog: object) -> list[dict[str, object]]:
             raise BuildError(f"{where}.category is not declared in categories")
         if project["status"] not in STATUSES:
             raise BuildError(f"{where}.status is not an allowed public status")
-        if not safe_https_url(project.get("github")) or (urlsplit(str(project.get("github"))).hostname or "").lower() not in {"github.com", "www.github.com"}:
+        if not safe_https_url(project.get("github")) or (urlsplit(str(project.get("github"))).hostname or "").lower() != "github.com":
             # Invalid GitHub link means no safe primary project card.
             continue
         item = {key: project[key] for key in PUBLIC_FIELDS if key in project and key != "website"}
