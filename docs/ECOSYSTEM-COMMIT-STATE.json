@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-16T22:50:31Z",
+  "scanned_at": "2026-10-28T09:45:04Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -9,6 +9,13 @@
       "date": "2026-07-11T19:26:02Z",
       "message": "Merge pull request #3 from Lucas-Belucci-Bellini/claude/projeto-baluarte-issues-txo9fl",
       "url": "https://github.com/Lucas-Belucci-Bellini/Academic-Portfolio/commit/55a6456be899ae35104cc65999d6e181ed56fe06"
+    },
+    "AETHER": {
+      "branch": "main",
+      "sha": "a8c74da208eff7fbfde274071d274bd4353fbeee",
+      "date": "2026-10-28T00:21:27Z",
+      "message": "Merge pull request #4 from Lucas-Belucci-Bellini/identity/integration-contracts-2026-10",
+      "url": "https://github.com/Lucas-Belucci-Bellini/AETHER/commit/a8c74da208eff7fbfde274071d274bd4353fbeee"
     },
     "AI-second-brain-with-Claude-and-Obsidian": {
       "branch": "claude/setup-segundo-cerebro-script-vJsWg",
@@ -19,17 +26,17 @@
     },
     "All-Skills-for-the-claude-code": {
       "branch": "main",
-      "sha": "54605910938666bcdd724b73452fc04c278f233d",
-      "date": "2026-10-16T13:46:04Z",
-      "message": "Merge pull request #5 from Lucas-Belucci-Bellini/feat/skills-expansion-300-2026",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/54605910938666bcdd724b73452fc04c278f233d"
+      "sha": "66156930b39c2ad817cacb9d56f94b0625514467",
+      "date": "2026-10-17T13:41:03Z",
+      "message": "Merge pull request #45 from Lucas-Belucci-Bellini/feat/skills-expansion-1500-projete-cross-agent-2026",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/66156930b39c2ad817cacb9d56f94b0625514467"
     },
     "All-The-Mods-10": {
       "branch": "main",
-      "sha": "5fe5af621f8d81c6afc41aef6f5b43e2c34ec279",
-      "date": "2026-10-16T20:53:13Z",
-      "message": "instalando o Packet Fixer",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/5fe5af621f8d81c6afc41aef6f5b43e2c34ec279"
+      "sha": "4e7f342177ce4869dc771386e84c9ccbeb09435e",
+      "date": "2026-10-27T06:10:45Z",
+      "message": "Atualiza configuracoes, dados de execucao e arquivos do modpack",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/4e7f342177ce4869dc771386e84c9ccbeb09435e"
     },
     "Ark-Initiative": {
       "branch": "main",
@@ -44,6 +51,13 @@
       "date": "2026-07-01T15:10:59Z",
       "message": "commit terminal 1",
       "url": "https://github.com/Lucas-Belucci-Bellini/Atividade-6/commit/09b02a2eff1d0b3e1f3a4aae43054339fdb18f5a"
+    },
+    "ATLAS": {
+      "branch": "main",
+      "sha": "5f7e30a17636e786cef17adabe78c149745f316e",
+      "date": "2026-10-28T00:20:54Z",
+      "message": "Merge pull request #4 from Lucas-Belucci-Bellini/identity/integration-contracts-2026-10",
+      "url": "https://github.com/Lucas-Belucci-Bellini/ATLAS/commit/5f7e30a17636e786cef17adabe78c149745f316e"
     },
     "baluarte-academia": {
       "branch": "claude/projeto-baluarte-issues-y7jv88",
@@ -356,10 +370,10 @@
     },
     "NEXORA": {
       "branch": "main",
-      "sha": "015f7dcbc9e3e2b5cb8d80b21d5c0cff810fc28d",
-      "date": "2026-10-11T16:31:09Z",
-      "message": "docs(validation): record phase 0 evidence and walk checks",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/015f7dcbc9e3e2b5cb8d80b21d5c0cff810fc28d"
+      "sha": "eed3dbcb68c7540decf08b3d55f2fae7feae8833",
+      "date": "2026-10-28T02:00:21Z",
+      "message": "Merge pull request #62 from Lucas-Belucci-Bellini/feat/windows-portable-client-release",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/eed3dbcb68c7540decf08b3d55f2fae7feae8833"
     },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
@@ -428,13 +442,6 @@
       "message": "Add files via upload",
       "url": "https://github.com/Lucas-Belucci-Bellini/Recycle-game/commit/3cc95030ddf953d7387f41fe9631e69fedf05fa4"
     },
-    "Save-Games-Spartan-Gamer-BR-": {
-      "branch": "main",
-      "sha": "8e7da801cbb6bff96f7e2b0db92718e3000cd351",
-      "date": "2026-09-02T04:09:25Z",
-      "message": "Add files via upload",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Save-Games-Spartan-Gamer-BR-/commit/8e7da801cbb6bff96f7e2b0db92718e3000cd351"
-    },
     "Some-Pseudocode-and-exercise-codes": {
       "branch": "main",
       "sha": "615bfbde6109a512928bcfb2e0fbf0b3b4ddbce5",
@@ -463,12 +470,19 @@
       "message": "Adiciona arquivo de teste",
       "url": "https://github.com/Lucas-Belucci-Bellini/Teste-aula-git/commit/925ddb050d964f410886ef83074aad06c429ff92"
     },
+    "TITAN": {
+      "branch": "main",
+      "sha": "0f54b253f9d491c8b2d9cb58244c8eb560f2a507",
+      "date": "2026-10-28T00:21:53Z",
+      "message": "Merge pull request #4 from Lucas-Belucci-Bellini/identity/integration-contracts-2026-10",
+      "url": "https://github.com/Lucas-Belucci-Bellini/TITAN/commit/0f54b253f9d491c8b2d9cb58244c8eb560f2a507"
+    },
     "UMBRA-LIMA-ALFA": {
       "branch": "main",
-      "sha": "dd5ee1acc58e99c03a2fb3fa8087dadb11cc3ebd",
-      "date": "2026-10-11T03:10:39Z",
-      "message": "Update DISPLAY BIN-9 configuration to version 2.3.0",
-      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/dd5ee1acc58e99c03a2fb3fa8087dadb11cc3ebd"
+      "sha": "fc307bb411e965106533c95bb8c0a24440a467ca",
+      "date": "2026-10-27T03:09:49Z",
+      "message": "Chips/DISPLAY DECIMAL LEDSV1.json",
+      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/fc307bb411e965106533c95bb8c0a24440a467ca"
     },
     "Veritas": {
       "branch": "main",
@@ -479,15 +493,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 4549,
-    "project_commits": 4266,
-    "monitor_commits": 283,
-    "detected_project_commits_this_scan": 5,
+    "tracked_commits": 4903,
+    "project_commits": 4619,
+    "monitor_commits": 284,
+    "detected_project_commits_this_scan": 353,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 69,
-    "repositories_changed": 1,
+    "repositories_scanned": 71,
+    "repositories_changed": 4,
     "errors": 3
   },
   "errors": [

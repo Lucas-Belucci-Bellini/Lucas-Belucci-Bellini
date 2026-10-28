@@ -2,24 +2,27 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-16T22:50:31Z`  
+**Última varredura:** `2026-10-28T09:45:04Z`  
 **Intervalo configurado:** `1 hora`  
-**Repositórios acompanhados:** `69`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios acompanhados:** `71`  
+**Repositórios com mudanças desde a última varredura:** `4`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `4549`
-- **Commits dos projetos:** `4266`
-- **Commits do próprio monitor:** `283`
-- **Commits de projetos detectados nesta hora:** `5`
+- **Commits rastreados pelo ecossistema:** `4903`
+- **Commits dos projetos:** `4619`
+- **Commits do próprio monitor:** `284`
+- **Commits de projetos detectados nesta hora:** `353`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **All-The-Mods-10** — 5 commit(s) — [5fe5af621f8d](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/5fe5af621f8d81c6afc41aef6f5b43e2c34ec279) — instalando o Packet Fixer
+- **All-Skills-for-the-claude-code** — 325 commit(s) — [66156930b39c](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/66156930b39c2ad817cacb9d56f94b0625514467) — Merge pull request #45 from Lucas-Belucci-Bellini/feat/skills-expansion-1500-projete-cross-agent-2026
+- **All-The-Mods-10** — 7 commit(s) — [4e7f342177ce](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/4e7f342177ce4869dc771386e84c9ccbeb09435e) — Atualiza configuracoes, dados de execucao e arquivos do modpack
+- **NEXORA** — 19 commit(s) — [eed3dbcb68c7](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/eed3dbcb68c7540decf08b3d55f2fae7feae8833) — Merge pull request #62 from Lucas-Belucci-Bellini/feat/windows-portable-client-release
+- **UMBRA-LIMA-ALFA** — 2 commit(s) — [fc307bb411e9](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/fc307bb411e965106533c95bb8c0a24440a467ca) — Chips/DISPLAY DECIMAL LEDSV1.json
 
 ## Erros de consulta
 
