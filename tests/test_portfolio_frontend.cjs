@@ -101,7 +101,11 @@ test("missing optional fields render safe fallbacks and omit unsafe URLs", async
   assert.deepEqual(cardTitles(nodes), ["Projeto sem nome"]);
   const card = cards(nodes)[0];
   assert.ok(card.children.some((node) => node.textContent === "Descrição não informada."));
-  assert.equal(card.children.some((node) => node.tagName === "div" && node.children.some((child) => child.tagName === "a")), false);
+  const actions = card.children.find((node) => node.tagName === "div" && node.children.some((child) => child.tagName === "a"));
+  const hrefs = actions ? actions.children.filter((child) => child.tagName === "a").map((link) => link.href) : [];
+  assert.ok(hrefs.includes("https://github.com/owner/minimal"));
+  assert.ok(hrefs.every((href) => !href.startsWith("javascript:")));
+  assert.ok(hrefs.every((href) => !href.includes("example.com")));
 });
 
 test("HTTP and malformed payload failures show an accessible error state", async (t) => {
