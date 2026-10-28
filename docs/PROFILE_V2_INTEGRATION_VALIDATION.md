@@ -3,7 +3,7 @@
 **Branch:** `feat/v3p3-integration-candidate`  
 **Base:** `feat/profile-v2-consolidated`  
 **PR:** #78 (Draft)  
-**Última execução automatizada verde confirmada:** GitHub Actions run #59 (commit `98f876821637839536611daa59e90ef56c393fa4`). A correção do teste passou. Mudanças posteriores para alinhar a ordem do filtro de status à prioridade semântica foram feitas nos commits `a101288b0e7ddf26648f144e3775146c038ce168` e `94bc95ac9bd005f3f318e08cef9a4056ca70f680`; essas mudanças aguardam CI.
+**Última execução automatizada verde confirmada:** GitHub Actions run #59 (commit `98f876821637839536611daa59e90ef56c393fa4`). A correção do teste passou. Mudanças posteriores para alinhar a ordem do filtro de status à prioridade semântica foram feitas nos commits `a101288b0e7ddf26648f144e3775146c038ce168` e `94bc95ac9bd005f3f318e08cef9a4056ca70f680`. A run #62 encontrou um pressuposto incorreto no harness (ele não modela a opção estática `all`); a expectativa foi ajustada no commit `6a27c527977c75755e9a2d3ac437713829a84bc1` e aguarda nova validação.
 
 ## Escopo integrado
 
@@ -29,7 +29,7 @@
 
 - A suíte frontend agora verifica filtros combinados (texto + categoria + status) e os modos de ordenação explícitos, além de estados de erro, links seguros e semântica acessível.
 - A run #57 detectou uma expectativa de teste incompatível com a nova prioridade de status; a expectativa foi corrigida e a run #59 terminou com sucesso.
-- A lista do filtro de status agora também deve seguir a prioridade semântica, evitando divergência entre as opções de filtro e a ordenação de resultados. O teste dessa consistência foi adicionado e aguarda CI.
+- A lista do filtro de status agora também segue a prioridade semântica, evitando divergência entre as opções de filtro e a ordenação de resultados. O teste dessa consistência foi adicionado; a run #62 revelou que o harness de teste não representa a opção estática `all` do HTML real. A expectativa foi ajustada para verificar somente as opções dinâmicas, e o novo CI ainda precisa confirmar a correção.
 
 ## Limites conhecidos
 
