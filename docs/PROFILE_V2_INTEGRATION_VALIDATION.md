@@ -3,7 +3,7 @@
 **Branch:** `feat/v3p3-integration-candidate`  
 **Base:** `feat/profile-v2-consolidated`  
 **PR:** #78 (Draft)  
-**Última execução automatizada confirmada:** GitHub Actions run #51
+**Última execução automatizada confirmada:** GitHub Actions run #52 (commit `58d127c3ff20c465f87f24e64703ca2922e2c6a8`)
 
 ## Escopo integrado
 
@@ -15,14 +15,14 @@
 - Workflow executa a suíte Python, testes Node, build e verificação de allowlist/contrato antes de considerar o artefato.
 - Melhorias de acessibilidade: rótulos associados, instrução da busca, contagem com live region, região de resultados, foco de teclado visível, suporte a forced-colors e anúncio dos estados vazio/erro.
 
-## Evidência do run #51
+## Evidência do run #52
 
 - Python: 118 testes passaram.
 - Node: 7 testes passaram, 0 falhas.
 - Build do site estático: passou.
 - Allowlist do artefato: passou.
 - Contrato de privacidade: 78 projetos públicos e nenhum campo fora da allowlist.
-- Artefato de inspeção: `portfolio-static-site`, 15.367 bytes.
+- Artefato de inspeção: `portfolio-static-site`, 15.367 bytes (conforme o resumo do run #52).
 - Job de deploy de produção: ignorado para a branch de feature.
 
 ## Limites conhecidos
