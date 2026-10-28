@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-28T09:45:04Z`  
+**Última varredura:** `2026-10-28T21:39:25Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `71`  
 **Repositórios com mudanças desde a última varredura:** `4`  
@@ -10,19 +10,19 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `4903`
-- **Commits dos projetos:** `4619`
-- **Commits do próprio monitor:** `284`
-- **Commits de projetos detectados nesta hora:** `353`
+- **Commits rastreados pelo ecossistema:** `5025`
+- **Commits dos projetos:** `4740`
+- **Commits do próprio monitor:** `285`
+- **Commits de projetos detectados nesta hora:** `121`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **All-Skills-for-the-claude-code** — 325 commit(s) — [66156930b39c](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/66156930b39c2ad817cacb9d56f94b0625514467) — Merge pull request #45 from Lucas-Belucci-Bellini/feat/skills-expansion-1500-projete-cross-agent-2026
-- **All-The-Mods-10** — 7 commit(s) — [4e7f342177ce](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/4e7f342177ce4869dc771386e84c9ccbeb09435e) — Atualiza configuracoes, dados de execucao e arquivos do modpack
-- **NEXORA** — 19 commit(s) — [eed3dbcb68c7](https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/eed3dbcb68c7540decf08b3d55f2fae7feae8833) — Merge pull request #62 from Lucas-Belucci-Bellini/feat/windows-portable-client-release
-- **UMBRA-LIMA-ALFA** — 2 commit(s) — [fc307bb411e9](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/fc307bb411e965106533c95bb8c0a24440a467ca) — Chips/DISPLAY DECIMAL LEDSV1.json
+- **AETHER** — 41 commit(s) — [52bfff832e23](https://github.com/Lucas-Belucci-Bellini/AETHER/commit/52bfff832e23b734693a0a8e050e2028c1baee28) — Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10
+- **All-Skills-for-the-claude-code** — 45 commit(s) — [b9b44033252a](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/b9b44033252a1fedba73f5da98cf42b04f05642f) — Merge pull request #169 from Lucas-Belucci-Bellini/feat/all-skills-consolidated-2026
+- **ATLAS** — 21 commit(s) — [9415fa48f461](https://github.com/Lucas-Belucci-Bellini/ATLAS/commit/9415fa48f4618e6a30f38b3af4c35bc75290201f) — Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10
+- **TITAN** — 14 commit(s) — [95980f596020](https://github.com/Lucas-Belucci-Bellini/TITAN/commit/95980f596020b03155f6de77e90e4b60a62e8903) — Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10
 
 ## Erros de consulta
 

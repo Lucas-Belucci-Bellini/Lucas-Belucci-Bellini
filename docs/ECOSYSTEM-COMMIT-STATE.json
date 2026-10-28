@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-28T09:45:04Z",
+  "scanned_at": "2026-10-28T21:39:25Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -12,10 +12,10 @@
     },
     "AETHER": {
       "branch": "main",
-      "sha": "a8c74da208eff7fbfde274071d274bd4353fbeee",
-      "date": "2026-10-28T00:21:27Z",
-      "message": "Merge pull request #4 from Lucas-Belucci-Bellini/identity/integration-contracts-2026-10",
-      "url": "https://github.com/Lucas-Belucci-Bellini/AETHER/commit/a8c74da208eff7fbfde274071d274bd4353fbeee"
+      "sha": "52bfff832e23b734693a0a8e050e2028c1baee28",
+      "date": "2026-10-28T17:58:18Z",
+      "message": "Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10",
+      "url": "https://github.com/Lucas-Belucci-Bellini/AETHER/commit/52bfff832e23b734693a0a8e050e2028c1baee28"
     },
     "AI-second-brain-with-Claude-and-Obsidian": {
       "branch": "claude/setup-segundo-cerebro-script-vJsWg",
@@ -26,10 +26,10 @@
     },
     "All-Skills-for-the-claude-code": {
       "branch": "main",
-      "sha": "66156930b39c2ad817cacb9d56f94b0625514467",
-      "date": "2026-10-17T13:41:03Z",
-      "message": "Merge pull request #45 from Lucas-Belucci-Bellini/feat/skills-expansion-1500-projete-cross-agent-2026",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/66156930b39c2ad817cacb9d56f94b0625514467"
+      "sha": "b9b44033252a1fedba73f5da98cf42b04f05642f",
+      "date": "2026-10-28T20:13:52Z",
+      "message": "Merge pull request #169 from Lucas-Belucci-Bellini/feat/all-skills-consolidated-2026",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/b9b44033252a1fedba73f5da98cf42b04f05642f"
     },
     "All-The-Mods-10": {
       "branch": "main",
@@ -54,10 +54,10 @@
     },
     "ATLAS": {
       "branch": "main",
-      "sha": "5f7e30a17636e786cef17adabe78c149745f316e",
-      "date": "2026-10-28T00:20:54Z",
-      "message": "Merge pull request #4 from Lucas-Belucci-Bellini/identity/integration-contracts-2026-10",
-      "url": "https://github.com/Lucas-Belucci-Bellini/ATLAS/commit/5f7e30a17636e786cef17adabe78c149745f316e"
+      "sha": "9415fa48f4618e6a30f38b3af4c35bc75290201f",
+      "date": "2026-10-28T17:58:16Z",
+      "message": "Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10",
+      "url": "https://github.com/Lucas-Belucci-Bellini/ATLAS/commit/9415fa48f4618e6a30f38b3af4c35bc75290201f"
     },
     "baluarte-academia": {
       "branch": "claude/projeto-baluarte-issues-y7jv88",
@@ -472,10 +472,10 @@
     },
     "TITAN": {
       "branch": "main",
-      "sha": "0f54b253f9d491c8b2d9cb58244c8eb560f2a507",
-      "date": "2026-10-28T00:21:53Z",
-      "message": "Merge pull request #4 from Lucas-Belucci-Bellini/identity/integration-contracts-2026-10",
-      "url": "https://github.com/Lucas-Belucci-Bellini/TITAN/commit/0f54b253f9d491c8b2d9cb58244c8eb560f2a507"
+      "sha": "95980f596020b03155f6de77e90e4b60a62e8903",
+      "date": "2026-10-28T17:58:04Z",
+      "message": "Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10",
+      "url": "https://github.com/Lucas-Belucci-Bellini/TITAN/commit/95980f596020b03155f6de77e90e4b60a62e8903"
     },
     "UMBRA-LIMA-ALFA": {
       "branch": "main",
@@ -493,10 +493,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 4903,
-    "project_commits": 4619,
-    "monitor_commits": 284,
-    "detected_project_commits_this_scan": 353,
+    "tracked_commits": 5025,
+    "project_commits": 4740,
+    "monitor_commits": 285,
+    "detected_project_commits_this_scan": 121,
     "monitor_commit_this_scan": 1
   },
   "summary": {
