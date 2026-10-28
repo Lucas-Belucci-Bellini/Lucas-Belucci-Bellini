@@ -10,19 +10,22 @@ on:
       - "index.html"
       - "assets/**"
       - "docs/project-catalog.json"
-      - "scripts/build_portfolio.py"
-      - ".github/workflows/deploy-portfolio.yml"
+      - "scripts/**"
+      - "tests/**"
+      - ".github/scripts/**"
+      - ".github/workflows/**"
       - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
   push:
     branches:
       - main
-      - feat/profile-readme-website-v2
     paths:
       - "index.html"
       - "assets/**"
       - "docs/project-catalog.json"
-      - "scripts/build_portfolio.py"
-      - ".github/workflows/deploy-portfolio.yml"
+      - "scripts/**"
+      - "tests/**"
+      - ".github/scripts/**"
+      - ".github/workflows/**"
       - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
   workflow_dispatch:
 
@@ -35,10 +38,11 @@ permissions:
 
 jobs:
   build:
+    name: Validate, test and build static site
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -46,8 +50,9 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate source and catalog
+      - name: Validate builder, catalog and source assets
         run: |
+          set -euo pipefail
           python -m py_compile scripts/build_portfolio.py
           python -m json.tool docs/project-catalog.json >/dev/null
           test -s index.html
@@ -55,13 +60,13 @@ jobs:
           test -s assets/site.js
           test -s assets/favicon.svg
 
-      - name: Run static build contract tests
-        run: python -m unittest discover -s tests -p "test_build_portfolio.py" -v
+      - name: Run complete Python regression suite
+        run: python -m unittest discover -s tests -v
 
       - name: Build public-only static artifact
         run: python scripts/build_portfolio.py
 
-      - name: Verify exact artifact allowlist and public data contract
+      - name: Verify exact artifact allowlist and public-data contract
         shell: bash
         run: |
           set -euo pipefail
@@ -71,6 +76,9 @@ jobs:
           from urllib.parse import urlparse
 
           root = Path("dist")
+          if not root.is_dir():
+              raise SystemExit("dist/ was not generated")
+
           allowed_files = {
               "index.html",
               "assets/site.css",
@@ -79,9 +87,14 @@ jobs:
               "data/projects.json",
               ".nojekyll",
           }
+          entries = list(root.rglob("*"))
+          symlinks = sorted(p.relative_to(root).as_posix() for p in entries if p.is_symlink())
+          if symlinks:
+              raise SystemExit(f"Artifact contains symlinks: {symlinks}")
+
           actual_files = {
               p.relative_to(root).as_posix()
-              for p in root.rglob("*")
+              for p in entries
               if p.is_file()
           }
           if actual_files != allowed_files:
@@ -132,13 +145,14 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
-      - name: Prepare GitHub Pages artifact for production refs only
+      - name: Prepare Pages artifact on production refs only
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
 
   deploy:
+    name: Deploy GitHub Pages production
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     needs: build
     runs-on: ubuntu-latest
