@@ -8,6 +8,10 @@
   const statusSelect = document.querySelector("#status-filter");
   const count = document.querySelector("#project-count");
   const message = document.querySelector("#catalog-message");
+  const areaGrid = document.querySelector("#area-grid");
+  const publicCount = document.querySelector("#catalog-public-count");
+  const areaCount = document.querySelector("#catalog-area-count");
+  const websiteCount = document.querySelector("#catalog-website-count");
   const year = document.querySelector("#current-year");
   const allowedStatuses = new Set(["🟢 Active", "🟡 In Development", "🔵 Experimental", "🟣 Academic"]);
 
@@ -48,6 +52,9 @@
     const card = make("article", "project-card");
     const top = make("div", "project-topline");
     top.append(make("span", "project-category", project.category_label || project.category || "Categoria não informada"));
+    if (project.featured === true) {
+      top.append(make("span", "project-featured", "Destaque"));
+    }
     if (allowedStatuses.has(project.status)) {
       top.append(make("span", "project-status", project.status));
     }
@@ -77,6 +84,39 @@
     }
     if (actions.childElementCount) card.append(actions);
     return card;
+  }
+
+  function renderAreas() {
+    if (!areaGrid) return;
+    const groups = new Map();
+    projects.forEach((project) => {
+      const category = typeof project.category === "string" && project.category.trim()
+        ? project.category
+        : "Categoria não informada";
+      groups.set(category, (groups.get(category) || 0) + 1);
+    });
+
+    const categories = [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0], "pt-BR"));
+    areaGrid.replaceChildren();
+    categories.forEach(([category, total]) => {
+      const button = make("button", "area-card");
+      button.type = "button";
+      button.append(make("span", "area-card-label", category));
+      button.append(make("strong", "area-card-count", String(total).padStart(2, "0")));
+      button.append(make("span", "area-card-action", "Explorar projetos ↘"));
+      button.setAttribute("aria-label", "Filtrar " + total + " projetos da categoria " + category);
+      button.addEventListener("click", () => {
+        if (categorySelect) categorySelect.value = category;
+        render();
+        const work = document.querySelector("#work");
+        if (work) work.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      areaGrid.append(button);
+    });
+
+    if (publicCount) publicCount.textContent = String(projects.length).padStart(2, "0");
+    if (areaCount) areaCount.textContent = String(categories.length).padStart(2, "0");
+    if (websiteCount) websiteCount.textContent = String(projects.filter((project) => safeHttpsUrl(project.website)).length).padStart(2, "0");
   }
 
   function render() {
@@ -140,6 +180,7 @@
 
       if (!projects.length) throw new Error("O catálogo não contém projetos públicos elegíveis para exibição.");
       message.hidden = true;
+      renderAreas();
       render();
     } catch (error) {
       grid.replaceChildren(make("div", "empty-card", "Não foi possível carregar o catálogo de projetos."));
