@@ -112,6 +112,16 @@ class PortfolioBuildTests(unittest.TestCase):
             },
         )
 
+    def test_output_cannot_replace_source_assets(self):
+        self.write_catalog([project()])
+        asset = self.root / "assets" / "site.css"
+        before = asset.read_text(encoding="utf-8")
+
+        with self.assertRaisesRegex(BuildError, "restricted to the dist"):
+            build(self.root, self.root / "assets")
+
+        self.assertEqual(asset.read_text(encoding="utf-8"), before)
+
     def test_unsupported_schema_fails_explicitly(self):
         self.write_catalog([project()], schema="unexpected/schema@9")
         with self.assertRaisesRegex(BuildError, "unsupported catalog schema"):
