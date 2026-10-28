@@ -313,3 +313,35 @@ a:hover {
     outline: 2px solid Highlight;
   }
 }
+
+/* Accessibility and low-motion safeguards (V2P2). */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--gold-light);
+  outline-offset: 3px;
+}
+:where(input, select, textarea, button, a) {
+  scroll-margin-block: 6rem;
+}
+::selection { background: var(--gold); color: #0e0c16; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (max-width: 720px) {
+  .topbar { height: auto; min-height: 72px; padding: 14px 20px; align-items: flex-start; gap: 14px; flex-direction: column; }
+  .topbar nav { width: 100%; max-width: 100%; overflow-x: auto; padding: 4px 2px 8px; gap: 18px; scrollbar-width: thin; }
+  .topbar nav a { flex: 0 0 auto; min-height: 24px; }
+  .section-wrap { width: min(100% - 32px, 1160px); }
+}
+@media (max-width: 420px) {
+  .hero h1 { font-size: clamp(40px, 12vw, 54px); }
+  .hero-actions .button { justify-content: space-between; width: 100%; }
+  .project-tools { grid-template-columns: minmax(0, 1fr); }
+  .signal-strip { flex-wrap: wrap; justify-content: flex-start; }
+}
+
