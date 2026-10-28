@@ -125,7 +125,13 @@ test("combined search, category, status and explicit sort work together", async 
 
   nodes["#sort-projects"].value = "status";
   nodes["#sort-projects"].dispatch("change");
-  assert.deepEqual(cardTitles(nodes), ["Alpha Engine", "Zulu Engine"]);
+  assert.deepEqual(cardTitles(nodes), ["Zulu Engine", "Alpha Engine"]);
+
+  nodes["#project-search"].value = "";
+  nodes["#category-filter"].value = "all";
+  nodes["#sort-projects"].dispatch("change");
+  assert.deepEqual(cardTitles(nodes), ["Zulu Engine", "Voxel Planner", "Unrelated", "Alpha Engine"]);
+  assert.equal(nodes["#project-count"].textContent, "4 de 4 projetos");
 });
 
 test("malformed public records are filtered and unsafe website URLs are omitted", async () => {
