@@ -10,7 +10,7 @@
 Na raiz do repositório:
 
 ```bash
-python -m unittest tests.test_build_portfolio -v
+python -m unittest discover -s tests -p "test_build_portfolio.py" -v
 python -m unittest discover -s tests -v
 python -m py_compile .github/scripts/*.py scripts/*.py tests/*.py
 python scripts/validate_language_badges.py
