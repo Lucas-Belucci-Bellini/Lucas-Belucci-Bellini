@@ -6,7 +6,15 @@ Execute na raiz do repositório:
 python scripts/build_portfolio.py
 # Saída alternativa para auditoria:
 python scripts/build_portfolio.py --out /tmp/portfolio-dist
-``
+```
+
+Execute os testes de regressão da pipeline:
+
+```sh
+python -m unittest discover -s tests -p "test_*.py" -v
+```
+
+Os testes cobrem o allowlist público, exclusão de projetos privados/não visíveis, remoção de websites inválidos, saída determinística, limpeza de arquivos antigos e erros de schema/slugs duplicados.
 
 A fonte editorial é `docs/project-catalog.json`, gerado por `scripts/update_profile.py`. Não edite o catálogo à mão; ajuste os manifestos editoriais e rode o gerador existente.
 
