@@ -19,14 +19,18 @@ A comparação remota de `main` com `feat/profile-v2-consolidated` reportou:
 
 Isso é divergência real, não um fast-forward simples. Não executar merge automático nem cherry-pick em lote até identificar os dois commits exclusivos de `main), suas dependências e possíveis conflitos.
 
-## 3. Mudança exclusiva de `main` já identificada
+## 3. Os dois commits exclusivos de `main` e o que preservar
 
-O HEAD observado de `main` é `842b3f2f3b0400c6dcfb6b16eb6fb63eb20d3c87`, com mensagem `chore(bot): snapshot horário do ecossistema [skip ci]`. O commit altera:
+A investigação posterior identificou os dois commits exclusivos reportados na comparação:
 
-- `docs/ECOSYSTEM-COMMIT-MONITOR.md`
-- `docs/ECOSYSTEM-COMMIT-STATE.json`
+1. [`8990c178797a4bbef0a2061e88d882401bd6dc05`](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/8990c178797a4bbef0a2061e88d882401bd6dc05) — `feat(portfolio): consolidate and validate V2 integration (#48)`. É um commit de consolidação/squash do trabalho V2, não uma mudança independente que deva ser cherry-picked por cima da branch consolidada sem análise.
+2. [`842b3f2f3b0400c6dcfb6b16eb6fb63eb20d3c87`](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/commit/842b3f2f3b0400c6dcfb6b16eb6fb63eb20d3c87) — `chore(bot): snapshot horário do ecossistema [skip ci]`, que atualiza `docs/ECOSYSTEM-COMMIT-MONITOR.md` e `docs/ECOSYSTEM-COMMIT-STATE.json`.
 
-**Regra de preservação:** manter o snapshot e o estado do monitor de ecossistema de `main` como dados recentes. Antes de transportar os arquivos, verificar a diferença entre os dois estados e se a execução automatizada já gerou novos dados. Não substituir o snapshot por uma versão mais antiga da branch consolidada. O segundo commit exclusivo de `main` ainda precisa ser identificado antes de decidir a reconciliação completa.
+### Comparação direta dos arquivos principais
+
+Foi feita comparação de conteúdo nos dois refs finais. Os blobs são idênticos para `index.html`, `scripts/build_portfolio.py`, `tests/test_build_portfolio.py`, `assets/site.css`, `assets/site.js` e `.github/workflows/deploy-portfolio.yml`. Isso confirma que a comparação de commits mostrando arquivos como “added” descreve a história desde o merge-base, e não que esses arquivos estejam ausentes de `main`.
+
+**Regra de preservação:** não cherry-pickar o commit de consolidação `8990...` nem recopiá-lo integralmente; isso arriscaria duplicar a implementação V2 já presente nos dois refs. Preservar o snapshot recente do commit `842...`, pois esses dois arquivos diferem e refletem a varredura de 2026-10-28T09:45:04Z. A reconciliação deve manter o conteúdo recente do monitor e evitar retrocedê-lo para o snapshot anterior.
 
 ## 4. Componentes V2 presentes na branch consolidada
 
