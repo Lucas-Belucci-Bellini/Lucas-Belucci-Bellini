@@ -117,7 +117,7 @@ def validate(root: Path = ROOT) -> tuple[list[str], list[str], dict[str, int]]:
     if isinstance(sites, dict):
         for repository, value in sites.items():
             where = f"README_SITES[{repository!r}]"
-            if not isinstance(repository, str) or not re.fullmatch(r"[^/\\s]+/[^/\\s]+", repository):
+            if not isinstance(repository, str) or not re.fullmatch(r"[^/\s]+/[^/\s]+", repository):
                 errors.append(f"{where}: key must be owner/repository")
             url = value if isinstance(value, str) else value.get("website") if isinstance(value, dict) else None
             if not https_url(url):
