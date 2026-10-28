@@ -24,15 +24,21 @@ class BuildError(ValueError):
 
 
 def safe_https_url(value: object) -> bool:
-    if not isinstance(value, str) or not value or value != value.strip() or any(c.isspace() for c in value):
+    """Accept absolute HTTPS URLs only; reject ambiguous and local destinations."""
+    if (
+        not isinstance(value, str) or not value or value != value.strip()
+        or any(ord(char) <= 0x20 or ord(char) == 0x7F or char == "\\\\" for char in value)
+    ):
         return False
     try:
         parsed = urlsplit(value)
         host = (parsed.hostname or "").lower()
+        # Accessing .port also validates malformed port syntax.
+        _ = parsed.port
         return (
-            parsed.scheme == "https" and bool(host)
+            parsed.scheme.lower() == "https" and bool(host)
             and parsed.username is None and parsed.password is None
-            and host not in {"localhost", "localhost.localdomain"}
+            and host != "localhost" and not host.endswith(".localhost")
             and not host.endswith(".local")
         )
     except ValueError:
