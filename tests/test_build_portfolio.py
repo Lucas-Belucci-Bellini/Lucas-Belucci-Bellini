@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.build_portfolio import BuildError, build, public_projects, safe_https_url
+from scripts.build_portfolio import BuildError, build, public_projects, safe_github_url, safe_https_url
 
 SCHEMA = "lucas-belucci-bellini/project-catalog@1"
 
@@ -113,14 +113,19 @@ class PortfolioBuildTests(unittest.TestCase):
     def test_invalid_urls_and_non_github_destinations_are_rejected(self):
         for url in ("http://github.com/owner/repo", "javascript:alert(1)", "https://user:pass@example.com",
                     "https://localhost/a", "https://127.0.0.1/a", "https://192.168.1.1/a",
-                    "https://example.com/a b", "https://example.com:444", "https://github.com"):
+                    "https://example.com/a b", "https://example.com:444"):
             with self.subTest(url=url):
                 self.assertFalse(safe_https_url(url))
-        for url in ("https://evil.example/owner/repo", "https://github.com.evil.example/owner/repo"):
+        for url in ("https://evil.example/owner/repo", "https://github.com.evil.example/owner/repo",
+                    "https://github.com", "https://github.com/owner/repo?next=evil",
+                    "https://github.com/owner/repo/extra"):
             with self.subTest(url=url):
-                projects = public_projects({"schema": SCHEMA, "categories": ["Software & Tools"],
-                                            "projects": [project(github=url)]})
-                self.assertEqual(projects, [])
+                self.assertFalse(safe_github_url(url))
+                with self.assertRaisesRegex(BuildError, "no valid public projects"):
+                    public_projects({"schema": SCHEMA, "categories": ["Software & Tools"],
+                                     "projects": [project(github=url)]})
+        self.assertTrue(safe_github_url("https://github.com/owner/repo"))
+        self.assertTrue(safe_github_url("https://www.github.com/owner/repo"))
 
     def test_unverified_or_invalid_website_never_published(self):
         for status, url in (("unreachable", "https://example.com"), ("verified", "javascript:alert(1)"),
