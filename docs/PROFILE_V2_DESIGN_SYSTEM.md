@@ -18,7 +18,7 @@ Defined in `assets/site.css` under `:root`:
 - **Surfaces:** use `.project-card` and `.stack-card`; use border changes and restrained elevation for hover, not a new visual theme.
 - **Inputs:** `.search-box` and `.filter-label` share a border and a visible focus-within ring.
 - **Catalog states:** `.loading-card` is the loading state, `.empty-card` represents empty/error fallback content, and `.catalog-message` carries the explanatory error status. The existing JavaScript owns which state appears.
-- **Keyboard:** links and controls have visible focus outlines; the skip link remains available.
+- **Contrast and keyboard:** low-contrast secondary metadata and placeholders use the shared `--color-text-subtle` role; links and controls have visible focus outlines; the skip link remains available.
 - **Motion:** transitions and loading animation are minimized when `prefers-reduced-motion: reduce` is enabled. Forced-colors mode receives explicit borders/focus treatment.
 
 ## Responsive behavior
@@ -27,4 +27,4 @@ The existing breakpoints at 850px and 600px are retained. The project grid moves
 
 ## Verification notes
 
-The CSS changes are additive and do not alter `assets/site.js`, catalog data, README generation, or workflows. The repository connector can update GitHub files, but it does not provide a browser viewport or screenshot runner in this workflow. Before merging, verify at 375px, 768px, and 1440px widths and test keyboard navigation, empty search results, catalog-load failure, and reduced-motion in a browser. Also run the repository's existing test/build commands locally or in CI; no visual pass is claimed by this document.
+The CSS changes are additive and do not alter `assets/site.js`, catalog data, README generation, or workflows. A follow-up contrast pass replaced several especially dim metadata and placeholder colors with the shared subtle-text token so those roles stay consistent. The repository connector can update GitHub files, but it does not provide a browser viewport or screenshot runner in this workflow. Before merging, verify at 375px, 768px, and 1440px widths and test keyboard navigation, empty search results, catalog-load failure, and reduced-motion in a browser. Also run the repository's existing test/build commands locally or in CI; no visual pass is claimed by this document.
