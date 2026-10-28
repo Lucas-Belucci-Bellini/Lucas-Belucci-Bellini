@@ -55,8 +55,8 @@ jobs:
           test -s assets/site.js
           test -s assets/favicon.svg
 
-      - name: Run static build contract tests
-        run: python -m unittest discover -s tests -p "test_build_portfolio.py" -v
+      - name: Run complete Python regression suite
+        run: python -m unittest discover -s tests -v
 
       - name: Build public-only static artifact
         run: python scripts/build_portfolio.py
