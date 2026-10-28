@@ -27,7 +27,7 @@ def safe_https_url(value: object) -> bool:
     """Accept absolute HTTPS URLs only; reject ambiguous and local destinations."""
     if (
         not isinstance(value, str) or not value or value != value.strip()
-        or any(ord(char) <= 0x20 or ord(char) == 0x7F or char == "\\\\" for char in value)
+        or any(ord(char) <= 0x20 or ord(char) == 0x7F or char == "\\" for char in value)
     ):
         return False
     try:
