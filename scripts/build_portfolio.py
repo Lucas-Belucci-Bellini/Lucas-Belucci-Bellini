@@ -60,7 +60,7 @@ def main() -> int:
     (DIST / "data").mkdir(parents=True)
 
     shutil.copy2(ROOT / "index.html", DIST / "index.html")
-    for asset in ("site.css", "site.js", "favicon.svg"):
+    for asset in ("site.css", "hero.css", "site.js", "favicon.svg"):
         shutil.copy2(ROOT / "assets" / asset, DIST / "assets" / asset)
 
     (DIST / "data" / "projects.json").write_text(
