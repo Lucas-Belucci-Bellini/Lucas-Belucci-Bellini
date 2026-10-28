@@ -39,6 +39,24 @@ def safe_https_url(value: object) -> bool:
         return False
 
 
+def safe_github_url(value: object) -> bool:
+    if not safe_https_url(value):
+        return False
+    try:
+        parsed = urlsplit(str(value))
+        host = (parsed.hostname or "").lower()
+        segments = [part for part in parsed.path.split("/") if part]
+        return (
+            host in {"github.com", "www.github.com"}
+            and len(segments) == 2
+            and all("." not in segment for segment in segments)
+            and not parsed.query
+            and not parsed.fragment
+        )
+    except ValueError:
+        return False
+
+
 def public_projects(catalog: object) -> list[dict[str, object]]:
     if not isinstance(catalog, dict):
         raise BuildError("catalog root must be a JSON object")
@@ -77,7 +95,7 @@ def public_projects(catalog: object) -> list[dict[str, object]]:
             raise BuildError(f"{where}.category is not declared in categories")
         if project["status"] not in STATUSES:
             raise BuildError(f"{where}.status is not an allowed public status")
-        if not safe_https_url(project.get("github")) or (urlsplit(str(project.get("github"))).hostname or "").lower() not in {"github.com", "www.github.com"}:
+        if not safe_github_url(project.get("github")):
             # Invalid GitHub link means no safe primary project card.
             continue
         item = {key: project[key] for key in PUBLIC_FIELDS if key in project and key != "website"}
@@ -106,8 +124,8 @@ def build(root: Path, out: Path) -> int:
 
     out = out.resolve()
     root = root.resolve()
-    if out == root or (root in out.parents and out != root / "dist"):
-        raise BuildError("output inside the repository is restricted to the dist/ directory")
+    if out != (root / "dist").resolve():
+        raise BuildError("output directory must be exactly the repository dist/ directory")
     out.parent.mkdir(parents=True, exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix=".portfolio-build-", dir=out.parent))
     try:
