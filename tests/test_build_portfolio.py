@@ -133,6 +133,16 @@ class PortfolioBuildTests(unittest.TestCase):
         with self.assertRaisesRegex(BuildError, "duplicate public slug"):
             build(self.root, self.root / "dist")
 
+    def test_noncanonical_github_host_is_not_published(self):
+        self.write_catalog([
+            project(name="WWW GitHub", slug="www-github", github="https://www.github.com/owner/repo"),
+            project(name="Canonical GitHub", slug="canonical-github", github="https://github.com/owner/repo"),
+        ])
+        out = self.root / "dist"
+        self.assertEqual(build(self.root, out), 1)
+        payload = json.loads((out / "data" / "projects.json").read_text(encoding="utf-8"))
+        self.assertEqual([item["slug"] for item in payload["projects"]], ["canonical-github"])
+
     def test_invalid_website_urls_are_omitted_from_public_payload(self):
         invalid_urls = [
             "javascript:alert(1)",
