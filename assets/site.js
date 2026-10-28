@@ -116,9 +116,13 @@
 
     grid.replaceChildren();
     if (!projects.length) {
-      grid.append(make("div", "empty-card", "O catálogo está vazio no momento."));
+      const emptyState = make("div", "empty-card", "O catálogo está vazio no momento.");
+      emptyState.setAttribute("role", "status");
+      grid.append(emptyState);
     } else if (!filtered.length) {
-      grid.append(make("div", "empty-card", "Nenhum projeto corresponde aos filtros atuais. Tente outro termo ou opção."));
+      const emptyState = make("div", "empty-card", "Nenhum projeto corresponde aos filtros atuais. Tente outro termo ou opção.");
+      emptyState.setAttribute("role", "status");
+      grid.append(emptyState);
     } else {
       const fragment = document.createDocumentFragment();
       filtered.forEach((project) => fragment.append(createProjectCard(project)));
@@ -159,7 +163,9 @@
       message.hidden = true;
       render();
     } catch (error) {
-      grid.replaceChildren(make("div", "empty-card", "Não foi possível carregar o catálogo de projetos."));
+      const errorState = make("div", "empty-card", "Não foi possível carregar o catálogo de projetos.");
+      errorState.setAttribute("role", "status");
+      grid.replaceChildren(errorState);
       count.textContent = "Catálogo indisponível";
       message.hidden = false;
       message.textContent = "Confira se data/projects.json está disponível e contém JSON válido. "
