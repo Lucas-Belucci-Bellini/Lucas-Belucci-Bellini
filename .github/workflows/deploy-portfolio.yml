@@ -30,7 +30,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: portfolio-pages-\${{ github.event.pull_request.number || github.ref }}
+  group: portfolio-pages-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -162,7 +162,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: \${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy the validated Pages artifact
         id: deployment
