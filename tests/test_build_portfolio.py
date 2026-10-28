@@ -85,6 +85,8 @@ class PortfolioBuildTests(unittest.TestCase):
             self.assertNotIn("github_visible", item)
             self.assertNotIn("marketing_priority", item)
             self.assertNotIn("website_status", item)
+            self.assertNotIn("marketing_priority", item)
+            self.assertIsInstance(item["featured"], bool)
         bad_website = next(item for item in payload["projects"] if item["slug"] == "bad-website")
         self.assertNotIn("website", bad_website)
 
@@ -122,6 +124,22 @@ class PortfolioBuildTests(unittest.TestCase):
             build(self.root, self.root / "assets")
 
         self.assertEqual(asset.read_text(encoding="utf-8"), before)
+
+    def test_featured_flag_is_normalized_and_featured_projects_sort_first(self):
+        self.write_catalog([
+            project(name="Regular", slug="regular", featured=False),
+            project(name="Featured", slug="featured", featured=True, marketing_priority=100),
+            project(name="Malformed flag", slug="malformed-flag", featured="yes"),
+        ])
+        out = self.root / "dist"
+
+        build(self.root, out)
+        payload = json.loads((out / "data" / "projects.json").read_text(encoding="utf-8"))
+        projects = payload["projects"]
+
+        self.assertEqual([item["name"] for item in projects], ["Featured", "Malformed flag", "Regular"])
+        self.assertEqual([item["featured"] for item in projects], [True, False, False])
+        self.assertTrue(all("marketing_priority" not in item for item in projects))
 
     def test_unsupported_schema_fails_explicitly(self):
         self.write_catalog([project()], schema="unexpected/schema@9")
