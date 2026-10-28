@@ -2,7 +2,7 @@ name: V2 Validation
 
 on:
   push:
-    branches: [main]
+    branches: [main, feat/profile-readme-website-v2]
     paths:
       - "README.md"
       - "scripts/**"
@@ -12,7 +12,7 @@ on:
       - ".github/workflows/**"
       - "tests/**"
   pull_request:
-    branches: [main]
+    branches: [main, feat/profile-readme-website-v2]
     paths:
       - "README.md"
       - "scripts/**"
