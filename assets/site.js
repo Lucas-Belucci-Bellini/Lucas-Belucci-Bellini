@@ -1,10 +1,11 @@
 (() => {
   "use strict";
 
-  const catalogUrl = "data/projects.json";
+  const catalogUrl = "docs/project-catalog.json";
   const grid = document.querySelector("#project-grid");
   const searchInput = document.querySelector("#project-search");
   const categorySelect = document.querySelector("#category-filter");
+  const statusSelect = document.querySelector("#status-filter");
   const count = document.querySelector("#project-count");
   const message = document.querySelector("#catalog-message");
   const year = document.querySelector("#current-year");
@@ -21,7 +22,8 @@
     return node;
   };
 
-  const safeUrl = (value) => {
+  const safeHttpsUrl = (value) => {
+    if (typeof value !== "string" || !value.trim()) return null;
     try {
       const url = new URL(value);
       return url.protocol === "https:" ? url.href : null;
@@ -30,23 +32,37 @@
     }
   };
 
+  const safeGitHubUrl = (value) => {
+    const safe = safeHttpsUrl(value);
+    if (!safe) return null;
+    try {
+      const url = new URL(safe);
+      const parts = url.pathname.split("/").filter(Boolean);
+      return url.hostname === "github.com" && parts.length === 2 && parts.every((part) => !part.includes(".")) ? safe : null;
+    } catch {
+      return null;
+    }
+  };
+
   function createProjectCard(project) {
     const card = make("article", "project-card");
     const top = make("div", "project-topline");
-    top.append(make("span", "project-category", project.category_label || project.category || "Projeto"));
-    const status = allowedStatuses.has(project.status) ? project.status : "Em desenvolvimento";
-    top.append(make("span", "project-status", status));
+    top.append(make("span", "project-category", project.category_label || project.category || "Categoria não informada"));
+    if (allowedStatuses.has(project.status)) {
+      top.append(make("span", "project-status", project.status));
+    }
     card.append(top);
-    card.append(make("h3", "", project.name || "Projeto sem nome"));
-    card.append(make("p", "", project.description && project.description !== "Descrição pública não informada."
+    card.append(make("h3", "", typeof project.name === "string" && project.name.trim() ? project.name : "Projeto sem nome"));
+    const description = typeof project.description === "string" && project.description.trim()
       ? project.description
-      : "Projeto público em meu catálogo de desenvolvimento. Consulte o repositório para mais detalhes."));
+      : "Descrição não informada.";
+    card.append(make("p", "", description));
 
     const actions = make("div", "project-actions");
-    const github = safeUrl(project.github);
-    const website = project.website_status === "verified" ? safeUrl(project.website) : null;
+    const github = safeGitHubUrl(project.github);
+    const website = project.website_status === "verified" ? safeHttpsUrl(project.website) : null;
     if (website) {
-      const siteLink = make("a", "site-link", "Abrir site ↗");
+      const siteLink = make("a", "site-link", "Site verificado ↗");
       siteLink.href = website;
       siteLink.target = "_blank";
       siteLink.rel = "noopener noreferrer";
@@ -64,17 +80,21 @@
   }
 
   function render() {
+    if (!grid || !searchInput || !categorySelect || !statusSelect || !count) return;
     const query = (searchInput.value || "").trim().toLocaleLowerCase("pt-BR");
     const category = categorySelect.value;
+    const status = statusSelect.value;
     const filtered = projects.filter((project) => {
       const text = [project.name, project.description, project.category, project.category_label, project.status]
-        .filter(Boolean).join(" ").toLocaleLowerCase("pt-BR");
-      return (!query || text.includes(query)) && (category === "all" || project.category === category);
+        .filter((value) => typeof value === "string").join(" ").toLocaleLowerCase("pt-BR");
+      return (!query || text.includes(query))
+        && (category === "all" || project.category === category)
+        && (status === "all" || project.status === status);
     });
 
     grid.replaceChildren();
     if (!filtered.length) {
-      grid.append(make("div", "empty-card", "Nenhum projeto corresponde a essa busca. Tente outro termo ou categoria."));
+      grid.append(make("div", "empty-card", "Nenhum projeto corresponde aos filtros atuais. Tente outro termo ou opção."));
     } else {
       const fragment = document.createDocumentFragment();
       filtered.forEach((project) => fragment.append(createProjectCard(project)));
@@ -84,18 +104,24 @@
   }
 
   async function loadCatalog() {
+    if (!grid || !count || !message || !categorySelect || !statusSelect) return;
+    grid.setAttribute("aria-busy", "true");
     try {
       const response = await fetch(catalogUrl, { headers: { Accept: "application/json" } });
-      if (!response.ok) throw new Error("O catálogo respondeu com HTTP " + response.status);
+      if (!response.ok) throw new Error("O catálogo respondeu com HTTP " + response.status + ".");
       const data = await response.json();
-      if (!data || !Array.isArray(data.projects)) throw new Error("Formato do catálogo inválido.");
+      if (!data || !Array.isArray(data.projects)) throw new Error("O formato do catálogo é inválido.");
 
-      // The catalog is public metadata. Private entries are intentionally excluded from the website.
+      // Fail closed: private, explicitly hidden, or invalid-GitHub entries are never rendered.
       projects = data.projects.filter((project) =>
-        project && project.private !== true && project.github_visible !== false && safeUrl(project.github)
+        project && typeof project === "object"
+        && project.private !== true
+        && project.github_visible !== false
+        && safeGitHubUrl(project.github)
       );
 
-      const categories = [...new Set(projects.map((project) => project.category).filter(Boolean))]
+      const categories = [...new Set(projects.map((project) => project.category)
+        .filter((value) => typeof value === "string" && value.trim()))]
         .sort((a, b) => a.localeCompare(b, "pt-BR"));
       categories.forEach((category) => {
         const option = make("option", "", category);
@@ -103,18 +129,31 @@
         categorySelect.append(option);
       });
 
-      if (!projects.length) throw new Error("O catálogo não contém projetos públicos para exibir.");
+      const statuses = [...new Set(projects.map((project) => project.status)
+        .filter((value) => allowedStatuses.has(value)))];
+      statuses.sort((a, b) => a.localeCompare(b, "pt-BR"));
+      statuses.forEach((value) => {
+        const option = make("option", "", value);
+        option.value = value;
+        statusSelect.append(option);
+      });
+
+      if (!projects.length) throw new Error("O catálogo não contém projetos públicos elegíveis para exibição.");
       message.hidden = true;
       render();
     } catch (error) {
       grid.replaceChildren(make("div", "empty-card", "Não foi possível carregar o catálogo de projetos."));
       count.textContent = "Catálogo indisponível";
       message.hidden = false;
-      message.textContent = "Verifique se o site foi compilado e se data/projects.json está disponível. " + (error instanceof Error ? error.message : "");
+      message.textContent = "Confira se docs/project-catalog.json está disponível e contém JSON válido. "
+        + (error instanceof Error ? error.message : "Erro desconhecido.");
+    } finally {
+      grid.removeAttribute("aria-busy");
     }
   }
 
-  searchInput.addEventListener("input", render);
-  categorySelect.addEventListener("change", render);
+  if (searchInput) searchInput.addEventListener("input", render);
+  if (categorySelect) categorySelect.addEventListener("change", render);
+  if (statusSelect) statusSelect.addEventListener("change", render);
   loadCatalog();
 })();
