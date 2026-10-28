@@ -23,7 +23,7 @@
   };
 
   const safeHttpsUrl = (value) => {
-    if (typeof value !== "string" || !value.trim() || value !== value.trim() || /\\s/.test(value)) return null;
+    if (typeof value !== "string" || !value.trim() || value !== value.trim() || /\s/.test(value)) return null;
     try {
       const url = new URL(value);
       return url.protocol === "https:" && !url.username && !url.password ? url.href : null;
