@@ -26,7 +26,7 @@
   // Keep this defensive check aligned with scripts/build_portfolio.py.
   const safeHttpsUrl = (value) => {
     if (typeof value !== "string" || !value || value !== value.trim()
-      || /[\\u0000-\\u0020\\u007f\\\\]/.test(value)) return null;
+      || /[\u0000-\u0020\u007f\\]/.test(value)) return null;
     try {
       const url = new URL(value);
       const host = url.hostname.toLowerCase();
