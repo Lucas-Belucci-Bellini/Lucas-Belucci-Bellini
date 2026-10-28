@@ -39,6 +39,8 @@ testados e evoluídos.
 
 ## `// COMECE POR AQUI` · START HERE
 
+> **Manutenção do perfil:** [Arquitetura e contrato público](docs/ARCHITECTURE.md) · [Guia operacional, testes e checklist de release](docs/OPERATIONS.md)
+
 | | |
 |:---|:---|
 | **[▸ Produtos em destaque](#produtos)** | o que dá para abrir agora, com botão de entrada |
