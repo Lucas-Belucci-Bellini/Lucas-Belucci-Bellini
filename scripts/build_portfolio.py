@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import ipaddress
 import json
 import re
 import shutil
@@ -29,12 +30,18 @@ def safe_https_url(value: object) -> bool:
     try:
         parsed = urlsplit(value)
         host = (parsed.hostname or "").lower()
-        return (
-            parsed.scheme == "https" and bool(host)
-            and parsed.username is None and parsed.password is None
-            and host not in {"localhost", "localhost.localdomain"}
-            and not host.endswith(".local")
-        )
+        # Accessing .port validates malformed port values such as :not-a-port.
+        _ = parsed.port
+        if not (parsed.scheme == "https" and host
+                and parsed.username is None and parsed.password is None
+                and host not in {"localhost", "localhost.localdomain"}
+                and not host.endswith(".local")):
+            return False
+        try:
+            address = ipaddress.ip_address(host)
+        except ValueError:
+            return True
+        return address.is_global
     except ValueError:
         return False
 
