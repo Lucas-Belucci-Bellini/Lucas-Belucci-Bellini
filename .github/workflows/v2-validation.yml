@@ -2,7 +2,7 @@ name: V2 Validation
 
 on:
   push:
-    branches: [main]
+    branches: [main, feat/profile-readme-website-v2]
     paths:
       - "README.md"
       - "scripts/**"
