@@ -72,7 +72,8 @@
 
     const actions = make("div", "project-actions");
     const github = safeGitHubUrl(project.github);
-    const website = project.website_status === "verified" ? safeHttpsUrl(project.website) : null;
+    // The public builder exports `website` only when website_status is verified.
+    const website = safeHttpsUrl(project.website);
     if (website) {
       const siteLink = make("a", "site-link", "Site verificado ↗");
       siteLink.href = website;
