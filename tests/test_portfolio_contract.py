@@ -48,7 +48,7 @@ class PublicCatalogContractTests(unittest.TestCase):
             project(website_status="pending"),
             project(name="Unsafe", slug="unsafe", website="javascript:alert(1)"),
         ]))
-        self.assertEqual([item["slug"] for item in result], ["Demo", "Unsafe"] if False else ["demo", "unsafe"])
+        self.assertEqual([item["slug"] for item in result], ["demo", "unsafe"])
         self.assertTrue(all("website" not in item for item in result))
 
     def test_missing_required_visibility_flag_fails_closed(self):
