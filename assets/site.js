@@ -75,7 +75,7 @@
 
     const actions = make("div", "project-actions");
     const github = safeGitHubUrl(project.github);
-    const website = project.website_status === "verified" ? safeHttpsUrl(project.website) : null;
+    const website = safeHttpsUrl(project.website);
     if (website) {
       const siteLink = make("a", "site-link", "Site verificado ↗");
       siteLink.href = website;
@@ -154,6 +154,8 @@
     all.type = "button";
     all.dataset.category = "all";
     all.addEventListener("click", () => {
+      searchInput.value = "";
+      statusSelect.value = "all";
       categorySelect.value = "all";
       render();
       grid.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -166,6 +168,8 @@
       button.type = "button";
       button.dataset.category = category;
       button.addEventListener("click", () => {
+        searchInput.value = "";
+        statusSelect.value = "all";
         categorySelect.value = category;
         render();
         grid.scrollIntoView({ behavior: "smooth", block: "start" });
