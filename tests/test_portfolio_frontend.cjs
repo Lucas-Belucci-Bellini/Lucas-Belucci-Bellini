@@ -94,6 +94,7 @@ test("search input and category/status filters change the visible result set", a
   nodes["#status-filter"].dispatch("change");
   assert.deepEqual(cardTitles(nodes), ["Rust Engine"]);
   assert.ok(nodes["#category-filter"].children.some((option) => option.value === "Games"));
+  assert.deepEqual(nodes["#status-filter"].children.map((option) => option.value), ["all", "🟢 Active", "🟣 Academic"]);
 });
 
 
