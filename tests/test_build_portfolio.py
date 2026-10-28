@@ -50,7 +50,7 @@ class PortfolioBuildTests(unittest.TestCase):
     def write_catalog(self, projects, schema=SCHEMA):
         catalog = {
             "schema": schema,
-            "categories": ["Software & Tools"],
+            "categories": sorted({item.get("category", "Software & Tools") for item in projects} | {"Software & Tools"}),
             "projects": projects,
         }
         path = self.root / "docs" / "project-catalog.json"
