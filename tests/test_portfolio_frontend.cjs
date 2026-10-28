@@ -135,6 +135,19 @@ test("combined search, category, status and explicit sort work together", async 
   assert.equal(nodes["#project-count"].textContent, "4 de 4 projetos");
 });
 
+test("GitHub project links reject credentials, non-HTTPS and lookalike hosts", async () => {
+  const nodes = harness(async () => response([
+    { name: "Valid", slug: "valid", description: "OK", category: "Tools", status: "🟢 Active", github: "https://github.com/owner/valid" },
+    { name: "Credentials", slug: "credentials", description: "Bad credentials", category: "Tools", status: "🟢 Active", github: "https://user:pass@github.com/owner/credentials" },
+    { name: "HTTP", slug: "http", description: "Insecure", category: "Tools", status: "🟢 Active", github: "http://github.com/owner/http" },
+    { name: "Lookalike", slug: "lookalike", description: "Lookalike host", category: "Tools", status: "🟢 Active", github: "https://github.com.attacker.example/owner/lookalike" },
+    { name: "Extra path", slug: "extra-path", description: "Not a repo root", category: "Tools", status: "🟢 Active", github: "https://github.com/owner/repo/issues" },
+    { name: "Local", slug: "local", description: "Local host", category: "Tools", status: "🟢 Active", github: "https://localhost/owner/local" },
+  ]));
+  await tick();
+  assert.deepEqual(cardTitles(nodes), ["Valid"]);
+});
+
 test("malformed public records are filtered and unsafe website URLs are omitted", async () => {
   const unsafeUrl = ["javascript:", "alert(1)"].join("");
   const nodes = harness(async () => response([
