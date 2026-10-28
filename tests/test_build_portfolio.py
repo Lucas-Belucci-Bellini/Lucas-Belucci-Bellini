@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.build_portfolio import BuildError, build
+from scripts.build_portfolio import BuildError, build, safe_github_url
 
 SCHEMA = "lucas-belucci-bellini/project-catalog@1"
 
@@ -122,6 +122,27 @@ class PortfolioBuildTests(unittest.TestCase):
             build(self.root, self.root / "assets")
 
         self.assertEqual(asset.read_text(encoding="utf-8"), before)
+
+    def test_output_must_be_exactly_dist_directory(self):
+        self.write_catalog([project()])
+        outside = Path(self.temp.name) / "outside-output"
+        outside.mkdir()
+        sentinel = outside / "keep.txt"
+        sentinel.write_text("must survive", encoding="utf-8")
+
+        with self.assertRaisesRegex(BuildError, "exactly the repository dist"):
+            build(self.root, outside)
+
+        self.assertEqual(sentinel.read_text(encoding="utf-8"), "must survive")
+
+    def test_github_url_must_point_to_exact_repository_path(self):
+        self.assertTrue(safe_github_url("https://github.com/owner/repo"))
+        self.assertTrue(safe_github_url("https://www.github.com/owner/repo"))
+        self.assertFalse(safe_github_url("https://github.com/owner/repo/extra"))
+        self.assertFalse(safe_github_url("https://github.com/owner/repo?next=evil"))
+        self.assertFalse(safe_github_url("https://github.com/owner/repo#fragment"))
+        self.assertFalse(safe_github_url("https://github.com.evil.example/owner/repo"))
+        self.assertFalse(safe_github_url("https://user@github.com/owner/repo"))
 
     def test_unsupported_schema_fails_explicitly(self):
         self.write_catalog([project()], schema="unexpected/schema@9")
