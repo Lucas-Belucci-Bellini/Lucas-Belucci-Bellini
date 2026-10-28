@@ -94,13 +94,15 @@
 
     grid.replaceChildren();
     if (!filtered.length) {
-      grid.append(make("div", "empty-card", "Nenhum projeto corresponde aos filtros atuais. Tente outro termo ou opção."));
+      const emptyState = make("div", "empty-card", "Nenhum projeto corresponde aos filtros atuais. Tente outro termo ou opção.");
+      emptyState.setAttribute("role", "status");
+      grid.append(emptyState);
     } else {
       const fragment = document.createDocumentFragment();
       filtered.forEach((project) => fragment.append(createProjectCard(project)));
       grid.append(fragment);
     }
-    count.textContent = String(filtered.length).padStart(2, "0") + " / " + String(projects.length).padStart(2, "0") + " projetos";
+    count.textContent = filtered.length + " de " + projects.length + " projetos exibidos";
   }
 
   async function loadCatalog() {
@@ -142,7 +144,9 @@
       message.hidden = true;
       render();
     } catch (error) {
-      grid.replaceChildren(make("div", "empty-card", "Não foi possível carregar o catálogo de projetos."));
+      const errorState = make("div", "empty-card", "Não foi possível carregar o catálogo de projetos.");
+      errorState.setAttribute("role", "status");
+      grid.replaceChildren(errorState);
       count.textContent = "Catálogo indisponível";
       message.hidden = false;
       message.textContent = "Confira se data/projects.json está disponível e contém JSON válido. "
