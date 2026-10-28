@@ -11,7 +11,9 @@
   const count = document.querySelector("#project-count");
   const message = document.querySelector("#catalog-message");
   const year = document.querySelector("#current-year");
-  const allowedStatuses = new Set(["🟢 Active", "🟡 In Development", "🔵 Experimental", "🟣 Academic", "⚪ Archived"]);
+  const statusOrder = ["🟢 Active", "🟡 In Development", "🔵 Experimental", "🟣 Academic", "⚪ Archived"];
+  const allowedStatuses = new Set(statusOrder);
+  const statusRank = new Map(statusOrder.map((status, index) => [status, index]));
 
   if (year) year.textContent = String(new Date().getFullYear());
 
@@ -108,7 +110,8 @@
     filtered.sort((a, b) => {
       if (sort === "name-desc") return b.name.localeCompare(a.name, "pt-BR", { sensitivity: "base" });
       if (sort === "status") {
-        const byStatus = a.status.localeCompare(b.status, "pt-BR");
+        const byStatus = (statusRank.get(a.status) ?? Number.MAX_SAFE_INTEGER)
+          - (statusRank.get(b.status) ?? Number.MAX_SAFE_INTEGER);
         return byStatus || a.name.localeCompare(b.name, "pt-BR", { sensitivity: "base" });
       }
       return a.name.localeCompare(b.name, "pt-BR", { sensitivity: "base" });
