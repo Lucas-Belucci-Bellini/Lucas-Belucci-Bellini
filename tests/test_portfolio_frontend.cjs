@@ -5,6 +5,8 @@ const vm = require("node:vm");
 const path = require("node:path");
 
 const source = fs.readFileSync(path.join(__dirname, "..", "assets", "site.js"), "utf8");
+const htmlSource = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+const cssSource = fs.readFileSync(path.join(__dirname, "..", "assets", "site.css"), "utf8");
 
 class FakeNode {
   constructor(tag = "div") {
@@ -124,4 +126,16 @@ test("HTTP and malformed payload failures show an accessible error state", async
     assert.equal(nodes["#project-count"].textContent, "Catálogo indisponível");
     assert.match(nodes["#catalog-message"].textContent, /formato do catálogo público é inválido/);
   });
+});
+
+
+test("catalog controls and dynamic states expose accessible semantics", () => {
+  assert.match(htmlSource, /role="search" aria-label="Buscar e filtrar projetos"/);
+  assert.match(htmlSource, /for="project-search"/);
+  assert.match(htmlSource, /aria-describedby="project-search-help"/);
+  assert.match(htmlSource, /<output id="project-count"[^>]*aria-live="polite"/);
+  assert.match(htmlSource, /role="region" aria-label="Resultados dos projetos"/);
+  assert.match(cssSource, /:where\(a, button, input, select, textarea, \[tabindex\]\):focus-visible/);
+  assert.match(cssSource, /@media \(forced-colors: active\)/);
+  assert.equal((source.match(/setAttribute\("role", "status"\)/g) || []).length, 3);
 });
