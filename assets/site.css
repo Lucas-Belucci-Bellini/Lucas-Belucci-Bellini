@@ -225,6 +225,9 @@ a:hover {
 
 @media (max-width: 600px) {
   .topbar nav {
+    max-width: 100%;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: var(--color-border-strong) transparent;
   }
