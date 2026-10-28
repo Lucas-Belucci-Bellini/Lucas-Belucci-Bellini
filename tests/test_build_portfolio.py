@@ -1,159 +1,137 @@
-"""Contract tests for the static portfolio builder (stdlib unittest only)."""
-from __future__ import annotations
-
-import importlib.util
+"""Regression tests for the public portfolio build pipeline."""
 import json
-import sys
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
 
-ROOT = Path(__file__).resolve().parents[1]
-SPEC = importlib.util.spec_from_file_location(
-    "build_portfolio", ROOT / "scripts" / "build_portfolio.py"
-)
-assert SPEC and SPEC.loader
-BUILDER = importlib.util.module_from_spec(SPEC)
-sys.modules["build_portfolio"] = BUILDER
-SPEC.loader.exec_module(BUILDER)
+from scripts.build_portfolio import BuildError, build
 
-PUBLIC_FIELDS = {
-    "name", "description", "category", "category_label", "status",
-    "github", "github_visible", "website_status", "website",
-}
-EXPECTED_DIST_FILES = {
-    "index.html",
-    "assets/site.css",
-    "assets/site.js",
-    "assets/favicon.svg",
-    "data/projects.json",
-    ".nojekyll",
-}
+SCHEMA = "lucas-belucci-bellini/project-catalog@1"
 
 
-class BuildPortfolioTests(unittest.TestCase):
-    def setUp(self) -> None:
+def project(**overrides):
+    item = {
+        "repository": "owner/public-demo",
+        "name": "Public Demo",
+        "slug": "public-demo",
+        "description": "A public project.",
+        "category": "Software & Tools",
+        "category_label": "Tools",
+        "status": "🟢 Active",
+        "github": "https://github.com/owner/public-demo",
+        "website": "https://example.com",
+        "github_visible": True,
+        "private": False,
+        "marketing_priority": 99,
+        "website_status": "verified",
+    }
+    item.update(overrides)
+    return item
+
+
+class PortfolioBuildTests(unittest.TestCase):
+    def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.root = Path(self.temp.name)
-        self.dist = self.root / "dist"
-        self.catalog = self.root / "docs" / "project-catalog.json"
-        (self.root / "docs").mkdir()
-        (self.root / "assets").mkdir()
-        (self.root / "index.html").write_text("<main>portfolio</main>", encoding="utf-8")
-        for name in ("site.css", "site.js", "favicon.svg"):
-            (self.root / "assets" / name).write_text("fixture", encoding="utf-8")
-        self.write_catalog([
-            {
-                "name": "Public",
-                "description": "Public project",
-                "category": "Web",
-                "github": "https://github.com/example/public",
-                "github_visible": True,
-                "website": "https://example.com",
-                "website_status": "verified",
-                "private": False,
-                "internal_notes": "must never ship",
-            },
-            {
-                "name": "Private project",
-                "github": "https://github.com/example/private",
-                "github_visible": True,
-                "private": True,
-            },
-            {
-                "name": "Hidden project",
-                "github": "https://github.com/example/hidden",
-                "github_visible": False,
-                "private": False,
-            },
-            {
-                "name": "Invalid URL",
-                "github": "javascript:alert(1)",
-                "github_visible": True,
-                "private": False,
-            },
-        ])
+        self.root = Path(self.temp.name) / "repo"
+        self.root.mkdir()
+        for relative in (
+            "index.html",
+            "assets/site.css",
+            "assets/site.js",
+            "assets/favicon.svg",
+        ):
+            target = self.root / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text("static asset\n", encoding="utf-8")
 
-    def tearDown(self) -> None:
+    def tearDown(self):
         self.temp.cleanup()
 
-    def write_catalog(self, projects: object) -> None:
-        self.catalog.write_text(
-            json.dumps({"schema": "fixture", "projects": projects}),
+    def write_catalog(self, projects, schema=SCHEMA):
+        catalog = {
+            "schema": schema,
+            "categories": ["Software & Tools"],
+            "projects": projects,
+        }
+        path = self.root / "docs" / "project-catalog.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            json.dumps(catalog, ensure_ascii=False),
             encoding="utf-8",
         )
 
-    def run_builder(self) -> int:
-        with (
-            patch.object(BUILDER, "ROOT", self.root),
-            patch.object(BUILDER, "DIST", self.dist),
-            patch.object(BUILDER, "CATALOG", self.catalog),
-        ):
-            return BUILDER.main()
-
-    def test_build_generates_expected_files_and_public_json(self) -> None:
-        self.assertEqual(0, self.run_builder())
-        actual = {
-            p.relative_to(self.dist).as_posix()
-            for p in self.dist.rglob("*")
-            if p.is_file()
-        }
-        self.assertEqual(EXPECTED_DIST_FILES, actual)
-        payload = json.loads((self.dist / "data" / "projects.json").read_text(encoding="utf-8"))
-        self.assertEqual("lucas-belucci-bellini/public-portfolio@1", payload["schema"])
-        self.assertEqual(1, payload["project_count"])
-        self.assertEqual(["Public"], [p["name"] for p in payload["projects"]])
-        self.assertEqual(PUBLIC_FIELDS.intersection({"name", "description", "category", "github", "github_visible", "website", "website_status"}), set(payload["projects"][0]))
-        self.assertNotIn("internal_notes", (self.dist / "data" / "projects.json").read_text(encoding="utf-8"))
-        self.assertNotIn("private", payload["projects"][0])
-
-    def test_private_and_hidden_projects_are_excluded(self) -> None:
-        self.run_builder()
-        payload = json.loads((self.dist / "data" / "projects.json").read_text(encoding="utf-8"))
-        names = {project["name"] for project in payload["projects"]}
-        self.assertNotIn("Private project", names)
-        self.assertNotIn("Hidden project", names)
-        self.assertNotIn("Invalid URL", names)
-
-    def test_public_field_allowlist_drops_unapproved_metadata(self) -> None:
-        self.run_builder()
-        payload = json.loads((self.dist / "data" / "projects.json").read_text(encoding="utf-8"))
-        for project in payload["projects"]:
-            self.assertLessEqual(set(project), PUBLIC_FIELDS)
-
-    def test_invalid_url_schemes_are_not_published(self) -> None:
+    def test_public_payload_is_allowlisted_and_private_projects_are_excluded(self):
         self.write_catalog([
-            {"name": "HTTP", "github": "http://github.com/example/a"},
-            {"name": "FTP", "github": "ftp://github.com/example/a"},
-            {"name": "No host", "github": "https://"},
-            {"name": "Valid", "github": "https://github.com/example/valid"},
+            project(),
+            project(name="Private", slug="private", private=True),
+            project(name="Not visible", slug="not-visible", github_visible=False),
+            project(name="Bad website", slug="bad-website", website="javascript:alert(1)"),
+            project(name="Bad GitHub", slug="bad-github", github="javascript:alert(1)"),
         ])
-        self.run_builder()
-        payload = json.loads((self.dist / "data" / "projects.json").read_text(encoding="utf-8"))
-        self.assertEqual(["Valid"], [project["name"] for project in payload["projects"]])
+        out = self.root / "dist"
 
-    def test_malformed_json_fails_without_claiming_success(self) -> None:
-        self.catalog.write_text('{"projects": [', encoding="utf-8")
-        with self.assertRaises(json.JSONDecodeError):
-            self.run_builder()
+        count = build(self.root, out)
+        payload = json.loads((out / "data" / "projects.json").read_text(encoding="utf-8"))
 
-    def test_catalog_without_projects_array_is_rejected(self) -> None:
-        self.catalog.write_text('{"projects": {}}', encoding="utf-8")
-        with self.assertRaisesRegex(SystemExit, "projects must be an array"):
-            self.run_builder()
+        self.assertEqual(count, 2)
+        self.assertEqual(payload["project_count"], 2)
+        self.assertEqual(
+            {item["slug"] for item in payload["projects"]},
+            {"public-demo", "bad-website"},
+        )
+        for item in payload["projects"]:
+            self.assertNotIn("repository", item)
+            self.assertNotIn("private", item)
+            self.assertNotIn("github_visible", item)
+            self.assertNotIn("marketing_priority", item)
+            self.assertNotIn("website_status", item)
+        bad_website = next(item for item in payload["projects"] if item["slug"] == "bad-website")
+        self.assertNotIn("website", bad_website)
 
-    def test_empty_public_catalog_is_rejected(self) -> None:
-        self.write_catalog([
-            {"name": "Private", "private": True, "github": "https://github.com/example/a"},
-        ])
-        with self.assertRaisesRegex(SystemExit, "empty public project catalog"):
-            self.run_builder()
+    def test_build_is_deterministic_and_replaces_stale_output(self):
+        self.write_catalog([project()])
+        out = self.root / "dist"
+        out.mkdir()
+        (out / "stale-secret.txt").write_text("must disappear", encoding="utf-8")
 
-    def test_missing_catalog_is_rejected(self) -> None:
-        self.catalog.unlink()
-        with self.assertRaisesRegex(SystemExit, "Catalog not found"):
-            self.run_builder()
+        build(self.root, out)
+        first = {p.relative_to(out).as_posix(): p.read_bytes() for p in out.rglob("*") if p.is_file()}
+        self.assertNotIn("stale-secret.txt", first)
+
+        build(self.root, out)
+        second = {p.relative_to(out).as_posix(): p.read_bytes() for p in out.rglob("*") if p.is_file()}
+        self.assertEqual(first, second)
+        self.assertEqual(
+            set(second),
+            {
+                ".nojekyll",
+                "index.html",
+                "assets/site.css",
+                "assets/site.js",
+                "assets/favicon.svg",
+                "data/projects.json",
+            },
+        )
+
+    def test_output_cannot_replace_source_assets(self):
+        self.write_catalog([project()])
+        asset = self.root / "assets" / "site.css"
+        before = asset.read_text(encoding="utf-8")
+
+        with self.assertRaisesRegex(BuildError, "restricted to the dist"):
+            build(self.root, self.root / "assets")
+
+        self.assertEqual(asset.read_text(encoding="utf-8"), before)
+
+    def test_unsupported_schema_fails_explicitly(self):
+        self.write_catalog([project()], schema="unexpected/schema@9")
+        with self.assertRaisesRegex(BuildError, "unsupported catalog schema"):
+            build(self.root, self.root / "dist")
+
+    def test_duplicate_public_slugs_fail_explicitly(self):
+        self.write_catalog([project(), project(name="Second", slug="public-demo")])
+        with self.assertRaisesRegex(BuildError, "duplicate public slug"):
+            build(self.root, self.root / "dist")
 
 
 if __name__ == "__main__":
