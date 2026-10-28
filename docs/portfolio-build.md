@@ -11,10 +11,10 @@ python -m py_compile scripts/build_portfolio.py
 python -m json.tool docs/project-catalog.json >/dev/null
 python -m unittest discover -s tests -v
 node --test tests/test_portfolio_frontend.cjs
-python scripts/build_portfolio.py --out /tmp/portfolio-dist
+python scripts/build_portfolio.py
 ```
 
-O workflow de CI executa os mesmos comandos de validação e descoberta de testes antes de construir o artefato. O último comando cria a saída em um diretório temporário fora do repositório; para reproduzir exatamente o caminho padrão usado no CI, execute `python scripts/build_portfolio.py`.
+O workflow de CI executa esses mesmos comandos na mesma ordem e constrói o artefato em `dist/`. Para uma execução isolada sem deixar a saída no repositório, substitua o último comando por `python scripts/build_portfolio.py --out /tmp/portfolio-dist`.
 
 O builder valida o schema `lucas-belucci-bellini/project-catalog@1`, filtra projetos privados/não visíveis, valida slugs e URLs HTTPS e só publica websites marcados como verificados. A saída é determinística e limitada a `dist/` quando o caminho padrão é usado.
 
