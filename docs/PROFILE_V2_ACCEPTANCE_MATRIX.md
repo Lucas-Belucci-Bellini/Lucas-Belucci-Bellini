@@ -24,6 +24,11 @@
 | PRs das nove frentes revisados e conflitos resolvidos | Lista de PRs, status e diff de integração | Bloqueado |
 | Aprovação humana final antes de release | Aprovação explícita registrada | Bloqueado |
 
+## Bloqueadores identificados na revisão estática
+
+- O builder em `feat/profile-v2-build-pipeline` usa `build(root, out)`, um schema versionado fixo e exceções `BuildError`; os testes em `feat/profile-v2-tests` esperam constantes globais (`ROOT`, `DIST`, `CATALOG`), schema de fixture e tipos/mensagens de erro diferentes. Alinhar implementação e testes e executar a suíte antes de mudar os status.
+- O workflow `update-profile.yml` observado na branch de integração atualiza README/assets; não é evidência suficiente de que o site está sendo publicado. O deploy/URL permanecem bloqueados até localizar e validar a automação correspondente.
+
 ## Decisão de release
 
 **Não liberar a V2 enquanto qualquer critério obrigatório estiver bloqueado ou reprovado.** Atualize cada status com a evidência, commit/execução e responsável. Não marque como aprovado apenas porque o código está presente ou o PR foi aberto.
