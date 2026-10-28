@@ -59,7 +59,7 @@ const cardTitles = (nodes) => cards(nodes).map((card) => card.children.find((nod
 
 test("loads eligible projects and renders safe links with noopener", async () => {
   const nodes = harness(async () => response([
-    { name: "Alpha", slug: "alpha", description: "First", category: "Tools", category_label: "Tools", status: "🟢 Active", github: "https://github.com/owner/alpha", website: "https://example.com", website_status: "verified" },
+    { name: "Alpha", slug: "alpha", description: "First", category: "Tools", category_label: "Tools", status: "🟢 Active", github: "https://github.com/owner/alpha", website: "https://example.com" },
     { name: "Hidden", slug: "hidden", github: "https://github.com/owner/hidden", private: true },
     { name: "Unsafe", slug: "unsafe", github: "https://github.com.evil.example/owner/unsafe" },
   ]));
