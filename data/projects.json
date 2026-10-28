@@ -1,0 +1,65 @@
+[
+  {
+    "id": "nexora",
+    "name": "NEXORA",
+    "description": "Projeto integrado de jogo voxel e engine própria, desenvolvido em Rust. O jogo e os sistemas de engine evoluem juntos.",
+    "technologies": ["Rust"],
+    "category": "Game development",
+    "status": "in-development",
+    "repository": "https://github.com/Lucas-Belucci-Bellini/NEXORA"
+  },
+  {
+    "id": "projeto-baluarte",
+    "name": "Projeto Baluarte",
+    "description": "Projeto de software em evolução; consulte o repositório para escopo, arquitetura e estado atual.",
+    "technologies": [],
+    "category": "Software",
+    "status": "in-development",
+    "repository": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte"
+  },
+  {
+    "id": "aether",
+    "name": "AETHER",
+    "description": "Repositório de framework Rust. Consulte a documentação do projeto para recursos implementados e roadmap.",
+    "technologies": ["Rust"],
+    "category": "Framework",
+    "status": "experimental",
+    "repository": "https://github.com/Lucas-Belucci-Bellini/AETHER"
+  },
+  {
+    "id": "atlas",
+    "name": "ATLAS",
+    "description": "Repositório de framework Rust. Consulte a documentação do projeto para recursos implementados e roadmap.",
+    "technologies": ["Rust"],
+    "category": "Framework",
+    "status": "experimental",
+    "repository": "https://github.com/Lucas-Belucci-Bellini/ATLAS"
+  },
+  {
+    "id": "titan",
+    "name": "TITAN",
+    "description": "Repositório de framework Rust. Consulte a documentação do projeto para recursos implementados e roadmap.",
+    "technologies": ["Rust"],
+    "category": "Framework",
+    "status": "experimental",
+    "repository": "https://github.com/Lucas-Belucci-Bellini/TITAN"
+  },
+  {
+    "id": "veritas",
+    "name": "Veritas",
+    "description": "Projeto público do ecossistema. A descrição funcional deve ser refinada a partir da documentação do próprio repositório.",
+    "technologies": [],
+    "category": "Software",
+    "status": "in-development",
+    "repository": "https://github.com/Lucas-Belucci-Bellini/Veritas"
+  },
+  {
+    "id": "all-skills-for-the-claude-code",
+    "name": "All Skills for the Claude Code",
+    "description": "Coleção organizada de skills e documentação reutilizável para fluxos de trabalho com Claude Code.",
+    "technologies": ["Markdown", "Claude Code"],
+    "category": "Developer tools",
+    "status": "in-development",
+    "repository": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code"
+  }
+]
