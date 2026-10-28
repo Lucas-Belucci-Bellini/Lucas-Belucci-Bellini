@@ -53,6 +53,21 @@ def safe_https_url(value: object) -> bool:
         return False
 
 
+def safe_github_url(value: object) -> bool:
+    """Accept only HTTPS URLs pointing to one GitHub owner/repository path."""
+    if not safe_https_url(value):
+        return False
+    parsed = urlsplit(str(value))
+    host = (parsed.hostname or "").lower()
+    parts = [part for part in parsed.path.split("/") if part]
+    return (
+        host in {"github.com", "www.github.com"}
+        and len(parts) == 2
+        and all(part not in {".", ".."} and "." not in part for part in parts)
+        and not parsed.query
+    )
+
+
 def public_projects(catalog: object) -> list[dict[str, object]]:
     if not isinstance(catalog, dict):
         raise BuildError("catalog root must be a JSON object")
@@ -99,9 +114,7 @@ def public_projects(catalog: object) -> list[dict[str, object]]:
         if project["status"] not in STATUSES:
             raise BuildError(f"{where}.status is not an allowed public status")
         github = project.get("github")
-        if (not safe_https_url(github)
-                or (urlsplit(str(github)).hostname or "").lower() not in {"github.com", "www.github.com"}
-                or urlsplit(str(github)).path.rstrip("/") == ""):
+        if not safe_github_url(github):
             continue
         item = {key: project[key] for key in PUBLIC_FIELDS if key in project and key != "website"}
         website = project.get("website")
