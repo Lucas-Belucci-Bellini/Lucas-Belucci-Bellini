@@ -9,7 +9,7 @@
   const count = document.querySelector("#project-count");
   const message = document.querySelector("#catalog-message");
   const year = document.querySelector("#current-year");
-  const allowedStatuses = new Set(["🟢 Active", "🟡 In Development", "🔵 Experimental", "🟣 Academic"]);
+  const allowedStatuses = new Set(["🟢 Active", "🟡 In Development", "🔵 Experimental", "🟣 Academic", "⚪ Archived"]);
 
   if (year) year.textContent = String(new Date().getFullYear());
 
@@ -75,8 +75,96 @@
       codeLink.rel = "noopener noreferrer";
       actions.append(codeLink);
     }
+    if (typeof project.slug === "string" && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.slug)) {
+      const detailsLink = make("a", "project-details-link", "Ver detalhes →");
+      detailsLink.href = "?project=" + encodeURIComponent(project.slug);
+      detailsLink.setAttribute("aria-label", "Ver detalhes de " + (project.name || "projeto"));
+      actions.append(detailsLink);
+    }
     if (actions.childElementCount) card.append(actions);
     return card;
+  }
+
+  function showProjectDetails() {
+    const params = new URLSearchParams(window.location.search);
+    if (!params.has("project")) return false;
+
+    const slug = params.get("project") || "";
+    const details = make("section", "project-detail section-wrap");
+    details.id = "project-detail";
+    details.setAttribute("aria-labelledby", "project-detail-title");
+
+    const back = make("a", "text-link project-detail-back", "← Voltar ao catálogo");
+    back.href = "index.html#work";
+    details.append(back);
+
+    const project = projects.find((item) => item.slug === slug);
+    if (!project) {
+      details.append(make("p", "eyebrow", "CATALOG // NOT FOUND"));
+      details.append(make("h1", "", "Projeto não encontrado."));
+      details.append(make("p", "", "Este identificador não corresponde a um projeto público disponível no catálogo."));
+      details.append(make("p", "", "Volte ao catálogo para explorar os projetos disponíveis."));
+      document.title = "Projeto não encontrado — Portfólio";
+    } else {
+      const title = make("h1", "", project.name);
+      title.id = "project-detail-title";
+      details.append(make("p", "eyebrow", "PROJECT FILE // " + project.slug));
+      details.append(title);
+
+      const category = project.category_label || project.category;
+      if (typeof category === "string" && category.trim()) {
+        details.append(make("p", "project-detail-category", category));
+      }
+      if (allowedStatuses.has(project.status)) {
+        details.append(make("p", "project-status project-detail-status", project.status));
+      }
+      if (typeof project.description === "string" && project.description.trim()
+          && project.description !== "Descrição pública não informada.") {
+        details.append(make("p", "project-detail-description", project.description));
+      } else {
+        details.append(make("p", "project-detail-description", "Descrição não informada."));
+      }
+
+      if (Array.isArray(project.technologies)) {
+        const technologies = project.technologies.filter((value) => typeof value === "string" && value.trim());
+        if (technologies.length) {
+          details.append(make("h2", "", "Tecnologias"));
+          const list = make("ul", "project-detail-technologies");
+          [...new Set(technologies)].forEach((technology) => list.append(make("li", "", technology)));
+          details.append(list);
+        }
+      }
+
+      const actions = make("div", "project-actions project-detail-actions");
+      const website = safeHttpsUrl(project.website);
+      const github = safeGitHubUrl(project.github);
+      if (website) {
+        const siteLink = make("a", "button button-primary", "Abrir site verificado ↗");
+        siteLink.href = website;
+        siteLink.target = "_blank";
+        siteLink.rel = "noopener noreferrer";
+        actions.append(siteLink);
+      }
+      if (github) {
+        const codeLink = make("a", "button button-quiet", "Ver repositório ↗");
+        codeLink.href = github;
+        codeLink.target = "_blank";
+        codeLink.rel = "noopener noreferrer";
+        actions.append(codeLink);
+      }
+      if (actions.childElementCount) details.append(actions);
+      document.title = project.name + " — Portfólio";
+    }
+
+    const main = document.querySelector("#main");
+    if (main) {
+      [...main.children].forEach((child) => {
+        child.hidden = true;
+      });
+      main.prepend(details);
+    }
+    document.body.classList.add("project-detail-mode");
+    return true;
   }
 
   function render() {
@@ -140,7 +228,7 @@
 
       if (!projects.length) throw new Error("O catálogo não contém projetos públicos elegíveis para exibição.");
       message.hidden = true;
-      render();
+      if (!showProjectDetails()) render();
     } catch (error) {
       grid.replaceChildren(make("div", "empty-card", "Não foi possível carregar o catálogo de projetos."));
       count.textContent = "Catálogo indisponível";
