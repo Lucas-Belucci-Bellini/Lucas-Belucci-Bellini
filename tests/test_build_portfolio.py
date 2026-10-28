@@ -133,6 +133,64 @@ class PortfolioBuildTests(unittest.TestCase):
         with self.assertRaisesRegex(BuildError, "duplicate public slug"):
             build(self.root, self.root / "dist")
 
+    def test_noncanonical_github_host_is_not_published(self):
+        self.write_catalog([
+            project(name="WWW GitHub", slug="www-github", github="https://www.github.com/owner/repo"),
+            project(name="Canonical GitHub", slug="canonical-github", github="https://github.com/owner/repo"),
+        ])
+        out = self.root / "dist"
+        self.assertEqual(build(self.root, out), 1)
+        payload = json.loads((out / "data" / "projects.json").read_text(encoding="utf-8"))
+        self.assertEqual([item["slug"] for item in payload["projects"]], ["canonical-github"])
+
+    def test_invalid_website_urls_are_omitted_from_public_payload(self):
+        invalid_urls = [
+            "javascript:alert(1)",
+            "http://example.com",
+            "https://user:pass@example.com",
+            "https://localhost",
+            "https://intranet.local",
+            "https://127.0.0.1",
+            "https://10.0.0.1",
+            "https://example.com:not-a-port",
+            " https://example.com",
+        ]
+        self.write_catalog([
+            project(name=f"Invalid {index}", slug=f"invalid-{index}", website=url)
+            for index, url in enumerate(invalid_urls)
+        ])
+        out = self.root / "dist"
+        self.assertEqual(build(self.root, out), len(invalid_urls))
+        payload = json.loads((out / "data" / "projects.json").read_text(encoding="utf-8"))
+        self.assertTrue(all("website" not in item for item in payload["projects"]))
+
+    def test_missing_required_public_fields_fail_closed(self):
+        for field in ("name", "slug", "description", "category", "category_label", "status"):
+            with self.subTest(field=field):
+                item = project()
+                item.pop(field)
+                self.write_catalog([item])
+                with self.assertRaisesRegex(BuildError, field):
+                    build(self.root, self.root / "dist")
+
+    def test_missing_private_flag_is_rejected(self):
+        item = project()
+        item.pop("private")
+        self.write_catalog([item])
+        with self.assertRaisesRegex(BuildError, "private must be an explicit boolean"):
+            build(self.root, self.root / "dist")
+
+    def test_public_projection_excludes_editorial_and_internal_fields(self):
+        self.write_catalog([project()])
+        out = self.root / "dist"
+        build(self.root, out)
+        payload = json.loads((out / "data" / "projects.json").read_text(encoding="utf-8"))
+        item = payload["projects"][0]
+        self.assertEqual(
+            set(item),
+            {"name", "slug", "description", "category", "category_label", "status", "github", "website"},
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

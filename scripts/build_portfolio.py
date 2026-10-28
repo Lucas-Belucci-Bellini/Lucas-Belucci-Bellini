@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import ipaddress
 import json
 import re
 import shutil
@@ -29,12 +30,18 @@ def safe_https_url(value: object) -> bool:
     try:
         parsed = urlsplit(value)
         host = (parsed.hostname or "").lower()
-        return (
-            parsed.scheme == "https" and bool(host)
-            and parsed.username is None and parsed.password is None
-            and host not in {"localhost", "localhost.localdomain"}
-            and not host.endswith(".local")
-        )
+        # Accessing .port validates malformed port values such as :not-a-port.
+        _ = parsed.port
+        if not (parsed.scheme == "https" and host
+                and parsed.username is None and parsed.password is None
+                and host not in {"localhost", "localhost.localdomain"}
+                and not host.endswith(".local")):
+            return False
+        try:
+            address = ipaddress.ip_address(host)
+        except ValueError:
+            return True
+        return address.is_global
     except ValueError:
         return False
 
@@ -77,7 +84,7 @@ def public_projects(catalog: object) -> list[dict[str, object]]:
             raise BuildError(f"{where}.category is not declared in categories")
         if project["status"] not in STATUSES:
             raise BuildError(f"{where}.status is not an allowed public status")
-        if not safe_https_url(project.get("github")) or (urlsplit(str(project.get("github"))).hostname or "").lower() not in {"github.com", "www.github.com"}:
+        if not safe_https_url(project.get("github")) or (urlsplit(str(project.get("github"))).hostname or "").lower() != "github.com":
             # Invalid GitHub link means no safe primary project card.
             continue
         item = {key: project[key] for key in PUBLIC_FIELDS if key in project and key != "website"}
