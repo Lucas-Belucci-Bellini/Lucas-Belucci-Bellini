@@ -21,10 +21,12 @@
     return node;
   };
 
-  const safeUrl = (value) => {
+  const safeUrl = (value, allowedHosts) => {
     try {
       const url = new URL(value);
-      return url.protocol === "https:" ? url.href : null;
+      if (url.protocol !== "https:") return null;
+      if (allowedHosts && !allowedHosts.includes(url.hostname.toLowerCase())) return null;
+      return url.href;
     } catch {
       return null;
     }
@@ -43,7 +45,7 @@
       : "Projeto público em meu catálogo de desenvolvimento. Consulte o repositório para mais detalhes."));
 
     const actions = make("div", "project-actions");
-    const github = safeUrl(project.github);
+    const github = safeUrl(project.github, ["github.com", "www.github.com"]);
     const website = project.website_status === "verified" ? safeUrl(project.website) : null;
     if (website) {
       const siteLink = make("a", "site-link", "Abrir site ↗");
@@ -80,7 +82,12 @@
       filtered.forEach((project) => fragment.append(createProjectCard(project)));
       grid.append(fragment);
     }
-    count.textContent = String(filtered.length).padStart(2, "0") + " / " + String(projects.length).padStart(2, "0") + " projetos";
+
+    const total = String(projects.length).padStart(2, "0");
+    const visible = String(filtered.length).padStart(2, "0");
+    count.textContent = filtered.length
+      ? visible + " / " + total + " projetos"
+      : "Nenhum projeto encontrado · " + visible + " / " + total;
   }
 
   async function loadCatalog() {
@@ -91,8 +98,11 @@
       if (!data || !Array.isArray(data.projects)) throw new Error("Formato do catálogo inválido.");
 
       // The catalog is public metadata. Private entries are intentionally excluded from the website.
+      // Use textContent for catalog values and allow only HTTPS destinations; GitHub links must
+      // resolve to GitHub itself. This keeps catalog metadata out of HTML parsing contexts.
       projects = data.projects.filter((project) =>
-        project && project.private !== true && project.github_visible !== false && safeUrl(project.github)
+        project && project.private !== true && project.github_visible !== false &&
+        safeUrl(project.github, ["github.com", "www.github.com"])
       );
 
       const categories = [...new Set(projects.map((project) => project.category).filter(Boolean))]
