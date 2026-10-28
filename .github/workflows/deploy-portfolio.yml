@@ -1,38 +1,41 @@
-name: Portfolio website
+name: Portfolio website — build and deploy
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "index.html"
-      - "assets/site.css"
-      - "assets/site.js"
-      - "assets/favicon.svg"
-      - "docs/project-catalog.json"
-      - "scripts/build_portfolio.py"
-      - ".github/workflows/deploy-portfolio.yml"
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - feat/profile-readme-website-v2
     paths:
       - "index.html"
-      - "assets/site.css"
-      - "assets/site.js"
-      - "assets/favicon.svg"
+      - "assets/**"
       - "docs/project-catalog.json"
       - "scripts/build_portfolio.py"
       - ".github/workflows/deploy-portfolio.yml"
+      - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
+  push:
+    branches:
+      - main
+      - feat/profile-readme-website-v2
+    paths:
+      - "index.html"
+      - "assets/**"
+      - "docs/project-catalog.json"
+      - "scripts/build_portfolio.py"
+      - ".github/workflows/deploy-portfolio.yml"
+      - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
   workflow_dispatch:
+
+concurrency:
+  group: portfolio-pages-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
-concurrency:
-  group: portfolio-pages
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,38 +45,104 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate catalog JSON
-        run: python -m json.tool docs/project-catalog.json >/dev/null
+      - name: Validate source and catalog
+        run: |
+          python -m py_compile scripts/build_portfolio.py
+          python -m json.tool docs/project-catalog.json >/dev/null
+          test -s index.html
+          test -s assets/site.css
+          test -s assets/site.js
+          test -s assets/favicon.svg
 
-      - name: Build public-only website artifact
+      - name: Build public-only static artifact
         run: python scripts/build_portfolio.py
 
-      - name: Validate artifact and privacy boundary
+      - name: Verify exact artifact allowlist and public data contract
+        shell: bash
         run: |
-          test -s dist/index.html
-          test -s dist/assets/site.css
-          test -s dist/assets/site.js
-          test -s dist/data/projects.json
+          set -euo pipefail
           python - <<'PY'
           import json
           from pathlib import Path
-          data = json.loads(Path("dist/data/projects.json").read_text(encoding="utf-8"))
-          assert data["projects"], "public project list must not be empty"
-          assert all(project.get("private") is not True for project in data["projects"])
-          assert all("repository" not in project for project in data["projects"])
-          print(f"Validated {len(data['projects'])} public projects")
+          from urllib.parse import urlparse
+
+          root = Path("dist")
+          allowed_files = {
+              "index.html",
+              "assets/site.css",
+              "assets/site.js",
+              "assets/favicon.svg",
+              "data/projects.json",
+              ".nojekyll",
+          }
+          actual_files = {
+              p.relative_to(root).as_posix()
+              for p in root.rglob("*")
+              if p.is_file()
+          }
+          if actual_files != allowed_files:
+              raise SystemExit(
+                  "Artifact allowlist mismatch: "
+                  f"missing={sorted(allowed_files - actual_files)}, "
+                  f"unexpected={sorted(actual_files - allowed_files)}"
+              )
+
+          payload = json.loads((root / "data/projects.json").read_text(encoding="utf-8"))
+          projects = payload.get("projects")
+          if not isinstance(projects, list) or not projects:
+              raise SystemExit("Public project catalog is empty or invalid")
+          if payload.get("project_count") != len(projects):
+              raise SystemExit("project_count does not match projects array")
+
+          allowed_fields = {
+              "name", "description", "category", "category_label", "status",
+              "github", "github_visible", "website_status", "website",
+          }
+          for index, project in enumerate(projects):
+              if not isinstance(project, dict):
+                  raise SystemExit(f"Project at index {index} is not an object")
+              unexpected_fields = set(project) - allowed_fields
+              if unexpected_fields:
+                  raise SystemExit(
+                      f"Project at index {index} contains non-public fields: "
+                      f"{sorted(unexpected_fields)}"
+                  )
+              if project.get("github_visible") is False:
+                  raise SystemExit(f"Project at index {index} is not GitHub-visible")
+              github = project.get("github")
+              parsed_github = urlparse(github) if isinstance(github, str) else None
+              if not parsed_github or parsed_github.scheme != "https" or not parsed_github.netloc:
+                  raise SystemExit(f"Project at index {index} has an invalid GitHub URL")
+              website = project.get("website")
+              if website is not None:
+                  parsed_website = urlparse(website) if isinstance(website, str) else None
+                  if project.get("website_status") != "verified":
+                      raise SystemExit(f"Project at index {index} exposes an unverified website")
+                  if not parsed_website or parsed_website.scheme != "https" or not parsed_website.netloc:
+                      raise SystemExit(f"Project at index {index} has an invalid website URL")
+
+          print(f"Artifact privacy contract passed: {len(projects)} public projects")
           PY
 
-      - name: Upload Pages artifact
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Upload inspectable build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-static-site
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Prepare GitHub Pages artifact for production refs only
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist/
 
   deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       pages: write
       id-token: write
@@ -81,6 +150,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy the validated Pages artifact
         id: deployment
         uses: actions/deploy-pages@v4
