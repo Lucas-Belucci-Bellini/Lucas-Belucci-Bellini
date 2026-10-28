@@ -104,3 +104,15 @@ O workflow [`v2-validation.yml`](../.github/workflows/v2-validation.yml) também
 Os repositórios listados em [`README_EXCLUDED.json`](README_EXCLUDED.json) são removidos antes de qualquer cálculo ou renderização. Isso significa que não aparecem no mapa, no catálogo público ou privado, nos destaques, nos sites, nas linguagens agregadas, no dashboard ou em links gerados. A decisão atual exclui três projetos privados por solicitação do proprietário do perfil.
 
 O teste [`scripts/validate_exclusions.py`](../scripts/validate_exclusions.py) falha se qualquer nome excluído aparecer no README. O inventário autenticado continua podendo conter esses projetos para fins de controle interno, mas o README e suas métricas trabalham com o inventário filtrado.
+
+## Integração com o site de portfólio V2
+
+O README continua sendo a apresentação compacta do perfil no GitHub; o site V2 será a experiência completa de navegação e catálogo interativo. A regra de integração, as responsabilidades das fontes e a condição para anunciar a URL estão em [`README_SITE_INTEGRATION.md`](README_SITE_INTEGRATION.md).
+
+O catálogo `docs/project-catalog.json` é gerado por `scripts/update_profile.py` a partir do inventário do GitHub, das linguagens públicas, das regras do catálogo e dos manifestos existentes. Ele não deve ser substituído por uma lista manual paralela. O site deve validar e consumir esse contrato existente; qualquer alteração de schema exige versionamento, documentação e testes de paridade. Os manifestos `README_SITES.json`, `README_FEATURED.json`, `README_STACK.json` e `README_EXCLUDED.json` mantêm seus papéis atuais e não devem ser apagados ou migrados sem plano documentado.
+
+A URL do próprio site V2 só deve entrar no README depois de confirmada como publicação estável. URLs de deployments de projetos, nomes de repositório ou previews não são evidência suficiente. O CTA do site deve ficar na área editorial estática, fora dos blocos gerados, para que a automação preserve o link.
+
+As Issues [#23](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/issues/23) e [#24](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/issues/24) tratam de guias comparativos de frontend e backend TypeScript; a [#25](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/issues/25) solicita uma trilha resumida no README. Manter no README somente a síntese útil e links para documentação oficial, deixando a exploração expandida para o site. Citar uma tecnologia em material educativo não equivale a afirmar que ela é usada nos projetos.
+
+A proteção contra alterações acidentais já possui duas camadas: `tests/test_golden_profile.py` compara saídas sintéticas do gerador, verifica idempotência e modos de saída sombra; `scripts/validate_dynamic_sections.py` compara o README antes/depois ignorando apenas o conteúdo dos marcadores gerados. Consulte o novo contrato para a sequência de validação e não declare os testes como executados sem um resultado real.
