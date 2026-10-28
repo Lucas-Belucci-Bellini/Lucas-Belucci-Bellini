@@ -66,6 +66,7 @@ class PortfolioBuildTests(unittest.TestCase):
             project(name="Private", slug="private", private=True),
             project(name="Not visible", slug="not-visible", github_visible=False),
             project(name="Bad website", slug="bad-website", website="javascript:alert(1)"),
+            project(name="Bad GitHub", slug="bad-github", github="javascript:alert(1)"),
         ])
         out = self.root / "dist"
 
