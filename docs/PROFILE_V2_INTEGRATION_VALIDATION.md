@@ -18,12 +18,17 @@
 ## Evidência do run #52
 
 - Python: 118 testes passaram.
-- Node: 7 testes passaram, 0 falhas.
+- Node: 8 testes passaram, 0 falhas, incluindo busca combinada com categoria/status e ordenação A–Z, Z–A e status.
 - Build do site estático: passou.
 - Allowlist do artefato: passou.
 - Contrato de privacidade: 78 projetos públicos e nenhum campo fora da allowlist.
 - Artefato de inspeção: `portfolio-static-site`, 15.367 bytes (conforme o resumo do run #52).
 - Job de deploy de produção: ignorado para a branch de feature.
+
+## Cobertura adicional do catálogo
+
+- A suíte frontend agora verifica filtros combinados (texto + categoria + status) e os modos de ordenação explícitos, além de estados de erro, links seguros e semântica acessível.
+- GitHub Actions run #53 confirmou novamente os testes e o build no HEAD atualizado.
 
 ## Limites conhecidos
 
