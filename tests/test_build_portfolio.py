@@ -144,7 +144,7 @@ class DesignSystemContractTests(unittest.TestCase):
 
     def test_design_tokens_have_one_canonical_root(self):
         import re
-        self.assertEqual(len(re.findall(r":root\\s*\\{", self.css)), 1)
+        self.assertEqual(len(re.findall(r":root\s*\{", self.css)), 1)
         for token in (
             "--color-canvas", "--color-surface", "--color-text",
             "--color-gold", "--color-focus", "--font-body", "--font-code",
@@ -155,8 +155,8 @@ class DesignSystemContractTests(unittest.TestCase):
 
     def test_responsive_breakpoints_and_medium_navigation_exist(self):
         import re
-        self.assertRegex(self.css, r"@media\\s*\\(max-width:\\s*850px\\)")
-        self.assertRegex(self.css, r"@media\\s*\\(max-width:\\s*600px\\)")
+        self.assertRegex(self.css, r"@media\s*\(max-width:\s*850px\)")
+        self.assertRegex(self.css, r"@media\s*\(max-width:\s*600px\)")
         self.assertIn("scrollbar-width:thin", self.css)
         self.assertIn("grid-template-columns:repeat(2,minmax(0,1fr))", self.css)
         self.assertIn("grid-template-columns:1fr", self.css)
