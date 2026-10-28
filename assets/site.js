@@ -156,7 +156,8 @@
         categorySelect.append(option);
       });
       const statuses = [...new Set(projects.map((project) => project.status))]
-        .sort((a, b) => a.localeCompare(b, "pt-BR"));
+        .sort((a, b) => (statusRank.get(a) ?? Number.MAX_SAFE_INTEGER)
+          - (statusRank.get(b) ?? Number.MAX_SAFE_INTEGER));
       statuses.forEach((value) => {
         const option = make("option", "", value);
         option.value = value;
