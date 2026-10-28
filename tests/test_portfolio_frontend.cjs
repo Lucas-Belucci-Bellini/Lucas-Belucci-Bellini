@@ -51,7 +51,7 @@ function harness(fetchImpl) {
 const response = (projects, status = 200) => ({
   ok: status >= 200 && status < 300,
   status,
-  json: async () => ({ projects }),
+  json: async () => ({ schema: "lucas-belucci-bellini/public-portfolio@1", projects }),
 });
 const tick = () => new Promise((resolve) => setImmediate(resolve));
 const cards = (nodes) => nodes["#project-grid"].children.filter((node) => node.tagName === "article");
@@ -59,7 +59,7 @@ const cardTitles = (nodes) => cards(nodes).map((card) => card.children.find((nod
 
 test("loads eligible projects and renders safe links with noopener", async () => {
   const nodes = harness(async () => response([
-    { name: "Alpha", slug: "alpha", description: "First", category: "Tools", category_label: "Tools", status: "🟢 Active", github: "https://github.com/owner/alpha", website: "https://example.com" },
+    { name: "Alpha", slug: "alpha", description: "First", category: "Tools", category_label: "Tools", status: "🟢 Active", github: "https://github.com/owner/alpha", website: "https://example.com", website_status: "verified" },
     { name: "Hidden", slug: "hidden", github: "https://github.com/owner/hidden", private: true },
     { name: "Unsafe", slug: "unsafe", github: "https://github.com.evil.example/owner/unsafe" },
   ]));
@@ -69,7 +69,7 @@ test("loads eligible projects and renders safe links with noopener", async () =>
   const links = card.children.flatMap((child) => child.children || []).filter((node) => node.tagName === "a");
   assert.equal(links.length, 2);
   assert.ok(links.every((link) => link.rel === "noopener noreferrer"));
-  assert.equal(nodes["#project-count"].textContent, "01 / 01 projetos");
+  assert.equal(nodes["#project-count"].textContent, "1 de 1 projetos");
   assert.equal(nodes["#project-grid"].getAttribute("aria-busy"), null);
 });
 
@@ -93,14 +93,15 @@ test("search input and category/status filters change the visible result set", a
   assert.ok(nodes["#category-filter"].children.some((option) => option.value === "Games"));
 });
 
-test("missing optional fields render safe fallbacks and omit unsafe URLs", async () => {
+test("malformed public records are filtered and unsafe website URLs are omitted", async () => {
+  const unsafeUrl = ["javascript:", "alert(1)"].join("");
   const nodes = harness(async () => response([
-    { github: "https://github.com/owner/minimal", website: "javascript:alert(1)" },
+    { name: "Minimal", slug: "minimal", description: "", category: "Tools", category_label: "Tools", status: "🟢 Active", github: "https://github.com/owner/minimal", website: unsafeUrl, website_status: "verified" },
+    { slug: "missing-name", description: "", category: "Tools", status: "🟢 Active", github: "https://github.com/owner/missing-name" },
   ]));
   await tick();
-  assert.deepEqual(cardTitles(nodes), ["Projeto sem nome"]);
+  assert.deepEqual(cardTitles(nodes), ["Minimal"]);
   const card = cards(nodes)[0];
-  assert.ok(card.children.some((node) => node.textContent === "Descrição não informada."));
   const actions = card.children.find((node) => node.tagName === "div" && node.children.some((child) => child.tagName === "a"));
   const hrefs = actions ? actions.children.filter((child) => child.tagName === "a").map((link) => link.href) : [];
   assert.ok(hrefs.includes("https://github.com/owner/minimal"));
@@ -121,6 +122,6 @@ test("HTTP and malformed payload failures show an accessible error state", async
     const nodes = harness(async () => ({ ok: true, status: 200, json: async () => ({ projects: null }) }));
     await tick();
     assert.equal(nodes["#project-count"].textContent, "Catálogo indisponível");
-    assert.match(nodes["#catalog-message"].textContent, /formato do catálogo é inválido/);
+    assert.match(nodes["#catalog-message"].textContent, /formato do catálogo público é inválido/);
   });
 });
