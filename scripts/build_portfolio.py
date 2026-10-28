@@ -63,7 +63,7 @@ def safe_github_url(value: object) -> bool:
     return (
         host in {"github.com", "www.github.com"}
         and len(parts) == 2
-        and all(part not in {".", ".."} and "." not in part for part in parts)
+        and all(part not in {".", ".."} and not re.search(r"%2f|%5c", part, re.IGNORECASE) for part in parts)
         and not parsed.query
     )
 
