@@ -77,3 +77,35 @@ O workflow valida URLs de site como HTTPS com `netloc`, enquanto o builder de se
 ## Estado desta entrega
 
 Este documento registra achados reproduzíveis na comparação remota. Não foram mescladas branches, fechadas PRs, alterada `main` ou acionado deploy. Correções de código e validação integrada de runtime continuam bloqueadas até haver uma execução de testes sobre o checkout combinado; não seria correto declarar isso como concluído sem evidência.
+
+
+## Atualização de estado das PRs — verificação remota de 2026-10-28
+
+Esta seção complementa a comparação estrutural acima com os metadados atuais das PRs. O estado de mergeability é apenas a informação reportada pelo GitHub naquele instante; não substitui checks nem revisão do diff.
+
+| PR | Frente | Base atual | Estado observado | Decisão |
+| --- | --- | --- | --- | --- |
+| [#50](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/pull/50) | Arquitetura | `main` | Aberta, draft; 7 commits à frente/22 atrás na comparação anterior | **Bloquear**: base fora do fluxo V2P2 e branch divergente; não integrar como está |
+| [#51](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/pull/51) | Segurança do build | `feat/profile-v2-consolidated` | Aberta, pronta para revisão | Revisar em conjunto com #54 por sobreposição no builder |
+| [#52](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/pull/52) | Testes | `feat/profile-v2-consolidated` | Aberta, draft | Manter; executar CI no SHA atual e validar a suíte completa |
+| [#53](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/pull/53) | Acessibilidade | `feat/profile-v2-consolidated` | Aberta, pronta para revisão | Revisar junto com #55 por sobreposição em CSS e HTML |
+| [#54](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/pull/54) | Catálogo | `feat/profile-v2-consolidated` | Aberta, pronta para revisão | Resolver em conjunto com #51; preservar um único contrato final |
+| [#55](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/pull/55) | Design system | `feat/profile-v2-consolidated` | Aberta, draft | Revisar com #53; testes estáticos não substituem teste visual |
+| [#56](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/pull/56) | Documentação operacional | `feat/profile-v2-consolidated` | Aberta, pronta para revisão | Conferir comandos e caminhos contra o workflow final |
+| [#57](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/pull/57) | Auditoria de integração | `feat/profile-v2-consolidated` | Aberta, draft | Documento de risco; não equivale à integração executada |
+| [#58](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/pull/58) | Deploy/CI | `feat/profile-v2-consolidated` | Aberta, draft | Revisar checks e garantir que PRs não publiquem produção |
+| [#59](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini/pull/59) | Gate de release | `feat/profile-v2-consolidated` | Aberta, draft | Manter NO-GO até haver evidência de testes/build e deploy quando autorizado |
+
+### Sequência segura sugerida
+
+1. Não integrar #50 em `main`; decidir separadamente se suas correções já estão cobertas por #51 ou precisam ser reaplicadas em uma branch baseada na referência aprovada.
+2. Comparar #51 e #54 lado a lado e produzir uma implementação única de `scripts/build_portfolio.py`, mantendo as validações estritas e o contrato público esperado pelo frontend.
+3. Resolver #53 e #55 em uma única versão revisada de CSS/HTML, preservando IDs consumidos pelo JavaScript.
+4. Integrar os testes de #52 à mesma candidata e exigir que o workflow canônico descubra toda a suíte.
+5. Conferir #56 e #58 contra os arquivos finais integrados; não inferir sucesso de deploy a partir de uma PR aberta.
+6. Executar os testes/build no SHA da candidata combinada, conferir o conjunto exato de arquivos públicos de `dist/` e inspecionar os checks desse SHA.
+7. Só então atualizar o gate #59. Não mesclar automaticamente nem publicar produção como parte desta auditoria.
+
+### Estado após a atualização
+
+A inspeção remota confirma que as PRs #51–#59 continuam abertas e apontam para `feat/profile-v2-consolidated`; #50 é a exceção, pois aponta para `main`. Não foram executados testes locais, não foi validado um checkout combinado e não foi confirmado deploy. O gate de release permanece **NO-GO** até evidências reais de validação.
