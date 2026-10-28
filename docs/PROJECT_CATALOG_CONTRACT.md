@@ -54,3 +54,12 @@ python scripts/build_portfolio.py --root . --out ./dist
 ```
 
 O segundo comando valida o **build real** e gera `dist/data/projects.json`; testes isolados do builder não provam, por si só, que todos os assets reais estão presentes nem que a página carregada funciona no navegador. Inspecione também o payload gerado e teste busca/filtros/ordenação no site servido pela raiz `dist/`.
+
+
+## Descoberta: destaques e categorias
+
+- A interface deriva as opções de categoria e os chips de navegação dos projetos elegíveis do JSON público; não mantém listas de categorias duplicadas no HTML.
+- A seção de destaques usa o campo público booleano `featured` projetado pelo builder. Só é verdadeiro quando a fonte editorial marca explicitamente `featured: true`, o projeto é elegível para publicação, a descrição não está vazia nem usa o placeholder `Descrição pública não informada.`, e o status não é arquivado.
+- O campo `featured` não expõe prioridades internas de marketing. Os destaques seguem ordenação determinística pelo nome no catálogo; as opções de ordenação do catálogo continuam independentes.
+- Selecionar uma categoria usa o mesmo controle de filtro do catálogo; busca, categoria e status continuam combinados. A seção de destaques acompanha os filtros ativos e não inventa projetos paralelos.
+- Testes do builder verificam a seleção explícita, a exclusão de privados/placeholders/arquivados, os campos publicados e a ordenação determinística.
