@@ -871,19 +871,11 @@ def render_public_projects(repos: list[dict[str, Any]], presentations: dict[str,
 
 
 def render_private_projects(repos: list[dict[str, Any]], now: datetime) -> str:
-    lines = [
-        "<details>",
-        "<summary><b>🔒 Private repository catalog</b></summary>",
-        "",
-        "| Projeto | Categoria | Descrição pública | Status | GitHub |",
-        "|:---|:---|:---|:---|:---|",
-    ]
-    for repo in sorted((r for r in repos if r.get("private")), key=lambda r: str(r["name"]).lower()):
-        category = classify(repo)
-        description = str(repo.get("description") or "Descrição pública não informada").replace("|", "\\|").replace("\n", " ")
-        lines.append(f"| **{repo['name']}** | {category} | {description} | {status_for(repo, category, now)} | {repo_link(repo)} |")
-    lines.extend(["", "</details>", "", "> 🔒 Private repository · nenhuma linha desta seção expõe código, secrets, `.env`, tokens, credenciais ou estrutura interna."])
-    return "\n".join(lines)
+    """Não publique nomes nem metadados de repositórios privados no perfil."""
+    private_count = sum(1 for repo in repos if repo.get("private"))
+    if private_count:
+        return "> Repositórios privados omitidos do perfil público; nenhum nome ou metadado privado é publicado."
+    return "> Nenhum repositório privado incluído no inventário desta execução."
 
 
 def render_live_projects(repos: list[dict[str, Any]], presentations: dict[str, Presentation]) -> str:
