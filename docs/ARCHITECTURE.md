@@ -31,7 +31,7 @@ Use `docs/project-catalog.json` como amostra concreta do contrato atual. Não as
 - Descrições e outros metadados de repositórios podem ser públicos. Revise-os antes de publicar e mantenha apenas os campos necessários.
 - Uma URL de site precisa vir do campo `homepage` ou de `docs/README_SITES.json`; o catálogo registra a origem e o resultado da checagem.
 - A checagem HTTP é uma observação pontual, não garantia de disponibilidade futura, segurança, propriedade do domínio ou correção funcional do site.
-- Não adicione domínios à allowlist nem publique uma URL nova sem evidência verificável e revisão humana. Se houver uma allowlist adicional implementada em scripts, documente-a a partir do código real antes de depender dela.
+- O manifesto `docs/README_SITES.json` funciona como allowlist editorial de URLs explícitas para repositórios cuja `homepage` não está preenchida. A `homepage` válida tem precedência sobre o manifesto. O validador `scripts/validate_project_links.py` exige HTTPS para sites publicados, status `verified` e impede site público em registros privados. Não adicione URLs sem evidência verificável e revisão humana.
 
 ## Atualização segura
 
