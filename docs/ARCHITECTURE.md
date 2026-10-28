@@ -4,6 +4,27 @@
 
 O repositório é um perfil do GitHub gerado a partir de metadados de repositórios, manifestos editoriais e verificações de URL. A página pública principal é `README.md`. O workflow `.github/workflows/update-profile.yml` executa o gerador Python, a suíte de testes e validadores; quando autorizado e configurado, publica as mudanças geradas.
 
+## Mapa de diretórios
+
+```text
+.
+├── README.md                    # perfil público renderizado
+├── assets/                      # SVGs referenciados pelo perfil
+├── docs/
+│   ├── README_SITES.json         # URLs explícitas de sites
+│   ├── README_FEATURED.json      # seleção editorial de destaques
+│   ├── README_STACK.json         # stack e tecnologias
+│   ├── README_EXCLUDED.json      # exclusões editoriais
+│   └── project-catalog.json      # catálogo gerado
+├── scripts/                     # gerador e validadores Python
+├── tests/                       # testes automatizados
+└── .github/
+    ├── workflows/               # automações de CI/atualização
+    └── scripts/                 # auxiliares dos workflows
+```
+
+O mapa é intencionalmente de alto nível; confirme os nomes reais com o checkout atual antes de adicionar arquivos ou alterar responsabilidades.
+
 ## Fontes e responsabilidades
 
 - `docs/README_SITES.json`: mapa explícito de repositórios para URLs de site quando a URL não vem do campo `homepage` do GitHub. Não derive URLs a partir do nome de repositório.
