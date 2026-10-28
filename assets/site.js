@@ -23,10 +23,10 @@
   };
 
   const safeHttpsUrl = (value) => {
-    if (typeof value !== "string" || !value.trim()) return null;
+    if (typeof value !== "string" || !value.trim() || value !== value.trim() || /\\s/.test(value)) return null;
     try {
       const url = new URL(value);
-      return url.protocol === "https:" ? url.href : null;
+      return url.protocol === "https:" && !url.username && !url.password ? url.href : null;
     } catch {
       return null;
     }
@@ -38,7 +38,7 @@
     try {
       const url = new URL(safe);
       const parts = url.pathname.split("/").filter(Boolean);
-      return url.hostname === "github.com" && parts.length === 2 && parts.every((part) => !part.includes(".")) ? safe : null;
+      return ["github.com", "www.github.com"].includes(url.hostname.toLowerCase()) && parts.length === 2 && parts.every((part) => /^[A-Za-z0-9-]+$/.test(part)) && !url.search && !url.hash ? safe : null;
     } catch {
       return null;
     }
@@ -60,16 +60,16 @@
 
     const actions = make("div", "project-actions");
     const github = safeGitHubUrl(project.github);
-    const website = safeHttpsUrl(project.website);
+    const website = project.website_status === "verified" ? safeHttpsUrl(project.website) : null;
     if (website) {
-      const siteLink = make("a", "site-link", "Site verificado ↗");
+      const siteLink = make("a", "site-link", "Abrir site ↗");
       siteLink.href = website;
       siteLink.target = "_blank";
       siteLink.rel = "noopener noreferrer";
       actions.append(siteLink);
     }
     if (github) {
-      const codeLink = make("a", "", "Código-fonte ↗");
+      const codeLink = make("a", "", "Ver código ↗");
       codeLink.href = github;
       codeLink.target = "_blank";
       codeLink.rel = "noopener noreferrer";
