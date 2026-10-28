@@ -3,7 +3,7 @@
 **Branch:** `feat/v3p3-integration-candidate`  
 **Base:** `feat/profile-v2-consolidated`  
 **PR:** #78 (Draft)  
-**Última execução automatizada confirmada:** GitHub Actions run #54 (commit `b8eb5b0f88c307d635935627e9f31db2711ba2b8`)
+**Última execução automatizada verde confirmada:** GitHub Actions run #54 (commit `b8eb5b0f88c307d635935627e9f31db2711ba2b8`). A run #57 encontrou uma expectativa incorreta no teste de ordenação; a expectativa foi corrigida no commit `e89d3b5b13ef22d612a8d6da91817a563f042b77` e aguarda nova validação.
 
 ## Escopo integrado
 
@@ -15,7 +15,7 @@
 - Workflow executa a suíte Python, testes Node, build e verificação de allowlist/contrato antes de considerar o artefato.
 - Melhorias de acessibilidade: rótulos associados, instrução da busca, contagem com live region, região de resultados, foco de teclado visível, suporte a forced-colors e anúncio dos estados vazio/erro.
 
-## Evidência do run #54
+## Evidência da última execução verde (#54)
 
 - Python: 118 testes passaram.
 - Node: 8 testes passaram, 0 falhas, incluindo busca combinada com categoria/status e ordenação A–Z, Z–A e status.
@@ -28,7 +28,7 @@
 ## Cobertura adicional do catálogo
 
 - A suíte frontend agora verifica filtros combinados (texto + categoria + status) e os modos de ordenação explícitos, além de estados de erro, links seguros e semântica acessível.
-- GitHub Actions runs #53 e #54 confirmaram novamente os testes e o build nos commits atualizados.
+- A run #57 detectou corretamente que o teste esperava ordem alfabética entre todos os projetos, apesar da nova prioridade por status. O teste foi corrigido para refletir a regra funcional; o resultado do commit corretivo ainda precisa ser confirmado pelo CI.
 
 ## Limites conhecidos
 
