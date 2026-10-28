@@ -1,0 +1,71 @@
+name: Portfolio build validation
+
+on:
+  pull_request:
+    paths:
+      - "scripts/build_portfolio.py"
+      - "tests/test_build_portfolio.py"
+      - "docs/project-catalog.json"
+      - "docs/portfolio-build.md"
+      - "index.html"
+      - "assets/**"
+      - ".github/workflows/portfolio-build-test.yml"
+  push:
+    branches:
+      - "feat/profile-v2-build-pipeline"
+    paths:
+      - "scripts/build_portfolio.py"
+      - "tests/test_build_portfolio.py"
+      - "docs/project-catalog.json"
+      - "docs/portfolio-build.md"
+      - "index.html"
+      - "assets/**"
+      - ".github/workflows/portfolio-build-test.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v
+      - name: Build static artifact
+        run: python scripts/build_portfolio.py --out /tmp/portfolio-dist
+      - name: Verify public artifact shape
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          out = Path("/tmp/portfolio-dist")
+          expected = {
+              ".nojekyll",
+              "index.html",
+              "assets/site.css",
+              "assets/site.js",
+              "assets/favicon.svg",
+              "data/projects.json",
+          }
+          actual = {p.relative_to(out).as_posix() for p in out.rglob("*") if p.is_file()}
+          if actual != expected:
+              raise SystemExit(f"unexpected build output: {sorted(actual)}")
+          payload = json.loads((out / "data/projects.json").read_text(encoding="utf-8"))
+          if payload.get("schema") != "lucas-belucci-bellini/public-portfolio@1":
+              raise SystemExit("unexpected public data schema")
+          if payload.get("project_count") != len(payload.get("projects", [])):
+              raise SystemExit("project_count does not match projects")
+          forbidden = {"repository", "private", "github_visible", "marketing_priority", "website_status"}
+          for project in payload["projects"]:
+              leaked = forbidden.intersection(project)
+              if leaked:
+                  raise SystemExit(f"internal fields leaked: {sorted(leaked)}")
+          print(f"Validated {payload['project_count']} public projects.")
+          PY
