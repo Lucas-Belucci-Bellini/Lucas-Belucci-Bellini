@@ -26,7 +26,7 @@
         <span class="brand-name">LUCAS BELUCCI BELLINI<small>FIELD MANUAL · VOLUME II</small></span>
       </a>
       <nav id="primary-navigation" aria-label="Navegação principal">
-        <a href="#work">Projetos</a>
+        <a href="#work" aria-current="page">Catálogo</a>
         <a href="#about">Sobre</a>
         <a href="#journey">Trajetória</a>
         <a href="#stack">Tecnologias</a>
@@ -41,7 +41,7 @@
           <h1>Ideias viram<br><span>sistemas reais.</span></h1>
           <p class="hero-lead">Construo experiências web, ferramentas, automações, jogos e experimentos de hardware — documentando o processo e evoluindo projeto por projeto.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#work">Explorar projetos <span aria-hidden="true">↘</span></a>
+            <a class="button button-primary" href="#work">Explorar catálogo <span aria-hidden="true">↘</span></a>
             <a class="button button-quiet" href="https://github.com/Lucas-Belucci-Bellini" target="_blank" rel="noopener noreferrer">Ver GitHub <span aria-hidden="true">↗</span></a>
           </div>
           <div class="hero-meta"><span>BASE // LONDRINA, BR</span><span>STATUS // EM CONSTRUÇÃO</span></div>
@@ -59,10 +59,10 @@
         <span>01 / WEB & SAAS</span><span>02 / AI & AUTOMATION</span><span>03 / HARDWARE & LOGIC</span><span>04 / GAMES & WORLDS</span>
       </section>
 
-      <section id="work" class="work-section section-wrap">
+      <section id="work" class="work-section section-wrap" aria-labelledby="catalog-title">
         <div class="section-heading">
-          <div><p class="eyebrow">INDEX // 001</p><h2>Projetos selecionados<span>.</span></h2></div>
-          <p class="section-note">Um catálogo vivo de coisas que estou construindo, estudando e experimentando.</p>
+          <div><p class="eyebrow">INDEX // 001</p><h2 id="catalog-title">Catálogo de projetos<span>.</span></h2></div>
+          <p class="section-note">Busque por nome ou descrição e combine os filtros de categoria e status para encontrar o projeto certo.</p>
         </div>
         <div class="project-tools">
           <label class="search-box"><span aria-hidden="true">⌕</span><input id="project-search" type="search" placeholder="Buscar projetos..." autocomplete="off" aria-label="Buscar projetos"></label>
@@ -122,6 +122,6 @@
       </section>
     </main>
 
-    <footer class="footer section-wrap"><a class="footer-brand" href="#">LB<span>/</span></a><span>© <span id="current-year"></span> LUCAS BELUCCI BELLINI</span><span>BUILT WITH CURIOSITY · BR</span><a href="#main">VOLTAR AO TOPO ↑</a></footer>
+    <footer class="footer section-wrap"><a class="footer-brand" href="#main" aria-label="Voltar ao início">LB<span>/</span></a><span>© <span id="current-year"></span> LUCAS BELUCCI BELLINI</span><span>BUILT WITH CURIOSITY · BR</span><a href="#main">VOLTAR AO TOPO ↑</a></footer>
   </body>
 </html>
