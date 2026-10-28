@@ -84,13 +84,11 @@
     const query = (searchInput.value || "").trim().toLocaleLowerCase("pt-BR");
     const category = categorySelect.value;
     const status = statusSelect.value;
-    const filtered = projects.filter((project) => {
-      const text = [project.name, project.description, project.category, project.category_label, project.status]
-        .filter((value) => typeof value === "string").join(" ").toLocaleLowerCase("pt-BR");
-      return (!query || text.includes(query))
-        && (category === "all" || project.category === category)
-        && (status === "all" || project.status === status);
-    });
+    const filtered = projects.filter((project) =>
+      (!query || project.searchText.includes(query))
+      && (category === "all" || project.category === category)
+      && (status === "all" || project.status === status)
+    );
 
     grid.replaceChildren();
     if (!filtered.length) {
@@ -118,7 +116,14 @@
         && project.private !== true
         && project.github_visible !== false
         && safeGitHubUrl(project.github)
-      );
+      ).map((project) => ({
+        ...project,
+        // Normalize once at load time instead of rebuilding strings on every keystroke.
+        searchText: [project.name, project.description, project.category, project.category_label, project.status]
+          .filter((value) => typeof value === "string")
+          .join(" ")
+          .toLocaleLowerCase("pt-BR")
+      }));
 
       const categories = [...new Set(projects.map((project) => project.category)
         .filter((value) => typeof value === "string" && value.trim()))]
@@ -152,8 +157,19 @@
     }
   }
 
-  if (searchInput) searchInput.addEventListener("input", render);
-  if (categorySelect) categorySelect.addEventListener("change", render);
-  if (statusSelect) statusSelect.addEventListener("change", render);
+  // Coalesce rapid input/change events into one paint without adding a debounce delay.
+  let renderScheduled = false;
+  const scheduleRender = () => {
+    if (renderScheduled) return;
+    renderScheduled = true;
+    requestAnimationFrame(() => {
+      renderScheduled = false;
+      render();
+    });
+  };
+
+  if (searchInput) searchInput.addEventListener("input", scheduleRender);
+  if (categorySelect) categorySelect.addEventListener("change", scheduleRender);
+  if (statusSelect) statusSelect.addEventListener("change", scheduleRender);
   loadCatalog();
 })();
