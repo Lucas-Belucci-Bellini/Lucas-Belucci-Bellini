@@ -10,6 +10,7 @@ Use Python 3.12, na raiz do repositório:
 python -m py_compile scripts/build_portfolio.py
 python -m json.tool docs/project-catalog.json >/dev/null
 python -m unittest discover -s tests -v
+node --test tests/test_portfolio_frontend.cjs
 python scripts/build_portfolio.py --out /tmp/portfolio-dist
 ```
 
@@ -25,4 +26,4 @@ O frontend consome exclusivamente `data/projects.json`, nunca o catálogo editor
 
 ## Limites conhecidos
 
-A suíte automatizada atual cobre o builder Python e o contrato do JSON que o frontend consome. A busca e os filtros do DOM, assim como estados visuais de erro de rede no JavaScript, ainda não têm testes de navegador automatizados; não os considere cobertos por esta suíte. Esses testes exigiriam um harness DOM/browser ou uma dependência de teste de frontend explícita.
+A suíte cobre o builder Python, o contrato do JSON e o comportamento principal do frontend por meio de um harness DOM mínimo executado no Node.js: busca, filtros por categoria/status, links seguros, campos ausentes e estados de erro HTTP/payload. Esse harness não substitui testes em navegador real; layout, acessibilidade integrada e diferenças entre navegadores ainda exigem validação visual/browser.
