@@ -106,8 +106,8 @@ def build(root: Path, out: Path) -> int:
 
     out = out.resolve()
     root = root.resolve()
-    if out == root or root in out.parents:
-        raise BuildError("output directory must not be the repository root or inside it")
+    if out == root:
+        raise BuildError("output directory must not be the repository root")
     out.parent.mkdir(parents=True, exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix=".portfolio-build-", dir=out.parent))
     try:
