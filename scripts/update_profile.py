@@ -907,7 +907,8 @@ def render_project_map(repos: list[dict[str, Any]], languages: dict[str, dict[st
         "| Projeto | Categoria | Stack | Status | Acesso |",
         "|:---|:---|:---|:---|:---|",
     ]
-    for repo in sorted(repos, key=lambda r: str(r["name"]).lower()):
+    public_repos = [repo for repo in repos if not repo.get("private")]
+    for repo in sorted(public_repos, key=lambda r: str(r["name"]).lower()):
         item = presentations[str(repo["full_name"])]
         lines.append(
             f"| **{repo['name']}** | {item.category_label} | {stack_for(repo, languages)} | {item.status} | {cta_cell(item)} |"
