@@ -134,5 +134,54 @@ class PortfolioBuildTests(unittest.TestCase):
             build(self.root, self.root / "dist")
 
 
+class DesignSystemContractTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.repo_root = Path(__file__).resolve().parents[1]
+        cls.css = (cls.repo_root / "assets" / "site.css").read_text(encoding="utf-8")
+        cls.html = (cls.repo_root / "index.html").read_text(encoding="utf-8")
+        cls.js = (cls.repo_root / "assets" / "site.js").read_text(encoding="utf-8")
+
+    def test_design_tokens_have_one_canonical_root(self):
+        import re
+        self.assertEqual(len(re.findall(r":root\\s*\\{", self.css)), 1)
+        for token in (
+            "--color-canvas", "--color-surface", "--color-text",
+            "--color-gold", "--color-focus", "--font-body", "--font-code",
+            "--space-4", "--radius-sm", "--motion-normal",
+        ):
+            with self.subTest(token=token):
+                self.assertIn(token, self.css)
+
+    def test_responsive_breakpoints_and_medium_navigation_exist(self):
+        import re
+        self.assertRegex(self.css, r"@media\\s*\\(max-width:\\s*850px\\)")
+        self.assertRegex(self.css, r"@media\\s*\\(max-width:\\s*600px\\)")
+        self.assertIn("scrollbar-width:thin", self.css)
+        self.assertIn("grid-template-columns:repeat(2,minmax(0,1fr))", self.css)
+        self.assertIn("grid-template-columns:1fr", self.css)
+
+    def test_keyboard_focus_and_motion_preferences_are_preserved(self):
+        self.assertIn(":focus-visible", self.css)
+        self.assertIn(":focus-within", self.css)
+        self.assertIn("@media(prefers-reduced-motion:reduce)", self.css)
+        self.assertIn("@media (forced-colors: active)", self.css)
+
+    def test_javascript_consumed_html_ids_remain_present(self):
+        import re
+        for element_id in (
+            "project-search", "category-filter", "status-filter",
+            "project-count", "project-grid", "catalog-message", "current-year",
+        ):
+            with self.subTest(element_id=element_id):
+                self.assertRegex(self.html, rf'id="{re.escape(element_id)}"')
+                self.assertIn(f'"#{element_id}"', self.js)
+
+    def test_no_new_runtime_dependency_is_added(self):
+        self.assertNotIn("npm install", self.html)
+        self.assertNotIn("cdn.jsdelivr.net", self.html)
+        self.assertNotIn("unpkg.com", self.html)
+
+
 if __name__ == "__main__":
     unittest.main()
