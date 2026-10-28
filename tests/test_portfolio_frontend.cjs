@@ -36,11 +36,12 @@ class FakeNode {
 function harness(fetchImpl) {
   const ids = [
     "#project-grid", "#project-search", "#category-filter",
-    "#status-filter", "#project-count", "#catalog-message", "#current-year",
+    "#status-filter", "#sort-projects", "#project-count", "#catalog-message", "#current-year",
   ];
   const nodes = Object.fromEntries(ids.map((id) => [id, new FakeNode()]));
   nodes["#category-filter"].value = "all";
   nodes["#status-filter"].value = "all";
+  nodes["#sort-projects"].value = "name-asc";
   const document = {
     querySelector: (selector) => nodes[selector] || null,
     createElement: (tag) => new FakeNode(tag),
@@ -93,6 +94,38 @@ test("search input and category/status filters change the visible result set", a
   nodes["#status-filter"].dispatch("change");
   assert.deepEqual(cardTitles(nodes), ["Rust Engine"]);
   assert.ok(nodes["#category-filter"].children.some((option) => option.value === "Games"));
+});
+
+
+test("combined search, category, status and explicit sort work together", async () => {
+  const nodes = harness(async () => response([
+    { name: "Zulu Engine", slug: "zulu-engine", description: "Voxel world", category: "Games", category_label: "Games", status: "🟢 Active", github: "https://github.com/owner/zulu-engine" },
+    { name: "Alpha Engine", slug: "alpha-engine", description: "Voxel tools", category: "Games", category_label: "Games", status: "🟡 In Development", github: "https://github.com/owner/alpha-engine" },
+    { name: "Voxel Planner", slug: "voxel-planner", description: "Voxel tasks", category: "Tools", category_label: "Tools", status: "🟢 Active", github: "https://github.com/owner/voxel-planner" },
+    { name: "Unrelated", slug: "unrelated", description: "Notes", category: "Tools", category_label: "Tools", status: "🟢 Active", github: "https://github.com/owner/unrelated" },
+  ]));
+  await tick();
+
+  nodes["#project-search"].value = "voxel";
+  nodes["#category-filter"].value = "Games";
+  nodes["#status-filter"].value = "all";
+  nodes["#project-search"].dispatch("input");
+  nodes["#category-filter"].dispatch("change");
+  assert.deepEqual(cardTitles(nodes), ["Alpha Engine", "Zulu Engine"]);
+
+  nodes["#status-filter"].value = "🟡 In Development";
+  nodes["#status-filter"].dispatch("change");
+  assert.deepEqual(cardTitles(nodes), ["Alpha Engine"]);
+
+  nodes["#status-filter"].value = "all";
+  nodes["#sort-projects"].value = "name-desc";
+  nodes["#sort-projects"].dispatch("change");
+  assert.deepEqual(cardTitles(nodes), ["Zulu Engine", "Alpha Engine"]);
+  assert.equal(nodes["#project-count"].textContent, "2 de 4 projetos");
+
+  nodes["#sort-projects"].value = "status";
+  nodes["#sort-projects"].dispatch("change");
+  assert.deepEqual(cardTitles(nodes), ["Alpha Engine", "Zulu Engine"]);
 });
 
 test("malformed public records are filtered and unsafe website URLs are omitted", async () => {
