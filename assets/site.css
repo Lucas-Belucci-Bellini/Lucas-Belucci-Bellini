@@ -313,3 +313,23 @@ a:hover {
     outline: 2px solid Highlight;
   }
 }
+
+
+/* Search/filter controls: consistent keyboard focus and compact clear action. */
+.catalog-clear {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  font: 10px var(--mono);
+  cursor: pointer;
+}
+.catalog-clear:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+.catalog-clear:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}

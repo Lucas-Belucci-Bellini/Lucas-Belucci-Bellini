@@ -68,6 +68,8 @@
           <label class="search-box"><span aria-hidden="true">⌕</span><input id="project-search" type="search" placeholder="Buscar projetos..." autocomplete="off" aria-label="Buscar projetos"></label>
           <label class="filter-label"><span class="sr-only">Filtrar por categoria</span><select id="category-filter"><option value="all">Todas as categorias</option></select></label>
           <label class="filter-label"><span class="sr-only">Filtrar por status</span><select id="status-filter"><option value="all">Todos os status</option></select></label>
+          <label class="filter-label"><span class="sr-only">Ordenar projetos</span><select id="project-sort"><option value="name-asc">Nome (A–Z)</option><option value="name-desc">Nome (Z–A)</option><option value="category-asc">Categoria (A–Z)</option><option value="status-asc">Status (A–Z)</option></select></label>
+          <button id="clear-project-filters" class="catalog-clear" type="button">Limpar filtros</button>
           <span id="project-count" class="result-count" aria-live="polite" aria-atomic="true">Carregando catálogo…</span>
         </div>
         <div id="project-grid" class="project-grid">
