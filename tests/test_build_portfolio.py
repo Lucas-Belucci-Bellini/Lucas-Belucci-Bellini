@@ -50,7 +50,7 @@ class PortfolioBuildTests(unittest.TestCase):
     def write_catalog(self, projects, schema=SCHEMA):
         catalog = {
             "schema": schema,
-            "categories": ["Software & Tools"],
+            "categories": sorted({item.get("category", "Software & Tools") for item in projects} | {"Software & Tools"}),
             "projects": projects,
         }
         path = self.root / "docs" / "project-catalog.json"
@@ -188,8 +188,41 @@ class PortfolioBuildTests(unittest.TestCase):
         item = payload["projects"][0]
         self.assertEqual(
             set(item),
-            {"name", "slug", "description", "category", "category_label", "status", "github", "website"},
+            {"name", "slug", "description", "category", "category_label", "status", "github", "website", "featured"},
         )
+
+    def test_featured_selection_requires_explicit_flag_and_complete_non_archived_project(self):
+        self.write_catalog([
+            project(name="Eligible", slug="eligible", featured=True, description="A useful public description."),
+            project(name="Not flagged", slug="not-flagged", featured=False, description="A useful description."),
+            project(name="Placeholder", slug="placeholder", featured=True, description="Descrição pública não informada."),
+            project(name="Archived", slug="archived", featured=True, status="⚪ Archived", description="A complete description."),
+            project(name="Missing flag", slug="missing-flag", description="A complete description."),
+            project(name="Private", slug="private-featured", featured=True, private=True, description="A complete description."),
+        ])
+        out = self.root / "dist"
+        self.assertEqual(build(self.root, out), 5)
+        payload = json.loads((out / "data" / "projects.json").read_text(encoding="utf-8"))
+        flags = {item["slug"]: item["featured"] for item in payload["projects"]}
+        self.assertEqual(flags["eligible"], True)
+        self.assertEqual(flags["not-flagged"], False)
+        self.assertEqual(flags["placeholder"], False)
+        self.assertEqual(flags["archived"], False)
+        self.assertEqual(flags["missing-flag"], False)
+        self.assertNotIn("private-featured", flags)
+
+    def test_category_groups_are_available_from_the_public_projection_and_order_is_deterministic(self):
+        self.write_catalog([
+            project(name="zeta", slug="zeta", category="Games", featured=True),
+            project(name="Alpha", slug="alpha", category="Software & Tools", featured=True),
+            project(name="Beta", slug="beta", category="Games", featured=False),
+        ])
+        out = self.root / "dist"
+        build(self.root, out)
+        payload = json.loads((out / "data" / "projects.json").read_text(encoding="utf-8"))
+        self.assertEqual([item["name"] for item in payload["projects"]], ["Alpha", "Beta", "zeta"])
+        self.assertEqual({item["category"] for item in payload["projects"]}, {"Games", "Software & Tools"})
+        self.assertEqual([item["slug"] for item in payload["projects"] if item["featured"]], ["alpha", "zeta"])
 
 
 if __name__ == "__main__":

@@ -26,7 +26,8 @@
         <span class="brand-name">LUCAS BELUCCI BELLINI<small>FIELD MANUAL · VOLUME II</small></span>
       </a>
       <nav id="primary-navigation" aria-label="Navegação principal">
-        <a href="#work">Projetos</a>
+        <a href="#featured">Destaques</a>
+        <a href="#work">Catálogo</a>
         <a href="#about">Sobre</a>
         <a href="#journey">Trajetória</a>
         <a href="#stack">Tecnologias</a>
@@ -59,11 +60,22 @@
         <span>01 / WEB & SAAS</span><span>02 / AI & AUTOMATION</span><span>03 / HARDWARE & LOGIC</span><span>04 / GAMES & WORLDS</span>
       </section>
 
+      <section id="featured" class="work-section section-wrap discovery-featured" aria-labelledby="featured-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">SELECTED // 000</p><h2 id="featured-title">Em destaque<span>.</span></h2></div>
+          <p class="section-note">Seleção derivada do catálogo público. Apenas projetos explicitamente destacados e com descrição útil aparecem aqui.</p>
+        </div>
+        <div id="featured-grid" class="project-grid" aria-live="polite">
+          <div class="loading-card">Carregando destaques…</div>
+        </div>
+      </section>
+
       <section id="work" class="work-section section-wrap">
         <div class="section-heading">
           <div><p class="eyebrow">INDEX // 001</p><h2>Projetos selecionados<span>.</span></h2></div>
           <p class="section-note">Um catálogo vivo de coisas que estou construindo, estudando e experimentando.</p>
         </div>
+        <nav id="category-links" class="category-links" aria-label="Explorar projetos por categoria"></nav>
         <div class="project-tools">
           <label class="search-box"><span aria-hidden="true">⌕</span><input id="project-search" type="search" placeholder="Buscar projetos..." autocomplete="off" aria-label="Buscar projetos"></label>
           <label class="filter-label"><span class="sr-only">Filtrar por categoria</span><select id="category-filter"><option value="all">Todas as categorias</option></select></label>

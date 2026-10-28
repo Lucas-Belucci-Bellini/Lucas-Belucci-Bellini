@@ -8,6 +8,8 @@
   const categorySelect = document.querySelector("#category-filter");
   const statusSelect = document.querySelector("#status-filter");
   const sortSelect = document.querySelector("#sort-projects");
+  const featuredGrid = document.querySelector("#featured-grid");
+  const categoryLinks = document.querySelector("#category-links");
   const count = document.querySelector("#project-count");
   const message = document.querySelector("#catalog-message");
   const year = document.querySelector("#current-year");
@@ -67,12 +69,13 @@
     top.append(make("span", "project-category", project.category_label || project.category));
     if (allowedStatuses.has(project.status)) top.append(make("span", "project-status", project.status));
     card.append(top);
+    if (project.featured === true) card.classList.add("project-card-featured");
     card.append(make("h3", "", project.name));
     card.append(make("p", "", project.description.trim() ? project.description : "Descrição não informada."));
 
     const actions = make("div", "project-actions");
     const github = safeGitHubUrl(project.github);
-    const website = project.website_status === "verified" ? safeHttpsUrl(project.website) : null;
+    const website = safeHttpsUrl(project.website);
     if (website) {
       const siteLink = make("a", "site-link", "Site verificado ↗");
       siteLink.href = website;
@@ -93,6 +96,11 @@
 
   function render() {
     if (!grid || !searchInput || !categorySelect || !statusSelect || !count) return;
+    if (categoryLinks) {
+      categoryLinks.querySelectorAll("[data-category]").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.category === (categorySelect.value || "all"));
+      });
+    }
     const query = (searchInput.value || "").trim().toLocaleLowerCase("pt-BR");
     const category = categorySelect.value || "all";
     const status = statusSelect.value || "all";
@@ -124,6 +132,51 @@
       grid.append(fragment);
     }
     count.textContent = filtered.length + " de " + projects.length + " projetos";
+
+    if (featuredGrid) {
+      const featured = filtered.filter((project) => project.featured === true);
+      featuredGrid.replaceChildren();
+      if (!featured.length) {
+        featuredGrid.append(make("div", "empty-card", "Nenhum destaque corresponde aos filtros atuais."));
+      } else {
+        const fragment = document.createDocumentFragment();
+        featured.forEach((project) => fragment.append(createProjectCard(project)));
+        featuredGrid.append(fragment);
+      }
+    }
+  }
+
+  function renderCategoryLinks() {
+    if (!categoryLinks) return;
+    categoryLinks.replaceChildren();
+    const fragment = document.createDocumentFragment();
+    const all = make("button", "category-chip is-active", "Todas");
+    all.type = "button";
+    all.dataset.category = "all";
+    all.addEventListener("click", () => {
+      searchInput.value = "";
+      statusSelect.value = "all";
+      categorySelect.value = "all";
+      render();
+      grid.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    fragment.append(all);
+    const categories = [...new Set(projects.map((project) => project.category))]
+      .sort((a, b) => a.localeCompare(b, "pt-BR", { sensitivity: "base" }));
+    categories.forEach((category) => {
+      const button = make("button", "category-chip", category);
+      button.type = "button";
+      button.dataset.category = category;
+      button.addEventListener("click", () => {
+        searchInput.value = "";
+        statusSelect.value = "all";
+        categorySelect.value = category;
+        render();
+        grid.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      fragment.append(button);
+    });
+    categoryLinks.append(fragment);
   }
 
   async function loadCatalog() {
@@ -156,6 +209,7 @@
       });
 
       message.hidden = true;
+      renderCategoryLinks();
       render();
     } catch (error) {
       grid.replaceChildren(make("div", "empty-card", "Não foi possível carregar o catálogo de projetos."));

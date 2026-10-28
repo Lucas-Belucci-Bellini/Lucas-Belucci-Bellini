@@ -313,3 +313,14 @@ a:hover {
     outline: 2px solid Highlight;
   }
 }
+
+
+/* Project discovery: featured projects and category navigation are generated from the public catalog. */
+.discovery-featured { padding-top: 70px; padding-bottom: 30px; }
+.project-card-featured { border-color: #8f6e3e; }
+.project-card-featured .project-category::before { content: "★ "; }
+.category-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; }
+.category-chip { appearance: none; border: 1px solid var(--line); background: var(--panel); color: var(--muted); padding: 9px 12px; font: 10px var(--mono); cursor: pointer; }
+.category-chip:hover, .category-chip.is-active { border-color: var(--gold); color: var(--gold-light); background: var(--panel-2); }
+.category-chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .category-chip { scroll-behavior: auto; } }
