@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - "scripts/update_profile.py"
+      - "docs/PROFILE-ARCHIVE.md"
       - "scripts/project_catalog.py"
       - "scripts/validate_project_links.py"
       - "docs/README_SITES.json"
@@ -46,7 +47,7 @@ jobs:
           python-version: "3.12"
 
       - name: Snapshot README before refresh
-        run: cp README.md /tmp/README.before.md
+        run: cp docs/PROFILE-ARCHIVE.md /tmp/PROFILE-ARCHIVE.before.md
 
       - name: Refresh README and generated assets
         if: ${{ env.PROFILE_GITHUB_TOKEN != '' }}
@@ -62,7 +63,7 @@ jobs:
       - name: Validate generated Markdown and configuration
         run: |
           python3 -m py_compile scripts/update_profile.py scripts/project_catalog.py scripts/check_websites.py scripts/validate_dynamic_sections.py scripts/validate_exclusions.py scripts/validate_project_links.py
-          python3 scripts/validate_dynamic_sections.py --before /tmp/README.before.md --after README.md
+          python3 scripts/validate_dynamic_sections.py --before /tmp/PROFILE-ARCHIVE.before.md --after docs/PROFILE-ARCHIVE.md
           python3 scripts/validate_exclusions.py
           python3 scripts/validate_project_links.py
           python3 -m json.tool docs/README_SITES.json >/dev/null
@@ -71,6 +72,7 @@ jobs:
           python3 -m json.tool docs/README_EXCLUDED.json >/dev/null
           python3 -m json.tool docs/project-catalog.json >/dev/null
           test -s README.md
+          test -s docs/PROFILE-ARCHIVE.md
           test -s assets/lang-stats.svg
           test -s assets/profile-snapshot.svg
           test -s docs/project-catalog.json
@@ -86,11 +88,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- README.md assets/profile-snapshot.svg docs/project-catalog.json; then
+          if git diff --quiet -- docs/PROFILE-ARCHIVE.md assets/profile-snapshot.svg docs/project-catalog.json; then
             echo "No generated changes detected."
             exit 0
           fi
-          git add README.md assets/profile-snapshot.svg docs/project-catalog.json
+          git add docs/PROFILE-ARCHIVE.md assets/profile-snapshot.svg docs/project-catalog.json
           git commit -m "chore(profile): refresh repository catalog"
           bash .github/scripts/push_with_rebase.sh
 
