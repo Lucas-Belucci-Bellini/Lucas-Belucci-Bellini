@@ -35,7 +35,9 @@ permissions:
 
 jobs:
   publish:
-    if: ${{ vars.PROFILE_CORE_MODE == 'publish' }}
+    # O renderer Rust ainda está no contrato antigo de README.md. A publicação
+    # compacta só poderá ser ativada depois da migração do caminho de arquivo.
+    if: ${{ vars.PROFILE_CORE_MODE == 'publish' && vars.PROFILE_README_ARCHIVE_MODE == 'ready' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
