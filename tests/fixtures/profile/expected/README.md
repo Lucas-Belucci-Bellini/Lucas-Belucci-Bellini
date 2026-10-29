@@ -421,7 +421,9 @@ ECOSSISTEMA
 ## PRIVATE-PROJECTS
 
 <!-- PRIVATE-PROJECTS:START -->
-> Repositórios privados omitidos do perfil público; nenhum nome ou metadado privado é publicado.
+> **1 projeto privado** · nomes, repositórios, descrições individuais e links não são publicados.
+> **Finalidades gerais:** Web (1)
+> **Linguagens:** PowerShell, Python
 <!-- PRIVATE-PROJECTS:END -->
 
 ---
