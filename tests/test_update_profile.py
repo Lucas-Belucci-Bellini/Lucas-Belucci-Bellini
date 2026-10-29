@@ -14,6 +14,20 @@ MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 
 
+class ProfileReadmePathTests(unittest.TestCase):
+    def test_archive_is_preferred_and_legacy_fixture_falls_back(self) -> None:
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            docs = root / "docs"
+            docs.mkdir()
+            self.assertEqual(root / "README.md", MODULE.profile_readme_path(root))
+            archive = docs / "PROFILE-ARCHIVE.md"
+            archive.write_text("# Archive\\n", encoding="utf-8")
+            self.assertEqual(archive, MODULE.profile_readme_path(root))
+
+
 class LanguageBadgeTests(unittest.TestCase):
     def test_special_language_names_keep_readable_markdown_labels(self) -> None:
         rows = [
