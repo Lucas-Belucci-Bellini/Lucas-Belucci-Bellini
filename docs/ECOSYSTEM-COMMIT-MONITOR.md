@@ -2,27 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-28T21:39:25Z`  
+**Última varredura:** `2026-10-29T21:07:25Z`  
 **Intervalo configurado:** `1 hora`  
-**Repositórios acompanhados:** `71`  
-**Repositórios com mudanças desde a última varredura:** `4`  
+**Repositórios acompanhados:** `72`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5025`
-- **Commits dos projetos:** `4740`
-- **Commits do próprio monitor:** `285`
-- **Commits de projetos detectados nesta hora:** `121`
+- **Commits rastreados pelo ecossistema:** `5106`
+- **Commits dos projetos:** `4820`
+- **Commits do próprio monitor:** `286`
+- **Commits de projetos detectados nesta hora:** `80`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **AETHER** — 41 commit(s) — [52bfff832e23](https://github.com/Lucas-Belucci-Bellini/AETHER/commit/52bfff832e23b734693a0a8e050e2028c1baee28) — Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10
-- **All-Skills-for-the-claude-code** — 45 commit(s) — [b9b44033252a](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/b9b44033252a1fedba73f5da98cf42b04f05642f) — Merge pull request #169 from Lucas-Belucci-Bellini/feat/all-skills-consolidated-2026
-- **ATLAS** — 21 commit(s) — [9415fa48f461](https://github.com/Lucas-Belucci-Bellini/ATLAS/commit/9415fa48f4618e6a30f38b3af4c35bc75290201f) — Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10
-- **TITAN** — 14 commit(s) — [95980f596020](https://github.com/Lucas-Belucci-Bellini/TITAN/commit/95980f596020b03155f6de77e90e4b60a62e8903) — Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10
+- **All-Skills-for-the-claude-code** — 80 commit(s) — [059a43b1940b](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/059a43b1940bcb908dc951c40e95c2438aa5799a) — Merge pull request #170 from Lucas-Belucci-Bellini/feat/all-skills-consolidated-2026
 
 ## Erros de consulta
 

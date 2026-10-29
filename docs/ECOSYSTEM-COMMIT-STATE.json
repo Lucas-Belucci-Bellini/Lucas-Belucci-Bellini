@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-28T21:39:25Z",
+  "scanned_at": "2026-10-29T21:07:25Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -26,10 +26,10 @@
     },
     "All-Skills-for-the-claude-code": {
       "branch": "main",
-      "sha": "b9b44033252a1fedba73f5da98cf42b04f05642f",
-      "date": "2026-10-28T20:13:52Z",
-      "message": "Merge pull request #169 from Lucas-Belucci-Bellini/feat/all-skills-consolidated-2026",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/b9b44033252a1fedba73f5da98cf42b04f05642f"
+      "sha": "059a43b1940bcb908dc951c40e95c2438aa5799a",
+      "date": "2026-10-29T17:43:38Z",
+      "message": "Merge pull request #170 from Lucas-Belucci-Bellini/feat/all-skills-consolidated-2026",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/059a43b1940bcb908dc951c40e95c2438aa5799a"
     },
     "All-The-Mods-10": {
       "branch": "main",
@@ -269,6 +269,13 @@
       "message": "docs: add repository-specific engineering prompt",
       "url": "https://github.com/Lucas-Belucci-Bellini/DailyPlanner/commit/c1a9659bc66dd8a71cf35ff5933db06898b9a109"
     },
+    "Dark-Legion": {
+      "branch": "main",
+      "sha": "0d473e341a3898af6962f506e8ee171979245479",
+      "date": "2026-10-29T20:33:04Z",
+      "message": "Initial commit",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/0d473e341a3898af6962f506e8ee171979245479"
+    },
     "Decision-Structures": {
       "branch": "main",
       "sha": "5c41947f6d754d77ee0aa006d04314b1c4ed2e05",
@@ -493,15 +500,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5025,
-    "project_commits": 4740,
-    "monitor_commits": 285,
-    "detected_project_commits_this_scan": 121,
+    "tracked_commits": 5106,
+    "project_commits": 4820,
+    "monitor_commits": 286,
+    "detected_project_commits_this_scan": 80,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 71,
-    "repositories_changed": 4,
+    "repositories_scanned": 72,
+    "repositories_changed": 1,
     "errors": 3
   },
   "errors": [
