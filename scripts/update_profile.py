@@ -981,7 +981,7 @@ def source_timestamp(repos: list[dict[str, Any]], now: datetime) -> datetime:
     """
     source_times = []
     for repo in repos:
-        if is_profile_repository(repo):
+        if repo.get("private") or is_profile_repository(repo):
             continue
         value = repo.get("pushed_at") or repo.get("updated_at")
         try:
