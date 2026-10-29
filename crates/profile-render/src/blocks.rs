@@ -713,7 +713,7 @@ pub fn project_map(profile: &Profile) -> String {
         "| Projeto | Categoria | Stack | Status | Acesso |".into(),
         "|:---|:---|:---|:---|:---|".into(),
     ];
-    for repo in sorted_repos(profile.inputs.repos, |_| true) {
+    for repo in sorted_repos(profile.inputs.repos, |repo| !repo.private) {
         let item = profile.presentation(repo);
         lines.push(format!(
             "| **{}** | {} | {} | {} | {} |",
