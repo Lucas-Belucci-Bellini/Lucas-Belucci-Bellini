@@ -9,9 +9,8 @@
 //! Crate puro, como o `ecosystem-domain`: não lê disco, não fala com a rede.
 //! Quem chama (`profile-core render readme`) monta as entradas pelo mesmo
 //! caminho do `catalog build` e grava as saídas. Cada bloco é a função
-//! Python de mesmo papel, com os mesmos bytes — inclusive os defeitos já
-//! registrados (D-006): a pilha de linguagens dos privados no PROJECT-MAP
-//! (A20) continua lá até a correção entrar como versão nova.
+//! Python de mesmo papel, com os mesmos bytes. Seções públicas filtram
+//! repositórios privados: nomes, descrições, stacks e websites não são publicados.
 //!
 //! A prova é `tests/golden.rs`, sobre a mesma raiz sintética do teste golden
 //! do Python (`tests/fixtures/profile`), e o teste de ponta a ponta
