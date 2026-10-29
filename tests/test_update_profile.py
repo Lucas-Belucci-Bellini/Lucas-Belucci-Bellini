@@ -71,7 +71,7 @@ class PrivateProjectSummaryTests(unittest.TestCase):
         rendered = MODULE.render_private_projects(repos, languages)
 
         self.assertIn("Finalidades gerais:", rendered)
-        self.assertIn("Linguagens: Python, Rust, Zig", rendered)
+        self.assertIn("**Linguagens:** Python, Rust, Zig", rendered)
         for forbidden in (
             "private-ai-workspace",
             "private-hardware-lab",
