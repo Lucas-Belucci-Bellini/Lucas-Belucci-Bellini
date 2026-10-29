@@ -4,7 +4,7 @@
 - docs/PROFILE-ARCHIVE.md é o arquivo detalhado gerado automaticamente.
 - scripts/update_profile.py atualiza o arquivo de arquivo, sem expandir o README público.
 - O site Dark Legion é a experiência interativa de navegação e busca de projetos.
-- docs/project-catalog.json continua sendo a fonte editorial gerada; não criar uma segunda lista manual.
+- docs/project-catalog.json continua sendo a fonte editorial gerada; contém somente projetos públicos. O campo counts.private é apenas agregado e não inclui nomes, descrições, URLs ou stacks privados. Não criar uma segunda lista manual.
 - docs/README_FEATURED.json, docs/README_SITES.json, docs/README_STACK.json e docs/README_EXCLUDED.json mantêm suas responsabilidades editoriais.
 
 ## Contrato de build
