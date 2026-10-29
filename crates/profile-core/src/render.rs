@@ -128,11 +128,7 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
     let stack = prepared.stack.as_ref().expect("Purpose::Readme lê o arsenal");
     let stamp = generated_at(&prepared.repos, prepared.now_local)?;
     let archive_path = root.join("docs/PROFILE-ARCHIVE.md");
-    let readme_path: &'static str = if archive_path.is_file() {
-        "docs/PROFILE-ARCHIVE.md"
-    } else {
-        "README.md"
-    };
+    let readme_path: &'static str = if archive_path.is_file() { "docs/PROFILE-ARCHIVE.md" } else { "README.md" };
     let template_path = root.join(readme_path);
     let template = read_text(&template_path)?;
     let profile = Profile::new(Inputs {
@@ -181,11 +177,6 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
         profile.verified_sites(),
         if options.build.write { "; gravado" } else { "" }
     );
-    let outputs = Outputs {
-        readme_path,
-        snapshot: profile.snapshot_svg(),
-        readme,
-        catalog: catalog_text,
-    };
+    let outputs = Outputs { readme_path, snapshot: profile.snapshot_svg(), readme, catalog: catalog_text };
     Ok(Rendered { stdout, note, outputs })
 }
