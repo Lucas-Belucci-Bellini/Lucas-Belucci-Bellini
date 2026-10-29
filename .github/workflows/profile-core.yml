@@ -4,10 +4,10 @@ name: Profile Core (pipeline único)
 # profile-core — docs/migration/PYTHON-TO-RUST.md §4, D-018 e D-038.
 #
 # DESLIGADO por padrão. O job só roda com a variável de repositório
-# PROFILE_CORE_MODE = publish (Settings → Secrets and variables → Actions →
-# Variables). Sem ela o job aparece como "skipped" e os workflows Python
-# (update-profile.yml, lang-stats.yml, contributions-timeline.yml) seguem
-# publicando; com ela, os três pulam e este publica — um escritor por vez.
+# PROFILE_CORE_MODE = publish e PROFILE_README_ARCHIVE_MODE = ready
+# (Settings → Secrets and variables → Actions → Variables). O segundo
+# marcador só pode ser ativado depois que o renderer Rust gravar o arquivo
+# docs/PROFILE-ARCHIVE.md e passar os testes de paridade.
 # Desligar é apagar a variável: o Python volta no próximo agendamento.
 #
 # Critério para ligar (não é técnico, é do dono): 14 execuções agendadas
@@ -83,7 +83,7 @@ jobs:
       - name: Banco e README de antes
         run: |
           if [ -n "$DATABASE_URL" ]; then echo "DB_FLAG=--trigger=schedule" >> "$GITHUB_ENV"; else echo "DB_FLAG=--no-db" >> "$GITHUB_ENV"; fi
-          cp README.md "$RUNNER_TEMP/README.before.md"
+          cp docs/PROFILE-ARCHIVE.md "$RUNNER_TEMP/PROFILE-ARCHIVE.before.md"
 
       - name: Timeline de contribuições
         run: target/release/profile-core sync contributions --write $DB_FLAG
@@ -97,11 +97,11 @@ jobs:
           fi
 
       - name: Validar em Rust
-        run: target/release/profile-core validate all --before "$RUNNER_TEMP/README.before.md"
+        run: target/release/profile-core validate all --before "$RUNNER_TEMP/PROFILE-ARCHIVE.before.md"
 
       - name: Validar com os scripts Python (oráculo, D-015)
         run: |
-          python3 scripts/validate_dynamic_sections.py --before "$RUNNER_TEMP/README.before.md" --after README.md
+          python3 scripts/validate_dynamic_sections.py --before "$RUNNER_TEMP/PROFILE-ARCHIVE.before.md" --after docs/PROFILE-ARCHIVE.md
           python3 scripts/validate_exclusions.py
           python3 scripts/validate_project_links.py
           python3 scripts/validate_restored_style.py
@@ -110,7 +110,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/profile-snapshot.svg docs/project-catalog.json \
+          git add docs/PROFILE-ARCHIVE.md assets/profile-snapshot.svg docs/project-catalog.json \
             assets/lang-stats.svg assets/profile-top-langs.svg assets/profile-stats.svg \
             assets/profile-streak.svg assets/profile-trophies.svg assets/profile-projects.svg \
             docs/assets/contributions-timeline-data.json docs/assets/contributions-timeline.html
