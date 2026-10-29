@@ -96,6 +96,24 @@ def inventory() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                 "http_status": project.get("website_http_status", 0),
                 "final_url": project.get("website_final_url") or project.get("website") or declared,
             }
+    # Reconstrói apenas a contagem agregada de privados; nenhum nome, URL,
+    # descrição ou stack privado vem do catálogo público.
+    private_count = int(catalog.get("counts", {}).get("private", 0))
+    for n in range(private_count):
+        repos.append({
+            "id": 80_000 + n,
+            "name": f"redacted-{n + 1}",
+            "full_name": f"private-redacted/redacted-{n + 1}",
+            "owner": {"id": 2, "login": "private-redacted", "type": "User"},
+            "description": None,
+            "private": True,
+            "visibility": "private",
+            "fork": False,
+            "archived": False,
+            "homepage": None,
+            "pushed_at": ago(5),
+            "size": 0,
+        })
     # Os sites do manifesto também precisam de resultado (a mais é permitido).
     sites = json.loads((ROOT / "docs" / "README_SITES.json").read_text(encoding="utf-8"))
     for value in sites.values():
@@ -129,7 +147,7 @@ def languages(repos: list[dict[str, Any]]) -> dict[str, dict[str, int]]:
             repo = public[(int(index) * 7 + k * 3) % len(public)]
             share = total // count + (total % count if k == 0 else 0)
             result.setdefault(repo["full_name"], {})[language] = share
-    # Um privado com linguagem: PROJECT-MAP a mostra (A20), LANGUAGE-STATS não.
+    # Dados sintéticos privados exercitam a garantia de que stacks privados não são publicados.
     private = next(r for r in repos if r["private"])
     result.setdefault(private["full_name"], {})["Rust"] = 4242
     return result
