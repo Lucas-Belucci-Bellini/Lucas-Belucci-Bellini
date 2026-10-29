@@ -22,7 +22,7 @@ use crate::{OWNER, Profile, RenderError};
 pub fn generated_at(repos: &[RepoFacts], now_local: NaiveDateTime) -> Result<String, RenderError> {
     let profile = format!("{OWNER}/{OWNER}");
     let mut latest: Option<PyLocalDatetime> = None;
-    for repo in repos.iter().filter(|repo| !is_profile_repository(&repo.full_name, &profile)) {
+    for repo in repos.iter().filter(|repo| !repo.private && !is_profile_repository(&repo.full_name, &profile)) {
         let Some(value) = repo.activity_timestamp() else { continue };
         let parsed = py_fromisoformat_local(&value.replace('Z', "+00:00"));
         latest = match (latest, parsed) {
