@@ -717,7 +717,7 @@ def render_website_directory(
         (
             presentations[str(repo["full_name"])]
             for repo in repos
-            if presentations[str(repo["full_name"])].has_live_website
+            if not repo.get("private") and presentations[str(repo["full_name"])].has_live_website
         ),
         key=lambda p: p.name.lower(),
     )
@@ -895,7 +895,7 @@ def render_live_projects(repos: list[dict[str, Any]], presentations: dict[str, P
     live = [
         presentations[str(repo["full_name"])]
         for repo in repos
-        if presentations[str(repo["full_name"])].has_live_website
+        if not repo.get("private") and presentations[str(repo["full_name"])].has_live_website
     ]
     for item in sorted(live, key=lambda p: p.name.lower()):
         lines.append(
