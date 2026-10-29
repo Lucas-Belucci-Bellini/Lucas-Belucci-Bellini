@@ -56,11 +56,11 @@ def ago(days: int) -> str:
 def copy_tree(target: Path) -> None:
     """O que o gerador e os validadores leem — e nada além disso."""
     target.mkdir(parents=True)
+    (target / "docs").mkdir()
     shutil.copy2(ROOT / "README.md", target / "README.md")
     shutil.copy2(ROOT / "docs" / "PROFILE-ARCHIVE.md", target / "docs" / "PROFILE-ARCHIVE.md")
     shutil.copytree(ROOT / "assets", target / "assets")
     shutil.copytree(ROOT / "scripts", target / "scripts", ignore=shutil.ignore_patterns("__pycache__"))
-    (target / "docs").mkdir()
     for manifest in (ROOT / "docs").glob("*.json"):
         shutil.copy2(manifest, target / "docs" / manifest.name)
     (target / ".github" / "workflows").mkdir(parents=True)
