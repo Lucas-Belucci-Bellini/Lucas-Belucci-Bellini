@@ -85,11 +85,7 @@ pub fn resolve_root(root: &Path) -> PathBuf {
 /// Usa o arquivo gerado detalhado quando o README público é compacto.
 pub fn profile_readme_path(root: &Path) -> PathBuf {
     let archive = root.join("docs/PROFILE-ARCHIVE.md");
-    if archive.is_file() {
-        archive
-    } else {
-        root.join("README.md")
-    }
+    if archive.is_file() { archive } else { root.join("README.md") }
 }
 
 fn display(path: &Path) -> String {
