@@ -47,6 +47,42 @@ class LanguageBadgeTests(unittest.TestCase):
         self.assertIn("language=PLpgSQL", rendered)
 
 
+class PrivateProjectSummaryTests(unittest.TestCase):
+    def test_only_aggregated_purpose_and_language_names_are_public(self) -> None:
+        repos = [
+            {
+                "name": "private-ai-workspace",
+                "full_name": "Lucas-Belucci-Bellini/private-ai-workspace",
+                "private": True,
+                "description": "Internal architecture, agents, queues, model routing and implementation details.",
+            },
+            {
+                "name": "private-hardware-lab",
+                "full_name": "Lucas-Belucci-Bellini/private-hardware-lab",
+                "private": True,
+                "description": "Internal hardware experiment.",
+            },
+        ]
+        languages = {
+            "Lucas-Belucci-Bellini/private-ai-workspace": {"Rust": 100, "Python": 50},
+            "Lucas-Belucci-Bellini/private-hardware-lab": {"Zig": 20},
+        }
+
+        rendered = MODULE.render_private_projects(repos, languages)
+
+        self.assertIn("Finalidades gerais:", rendered)
+        self.assertIn("Linguagens: Python, Rust, Zig", rendered)
+        for forbidden in (
+            "private-ai-workspace",
+            "private-hardware-lab",
+            "Lucas-Belucci-Bellini/",
+            "Internal architecture",
+            "agents, queues",
+            "model routing",
+        ):
+            self.assertNotIn(forbidden, rendered)
+
+
 class ReplaceBlockTests(unittest.TestCase):
     """O corpo renderizado é texto literal, nunca sintaxe de substituição do `re`.
 
