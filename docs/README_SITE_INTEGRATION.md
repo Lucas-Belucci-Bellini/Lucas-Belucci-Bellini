@@ -15,6 +15,6 @@ O navegador consome data/projects.json dentro do artefato estático, nunca docs/
 
 O gerador Python seleciona docs/PROFILE-ARCHIVE.md quando o arquivo existe e mantém README.md como fallback para fixtures antigos. Os validadores de links, exclusões, badges e identidade visual verificam o arquivo detalhado; a validação de exclusões também examina o README compacto.
 
-O pipeline profile-core permanece protegido até que o caminho de saída Rust seja migrado para docs/PROFILE-ARCHIVE.md. Não defina PROFILE_README_ARCHIVE_MODE=ready antes dessa migração e de seus testes de paridade.
+O renderer Rust já reconhece docs/PROFILE-ARCHIVE.md e mantém fallback para fixtures legadas. O publicador profile-core continua protegido por PROFILE_README_ARCHIVE_MODE=ready; só habilite essa variável depois que CI e os testes de paridade estiverem verdes e a publicação agendada for validada.
 
 Não adicionar o URL do portfólio ao README como publicado até que o deploy real exista e a URL seja verificada.
