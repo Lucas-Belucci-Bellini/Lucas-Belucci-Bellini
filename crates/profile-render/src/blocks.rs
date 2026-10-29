@@ -683,21 +683,11 @@ pub fn private_projects(profile: &Profile) -> String {
     purposes.sort_by_key(|(name, _)| name.to_lowercase());
     language_names.sort_by_key(|name| name.to_lowercase());
 
-    let purpose_summary = purposes
-        .iter()
-        .map(|(name, count)| format!("{name} ({count})"))
-        .collect::<Vec<_>>()
-        .join(" · ");
-    let language_summary = if language_names.is_empty() {
-        "não informadas".to_string()
-    } else {
-        language_names.join(", ")
-    };
-    let project_label = if private_repos.len() == 1 {
-        "projeto privado"
-    } else {
-        "projetos privados"
-    };
+    let purpose_summary =
+        purposes.iter().map(|(name, count)| format!("{name} ({count})")).collect::<Vec<_>>().join(" · ");
+    let language_summary =
+        if language_names.is_empty() { "não informadas".to_string() } else { language_names.join(", ") };
+    let project_label = if private_repos.len() == 1 { "projeto privado" } else { "projetos privados" };
 
     format!(
         "> **{} {project_label}** · nomes, repositórios, descrições individuais e links não são publicados.\n> **Finalidades gerais:** {purpose_summary}\n> **Linguagens:** {language_summary}",
