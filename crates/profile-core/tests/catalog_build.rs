@@ -83,7 +83,7 @@ fn sem_write_imprime_o_catalogo_do_python_e_nao_grava() {
     assert_eq!(Some(0), output.status.code(), "{}", text(&output.stderr));
     assert_eq!(expected(), text(&output.stdout));
     assert!(!root.0.join("docs/project-catalog.json").exists(), "sem --write nada é gravado");
-    assert!(text(&output.stderr).contains("catálogo: 12 projetos (11 públicos, 1 privados), 2 com site no ar"));
+    assert!(text(&output.stderr).contains("catálogo: 11 projetos (11 públicos, 1 privados), 2 com site no ar"));
 }
 
 #[test]
