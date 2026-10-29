@@ -11,7 +11,9 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
-README = ROOT / "README.md"
+README = ROOT / "docs" / "PROFILE-ARCHIVE.md"
+if not README.is_file():
+    README = ROOT / "README.md"
 
 START = "<!-- LANGUAGE-BADGES:START -->"
 END = "<!-- LANGUAGE-BADGES:END -->"
