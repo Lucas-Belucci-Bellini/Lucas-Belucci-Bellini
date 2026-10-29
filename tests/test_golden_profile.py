@@ -175,6 +175,10 @@ class GoldenProfileTests(unittest.TestCase):
         self.assertNotIn("private.example.org", readme)
         self.assertNotIn("demo-excluded", {project["name"] for project in catalog["projects"]})
         self.assertNotIn("demo-private", {project["name"] for project in catalog["projects"]})
+        self.assertNotIn("demo-private", readme)
+        self.assertNotIn("Ferramenta privada de demonstração", readme)
+        self.assertIn("Finalidades gerais:", readme)
+        self.assertIn("**Linguagens:** PowerShell, Python", readme)
         self.assertEqual(1, catalog["counts"]["private"])
 
     def test_carimbo_nao_vem_do_proprio_perfil(self) -> None:
