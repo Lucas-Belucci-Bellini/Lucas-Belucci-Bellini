@@ -375,6 +375,7 @@ class RenderParityTests(unittest.TestCase):
         catalog = json.loads(full["files"]["docs/project-catalog.json"])
         self.assertTrue(all(not project.get("private") for project in catalog["projects"]))
         self.assertNotIn("segredo", json.dumps(catalog), "o catálogo público não contém metadados privados")
+        self.assertNotIn("segredo", full["files"]["catalog-copy.json"])
         self.assertIn("### 🧰 ábaco", text)
         self.assertIn("<sub>ex.: Arena</sub>", text)
         self.assertIn("Til~de", text)
