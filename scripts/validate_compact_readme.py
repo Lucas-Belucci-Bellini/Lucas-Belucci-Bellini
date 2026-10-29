@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
 ARCHIVE = ROOT / "docs" / "PROFILE-ARCHIVE.md"
 MAX_README_BYTES = 6_000
+MIN_ARCHIVE_BYTES = 10_000
 MARKERS = (
     "PROFILE-DASHBOARD",
     "WHAT-I-BUILD",
@@ -39,6 +40,9 @@ def main() -> int:
 
     if size > MAX_README_BYTES:
         errors.append(f"README.md is {size} bytes; maximum is {MAX_README_BYTES}")
+    archive_size = ARCHIVE.stat().st_size
+    if archive_size < MIN_ARCHIVE_BYTES:
+        errors.append(f"PROFILE-ARCHIVE.md is only {archive_size} bytes; detailed archive may be incomplete")
     if "docs/PROFILE-ARCHIVE.md" not in compact:
         errors.append("README.md must link to docs/PROFILE-ARCHIVE.md")
     if "Dark-Legion" not in compact:
