@@ -80,7 +80,7 @@ jobs:
           for marker in PROFILE-DASHBOARD WHAT-I-BUILD PRODUCT-CARDS FEATURED-PROJECTS \
                         WEBSITE-DIRECTORY LIVE-PROJECTS ECOSYSTEM-MAP PROJECT-MAP \
                         LANGUAGE-BADGES ARSENAL-STACK LANGUAGE-STATS PUBLIC-PROJECTS PRIVATE-PROJECTS; do
-            grep -q "<!-- ${marker}:START -->" README.md && grep -q "<!-- ${marker}:END -->" README.md \
+            grep -q "<!-- ${marker}:START -->" docs/PROFILE-ARCHIVE.md && grep -q "<!-- ${marker}:END -->" docs/PROFILE-ARCHIVE.md \
               || { echo "::error::marcador ausente no README: ${marker}"; exit 1; }
           done
 
