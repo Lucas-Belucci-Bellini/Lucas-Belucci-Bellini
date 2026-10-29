@@ -89,23 +89,6 @@
       "website_source": "github_homepage"
     },
     {
-      "repository": "Lucas-Belucci-Bellini/demo-private",
-      "name": "demo-private",
-      "slug": "demo-private",
-      "description": "Ferramenta privada de demonstração.",
-      "category": "Web & SaaS",
-      "category_label": "Web",
-      "status": "🔒 Private",
-      "github": "https://github.com/Lucas-Belucci-Bellini/demo-private",
-      "github_visible": true,
-      "github_role": "primary",
-      "primary_cta": "github",
-      "secondary_cta": null,
-      "featured": true,
-      "marketing_priority": 39,
-      "private": true
-    },
-    {
       "repository": "Lucas-Belucci-Bellini/demo-down-site",
       "name": "demo-down-site",
       "slug": "demo-down-site",
