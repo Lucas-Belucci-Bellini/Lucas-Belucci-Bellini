@@ -18,3 +18,13 @@ O gerador Python seleciona docs/PROFILE-ARCHIVE.md quando o arquivo existe e man
 O renderer Rust já reconhece docs/PROFILE-ARCHIVE.md e mantém fallback para fixtures legadas. O publicador profile-core continua protegido por PROFILE_README_ARCHIVE_MODE=ready; só habilite essa variável depois que CI e os testes de paridade estiverem verdes e a publicação agendada for validada.
 
 Não adicionar o URL do portfólio ao README como publicado até que o deploy real exista e a URL seja verificada.
+
+
+## Política de divulgação de projetos privados
+
+O perfil pode apresentar somente:
+- contagem agregada de projetos privados;
+- categorias amplas de finalidade, agregadas por categoria e sem associação a nomes;
+- nomes de linguagens agregados, sem relacioná-los a um repositório específico.
+
+É proibido publicar nomes ou URLs de repositórios privados, descrições individuais, status, stack por projeto, dependências, arquitetura, funcionalidades internas, estrutura de arquivos, código, issues, secrets, credenciais ou dados de configuração. O catálogo JSON do portal continua contendo somente projetos públicos. Os metadados privados são usados apenas localmente para calcular categorias e nomes de linguagens agregados; nenhum arquivo privado é lido.
