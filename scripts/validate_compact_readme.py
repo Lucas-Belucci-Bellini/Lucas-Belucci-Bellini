@@ -55,11 +55,8 @@ def main() -> int:
     try:
         catalog = json.loads((ROOT / "docs" / "project-catalog.json").read_text(encoding="utf-8"))
         for project in catalog.get("projects", []):
-            if not project.get("private"):
-                continue
-            full_name = str(project.get("repository") or "")
-            if full_name and full_name in compact:
-                errors.append("a private repository URL/name appears in compact README")
+            if project.get("private"):
+                errors.append("the public project catalog contains a private repository entry")
                 break
     except (OSError, json.JSONDecodeError) as error:
         errors.append(f"cannot validate private repository exclusions: {error}")
