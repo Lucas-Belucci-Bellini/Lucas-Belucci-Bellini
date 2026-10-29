@@ -13,7 +13,7 @@ use ecosystem_domain::text::py_split_join;
 use serde_json::{Map, Value};
 
 use crate::badges::{COLOR_GOLD, badge, cta_buttons, cta_cell, status_pill};
-use crate::languages::{color, format_bytes, stack_for};
+use crate::languages::{color, display, format_bytes, stack_for};
 use crate::pytext::{md_cell, py_len, py_prefix, py_rstrip, quote};
 use crate::{OWNER, Profile, RenderError};
 
@@ -657,14 +657,47 @@ pub fn public_projects(profile: &Profile) -> String {
 
 /// `render_private_projects`: nome, categoria, descrição pública e status — nada do conteúdo.
 pub fn private_projects(profile: &Profile) -> String {
-    let private_count = profile.inputs.repos.iter().filter(|repo| repo.private).count();
-    if private_count > 0 {
-        format!(
-            "> Repositórios privados omitidos do perfil público; nenhum nome ou metadado privado é publicado."
-        )
-    } else {
-        "> Nenhum repositório privado incluído no inventário desta execução.".into()
+    let private_repos: Vec<_> = profile.inputs.repos.iter().filter(|repo| repo.private).collect();
+    if private_repos.is_empty() {
+        return "> Nenhum repositório privado incluído no inventário desta execução.".into();
     }
+
+    let mut purposes: Vec<(String, usize)> = Vec::new();
+    let mut language_names: Vec<String> = Vec::new();
+    for repo in &private_repos {
+        let purpose = profile.inputs.classifier.classify(repo).to_string();
+        if let Some((_, count)) = purposes.iter_mut().find(|(name, _)| *name == purpose) {
+            *count += 1;
+        } else {
+            purposes.push((purpose, 1));
+        }
+        if let Some(languages) = profile.inputs.languages.get(&repo.full_name) {
+            for (language, _) in languages {
+                let name = display(language).to_string();
+                if !language_names.contains(&name) {
+                    language_names.push(name);
+                }
+            }
+        }
+    }
+    purposes.sort_by_key(|(name, _)| name.to_lowercase());
+    language_names.sort_by_key(|name| name.to_lowercase());
+
+    let purpose_summary = purposes
+        .iter()
+        .map(|(name, count)| format!("{name} ({count})"))
+        .collect::<Vec<_>>()
+        .join(" · ");
+    let language_summary = if language_names.is_empty() {
+        "não informadas".to_string()
+    } else {
+        language_names.join(", ")
+    };
+
+    format!(
+        "> **{} projetos privados** · nomes, repositórios, descrições individuais e links não são publicados.\\n> **Finalidades gerais:** {purpose_summary}\\n> **Linguagens:** {language_summary}",
+        private_repos.len()
+    )
 }
 
 /// `render_live_projects`: o site antes do código.
