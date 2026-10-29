@@ -2,9 +2,9 @@
   "schema": "lucas-belucci-bellini/project-catalog@1",
   "note": "Gerado por scripts/update_profile.py. Não editar à mão: ajuste docs/README_SITES.json, docs/README_FEATURED.json ou a lógica do gerador.",
   "counts": {
-    "projects": 12,
+    "projects": 11,
     "public": 11,
-    "private": 1,
+    "private": 0,
     "with_live_website": 2
   },
   "categories": [
