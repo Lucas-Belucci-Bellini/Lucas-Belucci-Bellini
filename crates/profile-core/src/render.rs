@@ -114,7 +114,7 @@ fn summary(prepared: &Prepared, rows: usize, catalog_written: bool, options: &Re
         "declared_sites": catalog::candidates(&prepared.sites).len(),
         "verified_sites": prepared.presentations.iter().filter(|p| p.has_live_website()).count(),
         "unreachable_sites": unreachable,
-        "catalog_projects": prepared.presentations.len(),
+        "catalog_projects": prepared.presentations.iter().filter(|presentation| !presentation.private).count(),
         "catalog_written": catalog_written,
         "site_check_skipped": options.site_check_skipped,
         "write": options.build.write,
