@@ -425,7 +425,7 @@ def build_catalog(presentations: list[Presentation]) -> dict[str, Any]:
             "docs/README_SITES.json, docs/README_FEATURED.json ou a lógica do gerador."
         ),
         "counts": {
-            "projects": len(all_ordered),
+            "projects": len(ordered),
             "public": len(ordered),
             "private": sum(1 for p in all_ordered if p.private),
             "with_live_website": len(live),
