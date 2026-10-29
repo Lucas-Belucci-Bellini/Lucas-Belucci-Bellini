@@ -48,6 +48,8 @@ OWNER = "Lucas-Belucci-Bellini"
 # em Rust contra as mesmas respostas.
 API = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
 ROOT = Path(__file__).resolve().parents[1]
+
+
 def profile_readme_path(root: Path) -> Path:
     """Use the detailed generated archive when present; retain fixture compatibility."""
     archive = root / "docs" / "PROFILE-ARCHIVE.md"
