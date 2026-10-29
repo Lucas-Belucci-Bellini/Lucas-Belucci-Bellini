@@ -32,7 +32,7 @@ jobs:
   refresh:
     name: Audit repositories and refresh generated profile sections
     # Com PROFILE_CORE_MODE=publish quem publica é o profile-core.yml (D-038).
-    if: ${{ vars.PROFILE_CORE_MODE != 'publish' }}
+    if: ${{ vars.PROFILE_CORE_MODE != 'publish' || vars.PROFILE_README_ARCHIVE_MODE != 'ready' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
