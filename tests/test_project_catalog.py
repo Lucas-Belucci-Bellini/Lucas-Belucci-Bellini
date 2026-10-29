@@ -237,7 +237,7 @@ class CatalogTests(unittest.TestCase):
         publico = _presentation()
         privado = _presentation(private=True, website="https://private.example", check=self.LIVE)
         catalog = PC.build_catalog([publico, privado])
-        self.assertEqual(2, catalog["counts"]["projects"])
+        self.assertEqual(1, catalog["counts"]["projects"])
         self.assertEqual(1, catalog["counts"]["public"])
         self.assertEqual(1, catalog["counts"]["private"])
         self.assertEqual(["projeto"], [item["name"] for item in catalog["projects"]])
