@@ -324,7 +324,7 @@ pub fn build(presentations: &[Presentation]) -> Value {
         "schema": SCHEMA,
         "note": NOTE,
         "counts": {
-            "projects": all_ordered.len(),
+            "projects": public.len(),
             "public": public.len(),
             "private": private_count,
             "with_live_website": live_count,
