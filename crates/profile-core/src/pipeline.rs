@@ -157,7 +157,8 @@ pub async fn check_readme(options: &RenderOptions, tokens: &Tokens) -> Result<Re
     let scratch = Scratch::new("check")?;
     rendered.outputs.stage(&scratch.0)?;
     let mut report = Report { notes: vec![rendered.note], ..Report::default() };
-    verdict(&mut report, &options.build.root, &scratch.0, &OUTPUT_FILES);
+    let files = [rendered.outputs.readme_path, OUTPUT_FILES[1], OUTPUT_FILES[2]];
+    verdict(&mut report, &options.build.root, &scratch.0, &files);
     Ok(report)
 }
 
@@ -197,7 +198,10 @@ pub async fn render_all(
 
     match (mode, &staged) {
         (Mode::Check, Some(dir)) => {
-            let files: Vec<&'static str> = OUTPUT_FILES.into_iter().chain(ASSET_FILES).collect();
+            let files: Vec<&'static str> = [rendered.outputs.readme_path, OUTPUT_FILES[1], OUTPUT_FILES[2]]
+                .into_iter()
+                .chain(ASSET_FILES)
+                .collect();
             verdict(&mut report, &root, dir, &files);
         }
         _ => report.stdout = stdout,
