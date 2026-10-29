@@ -421,15 +421,7 @@ ECOSSISTEMA
 ## PRIVATE-PROJECTS
 
 <!-- PRIVATE-PROJECTS:START -->
-<details>
-<summary><b>🔒 Private repository catalog</b></summary>
-
-| Projeto | Categoria | Descrição pública | Status | GitHub |
-|:---|:---|:---|:---|:---|
-
-</details>
-
-> 🔒 Private repository · nenhuma linha desta seção expõe código, secrets, `.env`, tokens, credenciais ou estrutura interna.
+> Repositórios privados omitidos do perfil público; nenhum nome ou metadado privado é publicado.
 <!-- PRIVATE-PROJECTS:END -->
 
 ---
