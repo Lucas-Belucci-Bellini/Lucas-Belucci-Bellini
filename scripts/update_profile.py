@@ -48,7 +48,13 @@ OWNER = "Lucas-Belucci-Bellini"
 # em Rust contra as mesmas respostas.
 API = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
 ROOT = Path(__file__).resolve().parents[1]
-README = ROOT / "README.md"
+def profile_readme_path(root: Path) -> Path:
+    """Use the detailed generated archive when present; retain fixture compatibility."""
+    archive = root / "docs" / "PROFILE-ARCHIVE.md"
+    return archive if archive.is_file() else root / "README.md"
+
+
+README = profile_readme_path(ROOT)
 SITES_FILE = ROOT / "docs" / "README_SITES.json"
 FEATURED_FILE = ROOT / "docs" / "README_FEATURED.json"
 STACK_FILE = ROOT / "docs" / "README_STACK.json"
@@ -66,7 +72,7 @@ def configure_root(root: Path) -> None:
     """
     global ROOT, README, SITES_FILE, FEATURED_FILE, STACK_FILE, EXCLUDED_FILE, SNAPSHOT_SVG, CATALOG_FILE
     ROOT = root.resolve()
-    README = ROOT / "README.md"
+    README = profile_readme_path(ROOT)
     SITES_FILE = ROOT / "docs" / "README_SITES.json"
     FEATURED_FILE = ROOT / "docs" / "README_FEATURED.json"
     STACK_FILE = ROOT / "docs" / "README_STACK.json"
