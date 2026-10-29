@@ -657,36 +657,14 @@ pub fn public_projects(profile: &Profile) -> String {
 
 /// `render_private_projects`: nome, categoria, descrição pública e status — nada do conteúdo.
 pub fn private_projects(profile: &Profile) -> String {
-    let mut lines: Vec<String> = vec![
-        "<details>".into(),
-        "<summary><b>🔒 Private repository catalog</b></summary>".into(),
-        String::new(),
-        "| Projeto | Categoria | Descrição pública | Status | GitHub |".into(),
-        "|:---|:---|:---|:---|:---|".into(),
-    ];
-    for repo in sorted_repos(profile.inputs.repos, |repo| repo.private) {
-        let category = profile.inputs.classifier.classify(repo);
-        let description = match repo.description.as_deref() {
-            Some(text) if !text.is_empty() => text,
-            _ => "Descrição pública não informada",
-        };
-        lines.push(format!(
-            "| **{}** | {category} | {} | {} | [GitHub](https://github.com/{}) |",
-            repo.name,
-            md_cell(description).replace('\n', " "),
-            status_py_v1(repo, category, profile.inputs.now),
-            repo.full_name
-        ));
+    let private_count = profile.inputs.repos.iter().filter(|repo| repo.private).count();
+    if private_count > 0 {
+        format!(
+            "> Repositórios privados omitidos do perfil público; nenhum nome ou metadado privado é publicado."
+        )
+    } else {
+        "> Nenhum repositório privado incluído no inventário desta execução.".into()
     }
-    lines.extend([
-        String::new(),
-        "</details>".into(),
-        String::new(),
-        "> 🔒 Private repository · nenhuma linha desta seção expõe código, secrets, `.env`, tokens, credenciais ou \
-         estrutura interna."
-            .into(),
-    ]);
-    lines.join("\n")
 }
 
 /// `render_live_projects`: o site antes do código.
