@@ -21,7 +21,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-README = ROOT / "README.md"
+README = ROOT / "docs" / "PROFILE-ARCHIVE.md"
+if not README.is_file():
+    README = ROOT / "README.md"
 CATALOG = ROOT / "docs" / "project-catalog.json"
 
 # Blocos que apresentam projetos ao visitante e, portanto, seguem a regra.
