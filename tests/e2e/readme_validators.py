@@ -3,7 +3,7 @@
 validadores do Python aprovam o README do Rust — sobre a árvore REAL do perfil.
 
 O golden (tests/fixtures/profile) e o fixture de paridade usam READMEs
-sintéticos. Aqui a entrada é o que está publicado: o README.md com todo o
+sintéticos. Aqui a entrada é o que está publicado: o PROFILE-ARCHIVE.md com todo o
 desenho em volta dos marcadores, os manifestos docs/README_*.json e os assets.
 O inventário é reconstruído do docs/project-catalog.json versionado (os
 projetos com nome, descrição, visibilidade, status e site, e o resultado da
@@ -12,7 +12,7 @@ disso sai da rede nem de arquivo privado.
 
 Os dois geradores rodam com --write, cada um na sua cópia, e o teste exige:
 
-  1. os mesmos bytes — README.md, assets/profile-snapshot.svg,
+  1. os mesmos bytes — PROFILE-ARCHIVE.md, assets/profile-snapshot.svg,
      docs/project-catalog.json e a saída padrão;
   2. os validadores verdes sobre a cópia do Rust: os do update-profile.yml
      (validate_dynamic_sections contra o README publicado, validate_exclusions,
@@ -46,7 +46,7 @@ CLEAN_ENV = {key: value for key, value in os.environ.items()
              if "TOKEN" not in key and not key.startswith("GITHUB_") and key != "DATABASE_URL"}
 DISPLAY_TO_GITHUB = {"Batch": "Batchfile", "PL/pgSQL": "PLpgSQL"}
 AGE_BY_STATUS = {"🟢 Active": 10, "🟡 In Development": 120, "🔵 Experimental": 500, "🟣 Academic": 200, "🔒 Private": 5}
-OUTPUTS = ("README.md", "assets/profile-snapshot.svg", "docs/project-catalog.json")
+OUTPUTS = ("PROFILE-ARCHIVE.md", "assets/profile-snapshot.svg", "docs/project-catalog.json")
 
 
 def ago(days: int) -> str:
@@ -57,6 +57,7 @@ def copy_tree(target: Path) -> None:
     """O que o gerador e os validadores leem — e nada além disso."""
     target.mkdir(parents=True)
     shutil.copy2(ROOT / "README.md", target / "README.md")
+    shutil.copy2(ROOT / "docs" / "PROFILE-ARCHIVE.md", target / "docs" / "PROFILE-ARCHIVE.md")
     shutil.copytree(ROOT / "assets", target / "assets")
     shutil.copytree(ROOT / "scripts", target / "scripts", ignore=shutil.ignore_patterns("__pycache__"))
     (target / "docs").mkdir()
@@ -113,7 +114,7 @@ def inventory() -> tuple[list[dict[str, Any]], dict[str, Any]]:
 
 def languages(repos: list[dict[str, Any]]) -> dict[str, dict[str, int]]:
     """A matriz LANGUAGE-STATS publicada, espalhada pelos repositórios públicos."""
-    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme = (ROOT / "docs" / "PROFILE-ARCHIVE.md").read_text(encoding="utf-8")
     block = readme.split("<!-- LANGUAGE-STATS:START -->")[1].split("<!-- LANGUAGE-STATS:END -->")[0]
     units = {"B": 1, "KB": 1024, "MB": 1024 * 1024}
     public = sorted((r for r in repos if not r["private"]), key=lambda r: r["name"].lower())
@@ -198,13 +199,13 @@ def main() -> int:
             else:
                 print(f"  FAIL {label}")
                 failures.append(f"{label}: Python e Rust diferem")
-        if read(rs_root / "README.md") == read(ROOT / "README.md"):
+        if read(rs_root / "docs" / "PROFILE-ARCHIVE.md") == read(ROOT / "docs" / "PROFILE-ARCHIVE.md"):
             failures.append("o README não mudou: a reconstrução do inventário não exercitou o gerador")
 
         scripts = rs_root / "scripts"
         validators = [
             ("validate_dynamic_sections", [sys.executable, str(scripts / "validate_dynamic_sections.py"),
-                                           "--before", str(ROOT / "README.md"), "--after", str(rs_root / "README.md")]),
+                                           "--before", str(ROOT / "docs" / "PROFILE-ARCHIVE.md"), "--after", str(rs_root / "docs" / "PROFILE-ARCHIVE.md")]),
             ("validate_exclusions", [sys.executable, str(scripts / "validate_exclusions.py")]),
             ("validate_project_links", [sys.executable, str(scripts / "validate_project_links.py")]),
             ("validate_restored_style", [sys.executable, str(scripts / "validate_restored_style.py")]),
@@ -224,8 +225,8 @@ def main() -> int:
         # O mesmo julgamento em Rust, sobre a mesma cópia (Fase 5, D-037).
         root = str(rs_root)
         rust_validators = [
-            ("validate_dynamic_sections", ["readme", "--before", str(ROOT / "README.md"),
-                                           "--after", str(rs_root / "README.md")]),
+            ("validate_dynamic_sections", ["readme", "--before", str(ROOT / "PROFILE-ARCHIVE.md"),
+                                           "--after", str(rs_root / "PROFILE-ARCHIVE.md")]),
             ("validate_exclusions", ["exclusions", "--root", root]),
             ("validate_project_links", ["links", "--root", root]),
             ("validate_restored_style", ["visual", "--root", root]),
