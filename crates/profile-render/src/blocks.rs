@@ -483,9 +483,15 @@ pub fn what_i_build(profile: &Profile) -> String {
 
 /// Os que têm site no ar, pelo nome sem caixa (ordenação estável).
 fn live_sorted<'p>(profile: &Profile<'p>) -> Vec<&'p Presentation> {
-    let mut live: Vec<&Presentation> =
-        profile.inputs.repos.iter().map(|repo| profile.presentation(repo)).filter(|p| p.has_live_website()).collect();
-    live.sort_by_cached_key(|p| p.name.to_lowercase());
+    let mut live: Vec<&Presentation> = profile
+        .inputs
+        .repos
+        .iter()
+        .filter(|repo| !repo.private)
+        .map(|repo| profile.presentation(repo))
+        .filter(|presentation| presentation.has_live_website())
+        .collect();
+    live.sort_by_cached_key(|presentation| presentation.name.to_lowercase());
     live
 }
 
@@ -703,8 +709,8 @@ pub fn live_projects(profile: &Profile) -> String {
     lines.join("\n")
 }
 
-/// `render_project_map`: todos os repositórios, privados inclusive (A20: a
-/// pilha dos privados aparece — defeito registrado, corrigido só como versão nova).
+/// `render_project_map`: somente repositórios públicos; nenhum nome,
+/// descrição, stack ou website privado aparece no perfil.
 pub fn project_map(profile: &Profile) -> String {
     let mut lines: Vec<String> = vec![
         "<details>".into(),
