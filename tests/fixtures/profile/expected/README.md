@@ -274,7 +274,6 @@ ECOSSISTEMA
 | **demo-game** | Games | `GDScript` | ⚪ Archived | [código](https://github.com/Lucas-Belucci-Bellini/demo-game) |
 | **demo-java-course** | Academia | `Java` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/demo-java-course) |
 | **demo-lab** | Digital Logic / Hardware | `C#` `ShaderLab` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/demo-lab) |
-| **demo-private** | Web | `PowerShell` `Python` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/demo-private) |
 | **demo-web-app** | Web | `TypeScript` `CSS` `HTML` | 🟢 Active | **[▸ Abrir site](https://web-app.example.org)** · [código](https://github.com/Lucas-Belucci-Bellini/demo-web-app) |
 | **Lucas-Belucci-Bellini** | Software & Ferramentas | `Python` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini) |
 
@@ -427,7 +426,6 @@ ECOSSISTEMA
 
 | Projeto | Categoria | Descrição pública | Status | GitHub |
 |:---|:---|:---|:---|:---|
-| **demo-private** | Web | Ferramenta privada de demonstração. | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/demo-private) |
 
 </details>
 
