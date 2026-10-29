@@ -233,6 +233,16 @@ class PresentationTests(unittest.TestCase):
 class CatalogTests(unittest.TestCase):
     LIVE = PC.WebsiteCheck("https://x.example", "verified", 200, "https://x.example", "t")
 
+    def test_catalogo_publico_omite_todos_os_metadados_privados(self) -> None:
+        publico = _presentation()
+        privado = _presentation(private=True, website="https://private.example", check=self.LIVE)
+        catalog = PC.build_catalog([publico, privado])
+        self.assertEqual(2, catalog["counts"]["projects"])
+        self.assertEqual(1, catalog["counts"]["public"])
+        self.assertEqual(1, catalog["counts"]["private"])
+        self.assertEqual(["projeto"], [item["name"] for item in catalog["projects"]])
+        self.assertNotIn("private.example", json.dumps(catalog))
+
     def test_catalogo_nao_guarda_carimbo_de_tempo(self) -> None:
         entry = PC.catalog_entry(_presentation(check=self.LIVE, website="https://x.example"))
         self.assertNotIn("checked_at", entry)
