@@ -897,13 +897,14 @@ def render_private_projects(
             for language in languages.get(str(repo["full_name"]), {})
         )
 
+    project_label = "projeto privado" if len(private_repos) == 1 else "projetos privados"
     purpose_summary = " · ".join(
         f"{purpose} ({count})"
         for purpose, count in sorted(purposes.items(), key=lambda item: item[0].lower())
     )
     language_summary = ", ".join(sorted(language_names, key=str.lower)) or "não informadas"
     return "\n".join([
-        f"> **{len(private_repos)} projetos privados** · nomes, repositórios, descrições individuais e links não são publicados.",
+        f"> **{len(private_repos)} {project_label}** · nomes, repositórios, descrições individuais e links não são publicados.",
         f"> **Finalidades gerais:** {purpose_summary}",
         f"> **Linguagens:** {language_summary}",
     ])
