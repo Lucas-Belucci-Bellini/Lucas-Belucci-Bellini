@@ -28,3 +28,13 @@ O perfil pode apresentar somente:
 - nomes de linguagens agregados, sem relacioná-los a um repositório específico.
 
 É proibido publicar nomes ou URLs de repositórios privados, descrições individuais, status, stack por projeto, dependências, arquitetura, funcionalidades internas, estrutura de arquivos, código, issues, secrets, credenciais ou dados de configuração. O catálogo JSON do portal continua contendo somente projetos públicos. Os metadados privados são usados apenas localmente para calcular categorias e nomes de linguagens agregados; nenhum arquivo privado é lido.
+
+
+## Política de divulgação de projetos privados
+
+O perfil pode apresentar somente:
+- contagem agregada de projetos privados;
+- categorias amplas de finalidade, agregadas por categoria e sem associação a nomes;
+- nomes de linguagens agregados, sem relacioná-los a um repositório específico.
+
+É proibido publicar nomes ou URLs de repositórios privados, descrições individuais, status, stack por projeto, dependências, arquitetura, funcionalidades internas, estrutura de arquivos, código, issues, credenciais ou dados de configuração. O catálogo JSON do portal continua contendo somente projetos públicos. Os metadados privados são usados apenas localmente para calcular categorias e nomes de linguagens agregados; nenhum arquivo privado é lido.
