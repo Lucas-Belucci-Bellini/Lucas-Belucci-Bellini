@@ -693,7 +693,11 @@ pub fn private_projects(profile: &Profile) -> String {
     } else {
         language_names.join(", ")
     };
-    let project_label = if private_repos.len() == 1 { "projeto privado" } else { "projetos privados" };
+    let project_label = if private_repos.len() == 1 {
+        "projeto privado"
+    } else {
+        "projetos privados"
+    };
 
     format!(
         "> **{} {project_label}** · nomes, repositórios, descrições individuais e links não são publicados.\n> **Finalidades gerais:** {purpose_summary}\n> **Linguagens:** {language_summary}",
