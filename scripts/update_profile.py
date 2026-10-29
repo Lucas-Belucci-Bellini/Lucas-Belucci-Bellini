@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Refresh the profile README from GitHub metadata without reading private repository files.
+"""Refresh the profile README using public project details and privacy-safe private summaries.
 
-The generator uses repository metadata and language byte maps only. Private repositories may
-appear by name, metadata description, visibility, status, and link; their file contents are
-never fetched or published.
+Private projects are represented only by broad purpose categories and aggregate language names.
+Their names, descriptions, links, status, architecture, dependencies, and file contents are never
+published. No private source files are fetched.
 """
 from __future__ import annotations
 
@@ -878,12 +878,35 @@ def render_public_projects(repos: list[dict[str, Any]], presentations: dict[str,
     return "\n".join(lines)
 
 
-def render_private_projects(repos: list[dict[str, Any]], now: datetime) -> str:
-    """Não publique nomes nem metadados de repositórios privados no perfil."""
-    private_count = sum(1 for repo in repos if repo.get("private"))
-    if private_count:
-        return "> Repositórios privados omitidos do perfil público; nenhum nome ou metadado privado é publicado."
-    return "> Nenhum repositório privado incluído no inventário desta execução."
+def render_private_projects(
+    repos: list[dict[str, Any]],
+    languages: dict[str, dict[str, int]],
+) -> str:
+    """Publica somente finalidades amplas e linguagens agregadas dos projetos privados."""
+    private_repos = [repo for repo in repos if repo.get("private")]
+    if not private_repos:
+        return "> Nenhum repositório privado incluído no inventário desta execução."
+
+    purposes: dict[str, int] = {}
+    language_names: set[str] = set()
+    for repo in private_repos:
+        purpose = classify(repo)
+        purposes[purpose] = purposes.get(purpose, 0) + 1
+        language_names.update(
+            LANGUAGE_DISPLAY.get(language, language)
+            for language in languages.get(str(repo["full_name"]), {})
+        )
+
+    purpose_summary = " · ".join(
+        f"{purpose} ({count})"
+        for purpose, count in sorted(purposes.items(), key=lambda item: item[0].lower())
+    )
+    language_summary = ", ".join(sorted(language_names, key=str.lower)) or "não informadas"
+    return "\n".join([
+        f"> **{len(private_repos)} projetos privados** · nomes, repositórios, descrições individuais e links não são publicados.",
+        f"> **Finalidades gerais:** {purpose_summary}",
+        f"> **Linguagens:** {language_summary}",
+    ])
 
 
 def render_live_projects(repos: list[dict[str, Any]], presentations: dict[str, Presentation]) -> str:
@@ -1167,7 +1190,7 @@ def main() -> int:
     text = replace_block(text, "LANGUAGE-BADGES", render_language_badges(rows))
     text = replace_block(text, "LANGUAGE-STATS", render_language_stats(repos, rows, generated_at))
     text = replace_block(text, "PUBLIC-PROJECTS", render_public_projects(repos, presentations, now))
-    text = replace_block(text, "PRIVATE-PROJECTS", render_private_projects(repos, now))
+    text = replace_block(text, "PRIVATE-PROJECTS", render_private_projects(repos, languages))
     text = replace_block(text, "LIVE-PROJECTS", render_live_projects(repos, presentations))
     text = replace_block(text, "ECOSYSTEM-MAP", render_ecosystem_map(repos, presentations))
     text = replace_block(text, "PROJECT-MAP", render_project_map(repos, languages, presentations, now))
