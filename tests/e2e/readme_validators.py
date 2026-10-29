@@ -46,7 +46,7 @@ CLEAN_ENV = {key: value for key, value in os.environ.items()
              if "TOKEN" not in key and not key.startswith("GITHUB_") and key != "DATABASE_URL"}
 DISPLAY_TO_GITHUB = {"Batch": "Batchfile", "PL/pgSQL": "PLpgSQL"}
 AGE_BY_STATUS = {"🟢 Active": 10, "🟡 In Development": 120, "🔵 Experimental": 500, "🟣 Academic": 200, "🔒 Private": 5}
-OUTPUTS = ("PROFILE-ARCHIVE.md", "assets/profile-snapshot.svg", "docs/project-catalog.json")
+OUTPUTS = ("docs/PROFILE-ARCHIVE.md", "assets/profile-snapshot.svg", "docs/project-catalog.json")
 
 
 def ago(days: int) -> str:
@@ -225,8 +225,8 @@ def main() -> int:
         # O mesmo julgamento em Rust, sobre a mesma cópia (Fase 5, D-037).
         root = str(rs_root)
         rust_validators = [
-            ("validate_dynamic_sections", ["readme", "--before", str(ROOT / "PROFILE-ARCHIVE.md"),
-                                           "--after", str(rs_root / "PROFILE-ARCHIVE.md")]),
+            ("validate_dynamic_sections", ["readme", "--before", str(ROOT / "docs" / "PROFILE-ARCHIVE.md"),
+                                           "--after", str(rs_root / "docs" / "PROFILE-ARCHIVE.md")]),
             ("validate_exclusions", ["exclusions", "--root", root]),
             ("validate_project_links", ["links", "--root", root]),
             ("validate_restored_style", ["visual", "--root", root]),
