@@ -2,7 +2,7 @@
 
 ## Pipeline
 
-O workflow `.github/workflows/deploy-portfolio.yml` valida as fontes, compila o builder Python, executa os testes do contrato, gera `dist/` e compara os arquivos e campos publicados com allowlists exatas. O artefato é limitado a `index.html`, `assets/site.css`, `assets/site.js`, `assets/favicon.svg`, `data/projects.json` e `.nojekyll`.
+O workflow `.github/workflows/deploy-portfolio.yml` valida as fontes, compila o builder Python, executa os testes do contrato, gera `dist/` e compara os arquivos e campos publicados com allowlists exatas. O artefato é limitado a `index.html`, `assets/site.css`, `assets/site.js`, `assets/favicon.svg`, `data/projects.json`, `data/stack-inventory.json` e `.nojekyll`.
 
 Pull requests geram e validam o build, mas nunca publicam produção. Apenas push ou execução manual na branch `main` pode preparar o artefato do GitHub Pages e executar o deploy. O build usa permissões mínimas e não requer secrets para filtrar e gerar o site.
 
