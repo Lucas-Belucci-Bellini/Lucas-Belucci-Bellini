@@ -15,7 +15,7 @@ O site é uma apresentação web do mesmo portfólio que o README do perfil. A i
 
 ## Privacidade
 
-O deploy **não publica a raiz inteira do repositório**. O build copia somente o HTML, os três assets do site e `dist/data/projects.json`. O catálogo de saída exclui projetos marcados como privados e inclui apenas os campos necessários para exibição pública. Não coloque tokens, segredos, endpoints internos ou conteúdo de arquivos privados nos campos públicos do catálogo.
+O deploy **não publica a raiz inteira do repositório**. O build copia somente o HTML, os assets do site e os dois feeds públicos `dist/data/projects.json` e `dist/data/stack-inventory.json`. O catálogo de saída exclui projetos marcados como privados e inclui apenas os campos necessários para exibição pública. Não coloque tokens, segredos, endpoints internos ou conteúdo de arquivos privados nos campos públicos do catálogo.
 
 ## Executar localmente
 
