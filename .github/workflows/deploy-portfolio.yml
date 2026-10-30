@@ -10,6 +10,8 @@ on:
       - "index.html"
       - "assets/**"
       - "docs/project-catalog.json"
+      - "docs/PROFILE-ARCHIVE.md"
+      - "docs/README_STACK.json"
       - "scripts/build_portfolio.py"
       - ".github/workflows/deploy-portfolio.yml"
       - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
@@ -21,6 +23,8 @@ on:
       - "index.html"
       - "assets/**"
       - "docs/project-catalog.json"
+      - "docs/PROFILE-ARCHIVE.md"
+      - "docs/README_STACK.json"
       - "scripts/build_portfolio.py"
       - ".github/workflows/deploy-portfolio.yml"
       - "docs/V2-GITHUB-PAGES-DEPLOYMENT.md"
@@ -77,6 +81,7 @@ jobs:
               "assets/site.js",
               "assets/favicon.svg",
               "data/projects.json",
+              "data/stack-inventory.json",
               ".nojekyll",
           }
           actual_files = {
