@@ -113,8 +113,11 @@ def build_stack_inventory(root: Path, projects: list[dict[str, object]]) -> dict
     if not archive_path.is_file() or not stack_path.is_file():
         raise BuildError("professional stack sources are missing")
 
-    archive = archive_path.read_text(encoding="utf-8")
-    stack = json.loads(stack_path.read_text(encoding="utf-8"))
+    try:
+        archive = archive_path.read_text(encoding="utf-8")
+        stack = json.loads(stack_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise BuildError(f"cannot read professional stack sources: {exc}") from exc
     if not isinstance(stack, dict) or not isinstance(stack.get("tools"), list):
         raise BuildError("README_STACK.json must contain a tools array")
 
