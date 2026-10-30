@@ -4,6 +4,16 @@ O site é uma apresentação web do mesmo portfólio que o README do perfil. A i
 
 ## Arquitetura
 
+## Evolução TypeScript + Rust
+
+A arquitetura-alvo e as etapas de migração estão registradas em
+[PORTFOLIO-APPLICATION-ARCHITECTURE.md](PORTFOLIO-APPLICATION-ARCHITECTURE.md).
+Estado atual: a interface ainda usa JavaScript; o workspace Rust existente é
+uma CLI de coleta, domínio, validação e geração, não um servidor HTTP público.
+A migração será incremental, com contratos JSON versionados, testes de
+privacidade e paridade entre geradores antes de substituir o pipeline Python.
+
+
 - `index.html`: estrutura semântica e conteúdo editorial.
 - `assets/site.css`: identidade visual responsiva, foco visível e suporte a redução de movimento.
 - `assets/site.js`: busca, filtro por categoria e renderização segura dos cartões.
