@@ -33,7 +33,7 @@ Sou Lucas Belucci Bellini, também conhecido como Spartan Gamer BR. Tenho intere
 
 <sub>Inventário baseado em linguagens detectadas e ferramentas documentadas em projetos públicos; presença no portfólio indica evidência de uso, não certificação ou domínio equivalente.</sub>
 
-[Ver a matriz detalhada e as evidências públicas](docs/PROFILE-ARCHIVE.md#arsenal).
+[Ver o inventário completo e as evidências públicas](docs/PROFILE-ARCHIVE.md).
 
 ## Projetos em destaque
 
