@@ -26,7 +26,7 @@ em tempo de execução.
 |:---|:---|:---|
 | Estrutura visual | `index.html` | Preservar semântica e separar componentes quando o TS entrar |
 | Estilos | `assets/site.css` | Preservar identidade visual e responsividade |
-| Interações | `assets/site.js` em JavaScript | Migrar para TypeScript com verificação estrita |
+| Interações | `frontend/main.ts` + contratos TypeScript; `assets/site.js` legado ainda é runtime até esta PR | Compilar para `assets/js/` e servir o bundle TypeScript |
 | Feeds | `data/projects.json` e `data/stack-inventory.json` gerados em build | Manter contratos versionados e validados |
 | Build público | `scripts/build_portfolio.py` | Migrar a geração para Rust após paridade comprovada |
 | Núcleo Rust | workspace com sete crates e CLI `profile-core` | Tornar Rust o único gerador depois dos critérios de paridade |
@@ -74,12 +74,12 @@ projetos privados.
 
 ### Etapa 2 — frontend TypeScript
 
-- Introduzir toolchain TypeScript com versões fixadas e lockfile.
-- Migrar busca, filtros, cartões, inventário de linguagens e ferramentas.
-- Ativar `strict`, `noUncheckedIndexedAccess` e `noEmitOnError`.
-- Preservar IDs semânticos, navegação por teclado, foco visível e
-  `prefers-reduced-motion`.
-- Gerar assets estáticos versionados para o Vercel.
+- [x] Formalizar contratos e runtime TypeScript para busca, filtros, cartões, inventário de linguagens e ferramentas.
+- [x] Ativar `strict`, `noUncheckedIndexedAccess` e `noEmitOnError`.
+- [x] Criar compilador reproduzível com TypeScript 5.9.3 e saída ES2022 em `assets/js/`.
+- [x] Configurar o site para carregar `assets/js/main.js` como módulo.
+- [x] Incluir somente os dois bundles compilados no artefato público estático; fontes TS não são publicadas.
+- [ ] Confirmar preview Vercel, comportamento visual e navegação no browser antes de remover `assets/site.js` do repositório.
 
 Critério de saída: build TypeScript reproduz a interface atual, testes passam
 e nenhum código de runtime depende de executar TypeScript diretamente no
