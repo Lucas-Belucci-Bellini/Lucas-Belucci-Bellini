@@ -126,16 +126,12 @@ function isPublicProject(value: unknown): value is PublicProject {
       "status", "github", "website",
     ])) return false;
 
-  const baseFields = [
-    value.name,
-    value.slug,
-    value.description,
-    value.category,
-    value.category_label,
-    value.status,
-  ].every(isNonEmptyString);
-
-  return baseFields
+  return isNonEmptyString(value.name)
+    && isNonEmptyString(value.slug)
+    && isNonEmptyString(value.description)
+    && isNonEmptyString(value.category)
+    && isNonEmptyString(value.category_label)
+    && isNonEmptyString(value.status)
     && isGitHubRepositoryUrl(value.github)
     && (value.website === undefined || isSafeHttpsUrl(value.website));
 }
