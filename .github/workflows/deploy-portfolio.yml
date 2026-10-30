@@ -25,6 +25,7 @@ on:
       - "README.md"
       - "index.html"
       - "assets/**"
+      - "frontend/**"
       - "docs/project-catalog.json"
       - "docs/PROFILE-ARCHIVE.md"
       - "docs/README_STACK.json"
@@ -59,7 +60,7 @@ jobs:
           node-version: "22"
 
       - name: Type-check public feed contracts
-        run: npx --yes --package typescript@5.9.3 tsc --noEmit --strict --noUncheckedIndexedAccess --target ES2022 --module ES2022 --lib ES2022,DOM frontend/contracts.ts
+        run: npx --yes --package typescript@5.9.3 tsc --noEmit --strict --noUncheckedIndexedAccess --target ES2022 --module ES2022 --moduleResolution bundler --lib ES2022,DOM frontend/main.ts
 
       - name: Validate source and catalog
         run: |
