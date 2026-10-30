@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-30T14:07:42Z",
+  "scanned_at": "2026-10-30T19:22:06Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -12,10 +12,10 @@
     },
     "AETHER": {
       "branch": "main",
-      "sha": "52bfff832e23b734693a0a8e050e2028c1baee28",
-      "date": "2026-10-28T17:58:18Z",
-      "message": "Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10",
-      "url": "https://github.com/Lucas-Belucci-Bellini/AETHER/commit/52bfff832e23b734693a0a8e050e2028c1baee28"
+      "sha": "0ec48da85ca0cba1ccf77cfaab5f7dc463937bb2",
+      "date": "2026-10-30T16:20:51Z",
+      "message": "docs: reconcile roadmap and backlog with verified implementation (#9)",
+      "url": "https://github.com/Lucas-Belucci-Bellini/AETHER/commit/0ec48da85ca0cba1ccf77cfaab5f7dc463937bb2"
     },
     "AI-second-brain-with-Claude-and-Obsidian": {
       "branch": "claude/setup-segundo-cerebro-script-vJsWg",
@@ -26,10 +26,10 @@
     },
     "All-Skills-for-the-claude-code": {
       "branch": "main",
-      "sha": "059a43b1940bcb908dc951c40e95c2438aa5799a",
-      "date": "2026-10-29T17:43:38Z",
-      "message": "Merge pull request #170 from Lucas-Belucci-Bellini/feat/all-skills-consolidated-2026",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/059a43b1940bcb908dc951c40e95c2438aa5799a"
+      "sha": "bfb0b6a3212455a1da4e49fc1b19615290c6d15c",
+      "date": "2026-10-30T18:52:23Z",
+      "message": "NEXORA: add Cutout layer integration skill",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/bfb0b6a3212455a1da4e49fc1b19615290c6d15c"
     },
     "All-The-Mods-10": {
       "branch": "main",
@@ -54,10 +54,10 @@
     },
     "ATLAS": {
       "branch": "main",
-      "sha": "9415fa48f4618e6a30f38b3af4c35bc75290201f",
-      "date": "2026-10-28T17:58:16Z",
-      "message": "Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10",
-      "url": "https://github.com/Lucas-Belucci-Bellini/ATLAS/commit/9415fa48f4618e6a30f38b3af4c35bc75290201f"
+      "sha": "26b4fd318c862d0a125d937b8cd0aabd2eeec81b",
+      "date": "2026-10-30T16:20:58Z",
+      "message": "docs: reconcile roadmap and backlog with current implementation (#9)",
+      "url": "https://github.com/Lucas-Belucci-Bellini/ATLAS/commit/26b4fd318c862d0a125d937b8cd0aabd2eeec81b"
     },
     "baluarte-academia": {
       "branch": "claude/projeto-baluarte-issues-y7jv88",
@@ -375,13 +375,6 @@
       "message": "Initial commit",
       "url": "https://github.com/Lucas-Belucci-Bellini/Multi-functional-site-Baluarte/commit/5fe796e57dc5e2a3c892cfc2fe96c85f141b41f3"
     },
-    "NEXORA": {
-      "branch": "main",
-      "sha": "eed3dbcb68c7540decf08b3d55f2fae7feae8833",
-      "date": "2026-10-28T02:00:21Z",
-      "message": "Merge pull request #62 from Lucas-Belucci-Bellini/feat/windows-portable-client-release",
-      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA/commit/eed3dbcb68c7540decf08b3d55f2fae7feae8833"
-    },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
       "sha": "610ca15bda01f0ccc0806b573bc0d8ae59c1255c",
@@ -479,10 +472,10 @@
     },
     "TITAN": {
       "branch": "main",
-      "sha": "95980f596020b03155f6de77e90e4b60a62e8903",
-      "date": "2026-10-28T17:58:04Z",
-      "message": "Merge pull request #5 from Lucas-Belucci-Bellini/identity/framework-class-names-2026-10",
-      "url": "https://github.com/Lucas-Belucci-Bellini/TITAN/commit/95980f596020b03155f6de77e90e4b60a62e8903"
+      "sha": "cc1cc6a6a96ffb28d07af0f3dbb305a306f387db",
+      "date": "2026-10-30T17:42:30Z",
+      "message": "fix(core): make plugin registration atomic (#10)",
+      "url": "https://github.com/Lucas-Belucci-Bellini/TITAN/commit/cc1cc6a6a96ffb28d07af0f3dbb305a306f387db"
     },
     "UMBRA-LIMA-ALFA": {
       "branch": "main",
@@ -500,15 +493,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5124,
-    "project_commits": 4835,
-    "monitor_commits": 289,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 5182,
+    "project_commits": 4892,
+    "monitor_commits": 290,
+    "detected_project_commits_this_scan": 57,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 72,
-    "repositories_changed": 1,
+    "repositories_scanned": 71,
+    "repositories_changed": 4,
     "errors": 3
   },
   "errors": [

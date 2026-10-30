@@ -2,24 +2,27 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-30T14:07:42Z`  
+**Última varredura:** `2026-10-30T19:22:06Z`  
 **Intervalo configurado:** `1 hora`  
-**Repositórios acompanhados:** `72`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios acompanhados:** `71`  
+**Repositórios com mudanças desde a última varredura:** `4`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5124`
-- **Commits dos projetos:** `4835`
-- **Commits do próprio monitor:** `289`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `5182`
+- **Commits dos projetos:** `4892`
+- **Commits do próprio monitor:** `290`
+- **Commits de projetos detectados nesta hora:** `57`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Dark-Legion** — 1 commit(s) — [df1fbaa7d21d](https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/df1fbaa7d21d528279923310b592f0a43c8d6cf8) — chore(data): refresh midnight public catalog
+- **AETHER** — 4 commit(s) — [0ec48da85ca0](https://github.com/Lucas-Belucci-Bellini/AETHER/commit/0ec48da85ca0cba1ccf77cfaab5f7dc463937bb2) — docs: reconcile roadmap and backlog with verified implementation (#9)
+- **All-Skills-for-the-claude-code** — 44 commit(s) — [bfb0b6a32124](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/bfb0b6a3212455a1da4e49fc1b19615290c6d15c) — NEXORA: add Cutout layer integration skill
+- **ATLAS** — 4 commit(s) — [26b4fd318c86](https://github.com/Lucas-Belucci-Bellini/ATLAS/commit/26b4fd318c862d0a125d937b8cd0aabd2eeec81b) — docs: reconcile roadmap and backlog with current implementation (#9)
+- **TITAN** — 5 commit(s) — [cc1cc6a6a96f](https://github.com/Lucas-Belucci-Bellini/TITAN/commit/cc1cc6a6a96ffb28d07af0f3dbb305a306f387db) — fix(core): make plugin registration atomic (#10)
 
 ## Erros de consulta
 
