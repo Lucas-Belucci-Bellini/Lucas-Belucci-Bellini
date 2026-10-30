@@ -6,6 +6,7 @@ on:
       - main
       - feat/profile-readme-website-v2
       - feat/profile-v2-consolidated
+      - feat/typescript-public-data-contracts
     paths:
       - "README.md"
       - "index.html"
