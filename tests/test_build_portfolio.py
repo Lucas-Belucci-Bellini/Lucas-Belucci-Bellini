@@ -164,7 +164,7 @@ class PortfolioBuildTests(unittest.TestCase):
         self.assertEqual(payload["languages"][0]["name"], "TypeScript")
         self.assertEqual(payload["tools"][0]["projects"][0]["name"], "Public Demo")
         self.assertNotIn("Private Secret", json.dumps(payload))
-        self.assertIn("not a certification", payload["methodology"]["proficiency"])
+        self.assertIn("não uma certificação", payload["methodology"]["proficiency"])
 
     def test_unsupported_schema_fails_explicitly(self):
         self.write_catalog([project()], schema="unexpected/schema@9")
