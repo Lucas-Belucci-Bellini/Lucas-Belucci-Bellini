@@ -14,6 +14,6 @@ O builder valida o schema `lucas-belucci-bellini/project-catalog@1`, filtra proj
 
 ## Artefato público
 
-O diretório `dist/` contém exatamente `index.html`, `assets/site.css`, `assets/site.js`, `assets/favicon.svg`, `data/projects.json` e `.nojekyll`. O JSON público contém somente `name`, `slug`, `description`, `category`, `category_label`, `status`, `github` e, quando verificado, `website`. Campos de controle como `repository`, `private`, `github_visible`, `marketing_priority` e `website_status` não são publicados.
+O diretório `dist/` contém exatamente `index.html`, `assets/site.css`, `assets/site.js`, `assets/favicon.svg`, `data/projects.json`, `data/stack-inventory.json` e `.nojekyll`. O JSON público contém somente `name`, `slug`, `description`, `category`, `category_label`, `status`, `github` e, quando verificado, `website`. Campos de controle como `repository`, `private`, `github_visible`, `marketing_priority` e `website_status` não são publicados.
 
-O frontend consome exclusivamente `data/projects.json`, nunca o catálogo editorial bruto. O workflow valida a allowlist exata do artefato e não publica produção em pull requests.
+O frontend consome `data/projects.json` para os projetos e `data/stack-inventory.json` para a matriz profissional. O builder gera a matriz a partir do arquivo de perfil e do manifesto `docs/README_STACK.json`, vinculando evidências somente a projetos públicos do catálogo. O workflow valida a allowlist exata do artefato e não publica produção em pull requests.

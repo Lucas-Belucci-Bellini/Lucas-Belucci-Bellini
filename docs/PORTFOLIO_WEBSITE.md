@@ -8,12 +8,14 @@ O site é uma apresentação web do mesmo portfólio que o README do perfil. A i
 - `assets/site.css`: identidade visual responsiva, foco visível e suporte a redução de movimento.
 - `assets/site.js`: busca, filtro por categoria e renderização segura dos cartões.
 - `docs/project-catalog.json`: catálogo canônico gerado pelo processo atual do perfil.
+- `docs/PROFILE-ARCHIVE.md` + `docs/README_STACK.json`: fontes públicas da matriz de linguagens e das ferramentas documentadas.
+- `data/stack-inventory.json`: feed público gerado pelo builder, com participação por linguagem, categorias, evidências e links para projetos públicos correspondentes.
 - `scripts/build_portfolio.py`: cria `dist/` com apenas os arquivos públicos necessários e uma projeção filtrada dos projetos públicos.
 - `.github/workflows/deploy-portfolio.yml`: valida e constrói o site em pull requests; publica no GitHub Pages em push para `main`.
 
 ## Privacidade
 
-O deploy **não publica a raiz inteira do repositório**. O build copia somente o HTML, os três assets do site e `dist/data/projects.json`. O catálogo de saída exclui projetos marcados como privados e inclui apenas os campos necessários para exibição pública. Não coloque tokens, segredos, endpoints internos ou conteúdo de arquivos privados nos campos públicos do catálogo.
+O deploy **não publica a raiz inteira do repositório**. O build copia somente o HTML, os assets do site e os dois feeds públicos `dist/data/projects.json` e `dist/data/stack-inventory.json`. O catálogo de saída exclui projetos marcados como privados e inclui apenas os campos necessários para exibição pública. Não coloque tokens, segredos, endpoints internos ou conteúdo de arquivos privados nos campos públicos do catálogo.
 
 ## Executar localmente
 

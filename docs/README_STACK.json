@@ -1,22 +1,107 @@
 {
   "languages_note": "As linguagens abaixo são agregadas apenas a partir dos mapas públicos de linguagens do GitHub; o gerador calcula peso e contagem automaticamente.",
   "tools": [
-    {"name": "Git", "category": "Infraestrutura & DevOps", "family": "versionamento", "evidence": "repositórios públicos e atividades de Git/GitHub"},
-    {"name": "GitHub", "category": "Infraestrutura & DevOps", "family": "colaboração e CI", "evidence": "repositório de perfil, Actions e inventário auditado"},
-    {"name": "VS Code", "category": "Infraestrutura & DevOps", "family": "editor", "evidence": "stack visual preservada e documentação de desenvolvimento"},
-    {"name": "Linux", "category": "Infraestrutura & DevOps", "family": "ambiente", "evidence": "stack visual preservada e scripts Shell/PowerShell"},
-    {"name": "Node.js", "category": "Infraestrutura & DevOps", "family": "runtime web", "evidence": "projetos públicos JavaScript/TypeScript e manifests Node"},
-    {"name": "Docker", "category": "Infraestrutura & DevOps", "family": "infraestrutura", "evidence": "Dockerfile detectado no inventário público"},
-    {"name": "Supabase", "category": "Infraestrutura & DevOps", "family": "backend e dados", "evidence": "Veritas"},
-    {"name": "Vite", "category": "Frameworks & Web", "family": "build e dev server", "evidence": "Projeto-Baluarte, Veritas, DailyPlanner e projetos web documentados"},
-    {"name": "React", "category": "Frameworks & Web", "family": "interface web", "evidence": "projetos públicos e dependências documentadas"},
-    {"name": "Tailwind CSS", "category": "Frameworks & Web", "family": "estilo web", "evidence": "stack visual preservada e projetos web documentados"},
-    {"name": "Electron", "category": "Frameworks & Web", "family": "desktop", "evidence": "Projeto-Baluarte e baluarte-obra-segura"},
-    {"name": "MapLibre GL", "category": "Frameworks & Web", "family": "mapas web", "evidence": "Project-Vanguard"},
-    {"name": "MCP", "category": "IA & Conhecimento", "family": "integrações de agentes", "evidence": "Veritas e documentação pública relacionada"},
-    {"name": "Obsidian + Claude", "category": "IA & Conhecimento", "family": "conhecimento e IA", "evidence": "AI-second-brain-with-Claude-and-Obsidian"},
-    {"name": "Unity", "category": "Hardware & Simulação", "family": "simulação e jogos", "evidence": "Digital Logic Sim CE"},
-    {"name": "Arduino", "category": "Hardware & Simulação", "family": "eletrônica", "evidence": "arsenal visual original e linha de robótica/eletrônica"},
-    {"name": "Flowgorithm + Portugol", "category": "Hardware & Simulação", "family": "fundamentos e simulação", "evidence": "repositórios acadêmicos públicos"}
+    {
+      "name": "Git",
+      "category": "Infraestrutura & DevOps",
+      "family": "versionamento",
+      "evidence": "repositórios públicos e atividades de Git/GitHub"
+    },
+    {
+      "name": "GitHub",
+      "category": "Infraestrutura & DevOps",
+      "family": "colaboração e CI",
+      "evidence": "repositório de perfil, Actions e inventário auditado"
+    },
+    {
+      "name": "VS Code",
+      "category": "Infraestrutura & DevOps",
+      "family": "editor",
+      "evidence": "stack visual preservada e documentação de desenvolvimento"
+    },
+    {
+      "name": "Linux",
+      "category": "Infraestrutura & DevOps",
+      "family": "ambiente",
+      "evidence": "stack visual preservada e scripts Shell/PowerShell"
+    },
+    {
+      "name": "Node.js",
+      "category": "Infraestrutura & DevOps",
+      "family": "runtime web",
+      "evidence": "projetos públicos JavaScript/TypeScript e manifests Node"
+    },
+    {
+      "name": "Docker",
+      "category": "Infraestrutura & DevOps",
+      "family": "infraestrutura",
+      "evidence": "Dockerfile detectado no inventário público"
+    },
+    {
+      "name": "Supabase",
+      "category": "Infraestrutura & DevOps",
+      "family": "backend e dados",
+      "evidence": "Veritas"
+    },
+    {
+      "name": "Vite",
+      "category": "Frameworks & Web",
+      "family": "build e dev server",
+      "evidence": "Projeto-Baluarte, Veritas, DailyPlanner e projetos web documentados"
+    },
+    {
+      "name": "React",
+      "category": "Frameworks & Web",
+      "family": "interface web",
+      "evidence": "projetos públicos e dependências documentadas"
+    },
+    {
+      "name": "Tailwind CSS",
+      "category": "Frameworks & Web",
+      "family": "estilo web",
+      "evidence": "stack visual preservada e projetos web documentados"
+    },
+    {
+      "name": "Electron",
+      "category": "Frameworks & Web",
+      "family": "desktop",
+      "evidence": "Projeto-Baluarte e baluarte-obra-segura"
+    },
+    {
+      "name": "MapLibre GL",
+      "category": "Frameworks & Web",
+      "family": "mapas web",
+      "evidence": "Project-Vanguard"
+    },
+    {
+      "name": "MCP",
+      "category": "IA & Conhecimento",
+      "family": "integrações de agentes",
+      "evidence": "Veritas e documentação pública relacionada"
+    },
+    {
+      "name": "Obsidian + Claude",
+      "category": "IA & Conhecimento",
+      "family": "conhecimento e IA",
+      "evidence": "AI-second-brain-with-Claude-and-Obsidian"
+    },
+    {
+      "name": "Unity",
+      "category": "Hardware & Simulação",
+      "family": "simulação e jogos",
+      "evidence": "Digital Logic Sim CE"
+    },
+    {
+      "name": "Arduino",
+      "category": "Hardware & Simulação",
+      "family": "eletrônica",
+      "evidence": "baluarte-arsenal e baluarte-robotica; linha pública de robótica e eletrônica"
+    },
+    {
+      "name": "Flowgorithm + Portugol",
+      "category": "Hardware & Simulação",
+      "family": "fundamentos e simulação",
+      "evidence": "Flowgorithm-, Decision-Structures e Some-Pseudocode-and-exercise-codes; repositórios acadêmicos públicos"
+    }
   ]
 }

@@ -106,13 +106,49 @@
         </ol>
       </section>
 
-      <section id="stack" class="stack-section section-wrap">
-        <div class="section-heading"><div><p class="eyebrow">ARSENAL // 003</p><h2>Ferramentas para construir<span>.</span></h2></div><p class="section-note">Tecnologias variam conforme o problema. Esta lista representa áreas de interesse e trabalho, não uma alegação de domínio equivalente em todas elas.</p></div>
-        <div class="stack-grid">
-          <article class="stack-card"><span class="stack-number">A / 01</span><h3>Software & Web</h3><p>Interfaces, aplicações, APIs e ferramentas para transformar ideias em produtos utilizáveis.</p><div class="tag-list"><span>TypeScript</span><span>JavaScript</span><span>React</span><span>Vite</span></div></article>
-          <article class="stack-card"><span class="stack-number">A / 02</span><h3>Sistemas & Dados</h3><p>Estruturas de backend, persistência, automação e integração entre serviços.</p><div class="tag-list"><span>Rust</span><span>Python</span><span>PostgreSQL</span><span>Git</span></div></article>
-          <article class="stack-card"><span class="stack-number">A / 03</span><h3>Lógica & Mundos</h3><p>Experimentos com lógica digital, simulação, jogos e sistemas interativos.</p><div class="tag-list"><span>Digital Logic</span><span>Game Dev</span><span>Simulation</span><span>Hardware</span></div></article>
+      <section id="stack" class="stack-section section-wrap" aria-labelledby="stack-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">ARSENAL // 004</p><h2 id="stack-title">Tecnologias com evidência<span>.</span></h2></div>
+          <p class="section-note">Um inventário vivo do que aparece nos repositórios públicos e nas ferramentas documentadas. A lista separa linguagens detectadas de frameworks e ferramentas registradas.</p>
         </div>
+
+        <div id="stack-overview" class="stack-overview" aria-live="polite">
+          <article class="stack-stat"><span>LINGUAGENS</span><strong>—</strong><small>carregando inventário</small></article>
+          <article class="stack-stat"><span>REPOSITÓRIOS PÚBLICOS</span><strong>—</strong><small>base auditada</small></article>
+          <article class="stack-stat"><span>CÓDIGO DETECTADO</span><strong>—</strong><small>peso agregado</small></article>
+        </div>
+        <p id="stack-updated" class="stack-updated" role="status">Consultando o snapshot público de tecnologias…</p>
+
+        <div id="languages" class="stack-subsection">
+          <div class="stack-subheading">
+            <div><p class="eyebrow">LANGUAGE INTELLIGENCE // 001</p><h3>Linguagens por participação</h3></div>
+            <label class="stack-search"><span class="sr-only">Buscar linguagem</span><input id="language-search" type="search" placeholder="Filtrar linguagens…" autocomplete="off"></label>
+          </div>
+          <p class="stack-explainer">Peso relativo calculado a partir dos bytes informados pela API de linguagens do GitHub. A quantidade de repositórios indica em quantos mapas públicos cada linguagem aparece.</p>
+          <div id="language-list" class="language-list" aria-live="polite" aria-busy="true">
+            <p class="stack-loading">Carregando distribuição das linguagens…</p>
+          </div>
+        </div>
+
+        <div id="tools" class="stack-subsection">
+          <div class="stack-subheading">
+            <div><p class="eyebrow">TOOLCHAIN // 002</p><h3>Frameworks, infraestrutura e ferramentas</h3></div>
+            <div class="stack-controls">
+              <label class="stack-search"><span class="sr-only">Buscar ferramenta</span><input id="stack-search" type="search" placeholder="Buscar tecnologia…" autocomplete="off"></label>
+              <label class="stack-filter"><span class="sr-only">Filtrar categoria</span><select id="stack-category"><option value="all">Todas as áreas</option></select></label>
+            </div>
+          </div>
+          <div id="tool-grid" class="tool-grid" aria-live="polite" aria-busy="true">
+            <p class="stack-loading">Carregando ferramentas e evidências…</p>
+          </div>
+        </div>
+
+        <details class="stack-methodology">
+          <summary>Como o inventário é calculado e auditado</summary>
+          <div id="stack-methodology-content">
+            <p>As linguagens vêm dos mapas públicos do GitHub. As ferramentas são registradas no manifesto editorial com sua função e evidência.</p>
+          </div>
+        </details>
       </section>
 
       <section id="contact" class="contact-section section-wrap">

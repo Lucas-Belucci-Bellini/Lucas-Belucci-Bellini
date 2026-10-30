@@ -16,12 +16,16 @@ Construo aplicações web, ferramentas, sistemas em Rust, agentes de IA, jogos e
 
 Sou Lucas Belucci Bellini, também conhecido como Spartan Gamer BR. Tenho interesse em engenharia de software, arquitetura de sistemas, automação, inteligência artificial, desenvolvimento de jogos e hardware.
 
-## Tecnologias
+## Stack profissional
 
-- **Frontend:** TypeScript, JavaScript, React e Next.js.
-- **Backend:** Rust, Python e APIs.
-- **Dados e infraestrutura:** PostgreSQL, GitHub Actions e deploys em nuvem.
-- **Exploração:** motores de jogos, lógica digital, simulação e agentes de IA.
+- **Linguagens:** 31 detectadas em repositórios públicos, com TypeScript, JavaScript, HTML, Rust, C#, GLSL, Python e Java entre as principais por volume.
+- **Frameworks & Web:** React, Next.js, Vite, Tailwind CSS, Electron e MapLibre GL.
+- **Infraestrutura & DevOps:** Git, GitHub, GitHub Actions, Linux, Node.js, Docker, PostgreSQL, Supabase e Vercel.
+- **IA & Conhecimento:** MCP, Obsidian, Claude e integrações com agentes.
+- **Hardware & Simulação:** Unity, Arduino, Flowgorithm e Portugol.
+
+<sub>Inventário baseado em linguagens detectadas e ferramentas documentadas em projetos públicos; presença no portfólio indica evidência de uso, não certificação ou domínio equivalente.</sub>
+
 
 ## Projetos em destaque
 

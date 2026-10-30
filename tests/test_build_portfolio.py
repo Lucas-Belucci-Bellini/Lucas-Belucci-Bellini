@@ -43,6 +43,31 @@ class PortfolioBuildTests(unittest.TestCase):
             target = self.root / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text("static asset\n", encoding="utf-8")
+        docs = self.root / "docs"
+        docs.mkdir(parents=True, exist_ok=True)
+        (docs / "README_STACK.json").write_text(
+            json.dumps({
+                "tools": [{
+                    "name": "Vite",
+                    "category": "Frameworks & Web",
+                    "family": "build e dev server",
+                    "evidence": "Public Demo and Private Secret",
+                }]
+            }),
+            encoding="utf-8",
+        )
+        (docs / "PROFILE-ARCHIVE.md").write_text(
+            "\n".join([
+                "<!-- LANGUAGE-STATS:START -->",
+                "> **1 linguagens** · **1 repositórios públicos** · **1.00 MB de código detectado** · atualizado em `2026-10-30 00:00 UTC`",
+                "",
+                "| # | Linguagem | Peso | Participação | Repositórios |",
+                "|:--:|:---|---:|---:|---:|",
+                "| 1 | **TypeScript** | `1.00 MB` | `100.00%` | 1 |",
+                "<!-- LANGUAGE-STATS:END -->",
+            ]),
+            encoding="utf-8",
+        )
 
     def tearDown(self):
         self.temp.cleanup()
@@ -110,6 +135,7 @@ class PortfolioBuildTests(unittest.TestCase):
                 "assets/site.js",
                 "assets/favicon.svg",
                 "data/projects.json",
+                "data/stack-inventory.json",
             },
         )
 
@@ -122,6 +148,23 @@ class PortfolioBuildTests(unittest.TestCase):
             build(self.root, self.root / "assets")
 
         self.assertEqual(asset.read_text(encoding="utf-8"), before)
+
+    def test_stack_inventory_is_public_evidence_only_and_contains_full_language_matrix(self):
+        self.write_catalog([
+            project(),
+            project(name="Private Secret", slug="private-secret", private=True),
+        ])
+        out = self.root / "dist"
+
+        build(self.root, out)
+        payload = json.loads((out / "data" / "stack-inventory.json").read_text(encoding="utf-8"))
+
+        self.assertEqual(payload["schema"], "lucas-belucci-bellini/professional-stack@1")
+        self.assertEqual(payload["summary"]["language_count"], 1)
+        self.assertEqual(payload["languages"][0]["name"], "TypeScript")
+        self.assertEqual(payload["tools"][0]["projects"][0]["name"], "Public Demo")
+        self.assertNotIn("Private Secret", json.dumps(payload))
+        self.assertIn("não uma certificação", payload["methodology"]["proficiency"])
 
     def test_unsupported_schema_fails_explicitly(self):
         self.write_catalog([project()], schema="unexpected/schema@9")
