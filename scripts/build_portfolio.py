@@ -99,7 +99,7 @@ def normalize_evidence(value: str) -> str:
 
 
 def parse_language_bytes(value: str) -> int:
-    match = re.fullmatch(r"([0-9]+(?:\\.[0-9]+)?)\\s*(B|KB|MB|GB)", value.strip())
+    match = re.fullmatch(r"([0-9]+(?:\.[0-9]+)?)\s*(B|KB|MB|GB)", value.strip())
     if not match:
         raise BuildError(f"unsupported language size: {value!r}")
     amount = float(match.group(1))
@@ -127,19 +127,19 @@ def build_stack_inventory(root: Path, projects: list[dict[str, object]]) -> dict
     section = archive[start + len(start_marker):end]
 
     summary_match = re.search(
-        r"\\*\\*(\\d+) linguagens\\*\\*\\s*·\\s*"
-        r"\\*\\*(\\d+) repositórios públicos\\*\\*\\s*·\\s*"
-        r"\\*\\*([0-9.]+ MB) de código detectado\\*\\*\\s*·\\s*"
-        r"atualizado em \\x60([^\\x60]+)\\x60",
+        r"\*\*(\d+) linguagens\*\*\s*·\s*"
+        r"\*\*(\d+) repositórios públicos\*\*\s*·\s*"
+        r"\*\*([0-9.]+ MB) de código detectado\*\*\s*·\s*"
+        r"atualizado em \x60([^\x60]+)\x60",
         section,
     )
     if not summary_match:
         raise BuildError("public language statistics summary is invalid")
 
     language_pattern = re.compile(
-        r"^\\|\\s*(\\d+)\\s*\\|\\s*\\*\\*(.+?)\\*\\*\\s*"
-        r"\\|\\s*\\x60([^\\x60]+)\\x60\\s*"
-        r"\\|\\s*\\x60([0-9.]+)%\\x60\\s*\\|\\s*(\\d+)\\s*\\|$"
+        r"^\|\s*(\d+)\s*\|\s*\*\*(.+?)\*\*\s*"
+        r"\|\s*\x60([^\x60]+)\x60\s*"
+        r"\|\s*\x60([0-9.]+)%\x60\s*\|\s*(\d+)\s*\|$"
     )
     languages: list[dict[str, object]] = []
     for line in section.splitlines():
