@@ -10,6 +10,7 @@ on:
       - "README.md"
       - "index.html"
       - "assets/**"
+      - "frontend/**"
       - "docs/project-catalog.json"
       - "docs/PROFILE-ARCHIVE.md"
       - "docs/README_STACK.json"
@@ -51,6 +52,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Type-check public feed contracts
+        run: npx --yes --package typescript@5.9.3 tsc --noEmit --strict --noUncheckedIndexedAccess --target ES2022 --module ES2022 --lib ES2022,DOM frontend/contracts.ts
 
       - name: Validate source and catalog
         run: |
