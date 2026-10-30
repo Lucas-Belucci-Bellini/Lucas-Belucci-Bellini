@@ -9,6 +9,13 @@
   const count = document.querySelector("#project-count");
   const message = document.querySelector("#catalog-message");
   const year = document.querySelector("#current-year");
+  const stackOverview = document.querySelector("#stack-overview");
+  const stackUpdated = document.querySelector("#stack-updated");
+  const languageList = document.querySelector("#language-list");
+  const languageSearch = document.querySelector("#language-search");
+  const stackSearch = document.querySelector("#stack-search");
+  const stackCategory = document.querySelector("#stack-category");
+  const toolGrid = document.querySelector("#tool-grid");
   const allowedStatuses = new Set(["🟢 Active", "🟡 In Development", "🔵 Experimental", "🟣 Academic"]);
 
   if (year) year.textContent = String(new Date().getFullYear());
@@ -152,8 +159,169 @@
     }
   }
 
+  
+  let stackInventory = null;
+
+  function renderLanguages() {
+    if (!languageList || !stackInventory) return;
+    const query = (languageSearch?.value || "").trim().toLocaleLowerCase("pt-BR");
+    const rows = stackInventory.languages.filter((language) =>
+      language.name.toLocaleLowerCase("pt-BR").includes(query)
+    );
+    languageList.replaceChildren();
+    if (!rows.length) {
+      languageList.append(make("p", "stack-empty", "Nenhuma linguagem corresponde à busca."));
+      return;
+    }
+    const fragment = document.createDocumentFragment();
+    rows.forEach((language) => {
+      const row = make("article", "language-row");
+      const heading = make("div", "language-row-heading");
+      heading.append(make("span", "language-rank", String(language.rank).padStart(2, "0")));
+      heading.append(make("strong", "language-name", language.name));
+      heading.append(make("span", "language-share", Number(language.share).toFixed(2) + "%"));
+      row.append(heading);
+      const track = make("div", "language-track");
+      const bar = make("span", "language-bar");
+      const share = Math.max(0, Math.min(100, Number(language.share) || 0));
+      bar.style.width = share + "%";
+      track.append(bar);
+      row.append(track);
+      row.append(make("p", "language-meta", language.size + " de código · presente em "
+        + language.repositories + " repositório(s) público(s)"));
+      fragment.append(row);
+    });
+    languageList.append(fragment);
+  }
+
+  function renderTools() {
+    if (!toolGrid || !stackInventory) return;
+    const query = (stackSearch?.value || "").trim().toLocaleLowerCase("pt-BR");
+    const category = stackCategory?.value || "all";
+    const tools = stackInventory.tools.filter((tool) => {
+      const haystack = [tool.name, tool.family, tool.category, tool.evidence]
+        .filter((value) => typeof value === "string")
+        .join(" ")
+        .toLocaleLowerCase("pt-BR");
+      return (!query || haystack.includes(query))
+        && (category === "all" || tool.category === category);
+    });
+    toolGrid.replaceChildren();
+    if (!tools.length) {
+      toolGrid.append(make("p", "stack-empty", "Nenhuma tecnologia corresponde aos filtros atuais."));
+      return;
+    }
+    const fragment = document.createDocumentFragment();
+    tools.forEach((tool) => {
+      const card = make("article", "tool-card");
+      const top = make("div", "tool-card-top");
+      top.append(make("span", "tool-category", tool.category));
+      top.append(make("span", "tool-family", tool.family));
+      card.append(top);
+      card.append(make("h4", "", tool.name));
+      card.append(make("p", "tool-evidence", tool.evidence));
+      if (Array.isArray(tool.projects) && tool.projects.length) {
+        const evidence = make("div", "tool-projects");
+        evidence.append(make("span", "tool-projects-label", "EVIDÊNCIA EM PROJETOS PÚBLICOS"));
+        tool.projects.forEach((project) => {
+          const links = make("div", "tool-project-links");
+          const github = safeGitHubUrl(project.github);
+          if (github) {
+            const codeLink = make("a", "", project.name + " · código ↗");
+            codeLink.href = github;
+            codeLink.target = "_blank";
+            codeLink.rel = "noopener noreferrer";
+            links.append(codeLink);
+          }
+          const website = safeHttpsUrl(project.website);
+          if (website) {
+            const siteLink = make("a", "", "site ↗");
+            siteLink.href = website;
+            siteLink.target = "_blank";
+            siteLink.rel = "noopener noreferrer";
+            links.append(siteLink);
+          }
+          if (links.childElementCount) evidence.append(links);
+        });
+        card.append(evidence);
+      }
+      fragment.append(card);
+    });
+    toolGrid.append(fragment);
+  }
+
+  function renderStackSummary() {
+    if (!stackOverview || !stackInventory) return;
+    const summary = stackInventory.summary;
+    stackOverview.replaceChildren();
+    [
+      ["LINGUAGENS", String(summary.language_count), "detectadas em repositórios públicos"],
+      ["REPOSITÓRIOS PÚBLICOS", String(summary.public_repository_count), "base do snapshot"],
+      ["CÓDIGO DETECTADO", summary.total_code, "soma dos bytes por linguagem"],
+    ].forEach(([label, value, note]) => {
+      const card = make("article", "stack-stat");
+      card.append(make("span", "", label));
+      card.append(make("strong", "", value));
+      card.append(make("small", "", note));
+      stackOverview.append(card);
+    });
+    if (stackUpdated) stackUpdated.textContent = "Snapshot de linguagens atualizado em "
+      + summary.updated_at + " · " + stackInventory.tools.length + " ferramentas documentadas.";
+  }
+
+  async function loadStackInventory() {
+    if (!languageList || !toolGrid || !stackOverview || !stackUpdated || !stackCategory) return;
+    try {
+      const response = await fetch("data/stack-inventory.json", {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      });
+      if (!response.ok) throw new Error("HTTP " + response.status);
+      const data = await response.json();
+      if (!data || data.schema !== "lucas-belucci-bellini/professional-stack@1"
+        || !data.summary || !Array.isArray(data.languages)
+        || !Array.isArray(data.tools) || !Array.isArray(data.categories)) {
+        throw new Error("Formato de inventário inválido.");
+      }
+      stackInventory = data;
+      stackCategory.replaceChildren();
+      stackCategory.append(new Option("Todas as áreas", "all"));
+      data.categories.forEach((category) => stackCategory.append(new Option(category, category)));
+      renderStackSummary();
+      renderLanguages();
+      renderTools();
+      languageList.setAttribute("aria-busy", "false");
+      toolGrid.setAttribute("aria-busy", "false");
+
+      const methodology = document.querySelector("#stack-methodology-content");
+      if (methodology && data.methodology) {
+        methodology.replaceChildren();
+        [
+          ["Linguagens", data.methodology.languages],
+          ["Ferramentas", data.methodology.tools],
+          ["Leitura correta", data.methodology.proficiency],
+        ].forEach(([label, value]) => {
+          const paragraph = make("p", "");
+          paragraph.append(make("strong", "", label + ": "));
+          paragraph.append(document.createTextNode(value));
+          methodology.append(paragraph);
+        });
+      }
+    } catch (error) {
+      languageList.replaceChildren(make("p", "stack-empty", "Não foi possível carregar a matriz de linguagens."));
+      toolGrid.replaceChildren(make("p", "stack-empty", "Não foi possível carregar o inventário de ferramentas."));
+      stackUpdated.textContent = "Inventário indisponível. " + (error instanceof Error ? error.message : "");
+      languageList.setAttribute("aria-busy", "false");
+      toolGrid.setAttribute("aria-busy", "false");
+    }
+  }
+
   if (searchInput) searchInput.addEventListener("input", render);
+  if (languageSearch) languageSearch.addEventListener("input", renderLanguages);
+  if (stackSearch) stackSearch.addEventListener("input", renderTools);
+  if (stackCategory) stackCategory.addEventListener("change", renderTools);
   if (categorySelect) categorySelect.addEventListener("change", render);
   if (statusSelect) statusSelect.addEventListener("change", render);
   loadCatalog();
+  loadStackInventory();
 })();
