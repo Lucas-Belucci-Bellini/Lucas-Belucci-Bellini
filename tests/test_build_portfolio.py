@@ -51,7 +51,7 @@ class PortfolioBuildTests(unittest.TestCase):
                     "name": "Vite",
                     "category": "Frameworks & Web",
                     "family": "build e dev server",
-                    "evidence": "Public Demo",
+                    "evidence": "Public Demo and Private Secret",
                 }]
             }),
             encoding="utf-8",
