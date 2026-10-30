@@ -76,6 +76,12 @@ describe("public project catalog contract", () => {
     assert.equal(isProjectCatalog(payload), false);
   });
 
+  it("rejects GitHub URLs that do not identify exactly one repository", () => {
+    const payload = validCatalog();
+    payload.projects[0].github = "https://github.com/example/repo/extra";
+    assert.equal(isProjectCatalog(payload), false);
+  });
+
   it("rejects unsafe GitHub and website URLs", () => {
     const httpCatalog = validCatalog();
     httpCatalog.projects[0].github = "http://github.com/example/public-demo";
