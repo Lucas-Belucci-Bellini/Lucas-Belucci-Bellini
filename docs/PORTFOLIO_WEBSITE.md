@@ -11,7 +11,7 @@ O site é uma apresentação web do mesmo portfólio que o README do perfil. A i
 - `docs/PROFILE-ARCHIVE.md` + `docs/README_STACK.json`: fontes públicas da matriz de linguagens e das ferramentas documentadas.
 - `data/stack-inventory.json`: feed público gerado pelo builder, com participação por linguagem, categorias, evidências e links para projetos públicos correspondentes.
 - `scripts/build_portfolio.py`: cria `dist/` com apenas os arquivos públicos necessários e uma projeção filtrada dos projetos públicos.
-- `.github/workflows/deploy-portfolio.yml`: valida e constrói o site em pull requests; publica no GitHub Pages em push para `main`.
+- `.github/workflows/deploy-portfolio.yml`: valida e constrói o artefato em pull requests e pushes; a publicação de produção é responsabilidade da integração Git do Vercel.
 
 ## Privacidade
 
@@ -39,7 +39,7 @@ O workflow também verifica se o artefato contém os arquivos necessários e se 
 
 ## Publicação
 
-O workflow publica o artefato pelo GitHub Pages quando as alterações chegam à branch `main`. A configuração Pages do repositório deve permitir a origem **GitHub Actions**. A primeira publicação depende de essa configuração estar habilitada nas configurações do repositório.
+A hospedagem de produção é o projeto Vercel `lucas-belucci-bellini`, conectado ao repositório GitHub. O workflow deste repositório faz build e validação e mantém um artefato inspecionável; ele não tenta publicar GitHub Pages. O domínio principal configurado no projeto é `lucas-belucci-bellini.vercel.app`.
 
 ## Relação com o README
 

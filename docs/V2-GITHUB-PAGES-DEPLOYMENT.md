@@ -1,17 +1,15 @@
-# V2 — GitHub Actions, Pages e deploy
+# GitHub Pages — alternativa legada (não ativa)
 
-## Pipeline
+O site do portfólio usa **Vercel** como hospedagem de produção. O projeto existente `lucas-belucci-bellini` está conectado ao repositório `Lucas-Belucci-Bellini/Lucas-Belucci-Bellini`, com domínio principal `lucas-belucci-bellini.vercel.app`.
 
-O workflow `.github/workflows/deploy-portfolio.yml` valida as fontes, compila o builder Python, executa os testes do contrato, gera `dist/` e compara os arquivos e campos publicados com allowlists exatas. O artefato é limitado a `index.html`, `assets/site.css`, `assets/site.js`, `assets/favicon.svg`, `data/projects.json`, `data/stack-inventory.json` e `.nojekyll`.
+O workflow `.github/workflows/deploy-portfolio.yml` executa validação, build estático e upload de artefato inspecionável. Ele **não** tenta criar um deploy no GitHub Pages, porque Pages não está habilitado neste repositório e não é o provedor de produção escolhido.
 
-Pull requests geram e validam o build, mas nunca publicam produção. Apenas push ou execução manual na branch `main` pode preparar o artefato do GitHub Pages e executar o deploy. O build usa permissões mínimas e não requer secrets para filtrar e gerar o site.
+## Se o proprietário decidir migrar para GitHub Pages no futuro
 
-## Antes do primeiro deploy
-
-1. Abra Settings → Pages e confirme que a fonte está configurada como GitHub Actions.
+1. Abra Settings → Pages e escolha a origem **GitHub Actions**.
 2. Preserve qualquer domínio personalizado e as regras de proteção existentes.
-3. Revise os checks do PR consolidado antes de mesclar.
-4. Após merge em `main`, confira o resultado real do job de deploy e use a URL fornecida pelo GitHub Pages.
-5. Abra a URL publicada e verifique resposta HTTP e conteúdo antes de anunciá-la no README.
+3. Reintroduza um job de deploy somente depois de confirmar que Pages está habilitado.
+4. Faça o deploy apenas a partir de `main`, depois do build e da validação da allowlist.
+5. Confirme a URL fornecida pelo GitHub Pages e teste o conteúdo publicado antes de alterar links no README.
 
-Até que essa execução real seja bem-sucedida, o estado correto é **build automatizado; publicação não confirmada**. Não contorne falhas com deploy alternativo nem adicione tokens/URLs secretos ao repositório.
+Não mantenha dois provedores tentando publicar a mesma produção sem uma decisão explícita. Até essa decisão, Vercel é a fonte de hospedagem e o GitHub Actions é responsável pela validação do artefato.
