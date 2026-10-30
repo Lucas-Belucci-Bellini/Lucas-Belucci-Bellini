@@ -54,6 +54,14 @@ fn github_repository_names_may_contain_dots() {
 }
 
 #[test]
+fn rejects_github_urls_with_extra_path_segments() {
+    let mut catalog = catalog_fixture();
+    catalog["projects"][0]["github"] =
+        Value::String("https://github.com/example/repo.name/extra".into());
+    assert!(public_projects(&catalog).is_err());
+}
+
+#[test]
 fn only_verified_https_websites_are_emitted() {
     let mut catalog = catalog_fixture();
     catalog["projects"][0]["website"] = Value::String("http://example.com".into());
