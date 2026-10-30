@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-29T21:07:25Z",
+  "scanned_at": "2026-10-30T00:58:57Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -271,10 +271,10 @@
     },
     "Dark-Legion": {
       "branch": "main",
-      "sha": "0d473e341a3898af6962f506e8ee171979245479",
-      "date": "2026-10-29T20:33:04Z",
-      "message": "Initial commit",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/0d473e341a3898af6962f506e8ee171979245479"
+      "sha": "0dbff6e302667b314bb746f46d7f75edb5b4232d",
+      "date": "2026-10-30T00:56:02Z",
+      "message": "fix: prune stale public catalog rows from PostgreSQL",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/0dbff6e302667b314bb746f46d7f75edb5b4232d"
     },
     "Decision-Structures": {
       "branch": "main",
@@ -500,10 +500,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5106,
-    "project_commits": 4820,
-    "monitor_commits": 286,
-    "detected_project_commits_this_scan": 80,
+    "tracked_commits": 5113,
+    "project_commits": 4826,
+    "monitor_commits": 287,
+    "detected_project_commits_this_scan": 6,
     "monitor_commit_this_scan": 1
   },
   "summary": {
