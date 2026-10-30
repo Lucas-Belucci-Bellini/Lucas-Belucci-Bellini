@@ -1,4 +1,4 @@
-name: Portfolio website — build and deploy
+name: Portfolio website — build and validate
 
 on:
   pull_request:
@@ -143,24 +143,3 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
-      - name: Prepare GitHub Pages artifact for production refs only
-        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist/
-
-  deploy:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-    needs: build
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy the validated Pages artifact
-        id: deployment
-        uses: actions/deploy-pages@v4
