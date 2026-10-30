@@ -107,7 +107,11 @@ def parse_language_bytes(value: str) -> int:
     return round(amount * multiplier)
 
 
-def build_stack_inventory(root: Path, projects: list[dict[str, object]]) -> dict[str, object]:
+def build_stack_inventory(
+    root: Path,
+    projects: list[dict[str, object]],
+    private_names: set[str] | None = None,
+) -> dict[str, object]:
     archive_path = root / "docs" / "PROFILE-ARCHIVE.md"
     stack_path = root / "docs" / "README_STACK.json"
     if not archive_path.is_file() or not stack_path.is_file():
@@ -188,7 +192,19 @@ def build_stack_inventory(root: Path, projects: list[dict[str, object]]) -> dict
         if category not in allowed_categories:
             raise BuildError(f"tools[{index}] uses an unsupported category: {category!r}")
 
-        evidence_text = normalize_evidence(evidence)
+        public_evidence = evidence
+        for private_name in private_names or set():
+            if private_name.strip():
+                public_evidence = re.sub(
+                    re.escape(private_name),
+                    "",
+                    public_evidence,
+                    flags=re.IGNORECASE,
+                )
+        public_evidence = re.sub(r"\\s+", " ", public_evidence).strip(" ,;:-")
+        if not public_evidence:
+            public_evidence = "Evidência pública não informada."
+        evidence_text = normalize_evidence(public_evidence)
         evidence_projects: list[dict[str, str]] = []
         for normalized_name, project in public_projects_by_name:
             if normalized_name and normalized_name in evidence_text:
@@ -205,7 +221,7 @@ def build_stack_inventory(root: Path, projects: list[dict[str, object]]) -> dict
             "name": name,
             "category": category,
             "family": family,
-            "evidence": evidence,
+            "evidence": public_evidence,
             "projects": evidence_projects,
         })
 
@@ -242,7 +258,13 @@ def build(root: Path, out: Path) -> int:
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         raise BuildError(f"cannot read valid UTF-8 catalog JSON: {exc}") from exc
     projects = public_projects(catalog)
-    stack_inventory = build_stack_inventory(root, projects)
+    private_names = {
+        str(project.get("name", "")).strip()
+        for project in catalog.get("projects", [])
+        if isinstance(project, dict) and project.get("private") is True
+        and isinstance(project.get("name"), str) and project.get("name", "").strip()
+    }
+    stack_inventory = build_stack_inventory(root, projects, private_names)
     for relative in STATIC_FILES:
         if not (root / relative).is_file():
             raise BuildError(f"required static file missing: {relative}")
