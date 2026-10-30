@@ -49,13 +49,8 @@ jobs:
       - name: Run V2 unit tests
         run: python -m unittest discover -s tests -v
 
-      - name: Validate generated language badges and Arsenal categories
-        run: python scripts/validate_language_badges.py
+      - name: Validate the compact public README and archive contract
+        run: python scripts/validate_compact_readme.py
 
-      - name: Validate the showcase CTA rule (site first, code second)
-        run: python scripts/validate_project_links.py
-
-      # Banner, títulos animados, ícones, cards locais, snake, contador:
-      # a identidade visual do README não some num PR sem ninguém ver.
-      - name: Validate the preserved visual identity of the README
-        run: python scripts/validate_restored_style.py
+      # A geração detalhada, os badges, CTAs e identidade visual são validados
+      # pelo Rust Core E2E sobre uma cópia gerada pelo Python e pelo Rust.

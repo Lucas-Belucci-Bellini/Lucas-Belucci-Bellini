@@ -5,7 +5,9 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-README = ROOT / "README.md"
+README = ROOT / "docs" / "PROFILE-ARCHIVE.md"
+if not README.is_file():
+    README = ROOT / "README.md"
 text = README.read_text(encoding="utf-8")
 errors = []
 markers = [

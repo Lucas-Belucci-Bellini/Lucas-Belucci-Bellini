@@ -412,11 +412,12 @@ def build_catalog(presentations: list[Presentation]) -> dict[str, Any]:
     nome — nunca por data. Duas execuções sobre os mesmos dados produzem
     exatamente o mesmo arquivo.
     """
-    ordered = sorted(
+    all_ordered = sorted(
         presentations,
         key=lambda p: (-p.marketing_priority, p.name.lower()),
     )
-    live = [p for p in ordered if p.has_live_website]
+    ordered = [presentation for presentation in all_ordered if not presentation.private]
+    live = [presentation for presentation in ordered if presentation.has_live_website]
     return {
         "schema": "lucas-belucci-bellini/project-catalog@1",
         "note": (
@@ -425,8 +426,8 @@ def build_catalog(presentations: list[Presentation]) -> dict[str, Any]:
         ),
         "counts": {
             "projects": len(ordered),
-            "public": sum(1 for p in ordered if not p.private),
-            "private": sum(1 for p in ordered if p.private),
+            "public": len(ordered),
+            "private": sum(1 for p in all_ordered if p.private),
             "with_live_website": len(live),
         },
         "categories": list(CATEGORIES),

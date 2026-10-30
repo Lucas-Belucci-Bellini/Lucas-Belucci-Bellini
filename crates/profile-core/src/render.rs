@@ -50,7 +50,9 @@ pub struct Rendered {
 /// O que o `update_profile.py` gera, na ordem do [`OUTPUT_FILES`].
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Outputs {
-    /// `README.md`.
+    /// Caminho do README detalhado gerado (`README.md` em fixtures legadas).
+    pub readme_path: &'static str,
+    /// Conteúdo do README detalhado.
     pub readme: String,
     /// `assets/profile-snapshot.svg`.
     pub snapshot: String,
@@ -64,7 +66,7 @@ pub const OUTPUT_FILES: [&str; 3] = ["README.md", "assets/profile-snapshot.svg",
 impl Outputs {
     /// Os três, com o caminho relativo à raiz.
     pub fn files(&self) -> [(&'static str, &str); 3] {
-        [(OUTPUT_FILES[0], &self.readme), (OUTPUT_FILES[1], &self.snapshot), (OUTPUT_FILES[2], &self.catalog)]
+        [(self.readme_path, &self.readme), (OUTPUT_FILES[1], &self.snapshot), (OUTPUT_FILES[2], &self.catalog)]
     }
 
     /// Grava os três em `dir`, no mesmo lugar que teriam na raiz.
@@ -112,7 +114,7 @@ fn summary(prepared: &Prepared, rows: usize, catalog_written: bool, options: &Re
         "declared_sites": catalog::candidates(&prepared.sites).len(),
         "verified_sites": prepared.presentations.iter().filter(|p| p.has_live_website()).count(),
         "unreachable_sites": unreachable,
-        "catalog_projects": prepared.presentations.len(),
+        "catalog_projects": prepared.presentations.iter().filter(|presentation| !presentation.private).count(),
         "catalog_written": catalog_written,
         "site_check_skipped": options.site_check_skipped,
         "write": options.build.write,
@@ -125,7 +127,10 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
     let prepared = catalog_build::prepare(&options.build, tokens, Purpose::Readme).await?;
     let stack = prepared.stack.as_ref().expect("Purpose::Readme lê o arsenal");
     let stamp = generated_at(&prepared.repos, prepared.now_local)?;
-    let template = read_text(&root.join("README.md"))?;
+    let archive_path = root.join("docs/PROFILE-ARCHIVE.md");
+    let readme_path: &'static str = if archive_path.is_file() { "docs/PROFILE-ARCHIVE.md" } else { "README.md" };
+    let template_path = root.join(readme_path);
+    let template = read_text(&template_path)?;
     let profile = Profile::new(Inputs {
         repos: &prepared.repos,
         languages: &prepared.languages,
@@ -143,7 +148,7 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
     let mut stdout = String::new();
     let mut catalog_written = false;
     if options.build.write {
-        write(&root.join("README.md"), &readme)?;
+        write(&root.join(readme_path), &readme)?;
         write(&root.join("assets/profile-snapshot.svg"), &profile.snapshot_svg())?;
         catalog_written = write_catalog(&catalog_text, &catalog::catalog_path(root))?;
     } else {
@@ -154,7 +159,7 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
         write_catalog(&catalog_text, path)?;
     }
     if let Some(dir) = &options.out_dir {
-        write(&dir.join("README.md"), &readme)?;
+        write(&dir.join(readme_path), &readme)?;
         write(&dir.join("profile-snapshot.svg"), &profile.snapshot_svg())?;
         write_catalog(&catalog_text, &dir.join("project-catalog.json"))?;
     }
@@ -172,6 +177,6 @@ pub async fn run(options: &RenderOptions, tokens: &Tokens) -> Result<Rendered, B
         profile.verified_sites(),
         if options.build.write { "; gravado" } else { "" }
     );
-    let outputs = Outputs { snapshot: profile.snapshot_svg(), readme, catalog: catalog_text };
+    let outputs = Outputs { readme_path, snapshot: profile.snapshot_svg(), readme, catalog: catalog_text };
     Ok(Rendered { stdout, note, outputs })
 }

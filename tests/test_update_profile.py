@@ -14,6 +14,20 @@ MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 
 
+class ProfileReadmePathTests(unittest.TestCase):
+    def test_archive_is_preferred_and_legacy_fixture_falls_back(self) -> None:
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            docs = root / "docs"
+            docs.mkdir()
+            self.assertEqual(root / "README.md", MODULE.profile_readme_path(root))
+            archive = docs / "PROFILE-ARCHIVE.md"
+            archive.write_text("# Archive\\n", encoding="utf-8")
+            self.assertEqual(archive, MODULE.profile_readme_path(root))
+
+
 class LanguageBadgeTests(unittest.TestCase):
     def test_special_language_names_keep_readable_markdown_labels(self) -> None:
         rows = [
@@ -31,6 +45,42 @@ class LanguageBadgeTests(unittest.TestCase):
         self.assertIn("/badge/C%23-2%20repos-", rendered)
         self.assertIn("/badge/PL%2FpgSQL-2%20repos-", rendered)
         self.assertIn("language=PLpgSQL", rendered)
+
+
+class PrivateProjectSummaryTests(unittest.TestCase):
+    def test_only_aggregated_purpose_and_language_names_are_public(self) -> None:
+        repos = [
+            {
+                "name": "private-ai-workspace",
+                "full_name": "Lucas-Belucci-Bellini/private-ai-workspace",
+                "private": True,
+                "description": "Internal architecture, agents, queues, model routing and implementation details.",
+            },
+            {
+                "name": "private-hardware-lab",
+                "full_name": "Lucas-Belucci-Bellini/private-hardware-lab",
+                "private": True,
+                "description": "Internal hardware experiment.",
+            },
+        ]
+        languages = {
+            "Lucas-Belucci-Bellini/private-ai-workspace": {"Rust": 100, "Python": 50},
+            "Lucas-Belucci-Bellini/private-hardware-lab": {"Zig": 20},
+        }
+
+        rendered = MODULE.render_private_projects(repos, languages)
+
+        self.assertIn("Finalidades gerais:", rendered)
+        self.assertIn("**Linguagens:** Python, Rust, Zig", rendered)
+        for forbidden in (
+            "private-ai-workspace",
+            "private-hardware-lab",
+            "Lucas-Belucci-Bellini/",
+            "Internal architecture",
+            "agents, queues",
+            "model routing",
+        ):
+            self.assertNotIn(forbidden, rendered)
 
 
 class ReplaceBlockTests(unittest.TestCase):

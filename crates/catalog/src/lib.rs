@@ -313,22 +313,24 @@ pub fn presentations(
 /// `build_catalog()`: prioridade decrescente e, no empate, nome sem caixa —
 /// nunca data. Os mesmos dados produzem o mesmo arquivo.
 pub fn build(presentations: &[Presentation]) -> Value {
-    let mut ordered: Vec<&Presentation> = presentations.iter().collect();
-    ordered.sort_by(|a, b| {
+    let mut all_ordered: Vec<&Presentation> = presentations.iter().collect();
+    all_ordered.sort_by(|a, b| {
         b.marketing_priority.cmp(&a.marketing_priority).then_with(|| a.name.to_lowercase().cmp(&b.name.to_lowercase()))
     });
-    let count = |keep: fn(&Presentation) -> bool| ordered.iter().filter(|p| keep(p)).count();
+    let private_count = all_ordered.iter().filter(|presentation| presentation.private).count();
+    let public: Vec<&Presentation> = all_ordered.iter().copied().filter(|presentation| !presentation.private).collect();
+    let live_count = public.iter().filter(|presentation| presentation.has_live_website()).count();
     json!({
         "schema": SCHEMA,
         "note": NOTE,
         "counts": {
-            "projects": ordered.len(),
-            "public": count(|p| !p.private),
-            "private": count(|p| p.private),
-            "with_live_website": count(Presentation::has_live_website),
+            "projects": public.len(),
+            "public": public.len(),
+            "private": private_count,
+            "with_live_website": live_count,
         },
         "categories": CATEGORIES,
-        "projects": ordered.iter().map(|p| catalog_entry(p)).collect::<Vec<_>>(),
+        "projects": public.iter().map(|presentation| catalog_entry(presentation)).collect::<Vec<_>>(),
     })
 }
 

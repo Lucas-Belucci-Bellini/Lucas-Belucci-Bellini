@@ -82,6 +82,12 @@ pub fn resolve_root(root: &Path) -> PathBuf {
     root.canonicalize().or_else(|_| std::path::absolute(root)).unwrap_or_else(|_| root.to_path_buf())
 }
 
+/// Usa o arquivo gerado detalhado quando o README público é compacto.
+pub fn profile_readme_path(root: &Path) -> PathBuf {
+    let archive = root.join("docs/PROFILE-ARCHIVE.md");
+    if archive.is_file() { archive } else { root.join("README.md") }
+}
+
 fn display(path: &Path) -> String {
     path.to_string_lossy().into_owned()
 }
@@ -161,7 +167,7 @@ pub fn readme(before: &Path, after: &Path) -> Result<Outcome, Crash> {
 pub fn exclusions(root: &Path) -> Result<Outcome, Crash> {
     let root = resolve_root(root);
     let manifest = load_json(&root.join("docs/README_EXCLUDED.json"))?;
-    let readme = read_text(&root.join("README.md"))?;
+    let readme = read_text(&profile_readme_path(&root))?;
     let excluded: Vec<String> = py_iter(get_or(&manifest, "repositories", &json!([]))?)?.iter().map(py_str).collect();
     let found: Vec<&str> = excluded.iter().map(String::as_str).filter(|name| readme.contains(name)).collect();
     if !found.is_empty() {
@@ -231,7 +237,7 @@ pub fn links(root: &Path) -> Result<Outcome, Crash> {
         }
     }
 
-    let readme_path = root.join("README.md");
+    let readme_path = profile_readme_path(&root);
     if readme_path.exists() {
         let text = read_text(&readme_path)?;
         for marker in SHOWCASE_MARKERS {
@@ -309,7 +315,7 @@ const VISUAL_ASSETS: [&str; 7] = [
 /// `validate_restored_style.py`: a identidade visual do README continua lá.
 pub fn visual(root: &Path) -> Result<Outcome, Crash> {
     let root = resolve_root(root);
-    let text = read_text(&root.join("README.md"))?;
+    let text = read_text(&profile_readme_path(&root))?;
     let mut errors: Vec<String> = Vec::new();
     for marker in VISUAL_MARKERS {
         let (start, end) = marker_pair(marker);
@@ -386,7 +392,7 @@ fn badges_block<'a>(text: &'a str, marker: &str) -> Result<&'a str, BadgeFailure
 /// `assert_language_count_matches` — tudo menos a rede.
 pub fn badges_offline(root: &Path) -> Result<Badges, BadgeFailure> {
     let root = resolve_root(root);
-    let readme = match read_text(&root.join("README.md")) {
+    let readme = match read_text(&profile_readme_path(&root)) {
         Ok(text) => text,
         // O `main()` do script trata `OSError`; `UnicodeDecodeError` vira traceback.
         Err(error) if is_os_error(&error) => return Err(assertion(error.message)),
@@ -537,7 +543,7 @@ fn py_set_of_texts(value: &Value) -> Result<Vec<Value>, Crash> {
 /// catálogo com o README e padrões de segredo.
 pub fn catalog(root: &Path) -> Result<Vec<String>, Crash> {
     let root = resolve_root(root);
-    let text = read_text(&root.join("README.md"))?;
+    let text = read_text(&profile_readme_path(&root))?;
     let mut errors: Vec<String> = Vec::new();
 
     for marker in PROFILE_MARKERS {

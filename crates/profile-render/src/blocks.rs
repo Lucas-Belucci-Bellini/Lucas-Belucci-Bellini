@@ -13,7 +13,7 @@ use ecosystem_domain::text::py_split_join;
 use serde_json::{Map, Value};
 
 use crate::badges::{COLOR_GOLD, badge, cta_buttons, cta_cell, status_pill};
-use crate::languages::{color, format_bytes, stack_for};
+use crate::languages::{color, display, format_bytes, stack_for};
 use crate::pytext::{md_cell, py_len, py_prefix, py_rstrip, quote};
 use crate::{OWNER, Profile, RenderError};
 
@@ -483,9 +483,15 @@ pub fn what_i_build(profile: &Profile) -> String {
 
 /// Os que têm site no ar, pelo nome sem caixa (ordenação estável).
 fn live_sorted<'p>(profile: &Profile<'p>) -> Vec<&'p Presentation> {
-    let mut live: Vec<&Presentation> =
-        profile.inputs.repos.iter().map(|repo| profile.presentation(repo)).filter(|p| p.has_live_website()).collect();
-    live.sort_by_cached_key(|p| p.name.to_lowercase());
+    let mut live: Vec<&Presentation> = profile
+        .inputs
+        .repos
+        .iter()
+        .filter(|repo| !repo.private)
+        .map(|repo| profile.presentation(repo))
+        .filter(|presentation| presentation.has_live_website())
+        .collect();
+    live.sort_by_cached_key(|presentation| presentation.name.to_lowercase());
     live
 }
 
@@ -651,36 +657,42 @@ pub fn public_projects(profile: &Profile) -> String {
 
 /// `render_private_projects`: nome, categoria, descrição pública e status — nada do conteúdo.
 pub fn private_projects(profile: &Profile) -> String {
-    let mut lines: Vec<String> = vec![
-        "<details>".into(),
-        "<summary><b>🔒 Private repository catalog</b></summary>".into(),
-        String::new(),
-        "| Projeto | Categoria | Descrição pública | Status | GitHub |".into(),
-        "|:---|:---|:---|:---|:---|".into(),
-    ];
-    for repo in sorted_repos(profile.inputs.repos, |repo| repo.private) {
-        let category = profile.inputs.classifier.classify(repo);
-        let description = match repo.description.as_deref() {
-            Some(text) if !text.is_empty() => text,
-            _ => "Descrição pública não informada",
-        };
-        lines.push(format!(
-            "| **{}** | {category} | {} | {} | [GitHub](https://github.com/{}) |",
-            repo.name,
-            md_cell(description).replace('\n', " "),
-            status_py_v1(repo, category, profile.inputs.now),
-            repo.full_name
-        ));
+    let private_repos: Vec<_> = profile.inputs.repos.iter().filter(|repo| repo.private).collect();
+    if private_repos.is_empty() {
+        return "> Nenhum repositório privado incluído no inventário desta execução.".into();
     }
-    lines.extend([
-        String::new(),
-        "</details>".into(),
-        String::new(),
-        "> 🔒 Private repository · nenhuma linha desta seção expõe código, secrets, `.env`, tokens, credenciais ou \
-         estrutura interna."
-            .into(),
-    ]);
-    lines.join("\n")
+
+    let mut purposes: Vec<(String, usize)> = Vec::new();
+    let mut language_names: Vec<String> = Vec::new();
+    for repo in &private_repos {
+        let purpose = profile.inputs.classifier.classify(repo).to_string();
+        if let Some((_, count)) = purposes.iter_mut().find(|(name, _)| *name == purpose) {
+            *count += 1;
+        } else {
+            purposes.push((purpose, 1));
+        }
+        if let Some(languages) = profile.inputs.languages.get(&repo.full_name) {
+            for (language, _) in languages {
+                let name = display(language).to_string();
+                if !language_names.contains(&name) {
+                    language_names.push(name);
+                }
+            }
+        }
+    }
+    purposes.sort_by_key(|(name, _)| name.to_lowercase());
+    language_names.sort_by_key(|name| name.to_lowercase());
+
+    let purpose_summary =
+        purposes.iter().map(|(name, count)| format!("{name} ({count})")).collect::<Vec<_>>().join(" · ");
+    let language_summary =
+        if language_names.is_empty() { "não informadas".to_string() } else { language_names.join(", ") };
+    let project_label = if private_repos.len() == 1 { "projeto privado" } else { "projetos privados" };
+
+    format!(
+        "> **{} {project_label}** · nomes, repositórios, descrições individuais e links não são publicados.\n> **Finalidades gerais:** {purpose_summary}\n> **Linguagens:** {language_summary}",
+        private_repos.len()
+    )
 }
 
 /// `render_live_projects`: o site antes do código.
@@ -703,8 +715,8 @@ pub fn live_projects(profile: &Profile) -> String {
     lines.join("\n")
 }
 
-/// `render_project_map`: todos os repositórios, privados inclusive (A20: a
-/// pilha dos privados aparece — defeito registrado, corrigido só como versão nova).
+/// `render_project_map`: somente repositórios públicos; nenhum nome,
+/// descrição, stack ou website privado aparece no perfil.
 pub fn project_map(profile: &Profile) -> String {
     let mut lines: Vec<String> = vec![
         "<details>".into(),
@@ -713,7 +725,7 @@ pub fn project_map(profile: &Profile) -> String {
         "| Projeto | Categoria | Stack | Status | Acesso |".into(),
         "|:---|:---|:---|:---|:---|".into(),
     ];
-    for repo in sorted_repos(profile.inputs.repos, |_| true) {
+    for repo in sorted_repos(profile.inputs.repos, |repo| !repo.private) {
         let item = profile.presentation(repo);
         lines.push(format!(
             "| **{}** | {} | {} | {} | {} |",

@@ -2,7 +2,7 @@
   "schema": "lucas-belucci-bellini/project-catalog@1",
   "note": "Gerado por scripts/update_profile.py. Não editar à mão: ajuste docs/README_SITES.json, docs/README_FEATURED.json ou a lógica do gerador.",
   "counts": {
-    "projects": 12,
+    "projects": 11,
     "public": 11,
     "private": 1,
     "with_live_website": 2
@@ -87,23 +87,6 @@
       "website_status": "unreachable",
       "website_http_status": 404,
       "website_source": "github_homepage"
-    },
-    {
-      "repository": "Lucas-Belucci-Bellini/demo-private",
-      "name": "demo-private",
-      "slug": "demo-private",
-      "description": "Ferramenta privada de demonstração.",
-      "category": "Web & SaaS",
-      "category_label": "Web",
-      "status": "🔒 Private",
-      "github": "https://github.com/Lucas-Belucci-Bellini/demo-private",
-      "github_visible": true,
-      "github_role": "primary",
-      "primary_cta": "github",
-      "secondary_cta": null,
-      "featured": true,
-      "marketing_priority": 39,
-      "private": true
     },
     {
       "repository": "Lucas-Belucci-Bellini/demo-down-site",

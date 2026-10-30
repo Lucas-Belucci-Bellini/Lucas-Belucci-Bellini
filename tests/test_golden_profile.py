@@ -8,12 +8,12 @@ de reproduzir antes de substituir o Python (docs/migration/PYTHON-TO-RUST.md
 Roda offline: inventário e linguagens vêm de arquivo, as checagens de site vêm
 de `--site-checks-fixture` e o relógio é fixo (`--now`).
 
-A saída esperada registra o comportamento ATUAL, inclusive os defeitos já
-conhecidos e ainda não corrigidos de propósito (D-006):
-  * "demo-daily-notes" cai em "IA & Automação" porque "daily" contém "ai"
-    (classificação por substring, auditoria A6);
-  * PROJECT-MAP mostra as linguagens de "demo-private" (auditoria A20).
-Quando uma correção dessas entrar, o diff deste teste é a revisão dela.
+A saída esperada registra o contrato atual de privacidade:
+  * projetos privados aparecem somente em categorias amplas agregadas e na
+    lista agregada de linguagens;
+  * nomes, URLs, descrições individuais, status e stack por projeto privado
+    não podem aparecer no README nem no catálogo público;
+  * o carimbo de atividade considera somente repositórios públicos.
 
 Mudou o gerador de propósito? Regenere e revise o diff:
 
@@ -174,19 +174,21 @@ class GoldenProfileTests(unittest.TestCase):
         self.assertNotIn("excluded.example.org", readme)
         self.assertNotIn("private.example.org", readme)
         self.assertNotIn("demo-excluded", {project["name"] for project in catalog["projects"]})
-        privado = next(project for project in catalog["projects"] if project["name"] == "demo-private")
-        self.assertNotIn("website", privado)
-        self.assertNotIn("website_declared", privado)
+        self.assertNotIn("demo-private", {project["name"] for project in catalog["projects"]})
+        self.assertNotIn("demo-private", readme)
+        self.assertNotIn("Ferramenta privada de demonstração", readme)
+        self.assertIn("Finalidades gerais:", readme)
+        self.assertIn("**Linguagens:** PowerShell, Python", readme)
+        self.assertEqual(1, catalog["counts"]["private"])
 
     def test_carimbo_nao_vem_do_proprio_perfil(self) -> None:
-        # O perfil tem o push mais recente (11:17). O carimbo é o do push mais
-        # recente entre os demais — demo-private, 2026-09-22 10:00: privados
-        # sempre entraram nesse cálculo (comportamento anterior, mantido).
+        # O carimbo ignora o próprio perfil e também todos os repositórios
+        # privados; somente a atividade pública pode influenciar a data exibida.
         readme = (self.root / "README.md").read_text(encoding="utf-8")
-        self.assertIn("atualizado em `2026-09-22 10:00 UTC`", readme)
+        self.assertIn("atualizado em `2026-09-20 10:00 UTC`", readme)
         self.assertNotIn("2026-09-25 11:17", readme)
         svg = (self.root / "assets" / "profile-snapshot.svg").read_text(encoding="utf-8")
-        self.assertIn("generated 2026-09-22 10:00 UTC", svg)
+        self.assertIn("generated 2026-09-20 10:00 UTC", svg)
 
     def test_barra_invertida_da_descricao_chega_literal(self) -> None:
         catalog = json.loads((self.root / "docs" / "project-catalog.json").read_text(encoding="utf-8"))

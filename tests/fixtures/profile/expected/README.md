@@ -274,7 +274,6 @@ ECOSSISTEMA
 | **demo-game** | Games | `GDScript` | ⚪ Archived | [código](https://github.com/Lucas-Belucci-Bellini/demo-game) |
 | **demo-java-course** | Academia | `Java` | 🟣 Academic | [código](https://github.com/Lucas-Belucci-Bellini/demo-java-course) |
 | **demo-lab** | Digital Logic / Hardware | `C#` `ShaderLab` | 🟡 In Development | [código](https://github.com/Lucas-Belucci-Bellini/demo-lab) |
-| **demo-private** | Web | `PowerShell` `Python` | 🔒 Private | [código](https://github.com/Lucas-Belucci-Bellini/demo-private) |
 | **demo-web-app** | Web | `TypeScript` `CSS` `HTML` | 🟢 Active | **[▸ Abrir site](https://web-app.example.org)** · [código](https://github.com/Lucas-Belucci-Bellini/demo-web-app) |
 | **Lucas-Belucci-Bellini** | Software & Ferramentas | `Python` | 🟢 Active | [código](https://github.com/Lucas-Belucci-Bellini/Lucas-Belucci-Bellini) |
 
@@ -351,7 +350,7 @@ ECOSSISTEMA
 ## LANGUAGE-STATS
 
 <!-- LANGUAGE-STATS:START -->
-> **13 linguagens** · **11 repositórios públicos** · **258.7 KB de código detectado** · atualizado em `2026-09-22 10:00 UTC`
+> **13 linguagens** · **11 repositórios públicos** · **258.7 KB de código detectado** · atualizado em `2026-09-20 10:00 UTC`
 
 | # | Linguagem | Peso | Participação | Repositórios |
 |:--:|:---|---:|---:|---:|
@@ -422,16 +421,9 @@ ECOSSISTEMA
 ## PRIVATE-PROJECTS
 
 <!-- PRIVATE-PROJECTS:START -->
-<details>
-<summary><b>🔒 Private repository catalog</b></summary>
-
-| Projeto | Categoria | Descrição pública | Status | GitHub |
-|:---|:---|:---|:---|:---|
-| **demo-private** | Web | Ferramenta privada de demonstração. | 🔒 Private | [GitHub](https://github.com/Lucas-Belucci-Bellini/demo-private) |
-
-</details>
-
-> 🔒 Private repository · nenhuma linha desta seção expõe código, secrets, `.env`, tokens, credenciais ou estrutura interna.
+> **1 projeto privado** · nomes, repositórios, descrições individuais e links não são publicados.
+> **Finalidades gerais:** Web (1)
+> **Linguagens:** PowerShell, Python
 <!-- PRIVATE-PROJECTS:END -->
 
 ---
