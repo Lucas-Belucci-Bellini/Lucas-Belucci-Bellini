@@ -17,7 +17,7 @@ SCHEMA = "lucas-belucci-bellini/project-catalog@1"
 PUBLIC_FIELDS = ("name", "slug", "description", "category", "category_label", "status", "github", "website")
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 STATUSES = {"🟢 Active", "🟡 In Development", "🔵 Experimental", "🟣 Academic", "⚪ Archived"}
-STATIC_FILES = ("index.html", "assets/site.css", "assets/site.js", "assets/favicon.svg")
+STATIC_FILES = ("index.html", "assets/site.css", "assets/favicon.svg", "assets/js/main.js", "assets/js/contracts.js")
 
 
 class BuildError(ValueError):
