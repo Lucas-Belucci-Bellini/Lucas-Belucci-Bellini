@@ -3,6 +3,7 @@
 ![Header](https://capsule-render.vercel.app/api?type=waving&color=0:0e0c16,45:1d1729,100:d4a24e&height=180&section=header&text=LUCAS%20BELUCCI%20BELLINI&fontColor=f4ecdd&fontSize=34&fontAlignY=38&desc=Spartan%20Gamer%20BR%20%C2%B7%20Ci%C3%AAncia%20da%20Computa%C3%A7%C3%A3o%20%C2%B7%20UNIFIL&descAlignY=61&descSize=16&animation=fadeIn)
 
 ![Typing](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=700&size=18&duration=2800&pause=1200&color=D4A24E&center=true&vCenter=true&width=780&height=50&lines=%E2%AC%A1+BALUARTE+%2F%2F+FIELD+MANUAL+%E2%80%94+VOLUME+I;%F0%9F%96%A5+Arquiteto+de+CPUs+do+zero+%7C+8-bit+at%C3%A9+64-bit;%F0%9F%A4%96+J.A.R.V.I.S.%2C+IA+e+ferramentas+web+de+verdade;%F0%9F%8C%90+Ecossistema+Baluarte+%C2%B7+LLBR+Innovations;%F0%9F%9B%A1+Status%3A+OPERACIONAL+%E2%80%94+MISS%C3%83O+EM+CURSO)
+[![J.A.R.V.I.S. — Núcleo do Projeto Baluarte](./assets/jarvis-console.svg)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)
 
 [![J.A.R.V.I.S.](https://img.shields.io/badge/%F0%9F%A4%96%20J.A.R.V.I.S.-N%C3%9ACLEO%20V7-3ddc84?style=for-the-badge&labelColor=0e0c16)](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/blob/main/project%20V2/Modelar%20objeto%203D/jarvis-nucleo-v7.html)
 
