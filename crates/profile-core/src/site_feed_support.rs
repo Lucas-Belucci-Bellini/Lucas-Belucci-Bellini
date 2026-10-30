@@ -36,7 +36,8 @@ fn github_repository_url(value: &str) -> bool {
     let Some(path) = parts.next() else { return false };
     let path = path.split(['?', '#']).next().unwrap_or_default().trim_end_matches('/');
     let segments: Vec<_> = path.split('/').collect();
-    segments.iter().all(|segment| !segment.is_empty() && *segment != "." && *segment != ".." && !segment.contains('@'))
+    segments.len() == 2
+        && segments.iter().all(|segment| !segment.is_empty() && *segment != "." && *segment != ".." && !segment.contains('@'))
 }
 
 fn valid_slug(value: &str) -> bool {
