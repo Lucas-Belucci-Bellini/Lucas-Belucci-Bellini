@@ -37,8 +37,9 @@ class PortfolioBuildTests(unittest.TestCase):
         for relative in (
             "index.html",
             "assets/site.css",
-            "assets/site.js",
             "assets/favicon.svg",
+            "assets/js/main.js",
+            "assets/js/contracts.js",
         ):
             target = self.root / relative
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -132,8 +133,9 @@ class PortfolioBuildTests(unittest.TestCase):
                 ".nojekyll",
                 "index.html",
                 "assets/site.css",
-                "assets/site.js",
                 "assets/favicon.svg",
+                "assets/js/main.js",
+                "assets/js/contracts.js",
                 "data/projects.json",
                 "data/stack-inventory.json",
             },
