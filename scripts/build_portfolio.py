@@ -266,6 +266,10 @@ def build(root: Path, out: Path) -> int:
             json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
             encoding="utf-8", newline="\n",
         )
+        (data_dir / "stack-inventory.json").write_text(
+            json.dumps(stack_inventory, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
+            encoding="utf-8", newline="\n",
+        )
         (stage / ".nojekyll").write_text("", encoding="utf-8", newline="\n")
         if out.exists():
             if not out.is_dir():
