@@ -16,13 +16,6 @@ Construo aplicações web, ferramentas, sistemas em Rust, agentes de IA, jogos e
 
 Sou Lucas Belucci Bellini, também conhecido como Spartan Gamer BR. Tenho interesse em engenharia de software, arquitetura de sistemas, automação, inteligência artificial, desenvolvimento de jogos e hardware.
 
-## Tecnologias
-
-- **Frontend:** TypeScript, JavaScript, React e Next.js.
-- **Backend:** Rust, Python e APIs.
-- **Dados e infraestrutura:** PostgreSQL, GitHub Actions e deploys em nuvem.
-- **Exploração:** motores de jogos, lógica digital, simulação e agentes de IA.
-
 ## Stack profissional
 
 - **Linguagens:** 31 detectadas em repositórios públicos, com TypeScript, JavaScript, HTML, Rust, C#, GLSL, Python e Java entre as principais por volume.
