@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-30T19:22:06Z",
+  "scanned_at": "2026-10-30T23:45:56Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -26,10 +26,10 @@
     },
     "All-Skills-for-the-claude-code": {
       "branch": "main",
-      "sha": "bfb0b6a3212455a1da4e49fc1b19615290c6d15c",
-      "date": "2026-10-30T18:52:23Z",
-      "message": "NEXORA: add Cutout layer integration skill",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/bfb0b6a3212455a1da4e49fc1b19615290c6d15c"
+      "sha": "c2b1f7ca793a14a3c00249d812fa42ad048c1636",
+      "date": "2026-10-30T23:36:05Z",
+      "message": "feat(nexora): add Job Queue Admission Budget workflow",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/c2b1f7ca793a14a3c00249d812fa42ad048c1636"
     },
     "All-The-Mods-10": {
       "branch": "main",
@@ -271,10 +271,10 @@
     },
     "Dark-Legion": {
       "branch": "main",
-      "sha": "df1fbaa7d21d528279923310b592f0a43c8d6cf8",
-      "date": "2026-10-30T09:15:48Z",
-      "message": "chore(data): refresh midnight public catalog",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/df1fbaa7d21d528279923310b592f0a43c8d6cf8"
+      "sha": "fd64158d44a6b19d66108a6e8d85085712e425ba",
+      "date": "2026-10-30T21:14:50Z",
+      "message": "chore(data): refresh afternoon public catalog",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/fd64158d44a6b19d66108a6e8d85085712e425ba"
     },
     "Decision-Structures": {
       "branch": "main",
@@ -472,10 +472,10 @@
     },
     "TITAN": {
       "branch": "main",
-      "sha": "cc1cc6a6a96ffb28d07af0f3dbb305a306f387db",
-      "date": "2026-10-30T17:42:30Z",
-      "message": "fix(core): make plugin registration atomic (#10)",
-      "url": "https://github.com/Lucas-Belucci-Bellini/TITAN/commit/cc1cc6a6a96ffb28d07af0f3dbb305a306f387db"
+      "sha": "3bbdc7c7fb9be0c66ec49445c555250470b9b00c",
+      "date": "2026-10-30T22:46:25Z",
+      "message": "feat(core): expose registered plugin capabilities (#11)",
+      "url": "https://github.com/Lucas-Belucci-Bellini/TITAN/commit/3bbdc7c7fb9be0c66ec49445c555250470b9b00c"
     },
     "UMBRA-LIMA-ALFA": {
       "branch": "main",
@@ -493,15 +493,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5182,
-    "project_commits": 4892,
-    "monitor_commits": 290,
-    "detected_project_commits_this_scan": 57,
+    "tracked_commits": 5209,
+    "project_commits": 4918,
+    "monitor_commits": 291,
+    "detected_project_commits_this_scan": 26,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 71,
-    "repositories_changed": 4,
+    "repositories_changed": 3,
     "errors": 3
   },
   "errors": [

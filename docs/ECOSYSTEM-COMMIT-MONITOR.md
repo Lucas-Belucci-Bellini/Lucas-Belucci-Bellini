@@ -2,27 +2,26 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-30T19:22:06Z`  
+**Última varredura:** `2026-10-30T23:45:56Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `71`  
-**Repositórios com mudanças desde a última varredura:** `4`  
+**Repositórios com mudanças desde a última varredura:** `3`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5182`
-- **Commits dos projetos:** `4892`
-- **Commits do próprio monitor:** `290`
-- **Commits de projetos detectados nesta hora:** `57`
+- **Commits rastreados pelo ecossistema:** `5209`
+- **Commits dos projetos:** `4918`
+- **Commits do próprio monitor:** `291`
+- **Commits de projetos detectados nesta hora:** `26`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **AETHER** — 4 commit(s) — [0ec48da85ca0](https://github.com/Lucas-Belucci-Bellini/AETHER/commit/0ec48da85ca0cba1ccf77cfaab5f7dc463937bb2) — docs: reconcile roadmap and backlog with verified implementation (#9)
-- **All-Skills-for-the-claude-code** — 44 commit(s) — [bfb0b6a32124](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/bfb0b6a3212455a1da4e49fc1b19615290c6d15c) — NEXORA: add Cutout layer integration skill
-- **ATLAS** — 4 commit(s) — [26b4fd318c86](https://github.com/Lucas-Belucci-Bellini/ATLAS/commit/26b4fd318c862d0a125d937b8cd0aabd2eeec81b) — docs: reconcile roadmap and backlog with current implementation (#9)
-- **TITAN** — 5 commit(s) — [cc1cc6a6a96f](https://github.com/Lucas-Belucci-Bellini/TITAN/commit/cc1cc6a6a96ffb28d07af0f3dbb305a306f387db) — fix(core): make plugin registration atomic (#10)
+- **All-Skills-for-the-claude-code** — 24 commit(s) — [c2b1f7ca793a](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/c2b1f7ca793a14a3c00249d812fa42ad048c1636) — feat(nexora): add Job Queue Admission Budget workflow
+- **Dark-Legion** — 1 commit(s) — [fd64158d44a6](https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/fd64158d44a6b19d66108a6e8d85085712e425ba) — chore(data): refresh afternoon public catalog
+- **TITAN** — 1 commit(s) — [3bbdc7c7fb9b](https://github.com/Lucas-Belucci-Bellini/TITAN/commit/3bbdc7c7fb9be0c66ec49445c555250470b9b00c) — feat(core): expose registered plugin capabilities (#11)
 
 ## Erros de consulta
 
