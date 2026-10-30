@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-30T00:58:57Z",
+  "scanned_at": "2026-10-30T07:05:32Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -271,10 +271,10 @@
     },
     "Dark-Legion": {
       "branch": "main",
-      "sha": "0dbff6e302667b314bb746f46d7f75edb5b4232d",
-      "date": "2026-10-30T00:56:02Z",
-      "message": "fix: prune stale public catalog rows from PostgreSQL",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/0dbff6e302667b314bb746f46d7f75edb5b4232d"
+      "sha": "33e6a97edbaba79a815943fe1a45b28d033729ba",
+      "date": "2026-10-30T03:24:59Z",
+      "message": "Continua construindo e quando vc puder fazer o Merge pode fazer",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/33e6a97edbaba79a815943fe1a45b28d033729ba"
     },
     "Decision-Structures": {
       "branch": "main",
@@ -500,10 +500,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5113,
-    "project_commits": 4826,
-    "monitor_commits": 287,
-    "detected_project_commits_this_scan": 6,
+    "tracked_commits": 5122,
+    "project_commits": 4834,
+    "monitor_commits": 288,
+    "detected_project_commits_this_scan": 8,
     "monitor_commit_this_scan": 1
   },
   "summary": {

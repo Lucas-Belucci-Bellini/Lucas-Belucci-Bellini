@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-30T00:58:57Z`  
+**Última varredura:** `2026-10-30T07:05:32Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `72`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5113`
-- **Commits dos projetos:** `4826`
-- **Commits do próprio monitor:** `287`
-- **Commits de projetos detectados nesta hora:** `6`
+- **Commits rastreados pelo ecossistema:** `5122`
+- **Commits dos projetos:** `4834`
+- **Commits do próprio monitor:** `288`
+- **Commits de projetos detectados nesta hora:** `8`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Dark-Legion** — 6 commit(s) — [0dbff6e30266](https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/0dbff6e302667b314bb746f46d7f75edb5b4232d) — fix: prune stale public catalog rows from PostgreSQL
+- **Dark-Legion** — 8 commit(s) — [33e6a97edbab](https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/33e6a97edbaba79a815943fe1a45b28d033729ba) — Continua construindo e quando vc puder fazer o Merge pode fazer
 
 ## Erros de consulta
 
