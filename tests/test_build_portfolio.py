@@ -42,7 +42,7 @@ class PortfolioBuildTests(unittest.TestCase):
         ):
             target = self.root / relative
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_text("static asset\\n", encoding="utf-8")
+            target.write_text("static asset\n", encoding="utf-8")
         docs = self.root / "docs"
         docs.mkdir(parents=True, exist_ok=True)
         (docs / "README_STACK.json").write_text(
@@ -57,7 +57,7 @@ class PortfolioBuildTests(unittest.TestCase):
             encoding="utf-8",
         )
         (docs / "PROFILE-ARCHIVE.md").write_text(
-            "\\n".join([
+            "\n".join([
                 "<!-- LANGUAGE-STATS:START -->",
                 "> **1 linguagens** · **1 repositórios públicos** · **1.00 MB de código detectado** · atualizado em `2026-10-30 00:00 UTC`",
                 "",
