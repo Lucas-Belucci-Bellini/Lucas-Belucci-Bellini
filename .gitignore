@@ -7,3 +7,6 @@ docs/README_LINK_CHECK.json
 
 # Rust (cargo)
 /target/
+
+# Generated TypeScript browser bundle (recreated by scripts/build_frontend.py)
+/assets/js/
