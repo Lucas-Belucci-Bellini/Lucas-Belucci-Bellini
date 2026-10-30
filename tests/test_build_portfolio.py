@@ -135,6 +135,7 @@ class PortfolioBuildTests(unittest.TestCase):
                 "assets/site.js",
                 "assets/favicon.svg",
                 "data/projects.json",
+                "data/stack-inventory.json",
             },
         )
 
