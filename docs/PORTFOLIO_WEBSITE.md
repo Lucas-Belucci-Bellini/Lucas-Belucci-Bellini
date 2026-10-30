@@ -1,56 +1,64 @@
 # Portfolio website — V2
 
-O site é uma apresentação web do mesmo portfólio que o README do perfil. A identidade visual mantém a base escura e dourada do Field Manual, enquanto o site oferece navegação, busca e filtro que não existem no Markdown do GitHub.
+O site é a apresentação web do mesmo portfólio do README do perfil. A identidade visual mantém a base escura e dourada do Field Manual, enquanto o site oferece navegação, busca e filtros que não existem no Markdown do GitHub.
 
 ## Arquitetura
 
-## Evolução TypeScript + Rust
-
-A arquitetura-alvo e as etapas de migração estão registradas em
-[PORTFOLIO-APPLICATION-ARCHITECTURE.md](PORTFOLIO-APPLICATION-ARCHITECTURE.md).
-Estado atual: a interface ainda usa JavaScript; o workspace Rust existente é
-uma CLI de coleta, domínio, validação e geração, não um servidor HTTP público.
-A migração será incremental, com contratos JSON versionados, testes de
-privacidade e paridade entre geradores antes de substituir o pipeline Python.
-
-
-- `index.html`: estrutura semântica e conteúdo editorial.
+- `index.html`: estrutura semântica e conteúdo editorial; carrega `assets/main.js` como módulo ES.
 - `assets/site.css`: identidade visual responsiva, foco visível e suporte a redução de movimento.
-- `assets/site.js`: busca, filtro por categoria e renderização segura dos cartões.
-- `docs/project-catalog.json`: catálogo canônico gerado pelo processo atual do perfil.
+- `frontend/main.ts`: runtime TypeScript de busca, filtros, cartões, inventário de linguagens e ferramentas.
+- `frontend/contracts.ts`: tipos e validadores de runtime dos feeds públicos.
+- `tsconfig.json`: compilação estrita para módulos ES2022 em `frontend/build/`.
+- `crates/profile-core/src/site_feed.rs`: geração Rust dos dois feeds públicos e cópia da allowlist de arquivos.
+- `docs/project-catalog.json`: catálogo canônico gerado pelo processo de perfil.
 - `docs/PROFILE-ARCHIVE.md` + `docs/README_STACK.json`: fontes públicas da matriz de linguagens e das ferramentas documentadas.
-- `data/stack-inventory.json`: feed público gerado pelo builder, com participação por linguagem, categorias, evidências e links para projetos públicos correspondentes.
-- `scripts/build_portfolio.py`: cria `dist/` com apenas os arquivos públicos necessários e uma projeção filtrada dos projetos públicos.
-- `.github/workflows/deploy-portfolio.yml`: valida e constrói o artefato em pull requests e pushes; a publicação de produção é responsabilidade da integração Git do Vercel.
+- `scripts/build_portfolio.py`: implementação Python mantida como referência independente para comparar os feeds byte a byte.
+- `vercel.json`: executa o compilador TypeScript e `profile-core site build`, publicando somente `dist/`.
+- `.github/workflows/deploy-portfolio.yml`: executa testes TypeScript, testes Rust, comparação Python/Rust e verificação da allowlist.
+
+O comando Rust `profile-core site build` lê o snapshot já versionado. Ele não consulta o GitHub, não conecta ao PostgreSQL e não precisa de token. Isso mantém o build do site reproduzível e independente de credenciais.
 
 ## Privacidade
 
-O deploy **não publica a raiz inteira do repositório**. O build copia somente o HTML, os assets do site e os dois feeds públicos `dist/data/projects.json` e `dist/data/stack-inventory.json`. O catálogo de saída exclui projetos marcados como privados e inclui apenas os campos necessários para exibição pública. Não coloque tokens, segredos, endpoints internos ou conteúdo de arquivos privados nos campos públicos do catálogo.
+O deploy **não publica a raiz inteira do repositório**. O Rust monta `dist/` com uma lista explícita de arquivos: HTML, CSS, módulos JavaScript compilados, favicon e os dois feeds públicos. O catálogo de saída exclui projetos privados, remove campos internos e só publica websites HTTPS verificados. Nomes privados também são removidos das evidências de ferramentas.
+
+O TypeScript valida o schema e rejeita campos inesperados antes de renderizar. A interface cria elementos DOM e usa `textContent`; não injeta HTML arbitrário vindo do JSON.
 
 ## Executar localmente
 
-Requer Python 3.10 ou superior:
+Requer Node.js 22+, Rust 1.94.1 e a toolchain TypeScript 5.9.3 via `npx`:
 
 ```bash
-python scripts/build_portfolio.py
+npx --yes --package typescript@5.9.3 tsc -p tsconfig.json
+cargo run --locked --release -p profile-core -- site build --root . --out-dir dist --frontend-build frontend/build
 python -m http.server 8000 --directory dist
 ```
 
 Abra `http://localhost:8000`. Não abra o HTML diretamente via `file://`, pois o catálogo é carregado com `fetch`.
 
+Para comparar o gerador Python de referência:
+
+```bash
+python scripts/build_portfolio.py --out /tmp/portfolio-python-dist
+cmp /tmp/portfolio-python-dist/data/projects.json dist/data/projects.json
+cmp /tmp/portfolio-python-dist/data/stack-inventory.json dist/data/stack-inventory.json
+```
+
 ## Validação
 
 ```bash
-python -m json.tool docs/project-catalog.json
-python scripts/build_portfolio.py
+npx --yes --package typescript@5.9.3 tsc --noEmit -p tsconfig.json
+npx --yes --package tsx@4.20.6 tsx --test frontend/contracts.test.ts
+cargo fmt --all -- --check
+cargo test --locked -p profile-core site_feed
 ```
 
-O workflow também verifica se o artefato contém os arquivos necessários e se o catálogo publicado não contém registros privados.
+O workflow também compara os feeds Python/Rust byte a byte e verifica a allowlist do artefato para garantir que nenhum dado privado foi incluído.
 
 ## Publicação
 
-A hospedagem de produção é o projeto Vercel `lucas-belucci-bellini`, conectado ao repositório GitHub. O workflow deste repositório faz build e validação e mantém um artefato inspecionável; ele não tenta publicar GitHub Pages. O domínio principal configurado no projeto é `lucas-belucci-bellini.vercel.app`.
+A hospedagem de produção é o projeto Vercel `lucas-belucci-bellini`, conectado ao repositório GitHub. O `vercel.json` define o build e o diretório `dist/`. GitHub Actions valida o mesmo artefato, mas não publica GitHub Pages nem altera domínios ou segredos do projeto.
 
 ## Relação com o README
 
-O README continua sendo a landing page nativa do GitHub e deve direcionar ao site completo. As seções dinâmicas atuais permanecem sob controle de `scripts/update_profile.py` e seus marcadores; não edite manualmente os blocos gerados. O ajuste editorial do README será feito como parte da integração da V2, respeitando os contratos documentados em `docs/README_DATA.md`.
+O README continua sendo a landing page nativa do GitHub e deve direcionar ao site completo. Os blocos dinâmicos do arquivo de perfil permanecem sob controle dos geradores e seus marcadores; não edite manualmente os blocos gerados. O catálogo público mantém os contratos documentados em `docs/README_DATA.md`.
