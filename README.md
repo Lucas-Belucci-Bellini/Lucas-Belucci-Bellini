@@ -25,11 +25,17 @@ Sou Lucas Belucci Bellini, também conhecido como Spartan Gamer BR. Tenho intere
 - **Python** — automação, scripts e ferramentas relacionadas a IA
 - **JavaScript** — desenvolvimento web e aplicações interativas
 
-**Também utilizadas em projetos públicos, experimentais e acadêmicos**
+**Outras linguagens identificadas em projetos públicos, experimentais e acadêmicos**
 
-Java · C# · SQL / PL/pgSQL · HTML · CSS · Shell · PowerShell · Batch · Portugol · GDScript · ShaderLab · SQF · Dockerfile
+Java · C# · C · C++ · Swift · Solidity · GDScript · SQF · Portugol · Wolfram Language · Assembly · Objective-C · GLSL · PL/pgSQL
 
-A lista considera linguagens e formatos identificados em repositórios públicos e configurações de projetos. Ela representa experiência em projetos, não um nível equivalente de domínio em todos os itens.
+**Web, estilos, scripts e ferramentas de build**
+
+HTML · CSS · SCSS · Shell · PowerShell · Batch · Go Template · ShaderLab · CMake · Makefile · Linker Script · Dockerfile · NSIS
+
+Também utilizo SQL em projetos com bancos de dados e migrações.
+
+A lista foi organizada a partir de linguagens e formatos identificados nos repositórios públicos. A presença em um projeto representa experiência de uso, não um nível equivalente de domínio em todos eles.
 
 ## Ferramentas & ecossistema
 
