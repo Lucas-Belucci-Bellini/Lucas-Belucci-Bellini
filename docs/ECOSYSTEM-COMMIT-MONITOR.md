@@ -2,26 +2,25 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-30T23:45:56Z`  
+**Última varredura:** `2026-10-31T05:39:59Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `71`  
-**Repositórios com mudanças desde a última varredura:** `3`  
+**Repositórios com mudanças desde a última varredura:** `2`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5209`
-- **Commits dos projetos:** `4918`
-- **Commits do próprio monitor:** `291`
-- **Commits de projetos detectados nesta hora:** `26`
+- **Commits rastreados pelo ecossistema:** `5235`
+- **Commits dos projetos:** `4943`
+- **Commits do próprio monitor:** `292`
+- **Commits de projetos detectados nesta hora:** `25`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **All-Skills-for-the-claude-code** — 24 commit(s) — [c2b1f7ca793a](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/c2b1f7ca793a14a3c00249d812fa42ad048c1636) — feat(nexora): add Job Queue Admission Budget workflow
-- **Dark-Legion** — 1 commit(s) — [fd64158d44a6](https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/fd64158d44a6b19d66108a6e8d85085712e425ba) — chore(data): refresh afternoon public catalog
-- **TITAN** — 1 commit(s) — [3bbdc7c7fb9b](https://github.com/Lucas-Belucci-Bellini/TITAN/commit/3bbdc7c7fb9be0c66ec49445c555250470b9b00c) — feat(core): expose registered plugin capabilities (#11)
+- **All-Skills-for-the-claude-code** — 21 commit(s) — [7715e8ddd662](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/7715e8ddd6629280d0847091f71ad2b81ede8f52) — feat(nexora): define deterministic machine logic graph contract
+- **Dark-Legion** — 4 commit(s) — [4fa9b370aae3](https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/4fa9b370aae395f4070f9a2e0b292cb28c3916e7) — fix: ignore generated Next.js files in lint
 
 ## Erros de consulta
 

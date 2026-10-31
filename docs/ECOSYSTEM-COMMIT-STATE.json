@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-30T23:45:56Z",
+  "scanned_at": "2026-10-31T05:39:59Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -26,10 +26,10 @@
     },
     "All-Skills-for-the-claude-code": {
       "branch": "main",
-      "sha": "c2b1f7ca793a14a3c00249d812fa42ad048c1636",
-      "date": "2026-10-30T23:36:05Z",
-      "message": "feat(nexora): add Job Queue Admission Budget workflow",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/c2b1f7ca793a14a3c00249d812fa42ad048c1636"
+      "sha": "7715e8ddd6629280d0847091f71ad2b81ede8f52",
+      "date": "2026-10-31T03:15:01Z",
+      "message": "feat(nexora): define deterministic machine logic graph contract",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/7715e8ddd6629280d0847091f71ad2b81ede8f52"
     },
     "All-The-Mods-10": {
       "branch": "main",
@@ -271,10 +271,10 @@
     },
     "Dark-Legion": {
       "branch": "main",
-      "sha": "fd64158d44a6b19d66108a6e8d85085712e425ba",
-      "date": "2026-10-30T21:14:50Z",
-      "message": "chore(data): refresh afternoon public catalog",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/fd64158d44a6b19d66108a6e8d85085712e425ba"
+      "sha": "4fa9b370aae395f4070f9a2e0b292cb28c3916e7",
+      "date": "2026-10-31T03:03:08Z",
+      "message": "fix: ignore generated Next.js files in lint",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/4fa9b370aae395f4070f9a2e0b292cb28c3916e7"
     },
     "Decision-Structures": {
       "branch": "main",
@@ -493,15 +493,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5209,
-    "project_commits": 4918,
-    "monitor_commits": 291,
-    "detected_project_commits_this_scan": 26,
+    "tracked_commits": 5235,
+    "project_commits": 4943,
+    "monitor_commits": 292,
+    "detected_project_commits_this_scan": 25,
     "monitor_commit_this_scan": 1
   },
   "summary": {
     "repositories_scanned": 71,
-    "repositories_changed": 3,
+    "repositories_changed": 2,
     "errors": 3
   },
   "errors": [
