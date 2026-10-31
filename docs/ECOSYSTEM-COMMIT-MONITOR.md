@@ -2,25 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-31T05:39:59Z`  
+**Última varredura:** `2026-10-31T12:28:12Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `71`  
-**Repositórios com mudanças desde a última varredura:** `2`  
+**Repositórios com mudanças desde a última varredura:** `1`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5235`
-- **Commits dos projetos:** `4943`
-- **Commits do próprio monitor:** `292`
-- **Commits de projetos detectados nesta hora:** `25`
+- **Commits rastreados pelo ecossistema:** `5237`
+- **Commits dos projetos:** `4944`
+- **Commits do próprio monitor:** `293`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **All-Skills-for-the-claude-code** — 21 commit(s) — [7715e8ddd662](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/7715e8ddd6629280d0847091f71ad2b81ede8f52) — feat(nexora): define deterministic machine logic graph contract
-- **Dark-Legion** — 4 commit(s) — [4fa9b370aae3](https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/4fa9b370aae395f4070f9a2e0b292cb28c3916e7) — fix: ignore generated Next.js files in lint
+- **All-Skills-for-the-claude-code** — 1 commit(s) — [c283fbe0e601](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/c283fbe0e6016007c8764e7a992936e8c5753d6a) — feat(nexora): define conserved energy network transactions
 
 ## Erros de consulta
 
