@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-10-31T12:28:12Z`  
+**Última varredura:** `2026-10-31T17:43:13Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `71`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5237`
-- **Commits dos projetos:** `4944`
-- **Commits do próprio monitor:** `293`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits rastreados pelo ecossistema:** `5250`
+- **Commits dos projetos:** `4956`
+- **Commits do próprio monitor:** `294`
+- **Commits de projetos detectados nesta hora:** `12`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **All-Skills-for-the-claude-code** — 1 commit(s) — [c283fbe0e601](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/c283fbe0e6016007c8764e7a992936e8c5753d6a) — feat(nexora): define conserved energy network transactions
+- **All-Skills-for-the-claude-code** — 12 commit(s) — [8c4772eaf7d7](https://github.com/Lucas-Belucci-Bellini/All-Skills-for-the-claude-code/commit/8c4772eaf7d7a0852b7e769b1d216aa71f45e78d) — feat(nexora): add accessibility caption localization contract
 
 ## Erros de consulta
 
