@@ -4,44 +4,62 @@
 
 **Estudante de Ciência da Computação · Desenvolvedor independente · UNIFIL**
 
-Construo aplicações web, ferramentas, sistemas em Rust, agentes de IA, jogos e projetos de hardware.
+Construo aplicações web, sistemas em Rust, ferramentas com IA, jogos, automações e projetos de hardware.
 
 [![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-181717?style=for-the-badge&logo=github)](https://github.com/Lucas-Belucci-Bellini)
 [![Portfólio](https://img.shields.io/badge/Portf%C3%B3lio-Acessar%20site-d4a24e?style=for-the-badge)](https://lucas-belucci-bellini.vercel.app)
-[![Projetos](https://img.shields.io/badge/Explorar-Dark%20Legion-d4a24e?style=for-the-badge)](https://github.com/Lucas-Belucci-Bellini/Dark-Legion)
-[![UNIFIL](https://img.shields.io/badge/UNIFIL-Ci%C3%AAncia%20da%20Computa%C3%A7%C3%A3o-1d4e89?style=for-the-badge)](https://unifil.br)
+[![Projetos](https://img.shields.io/badge/Projetos-Explorar%20Dark%20Legion-d4a24e?style=for-the-badge)](https://github.com/Lucas-Belucci-Bellini/Dark-Legion)
 
 </div>
-
 
 ## Sobre
 
 Sou Lucas Belucci Bellini, também conhecido como Spartan Gamer BR. Tenho interesse em engenharia de software, arquitetura de sistemas, automação, inteligência artificial, desenvolvimento de jogos e hardware.
 
-## Stack profissional
+## Linguagens
 
-- **Linguagens:** 31 detectadas em repositórios públicos, com TypeScript, JavaScript, HTML, Rust, C#, GLSL, Python e Java entre as principais por volume.
-- **Frameworks & Web:** React, Next.js, Vite, Tailwind CSS, Electron e MapLibre GL.
-- **Infraestrutura & DevOps:** Git, GitHub, GitHub Actions, Linux, Node.js, Docker, PostgreSQL, Supabase e Vercel.
-- **IA & Conhecimento:** MCP, Obsidian, Claude e integrações com agentes.
-- **Hardware & Simulação:** Unity, Arduino, Flowgorithm e Portugol.
+**Principais linguagens que utilizo**
 
-<sub>Inventário baseado em linguagens detectadas e ferramentas documentadas em projetos públicos; presença no portfólio indica evidência de uso, não certificação ou domínio equivalente.</sub>
+- **TypeScript** — aplicações web, interfaces e ferramentas
+- **Rust** — serviços backend, programação de sistemas e desenvolvimento de engines
+- **Python** — automação, scripts e ferramentas relacionadas a IA
+- **JavaScript** — desenvolvimento web e aplicações interativas
 
+**Outras linguagens identificadas em projetos públicos, experimentais e acadêmicos**
+
+Java · C# · C · C++ · Swift · Solidity · GDScript · SQF · Portugol · Wolfram Language · Assembly · Objective-C · GLSL · PL/pgSQL
+
+**Web, estilos, scripts e ferramentas de build**
+
+HTML · CSS · SCSS · Shell · PowerShell · Batch · Go Template · ShaderLab · CMake · Makefile · Linker Script · Dockerfile · NSIS
+
+Também utilizo SQL em projetos com bancos de dados e migrações.
+
+A lista foi organizada a partir de linguagens e formatos identificados nos repositórios públicos. A presença em um projeto representa experiência de uso, não um nível equivalente de domínio em todos eles.
+
+## Ferramentas & ecossistema
+
+- **Web:** React, Next.js, Vite, Tailwind CSS, Electron e MapLibre GL
+- **Backend & dados:** Axum, PostgreSQL, SQLx e Supabase
+- **DevOps:** Git, GitHub Actions, Linux, Node.js, Docker e Vercel
+- **IA & conhecimento:** MCP, Claude, Obsidian e integrações com agentes
+- **Hardware & simulação:** Unity, Arduino e ferramentas de lógica digital
 
 ## Projetos em destaque
 
 | Projeto | Área | Acesso |
 |---|---|---|
-| **NEXORA** | Engine e tecnologia em Rust | [Repositório](https://github.com/Lucas-Belucci-Bellini/NEXORA) |
-| **Projeto Baluarte** | Ecossistema de software | [Repositório](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
+| **NEXORA** | Engine e tecnologia de jogos em Rust | [Repositório](https://github.com/Lucas-Belucci-Bellini/NEXORA) |
+| **Projeto Baluarte** | Ecossistema de software e produtos | [Repositório](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
 | **Veritas** | Lógica digital e simulação | [Repositório](https://github.com/Lucas-Belucci-Bellini/Veritas) |
 | **FLUX** | Software e aplicações | [Repositório](https://github.com/Lucas-Belucci-Bellini/FLUX) |
-| **Dark Legion** | Portal central de projetos | [Explorar catálogo](https://github.com/Lucas-Belucci-Bellini/Dark-Legion) |
+| **Dark Legion** | Diretório público de projetos e demonstração de engenharia em projetos grandes | [Explorar](https://github.com/Lucas-Belucci-Bellini/Dark-Legion) |
 
 ## Explorar
 
-O catálogo completo, com categorias, descrições, repositórios e sites públicos verificados, está no **[Dark Legion](https://github.com/Lucas-Belucci-Bellini/Dark-Legion)**.
+O Dark Legion é o diretório central dos projetos públicos, com categorias, descrições e links de sites verificados. Também documenta a engenharia de um projeto de maior escala: portal em TypeScript, APIs em Rust, integração com PostgreSQL e manutenção automatizada do catálogo.
+
+[Explorar o Dark Legion →](https://github.com/Lucas-Belucci-Bellini/Dark-Legion)
 
 ## Contato
 
@@ -50,4 +68,4 @@ O catálogo completo, com categorias, descrições, repositórios e sites públi
 
 ---
 
-<sub>README compacto para apresentação. O histórico detalhado e os blocos gerados permanecem em [PROFILE-ARCHIVE.md](docs/PROFILE-ARCHIVE.md).</sub>
+<sub>Visão geral compacta do perfil. O histórico detalhado e os registros de projetos permanecem em <a href="docs/PROFILE-ARCHIVE.md">PROFILE-ARCHIVE.md</a>.</sub>
