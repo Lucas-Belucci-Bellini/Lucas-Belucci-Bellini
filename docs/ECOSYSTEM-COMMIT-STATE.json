@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-10-31T17:43:13Z",
+  "scanned_at": "2026-11-01T15:06:47Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -271,10 +271,10 @@
     },
     "Dark-Legion": {
       "branch": "main",
-      "sha": "4fa9b370aae395f4070f9a2e0b292cb28c3916e7",
-      "date": "2026-10-31T03:03:08Z",
-      "message": "fix: ignore generated Next.js files in lint",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/4fa9b370aae395f4070f9a2e0b292cb28c3916e7"
+      "sha": "902f20f46830f563df8077bfe42f3c738119f040",
+      "date": "2026-11-01T09:52:28Z",
+      "message": "chore(data): refresh midnight public catalog",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/902f20f46830f563df8077bfe42f3c738119f040"
     },
     "Decision-Structures": {
       "branch": "main",
@@ -493,10 +493,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5250,
-    "project_commits": 4956,
-    "monitor_commits": 294,
-    "detected_project_commits_this_scan": 12,
+    "tracked_commits": 5252,
+    "project_commits": 4957,
+    "monitor_commits": 295,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
