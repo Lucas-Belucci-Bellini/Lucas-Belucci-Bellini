@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-11-01T15:06:47Z",
+  "scanned_at": "2026-11-02T23:29:27Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -33,10 +33,10 @@
     },
     "All-The-Mods-10": {
       "branch": "main",
-      "sha": "4e7f342177ce4869dc771386e84c9ccbeb09435e",
-      "date": "2026-10-27T06:10:45Z",
-      "message": "Atualiza configuracoes, dados de execucao e arquivos do modpack",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/4e7f342177ce4869dc771386e84c9ccbeb09435e"
+      "sha": "db40074e7fda5649b73d38d2462fdcfbde60ce7d",
+      "date": "2026-11-02T18:50:29Z",
+      "message": "Merge remote-tracking branch 'origin/main'",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/db40074e7fda5649b73d38d2462fdcfbde60ce7d"
     },
     "Ark-Initiative": {
       "branch": "main",
@@ -493,10 +493,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5252,
-    "project_commits": 4957,
-    "monitor_commits": 295,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 5255,
+    "project_commits": 4959,
+    "monitor_commits": 296,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {
