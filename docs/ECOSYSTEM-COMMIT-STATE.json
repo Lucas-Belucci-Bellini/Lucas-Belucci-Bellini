@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-11-02T23:29:27Z",
+  "scanned_at": "2026-11-03T20:58:50Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -33,10 +33,10 @@
     },
     "All-The-Mods-10": {
       "branch": "main",
-      "sha": "db40074e7fda5649b73d38d2462fdcfbde60ce7d",
-      "date": "2026-11-02T18:50:29Z",
-      "message": "Merge remote-tracking branch 'origin/main'",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/db40074e7fda5649b73d38d2462fdcfbde60ce7d"
+      "sha": "fcd2d8cc2052f103c3541eff56bc00ec7927a92b",
+      "date": "2026-11-03T19:38:09Z",
+      "message": "balance(emc): gera tabela mestra na instancia real e corrige Mekanism/variantes",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/fcd2d8cc2052f103c3541eff56bc00ec7927a92b"
     },
     "Ark-Initiative": {
       "branch": "main",
@@ -493,10 +493,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5255,
-    "project_commits": 4959,
-    "monitor_commits": 296,
-    "detected_project_commits_this_scan": 2,
+    "tracked_commits": 5262,
+    "project_commits": 4965,
+    "monitor_commits": 297,
+    "detected_project_commits_this_scan": 6,
     "monitor_commit_this_scan": 1
   },
   "summary": {
