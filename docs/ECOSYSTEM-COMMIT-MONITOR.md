@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-11-03T20:58:50Z`  
+**Última varredura:** `2026-11-04T01:20:36Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `71`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5262`
-- **Commits dos projetos:** `4965`
-- **Commits do próprio monitor:** `297`
-- **Commits de projetos detectados nesta hora:** `6`
+- **Commits rastreados pelo ecossistema:** `5264`
+- **Commits dos projetos:** `4966`
+- **Commits do próprio monitor:** `298`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **All-The-Mods-10** — 6 commit(s) — [fcd2d8cc2052](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/fcd2d8cc2052f103c3541eff56bc00ec7927a92b) — balance(emc): gera tabela mestra na instancia real e corrige Mekanism/variantes
+- **All-The-Mods-10** — 1 commit(s) — [6c84ddb74714](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/6c84ddb74714cfb16e4baae31b2711a1dd8f7399) — 15362564
 
 ## Erros de consulta
 
