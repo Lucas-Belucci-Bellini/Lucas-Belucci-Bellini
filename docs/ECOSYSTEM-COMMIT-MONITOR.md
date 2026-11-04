@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-11-04T09:10:58Z`  
+**Última varredura:** `2026-11-04T22:38:20Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `71`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5280`
-- **Commits dos projetos:** `4981`
-- **Commits do próprio monitor:** `299`
-- **Commits de projetos detectados nesta hora:** `15`
+- **Commits rastreados pelo ecossistema:** `5282`
+- **Commits dos projetos:** `4982`
+- **Commits do próprio monitor:** `300`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **All-The-Mods-10** — 15 commit(s) — [d246329b7c82](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/d246329b7c826194088555b3834edbc71638bcc3) — [EMC] Handle malformed master audit metadata
+- **Dark-Legion** — 1 commit(s) — [9887e3b0fc8f](https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/9887e3b0fc8f25020b9f2bd593490de634bd0a88) — feat(portal): expand Dark Legion into the Issue #18 command center
 
 ## Erros de consulta
 

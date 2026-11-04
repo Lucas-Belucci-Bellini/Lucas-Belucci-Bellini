@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-11-04T09:10:58Z",
+  "scanned_at": "2026-11-04T22:38:20Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -271,10 +271,10 @@
     },
     "Dark-Legion": {
       "branch": "main",
-      "sha": "902f20f46830f563df8077bfe42f3c738119f040",
-      "date": "2026-11-01T09:52:28Z",
-      "message": "chore(data): refresh midnight public catalog",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/902f20f46830f563df8077bfe42f3c738119f040"
+      "sha": "9887e3b0fc8f25020b9f2bd593490de634bd0a88",
+      "date": "2026-11-04T17:45:40Z",
+      "message": "feat(portal): expand Dark Legion into the Issue #18 command center",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/9887e3b0fc8f25020b9f2bd593490de634bd0a88"
     },
     "Decision-Structures": {
       "branch": "main",
@@ -493,10 +493,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5280,
-    "project_commits": 4981,
-    "monitor_commits": 299,
-    "detected_project_commits_this_scan": 15,
+    "tracked_commits": 5282,
+    "project_commits": 4982,
+    "monitor_commits": 300,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
