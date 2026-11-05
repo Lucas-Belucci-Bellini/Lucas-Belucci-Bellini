@@ -100,7 +100,9 @@ jobs:
 
       - name: Contribuições
         env:
-          PROFILE_README_TOKEN: ${{ secrets.PROFILE_README_TOKEN || github.token }}
+          # Sem PROFILE_README_TOKEN aqui: os dois coletores são GraphQL e a API
+          # GraphQL rejeita PAT fine-grained com 401. Ficam com o GITHUB_TOKEN do
+          # job, como já faz profile_cards.py.
           PROFILE_LOGIN: ${{ github.repository_owner }}
         run: |
           python scripts/update_contribution_timeline.py --root shadow/timeline-py --now "$NOW" > shadow/timeline-py.out &

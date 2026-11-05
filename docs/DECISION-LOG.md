@@ -759,3 +759,25 @@ D-029 a D-033, na Fase 3 (coleta); D-034 a D-036, na Fase 4 (geração); D-037 a
   consulta de linguagens que falhou mantém o mapa anterior no banco (D-031),
   então o `--from-db` não reproduz o A25.
 
+
+## D-041
+
+**GraphQL do perfil com o token do Actions; o secret só no REST.** · aceita · 2026-11-05
+
+- **Contexto:** `PROFILE_README_TOKEN` é um PAT *fine-grained* (recomendação
+  0.1 da auditoria de 2026-09-25, A1). A API GraphQL não aceita esse tipo de
+  token, e desde 2026-10-28 ele responde `401` também no REST — ou seja, o
+  secret está vencido. Os únicos consumidores de `PROFILE_README_TOKEN` no
+  repositório são os coletores de timeline (`scripts/update_contribution_timeline.py:188`
+  e `crates/profile-core/src/main.rs:934`), e os dois falam só GraphQL.
+- **Decisão:** os três workflows que rodam esses coletores deixam de passar
+  `PROFILE_README_TOKEN` e ficam com o `GITHUB_TOKEN` do job, o mesmo padrão de
+  `.github/scripts/profile_cards.py`. A preferência do código (ele ou o
+  `GITHUB_TOKEN`) não muda: a mudança é só de onde o token vem, e por isso os
+  fixtures de paridade e o port Rust ficam intactos. O secret continua como
+  `PROFILE_GITHUB_TOKEN`, que é o REST completo (inventário com os privados).
+- **Prova:** *Publish contribution timeline* verde em 2026-11-05 e o commit de
+  dados `4519ff4` com a janela `2025-11-05..2026-11-05`. Ficou pendente do dono:
+  substituir o secret, sem o qual o *Audit repositories* (`update-profile.yml`)
+  continua vermelho de propósito — sem inventário com os privados o README
+  apagaria as entradas deles (A1).

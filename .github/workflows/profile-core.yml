@@ -47,7 +47,10 @@ jobs:
       GH_USER: ${{ github.repository_owner }}
       PROFILE_REPOSITORY_NAME: ${{ github.event.repository.name }}
       PROFILE_GITHUB_TOKEN: ${{ secrets.PROFILE_README_TOKEN }}
-      PROFILE_README_TOKEN: ${{ secrets.PROFILE_README_TOKEN || github.token }}
+      # Os coletores de timeline (Python e sync contributions) só falam GraphQL,
+      # e a API GraphQL rejeita PAT fine-grained com 401: eles caem no
+      # GITHUB_TOKEN deste job. O secret continua só no PROFILE_GITHUB_TOKEN,
+      # que é o REST completo (inventário com os privados).
       PROFILE_LOGIN: ${{ github.repository_owner }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       INCLUDE_FORKS: "0"
