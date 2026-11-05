@@ -8,7 +8,7 @@ Construo aplicações web, sistemas em Rust, ferramentas com IA, jogos, automaç
 
 [![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-181717?style=for-the-badge&logo=github)](https://github.com/Lucas-Belucci-Bellini)
 [![Portfólio](https://img.shields.io/badge/Portf%C3%B3lio-Acessar%20site-d4a24e?style=for-the-badge)](https://lucas-belucci-bellini.vercel.app)
-[![Projetos](https://img.shields.io/badge/Projetos-Explorar%20Dark%20Legion-d4a24e?style=for-the-badge)](https://github.com/Lucas-Belucci-Bellini/Dark-Legion)
+[![Projetos](https://img.shields.io/badge/Projetos-Explorar%20Dark%20Legion-d4a24e?style=for-the-badge)](dark-legion-seven.vercel.app)
 
 </div>
 
