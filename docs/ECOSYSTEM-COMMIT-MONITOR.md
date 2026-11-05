@@ -2,24 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-11-04T22:38:20Z`  
+**Última varredura:** `2026-11-05T03:29:22Z`  
 **Intervalo configurado:** `1 hora`  
-**Repositórios acompanhados:** `71`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios acompanhados:** `70`  
+**Repositórios com mudanças desde a última varredura:** `0`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5282`
+- **Commits rastreados pelo ecossistema:** `5283`
 - **Commits dos projetos:** `4982`
-- **Commits do próprio monitor:** `300`
-- **Commits de projetos detectados nesta hora:** `1`
+- **Commits do próprio monitor:** `301`
+- **Commits de projetos detectados nesta hora:** `0`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Dark-Legion** — 1 commit(s) — [9887e3b0fc8f](https://github.com/Lucas-Belucci-Bellini/Dark-Legion/commit/9887e3b0fc8f25020b9f2bd593490de634bd0a88) — feat(portal): expand Dark Legion into the Issue #18 command center
+- Nenhuma mudança desde a última varredura.
 
 ## Erros de consulta
 
