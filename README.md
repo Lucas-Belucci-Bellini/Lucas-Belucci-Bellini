@@ -8,7 +8,7 @@ Construo aplicações web, sistemas em Rust, ferramentas com IA, jogos, automaç
 
 [![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-181717?style=for-the-badge&logo=github)](https://github.com/Lucas-Belucci-Bellini)
 [![Portfólio](https://img.shields.io/badge/Portf%C3%B3lio-Acessar%20site-d4a24e?style=for-the-badge)](https://lucas-belucci-bellini.vercel.app)
-[![Projetos](https://img.shields.io/badge/Projetos-Explorar%20Dark%20Legion-d4a24e?style=for-the-badge)](dark-legion-seven.vercel.app)
+[![Projetos](https://img.shields.io/badge/Projetos-Explorar%20Dark%20Legion-d4a24e?style=for-the-badge)](https://dark-legion-seven.vercel.app)
 
 </div>
 
@@ -49,17 +49,19 @@ A lista foi organizada a partir de linguagens e formatos identificados nos repos
 
 | Projeto | Área | Acesso |
 |---|---|---|
-| **NEXORA** | Engine e tecnologia de jogos em Rust | [Repositório](https://github.com/Lucas-Belucci-Bellini/NEXORA) |
+| **NEXORA** | Engine e tecnologia de jogos em Rust | [Site](https://web-2qfw.vercel.app) |
 | **Projeto Baluarte** | Ecossistema de software e produtos | [Repositório](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
 | **Veritas** | Lógica digital e simulação | [Repositório](https://github.com/Lucas-Belucci-Bellini/Veritas) |
 | **FLUX** | Software e aplicações | [Repositório](https://github.com/Lucas-Belucci-Bellini/FLUX) |
-| **Dark Legion** | Diretório público de projetos e demonstração de engenharia em projetos grandes | [Explorar](https://github.com/Lucas-Belucci-Bellini/Dark-Legion) |
+| **Dark Legion** | Diretório público de projetos e demonstração de engenharia em projetos grandes | [Site](https://dark-legion-seven.vercel.app) |
 
 ## Explorar
 
 O Dark Legion é o diretório central dos projetos públicos, com categorias, descrições e links de sites verificados. Também documenta a engenharia de um projeto de maior escala: portal em TypeScript, APIs em Rust, integração com PostgreSQL e manutenção automatizada do catálogo.
 
-[Explorar o Dark Legion →](https://github.com/Lucas-Belucci-Bellini/Dark-Legion)
+[![Abrir o site do Dark Legion](https://img.shields.io/badge/Dark%20Legion-Abrir%20o%20site-d4a24e?style=for-the-badge&logo=vercel&logoColor=white)](https://dark-legion-seven.vercel.app)
+
+O catálogo e o código do hub ficam no repositório `Lucas-Belucci-Bellini/Dark-Legion`; o acesso público é sempre pelo site acima.
 
 ## Contato
 
