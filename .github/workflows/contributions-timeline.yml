@@ -40,7 +40,10 @@ jobs:
       - name: Regenerate contribution timeline
         env:
           PROFILE_LOGIN: Lucas-Belucci-Bellini
-          PROFILE_README_TOKEN: ${{ secrets.PROFILE_README_TOKEN || github.token }}
+          # A coleta é GraphQL e o secret é um PAT fine-grained, que a API
+          # GraphQL rejeita com 401. Igual ao profile_cards.py: a leitura
+          # pública de contribuições usa o token do Actions.
+          GITHUB_TOKEN: ${{ github.token }}
         run: python3 scripts/update_contribution_timeline.py
 
       - name: Validate generated artifacts
