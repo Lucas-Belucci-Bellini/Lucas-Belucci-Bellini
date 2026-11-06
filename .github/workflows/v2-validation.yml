@@ -52,5 +52,32 @@ jobs:
       - name: Validate the compact public README and archive contract
         run: python scripts/validate_compact_readme.py
 
+      # Link sem esquema (`](site.vercel.app)`) vira caminho relativo no GitHub
+      # e o README publicado abre 404 — o validador de tamanho não vê isso, e a
+      # checagem HTTP ficou de fora de propósito (A10: instabilidade de terceiros
+      # não pode derrubar o CI). Aqui a regra é estrutural e offline.
+      - name: Check that every README link is absolute or a real file
+        run: |
+          python - <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          targets = re.findall(r"\]\(([^)]*)\)", Path("README.md").read_text(encoding="utf-8"))
+          bad = []
+          for target in targets:
+              path, _, fragment = target.partition("#")
+              if fragment or path.startswith(("http://", "https://", "mailto:")):
+                  continue
+              if not path or not Path(path).is_file():
+                  bad.append(target)
+          if bad:
+              print("links do README que não são URL absoluta nem arquivo do repo:", file=sys.stderr)
+              for target in bad:
+                  print(f"  {target}", file=sys.stderr)
+              raise SystemExit(1)
+          print(f"README links ok: {len(targets)} destinos")
+          PY
+
       # A geração detalhada, os badges, CTAs e identidade visual são validados
       # pelo Rust Core E2E sobre uma cópia gerada pelo Python e pelo Rust.
