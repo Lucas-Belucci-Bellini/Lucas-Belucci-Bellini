@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-11-06T01:32:06Z",
+  "scanned_at": "2026-11-06T09:23:32Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -33,10 +33,10 @@
     },
     "All-The-Mods-10": {
       "branch": "main",
-      "sha": "ce6e47bc388722cc790e77d69abf621c22b73637",
-      "date": "2026-11-06T00:33:40Z",
-      "message": "[EMC][DOCS] Registrar pendencias verificadas para revisao do dono",
-      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/ce6e47bc388722cc790e77d69abf621c22b73637"
+      "sha": "4afe54b9161125a16acaf91b66d02d76d23ed415",
+      "date": "2026-11-06T04:32:21Z",
+      "message": "[EMC][AUDITORIA] Reconstituir receitas de bancada do KubeJS em relatorio proprio",
+      "url": "https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/4afe54b9161125a16acaf91b66d02d76d23ed415"
     },
     "Ark-Initiative": {
       "branch": "main",
@@ -486,10 +486,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5294,
-    "project_commits": 4991,
-    "monitor_commits": 303,
-    "detected_project_commits_this_scan": 8,
+    "tracked_commits": 5297,
+    "project_commits": 4993,
+    "monitor_commits": 304,
+    "detected_project_commits_this_scan": 2,
     "monitor_commit_this_scan": 1
   },
   "summary": {

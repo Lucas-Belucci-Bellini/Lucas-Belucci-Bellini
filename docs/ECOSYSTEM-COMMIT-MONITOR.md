@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-11-06T01:32:06Z`  
+**Última varredura:** `2026-11-06T09:23:32Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `70`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5294`
-- **Commits dos projetos:** `4991`
-- **Commits do próprio monitor:** `303`
-- **Commits de projetos detectados nesta hora:** `8`
+- **Commits rastreados pelo ecossistema:** `5297`
+- **Commits dos projetos:** `4993`
+- **Commits do próprio monitor:** `304`
+- **Commits de projetos detectados nesta hora:** `2`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **All-The-Mods-10** — 8 commit(s) — [ce6e47bc3887](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/ce6e47bc388722cc790e77d69abf621c22b73637) — [EMC][DOCS] Registrar pendencias verificadas para revisao do dono
+- **All-The-Mods-10** — 2 commit(s) — [4afe54b91611](https://github.com/Lucas-Belucci-Bellini/All-The-Mods-10/commit/4afe54b9161125a16acaf91b66d02d76d23ed415) — [EMC][AUDITORIA] Reconstituir receitas de bancada do KubeJS em relatorio proprio
 
 ## Erros de consulta
 
