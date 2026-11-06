@@ -1,0 +1,10 @@
+# Os testes de paridade Python ↔ Rust e o Core Shadow comparam fixtures e
+# dados versionados byte a byte. Com core.autocrlf=true a árvore Windows
+# recebia CRLF nesses arquivos e a comparação reprovava sem defeito real
+# (13 testes locais contra um CI Linux verde). LF fixado onde o byte importa.
+# Fonte e código não entram: neles o CRLF de trabalho é inofensivo.
+README.md text eol=lf
+docs/PROFILE-ARCHIVE.md text eol=lf
+docs/**/*.json text eol=lf
+tests/fixtures/** text eol=lf
+assets/**/*.svg text eol=lf
