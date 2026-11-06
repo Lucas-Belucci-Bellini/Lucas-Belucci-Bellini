@@ -1,0 +1,4 @@
+{
+  "buildCommand": "npx --yes --package typescript@5.9.3 tsc -p tsconfig.json && cargo run --locked --release -p profile-core -- site build --root . --out-dir dist --frontend-build frontend/build",
+  "outputDirectory": "dist"
+}
