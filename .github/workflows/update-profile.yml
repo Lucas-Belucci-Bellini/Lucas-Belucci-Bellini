@@ -49,6 +49,21 @@ jobs:
       - name: Snapshot README before refresh
         run: cp docs/PROFILE-ARCHIVE.md /tmp/PROFILE-ARCHIVE.before.md
 
+      - name: Say what a dead PROFILE_README_TOKEN means
+        if: ${{ env.PROFILE_GITHUB_TOKEN != '' }}
+        run: |
+          # Sem este passo o secret vencido aparece só como "HTTP Error 401" no
+          # meio do gerador. Não muda o resultado: sem inventário com os privados
+          # o job tem de ficar vermelho mesmo (A1), porque gravar apagaria as
+          # entradas deles.
+          api="${GITHUB_API_URL:-https://api.github.com}"
+          code=$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $PROFILE_GITHUB_TOKEN" "$api/user")
+          case "$code" in
+            200) echo "PROFILE_README_TOKEN ok" ;;
+            401) echo "::warning::PROFILE_README_TOKEN respondeu 401: o PAT está vencido ou revogado. Substitua o secret (fine-grained, Contents: read + Metadata: read). A coleta GraphQL não usa este secret (D-041)." ;;
+            *) echo "::warning::PROFILE_README_TOKEN respondeu HTTP $code em $api/user" ;;
+          esac
+
       - name: Refresh README and generated assets
         if: ${{ env.PROFILE_GITHUB_TOKEN != '' }}
         run: python3 scripts/update_profile.py --write

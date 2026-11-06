@@ -112,6 +112,20 @@ jobs:
           wait "$python_pid"
           wait "$rust_pid"
 
+      - name: Say what a dead PROFILE_README_TOKEN means
+        if: ${{ env.PROFILE_GITHUB_TOKEN != '' }}
+        run: |
+          # A *Geração* usa este token no inventário REST; com o secret vencido o
+          # passo falha em 401 sem dizer por quê. Aqui é só o aviso: o passo
+          # continua vermelho de propósito, porque o recorte cairia só dos públicos.
+          api="${GITHUB_API_URL:-https://api.github.com}"
+          code=$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $PROFILE_GITHUB_TOKEN" "$api/user")
+          case "$code" in
+            200) echo "PROFILE_README_TOKEN ok" ;;
+            401) echo "::warning::PROFILE_README_TOKEN respondeu 401: PAT vencido ou revogado; troque o secret para a *Geração* voltar a ler o inventário com os privados." ;;
+            *) echo "::warning::PROFILE_README_TOKEN respondeu HTTP $code em $api/user" ;;
+          esac
+
       - name: Geração — os três scripts × render all --out-dir
         env:
           INCLUDE_FORKS: "0"
