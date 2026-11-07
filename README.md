@@ -1,44 +1,42 @@
 <div align="center">
 
-# Lucas Belucci Bellini
+<h1>Lucas Belucci Bellini</h1>
 
-**Ciência da Computação · UNIFIL · Londrina, Brasil**
+<p>Estudante de Ciência da Computação na UNIFIL, em Londrina.<br/>
+Gosto de construir coisas do zero: sistemas em Rust, sites, jogos e ferramentas que uso no dia a dia.</p>
 
-Engenharia de software com foco em sistemas em Rust, aplicações web em TypeScript e ferramentas com IA.
+<a href="https://dark-legion-seven.vercel.app"><img src="https://img.shields.io/badge/meus%20projetos-d4a24e?style=flat-square&logo=github&logoColor=black" alt="Meus projetos" /></a>
+<a href="https://lucas-belucci-bellini.vercel.app"><img src="https://img.shields.io/badge/portf%C3%B3lio-24292f?style=flat-square&logo=vercel&logoColor=white" alt="Portfólio" /></a>
+<a href="https://www.linkedin.com/in/lucas-belucci-bellini-28044b328"><img src="https://img.shields.io/badge/linkedin-0a66c2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
 
-[![Portfólio](https://img.shields.io/badge/Portf%C3%B3lio-0d1117?style=for-the-badge&logo=vercel&logoColor=white)](https://lucas-belucci-bellini.vercel.app)
-[![Dark Legion](https://img.shields.io/badge/Dark%20Legion-d4a24e?style=for-the-badge&logo=github&logoColor=black)](https://dark-legion-seven.vercel.app)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lucas-belucci-bellini-28044b328)
+<br/><br/>
+
+<img src="https://skillicons.dev/icons?i=rust,ts,js,python,java,cs,html,css,react,nextjs,vite,tailwind&perline=12" alt="Linguagens e frameworks" />
+<br/>
+<img src="https://skillicons.dev/icons?i=nodejs,electron,tauri,postgres,supabase,docker,git,githubactions,linux,vercel,godot,arduino&perline=12" alt="Ferramentas" />
 
 </div>
 
-## Stack
+<br/>
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=rust,ts,js,python,java,cs,html,css&perline=8" alt="Rust, TypeScript, JavaScript, Python, Java, C#, HTML, CSS" />
-  <br/>
-  <img src="https://skillicons.dev/icons?i=react,nextjs,vite,tailwind,nodejs,electron,tauri,postgres&perline=8" alt="React, Next.js, Vite, Tailwind, Node.js, Electron, Tauri, PostgreSQL" />
-  <br/>
-  <img src="https://skillicons.dev/icons?i=supabase,docker,git,githubactions,linux,vercel,godot,arduino&perline=8" alt="Supabase, Docker, Git, GitHub Actions, Linux, Vercel, Godot, Arduino" />
-</p>
+### No que estou trabalhando
 
-## Projetos
+**[Projeto Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)** é o meu projeto principal: um site com app desktop e um assistente próprio, o J.A.R.V.I.S. A versão 2 está sendo reconstruída.
 
-| Projeto | O que é | Estado |
-|---|---|---|
-| [**Projeto Baluarte**](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | Plataforma principal: web, app desktop e o assistente J.A.R.V.I.S. | Beta · V2 em reconstrução |
-| [**Vanguard Field**](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | Navegação offline-first com GPS, MGRS e mapas (PWA + Android) | Beta |
-| [**Veritas**](https://github.com/Lucas-Belucci-Bellini/Veritas) | Tabelas verdade e circuitos lógicos no navegador, com motor Rust e MCP | Beta |
-| [**NEXORA**](https://web-2qfw.vercel.app) | Sandbox voxel com motor próprio em Rust | Alpha |
-| [**TITAN**](https://github.com/Lucas-Belucci-Bellini/TITAN) · [**AETHER**](https://github.com/Lucas-Belucci-Bellini/AETHER) · [**ATLAS**](https://github.com/Lucas-Belucci-Bellini/ATLAS) | Família de frameworks Rust: backend, aplicação/IA e frontend | Alpha |
-| [**Dark Legion**](https://dark-legion-seven.vercel.app) | Diretório público de todos os projetos (Next.js + API Rust) | Em desenvolvimento |
+**[Vanguard Field](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard)** é um app de navegação que funciona sem internet, com GPS, grade MGRS e mapas. Roda no navegador e no Android.
 
-## Downloads
+**[Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas)** monta tabelas verdade e simula circuitos lógicos direto no navegador.
 
-[![Instalador Hermes + NEXORA](https://img.shields.io/badge/Hermes%20%2B%20NEXORA-Baixar%20instalador%20%28Windows%29-d4a24e?style=for-the-badge&logo=windows&logoColor=black)](https://dark-legion-seven.vercel.app/downloads)
+**[NEXORA](https://web-2qfw.vercel.app)** é um jogo de mundo em blocos com motor próprio escrito em Rust. Ainda está em alpha.
 
-Instala o Hermes Agent e sete Skills universais. Arquivos com SHA-256 publicado.
+**[TITAN](https://github.com/Lucas-Belucci-Bellini/TITAN), [AETHER](https://github.com/Lucas-Belucci-Bellini/AETHER) e [ATLAS](https://github.com/Lucas-Belucci-Bellini/ATLAS)** são frameworks em Rust que estou criando para backend, aplicações e interface.
 
----
+O resto está no [Dark Legion](https://dark-legion-seven.vercel.app), onde junto todos os projetos públicos ([código aqui](https://github.com/Lucas-Belucci-Bellini/Dark-Legion)).
 
-<sub>Catálogo completo em <a href="https://github.com/Lucas-Belucci-Bellini/Dark-Legion">Dark-Legion</a> · histórico detalhado em <a href="docs/PROFILE-ARCHIVE.md">PROFILE-ARCHIVE.md</a></sub>
+### Downloads
+
+[Instalador do Hermes + NEXORA para Windows](https://dark-legion-seven.vercel.app/downloads): instala o Hermes Agent e sete skills que eu uso nos meus projetos.
+
+<br/>
+
+<sub>Versão longa deste perfil, com todos os repositórios: <a href="docs/PROFILE-ARCHIVE.md">PROFILE-ARCHIVE.md</a></sub>
