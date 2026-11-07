@@ -1,8 +1,8 @@
 {
   "login": "Lucas-Belucci-Bellini",
-  "window_start": "2025-11-06",
-  "window_end": "2026-11-06",
-  "generated_at": "2026-11-06T14:23:09+00:00",
+  "window_start": "2025-11-07",
+  "window_end": "2026-11-07",
+  "generated_at": "2026-11-07T13:13:33+00:00",
   "source": "GitHub GraphQL API / contributionsCollection",
   "rows": [
     {
@@ -13,7 +13,7 @@
       "reviews": 0,
       "repositories": 0,
       "restricted": 0,
-      "period_start": "2025-11-06",
+      "period_start": "2025-11-07",
       "period_end": "2025-11-30"
     },
     {
@@ -146,7 +146,7 @@
       "repositories": 0,
       "restricted": 0,
       "period_start": "2026-11-01",
-      "period_end": "2026-11-06"
+      "period_end": "2026-11-07"
     }
   ]
 }
