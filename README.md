@@ -17,8 +17,16 @@ Gosto de construir coisas do zero: sistemas em Rust, sites, jogos e ferramentas 
 
 <div align="center">
 
-**Linguagens**<br/>
-<img src="https://skillicons.dev/icons?i=python,c,cpp,cs,java,js,ts,html,css,rust,bash,powershell&perline=12" alt="Python, C, C++, C#, Java, JavaScript, TypeScript, HTML, CSS, Rust, Bash, PowerShell" />
+**Linguagens** · na ordem de quanto uso<br/>
+<img src="https://skillicons.dev/icons?i=js,html,ts,rust,cs,python,css,opengl,java&perline=9" alt="JavaScript, HTML, TypeScript, Rust, C#, Python, CSS, GLSL, Java" />
+<br/>
+<img src="https://skillicons.dev/icons?i=godot,mysql,cpp,bash,kotlin,powershell,c,swift&perline=8" alt="GDScript, SQL, C++, Shell, Kotlin, PowerShell, C, Swift" />
+
+| JavaScript | HTML | TypeScript | Rust | C# | Python | CSS | GLSL | Java |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 23,7% | 19,7% | 13,6% | 11,1% | 7,7% | 7,6% | 6,7% | 5,5% | 2,2% |
+
+<sub>Também: GDScript, SQL, C++, Shell, Kotlin, PowerShell, SQF, Portugol, Batch, Flowgorithm e Swift. São 20 linguagens em ~1,36 milhão de linhas de código meu (sem forks). <a href="https://dark-legion-seven.vercel.app/#ranking">Ver o detalhe</a></sub>
 
 **Frameworks & web**<br/>
 <img src="https://skillicons.dev/icons?i=vite,react,nextjs,tailwind,electron,tauri" alt="Vite, React, Next.js, Tailwind, Electron, Tauri" />
