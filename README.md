@@ -9,11 +9,29 @@ Gosto de construir coisas do zero: sistemas em Rust, sites, jogos e ferramentas 
 <a href="https://lucas-belucci-bellini.vercel.app"><img src="https://img.shields.io/badge/portf%C3%B3lio-24292f?style=flat-square&logo=vercel&logoColor=white" alt="Portfólio" /></a>
 <a href="https://www.linkedin.com/in/lucas-belucci-bellini-28044b328"><img src="https://img.shields.io/badge/linkedin-0a66c2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
 
-<br/><br/>
+</div>
 
-<img src="https://skillicons.dev/icons?i=rust,ts,js,python,java,cs,html,css,react,nextjs,vite,tailwind&perline=12" alt="Linguagens e frameworks" />
 <br/>
-<img src="https://skillicons.dev/icons?i=nodejs,electron,tauri,postgres,supabase,docker,git,githubactions,linux,vercel,godot,arduino&perline=12" alt="Ferramentas" />
+
+## `// ARSENAL` · Tech stack & tools
+
+<div align="center">
+
+**Linguagens**<br/>
+<img src="https://skillicons.dev/icons?i=python,c,cpp,cs,java,js,ts,html,css,rust,bash,powershell&perline=12" alt="Python, C, C++, C#, Java, JavaScript, TypeScript, HTML, CSS, Rust, Bash, PowerShell" />
+
+**Frameworks & web**<br/>
+<img src="https://skillicons.dev/icons?i=vite,react,nextjs,tailwind,electron,tauri" alt="Vite, React, Next.js, Tailwind, Electron, Tauri" />
+
+**Infraestrutura & DevOps**<br/>
+<img src="https://skillicons.dev/icons?i=git,github,githubactions,vscode,linux,nodejs,mysql,postgres,supabase,docker,vercel&perline=11" alt="Git, GitHub, GitHub Actions, VS Code, Linux, Node.js, MySQL, PostgreSQL, Supabase, Docker, Vercel" />
+
+**IA & conhecimento**<br/>
+<img src="https://skillicons.dev/icons?i=obsidian" alt="Obsidian" /><br/>
+<sub>MCP · integrações com agentes de IA</sub>
+
+**Hardware & simulação**<br/>
+<img src="https://skillicons.dev/icons?i=arduino,unity,godot,blender" alt="Arduino, Unity, Godot, Blender" />
 
 </div>
 
