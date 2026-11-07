@@ -13,7 +13,7 @@ Gosto de construir coisas do zero: sistemas em Rust, sites, jogos e ferramentas 
 
 <br/>
 
-## `// ARSENAL` · Tech stack & tools
+##  Tech stack & tools
 
 <div align="center">
 
