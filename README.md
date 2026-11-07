@@ -2,72 +2,43 @@
 
 # Lucas Belucci Bellini
 
-**Estudante de Ciência da Computação · Desenvolvedor independente · UNIFIL**
+**Ciência da Computação · UNIFIL · Londrina, Brasil**
 
-Construo aplicações web, sistemas em Rust, ferramentas com IA, jogos, automações e projetos de hardware.
+Engenharia de software com foco em sistemas em Rust, aplicações web em TypeScript e ferramentas com IA.
 
-[![GitHub](https://img.shields.io/badge/GitHub-Lucas--Belucci--Bellini-181717?style=for-the-badge&logo=github)](https://github.com/Lucas-Belucci-Bellini)
-[![Portfólio](https://img.shields.io/badge/Portf%C3%B3lio-Acessar%20site-d4a24e?style=for-the-badge)](https://lucas-belucci-bellini.vercel.app)
-[![Projetos](https://img.shields.io/badge/Projetos-Explorar%20Dark%20Legion-d4a24e?style=for-the-badge)](https://dark-legion-seven.vercel.app)
+[![Portfólio](https://img.shields.io/badge/Portf%C3%B3lio-0d1117?style=for-the-badge&logo=vercel&logoColor=white)](https://lucas-belucci-bellini.vercel.app)
+[![Dark Legion](https://img.shields.io/badge/Dark%20Legion-d4a24e?style=for-the-badge&logo=github&logoColor=black)](https://dark-legion-seven.vercel.app)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lucas-belucci-bellini-28044b328)
 
 </div>
 
-## Sobre
+## Stack
 
-Sou Lucas Belucci Bellini, também conhecido como Spartan Gamer BR. Tenho interesse em engenharia de software, arquitetura de sistemas, automação, inteligência artificial, desenvolvimento de jogos e hardware.
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=rust,ts,js,python,java,cs,html,css&perline=8" alt="Rust, TypeScript, JavaScript, Python, Java, C#, HTML, CSS" />
+  <br/>
+  <img src="https://skillicons.dev/icons?i=react,nextjs,vite,tailwind,nodejs,electron,tauri,postgres&perline=8" alt="React, Next.js, Vite, Tailwind, Node.js, Electron, Tauri, PostgreSQL" />
+  <br/>
+  <img src="https://skillicons.dev/icons?i=supabase,docker,git,githubactions,linux,vercel,godot,arduino&perline=8" alt="Supabase, Docker, Git, GitHub Actions, Linux, Vercel, Godot, Arduino" />
+</p>
 
-## Linguagens
+## Projetos
 
-**Principais linguagens que utilizo**
-
-- **TypeScript** — aplicações web, interfaces e ferramentas
-- **Rust** — serviços backend, programação de sistemas e desenvolvimento de engines
-- **Python** — automação, scripts e ferramentas relacionadas a IA
-- **JavaScript** — desenvolvimento web e aplicações interativas
-
-**Outras linguagens identificadas em projetos públicos, experimentais e acadêmicos**
-
-Java · C# · C · C++ · Swift · Solidity · GDScript · SQF · Portugol · Wolfram Language · Assembly · Objective-C · GLSL · PL/pgSQL
-
-**Web, estilos, scripts e ferramentas de build**
-
-HTML · CSS · SCSS · Shell · PowerShell · Batch · Go Template · ShaderLab · CMake · Makefile · Linker Script · Dockerfile · NSIS
-
-Também utilizo SQL em projetos com bancos de dados e migrações.
-
-A lista foi organizada a partir de linguagens e formatos identificados nos repositórios públicos. A presença em um projeto representa experiência de uso, não um nível equivalente de domínio em todos eles.
-
-## Ferramentas & ecossistema
-
-- **Web:** React, Next.js, Vite, Tailwind CSS, Electron e MapLibre GL
-- **Backend & dados:** Axum, PostgreSQL, SQLx e Supabase
-- **DevOps:** Git, GitHub Actions, Linux, Node.js, Docker e Vercel
-- **IA & conhecimento:** MCP, Claude, Obsidian e integrações com agentes
-- **Hardware & simulação:** Unity, Arduino e ferramentas de lógica digital
-
-## Projetos em destaque
-
-| Projeto | Área | Acesso |
+| Projeto | O que é | Estado |
 |---|---|---|
-| **NEXORA** | Engine e tecnologia de jogos em Rust | [Site](https://web-2qfw.vercel.app) |
-| **Projeto Baluarte** | Ecossistema de software e produtos | [Repositório](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) |
-| **Veritas** | Lógica digital e simulação | [Repositório](https://github.com/Lucas-Belucci-Bellini/Veritas) |
-| **FLUX** | Software e aplicações | [Repositório](https://github.com/Lucas-Belucci-Bellini/FLUX) |
-| **Dark Legion** | Diretório público de projetos e demonstração de engenharia em projetos grandes | [Site](https://dark-legion-seven.vercel.app) |
+| [**Projeto Baluarte**](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte) | Plataforma principal: web, app desktop e o assistente J.A.R.V.I.S. | Beta · V2 em reconstrução |
+| [**Vanguard Field**](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard) | Navegação offline-first com GPS, MGRS e mapas (PWA + Android) | Beta |
+| [**Veritas**](https://github.com/Lucas-Belucci-Bellini/Veritas) | Tabelas verdade e circuitos lógicos no navegador, com motor Rust e MCP | Beta |
+| [**NEXORA**](https://web-2qfw.vercel.app) | Sandbox voxel com motor próprio em Rust | Alpha |
+| [**TITAN**](https://github.com/Lucas-Belucci-Bellini/TITAN) · [**AETHER**](https://github.com/Lucas-Belucci-Bellini/AETHER) · [**ATLAS**](https://github.com/Lucas-Belucci-Bellini/ATLAS) | Família de frameworks Rust: backend, aplicação/IA e frontend | Alpha |
+| [**Dark Legion**](https://dark-legion-seven.vercel.app) | Diretório público de todos os projetos (Next.js + API Rust) | Em desenvolvimento |
 
-## Explorar
+## Downloads
 
-O Dark Legion é o diretório central dos projetos públicos, com categorias, descrições e links de sites verificados. Também documenta a engenharia de um projeto de maior escala: portal em TypeScript, APIs em Rust, integração com PostgreSQL e manutenção automatizada do catálogo.
+[![Instalador Hermes + NEXORA](https://img.shields.io/badge/Hermes%20%2B%20NEXORA-Baixar%20instalador%20%28Windows%29-d4a24e?style=for-the-badge&logo=windows&logoColor=black)](https://dark-legion-seven.vercel.app/downloads)
 
-[![Abrir o site do Dark Legion](https://img.shields.io/badge/Dark%20Legion-Abrir%20o%20site-d4a24e?style=for-the-badge&logo=vercel&logoColor=white)](https://dark-legion-seven.vercel.app)
-
-O catálogo e o código do hub ficam no repositório `Lucas-Belucci-Bellini/Dark-Legion`; o acesso público é sempre pelo site acima.
-
-## Contato
-
-- GitHub: [@Lucas-Belucci-Bellini](https://github.com/Lucas-Belucci-Bellini)
-- Localização: Londrina, Paraná, Brasil
+Instala o Hermes Agent e sete Skills universais. Arquivos com SHA-256 publicado.
 
 ---
 
-<sub>Visão geral compacta do perfil. O histórico detalhado e os registros de projetos permanecem em <a href="docs/PROFILE-ARCHIVE.md">PROFILE-ARCHIVE.md</a>.</sub>
+<sub>Catálogo completo em <a href="https://github.com/Lucas-Belucci-Bellini/Dark-Legion">Dark-Legion</a> · histórico detalhado em <a href="docs/PROFILE-ARCHIVE.md">PROFILE-ARCHIVE.md</a></sub>
