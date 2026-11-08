@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-11-08T15:11:28Z",
+  "scanned_at": "2026-11-08T19:40:57Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -472,10 +472,10 @@
     },
     "UMBRA-LIMA-ALFA": {
       "branch": "main",
-      "sha": "06f301ba82d651b620086ffb1fb6f6af447f9383",
-      "date": "2026-11-07T16:05:34Z",
-      "message": "Add new chips: REG-8 D LATCH, SR LATCH, and Y=A+Y",
-      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/06f301ba82d651b620086ffb1fb6f6af447f9383"
+      "sha": "a4d7178cb013eb0e5c7388587c172ddfe7d33699",
+      "date": "2026-11-08T16:05:34Z",
+      "message": "Entrega: capturas do circuito aberto (5 binarios) e do bloco customizado, em PNG e PDF",
+      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/a4d7178cb013eb0e5c7388587c172ddfe7d33699"
     },
     "Veritas": {
       "branch": "main",
@@ -486,9 +486,9 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5299,
-    "project_commits": 4994,
-    "monitor_commits": 305,
+    "tracked_commits": 5301,
+    "project_commits": 4995,
+    "monitor_commits": 306,
     "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },

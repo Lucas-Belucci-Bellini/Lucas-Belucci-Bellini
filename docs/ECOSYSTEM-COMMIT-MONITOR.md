@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-11-08T15:11:28Z`  
+**Última varredura:** `2026-11-08T19:40:57Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `70`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5299`
-- **Commits dos projetos:** `4994`
-- **Commits do próprio monitor:** `305`
+- **Commits rastreados pelo ecossistema:** `5301`
+- **Commits dos projetos:** `4995`
+- **Commits do próprio monitor:** `306`
 - **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **UMBRA-LIMA-ALFA** — 1 commit(s) — [06f301ba82d6](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/06f301ba82d651b620086ffb1fb6f6af447f9383) — Add new chips: REG-8 D LATCH, SR LATCH, and Y=A+Y
+- **UMBRA-LIMA-ALFA** — 1 commit(s) — [a4d7178cb013](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/a4d7178cb013eb0e5c7388587c172ddfe7d33699) — Entrega: capturas do circuito aberto (5 binarios) e do bloco customizado, em PNG e PDF
 
 ## Erros de consulta
 
