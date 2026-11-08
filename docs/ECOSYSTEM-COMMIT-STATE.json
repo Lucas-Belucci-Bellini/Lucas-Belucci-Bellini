@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-11-06T09:23:32Z",
+  "scanned_at": "2026-11-08T15:11:28Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -472,10 +472,10 @@
     },
     "UMBRA-LIMA-ALFA": {
       "branch": "main",
-      "sha": "fc307bb411e965106533c95bb8c0a24440a467ca",
-      "date": "2026-10-27T03:09:49Z",
-      "message": "Chips/DISPLAY DECIMAL LEDSV1.json",
-      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/fc307bb411e965106533c95bb8c0a24440a467ca"
+      "sha": "06f301ba82d651b620086ffb1fb6f6af447f9383",
+      "date": "2026-11-07T16:05:34Z",
+      "message": "Add new chips: REG-8 D LATCH, SR LATCH, and Y=A+Y",
+      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/06f301ba82d651b620086ffb1fb6f6af447f9383"
     },
     "Veritas": {
       "branch": "main",
@@ -486,10 +486,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5297,
-    "project_commits": 4993,
-    "monitor_commits": 304,
-    "detected_project_commits_this_scan": 2,
+    "tracked_commits": 5299,
+    "project_commits": 4994,
+    "monitor_commits": 305,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {
