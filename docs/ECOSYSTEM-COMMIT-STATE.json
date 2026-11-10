@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-11-08T19:40:57Z",
+  "scanned_at": "2026-11-10T01:30:03Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -472,10 +472,10 @@
     },
     "UMBRA-LIMA-ALFA": {
       "branch": "main",
-      "sha": "a4d7178cb013eb0e5c7388587c172ddfe7d33699",
-      "date": "2026-11-08T16:05:34Z",
-      "message": "Entrega: capturas do circuito aberto (5 binarios) e do bloco customizado, em PNG e PDF",
-      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/a4d7178cb013eb0e5c7388587c172ddfe7d33699"
+      "sha": "4ac714dccf74e58023629a2a7b6fc2f6b4f42b38",
+      "date": "2026-11-09T22:59:56Z",
+      "message": "Calculadora cientifica em DLS: 12 chips + simulador sequencial",
+      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/4ac714dccf74e58023629a2a7b6fc2f6b4f42b38"
     },
     "Veritas": {
       "branch": "main",
@@ -486,10 +486,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5301,
-    "project_commits": 4995,
-    "monitor_commits": 306,
-    "detected_project_commits_this_scan": 1,
+    "tracked_commits": 5305,
+    "project_commits": 4998,
+    "monitor_commits": 307,
+    "detected_project_commits_this_scan": 3,
     "monitor_commit_this_scan": 1
   },
   "summary": {
