@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-11-10T01:30:03Z`  
+**Última varredura:** `2026-11-10T23:20:24Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `70`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5305`
-- **Commits dos projetos:** `4998`
-- **Commits do próprio monitor:** `307`
-- **Commits de projetos detectados nesta hora:** `3`
+- **Commits rastreados pelo ecossistema:** `5315`
+- **Commits dos projetos:** `5007`
+- **Commits do próprio monitor:** `308`
+- **Commits de projetos detectados nesta hora:** `9`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **UMBRA-LIMA-ALFA** — 3 commit(s) — [4ac714dccf74](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/4ac714dccf74e58023629a2a7b6fc2f6b4f42b38) — Calculadora cientifica em DLS: 12 chips + simulador sequencial
+- **UMBRA-LIMA-ALFA** — 9 commit(s) — [6dcc94f4d690](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/6dcc94f4d69048adc2ee9a1ab9dd54c0f42643ea) — Simulador: remove gargalo quadratico e libera bateria aritmetica
 
 ## Erros de consulta
 

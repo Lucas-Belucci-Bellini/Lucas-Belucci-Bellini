@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-11-10T01:30:03Z",
+  "scanned_at": "2026-11-10T23:20:24Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -472,10 +472,10 @@
     },
     "UMBRA-LIMA-ALFA": {
       "branch": "main",
-      "sha": "4ac714dccf74e58023629a2a7b6fc2f6b4f42b38",
-      "date": "2026-11-09T22:59:56Z",
-      "message": "Calculadora cientifica em DLS: 12 chips + simulador sequencial",
-      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/4ac714dccf74e58023629a2a7b6fc2f6b4f42b38"
+      "sha": "6dcc94f4d69048adc2ee9a1ab9dd54c0f42643ea",
+      "date": "2026-11-10T22:48:22Z",
+      "message": "Simulador: remove gargalo quadratico e libera bateria aritmetica",
+      "url": "https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/6dcc94f4d69048adc2ee9a1ab9dd54c0f42643ea"
     },
     "Veritas": {
       "branch": "main",
@@ -486,10 +486,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5305,
-    "project_commits": 4998,
-    "monitor_commits": 307,
-    "detected_project_commits_this_scan": 3,
+    "tracked_commits": 5315,
+    "project_commits": 5007,
+    "monitor_commits": 308,
+    "detected_project_commits_this_scan": 9,
     "monitor_commit_this_scan": 1
   },
   "summary": {
