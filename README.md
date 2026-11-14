@@ -53,7 +53,7 @@ Gosto de construir coisas do zero: sistemas em Rust, sites, jogos e ferramentas 
 
 **[Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas)** monta tabelas verdade e simula circuitos lógicos direto no navegador.
 
-**[NEXORA](https://web-2qfw.vercel.app)** é um jogo de mundo em blocos com motor próprio escrito em Rust. Ainda está em alpha.
+**[NEXORA](https://nexora-dev-diary.lovable.app)** é um jogo de mundo em blocos com motor próprio escrito em Rust. Ainda está em alpha.
 
 **[TITAN](https://github.com/Lucas-Belucci-Bellini/TITAN), [AETHER](https://github.com/Lucas-Belucci-Bellini/AETHER) e [ATLAS](https://github.com/Lucas-Belucci-Bellini/ATLAS)** são frameworks em Rust que estou criando para backend, aplicações e interface.
 
