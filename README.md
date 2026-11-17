@@ -5,6 +5,7 @@
 <p>Estudante de Ciência da Computação na UNIFIL, em Londrina.<br/>
 Gosto de construir coisas do zero: sistemas em Rust, sites, jogos e ferramentas que uso no dia a dia.</p>
 
+<a href="https://nexora-dev-diary.lovable.app"><img src="https://img.shields.io/badge/NEXORA-4fd6c8?style=flat-square&logo=rust&logoColor=black" alt="NEXORA" /></a>
 <a href="https://dark-legion-seven.vercel.app"><img src="https://img.shields.io/badge/meus%20projetos-d4a24e?style=flat-square&logo=github&logoColor=black" alt="Meus projetos" /></a>
 <a href="https://lucas-belucci-bellini.vercel.app"><img src="https://img.shields.io/badge/portf%C3%B3lio-24292f?style=flat-square&logo=vercel&logoColor=white" alt="Portfólio" /></a>
 <a href="https://www.linkedin.com/in/lucas-belucci-bellini-28044b328"><img src="https://img.shields.io/badge/linkedin-0a66c2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
@@ -47,17 +48,9 @@ Gosto de construir coisas do zero: sistemas em Rust, sites, jogos e ferramentas 
 
 ### No que estou trabalhando
 
-**[Projeto Baluarte](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte)** é o meu projeto principal: um site com app desktop e um assistente próprio, o J.A.R.V.I.S. A versão 2 está sendo reconstruída.
+**[NEXORA](https://nexora-dev-diary.lovable.app)** é um jogo de mundo em blocos com motor próprio escrito em Rust, sem dependências externas. Ele está sendo construído junto com quem vai jogar: no site você manda ideias, reporta bugs, acompanha as tarefas e o progresso, e pode [apoiar o desenvolvimento](https://nexora-dev-diary.lovable.app/apoiar).
 
-**[Vanguard Field](https://github.com/Lucas-Belucci-Bellini/Project-Vanguard)** é um app de navegação que funciona sem internet, com GPS, grade MGRS e mapas. Roda no navegador e no Android.
-
-**[Veritas](https://github.com/Lucas-Belucci-Bellini/Veritas)** monta tabelas verdade e simula circuitos lógicos direto no navegador.
-
-**[NEXORA](https://nexora-dev-diary.lovable.app)** é um jogo de mundo em blocos com motor próprio escrito em Rust. Ainda está em alpha.
-
-**[TITAN](https://github.com/Lucas-Belucci-Bellini/TITAN), [AETHER](https://github.com/Lucas-Belucci-Bellini/AETHER) e [ATLAS](https://github.com/Lucas-Belucci-Bellini/ATLAS)** são frameworks em Rust que estou criando para backend, aplicações e interface.
-
-O resto está no [Dark Legion](https://dark-legion-seven.vercel.app), onde junto todos os projetos públicos ([código aqui](https://github.com/Lucas-Belucci-Bellini/Dark-Legion)).
+**[Dark Legion](https://dark-legion-seven.vercel.app)** é onde junto todos os meus projetos: ranking, linhas de código e linguagens de cada repositório, auditoria, sites no ar e downloads ([código aqui](https://github.com/Lucas-Belucci-Bellini/Dark-Legion)).
 
 ### Downloads
 
