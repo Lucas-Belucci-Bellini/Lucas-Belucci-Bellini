@@ -24,19 +24,22 @@ em tempo de execução.
 
 | Camada | Estado atual | Próxima evolução |
 |:---|:---|:---|
-| Estrutura visual | `index.html` | Preservar semântica e separar componentes quando o TS entrar |
+| Estrutura visual | `index.html` | Preservar semântica e acessibilidade |
 | Estilos | `assets/site.css` | Preservar identidade visual e responsividade |
-| Interações | `assets/site.js` em JavaScript | Migrar para TypeScript com verificação estrita |
-| Feeds | `data/projects.json` e `data/stack-inventory.json` gerados em build | Manter contratos versionados e validados |
-| Build público | `scripts/build_portfolio.py` | Migrar a geração para Rust após paridade comprovada |
-| Núcleo Rust | workspace com sete crates e CLI `profile-core` | Tornar Rust o único gerador depois dos critérios de paridade |
+| Interações | `frontend/main.ts` + `frontend/contracts.ts`; módulos ES2022 compilados para `assets/main.js` e `assets/contracts.js` | Continuar modularizando sem alterar o contrato público |
+| Feeds | `data/projects.json` e `data/stack-inventory.json`, gerados por `profile-core site build` | Manter schemas versionados e comparação com o builder Python |
+| Build público | `tsconfig.json` + `profile-core site build`; `scripts/build_portfolio.py` permanece como oráculo de paridade | Manter a comparação byte a byte e a allowlist do artefato |
+| Núcleo Rust | workspace com sete crates e CLI `profile-core`, incluindo o subcomando `site build` | Evoluir regras sem quebrar a paridade do catálogo |
 | Persistência | crate `store` e migrations PostgreSQL | Usar apenas em rotinas que exigem histórico; site estático não depende do banco |
-| Hospedagem | Vercel, integração Git | Continuar com deploy estático e artefato mínimo |
+| Hospedagem | Vercel, com build command versionado em `vercel.json` | Validar a primeira implantação com o novo pipeline |
 
-**Limite importante:** o workspace Rust atual é uma CLI de domínio, coleta,
-validação e geração. A inspeção do workspace não encontrou um servidor HTTP
-Axum nem uma API web publicada. Portanto, não devemos apresentar o projeto
-como se já tivesse um backend HTTP em produção.
+O runtime TypeScript e seus testes de privacidade foram integrados na PR #86.
+A etapa seguinte compila os módulos ES2022 e troca o publicador de feeds para
+Rust. O builder Python continua como referência independente para comparação.
+
+**Limite importante:** o backend Rust do portfólio é um núcleo CLI de domínio,
+coleta, validação e geração estática. Não existe uma API HTTP/Axum publicada;
+a página é servida como arquivos estáticos e não depende de PostgreSQL.
 
 ## Contratos públicos
 

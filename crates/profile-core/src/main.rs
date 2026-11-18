@@ -7,8 +7,7 @@
 //! profile-core check sites   [--json] [--fail-on-down] [--timeout S] [--retries N]
 //!                            [--max-workers N] [--root DIR] [--no-db] [--trigger T]
 //! profile-core catalog build [--root DIR] [--input-repos FILE] [--now ISO] [--write]
-//!                            [--site-checks-fixture FILE | --skip-site-check]
-//!                            [--site-timeout S] [--site-workers N] [--site-checks-out FILE]
+//! profile-core site build    [--root DIR] [--out-dir DIR] [--frontend-build DIR]
 //! profile-core render readme [--root DIR] [--input-repos FILE [--languages-dir DIR]] [--now ISO]
 //!                            [--write] [--out-dir DIR] [--catalog-out FILE]
 //!                            [--site-checks-fixture FILE | --skip-site-check]
@@ -47,6 +46,10 @@
 //! mesmos contadores, lendo o `docs/ECOSYSTEM-COMMIT-STATE.json` como estado
 //! anterior. Com banco, grava as transições e os contadores; sem banco
 //! configurado recusa, a menos que `--no-db`.
+//!
+//! `site build` gera o diretório estático `dist/` com feeds públicos, assets
+//! compilados do frontend e uma allowlist explícita. Não consulta o GitHub,
+//! não conecta ao PostgreSQL e não exige tokens.
 //!
 //! `catalog build` gera o `docs/project-catalog.json` com os mesmos bytes do
 //! `update_profile.py`. Sem `--write`, imprime o catálogo e não grava nada;
@@ -94,6 +97,7 @@ use profile_core::imports;
 use profile_core::inventory_sync::{self, SyncOptions};
 use profile_core::pipeline::{self, Mode, PipelineError};
 use profile_core::render::{self, RenderOptions};
+use profile_core::site_feed;
 use profile_core::sites;
 use profile_core::validate::{self, Crash, Outcome};
 use serde_json::json;
@@ -119,6 +123,9 @@ enum Command {
     /// Catálogo do ecossistema (docs/project-catalog.json).
     #[command(subcommand)]
     Catalog(CatalogCommand),
+    /// Site estático público (feeds JSON e assets do frontend).
+    #[command(subcommand)]
+    Site(SiteCommand),
     /// Coleta do GitHub.
     #[command(subcommand)]
     Sync(SyncCommand),
@@ -380,6 +387,25 @@ enum CatalogCommand {
     Build(CatalogArgs),
 }
 
+#[derive(Subcommand)]
+enum SiteCommand {
+    /// Gera dist/ apenas com dados e assets públicos, sem token nem banco.
+    Build(SiteBuildArgs),
+}
+
+#[derive(Args)]
+struct SiteBuildArgs {
+    /// Raiz com docs/, index.html e frontend/.
+    #[arg(long, default_value = ".")]
+    root: PathBuf,
+    /// Diretório de saída estática.
+    #[arg(long, default_value = "dist")]
+    out_dir: PathBuf,
+    /// Diretório gerado por tsc (main.js e contracts.js).
+    #[arg(long, default_value = "frontend/build")]
+    frontend_build: PathBuf,
+}
+
 #[derive(Args)]
 struct CatalogArgs {
     /// Raiz com docs/ (manifestos e catálogo).
@@ -473,6 +499,8 @@ enum CliError {
     Store(#[from] StoreError),
     #[error(transparent)]
     Catalog(#[from] catalog_build::BuildError),
+    #[error(transparent)]
+    Site(#[from] site_feed::SiteError),
     #[error(transparent)]
     Collect(#[from] sites::CollectError),
     #[error(transparent)]
@@ -594,6 +622,7 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
         Command::Db(command) => command,
         Command::Check(CheckCommand::Sites(args)) => return check_sites(args).await,
         Command::Catalog(CatalogCommand::Build(args)) => return build_catalog(args).await,
+        Command::Site(SiteCommand::Build(args)) => return build_site(args),
         Command::Sync(SyncCommand::Commits(args)) => return sync_commits(args).await,
         Command::Sync(SyncCommand::Github(args)) => return sync_github(args).await,
         Command::Sync(SyncCommand::Contributions(args)) => return sync_contributions(args).await,
@@ -657,6 +686,12 @@ async fn run(cli: Cli) -> Result<ExitCode, CliError> {
             Ok(ExitCode::SUCCESS)
         }
     }
+}
+
+fn build_site(args: SiteBuildArgs) -> Result<ExitCode, CliError> {
+    let summary = site_feed::build(&args.root, &args.out_dir, &args.frontend_build)?;
+    println!("portfolio site built: {} public projects -> {}", summary.public_projects, args.out_dir.display());
+    Ok(ExitCode::SUCCESS)
 }
 
 async fn check_sites(args: SitesArgs) -> Result<ExitCode, CliError> {

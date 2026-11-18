@@ -64,9 +64,21 @@ describe("public project catalog contract", () => {
     assert.equal(isProjectCatalog(validCatalog()), true);
   });
 
+  it("accepts dots in legitimate GitHub repository names", () => {
+    const payload = validCatalog();
+    payload.projects[0].github = "https://github.com/Lucas-Belucci-Bellini/Ativ.-Geren-Proj";
+    assert.equal(isProjectCatalog(payload), true);
+  });
+
   it("rejects unexpected fields that could leak private metadata", () => {
     const payload = validCatalog();
     payload.projects[0].private_repository_name = "must-not-leak";
+    assert.equal(isProjectCatalog(payload), false);
+  });
+
+  it("rejects GitHub URLs that do not identify exactly one repository", () => {
+    const payload = validCatalog();
+    payload.projects[0].github = "https://github.com/example/repo/extra";
     assert.equal(isProjectCatalog(payload), false);
   });
 

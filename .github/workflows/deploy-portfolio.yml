@@ -11,6 +11,12 @@ on:
       - "index.html"
       - "assets/**"
       - "frontend/**"
+      - "crates/profile-core/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "rust-toolchain.toml"
+      - "tsconfig.json"
+      - "vercel.json"
       - "docs/project-catalog.json"
       - "docs/PROFILE-ARCHIVE.md"
       - "docs/README_STACK.json"
@@ -23,6 +29,12 @@ on:
       - feat/profile-readme-website-v2
     paths:
       - "frontend/**"
+      - "crates/profile-core/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "rust-toolchain.toml"
+      - "tsconfig.json"
+      - "vercel.json"
       - "README.md"
       - "index.html"
       - "assets/**"
@@ -44,7 +56,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 25
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -60,10 +72,30 @@ jobs:
           node-version: "22"
 
       - name: Type-check TypeScript frontend
-        run: npx --yes --package typescript@5.9.3 tsc --noEmit --strict --noUncheckedIndexedAccess --target ES2022 --module ES2022 --moduleResolution bundler --lib ES2022,DOM frontend/main.ts
+        run: npx --yes --package typescript@5.9.3 tsc --noEmit -p tsconfig.json
 
       - name: Test public feed privacy guards
         run: npx --yes --package tsx@4.20.6 tsx --test frontend/contracts.test.ts
+
+      - name: Compile TypeScript modules for the static site
+        run: npx --yes --package typescript@5.9.3 tsc -p tsconfig.json
+
+      - name: Install pinned Rust toolchain
+        run: |
+          toolchain="$(sed -n 's/^channel = "\(.*\)"$/\1/p' rust-toolchain.toml)"
+          rustup toolchain install "$toolchain" --profile minimal --component rustfmt --component clippy
+
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            target
+          key: portfolio-cargo-${{ runner.os }}-${{ hashFiles('rust-toolchain.toml') }}-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            portfolio-cargo-${{ runner.os }}-${{ hashFiles('rust-toolchain.toml') }}-
 
       - name: Validate source and catalog
         run: |
@@ -76,13 +108,29 @@ jobs:
           test -s index.html
           test -s assets/site.css
           test -s assets/site.js
+          test -s frontend/main.ts
           test -s assets/favicon.svg
 
       - name: Run static build contract tests
         run: python -m unittest discover -s tests -p "test_build_portfolio.py" -v
 
-      - name: Build public-only static artifact
-        run: python scripts/build_portfolio.py
+      - name: Build Python reference feeds
+        run: python scripts/build_portfolio.py --out /tmp/portfolio-python-dist
+
+      - name: Check Rust formatting and site-feed tests
+        run: |
+          cargo fmt --all -- --check
+          cargo test --locked -p profile-core site_feed
+
+      - name: Build public-only static artifact with Rust
+        run: |
+          cargo build --locked --release -p profile-core
+          target/release/profile-core site build --root . --out-dir dist --frontend-build frontend/build
+
+      - name: Compare Rust feeds with the Python reference
+        run: |
+          cmp /tmp/portfolio-python-dist/data/projects.json dist/data/projects.json
+          cmp /tmp/portfolio-python-dist/data/stack-inventory.json dist/data/stack-inventory.json
 
       - name: Verify exact artifact allowlist and public data contract
         shell: bash
@@ -97,7 +145,8 @@ jobs:
           allowed_files = {
               "index.html",
               "assets/site.css",
-              "assets/site.js",
+              "assets/main.js",
+              "assets/contracts.js",
               "assets/favicon.svg",
               "data/projects.json",
               "data/stack-inventory.json",
@@ -144,6 +193,35 @@ jobs:
                   parsed_website = urlparse(website) if isinstance(website, str) else None
                   if not parsed_website or parsed_website.scheme != "https" or not parsed_website.netloc:
                       raise SystemExit(f"Project at index {index} has an invalid website URL")
+
+          stack_path = root / "data/stack-inventory.json"
+          stack = json.loads(stack_path.read_text(encoding="utf-8"))
+          if stack.get("schema") != "lucas-belucci-bellini/professional-stack@1":
+              raise SystemExit("Professional stack schema is invalid")
+          languages = stack.get("languages")
+          tools = stack.get("tools")
+          summary = stack.get("summary")
+          if not isinstance(languages, list) or not isinstance(tools, list) or not isinstance(summary, dict):
+              raise SystemExit("Professional stack feed is malformed")
+          if summary.get("language_count") != len(languages):
+              raise SystemExit("Stack language_count does not match languages array")
+          private_names = {
+              str(item.get("name", "")).strip().casefold()
+              for item in json.loads(Path("docs/project-catalog.json").read_text(encoding="utf-8")).get("projects", [])
+              if isinstance(item, dict) and item.get("private") is True and str(item.get("name", "")).strip()
+          }
+          stack_text = stack_path.read_text(encoding="utf-8").casefold()
+          leaked = sorted(name for name in private_names if name in stack_text)
+          if leaked:
+              raise SystemExit(f"Private project names leaked into stack feed: {leaked}")
+          for index, tool in enumerate(tools):
+              if not isinstance(tool, dict) or set(tool) != {"name", "category", "family", "evidence", "projects"}:
+                  raise SystemExit(f"Tool at index {index} violates the public allowlist")
+              if not isinstance(tool["projects"], list):
+                  raise SystemExit(f"Tool at index {index} has an invalid projects list")
+              for project in tool["projects"]:
+                  if not isinstance(project, dict) or set(project) - {"name", "github", "website"}:
+                      raise SystemExit(f"Tool evidence at index {index} contains non-public fields")
 
           print(f"Artifact privacy contract passed: {len(projects)} public projects")
           PY

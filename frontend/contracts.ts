@@ -113,7 +113,7 @@ function isGitHubRepositoryUrl(value: unknown): value is string {
     const segments = url.pathname.split("/").filter(Boolean);
     return url.hostname.toLowerCase() === "github.com"
       && segments.length === 2
-      && segments.every((segment) => !segment.includes("."));
+      && segments.every((segment) => segment !== "." && segment !== "..");
   } catch {
     return false;
   }

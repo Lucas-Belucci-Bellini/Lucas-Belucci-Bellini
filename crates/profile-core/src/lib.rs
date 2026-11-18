@@ -9,5 +9,6 @@ pub mod imports;
 pub mod inventory_sync;
 pub mod pipeline;
 pub mod render;
+pub mod site_feed;
 pub mod sites;
 pub mod validate;
