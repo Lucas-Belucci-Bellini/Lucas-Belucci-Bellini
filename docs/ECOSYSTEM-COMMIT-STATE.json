@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-11-17T03:52:50Z",
+  "scanned_at": "2026-11-21T23:14:47Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -368,6 +368,13 @@
       "message": "Initial commit",
       "url": "https://github.com/Lucas-Belucci-Bellini/Multi-functional-site-Baluarte/commit/5fe796e57dc5e2a3c892cfc2fe96c85f141b41f3"
     },
+    "NEXORA-Mobile": {
+      "branch": "main",
+      "sha": "ea1ebe1bebb2d227f27399dbb70e0f9af6a6861b",
+      "date": "2026-11-21T17:37:08Z",
+      "message": "Initial commit",
+      "url": "https://github.com/Lucas-Belucci-Bellini/NEXORA-Mobile/commit/ea1ebe1bebb2d227f27399dbb70e0f9af6a6861b"
+    },
     "OMEGA-ALFA-DELTA": {
       "branch": "main",
       "sha": "610ca15bda01f0ccc0806b573bc0d8ae59c1255c",
@@ -486,15 +493,15 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5318,
+    "tracked_commits": 5319,
     "project_commits": 5009,
-    "monitor_commits": 309,
-    "detected_project_commits_this_scan": 2,
+    "monitor_commits": 310,
+    "detected_project_commits_this_scan": 0,
     "monitor_commit_this_scan": 1
   },
   "summary": {
-    "repositories_scanned": 70,
-    "repositories_changed": 1,
+    "repositories_scanned": 71,
+    "repositories_changed": 0,
     "errors": 3
   },
   "errors": [

@@ -2,24 +2,24 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-11-17T03:52:50Z`  
+**Última varredura:** `2026-11-21T23:14:47Z`  
 **Intervalo configurado:** `1 hora`  
-**Repositórios acompanhados:** `70`  
-**Repositórios com mudanças desde a última varredura:** `1`  
+**Repositórios acompanhados:** `71`  
+**Repositórios com mudanças desde a última varredura:** `0`  
 **Falhas de consulta:** `3`
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5318`
+- **Commits rastreados pelo ecossistema:** `5319`
 - **Commits dos projetos:** `5009`
-- **Commits do próprio monitor:** `309`
-- **Commits de projetos detectados nesta hora:** `2`
+- **Commits do próprio monitor:** `310`
+- **Commits de projetos detectados nesta hora:** `0`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **UMBRA-LIMA-ALFA** — 2 commit(s) — [33b91d8fe999](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/33b91d8fe999b4b2440f83282f49bfe74ad4fc0c) — MEM-16 e MEM-256: barramento em U com saidas engatadas na linha
+- Nenhuma mudança desde a última varredura.
 
 ## Erros de consulta
 
