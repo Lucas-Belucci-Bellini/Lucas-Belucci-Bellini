@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "scanned_at": "2026-11-26T05:02:29Z",
+  "scanned_at": "2026-11-26T23:52:46Z",
   "scan_interval": "hourly",
   "repositories": {
     "Academic-Portfolio": {
@@ -405,10 +405,10 @@
     },
     "Projeto-Baluarte": {
       "branch": "main",
-      "sha": "0c9c2bcaf804fe5beac77ae6a649d44fb6caf246",
-      "date": "2026-11-26T01:56:47Z",
-      "message": "build(v2): adiciona gate TypeScript nativo à CI (#544)",
-      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0c9c2bcaf804fe5beac77ae6a649d44fb6caf246"
+      "sha": "629c14160149bdf69d84b6ab7e6e6ed1b8996178",
+      "date": "2026-11-26T21:52:44Z",
+      "message": "Atualiza câmbio (dólar, euro, bitcoin) [automático]",
+      "url": "https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/629c14160149bdf69d84b6ab7e6e6ed1b8996178"
     },
     "Projeto-Baluarte-Social-Media": {
       "branch": "main",
@@ -493,10 +493,10 @@
     }
   },
   "metrics": {
-    "tracked_commits": 5325,
-    "project_commits": 5013,
-    "monitor_commits": 312,
-    "detected_project_commits_this_scan": 2,
+    "tracked_commits": 5327,
+    "project_commits": 5014,
+    "monitor_commits": 313,
+    "detected_project_commits_this_scan": 1,
     "monitor_commit_this_scan": 1
   },
   "summary": {

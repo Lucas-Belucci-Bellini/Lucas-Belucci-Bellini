@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-11-26T05:02:29Z`  
+**Última varredura:** `2026-11-26T23:52:46Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `71`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5325`
-- **Commits dos projetos:** `5013`
-- **Commits do próprio monitor:** `312`
-- **Commits de projetos detectados nesta hora:** `2`
+- **Commits rastreados pelo ecossistema:** `5327`
+- **Commits dos projetos:** `5014`
+- **Commits do próprio monitor:** `313`
+- **Commits de projetos detectados nesta hora:** `1`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **Projeto-Baluarte** — 2 commit(s) — [0c9c2bcaf804](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0c9c2bcaf804fe5beac77ae6a649d44fb6caf246) — build(v2): adiciona gate TypeScript nativo à CI (#544)
+- **Projeto-Baluarte** — 1 commit(s) — [629c14160149](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/629c14160149bdf69d84b6ab7e6e6ed1b8996178) — Atualiza câmbio (dólar, euro, bitcoin) [automático]
 
 ## Erros de consulta
 
