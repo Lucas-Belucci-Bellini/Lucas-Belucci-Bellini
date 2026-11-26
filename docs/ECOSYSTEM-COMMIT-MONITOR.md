@@ -2,7 +2,7 @@
 
 > Snapshot horário do ecossistema público. O perfil acompanha o último commit de cada repositório e agrega mudanças; ele não espelha o histórico inteiro dos projetos.
 
-**Última varredura:** `2026-11-24T06:01:32Z`  
+**Última varredura:** `2026-11-26T05:02:29Z`  
 **Intervalo configurado:** `1 hora`  
 **Repositórios acompanhados:** `71`  
 **Repositórios com mudanças desde a última varredura:** `1`  
@@ -10,16 +10,16 @@
 
 ## Contadores
 
-- **Commits rastreados pelo ecossistema:** `5322`
-- **Commits dos projetos:** `5011`
-- **Commits do próprio monitor:** `311`
+- **Commits rastreados pelo ecossistema:** `5325`
+- **Commits dos projetos:** `5013`
+- **Commits do próprio monitor:** `312`
 - **Commits de projetos detectados nesta hora:** `2`
 
 > O contador acima é uma métrica própria do monitor. Ele não é o mesmo que **GitHub Contributions**. O contador do monitor cresce somente quando há mudança semântica e o snapshot é publicado; varreduras sem mudança são no-op.
 
 ## Mudanças detectadas
 
-- **UMBRA-LIMA-ALFA** — 2 commit(s) — [4b88535df56c](https://github.com/Lucas-Belucci-Bellini/UMBRA-LIMA-ALFA/commit/4b88535df56c989e0d325b5e02d9ef32d42357c6) — Merge pull request #9 from Lucas-Belucci-Bellini/claude/memoria-256x8
+- **Projeto-Baluarte** — 2 commit(s) — [0c9c2bcaf804](https://github.com/Lucas-Belucci-Bellini/Projeto-Baluarte/commit/0c9c2bcaf804fe5beac77ae6a649d44fb6caf246) — build(v2): adiciona gate TypeScript nativo à CI (#544)
 
 ## Erros de consulta
 
